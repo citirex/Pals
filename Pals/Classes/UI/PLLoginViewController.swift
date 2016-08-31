@@ -23,9 +23,17 @@ class PLLoginViewController: UIViewController {
 	@IBAction func loginButton(sender: AnyObject) {
 	}
 	@IBAction func forgotButton(sender: AnyObject) {
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PLLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+		
+		let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(self.view.bounds.width / 2, self.view.bounds.height / 2 - 35, 0, 0)) as UIActivityIndicatorView
 		let alert = UIAlertController(title: "We got your back!", message: "Enter below and we'll send your password!", preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+			(alert: UIAlertAction!) -> Void in
+			self.view.addSubview(spinner)
+			spinner.startAnimating()
+		}))
 		alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
 			textField.placeholder = "Email"
 		})
@@ -43,7 +51,7 @@ class PLLoginViewController: UIViewController {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PLLoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PLLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 		
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		
 		roundImage(logoImage)
@@ -53,17 +61,14 @@ class PLLoginViewController: UIViewController {
 		
 		self.hideKeyboardWhenTappedAround()
     }
-		func keyboardWillShow(notification: NSNotification) {
+	func keyboardWillShow(notification: NSNotification) {
 		
 		if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-		if view.frame.origin.y == 0{
-		self.view.frame.origin.y -= keyboardSize.height
+				if view.frame.origin.y == 0{
+					self.view.frame.origin.y -= keyboardSize.height
+				}
 		}
-		else {
-		}
-		}
-		}
-		
+	}
 	func keyboardWillHide(notification: NSNotification) {
 		if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
 				if view.frame.origin.y != 0 {
@@ -72,7 +77,6 @@ class PLLoginViewController: UIViewController {
 		}
 	}
 	override func dismissKeyboard() {
-		//Causes the view (or one of its embedded text fields) to resign the first responder status.
 		view.endEditing(true)
 	}
 	
@@ -115,33 +119,6 @@ class PLLoginViewController: UIViewController {
 				// Comletion
 		})
 	}
-	
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		textField.resignFirstResponder()
-		return true
-	}
-	func textFieldDidBeginEditing(textField: UITextField)  {
-//		scrollView.setContentOffset(CGPointMake(0.0, 250.0), animated: true)
-	}
-	func textFieldDidEndEditing(textField: UITextField) {
-//		scrollView.setContentOffset(CGPointMake(0.0, 0.0), animated: true)
-	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-	
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
