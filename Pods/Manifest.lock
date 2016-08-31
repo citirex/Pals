@@ -14,13 +14,19 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - RandomKit (1.6.0)
+  - SwiftQRCode (2.0.2)
 
 DEPENDENCIES:
   - AFNetworking
+  - RandomKit
+  - SwiftQRCode
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  RandomKit: 9b33ce5fc448056e8ddaaef655da315b26f23e32
+  SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
-PODFILE CHECKSUM: c37f4fdda6f3e1587229dcd9f1209a767830c1b6
+PODFILE CHECKSUM: 094e233dc65c1323e4e59642799c8c268d276adc
 
 COCOAPODS: 1.0.1

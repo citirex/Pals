@@ -12,11 +12,22 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var isUserLoggedIn = true // for testing, remove
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+
+        let mainStoryboardIpad = UIStoryboard(name: "Main", bundle: nil)
+        let viewControllerIdentifier = (isUserLoggedIn == true) ? "TabBarController" : "Login" // fix to show login or tabbar
+        let initialViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier(viewControllerIdentifier) as UIViewController
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
+        
         return true
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

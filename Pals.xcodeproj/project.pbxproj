@@ -7,15 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B4ACB8F6F9EEA19E28FD65D0 /* libPods-Pals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5EC32E41C92D25BDA4073D /* libPods-Pals.a */; };
+		24BB0C701D77249000B691D1 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0C6F1D77249000B691D1 /* TGLBackgroundProxyView.m */; };
+		24BB0C721D77272600B691D1 /* PLProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0C711D77272600B691D1 /* PLProfileHeaderView.swift */; };
+		24BB0C741D77273A00B691D1 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24BB0C731D77273A00B691D1 /* PLProfileHeaderView.xib */; };
+		24CBED3D1D76D6080028E5E3 /* PLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CBED3C1D76D6080028E5E3 /* PLProfileViewController.swift */; };
+		24CD9CDC1D77079300247FE8 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CD9CD71D77079300247FE8 /* TGLExposedLayout.m */; };
+		24CD9CDD1D77079300247FE8 /* TGLStackedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CD9CD91D77079300247FE8 /* TGLStackedLayout.m */; };
+		24CD9CDE1D77079300247FE8 /* TGLStackedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CD9CDB1D77079300247FE8 /* TGLStackedViewController.m */; };
+		24CD9CE31D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD9CE21D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift */; };
+		24CD9CE51D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24CD9CE41D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib */; };
 		D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F53C81D76B497005DEA34 /* AppDelegate.swift */; };
 		D42F53CE1D76B497005DEA34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42F53CC1D76B497005DEA34 /* Main.storyboard */; };
 		D42F53D01D76B497005DEA34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42F53CF1D76B497005DEA34 /* Assets.xcassets */; };
 		D42F53D31D76B497005DEA34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42F53D11D76B497005DEA34 /* LaunchScreen.storyboard */; };
 		D42F53DE1D76C5B7005DEA34 /* PLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F53DD1D76C5B7005DEA34 /* PLLoginViewController.swift */; };
+		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24BB0C6E1D77249000B691D1 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
+		24BB0C6F1D77249000B691D1 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
+		24BB0C711D77272600B691D1 /* PLProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLProfileHeaderView.swift; path = Classes/UI/PLProfileHeaderView.swift; sourceTree = "<group>"; };
+		24BB0C731D77273A00B691D1 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileHeaderView.xib; sourceTree = "<group>"; };
+		24CBED3C1D76D6080028E5E3 /* PLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLProfileViewController.swift; path = Classes/UI/PLProfileViewController.swift; sourceTree = "<group>"; };
+		24CD9CD71D77079300247FE8 /* TGLExposedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLExposedLayout.m; sourceTree = "<group>"; };
+		24CD9CD81D77079300247FE8 /* TGLStackedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLStackedLayout.h; sourceTree = "<group>"; };
+		24CD9CD91D77079300247FE8 /* TGLStackedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLStackedLayout.m; sourceTree = "<group>"; };
+		24CD9CDA1D77079300247FE8 /* TGLStackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLStackedViewController.h; sourceTree = "<group>"; };
+		24CD9CDB1D77079300247FE8 /* TGLStackedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLStackedViewController.m; sourceTree = "<group>"; };
+		24CD9CDF1D77085600247FE8 /* TGLExposedLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGLExposedLayout.h; sourceTree = "<group>"; };
+		24CD9CE01D77097000247FE8 /* Pals-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pals-Bridging-Header.h"; sourceTree = "<group>"; };
+		24CD9CE21D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLProfileDrinkCollectionViewCell.swift; path = Classes/UI/PLProfileDrinkCollectionViewCell.swift; sourceTree = "<group>"; };
+		24CD9CE41D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
+		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42F53C81D76B497005DEA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -24,7 +48,6 @@
 		D42F53D21D76B497005DEA34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D42F53D41D76B497005DEA34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D42F53DD1D76C5B7005DEA34 /* PLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLLoginViewController.swift; path = Classes/UI/PLLoginViewController.swift; sourceTree = "<group>"; };
-		EF5EC32E41C92D25BDA4073D /* libPods-Pals.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pals.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,13 +56,68 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4ACB8F6F9EEA19E28FD65D0 /* libPods-Pals.a in Frameworks */,
+				DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24CBED3B1D76D0250028E5E3 /* Supporting Fiels */ = {
+			isa = PBXGroup;
+			children = (
+				24CD9CD41D77079300247FE8 /* Thrird Party Libraries */,
+				D42F53C81D76B497005DEA34 /* AppDelegate.swift */,
+				D42F53D11D76B497005DEA34 /* LaunchScreen.storyboard */,
+				D42F53D41D76B497005DEA34 /* Info.plist */,
+				24CD9CE01D77097000247FE8 /* Pals-Bridging-Header.h */,
+			);
+			name = "Supporting Fiels";
+			sourceTree = "<group>";
+		};
+		24CBED3E1D76D60F0028E5E3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24CBED3C1D76D6080028E5E3 /* PLProfileViewController.swift */,
+				24CD9CE11D770F9C00247FE8 /* Resources */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		24CD9CD41D77079300247FE8 /* Thrird Party Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				24CD9CD51D77079300247FE8 /* TGLStackedViewController */,
+			);
+			path = "Thrird Party Libraries";
+			sourceTree = "<group>";
+		};
+		24CD9CD51D77079300247FE8 /* TGLStackedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				24CD9CDF1D77085600247FE8 /* TGLExposedLayout.h */,
+				24CD9CD71D77079300247FE8 /* TGLExposedLayout.m */,
+				24CD9CD81D77079300247FE8 /* TGLStackedLayout.h */,
+				24CD9CD91D77079300247FE8 /* TGLStackedLayout.m */,
+				24CD9CDA1D77079300247FE8 /* TGLStackedViewController.h */,
+				24CD9CDB1D77079300247FE8 /* TGLStackedViewController.m */,
+				24BB0C6E1D77249000B691D1 /* TGLBackgroundProxyView.h */,
+				24BB0C6F1D77249000B691D1 /* TGLBackgroundProxyView.m */,
+			);
+			path = TGLStackedViewController;
+			sourceTree = "<group>";
+		};
+		24CD9CE11D770F9C00247FE8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				24CD9CE21D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift */,
+				24CD9CE41D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib */,
+				24BB0C711D77272600B691D1 /* PLProfileHeaderView.swift */,
+				24BB0C731D77273A00B691D1 /* PLProfileHeaderView.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		3031C286B9CA11146B8E1FA5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -52,7 +130,7 @@
 		38538A45B4B15C074AAEF5B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EF5EC32E41C92D25BDA4073D /* libPods-Pals.a */,
+				3E1097158C5C13F1394D646D /* Pods_Pals.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -81,11 +159,9 @@
 				D42F53DA1D76C28F005DEA34 /* Business */,
 				D42F53DB1D76C2A4005DEA34 /* Model */,
 				D42F53DC1D76C2AB005DEA34 /* UI */,
-				D42F53C81D76B497005DEA34 /* AppDelegate.swift */,
 				D42F53CC1D76B497005DEA34 /* Main.storyboard */,
 				D42F53CF1D76B497005DEA34 /* Assets.xcassets */,
-				D42F53D11D76B497005DEA34 /* LaunchScreen.storyboard */,
-				D42F53D41D76B497005DEA34 /* Info.plist */,
+				24CBED3B1D76D0250028E5E3 /* Supporting Fiels */,
 			);
 			path = Pals;
 			sourceTree = "<group>";
@@ -108,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				D42F53DD1D76C5B7005DEA34 /* PLLoginViewController.swift */,
+				24CBED3E1D76D60F0028E5E3 /* Profile */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -176,6 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D42F53D31D76B497005DEA34 /* LaunchScreen.storyboard in Resources */,
+				24BB0C741D77273A00B691D1 /* PLProfileHeaderView.xib in Resources */,
+				24CD9CE51D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				D42F53D01D76B497005DEA34 /* Assets.xcassets in Resources */,
 				D42F53CE1D76B497005DEA34 /* Main.storyboard in Resources */,
 			);
@@ -236,8 +315,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CD9CDE1D77079300247FE8 /* TGLStackedViewController.m in Sources */,
+				24CBED3D1D76D6080028E5E3 /* PLProfileViewController.swift in Sources */,
+				24BB0C701D77249000B691D1 /* TGLBackgroundProxyView.m in Sources */,
+				24CD9CDC1D77079300247FE8 /* TGLExposedLayout.m in Sources */,
 				D42F53DE1D76C5B7005DEA34 /* PLLoginViewController.swift in Sources */,
+				24CD9CDD1D77079300247FE8 /* TGLStackedLayout.m in Sources */,
+				24CD9CE31D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
 				D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */,
+				24BB0C721D77272600B691D1 /* PLProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pals/Pals-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -375,6 +462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pals/Pals-Bridging-Header.h";
 			};
 			name = Release;
 		};
