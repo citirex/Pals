@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B4ACB8F6F9EEA19E28FD65D0 /* libPods-Pals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5EC32E41C92D25BDA4073D /* libPods-Pals.a */; };
 		D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F53C81D76B497005DEA34 /* AppDelegate.swift */; };
-		D42F53CB1D76B497005DEA34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F53CA1D76B497005DEA34 /* ViewController.swift */; };
 		D42F53CE1D76B497005DEA34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42F53CC1D76B497005DEA34 /* Main.storyboard */; };
 		D42F53D01D76B497005DEA34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42F53CF1D76B497005DEA34 /* Assets.xcassets */; };
 		D42F53D31D76B497005DEA34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42F53D11D76B497005DEA34 /* LaunchScreen.storyboard */; };
@@ -20,7 +19,6 @@
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42F53C81D76B497005DEA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D42F53CA1D76B497005DEA34 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D42F53CD1D76B497005DEA34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D42F53CF1D76B497005DEA34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D42F53D21D76B497005DEA34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				D42F53DB1D76C2A4005DEA34 /* Model */,
 				D42F53DC1D76C2AB005DEA34 /* UI */,
 				D42F53C81D76B497005DEA34 /* AppDelegate.swift */,
-				D42F53CA1D76B497005DEA34 /* ViewController.swift */,
 				D42F53CC1D76B497005DEA34 /* Main.storyboard */,
 				D42F53CF1D76B497005DEA34 /* Assets.xcassets */,
 				D42F53D11D76B497005DEA34 /* LaunchScreen.storyboard */,
@@ -151,7 +148,7 @@
 				TargetAttributes = {
 					D42F53C41D76B497005DEA34 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = ZVHW8QUG2S;
+						DevelopmentTeam = QQ482S29QV;
 					};
 				};
 			};
@@ -240,7 +237,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D42F53DE1D76C5B7005DEA34 /* PLLoginViewController.swift in Sources */,
-				D42F53CB1D76B497005DEA34 /* ViewController.swift in Sources */,
 				D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,7 +356,7 @@
 				INFOPLIST_FILE = Pals/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
+				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -376,7 +372,7 @@
 				INFOPLIST_FILE = Pals/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
+				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
