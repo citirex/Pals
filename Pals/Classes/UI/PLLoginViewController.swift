@@ -8,12 +8,6 @@
 
 import UIKit
 
-protocol SNViewControllerKeyboard {
-	func onWillShowKeyboard(notification: NSNotification)
-	func onWillHideKeyboard(notification: NSNotification)
-	func onTextFieldDidChange(notification: NSNotification)
-}
-
 class PLLoginViewController: UIViewController {
 
 	
@@ -54,7 +48,6 @@ class PLLoginViewController: UIViewController {
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		
-		roundImage(logoImage)
 		loginTextField.textFieldLine(loginTextField)
 		passTextField.textFieldLine(passTextField)
 		loginView.layer.cornerRadius = 5
@@ -62,7 +55,6 @@ class PLLoginViewController: UIViewController {
 		self.hideKeyboardWhenTappedAround()
     }
 	func keyboardWillShow(notification: NSNotification) {
-		
 		if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
 				if view.frame.origin.y == 0{
 					self.view.frame.origin.y -= keyboardSize.height
@@ -81,37 +73,43 @@ class PLLoginViewController: UIViewController {
 	}
 	
 	override func viewWillAppear(animated: Bool) {
-		viewAppearAnimation(logoImage, duration: 0.5, delay: 0.2, flag: true)
-		viewAppearAnimation(loginTextField, duration: 0.5, delay: 0.2, flag: true)
-		viewAppearAnimation(passTextField, duration: 0.5, delay: 0.2, flag: true)
-		viewAppearAnimation(loginView, duration: 0.5, delay: 0.2, flag: true)
-	    viewAppearAnimation(forgetView, duration: 0.5, delay: 0.2, flag: true)
-		viewAppearAnimation(registerView, duration: 0.5, delay: 0.2, flag: true)
+		viewAppearLogo(logoImage, flag: true)
+		viewAppearAnimation(loginTextField, duration: 1, delay: 0.2, flag: true)
+		viewAppearAnimation(passTextField, duration: 1, delay: 0.2, flag: true)
+		viewAppearAnimation(loginView, duration: 1, delay: 0.2, flag: true)
+	    viewAppearAnimation(forgetView, duration: 1, delay: 0.2, flag: true)
+		viewAppearAnimation(registerView, duration: 1, delay: 0.2, flag: true)
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
-		viewAppearAnimation(logoImage, duration: 0.5, delay: 0.2, flag: false)
-		viewAppearAnimation(loginTextField, duration: 0.5, delay: 0.2, flag: false)
-		viewAppearAnimation(passTextField, duration: 0.5, delay: 0.2, flag: false)
-		viewAppearAnimation(loginView, duration: 0.5, delay: 0.2, flag: false)
-		viewAppearAnimation(forgetView, duration: 0.5, delay: 0.2, flag: false)
-		viewAppearAnimation(registerView, duration: 0.5, delay: 0.2, flag: false)
+		viewAppearLogo(logoImage, flag: false)
+		viewAppearAnimation(loginTextField, duration: 1, delay: 0.2, flag: false)
+		viewAppearAnimation(passTextField, duration: 1, delay: 0.2, flag: false)
+		viewAppearAnimation(loginView, duration: 1, delay: 0.2, flag: false)
+		viewAppearAnimation(forgetView, duration: 1, delay: 0.2, flag: false)
+		viewAppearAnimation(registerView, duration: 1, delay: 0.2, flag: false)
 	}
-	
-	func roundImage(image: UIImageView) {
-		image.layer.borderWidth = 0.1
-		image.layer.masksToBounds = false
-		image.layer.borderColor = UIColor.blackColor().CGColor
-		image.layer.cornerRadius = image.frame.height/2
-		image.clipsToBounds = true
-	}
-	
+
 	func viewAppearAnimation(view: UIView, duration:NSTimeInterval, delay: NSTimeInterval, flag:Bool) {
 		view.alpha = 0.0
 		UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseOut, animations: {
 			view.alpha = 1.0
 			if flag{
 				view.center.y -= self.view.bounds.height
+			}else{
+				view.center.y += self.view.bounds.height
+			}
+			}, completion: {_ in
+				// Comletion
+		})
+	}
+	
+	func viewAppearLogo(view: UIView, flag: Bool) {
+		view.alpha = 0.0
+		UIView.animateWithDuration(1, delay: 0.2, options: .CurveEaseOut, animations: {
+			view.alpha = 1.0
+			if flag{
+				view.center.y = 0
 			}else{
 				view.center.y += self.view.bounds.height
 			}

@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Знімок екрана 2016-08-31 о 11.36.13" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-fq-ZBU">
-                                <rect key="frame" x="102" y="36" width="396" height="198"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="belyawik" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-fq-ZBU">
+                                <rect key="frame" x="0.0" y="-45" width="600" height="360"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ymg-DV-zCV">
                                 <rect key="frame" x="120" y="270" width="360" height="30"/>
@@ -101,7 +101,7 @@
                         <color key="backgroundColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="centerX" secondItem="ECY-UK-wVS" secondAttribute="centerX" id="0S0-nf-aGa"/>
-                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="height" secondItem="ECY-UK-wVS" secondAttribute="height" multiplier="0.33" id="1Ah-jB-f7e"/>
+                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="height" secondItem="ECY-UK-wVS" secondAttribute="height" multiplier="0.6" id="1Ah-jB-f7e"/>
                             <constraint firstItem="ZXM-rx-YTf" firstAttribute="width" secondItem="ECY-UK-wVS" secondAttribute="width" id="AYe-vg-QgG"/>
                             <constraint firstItem="ZXM-rx-YTf" firstAttribute="height" secondItem="ECY-UK-wVS" secondAttribute="height" multiplier="0.07" id="CvW-oS-h7e"/>
                             <constraint firstItem="x6o-fd-Pm5" firstAttribute="centerX" secondItem="ECY-UK-wVS" secondAttribute="centerX" id="EVX-nL-i0z"/>
@@ -115,7 +115,7 @@
                             <constraint firstItem="ymg-DV-zCV" firstAttribute="width" secondItem="ECY-UK-wVS" secondAttribute="width" multiplier="0.6" id="emb-tG-KG1"/>
                             <constraint firstItem="x6o-fd-Pm5" firstAttribute="height" secondItem="ECY-UK-wVS" secondAttribute="height" multiplier="0.03" id="fhf-I2-QI3"/>
                             <constraint firstItem="Xdz-1E-nP4" firstAttribute="top" secondItem="ZXM-rx-YTf" secondAttribute="bottom" id="iAD-nh-LR7"/>
-                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="width" secondItem="ECY-UK-wVS" secondAttribute="width" multiplier="0.66" id="kBh-Lg-uZd"/>
+                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="width" secondItem="ECY-UK-wVS" secondAttribute="width" id="kBh-Lg-uZd"/>
                             <constraint firstItem="ymg-DV-zCV" firstAttribute="centerY" secondItem="ECY-UK-wVS" secondAttribute="centerY" multiplier="0.95" id="mCU-jB-BNw"/>
                             <constraint firstItem="HEk-oG-qRI" firstAttribute="centerX" secondItem="ECY-UK-wVS" secondAttribute="centerX" id="o9D-ck-J1o"/>
                             <constraint firstItem="ymg-DV-zCV" firstAttribute="centerX" secondItem="ECY-UK-wVS" secondAttribute="centerX" id="qE8-6S-glZ"/>
@@ -141,6 +141,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Знімок екрана 2016-08-31 о 11.36.13" width="370" height="330"/>
+        <image name="belyawik" width="500" height="500"/>
     </resources>
 </document>
