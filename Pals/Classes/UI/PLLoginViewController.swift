@@ -15,11 +15,31 @@ class PLLoginViewController: UIViewController {
 	@IBOutlet weak var logoImage: UIImageView!
 	@IBOutlet weak var loginTextField: UITextField!
 	@IBOutlet weak var passTextField: UITextField!
+    
 	@IBAction func loginButton(sender: AnyObject) {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
-		self.presentViewController(vc, animated: true, completion: nil)
+        let userName = loginTextField.text!
+        let password = passTextField.text!
+        if userName.isEmpty {
+            // show error message
+        } else if password.isEmpty {
+            // show error message
+        } else {
+            PLFacade.login(userName, password: password, completion: { (error) in
+                if error != nil {
+                    // show error message
+                } else {
+                    self.showMainScreen()
+                }
+            })
+        }
 	}
+    
+    func showMainScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
 	@IBAction func forgotButton(sender: AnyObject) {
 		let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(self.view.bounds.width / 2, self.view.bounds.height / 2 - 35, 0, 0)) as UIActivityIndicatorView
 		let alert = UIAlertController(title: "We got your back!", message: "Enter below and we'll send your password!", preferredStyle: UIAlertControllerStyle.Alert)

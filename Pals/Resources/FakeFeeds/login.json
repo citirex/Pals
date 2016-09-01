@@ -1,0 +1,11 @@
+{
+    "response" : {
+        "user" : {
+            "id" : "385a294f-a2d6-416d-8420-6a5ae5ea6400",
+            "name" : "John Doe",
+            "picture" : "https://robohash.org/johndoe",
+            "email" : "johndoe@gmail.com",
+            "balance" : 100.48,
+        }
+    }
+}

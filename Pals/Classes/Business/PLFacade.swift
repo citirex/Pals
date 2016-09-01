@@ -8,10 +8,11 @@
 
 import Foundation
 
-typealias PLLoginCompletion = (user: PLUser?, error: NSError?) -> ()
+typealias PLLoginCompletion = (error: NSError?) -> ()
 
 protocol PLFacadeInterface {
     static func login(userName:String, password: String, completion: PLLoginCompletion)
+    static var profile: PLUser? {get}
 }
 
 class PLFacade : PLFacadeInterface {
@@ -19,6 +20,10 @@ class PLFacade : PLFacadeInterface {
     
     private let profileManager = PLProfileManager()
     private let networkManager = PLNetworkManager()
+    let settingsManager = PLSettingsManager()
+    static var profile: PLUser? {
+        return PLFacade.instance.profileManager.profile
+    }
     
     class func login(userName:String, password: String, completion: PLLoginCompletion) {
         PLFacade.instance.login(userName, password: password, completion: completion)
@@ -28,11 +33,15 @@ class PLFacade : PLFacadeInterface {
         let loginService = PLAPIService.login
         let params = [PLKeys.login.string : userName, PLKeys.password.string : password]
         networkManager.get(loginService, parameters: params) { (dic, error) in
-            if let user = PLUser(jsonDic: dic) {
-                self.profileManager.profile = user
-                completion(user: user, error: nil)
+            if error != nil {
+                completion(error: error)
             } else {
-                completion(user: nil, error: error)
+                if let user = PLUser(jsonDic: dic[PLKeys.response.string]![PLKeys.user.string] as! [String : AnyObject]) {
+                    self.profileManager.profile = user
+                    completion(error: nil)
+                } else {
+                    assert(false, "couldn't parse login response")
+                }
             }
         }
     }

@@ -14,6 +14,8 @@ enum PLKeys : String {
     case picture
     case email
     case balance
+    case user
+    case response
     case login
     case password
     var string : String {
