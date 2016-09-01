@@ -22,9 +22,6 @@ class PLProfileViewController: TGLStackedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		let spin = PLLoginViewController()
-		spin.spinner?.stopAnimating()
         
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         

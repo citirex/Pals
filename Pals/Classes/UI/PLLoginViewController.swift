@@ -36,10 +36,7 @@ class PLLoginViewController: UIViewController {
 					self.alertCalled("Wrong user name or password.")
                 } else {
                     self.showMainScreen()
-					
-//			self.spinner = UIActivityIndicatorView(frame: CGRectMake(self.view.bounds.width / 2, self.view.bounds.height / 2 - 35, 0, 0)) as UIActivityIndicatorView
-//					self.view.addSubview(self.spinner!)
-//					self.spinner!.startAnimating()
+					self.spinner?.stopAnimating()
                 }
             })
         }
