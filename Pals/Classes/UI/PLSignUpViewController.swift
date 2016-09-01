@@ -23,12 +23,6 @@ class PLSignUpViewController: UIViewController {
     private var margin: CGFloat = 20
     
     
-    @IBAction func loadImageButtonTapped(sender: UIButton) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
-        
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +86,25 @@ class PLSignUpViewController: UIViewController {
     }
     
     
+    // MARK: - Actions
+    
+    @IBAction func loadImageButtonTapped(sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    // MARK: - Alert
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(OKAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
     /*
      // MARK: - Navigation
      
@@ -101,6 +114,7 @@ class PLSignUpViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
