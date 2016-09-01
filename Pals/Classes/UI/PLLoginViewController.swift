@@ -10,11 +10,15 @@ import UIKit
 
 class PLLoginViewController: UIViewController {
 
+	@IBOutlet weak var animationView: UIView!
 	
 	@IBOutlet weak var logoImage: UIImageView!
 	@IBOutlet weak var loginTextField: UITextField!
 	@IBOutlet weak var passTextField: UITextField!
 	@IBAction func loginButton(sender: AnyObject) {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
+		self.presentViewController(vc, animated: true, completion: nil)
 	}
 	@IBAction func forgotButton(sender: AnyObject) {
 		
@@ -35,9 +39,6 @@ class PLLoginViewController: UIViewController {
 	}
 	@IBAction func registerButton(sender: AnyObject) {
 	}
-	@IBOutlet weak var forgetView: UIView!
-	@IBOutlet weak var loginView: UIView!
-	
 	@IBOutlet weak var registerView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,10 +48,6 @@ class PLLoginViewController: UIViewController {
 		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
-		
-		loginTextField.textFieldLine(loginTextField)
-		passTextField.textFieldLine(passTextField)
-		loginView.layer.cornerRadius = 5
 		
 		self.hideKeyboardWhenTappedAround()
     }
@@ -74,20 +71,12 @@ class PLLoginViewController: UIViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		viewAppearLogo(logoImage, flag: true)
-		viewAppearAnimation(loginTextField, duration: 1, delay: 0.2, flag: true)
-		viewAppearAnimation(passTextField, duration: 1, delay: 0.2, flag: true)
-		viewAppearAnimation(loginView, duration: 1, delay: 0.2, flag: true)
-	    viewAppearAnimation(forgetView, duration: 1, delay: 0.2, flag: true)
-		viewAppearAnimation(registerView, duration: 1, delay: 0.2, flag: true)
+		viewAppearAnimation(animationView, duration: 1, delay: 0.2, flag: true)
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
 		viewAppearLogo(logoImage, flag: false)
-		viewAppearAnimation(loginTextField, duration: 1, delay: 0.2, flag: false)
-		viewAppearAnimation(passTextField, duration: 1, delay: 0.2, flag: false)
-		viewAppearAnimation(loginView, duration: 1, delay: 0.2, flag: false)
-		viewAppearAnimation(forgetView, duration: 1, delay: 0.2, flag: false)
-		viewAppearAnimation(registerView, duration: 1, delay: 0.2, flag: false)
+		viewAppearAnimation(animationView, duration: 1, delay: 0.2, flag: false)
 	}
 
 	func viewAppearAnimation(view: UIView, duration:NSTimeInterval, delay: NSTimeInterval, flag:Bool) {
@@ -125,7 +114,6 @@ class PLLoginViewController: UIViewController {
     }
 
 }
-
 extension UIViewController {
 	func hideKeyboardWhenTappedAround() {
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -134,21 +122,5 @@ extension UIViewController {
 	
 	func dismissKeyboard() {
 		view.endEditing(true)
-	}
-}
-
-extension UITextField {
-	func textFieldLine(textField: UITextField) {
-		let border = CALayer()
-		let width = CGFloat(3.0)
-		border.borderColor = UIColor.lightGrayColor().CGColor
-		border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
-		
-		border.borderWidth = width
-		textField.layer.addSublayer(border)
-		textField.layer.masksToBounds = true
-		
-		textField.textColor = UIColor.lightGrayColor()
-		textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
 	}
 }
