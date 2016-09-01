@@ -7,14 +7,19 @@
 //
 
 import UIKit
-import SwiftQRCode
 import RandomKit
 
-private let drinkCellIdentifier = "DrinkCell"
+enum CurrentList {
+    case covers
+    case drinks
+}
 
 class PLProfileViewController: TGLStackedViewController {
 
- 
+    let collectionHelper = PLProfileCollectionHelper()
+    let collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
+    var currentList: CurrentList = .drinks
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -23,74 +28,106 @@ class PLProfileViewController: TGLStackedViewController {
         
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         
-        self.exposedItemSize = CGSizeMake(collectionView!.bounds.size.width, 400);
-        
-        let bottomSpace = (self.tabBarController != nil) ? self.tabBarController!.tabBar.frame.height : 44
-        
-        
+        self.exposedItemSize = CGSizeMake(collectionView!.bounds.size.width, 420)
         self.stackedLayout!.itemSize = self.exposedItemSize;
-        self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(220.0, 0.0, bottomSpace, 0.0);
+        self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
+        
+        
+        self.collectionView?.dataSource = collectionHelper
+        
+        setupCollectionBackgroundView()
+        setupUserInfo()
+        
+        // custom layout
+        
         self.stackedLayout!.topReveal = 60;
-        self.stackedLayout!.bounceFactor = 0.2;
-        self.stackedLayout!.fillHeight = true;
-        self.stackedLayout!.alwaysBounce = false;
 
-        
-        let backView = UIView(frame: self.collectionView!.bounds);
-        backView.backgroundColor = UIColor.magentaColor()
-
-        self.view.insertSubview(backView, belowSubview: self.collectionView!)
-        
-        let backgroundProxy = TGLBackgroundProxyView()
-        backgroundProxy.targetView = backView
-        self.collectionView?.backgroundView = backgroundProxy
-        
-//        TGLBackgroundProxyView *backgroundProxy = [[TGLBackgroundProxyView alloc] init];
-        
-//        backgroundProxy.targetView = self.collectionViewBackground;
-//        backgroundProxy.hidden = self.collectionViewBackground.hidden;
-//        
-//        self.collectionView.backgroundView = backgroundProxy;
-        
-        
-        
-
-//        let randInt = String(Int.random(100...999))
-//        let randString = String.random(5, "A"..."Z")
-//        let result = randString + randInt
-//        qrTextLabel.text = result
-//        quImageView.image = QRCode.generateImage(result, avatarImage: nil)
- 
+        self.exposedPinningMode = TGLExposedLayoutPinningMode.Below
+        self.exposedTopPinningCount = 10;
+        self.exposedBottomPinningCount = 10;
+        self.exposedItemsAreCollapsible = false
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        self.collectionView!.backgroundColor = UIColor.clearColor()
+        self.collectionView!.backgroundColor = UIColor.clearColor() //need for collection background view
     }
     
     
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 16
+    //MARK: - Actions
+    func editProfileButtonPressed(sender: UIButton) {
+        print("Edit button pressed")
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(drinkCellIdentifier, forIndexPath: indexPath) as! PLProfileDrinkCollectionViewCell
-        cell.backgroundColor = UIColor.whiteColor()
-        cell.headerView.backgroundColor = generateRandomColor()
-        cell.barTitleLabel.text = "Bar #\(indexPath.row)"
-        
-        return cell
+    func addFundsButtonPressed(sender: UIButton) {
+        print("Add funds button pressed")
     }
     
-
-    func generateRandomColor() -> UIColor {
-        let hue : CGFloat = CGFloat(arc4random() % 256) / 256 // use 256 to get full range from 0.0 to 1.0
-        let saturation : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5 // from 0.5 to 1.0 to stay away from white
-        let brightness : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5 // from 0.5 to 1.0 to stay away from black
+    func myCoversButtonPressed(sender: AnyObject) {
+        if currentList != .covers {
+            currentList = .covers
+            updateListIndicator()
+        }
+        print("My covers button pressed")
+    }
+    
+    func myDrinksButtonPressed(sender: AnyObject) {
+        if currentList != .drinks {
+            currentList = .drinks
+            updateListIndicator()
+        }
+        print("MY drinks button pressed")
+    }
+    
+    func swipeRecognized(sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.Left:
+            myCoversButtonPressed(sender)
+        case UISwipeGestureRecognizerDirection.Right:
+            myDrinksButtonPressed(sender)
+        default: break
+        }
+    }
+    
+    
+    //MARK: - Setup
+    func setupUserInfo() {
+        collectionBackgroundView.userNameLabel.text = "Phantom assasin"
+        collectionBackgroundView.editProfileButton.addTarget(self, action: #selector(editProfileButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        collectionBackgroundView.balanceButton.setTitle("$0.0", forState: .Normal)
+        collectionBackgroundView.balanceButton.addTarget(self, action: #selector(addFundsButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        collectionBackgroundView.myDrinksButton.addTarget(self, action: #selector(myDrinksButtonPressed(_:)), forControlEvents: .TouchUpInside)
         
-        return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+        collectionBackgroundView.userPicImageView.image = UIImage(named: "fish_avatar")
+        collectionBackgroundView.applyBlurEffect(UIImage(named: "fish_avatar")!)
+    }
+    
+    func updateListIndicator() {
+        collectionBackgroundView.myCoversConstraint.priority = (currentList == .covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
+        collectionBackgroundView.myDrinksConstraint.priority = (currentList == .covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        
+        UIView.animateWithDuration(0.2) {
+            self.collectionBackgroundView.layoutIfNeeded()
+        }
+    }
+    
+    func setupCollectionBackgroundView() {
+        collectionBackgroundView.frame = self.collectionView!.bounds
+        self.view.insertSubview(collectionBackgroundView, belowSubview: self.collectionView!)
+        let backgroundProxy = TGLBackgroundProxyView()
+        backgroundProxy.targetView = collectionBackgroundView
+        self.collectionView?.backgroundView = backgroundProxy
+        
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized(_:)))
+        swipeLeft.direction = .Left
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized(_:)))
+        swipeRight.direction = .Right
+        
+        collectionBackgroundView.addGestureRecognizer(swipeLeft)
+        collectionBackgroundView.addGestureRecognizer(swipeRight)
     }
     
     /*
