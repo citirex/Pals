@@ -37,6 +37,11 @@ class PLLoginViewController: UIViewController {
 	}
 	@IBAction func unwindToLoginClick(sender: UIStoryboardSegue) {
 	}
+	
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))

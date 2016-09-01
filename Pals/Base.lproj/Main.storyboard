@@ -62,7 +62,7 @@
                                             <color key="titleColor" red="0.70588235290000001" green="0.63137254899999995" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="forgotButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="L7q-XD-GjW"/>
+                                            <action selector="forgotButtonClick:" destination="nzO-MP-N4g" eventType="touchUpInside" id="1t4-Ro-A2H"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-8W-xw3" customClass="PLButton" customModule="Pals" customModuleProvider="target">
@@ -78,7 +78,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="loginButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="Hoi-Wn-XYb"/>
+                                            <action selector="loginButtonClick:" destination="nzO-MP-N4g" eventType="touchUpInside" id="Omc-JG-JMS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
@@ -89,8 +89,8 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="registerButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="cO7-GW-d5b"/>
-                                            <segue destination="CEl-2k-qJd" kind="presentation" id="RY6-BL-8hb"/>
+                                            <action selector="registerButtonClick:" destination="nzO-MP-N4g" eventType="touchUpInside" id="3fw-MS-Ggq"/>
+                                            <segue destination="CEl-2k-qJd" kind="presentation" id="iwn-Gu-020"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -147,7 +147,7 @@
         <!--Sign Up-->
         <scene sceneID="oC4-ZC-Mrz">
             <objects>
-                <viewController title="Sign Up" id="CEl-2k-qJd" customClass="PLSignUpViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpController" title="Sign Up" id="CEl-2k-qJd" customClass="PLSignUpViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FTz-51-uJT"/>
                         <viewControllerLayoutGuide type="bottom" id="CGx-Of-OtW"/>
@@ -222,8 +222,8 @@
                                                     <outlet property="delegate" destination="CEl-2k-qJd" id="FAZ-n8-7Iz"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qrX-Zk-BQf" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                <rect key="frame" x="58" y="325" width="204" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qrX-Zk-BQf" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
+                                                <rect key="frame" x="58" y="325" width="204" height="32"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="qrX-Zk-BQf" secondAttribute="height" multiplier="34:5" id="koS-rg-YKG"/>
@@ -243,8 +243,8 @@
                                                     <outlet property="delegate" destination="CEl-2k-qJd" id="Y03-38-8jo"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fXl-ET-ljc" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                <rect key="frame" x="58" y="363" width="204" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fXl-ET-ljc" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
+                                                <rect key="frame" x="58" y="377" width="204" height="31"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="fXl-ET-ljc" secondAttribute="height" multiplier="34:5" id="Joa-6t-Fir"/>
@@ -289,7 +289,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="1Lm-rr-nPs" kind="unwind" unwindAction="unwindToLogin:" id="Yav-22-DAm"/>
+                                                    <segue destination="1Lm-rr-nPs" kind="unwind" unwindAction="unwindToLoginClick:" id="hys-Oc-M34"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -343,6 +343,7 @@
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="fXl-ET-ljc" id="NHU-Gg-pkn"/>
                         <outlet property="emailTextField" destination="Yf3-HH-csM" id="yvf-mX-dmj"/>

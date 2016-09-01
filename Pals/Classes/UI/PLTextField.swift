@@ -14,7 +14,7 @@ class PLTextField: UITextField {
     @IBInspectable var bottomBorderColor: UIColor? {
         didSet {
             let bottomBorder = CALayer()
-            bottomBorder.frame = CGRectMake(0.0, frame.size.height - 1, frame.size.width, 1.0)
+            bottomBorder.frame = CGRectMake(0.0, frame.size.height - 1, frame.size.width + frame.size.height * 2, 1.0)
             bottomBorder.backgroundColor = bottomBorderColor!.CGColor
             layer.addSublayer(bottomBorder)
         }
