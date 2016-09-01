@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		24BB0C701D77249000B691D1 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0C6F1D77249000B691D1 /* TGLBackgroundProxyView.m */; };
 		24BB0C721D77272600B691D1 /* PLProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0C711D77272600B691D1 /* PLProfileHeaderView.swift */; };
-		24BB0C741D77273A00B691D1 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24BB0C731D77273A00B691D1 /* PLProfileHeaderView.xib */; };
 		24CBED3D1D76D6080028E5E3 /* PLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CBED3C1D76D6080028E5E3 /* PLProfileViewController.swift */; };
 		24CD9CDC1D77079300247FE8 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CD9CD71D77079300247FE8 /* TGLExposedLayout.m */; };
 		24CD9CDD1D77079300247FE8 /* TGLStackedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CD9CD91D77079300247FE8 /* TGLStackedLayout.m */; };
 		24CD9CDE1D77079300247FE8 /* TGLStackedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CD9CDB1D77079300247FE8 /* TGLStackedViewController.m */; };
 		24CD9CE31D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD9CE21D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift */; };
-		24CD9CE51D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24CD9CE41D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib */; };
 		D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F53C81D76B497005DEA34 /* AppDelegate.swift */; };
 		D42F53CE1D76B497005DEA34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42F53CC1D76B497005DEA34 /* Main.storyboard */; };
 		D42F53D01D76B497005DEA34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42F53CF1D76B497005DEA34 /* Assets.xcassets */; };
@@ -28,13 +26,19 @@
 		D48390971D7826FD00990E83 /* PLNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48390961D7826FD00990E83 /* PLNetworkManager.swift */; };
 		D48390991D782E4500990E83 /* PLProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48390981D782E4500990E83 /* PLProfileManager.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
+		E857F02B1D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E857F0291D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib */; };
+		E857F02C1D7801E90020B981 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E857F02A1D7801E90020B981 /* PLProfileHeaderView.xib */; };
+		E857F0331D7802180020B981 /* PLAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F02E1D7802180020B981 /* PLAddButton.swift */; };
+		E857F0341D7802180020B981 /* PLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F02F1D7802180020B981 /* PLButton.swift */; };
+		E857F0351D7802180020B981 /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0301D7802180020B981 /* PLImageView.swift */; };
+		E857F0361D7802180020B981 /* PLSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0311D7802180020B981 /* PLSignUpViewController.swift */; };
+		E857F0371D7802180020B981 /* PLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0321D7802180020B981 /* PLTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		24BB0C6E1D77249000B691D1 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
 		24BB0C6F1D77249000B691D1 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
 		24BB0C711D77272600B691D1 /* PLProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLProfileHeaderView.swift; path = Classes/UI/PLProfileHeaderView.swift; sourceTree = "<group>"; };
-		24BB0C731D77273A00B691D1 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileHeaderView.xib; sourceTree = "<group>"; };
 		24CBED3C1D76D6080028E5E3 /* PLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLProfileViewController.swift; path = Classes/UI/PLProfileViewController.swift; sourceTree = "<group>"; };
 		24CD9CD71D77079300247FE8 /* TGLExposedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLExposedLayout.m; sourceTree = "<group>"; };
 		24CD9CD81D77079300247FE8 /* TGLStackedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLStackedLayout.h; sourceTree = "<group>"; };
@@ -44,7 +48,6 @@
 		24CD9CDF1D77085600247FE8 /* TGLExposedLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGLExposedLayout.h; sourceTree = "<group>"; };
 		24CD9CE01D77097000247FE8 /* Pals-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pals-Bridging-Header.h"; sourceTree = "<group>"; };
 		24CD9CE21D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLProfileDrinkCollectionViewCell.swift; path = Classes/UI/PLProfileDrinkCollectionViewCell.swift; sourceTree = "<group>"; };
-		24CD9CE41D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +63,13 @@
 		D48390941D78236F00990E83 /* PLFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFacade.swift; path = Classes/Business/PLFacade.swift; sourceTree = "<group>"; };
 		D48390961D7826FD00990E83 /* PLNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNetworkManager.swift; path = Classes/Business/PLNetworkManager.swift; sourceTree = "<group>"; };
 		D48390981D782E4500990E83 /* PLProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLProfileManager.swift; path = Classes/Business/PLProfileManager.swift; sourceTree = "<group>"; };
+		E857F0291D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLProfileDrinkCollectionViewCell.xib; path = Classes/UI/PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
+		E857F02A1D7801E90020B981 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLProfileHeaderView.xib; path = Classes/UI/PLProfileHeaderView.xib; sourceTree = "<group>"; };
+		E857F02E1D7802180020B981 /* PLAddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLAddButton.swift; path = Classes/UI/PLAddButton.swift; sourceTree = "<group>"; };
+		E857F02F1D7802180020B981 /* PLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLButton.swift; path = Classes/UI/PLButton.swift; sourceTree = "<group>"; };
+		E857F0301D7802180020B981 /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLImageView.swift; path = Classes/UI/PLImageView.swift; sourceTree = "<group>"; };
+		E857F0311D7802180020B981 /* PLSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSignUpViewController.swift; path = Classes/UI/PLSignUpViewController.swift; sourceTree = "<group>"; };
+		E857F0321D7802180020B981 /* PLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLTextField.swift; path = Classes/UI/PLTextField.swift; sourceTree = "<group>"; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,9 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				24CD9CE21D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift */,
-				24CD9CE41D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib */,
 				24BB0C711D77272600B691D1 /* PLProfileHeaderView.swift */,
-				24BB0C731D77273A00B691D1 /* PLProfileHeaderView.xib */,
+				E857F0291D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib */,
+				E857F02A1D7801E90020B981 /* PLProfileHeaderView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -202,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				D42F53DD1D76C5B7005DEA34 /* PLLoginViewController.swift */,
+				E857F02D1D7801F40020B981 /* SignUpViewController */,
 				24CBED3E1D76D60F0028E5E3 /* Profile */,
 			);
 			name = UI;
@@ -213,6 +224,26 @@
 				D42F53E41D76D344005DEA34 /* PLDictionary.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		E857F02D1D7801F40020B981 /* SignUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E857F0311D7802180020B981 /* PLSignUpViewController.swift */,
+				E857F0381D78047D0020B981 /* Views */,
+			);
+			name = SignUpViewController;
+			sourceTree = "<group>";
+		};
+		E857F0381D78047D0020B981 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E857F02E1D7802180020B981 /* PLAddButton.swift */,
+				E857F02F1D7802180020B981 /* PLButton.swift */,
+				E857F0301D7802180020B981 /* PLImageView.swift */,
+				E857F0321D7802180020B981 /* PLTextField.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,8 +309,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D42F53D31D76B497005DEA34 /* LaunchScreen.storyboard in Resources */,
-				24BB0C741D77273A00B691D1 /* PLProfileHeaderView.xib in Resources */,
-				24CD9CE51D77103F00247FE8 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
+				E857F02C1D7801E90020B981 /* PLProfileHeaderView.xib in Resources */,
+				E857F02B1D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				D42F53D01D76B497005DEA34 /* Assets.xcassets in Resources */,
 				D42F53CE1D76B497005DEA34 /* Main.storyboard in Resources */,
 			);
@@ -343,7 +374,9 @@
 				24CD9CDE1D77079300247FE8 /* TGLStackedViewController.m in Sources */,
 				24CBED3D1D76D6080028E5E3 /* PLProfileViewController.swift in Sources */,
 				D48390971D7826FD00990E83 /* PLNetworkManager.swift in Sources */,
+				E857F0341D7802180020B981 /* PLButton.swift in Sources */,
 				24BB0C701D77249000B691D1 /* TGLBackgroundProxyView.m in Sources */,
+				E857F0351D7802180020B981 /* PLImageView.swift in Sources */,
 				24CD9CDC1D77079300247FE8 /* TGLExposedLayout.m in Sources */,
 				D42F53DE1D76C5B7005DEA34 /* PLLoginViewController.swift in Sources */,
 				D48390951D78236F00990E83 /* PLFacade.swift in Sources */,
@@ -354,7 +387,10 @@
 				D42F53E01D76CABE005DEA34 /* PLUniqueObject.swift in Sources */,
 				D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */,
 				D48390991D782E4500990E83 /* PLProfileManager.swift in Sources */,
+				E857F0371D7802180020B981 /* PLTextField.swift in Sources */,
 				24BB0C721D77272600B691D1 /* PLProfileHeaderView.swift in Sources */,
+				E857F0331D7802180020B981 /* PLAddButton.swift in Sources */,
+				E857F0361D7802180020B981 /* PLSignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
