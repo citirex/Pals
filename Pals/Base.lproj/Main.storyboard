@@ -81,52 +81,41 @@
                                             <action selector="loginButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="Hoi-Wn-XYb"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXM-rx-YTf">
-                                        <rect key="frame" x="0.0" y="303" width="320" height="38"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="Want to be a Pal? Register now!">
-                                                    <color key="titleColor" red="0.1764705882" green="0.035294117649999998" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="registerButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="cO7-GW-d5b"/>
-                                                    <segue destination="CEl-2k-qJd" kind="presentation" id="RY6-BL-8hb"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.70588235294117652" green="0.63137254901960782" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="RdC-BM-16D" firstAttribute="width" secondItem="ZXM-rx-YTf" secondAttribute="width" id="SNb-B5-1DO"/>
-                                            <constraint firstItem="RdC-BM-16D" firstAttribute="centerY" secondItem="ZXM-rx-YTf" secondAttribute="centerY" id="iHa-Of-TFf"/>
-                                            <constraint firstItem="RdC-BM-16D" firstAttribute="centerX" secondItem="ZXM-rx-YTf" secondAttribute="centerX" id="k3n-BI-LmV"/>
-                                            <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="ZXM-rx-YTf" secondAttribute="height" id="ndL-Xf-P5y"/>
-                                        </constraints>
-                                    </view>
+                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
+                                        <rect key="frame" x="0.0" y="307" width="320" height="34"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Want to be a Pal? Register now!">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="registerButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="cO7-GW-d5b"/>
+                                            <segue destination="CEl-2k-qJd" kind="presentation" id="RY6-BL-8hb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="centerY" secondItem="xXN-Bq-AeA" secondAttribute="centerY" multiplier="0.2" id="0mj-TR-srJ"/>
                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.1" constant="-4.1000000000000014" id="5MN-Jb-PsF"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZXM-rx-YTf" secondAttribute="bottom" id="6zw-eA-ah1"/>
-                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.1" constant="-4.1000000000000014" id="CFg-Ud-F9i"/>
+                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="BCY-A5-a7N"/>
                                     <constraint firstItem="HEk-oG-qRI" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="DrV-Bf-WPd"/>
-                                    <constraint firstItem="ZXM-rx-YTf" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="EFT-5b-NKr"/>
+                                    <constraint firstItem="RdC-BM-16D" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" id="Ezm-Pc-J2e"/>
                                     <constraint firstItem="TzL-8u-7vD" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.05" id="JMd-Tm-51j"/>
+                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.1" constant="-4" id="LIM-RO-Ff5"/>
                                     <constraint firstItem="HEk-oG-qRI" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="0.66" id="LVa-Ae-ves"/>
+                                    <constraint firstItem="RdC-BM-16D" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="R5y-eU-LQB"/>
                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="0.4" id="S1J-v5-RYA"/>
-                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="centerY" secondItem="xXN-Bq-AeA" secondAttribute="centerY" multiplier="0.2" id="aa1-qb-H4q"/>
+                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="0.66" id="Zg6-Ww-cCt"/>
                                     <constraint firstItem="HEk-oG-qRI" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.1" constant="-4" id="ajn-4b-oIz"/>
-                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="bp4-pI-tGn"/>
                                     <constraint firstItem="TzL-8u-7vD" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="0.4" id="dbJ-ub-VMr"/>
                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="fy9-VC-DGb"/>
-                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="0.66" id="hM3-Dq-l5P"/>
+                                    <constraint firstAttribute="bottom" secondItem="RdC-BM-16D" secondAttribute="bottom" id="iae-3z-g0y"/>
                                     <constraint firstItem="HEk-oG-qRI" firstAttribute="centerY" secondItem="xXN-Bq-AeA" secondAttribute="centerY" multiplier="0.45" constant="-2.2999999999999972" id="kvE-Qn-ssU"/>
                                     <constraint firstItem="TzL-8u-7vD" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="qNQ-oT-kkd"/>
                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="centerY" secondItem="xXN-Bq-AeA" secondAttribute="centerY" constant="-2.6500000000000057" id="uI9-ff-Lhl"/>
                                     <constraint firstItem="TzL-8u-7vD" firstAttribute="centerY" secondItem="xXN-Bq-AeA" secondAttribute="centerY" multiplier="0.65" id="vom-9B-yvd"/>
-                                    <constraint firstItem="ZXM-rx-YTf" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.11" id="w9J-I6-niW"/>
-                                    <constraint firstItem="ZXM-rx-YTf" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" id="wS6-Vd-lQ4"/>
+                                    <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.1" id="zEf-h3-Sqc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -149,7 +138,6 @@
                         <outlet property="loginTextField" destination="ymg-DV-zCV" id="0hM-X0-uIJ"/>
                         <outlet property="logoImage" destination="0mE-fq-ZBU" id="OTJ-hP-bCq"/>
                         <outlet property="passTextField" destination="HEk-oG-qRI" id="MEk-fe-hJO"/>
-                        <outlet property="registerView" destination="ZXM-rx-YTf" id="SE2-4T-Oza"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgT-8r-kgb" userLabel="First Responder" sceneMemberID="firstResponder"/>

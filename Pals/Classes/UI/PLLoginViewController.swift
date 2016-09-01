@@ -11,16 +11,15 @@ import UIKit
 class PLLoginViewController: UIViewController {
 
 	@IBOutlet weak var animationView: UIView!
-	
 	@IBOutlet weak var logoImage: UIImageView!
 	@IBOutlet weak var loginTextField: UITextField!
 	@IBOutlet weak var passTextField: UITextField!
-	@IBAction func loginButton(sender: AnyObject) {
+	@IBAction func loginButtonClick(sender: AnyObject) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
 		self.presentViewController(vc, animated: true, completion: nil)
 	}
-	@IBAction func forgotButton(sender: AnyObject) {
+	@IBAction func forgotButtonClick(sender: AnyObject) {
 		let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(self.view.bounds.width / 2, self.view.bounds.height / 2 - 35, 0, 0)) as UIActivityIndicatorView
 		let alert = UIAlertController(title: "We got your back!", message: "Enter below and we'll send your password!", preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
@@ -34,15 +33,12 @@ class PLLoginViewController: UIViewController {
 		})
 		self.presentViewController(alert, animated: true, completion: nil)
 	}
-	@IBAction func registerButton(sender: AnyObject) {
+	@IBAction func registerButtonClick(sender: AnyObject) {
 	}
-	@IBOutlet weak var registerView: UIView!
+	@IBAction func unwindToLoginClick(sender: UIStoryboardSegue) {
+	}
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-//		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PLLoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-//		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PLLoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		
@@ -51,21 +47,6 @@ class PLLoginViewController: UIViewController {
 		
 		self.hideKeyboardWhenTappedAround()
     }
-//	func keyboardWillShow(notification: NSNotification) {
-//		if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-//				if view.frame.origin.y == 0{
-//					self.view.frame.origin.y -= keyboardSize.height
-//				}
-//		}
-//	}
-//	func keyboardWillHide(notification: NSNotification) {
-//		if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-//				if view.frame.origin.y != 0 {
-//					self.view.frame.origin.y += keyboardSize.height
-//				}
-//		}
-//	}
-
 	func viewAppearAnimation(view: UIView, duration:NSTimeInterval, delay: NSTimeInterval, flag:Bool) {
 		view.alpha = 0.0
 		UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseOut, animations: {
@@ -76,7 +57,6 @@ class PLLoginViewController: UIViewController {
 				view.center.y += self.view.bounds.height
 			}
 			}, completion: {_ in
-				// Comletion
 		})
 	}
 	
@@ -89,15 +69,8 @@ class PLLoginViewController: UIViewController {
 				view.center.y += self.view.bounds.height
 			}
 			}, completion: {_ in
-				// Comletion
 		})
 	}
-    
-    
-    // MARK: - Navigation
-    
-    @IBAction func unwindToLogin(sender: UIStoryboardSegue) {
-    }
 
 }
 extension UIViewController {
