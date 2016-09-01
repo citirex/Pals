@@ -129,7 +129,11 @@ extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.image = pickedImage
+            UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, 0.0)
+            UIBezierPath(roundedRect: imageView.bounds, cornerRadius: imageView.bounds.size.width / 2).addClip()
+            pickedImage.drawInRect(imageView.bounds)
+            imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -147,11 +151,9 @@ extension PLSignUpViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
-        // Try to find next responder
         if let nextResponder = textField.superview!.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
-            // Not found, so remove keyboard.
             textField.resignFirstResponder()
         }
         return false

@@ -35,7 +35,6 @@
 		E857F02C1D7801E90020B981 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E857F02A1D7801E90020B981 /* PLProfileHeaderView.xib */; };
 		E857F0331D7802180020B981 /* PLAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F02E1D7802180020B981 /* PLAddButton.swift */; };
 		E857F0341D7802180020B981 /* PLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F02F1D7802180020B981 /* PLButton.swift */; };
-		E857F0351D7802180020B981 /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0301D7802180020B981 /* PLImageView.swift */; };
 		E857F0361D7802180020B981 /* PLSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0311D7802180020B981 /* PLSignUpViewController.swift */; };
 		E857F0371D7802180020B981 /* PLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0321D7802180020B981 /* PLTextField.swift */; };
 /* End PBXBuildFile section */
@@ -77,7 +76,6 @@
 		E857F02A1D7801E90020B981 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLProfileHeaderView.xib; path = Classes/UI/PLProfileHeaderView.xib; sourceTree = "<group>"; };
 		E857F02E1D7802180020B981 /* PLAddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLAddButton.swift; path = Classes/UI/PLAddButton.swift; sourceTree = "<group>"; };
 		E857F02F1D7802180020B981 /* PLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLButton.swift; path = Classes/UI/PLButton.swift; sourceTree = "<group>"; };
-		E857F0301D7802180020B981 /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLImageView.swift; path = Classes/UI/PLImageView.swift; sourceTree = "<group>"; };
 		E857F0311D7802180020B981 /* PLSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSignUpViewController.swift; path = Classes/UI/PLSignUpViewController.swift; sourceTree = "<group>"; };
 		E857F0321D7802180020B981 /* PLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLTextField.swift; path = Classes/UI/PLTextField.swift; sourceTree = "<group>"; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 			children = (
 				E857F02E1D7802180020B981 /* PLAddButton.swift */,
 				E857F02F1D7802180020B981 /* PLButton.swift */,
-				E857F0301D7802180020B981 /* PLImageView.swift */,
 				E857F0321D7802180020B981 /* PLTextField.swift */,
 			);
 			name = Views;
@@ -410,7 +407,6 @@
 				240ACB231D784BE000C8DD0E /* PLProfileCollectionHelper.swift in Sources */,
 				E857F0341D7802180020B981 /* PLButton.swift in Sources */,
 				24BB0C701D77249000B691D1 /* TGLBackgroundProxyView.m in Sources */,
-				E857F0351D7802180020B981 /* PLImageView.swift in Sources */,
 				24CD9CDC1D77079300247FE8 /* TGLExposedLayout.m in Sources */,
 				D42F53DE1D76C5B7005DEA34 /* PLLoginViewController.swift in Sources */,
 				D48390A11D78681B00990E83 /* PLSettingsManager.swift in Sources */,

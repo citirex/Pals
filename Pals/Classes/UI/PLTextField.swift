@@ -13,10 +13,15 @@ class PLTextField: UITextField {
     
     @IBInspectable var bottomBorderColor: UIColor? {
         didSet {
-            let bottomBorder = CALayer()
-            bottomBorder.frame = CGRectMake(0.0, frame.size.height - 1, frame.size.width + frame.size.height * 2, 1.0)
-            bottomBorder.backgroundColor = bottomBorderColor!.CGColor
-            layer.addSublayer(bottomBorder)
+            let line = UIView(frame: CGRect(x: 0.0, y: bounds.height, width: bounds.width, height: 1.0))
+            line.translatesAutoresizingMaskIntoConstraints = false
+            line.backgroundColor = bottomBorderColor
+            addSubview(line)
+            
+            let views = ["line": line]
+            let metrics = ["lineWidth": 1.0]
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[line]|", options: [], metrics: nil, views: views))
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[line(==lineWidth)]|", options: [], metrics: metrics, views: views))
         }
     }
     
@@ -25,6 +30,6 @@ class PLTextField: UITextField {
             attributedPlaceholder = NSAttributedString(string: placeholder != nil ? placeholder! : "", attributes: [NSForegroundColorAttributeName : placeHolderColor!])
         }
     }
-    
+
 }
 
