@@ -17,6 +17,19 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     @IBOutlet var drinkQRCodeLabel: UILabel!
     @IBOutlet var drinkQRCodeImageView: UIImageView!
     
+    @IBOutlet var userView: UIView!
+    @IBOutlet var userPicImageView: UIImageView!
+    @IBOutlet var userNicknameLabel: UILabel!
+    @IBOutlet var userMessageLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.cornerRadius = 20
+    }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        userPicImageView.layer.cornerRadius = userPicImageView.bounds.width / 2
+    }
 }

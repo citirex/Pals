@@ -28,7 +28,6 @@
 @interface TGLStackedLayout ()
 
 @property (nonatomic, strong) NSDictionary *layoutAttributes;
-@property (nonatomic, strong) NSIndexPath *movingIndexPath;
 
 // Set to YES when layout is currently arranging
 // items so that they evenly fill entire height
@@ -212,13 +211,6 @@
         // via z depth
         //
         attributes.zIndex = item;
-        
-        // The moving items are scaled
-        //
-        if (self.movingIndexPath && attributes.indexPath.item == self.movingIndexPath.item) {
-            
-            attributes.transform = CGAffineTransformMakeScale(self.movingItemScaleFactor, self.movingItemScaleFactor);
-        }
 
         // By default all items are layed
         // out evenly with each revealing
@@ -321,13 +313,6 @@
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     return self.layoutAttributes[indexPath];
-}
-
-- (void)invalidateLayoutWithContext:(UICollectionViewLayoutInvalidationContext *)context {
-    
-    [super invalidateLayoutWithContext:context];
-    
-    self.movingIndexPath = context.targetIndexPathsForInteractivelyMovingItems.firstObject;
 }
 
 @end
