@@ -8,46 +8,58 @@
 
 import UIKit
 import RandomKit
+import SDWebImage
 
 enum CurrentList {
-    case covers
-    case drinks
+    case Covers
+    case Drinks
 }
 
 class PLProfileViewController: TGLStackedViewController {
 
     let collectionHelper = PLProfileCollectionHelper()
     let collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
-    var currentList: CurrentList = .drinks
+    var currentList: CurrentList = .Drinks
+    var firstLaunch: Bool = true
+    var profile: PLUser? {
+        didSet {
+            setupUserInfo()
+        }
+    }
+    
+    let sampleDrinks = [String](count: 13, repeatedValue: "Value")
+    let sampleCovers = [String](count: 1, repeatedValue: "Value")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupCollectionBackgroundView()
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         
         self.exposedItemSize = CGSizeMake(collectionView!.bounds.size.width, 420)
         self.stackedLayout!.itemSize = self.exposedItemSize;
         self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
         
-        
+        collectionHelper.collection = sampleDrinks
         self.collectionView?.dataSource = collectionHelper
-        
-        setupCollectionBackgroundView()
-        setupUserInfo()
-        
-        // custom layout
-        
-        self.stackedLayout!.topReveal = 60;
-
-        self.exposedPinningMode = TGLExposedLayoutPinningMode.Below
-        self.exposedTopPinningCount = 10;
-        self.exposedBottomPinningCount = 10;
-        self.exposedItemsAreCollapsible = false
+        profile = PLFacade.profile
+        collectionHelper.fishUser = profile
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if firstLaunch == true {
+            collectionView?.alpha = 0
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.collectionView!.backgroundColor = UIColor.clearColor() //need for collection background view
+        if firstLaunch == true {
+            showCards()
+            firstLaunch = false
+        }
     }
     
     
@@ -58,23 +70,30 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func addFundsButtonPressed(sender: UIButton) {
+        performSegueWithIdentifier("addFunds", sender: nil)
         print("Add funds button pressed")
     }
     
     func myCoversButtonPressed(sender: AnyObject) {
-        if currentList != .covers {
-            currentList = .covers
-            updateListIndicator()
+        if currentList != .Covers {
+            setupCollectionForState(.Covers)
         }
-        print("My covers button pressed")
     }
     
     func myDrinksButtonPressed(sender: AnyObject) {
-        if currentList != .drinks {
-            currentList = .drinks
-            updateListIndicator()
+        if currentList != .Drinks {
+            setupCollectionForState(.Drinks)
         }
-        print("MY drinks button pressed")
+    }
+    
+    func setupCollectionForState(state: CurrentList) {
+        currentList = state
+        updateListIndicator()
+        collectionHelper.collection = (state == .Drinks) ? sampleDrinks : sampleCovers
+        collectionView?.reloadData({
+            self.collectionView?.layoutIfNeeded()
+            self.showCards()
+        })
     }
     
     func swipeRecognized(sender: UISwipeGestureRecognizer) {
@@ -87,23 +106,56 @@ class PLProfileViewController: TGLStackedViewController {
         }
     }
     
+    func showCards() {
+        if let visibleCells = collectionView?.visibleCells() where visibleCells.count > 0 {
+            collectionView?.alpha = 0
+            
+            let diff = 0.05
+            let collectionHeight = collectionView!.bounds.size.height
+            
+            for cell in visibleCells {
+                cell.transform = CGAffineTransformMakeTranslation(0, collectionHeight)
+            }
+            
+            collectionView?.alpha = 1
+            var counter = 0.0
+            for cell in visibleCells {
+                UIView.animateWithDuration(1,
+                                           delay: diff*counter,
+                                           usingSpringWithDamping: 0.77,
+                                           initialSpringVelocity: 0,
+                                           options: .CurveLinear,
+                                           animations: {
+                                            cell.transform = CGAffineTransformMakeTranslation(0, 0)
+                    }, completion: nil)
+                counter += 1
+            }
+        }
+    }
+    
     
     //MARK: - Setup
     func setupUserInfo() {
-        collectionBackgroundView.userNameLabel.text = "Phantom assasin"
-        collectionBackgroundView.editProfileButton.addTarget(self, action: #selector(editProfileButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        collectionBackgroundView.balanceButton.setTitle("$0.0", forState: .Normal)
-        collectionBackgroundView.balanceButton.addTarget(self, action: #selector(addFundsButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        collectionBackgroundView.myDrinksButton.addTarget(self, action: #selector(myDrinksButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        
-        collectionBackgroundView.userPicImageView.image = UIImage(named: "fish_avatar")
-        collectionBackgroundView.applyBlurEffect(UIImage(named: "fish_avatar")!)
+        if let profile = profile {
+            collectionBackgroundView.userNameLabel.text = profile.name
+            collectionBackgroundView.editProfileButton.addTarget(self, action: #selector(editProfileButtonPressed(_:)), forControlEvents: .TouchUpInside)
+            collectionBackgroundView.balanceButton.setTitle(String(format: "$%.2f", profile.balance), forState: .Normal)
+            collectionBackgroundView.balanceButton.addTarget(self, action: #selector(addFundsButtonPressed(_:)), forControlEvents: .TouchUpInside)
+            collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)
+            collectionBackgroundView.myDrinksButton.addTarget(self, action: #selector(myDrinksButtonPressed(_:)), forControlEvents: .TouchUpInside)
+            collectionBackgroundView.userPicImageView.sd_setImageWithURL(profile.picture, placeholderImage: UIImage(named: "avatar_placeholder"),  completed: {[unowned self] (image, error, SDImageCacheType, url) in
+                if error != nil {
+                    print("Error when downloading profile image: \(error.debugDescription)")
+                } else {
+                    self.collectionBackgroundView.applyBlurEffect(image)
+                }
+            })
+        }
     }
     
     func updateListIndicator() {
-        collectionBackgroundView.myCoversConstraint.priority = (currentList == .covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
-        collectionBackgroundView.myDrinksConstraint.priority = (currentList == .covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        collectionBackgroundView.myCoversConstraint.priority = (currentList == .Covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
+        collectionBackgroundView.myDrinksConstraint.priority = (currentList == .Covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
         
         UIView.animateWithDuration(0.2) {
             self.collectionBackgroundView.layoutIfNeeded()
@@ -111,7 +163,10 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func setupCollectionBackgroundView() {
-        collectionBackgroundView.frame = self.collectionView!.bounds
+        var newFrame = self.collectionView!.bounds
+        newFrame.size.width = self.view.bounds.size.width
+        collectionBackgroundView.frame = newFrame
+        self.collectionView?.frame = newFrame
         self.view.insertSubview(collectionBackgroundView, belowSubview: self.collectionView!)
         let backgroundProxy = TGLBackgroundProxyView()
         backgroundProxy.targetView = collectionBackgroundView
@@ -127,14 +182,22 @@ class PLProfileViewController: TGLStackedViewController {
         collectionBackgroundView.addGestureRecognizer(swipeRight)
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "addFunds" {
+            print("funds")
+        }
     }
-    */
+    
 
+}
+
+extension UICollectionView {
+    func reloadData(completion: ()->()) {
+        UIView.animateWithDuration(0, animations: { self.reloadData() })
+        { _ in completion() }
+    }
 }

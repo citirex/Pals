@@ -25,7 +25,7 @@
 
 #import "TGLStackedViewController.h"
 
-@interface TGLStackedViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate>
+@interface TGLStackedViewController () <UICollectionViewDelegate>
 
 @property (nonatomic, strong) TGLStackedLayout *stackedLayout;
 @property (nonatomic, strong) TGLExposedLayout *exposedLayout;
@@ -50,17 +50,6 @@
     return self;
 }
 
-- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
-    
-    NSAssert([layout isKindOfClass:TGLStackedLayout.class], @"TGLStackedViewController collection view layout is not a TGLStackedLayout");
-
-    self = [super initWithCollectionViewLayout:layout];
-
-    if (self) [self initController];
-    
-    return self;
-}
-
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -71,15 +60,16 @@
 }
 
 - (void)initController {
+    
     _exposedLayoutMargin = UIEdgeInsetsMake(40.0, 0.0, 0.0, 0.0);
     _exposedItemSize = CGSizeZero;
-    _exposedTopOverlap = 10.0;
-    _exposedBottomOverlap = 10.0;
+    _exposedTopOverlap = 5;//10.0;
+    _exposedBottomOverlap = 5;//10.0;
     _exposedBottomOverlapCount = 1;
     
     _exposedPinningMode = TGLExposedLayoutPinningModeAll;
-    _exposedTopPinningCount = -1;
-    _exposedBottomPinningCount = -1;
+//    _exposedTopPinningCount = -1;
+//    _exposedBottomPinningCount = -1;
     
     _exposedItemsAreCollapsible = YES;
     
@@ -97,9 +87,16 @@
 
     [super viewDidLoad];
     
-    NSAssert([self.collectionViewLayout isKindOfClass:TGLStackedLayout.class], @"TGLStackedViewController collection view layout is not a TGLStackedLayout");
+    NSAssert([self.collectionView.collectionViewLayout isKindOfClass:TGLStackedLayout.class], @"TGLStackedViewController collection view layout is not a TGLStackedLayout");
     
-    self.stackedLayout = (TGLStackedLayout *)self.collectionViewLayout;
+    self.stackedLayout = (TGLStackedLayout *)self.collectionView.collectionViewLayout;
+    
+    //custom setup
+    self.stackedLayout.topReveal = 60;
+    self.exposedPinningMode = TGLExposedLayoutPinningModeBelow;
+    self.exposedTopPinningCount = 5;
+    self.exposedBottomPinningCount = 5;
+    self.exposedItemsAreCollapsible = NO;
 }
 
 #pragma mark - UICollectionViewDelegate protocol
