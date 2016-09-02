@@ -28,7 +28,7 @@ class PLLoginViewController: UIViewController {
             // show error message
 			alertCalled("Please enter your password.")
         } else {
-			spinner = UIActivityIndicatorView(frame: CGRectMake(view.bounds.width / 2, self.view.bounds.height / 2 - 35, 0, 0)) as UIActivityIndicatorView
+			spinner = UIActivityIndicatorView(frame: CGRectMake(view.bounds.width / 2, self.view.bounds.height / 2 + 35, 0, 0)) as UIActivityIndicatorView
 			view.addSubview(spinner!)
 			spinner!.startAnimating()
             PLFacade.login(userName, password: password, completion: { (error) in
@@ -44,7 +44,7 @@ class PLLoginViewController: UIViewController {
         }
 	}
 	@IBAction func forgotButtonClicked(sender: AnyObject) {
-		self.spinner = UIActivityIndicatorView(frame: CGRectMake(view.bounds.width / 2, view.bounds.height / 2 - 35, 0, 0)) as UIActivityIndicatorView
+		self.spinner = UIActivityIndicatorView(frame: CGRectMake(view.bounds.width / 2, view.bounds.height / 2 + 35, 0, 0)) as UIActivityIndicatorView
 		let alert = UIAlertController(title: "We got your back!", message: "Enter below and we'll send your password!", preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
 		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
@@ -87,29 +87,18 @@ class PLLoginViewController: UIViewController {
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		
-		viewAppearLogo(logoImage, flag: true)
-		viewAppearAnimation(animationView, duration: 1, delay: 0.2, flag: true)
+		viewAppearLogo(logoImage, center: 0, alfa: 1.0, flag: true)
+		viewAppearLogo(animationView, center: -view.bounds.height, alfa: 0.0, flag: true)
 		
 		hideKeyboardWhenTappedAround()
     }
-	func viewAppearAnimation(view: UIView, duration:NSTimeInterval, delay: NSTimeInterval, flag:Bool) {
-		view.alpha = 0.0
-		UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseOut, animations: {
-			view.alpha = 1.0
-			if flag{
-				view.center.y -= view.bounds.height
-			}else{
-				view.center.y += view.bounds.height
-			}
-			}, completion: {_ in
-		})
-	}
 	
-	func viewAppearLogo(view: UIView, flag: Bool) {
+	func viewAppearLogo(view: UIView, center: CGFloat, alfa: CGFloat, flag: Bool) {
+		view.alpha = alfa
 		UIView.animateWithDuration(1, delay: 0.2, options: .CurveEaseOut, animations: {
 			view.alpha = 1.0
 			if flag{
-				view.center.y = 0
+				view.center.y = center
 			}else{
 				view.center.y += view.bounds.height
 			}
