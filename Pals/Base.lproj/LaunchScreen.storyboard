@@ -3,7 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,16 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="belyawik" translatesAutoresizingMaskIntoConstraints="NO" id="sb8-Oc-Ftq">
-                                <rect key="frame" x="0.0" y="120" width="600" height="360"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_image" translatesAutoresizingMaskIntoConstraints="NO" id="sb8-Oc-Ftq" userLabel="logo_image">
+                                <rect key="frame" x="125" y="129" width="350" height="342"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sb8-Oc-Ftq" secondAttribute="height" multiplier="48:47" id="fqP-gQ-TQ2"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="8v4-OL-Uwn"/>
-                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.6" id="JRm-4n-UNf"/>
-                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="QDj-CP-HKB"/>
-                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Vfr-Tm-UHS"/>
+                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="48:48" constant="-250" id="Gjn-SW-5GV"/>
+                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RBN-Gc-uHi"/>
+                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="qAn-v0-hCY"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="belyawik" width="500" height="500"/>
+        <image name="logo_image" width="500" height="500"/>
     </resources>
 </document>

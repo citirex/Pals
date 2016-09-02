@@ -10,26 +10,26 @@ import UIKit
 
 class PLSignUpViewController: UIViewController {
     
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var nameTextField: PLTextField!
-    @IBOutlet var emailTextField: PLTextField!
-    @IBOutlet var passwordTextField: PLTextField!
-    @IBOutlet var confirmPasswordTextField: PLTextField!
-    @IBOutlet var scrollView: UIScrollView!
+    typealias DidSignUpDelegate = (userData: PLSignUpData) -> Void
+    var didSignUp: DidSignUpDelegate?
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameTextField: PLTextField!
+    @IBOutlet weak var emailTextField: PLTextField!
+    @IBOutlet weak var passwordTextField: PLTextField!
+    @IBOutlet weak var confirmPasswordTextField: PLTextField!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var textFieldsContainer: UIView!
     
     private let imagePicker = UIImagePickerController()
-    private var currentTextField: PLTextField!
     
     private var margin: CGFloat = 20
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imagePicker.delegate = self
-        
-        nameTextField.becomeFirstResponder()
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
@@ -69,8 +69,8 @@ class PLSignUpViewController: UIViewController {
         var visibleRect = view.frame
         visibleRect.size.height -= keyboardSize.height
         
-        if !CGRectContainsPoint(visibleRect, currentTextField!.frame.origin) {
-            scrollView.scrollRectToVisible(currentTextField!.frame, animated: true)
+        if CGRectContainsPoint(visibleRect, textFieldsContainer!.frame.origin) {
+            scrollView.scrollRectToVisible(textFieldsContainer!.frame, animated: true)
         }
     }
     
@@ -79,12 +79,7 @@ class PLSignUpViewController: UIViewController {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     
     // MARK: - Actions
     
@@ -95,6 +90,42 @@ class PLSignUpViewController: UIViewController {
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func signUpButtonTapped(sender: UIButton) {
+        let username = nameTextField.text!.trim()
+        let email = emailTextField.text!.trim()
+        let password = passwordTextField.text!.trim()
+        let picture = imageView.image != nil ? imageView.image : UIImage(named: "anonimus")
+        
+        let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
+        
+        if validate(userData) {
+            didSignUp?(userData: userData)
+            showAlert("Success", message: "Signed Up")
+        }
+    }
+    
+    private func validate(userData: PLSignUpData) -> Bool {
+        if userData.username.characters.count == 0 {
+            showAlert("Error", message: "Username must contain at least 1 character")
+            return false
+        } else if !validateEmail(userData.email) {
+            showAlert("Error", message: "Please enter a valid email address")
+            return false
+        } else if userData.password.characters.count == 0 {
+            showAlert("Error", message: "Password must contain at least 1 character")
+            return false
+        } else if userData.password != confirmPasswordTextField.text?.trim() {
+            showAlert("Error", message: "Password mismatch")
+            return false
+        }
+        return true
+    }
+    
+    private func validateEmail(email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(email)
+    }
+    
     // MARK: - Alert
     
     func showAlert(title: String, message: String) {
@@ -103,17 +134,7 @@ class PLSignUpViewController: UIViewController {
         alertController.addAction(OKAction)
         presentViewController(alertController, animated: true, completion: nil)
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
 
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -129,11 +150,10 @@ extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, 0.0)
-            UIBezierPath(roundedRect: imageView.bounds, cornerRadius: imageView.bounds.size.width / 2).addClip()
-            imagePicked.drawInRect(imageView.bounds)
-            imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
+            imageView.layer.cornerRadius = imageView.bounds.size.width / 2
+            imageView.contentMode = .ScaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = imagePicked
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -157,14 +177,6 @@ extension PLSignUpViewController: UITextFieldDelegate {
         }
         return false
     }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        currentTextField = nil
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        currentTextField = textField as! PLTextField
-    }
-    
+
 }
 
