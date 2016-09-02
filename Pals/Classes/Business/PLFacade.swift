@@ -57,13 +57,17 @@ extension PLFacade {
         if error != nil {
             completion(error: error)
         } else {
-            if let user = PLUser(jsonDic: dic[PLKeys.response.string]![PLKeys.user.string] as! [String : AnyObject]) {
-                self.profileManager.profile = user
-                completion(error: nil)
-            } else {
-                let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
-                completion(error: error)
+            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
+                if let userDic = response[PLKeys.user.string] as? [String : AnyObject] {
+                    if let user = PLUser(jsonDic: userDic) {
+                        self.profileManager.profile = user
+                        completion(error: nil)
+                        return
+                    }
+                }
             }
+            let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
+            completion(error: error)
         }
     }
 }

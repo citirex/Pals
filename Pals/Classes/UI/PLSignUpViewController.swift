@@ -97,11 +97,17 @@ class PLSignUpViewController: UIViewController {
         let picture = imageView.image != nil ? imageView.image : UIImage(named: "anonimus")
         
         let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
-        
-        if validate(userData) {
-            didSignUp?(userData: userData)
-            showAlert("Success", message: "Signed Up")
+        // validate here
+        PLFacade.signUp(userData) { (error) in
+            // show tabbar or alert if error!=nil
         }
+        
+//        if validate(userData) {
+//            didSignUp?(userData: userData)
+//            showAlert("Success", message: "Signed Up")
+//        }
+        
+        
     }
     
     private func validate(userData: PLSignUpData) -> Bool {
