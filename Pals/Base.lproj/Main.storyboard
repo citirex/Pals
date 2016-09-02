@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -123,13 +123,18 @@
                                     <constraint firstAttribute="trailing" secondItem="ymg-DV-zCV" secondAttribute="trailing" multiplier="1.25" id="yCp-nS-FJa"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WXu-2n-otd">
+                                <rect key="frame" x="141" y="266" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="centerX" secondItem="ECY-UK-wVS" secondAttribute="centerX" id="2WH-S9-725"/>
+                            <constraint firstItem="WXu-2n-otd" firstAttribute="centerX" secondItem="ECY-UK-wVS" secondAttribute="centerX" id="LWP-qi-6CY"/>
                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="centerY" secondItem="ECY-UK-wVS" secondAttribute="centerY" multiplier="0.4" id="PON-xP-tkb"/>
                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="top" secondItem="0mE-fq-ZBU" secondAttribute="bottom" multiplier="0.9" id="SFJ-qL-ahD"/>
                             <constraint firstItem="Xdz-1E-nP4" firstAttribute="top" secondItem="xXN-Bq-AeA" secondAttribute="bottom" id="WuL-FB-Mqp"/>
+                            <constraint firstItem="WXu-2n-otd" firstAttribute="centerY" secondItem="ECY-UK-wVS" secondAttribute="centerY" id="gpa-Hn-BAP"/>
                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="centerX" secondItem="ECY-UK-wVS" secondAttribute="centerX" id="lTt-Gi-VYx"/>
                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="width" secondItem="ECY-UK-wVS" secondAttribute="height" multiplier="48:48" constant="-311" id="nyG-ZJ-qLD"/>
                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="width" secondItem="ECY-UK-wVS" secondAttribute="width" id="xwo-BZ-HAO"/>
@@ -142,6 +147,7 @@
                         <outlet property="loginTextField" destination="ymg-DV-zCV" id="0hM-X0-uIJ"/>
                         <outlet property="logoImage" destination="0mE-fq-ZBU" id="OTJ-hP-bCq"/>
                         <outlet property="passTextField" destination="HEk-oG-qRI" id="MEk-fe-hJO"/>
+                        <outlet property="spinner" destination="WXu-2n-otd" id="llK-DU-6Kh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgT-8r-kgb" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,7 +10,7 @@ import UIKit
 
 class PLLoginViewController: UIViewController {
 	
-	var spinner: UIActivityIndicatorView?
+	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	private var currentTextField: PLTextField!
 
 	@IBOutlet weak var animationView: UIView!
@@ -28,7 +28,7 @@ class PLLoginViewController: UIViewController {
             // show error message
 			alertCalled("Login error!", mesage: "Please enter your password.")
         } else {
-			spinner = UIActivityIndicatorView(frame: CGRectMake(view.bounds.width / 2, self.view.bounds.height / 2 + 35, 0, 0)) as UIActivityIndicatorView
+//			spinner = UIActivityIndicatorView(frame: CGRectMake(view.bounds.width / 2, self.view.bounds.height / 2 + 35, 0, 0)) as UIActivityIndicatorView
 			view.addSubview(spinner!)
 			spinner!.startAnimating()
             PLFacade.login(userName, password: password, completion: { (error) in
@@ -45,7 +45,7 @@ class PLLoginViewController: UIViewController {
 	}
 	
 	@IBAction func forgotButtonClicked(sender: AnyObject) {
-		self.spinner = UIActivityIndicatorView(frame: CGRectMake(view.bounds.width / 2, view.bounds.height / 2 + 35, 0, 0)) as UIActivityIndicatorView
+//		self.spinner = UIActivityIndicatorView(frame: CGRectMake(view.bounds.width / 2, view.bounds.height / 2 + 35, 0, 0)) as UIActivityIndicatorView
 		let alert = UIAlertController(title: "We got your back!", message: "Enter below and we'll send your password!", preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
 		alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
