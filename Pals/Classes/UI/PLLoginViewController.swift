@@ -91,6 +91,12 @@ class PLLoginViewController: UIViewController {
 		viewAppearLogo(animationView, center: -view.bounds.height, alfa: 0.0, flag: true)
 		
 		hideKeyboardWhenTappedAround()
+        PLFacade.sendPassword("ssds") { (error) in
+            let title = (error != nil ? error?.localizedDescription : "success")
+            let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 	
 	func viewAppearLogo(view: UIView, center: CGFloat, alfa: CGFloat, flag: Bool) {

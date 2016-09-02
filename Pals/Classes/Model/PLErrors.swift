@@ -7,6 +7,7 @@
 //
 
 enum PLErrorDomain : String {
+    case Unknown
     case User
     var string: String {return rawValue}
 }
@@ -17,6 +18,8 @@ struct PLErrorType {
 }
 
 let kPLErrorTypeBadResponse = PLErrorType(code: 1000, reason: "Server returned a bad response")
+let kPLErrorTypeWrongEmail = PLErrorType(code: 1001, reason: "This email is not associated with any user account")
+let kPLErrorUnknown =  NSError(domain: PLErrorDomain.Unknown.string, code: 0, userInfo: nil)
 
 class PLError : NSError {
     init(domain: PLErrorDomain, type: PLErrorType) {

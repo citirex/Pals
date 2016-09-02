@@ -18,6 +18,7 @@ enum PLKeys : String {
     case response
     case login
     case password
+    case success
     var string : String {
         return rawValue
     }

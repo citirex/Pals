@@ -64,25 +64,46 @@ extension PLFacade._PLFacade {
         let passService = PLAPIService.SendPassword
         let params = ["email" : email]
         networkManager.get(passService, parameters: params, completion: { (dic, error) in
-            completion(error: error)
+            self.handleErrorCompletion(error, errorCompletion: completion, completion: { () -> NSError? in
+                if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
+                    if let success = response[PLKeys.success.string] as? Bool {
+                        if success {
+                            completion(error: nil)
+                            return nil
+                        }
+                        return PLError(domain: .User, type: kPLErrorTypeWrongEmail)
+                    }
+                }
+                return kPLErrorUnknown
+            })
         })
     }
     
-    func handleUserLogin(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
+    func handleErrorCompletion(error: NSError?, errorCompletion: PLErrorCompletion, completion: () -> NSError? ) {
         if error != nil {
-            completion(error: error)
+            errorCompletion(error: error)
         } else {
+            if var error = completion() {
+                if error.domain ==  PLErrorDomain.Unknown.string {
+                    error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
+                }
+                errorCompletion(error: error)
+            }
+        }
+    }
+    
+    func handleUserLogin(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
+        handleErrorCompletion(error, errorCompletion: completion) { () -> NSError? in
             if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
                 if let userDic = response[PLKeys.user.string] as? [String : AnyObject] {
                     if let user = PLUser(jsonDic: userDic) {
                         self.profileManager.profile = user
                         completion(error: nil)
-                        return
+                        return nil
                     }
                 }
             }
-            let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
-            completion(error: error)
+            return NSError(domain: PLErrorDomain.Unknown.string, code: 0, userInfo: nil)
         }
     }
 }
