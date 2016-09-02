@@ -34,6 +34,10 @@
 		D48390A71D79746C00990E83 /* PLSignUpHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48390A61D79746C00990E83 /* PLSignUpHelpers.swift */; };
 		D483E1301D79A64400FCD614 /* signup.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E12F1D79A64400FCD614 /* signup.json */; };
 		D483E1321D79BC2A00FCD614 /* sendpassword.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E1311D79BC2A00FCD614 /* sendpassword.json */; };
+		D483E1341D79CBBA00FCD614 /* PLPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1331D79CBBA00FCD614 /* PLPlace.swift */; };
+		D483E1361D79CC0F00FCD614 /* PLDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1351D79CC0F00FCD614 /* PLDrink.swift */; };
+		D483E1381D79CC2900FCD614 /* PLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1371D79CC2900FCD614 /* PLEvent.swift */; };
+		D483E13A1D79CDAA00FCD614 /* PLOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1391D79CDAA00FCD614 /* PLOrder.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 		E83FDBB31D797AFA00B51DBB /* PLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FDBB21D797AFA00B51DBB /* PLString.swift */; };
 		E83FDBB51D79AB3000B51DBB /* PLStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FDBB41D79AB3000B51DBB /* PLStoryboard.swift */; };
@@ -82,6 +86,10 @@
 		D48390A61D79746C00990E83 /* PLSignUpHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSignUpHelpers.swift; path = Classes/Extensions/PLSignUpHelpers.swift; sourceTree = "<group>"; };
 		D483E12F1D79A64400FCD614 /* signup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signup.json; sourceTree = "<group>"; };
 		D483E1311D79BC2A00FCD614 /* sendpassword.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sendpassword.json; sourceTree = "<group>"; };
+		D483E1331D79CBBA00FCD614 /* PLPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlace.swift; path = Classes/Model/PLPlace.swift; sourceTree = "<group>"; };
+		D483E1351D79CC0F00FCD614 /* PLDrink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLDrink.swift; path = Classes/Model/PLDrink.swift; sourceTree = "<group>"; };
+		D483E1371D79CC2900FCD614 /* PLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEvent.swift; path = Classes/Model/PLEvent.swift; sourceTree = "<group>"; };
+		D483E1391D79CDAA00FCD614 /* PLOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrder.swift; path = Classes/Model/PLOrder.swift; sourceTree = "<group>"; };
 		E83FDBB21D797AFA00B51DBB /* PLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLString.swift; sourceTree = "<group>"; };
 		E83FDBB41D79AB3000B51DBB /* PLStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLStoryboard.swift; sourceTree = "<group>"; };
 		E857F0291D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLProfileDrinkCollectionViewCell.xib; path = Classes/UI/PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -227,6 +235,10 @@
 			children = (
 				D42F53DF1D76CABE005DEA34 /* PLUniqueObject.swift */,
 				D42F53E11D76CBFD005DEA34 /* PLUser.swift */,
+				D483E1391D79CDAA00FCD614 /* PLOrder.swift */,
+				D483E1331D79CBBA00FCD614 /* PLPlace.swift */,
+				D483E1351D79CC0F00FCD614 /* PLDrink.swift */,
+				D483E1371D79CC2900FCD614 /* PLEvent.swift */,
 				D48390A21D786ABE00990E83 /* PLFakeFeed.swift */,
 				D48390A41D787D3B00990E83 /* PLErrors.swift */,
 			);
@@ -423,8 +435,10 @@
 			files = (
 				24CD9CDE1D77079300247FE8 /* TGLStackedViewController.m in Sources */,
 				24CBED3D1D76D6080028E5E3 /* PLProfileViewController.swift in Sources */,
+				D483E13A1D79CDAA00FCD614 /* PLOrder.swift in Sources */,
 				D48390971D7826FD00990E83 /* PLNetworkManager.swift in Sources */,
 				240ACB231D784BE000C8DD0E /* PLProfileCollectionHelper.swift in Sources */,
+				D483E1341D79CBBA00FCD614 /* PLPlace.swift in Sources */,
 				E83FDBB51D79AB3000B51DBB /* PLStoryboard.swift in Sources */,
 				E857F0341D7802180020B981 /* PLButton.swift in Sources */,
 				24BB0C701D77249000B691D1 /* TGLBackgroundProxyView.m in Sources */,
@@ -439,11 +453,13 @@
 				D48390A71D79746C00990E83 /* PLSignUpHelpers.swift in Sources */,
 				D42F53E51D76D344005DEA34 /* PLDictionary.swift in Sources */,
 				D42F53E21D76CBFD005DEA34 /* PLUser.swift in Sources */,
+				D483E1381D79CC2900FCD614 /* PLEvent.swift in Sources */,
 				D42F53E01D76CABE005DEA34 /* PLUniqueObject.swift in Sources */,
 				D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */,
 				D48390991D782E4500990E83 /* PLProfileManager.swift in Sources */,
 				E857F0371D7802180020B981 /* PLTextField.swift in Sources */,
 				24BB0C721D77272600B691D1 /* PLProfileHeaderView.swift in Sources */,
+				D483E1361D79CC0F00FCD614 /* PLDrink.swift in Sources */,
 				E857F0331D7802180020B981 /* PLAddButton.swift in Sources */,
 				D48390A31D786ABE00990E83 /* PLFakeFeed.swift in Sources */,
 				E857F0361D7802180020B981 /* PLSignUpViewController.swift in Sources */,
