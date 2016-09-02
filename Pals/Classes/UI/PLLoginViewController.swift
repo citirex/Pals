@@ -11,11 +11,12 @@ import UIKit
 class PLLoginViewController: UIViewController {
 	
 	var spinner: UIActivityIndicatorView?
+	private var currentTextField: PLTextField!
 
 	@IBOutlet weak var animationView: UIView!
 	@IBOutlet weak var logoImage: UIImageView!
-	@IBOutlet weak var loginTextField: UITextField!
-	@IBOutlet weak var passTextField: UITextField!
+	@IBOutlet weak var loginTextField: PLTextField!
+	@IBOutlet weak var passTextField: PLTextField!
     
 	@IBAction func loginButtonClicked(sender: AnyObject) {
         let userName = loginTextField.text!
@@ -61,7 +62,7 @@ class PLLoginViewController: UIViewController {
 	}
 	
 	func alertCalled(mesage: String) {
-		let alert = UIAlertController(title: "Error!", message: mesage, preferredStyle: UIAlertControllerStyle.Alert)
+		let alert = UIAlertController(title: "Login error!", message: mesage, preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
 		self.presentViewController(alert, animated: true, completion: nil)
 	}
@@ -78,6 +79,10 @@ class PLLoginViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		loginTextField.delegate = self
+		passTextField.delegate = self
+		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		
@@ -121,4 +126,27 @@ extension UIViewController {
 	func dismissKeyboard() {
 		view.endEditing(true)
 	}
+}
+
+extension PLLoginViewController: UITextFieldDelegate {
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		let nextTag = textField.tag + 1
+		if let nextResponder = textField.superview!.viewWithTag(nextTag) {
+			nextResponder.becomeFirstResponder()
+		} else {
+			textField.resignFirstResponder()
+			loginButtonClicked(self)
+		}
+		return false
+	}
+	
+	func textFieldDidEndEditing(textField: UITextField) {
+		currentTextField = nil
+	}
+	
+	func textFieldDidBeginEditing(textField: UITextField) {
+		currentTextField = textField as! PLTextField
+	}
+	
 }
