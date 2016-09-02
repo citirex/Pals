@@ -11,17 +11,23 @@ import UIKit
 @IBDesignable
 class PLTextField: UITextField {
     
-    @IBInspectable var bottomBorderColor: UIColor? {
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
-            let line = UIView(frame: CGRect(x: 0.0, y: bounds.height, width: bounds.width, height: 1.0))
+            let line = UIView(frame: CGRect(x: 0.0, y: bounds.height, width: bounds.width, height: borderWidth))
             line.translatesAutoresizingMaskIntoConstraints = false
-            line.backgroundColor = bottomBorderColor
+            line.backgroundColor = borderColor
             addSubview(line)
             
             let views = ["line": line]
-            let metrics = ["lineWidth": 1.0]
+            let metrics = ["lineWidth": borderWidth]
             addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[line]|", options: [], metrics: nil, views: views))
             addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[line(==lineWidth)]|", options: [], metrics: metrics, views: views))
+        }
+    }
+    
+    @IBInspectable var borderColor: UIColor? {
+        didSet {
+            layer.borderColor = borderColor?.CGColor
         }
     }
     

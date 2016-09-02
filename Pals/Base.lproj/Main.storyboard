@@ -162,107 +162,157 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C48-og-baj" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhN-Rw-fi0" userLabel="Add Button" customClass="PLAddButton" customModule="Pals" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyP-UE-rS0" userLabel="Image View Container">
                                                 <rect key="frame" x="85" y="60" width="150" height="150"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpr-YB-tmc" userLabel="Add Image Button" customClass="PLAddButton" customModule="Pals" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                        <connections>
+                                                            <action selector="loadImageButtonTapped:" destination="CEl-2k-qJd" eventType="touchUpInside" id="OMR-Tx-FYW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OLe-p3-CdT">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    </imageView>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="zhN-Rw-fi0" secondAttribute="height" multiplier="1:1" id="erE-Nv-OcV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="bpr-YB-tmc" secondAttribute="bottom" id="Apv-Me-qwr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bpr-YB-tmc" secondAttribute="trailing" id="Q4P-wk-oSW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="OLe-p3-CdT" secondAttribute="trailing" id="W7y-Bd-LYV"/>
+                                                    <constraint firstItem="OLe-p3-CdT" firstAttribute="leading" secondItem="eyP-UE-rS0" secondAttribute="leading" id="WYI-ld-mV3"/>
+                                                    <constraint firstAttribute="width" secondItem="eyP-UE-rS0" secondAttribute="height" multiplier="1:1" id="XCK-PI-kzF"/>
+                                                    <constraint firstItem="bpr-YB-tmc" firstAttribute="top" secondItem="eyP-UE-rS0" secondAttribute="top" id="eOi-vU-J3y"/>
+                                                    <constraint firstItem="bpr-YB-tmc" firstAttribute="leading" secondItem="eyP-UE-rS0" secondAttribute="leading" id="u4s-Hm-WW7"/>
+                                                    <constraint firstAttribute="bottom" secondItem="OLe-p3-CdT" secondAttribute="bottom" id="yTK-7U-xVQ"/>
+                                                    <constraint firstItem="OLe-p3-CdT" firstAttribute="top" secondItem="eyP-UE-rS0" secondAttribute="top" id="zOj-jJ-TCG"/>
                                                 </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GeJ-pL-RmU" userLabel="Text Fields Container">
+                                                <rect key="frame" x="58" y="248" width="204" height="144"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3x3-0S-Ctm" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="204" height="30"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="CEl-2k-qJd" id="Pit-Ee-les"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Yf3-HH-csM" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="38" width="204" height="30"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="CEl-2k-qJd" id="FAZ-n8-7Iz"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qrX-Zk-BQf" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="76" width="204" height="30"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="CEl-2k-qJd" id="Y03-38-8jo"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fXl-ET-ljc" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="114" width="204" height="30"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="CEl-2k-qJd" id="hDz-b1-dtf"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Yf3-HH-csM" firstAttribute="height" secondItem="3x3-0S-Ctm" secondAttribute="height" id="1aY-c8-G5O"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fXl-ET-ljc" secondAttribute="trailing" id="1eX-mz-BIc"/>
+                                                    <constraint firstItem="qrX-Zk-BQf" firstAttribute="leading" secondItem="GeJ-pL-RmU" secondAttribute="leading" id="43V-Uo-axN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qrX-Zk-BQf" secondAttribute="trailing" id="RX6-3q-AKI"/>
+                                                    <constraint firstItem="qrX-Zk-BQf" firstAttribute="top" secondItem="Yf3-HH-csM" secondAttribute="bottom" constant="8" id="UVW-ij-ob9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Yf3-HH-csM" secondAttribute="trailing" id="VKM-wS-xrl"/>
+                                                    <constraint firstItem="Yf3-HH-csM" firstAttribute="leading" secondItem="GeJ-pL-RmU" secondAttribute="leading" id="XDL-d8-oyo"/>
+                                                    <constraint firstItem="fXl-ET-ljc" firstAttribute="height" secondItem="3x3-0S-Ctm" secondAttribute="height" id="YpT-Xo-xFW"/>
+                                                    <constraint firstAttribute="width" secondItem="GeJ-pL-RmU" secondAttribute="height" multiplier="51:40" constant="20.400000000000006" id="Zky-Ep-1d7"/>
+                                                    <constraint firstItem="3x3-0S-Ctm" firstAttribute="top" secondItem="GeJ-pL-RmU" secondAttribute="top" id="bYK-4J-VoE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="3x3-0S-Ctm" secondAttribute="trailing" id="c3a-9x-fVc"/>
+                                                    <constraint firstItem="fXl-ET-ljc" firstAttribute="top" secondItem="qrX-Zk-BQf" secondAttribute="bottom" constant="8" id="cKY-eV-4IA"/>
+                                                    <constraint firstItem="qrX-Zk-BQf" firstAttribute="height" secondItem="3x3-0S-Ctm" secondAttribute="height" id="gJt-SB-Uon"/>
+                                                    <constraint firstItem="3x3-0S-Ctm" firstAttribute="leading" secondItem="GeJ-pL-RmU" secondAttribute="leading" id="kXA-dq-JWP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fXl-ET-ljc" secondAttribute="bottom" id="lQb-Dc-lmz"/>
+                                                    <constraint firstItem="Yf3-HH-csM" firstAttribute="top" secondItem="3x3-0S-Ctm" secondAttribute="bottom" constant="8" id="lcQ-i1-bNi"/>
+                                                    <constraint firstItem="fXl-ET-ljc" firstAttribute="leading" secondItem="GeJ-pL-RmU" secondAttribute="leading" id="qs5-Eh-xbp"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOo-VY-lOo">
+                                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="EOo-VY-lOo" secondAttribute="height" multiplier="8:1" id="qim-lR-awT"/>
+                                                </constraints>
+                                                <state key="normal" title="Already a Pal? Sign In!">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
-                                                    <action selector="loadImageButtonTapped:" destination="CEl-2k-qJd" eventType="touchUpInside" id="u3c-jt-2Jt"/>
+                                                    <segue destination="1Lm-rr-nPs" kind="unwind" unwindAction="unwindToLoginClicked:" id="Dsn-A0-WrF"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZcW-FV-mvo">
-                                                <rect key="frame" x="85" y="60" width="150" height="150"/>
-                                            </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3x3-0S-Ctm" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                <rect key="frame" x="58" y="248" width="204" height="30"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="3x3-0S-Ctm" secondAttribute="height" multiplier="34:5" id="SyO-co-FjN"/>
-                                                </constraints>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomBorderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="CEl-2k-qJd" id="Pit-Ee-les"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Yf3-HH-csM" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                <rect key="frame" x="58" y="287" width="204" height="30"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Yf3-HH-csM" secondAttribute="height" multiplier="34:5" id="zz5-1L-StD"/>
-                                                </constraints>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomBorderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="CEl-2k-qJd" id="FAZ-n8-7Iz"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qrX-Zk-BQf" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                <rect key="frame" x="58" y="325" width="204" height="32"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="qrX-Zk-BQf" secondAttribute="height" multiplier="34:5" id="seY-Kk-pct"/>
-                                                </constraints>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomBorderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="CEl-2k-qJd" id="Y03-38-8jo"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fXl-ET-ljc" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                <rect key="frame" x="58" y="377" width="204" height="31"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="fXl-ET-ljc" secondAttribute="height" multiplier="34:5" id="BgD-wF-Wjz"/>
-                                                </constraints>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomBorderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="delegate" destination="CEl-2k-qJd" id="hDz-b1-dtf"/>
-                                                </connections>
-                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1m-s9-GgV" customClass="PLButton" customModule="Pals" customModuleProvider="target">
                                                 <rect key="frame" x="87" y="443" width="146" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="U1m-s9-GgV" secondAttribute="height" multiplier="73:15" id="7z5-c7-KVx"/>
+                                                    <constraint firstAttribute="width" secondItem="U1m-s9-GgV" secondAttribute="height" multiplier="73:15" id="U7d-l5-ycW"/>
                                                 </constraints>
                                                 <state key="normal" title="Sign Up">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -273,48 +323,22 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOo-VY-lOo">
-                                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="EOo-VY-lOo" secondAttribute="height" multiplier="8:1" id="pcf-Vr-pEp"/>
-                                                </constraints>
-                                                <state key="normal" title="Already a Pal? Sign In!">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="1Lm-rr-nPs" kind="unwind" unwindAction="unwindToLoginClicked:" id="Dsn-A0-WrF"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.40784313729999999" green="0.1960784314" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="fXl-ET-ljc" firstAttribute="top" secondItem="qrX-Zk-BQf" secondAttribute="bottom" constant="8" id="1ST-se-Zmy"/>
-                                            <constraint firstItem="ZcW-FV-mvo" firstAttribute="bottom" secondItem="zhN-Rw-fi0" secondAttribute="bottom" id="5Zr-9s-ymB"/>
-                                            <constraint firstItem="zhN-Rw-fi0" firstAttribute="width" secondItem="C48-og-baj" secondAttribute="height" multiplier="75:284" id="6Br-U6-dPr"/>
-                                            <constraint firstItem="zhN-Rw-fi0" firstAttribute="top" secondItem="C48-og-baj" secondAttribute="top" constant="60" id="6tW-zZ-Cwt"/>
-                                            <constraint firstItem="ZcW-FV-mvo" firstAttribute="leading" secondItem="zhN-Rw-fi0" secondAttribute="leading" id="7Ty-67-55q"/>
-                                            <constraint firstItem="3x3-0S-Ctm" firstAttribute="width" secondItem="C48-og-baj" secondAttribute="height" multiplier="51:142" id="A27-9v-1hf"/>
-                                            <constraint firstItem="3x3-0S-Ctm" firstAttribute="trailing" secondItem="Yf3-HH-csM" secondAttribute="trailing" id="AB3-rR-cPl"/>
-                                            <constraint firstItem="3x3-0S-Ctm" firstAttribute="centerX" secondItem="ZcW-FV-mvo" secondAttribute="centerX" id="DHJ-xj-5Ty"/>
-                                            <constraint firstItem="zhN-Rw-fi0" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="Hnh-c6-ytM"/>
-                                            <constraint firstItem="U1m-s9-GgV" firstAttribute="width" secondItem="C48-og-baj" secondAttribute="height" multiplier="73:284" id="JbA-fA-RQs"/>
-                                            <constraint firstItem="ZcW-FV-mvo" firstAttribute="trailing" secondItem="zhN-Rw-fi0" secondAttribute="trailing" id="LaL-RA-7eK"/>
-                                            <constraint firstItem="qrX-Zk-BQf" firstAttribute="top" secondItem="Yf3-HH-csM" secondAttribute="bottom" constant="8" id="OnX-OL-RPr"/>
-                                            <constraint firstItem="qrX-Zk-BQf" firstAttribute="leading" secondItem="Yf3-HH-csM" secondAttribute="leading" id="Oya-PE-CEd"/>
-                                            <constraint firstItem="qrX-Zk-BQf" firstAttribute="leading" secondItem="fXl-ET-ljc" secondAttribute="leading" id="RpP-al-Eyn"/>
-                                            <constraint firstItem="U1m-s9-GgV" firstAttribute="centerX" secondItem="EOo-VY-lOo" secondAttribute="centerX" id="Szj-hx-Vas"/>
-                                            <constraint firstItem="Yf3-HH-csM" firstAttribute="top" secondItem="3x3-0S-Ctm" secondAttribute="bottom" constant="9" id="Ulf-Pu-7kp"/>
-                                            <constraint firstItem="U1m-s9-GgV" firstAttribute="centerY" secondItem="C48-og-baj" secondAttribute="centerY" constant="174" id="fFJ-Hu-ncC"/>
-                                            <constraint firstAttribute="bottom" secondItem="EOo-VY-lOo" secondAttribute="bottom" id="fma-Tg-wwn"/>
-                                            <constraint firstItem="3x3-0S-Ctm" firstAttribute="leading" secondItem="Yf3-HH-csM" secondAttribute="leading" id="kJJ-WU-OIv"/>
-                                            <constraint firstItem="EOo-VY-lOo" firstAttribute="leading" secondItem="C48-og-baj" secondAttribute="leading" id="m5A-zg-0J3"/>
-                                            <constraint firstAttribute="trailing" secondItem="EOo-VY-lOo" secondAttribute="trailing" id="mhX-cv-yxp"/>
-                                            <constraint firstItem="ZcW-FV-mvo" firstAttribute="top" secondItem="zhN-Rw-fi0" secondAttribute="top" id="q3F-aG-WgX"/>
-                                            <constraint firstItem="EOo-VY-lOo" firstAttribute="top" secondItem="U1m-s9-GgV" secondAttribute="bottom" priority="250" constant="55" id="qgb-BN-Mte"/>
-                                            <constraint firstItem="3x3-0S-Ctm" firstAttribute="top" secondItem="ZcW-FV-mvo" secondAttribute="bottom" constant="38" id="uiO-Tc-VSu"/>
-                                            <constraint firstItem="qrX-Zk-BQf" firstAttribute="trailing" secondItem="Yf3-HH-csM" secondAttribute="trailing" id="ulE-Uy-lXg"/>
-                                            <constraint firstItem="qrX-Zk-BQf" firstAttribute="trailing" secondItem="fXl-ET-ljc" secondAttribute="trailing" id="vXe-5G-lke"/>
+                                            <constraint firstAttribute="trailing" secondItem="EOo-VY-lOo" secondAttribute="trailing" id="82b-kS-V8U"/>
+                                            <constraint firstItem="EOo-VY-lOo" firstAttribute="top" secondItem="U1m-s9-GgV" secondAttribute="bottom" constant="55" id="9FD-uN-N7F"/>
+                                            <constraint firstAttribute="bottom" secondItem="EOo-VY-lOo" secondAttribute="bottom" id="DWT-J4-LJV"/>
+                                            <constraint firstItem="EOo-VY-lOo" firstAttribute="leading" secondItem="C48-og-baj" secondAttribute="leading" id="Gd3-H9-5kn"/>
+                                            <constraint firstItem="U1m-s9-GgV" firstAttribute="width" secondItem="C48-og-baj" secondAttribute="height" multiplier="73:284" id="Lda-Kf-9Ez"/>
+                                            <constraint firstItem="GeJ-pL-RmU" firstAttribute="width" secondItem="C48-og-baj" secondAttribute="height" multiplier="51:142" id="PAo-fg-H6i"/>
+                                            <constraint firstItem="U1m-s9-GgV" firstAttribute="centerX" secondItem="EOo-VY-lOo" secondAttribute="centerX" id="Pno-HV-dlK"/>
+                                            <constraint firstItem="GeJ-pL-RmU" firstAttribute="top" secondItem="eyP-UE-rS0" secondAttribute="bottom" constant="38" id="ZJu-fW-x6D"/>
+                                            <constraint firstItem="eyP-UE-rS0" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="dAQ-04-huo"/>
+                                            <constraint firstItem="U1m-s9-GgV" firstAttribute="top" secondItem="GeJ-pL-RmU" secondAttribute="bottom" priority="250" constant="51" id="fgv-y7-s9U"/>
+                                            <constraint firstItem="eyP-UE-rS0" firstAttribute="width" secondItem="C48-og-baj" secondAttribute="height" multiplier="75:284" id="g6N-7x-VIp"/>
+                                            <constraint firstItem="eyP-UE-rS0" firstAttribute="top" secondItem="C48-og-baj" secondAttribute="top" constant="60" id="gSP-Rs-2vQ"/>
+                                            <constraint firstItem="GeJ-pL-RmU" firstAttribute="centerX" secondItem="eyP-UE-rS0" secondAttribute="centerX" id="wIi-W4-bon"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -341,7 +365,7 @@
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="fXl-ET-ljc" id="NHU-Gg-pkn"/>
                         <outlet property="emailTextField" destination="Yf3-HH-csM" id="yvf-mX-dmj"/>
-                        <outlet property="imageView" destination="ZcW-FV-mvo" id="bOI-zY-9oK"/>
+                        <outlet property="imageView" destination="OLe-p3-CdT" id="lQp-yV-wDX"/>
                         <outlet property="nameTextField" destination="3x3-0S-Ctm" id="3ce-Lk-Dw3"/>
                         <outlet property="passwordTextField" destination="qrX-Zk-BQf" id="6l1-hh-gDC"/>
                         <outlet property="scrollView" destination="g1d-Im-hnJ" id="oxs-6Q-SAJ"/>

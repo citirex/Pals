@@ -128,14 +128,13 @@ class PLSignUpViewController: UIViewController {
 extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
             UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, 0.0)
             UIBezierPath(roundedRect: imageView.bounds, cornerRadius: imageView.bounds.size.width / 2).addClip()
-            pickedImage.drawInRect(imageView.bounds)
+            imagePicked.drawInRect(imageView.bounds)
             imageView.image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
         }
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
