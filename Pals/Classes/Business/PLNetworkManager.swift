@@ -13,6 +13,7 @@ enum PLAPIService : String {
     case Login
     case Logout
     case SignUp
+    case SendPassword
     var string: String {return rawValue.lowercaseString}
 }
 
@@ -43,7 +44,11 @@ class PLNetworkManager: PLNetworkManagerInterface {
         if PLFacade.instance.settingsManager.useFakeFeeds {
             let fakeFeed = PLFakeFeed(service: service)
             fakeFeed.load({ (dict) in
-                completion(dic: dict, error: nil)
+                if dict.isEmpty {
+                    completion(dic: [:], error: PLError(domain: .User, type: kPLErrorTypeBadResponse))
+                } else {
+                    completion(dic: dict, error: nil)
+                }
             })
         } else {
             completion(dic: [:], error: error)
