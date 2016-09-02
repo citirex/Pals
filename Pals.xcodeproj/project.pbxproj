@@ -35,6 +35,7 @@
 		D483E1301D79A64400FCD614 /* signup.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E12F1D79A64400FCD614 /* signup.json */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 		E83FDBB31D797AFA00B51DBB /* PLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FDBB21D797AFA00B51DBB /* PLString.swift */; };
+		E83FDBB51D79AB3000B51DBB /* PLStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FDBB41D79AB3000B51DBB /* PLStoryboard.swift */; };
 		E857F02B1D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E857F0291D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib */; };
 		E857F02C1D7801E90020B981 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E857F02A1D7801E90020B981 /* PLProfileHeaderView.xib */; };
 		E857F0331D7802180020B981 /* PLAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F02E1D7802180020B981 /* PLAddButton.swift */; };
@@ -80,6 +81,7 @@
 		D48390A61D79746C00990E83 /* PLSignUpHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSignUpHelpers.swift; path = Classes/Extensions/PLSignUpHelpers.swift; sourceTree = "<group>"; };
 		D483E12F1D79A64400FCD614 /* signup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signup.json; sourceTree = "<group>"; };
 		E83FDBB21D797AFA00B51DBB /* PLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLString.swift; sourceTree = "<group>"; };
+		E83FDBB41D79AB3000B51DBB /* PLStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLStoryboard.swift; sourceTree = "<group>"; };
 		E857F0291D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLProfileDrinkCollectionViewCell.xib; path = Classes/UI/PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
 		E857F02A1D7801E90020B981 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLProfileHeaderView.xib; path = Classes/UI/PLProfileHeaderView.xib; sourceTree = "<group>"; };
 		E857F02E1D7802180020B981 /* PLAddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLAddButton.swift; path = Classes/UI/PLAddButton.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				D42F53E41D76D344005DEA34 /* PLDictionary.swift */,
 				D48390A61D79746C00990E83 /* PLSignUpHelpers.swift */,
 				E83FDBB21D797AFA00B51DBB /* PLString.swift */,
+				E83FDBB41D79AB3000B51DBB /* PLStoryboard.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				24CBED3D1D76D6080028E5E3 /* PLProfileViewController.swift in Sources */,
 				D48390971D7826FD00990E83 /* PLNetworkManager.swift in Sources */,
 				240ACB231D784BE000C8DD0E /* PLProfileCollectionHelper.swift in Sources */,
+				E83FDBB51D79AB3000B51DBB /* PLStoryboard.swift in Sources */,
 				E857F0341D7802180020B981 /* PLButton.swift in Sources */,
 				24BB0C701D77249000B691D1 /* TGLBackgroundProxyView.m in Sources */,
 				24CD9CDC1D77079300247FE8 /* TGLExposedLayout.m in Sources */,

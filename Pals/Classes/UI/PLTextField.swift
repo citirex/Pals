@@ -18,8 +18,8 @@ class PLTextField: UITextField {
             line.backgroundColor = borderColor
             addSubview(line)
             
-            let views = ["line": line]
-            let metrics = ["lineWidth": borderWidth]
+            let views = ["line" : line]
+            let metrics = ["lineWidth" : borderWidth]
             addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[line]|", options: [], metrics: nil, views: views))
             addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[line(==lineWidth)]|", options: [], metrics: metrics, views: views))
         }
