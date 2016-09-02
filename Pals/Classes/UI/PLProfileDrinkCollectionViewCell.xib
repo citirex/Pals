@@ -74,7 +74,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8N-u9-ZYJ">
                                 <rect key="frame" x="20" y="347" width="280" height="134"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gCe-zA-X8k">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gCe-zA-X8k">
                                         <rect key="frame" x="112" y="8" width="56" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gCe-zA-X8k" secondAttribute="height" multiplier="1:1" id="RPp-Rh-axR"/>
@@ -188,6 +188,7 @@
                 <outlet property="drinkQRCodeImageView" destination="H8a-4K-sQ1" id="2L2-zj-a9r"/>
                 <outlet property="drinkQRCodeLabel" destination="xao-BJ-QQK" id="MT1-5L-9Nm"/>
                 <outlet property="headerView" destination="ea4-DB-fvx" id="ohj-bP-uH6"/>
+                <outlet property="scrollView" destination="7rQ-a9-W1o" id="XoY-i8-sBJ"/>
                 <outlet property="userMessageLabel" destination="I2d-bU-31K" id="TpQ-Vu-cDe"/>
                 <outlet property="userNicknameLabel" destination="iIn-m1-xc1" id="KCa-f7-CDE"/>
                 <outlet property="userPicImageView" destination="gCe-zA-X8k" id="NDN-W0-PRm"/>

@@ -8,13 +8,17 @@
 
 import UIKit
 import SwiftQRCode
+import SDWebImage
 
 let drinkCellIdentifier = "DrinkCell"
 
 class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
+    
+    var collection: [String]? = nil
+    var fishUser: PLUser? = nil
         
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 13
+        return collection?.count ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -25,8 +29,12 @@ class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
         cell.headerView.backgroundColor = generateRandomColor()
         cell.barTitleLabel.text = "Bar #\(indexPath.row) "
         cell.drinkQRCodeImageView.image = QRCode.generateImage("AAAA777", avatarImage: nil)
-        cell.userPicImageView.image = UIImage(named: "fish_avatar")
         
+        if let user = fishUser {
+            cell.userPicImageView.sd_setImageWithURL(user.picture)
+            cell.userNicknameLabel.text = user.name
+//            cell.userMessageLabel.text = 
+        }
         
         return cell
     }

@@ -28,7 +28,9 @@
 #import "TGLStackedLayout.h"
 #import "TGLExposedLayout.h"
 
-@interface TGLStackedViewController : UICollectionViewController
+@interface TGLStackedViewController : UIViewController
+
+@property (nonatomic, strong, nullable) IBOutlet UICollectionView *collectionView;
 
 /** The collection view layout object used when all items are collapsed.
  *
