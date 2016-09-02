@@ -53,11 +53,12 @@ class PLLoginViewController: UIViewController {
 		})
 		alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
 			let textField = alert.textFields![0] as UITextField
-			if self.validateEmail(textField.text!) {
+			if (textField.text?.trim().isValidEmail)! {
 				self.view.addSubview(self.spinner!)
 				self.spinner!.startAnimating()
 				PLFacade.sendPassword(textField.text!, completion: { (error) in
 					self.alertCalled("Succes!", mesage: "Show password on your E-mail.")
+					self.spinner?.stopAnimating()
 				})
 			} else {
 				self.alertCalled("Incorrect email!", mesage: "Re-enter your email.")
@@ -68,11 +69,6 @@ class PLLoginViewController: UIViewController {
 	@IBAction func registerButtonClicked(sender: AnyObject) {
 	}
 	@IBAction func unwindToLoginClicked(sender: UIStoryboardSegue) {
-	}
-	
-	private func validateEmail(email: String) -> Bool {
-		let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-		return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(email)
 	}
 	
 	func alertCalled(title: String, mesage: String) {
