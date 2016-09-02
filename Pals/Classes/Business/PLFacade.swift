@@ -8,10 +8,11 @@
 
 import Foundation
 
-typealias PLLoginCompletion = (error: NSError?) -> ()
+typealias PLErrorCompletion = (error: NSError?) -> ()
 
 protocol PLFacadeInterface {
-    static func login(userName:String, password: String, completion: PLLoginCompletion)
+    static func login(userName:String, password: String, completion: PLErrorCompletion)
+    static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
     static var profile: PLUser? {get}
 }
 
@@ -25,26 +26,44 @@ class PLFacade : PLFacadeInterface {
         return PLFacade.instance.profileManager.profile
     }
     
-    class func login(userName:String, password: String, completion: PLLoginCompletion) {
-        PLFacade.instance.login(userName, password: password, completion: completion)
+    class func login(userName:String, password: String, completion: PLErrorCompletion) {
+        PLFacade.instance._login(userName, password: password, completion: completion)
     }
     
-    func login(userName:String, password: String, completion: PLLoginCompletion) {
-        let loginService = PLAPIService.login
-        let params = [PLKeys.login.string : userName, PLKeys.password.string : password]
-        networkManager.get(loginService, parameters: params) { (dic, error) in
-            if error != nil {
-                completion(error: error)
-            } else {
-                if let user = PLUser(jsonDic: dic[PLKeys.response.string]![PLKeys.user.string] as! [String : AnyObject]) {
-                    self.profileManager.profile = user
-                    completion(error: nil)
-                } else {
-                    let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
-                    completion(error: error)
-                }
-            }
+    class func signUp(data: PLSignUpData, completion: PLErrorCompletion) {
+        PLFacade.instance._signUp(data, completion: completion)
+    }
+}
+
+extension PLFacade {
+    func _signUp(data: PLSignUpData, completion: PLErrorCompletion) {
+        let params = data.params
+        let imageData = UIImagePNGRepresentation(data.picture)!
+        let attachment = PLUploadAttachment(name: "profileImage", mimeType: "image/png", data: imageData)
+        networkManager.post(PLAPIService.SignUp, parameters: params, attachment: attachment) { (dic, error) in
+            self.handleUserLogin(error, dic: dic, completion: completion)
         }
     }
     
+    func _login(userName:String, password: String, completion: PLErrorCompletion) {
+        let loginService = PLAPIService.Login
+        let params = [PLKeys.login.string : userName, PLKeys.password.string : password]
+        networkManager.get(loginService, parameters: params) { (dic, error) in
+            self.handleUserLogin(error, dic: dic, completion: completion)
+        }
+    }
+    
+    func handleUserLogin(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
+        if error != nil {
+            completion(error: error)
+        } else {
+            if let user = PLUser(jsonDic: dic[PLKeys.response.string]![PLKeys.user.string] as! [String : AnyObject]) {
+                self.profileManager.profile = user
+                completion(error: nil)
+            } else {
+                let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
+                completion(error: error)
+            }
+        }
+    }
 }
