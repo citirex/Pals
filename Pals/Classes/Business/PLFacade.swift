@@ -40,7 +40,8 @@ class PLFacade : PLFacadeInterface {
                     self.profileManager.profile = user
                     completion(error: nil)
                 } else {
-                    assert(false, "couldn't parse login response")
+                    let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
+                    completion(error: error)
                 }
             }
         }
