@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="216" width="320" height="352"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ymg-DV-zCV" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                        <rect key="frame" x="74" y="0.0" width="172" height="20"/>
+                                        <rect key="frame" x="64" y="20" width="192" height="20"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -47,7 +47,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HEk-oG-qRI" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                        <rect key="frame" x="74" y="26" width="172" height="20"/>
+                                        <rect key="frame" x="64" y="52" width="192" height="20"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -65,7 +65,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzL-8u-7vD">
-                                        <rect key="frame" x="112" y="46" width="96" height="26"/>
+                                        <rect key="frame" x="112" y="72" width="96" height="26"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <state key="normal" title="Forgot Password">
                                             <color key="titleColor" red="0.70588235290000001" green="0.63137254899999995" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,7 +75,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-8W-xw3" customClass="PLButton" customModule="Pals" customModuleProvider="target">
-                                        <rect key="frame" x="74" y="211" width="172" height="30"/>
+                                        <rect key="frame" x="91" y="141" width="138" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Login">
@@ -106,21 +106,21 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ymg-DV-zCV" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="1tb-Zj-gwX"/>
-                                    <constraint firstAttribute="trailing" secondItem="GFl-8W-xw3" secondAttribute="trailing" multiplier="1.3" id="3Pu-3w-MCR"/>
+                                    <constraint firstAttribute="trailing" secondItem="GFl-8W-xw3" secondAttribute="trailing" multiplier="1.4" id="3Pu-3w-MCR"/>
                                     <constraint firstAttribute="bottom" secondItem="RdC-BM-16D" secondAttribute="bottom" id="5Oc-UO-4l2"/>
                                     <constraint firstItem="RdC-BM-16D" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="9FJ-yA-mzo"/>
                                     <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.15" id="BGq-8C-8nw"/>
-                                    <constraint firstAttribute="trailing" secondItem="HEk-oG-qRI" secondAttribute="trailing" multiplier="1.3" id="Wmg-OB-mui"/>
+                                    <constraint firstAttribute="trailing" secondItem="HEk-oG-qRI" secondAttribute="trailing" multiplier="1.25" id="Wmg-OB-mui"/>
                                     <constraint firstItem="TzL-8u-7vD" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="XeQ-jE-cKV"/>
                                     <constraint firstItem="HEk-oG-qRI" firstAttribute="top" secondItem="ymg-DV-zCV" secondAttribute="bottom" multiplier="1.3" id="oZy-AJ-sTx"/>
                                     <constraint firstItem="HEk-oG-qRI" firstAttribute="bottom" secondItem="TzL-8u-7vD" secondAttribute="top" id="pHT-FE-td6"/>
-                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="top" secondItem="xXN-Bq-AeA" secondAttribute="top" multiplier="1.3" id="qnp-Qr-vh2"/>
-                                    <constraint firstItem="RdC-BM-16D" firstAttribute="top" secondItem="GFl-8W-xw3" secondAttribute="bottom" constant="58" id="sfB-3q-XCG"/>
+                                    <constraint firstItem="ymg-DV-zCV" firstAttribute="top" secondItem="xXN-Bq-AeA" secondAttribute="top" constant="20" id="qnp-Qr-vh2"/>
+                                    <constraint firstItem="RdC-BM-16D" firstAttribute="top" secondItem="GFl-8W-xw3" secondAttribute="bottom" multiplier="1.75" id="sfB-3q-XCG"/>
                                     <constraint firstItem="RdC-BM-16D" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" id="tbK-OW-opf"/>
                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="uFs-ki-Zx3"/>
                                     <constraint firstItem="TzL-8u-7vD" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="0.3" id="uwb-hO-RtD"/>
                                     <constraint firstItem="HEk-oG-qRI" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="xPn-ww-aoT"/>
-                                    <constraint firstAttribute="trailing" secondItem="ymg-DV-zCV" secondAttribute="trailing" multiplier="1.3" id="yCp-nS-FJa"/>
+                                    <constraint firstAttribute="trailing" secondItem="ymg-DV-zCV" secondAttribute="trailing" multiplier="1.25" id="yCp-nS-FJa"/>
                                 </constraints>
                             </view>
                         </subviews>
