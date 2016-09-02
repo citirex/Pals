@@ -10,9 +10,6 @@ import UIKit
 
 class PLSignUpViewController: UIViewController {
     
-    typealias DidSignUpDelegate = (userData: PLSignUpData) -> Void
-    var didSignUp: DidSignUpDelegate?
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameTextField: PLTextField!
     @IBOutlet weak var emailTextField: PLTextField!
@@ -60,6 +57,8 @@ class PLSignUpViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    // MARK: - Keyboard
+    
     func keyboardWillShow(notification: NSNotification) {
         let userInfo = notification.userInfo!
         let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
@@ -96,41 +95,38 @@ class PLSignUpViewController: UIViewController {
         let password = passwordTextField.text!.trim()
         let picture = imageView.image != nil ? imageView.image : UIImage(named: "anonimus")
         
-        let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
-        // validate here
-        PLFacade.signUp(userData) { (error) in
-            // show tabbar or alert if error!=nil
-        }
-        
-//        if validate(userData) {
-//            didSignUp?(userData: userData)
-//            showAlert("Success", message: "Signed Up")
-//        }
-        
-        
-    }
-    
-    private func validate(userData: PLSignUpData) -> Bool {
-        if userData.username.characters.count == 0 {
+        if username.isEmpty {
             showAlert("Error", message: "Username must contain at least 1 character")
-            return false
-        } else if !validateEmail(userData.email) {
-            showAlert("Error", message: "Please enter a valid email address")
-            return false
-        } else if userData.password.characters.count == 0 {
-            showAlert("Error", message: "Password must contain at least 1 character")
-            return false
-        } else if userData.password != confirmPasswordTextField.text?.trim() {
-            showAlert("Error", message: "Password mismatch")
-            return false
+            return
         }
-        return true
+      
+        if !email.isValidEmail {
+            showAlert("Error", message: "Please enter a valid email address")
+            return
+        }
+        
+        if password.isEmpty {
+            showAlert("Error", message: "Password must contain at least 1 character")
+            return
+        }
+        
+        if password != confirmPasswordTextField.text!.trim() {
+            showAlert("Error", message: "Password mismatch")
+            return
+        }
+        
+        let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
+        
+        // TODO: - uncomment error, pass user data
+        PLFacade.signUp(userData) { error in
+            guard error == nil else { return self.showAlert("Error", message: "Server returned a bad response") }
+            let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
+            let profileViewController = tabBarController.viewControllers?.first as! PLProfileViewController
+            profileViewController.title = "Profile"
+            self.presentViewController(tabBarController, animated: true, completion: nil)
+        }
     }
-    
-    private func validateEmail(email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(email)
-    }
+
     
     // MARK: - Alert
     
@@ -140,7 +136,6 @@ class PLSignUpViewController: UIViewController {
         alertController.addAction(OKAction)
         presentViewController(alertController, animated: true, completion: nil)
     }
-
 
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

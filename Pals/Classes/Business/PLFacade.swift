@@ -18,11 +18,7 @@ protocol PLFacadeInterface {
 }
 
 class PLFacade : PLFacadeInterface {
-    static let instance = PLFacade()
-    
-    private let profileManager = PLProfileManager()
-    private let networkManager = PLNetworkManager()
-    let settingsManager = PLSettingsManager()
+    static let instance = _PLFacade()
     static var profile: PLUser? {
         return PLFacade.instance.profileManager.profile
     }
@@ -38,9 +34,15 @@ class PLFacade : PLFacadeInterface {
     class func sendPassword(email: String, completion: PLErrorCompletion) {
         PLFacade.instance._sendPassword(email, completion: completion)
     }
+    
+    class _PLFacade {
+        let settingsManager = PLSettingsManager()
+        private let profileManager = PLProfileManager()
+        private let networkManager = PLNetworkManager()
+    }
 }
 
-extension PLFacade {
+extension PLFacade._PLFacade {
     func _signUp(data: PLSignUpData, completion: PLErrorCompletion) {
         let params = data.params
         let imageData = UIImagePNGRepresentation(data.picture)!
