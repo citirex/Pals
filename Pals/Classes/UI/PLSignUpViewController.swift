@@ -17,6 +17,7 @@ class PLSignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: PLTextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var textFieldsContainer: UIView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     private let imagePicker = UIImagePickerController()
     
@@ -117,9 +118,11 @@ class PLSignUpViewController: UIViewController {
         
         let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
         
-        // TODO: - uncomment error, pass user data
+        // TODO: - pass user data
+        spinner.startAnimating()
         PLFacade.signUp(userData) { error in
-            guard error == nil else { return self.showAlert("Error", message: "Server returned a bad response") }
+            self.spinner.stopAnimating()
+            guard error == nil else { return self.showAlert("Error", message: error!.localizedDescription) }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
             let profileViewController = tabBarController.viewControllers?.first as! PLProfileViewController
             profileViewController.title = "Profile"

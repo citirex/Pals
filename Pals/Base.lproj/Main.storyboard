@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -330,11 +330,15 @@
                                                     <action selector="signUpButtonTapped:" destination="CEl-2k-qJd" eventType="touchUpInside" id="VRX-SI-B0b"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NQE-gn-1vC">
+                                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.40784313729999999" green="0.1960784314" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="gtN-Hu-bFN" firstAttribute="top" secondItem="C48-og-baj" secondAttribute="top" constant="60" id="2YH-w4-Deh"/>
                                             <constraint firstAttribute="bottom" secondItem="dfF-dO-nG7" secondAttribute="bottom" id="2h5-8O-qfh"/>
+                                            <constraint firstItem="NQE-gn-1vC" firstAttribute="centerY" secondItem="C48-og-baj" secondAttribute="centerY" id="5f4-GJ-kAq"/>
                                             <constraint firstItem="axa-hQ-Mq8" firstAttribute="top" secondItem="gtN-Hu-bFN" secondAttribute="bottom" constant="34" id="Lef-d5-Qfd"/>
                                             <constraint firstItem="gtN-Hu-bFN" firstAttribute="width" secondItem="C48-og-baj" secondAttribute="height" multiplier="75:284" id="MiO-3p-Hqz"/>
                                             <constraint firstItem="x7G-lL-5H8" firstAttribute="width" secondItem="C48-og-baj" secondAttribute="height" multiplier="73:284" id="QOt-nG-CG0"/>
@@ -343,6 +347,7 @@
                                             <constraint firstItem="axa-hQ-Mq8" firstAttribute="centerX" secondItem="gtN-Hu-bFN" secondAttribute="centerX" id="YUi-oA-kcs"/>
                                             <constraint firstAttribute="trailing" secondItem="dfF-dO-nG7" secondAttribute="trailing" id="Zml-4c-Km8"/>
                                             <constraint firstItem="dfF-dO-nG7" firstAttribute="leading" secondItem="C48-og-baj" secondAttribute="leading" id="sJc-gg-qkj"/>
+                                            <constraint firstItem="NQE-gn-1vC" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="xMp-sR-pSI"/>
                                             <constraint firstItem="gtN-Hu-bFN" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="z6m-Qc-bIK"/>
                                             <constraint firstItem="x7G-lL-5H8" firstAttribute="centerX" secondItem="axa-hQ-Mq8" secondAttribute="centerX" id="zoh-e0-7o6"/>
                                         </constraints>
@@ -375,6 +380,7 @@
                         <outlet property="nameTextField" destination="lcV-Th-GEo" id="Qb8-pw-1ap"/>
                         <outlet property="passwordTextField" destination="Ths-jh-3GP" id="uXd-hD-iWL"/>
                         <outlet property="scrollView" destination="g1d-Im-hnJ" id="oxs-6Q-SAJ"/>
+                        <outlet property="spinner" destination="NQE-gn-1vC" id="y22-oJ-KyF"/>
                         <outlet property="textFieldsContainer" destination="axa-hQ-Mq8" id="wT9-Fv-mMg"/>
                     </connections>
                 </viewController>
