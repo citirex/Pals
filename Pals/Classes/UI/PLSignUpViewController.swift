@@ -10,12 +10,13 @@ import UIKit
 
 class PLSignUpViewController: UIViewController {
     
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var nameTextField: PLTextField!
-    @IBOutlet var emailTextField: PLTextField!
-    @IBOutlet var passwordTextField: PLTextField!
-    @IBOutlet var confirmPasswordTextField: PLTextField!
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameTextField: PLTextField!
+    @IBOutlet weak var emailTextField: PLTextField!
+    @IBOutlet weak var passwordTextField: PLTextField!
+    @IBOutlet weak var confirmPasswordTextField: PLTextField!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var textFieldsContainer: UIView!
     
     private let imagePicker = UIImagePickerController()
     private var currentTextField: PLTextField!
@@ -28,8 +29,6 @@ class PLSignUpViewController: UIViewController {
         super.viewDidLoad()
         
         imagePicker.delegate = self
-        
-        nameTextField.becomeFirstResponder()
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
@@ -69,8 +68,8 @@ class PLSignUpViewController: UIViewController {
         var visibleRect = view.frame
         visibleRect.size.height -= keyboardSize.height
         
-        if !CGRectContainsPoint(visibleRect, currentTextField!.frame.origin) {
-            scrollView.scrollRectToVisible(currentTextField!.frame, animated: true)
+        if CGRectContainsPoint(visibleRect, textFieldsContainer!.frame.origin) {
+            scrollView.scrollRectToVisible(textFieldsContainer!.frame, animated: true)
         }
     }
     
@@ -79,12 +78,7 @@ class PLSignUpViewController: UIViewController {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     
     // MARK: - Actions
     
@@ -103,17 +97,7 @@ class PLSignUpViewController: UIViewController {
         alertController.addAction(OKAction)
         presentViewController(alertController, animated: true, completion: nil)
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
 
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -129,11 +113,10 @@ extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, 0.0)
-            UIBezierPath(roundedRect: imageView.bounds, cornerRadius: imageView.bounds.size.width / 2).addClip()
-            imagePicked.drawInRect(imageView.bounds)
-            imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
+            imageView.layer.cornerRadius = imageView.bounds.size.width / 2
+            imageView.contentMode = .ScaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = imagePicked
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
