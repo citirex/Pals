@@ -75,7 +75,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-8W-xw3" customClass="PLButton" customModule="Pals" customModuleProvider="target">
-                                        <rect key="frame" x="91" y="141" width="138" height="30"/>
+                                        <rect key="frame" x="91" y="149" width="138" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Login">
@@ -91,7 +91,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
-                                        <rect key="frame" x="0.0" y="299" width="320" height="53"/>
+                                        <rect key="frame" x="0.0" y="313" width="320" height="40"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Want to be a Pal? Register now!">
@@ -107,9 +107,9 @@
                                 <constraints>
                                     <constraint firstItem="ymg-DV-zCV" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="1tb-Zj-gwX"/>
                                     <constraint firstAttribute="trailing" secondItem="GFl-8W-xw3" secondAttribute="trailing" multiplier="1.4" id="3Pu-3w-MCR"/>
-                                    <constraint firstAttribute="bottom" secondItem="RdC-BM-16D" secondAttribute="bottom" id="5Oc-UO-4l2"/>
+                                    <constraint firstAttribute="bottom" secondItem="RdC-BM-16D" secondAttribute="bottom" constant="-1" id="5Oc-UO-4l2"/>
                                     <constraint firstItem="RdC-BM-16D" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="9FJ-yA-mzo"/>
-                                    <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.15" id="BGq-8C-8nw"/>
+                                    <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.11" constant="1.2800000000000011" id="BGq-8C-8nw"/>
                                     <constraint firstAttribute="trailing" secondItem="HEk-oG-qRI" secondAttribute="trailing" multiplier="1.25" id="Wmg-OB-mui"/>
                                     <constraint firstItem="TzL-8u-7vD" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="XeQ-jE-cKV"/>
                                     <constraint firstItem="HEk-oG-qRI" firstAttribute="top" secondItem="ymg-DV-zCV" secondAttribute="bottom" multiplier="1.3" id="oZy-AJ-sTx"/>
