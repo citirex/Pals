@@ -100,7 +100,7 @@ class PLSignUpViewController: UIViewController {
             return
         }
       
-        if !validateEmail(email) {
+        if !email.isValidEmail {
             showAlert("Error", message: "Please enter a valid email address")
             return
         }
@@ -119,7 +119,7 @@ class PLSignUpViewController: UIViewController {
         
         // TODO: - uncomment error, pass user data
         PLFacade.signUp(userData) { error in
-//            guard error == nil else { return self.showAlert("Error", message: "Server returned a bad response") }
+            guard error == nil else { return self.showAlert("Error", message: "Server returned a bad response") }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
             let profileViewController = tabBarController.viewControllers?.first as! PLProfileViewController
             profileViewController.title = "Profile"
@@ -136,13 +136,7 @@ class PLSignUpViewController: UIViewController {
         alertController.addAction(OKAction)
         presentViewController(alertController, animated: true, completion: nil)
     }
-    
-    
-    private func validateEmail(email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(email)
-    }
-    
+
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
