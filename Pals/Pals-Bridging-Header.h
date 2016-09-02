@@ -14,5 +14,4 @@
 #import "TGLStackedViewController.h"
 #import "TGLBackgroundProxyView.h"
 
-
 #endif /* Pals_Bridging_Header_h */

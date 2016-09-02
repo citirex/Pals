@@ -16,6 +16,7 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     @IBOutlet var barPlaceLabel: UILabel!
     @IBOutlet var drinkQRCodeLabel: UILabel!
     @IBOutlet var drinkQRCodeImageView: UIImageView!
+    @IBOutlet private var scrollView: UIScrollView!
     
     @IBOutlet var userView: UIView!
     @IBOutlet var userPicImageView: UIImageView!
@@ -26,6 +27,11 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.layer.cornerRadius = 20
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        scrollView.contentOffset = CGPointMake(0, 0)
     }
     
     override func layoutSubviews() {
