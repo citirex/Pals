@@ -10,6 +10,9 @@ import UIKit
 
 class PLSignUpViewController: UIViewController {
     
+    typealias DidSignUpDelegate = (userData: PLSignUpData) -> Void
+    var didSignUp: DidSignUpDelegate?
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameTextField: PLTextField!
     @IBOutlet weak var emailTextField: PLTextField!
@@ -19,10 +22,8 @@ class PLSignUpViewController: UIViewController {
     @IBOutlet weak var textFieldsContainer: UIView!
     
     private let imagePicker = UIImagePickerController()
-    private var currentTextField: PLTextField!
     
     private var margin: CGFloat = 20
-    
     
     
     override func viewDidLoad() {
@@ -89,6 +90,48 @@ class PLSignUpViewController: UIViewController {
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func signUpButtonTapped(sender: UIButton) {
+        let username = nameTextField.text!.trim()
+        let email = emailTextField.text!.trim()
+        let password = passwordTextField.text!.trim()
+        let picture = imageView.image != nil ? imageView.image : UIImage(named: "anonimus")
+        
+        let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
+        // validate here
+        PLFacade.signUp(userData) { (error) in
+            // show tabbar or alert if error!=nil
+        }
+        
+//        if validate(userData) {
+//            didSignUp?(userData: userData)
+//            showAlert("Success", message: "Signed Up")
+//        }
+        
+        
+    }
+    
+    private func validate(userData: PLSignUpData) -> Bool {
+        if userData.username.characters.count == 0 {
+            showAlert("Error", message: "Username must contain at least 1 character")
+            return false
+        } else if !validateEmail(userData.email) {
+            showAlert("Error", message: "Please enter a valid email address")
+            return false
+        } else if userData.password.characters.count == 0 {
+            showAlert("Error", message: "Password must contain at least 1 character")
+            return false
+        } else if userData.password != confirmPasswordTextField.text?.trim() {
+            showAlert("Error", message: "Password mismatch")
+            return false
+        }
+        return true
+    }
+    
+    private func validateEmail(email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(email)
+    }
+    
     // MARK: - Alert
     
     func showAlert(title: String, message: String) {
@@ -140,14 +183,6 @@ extension PLSignUpViewController: UITextFieldDelegate {
         }
         return false
     }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        currentTextField = nil
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        currentTextField = textField as! PLTextField
-    }
-    
+
 }
 
