@@ -13,6 +13,7 @@ typealias PLErrorCompletion = (error: NSError?) -> ()
 protocol PLFacadeInterface {
     static func login(userName:String, password: String, completion: PLErrorCompletion)
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
+    static func sendPassword(email: String, completion: PLErrorCompletion)
     static var profile: PLUser? {get}
 }
 
@@ -33,6 +34,10 @@ class PLFacade : PLFacadeInterface {
     class func signUp(data: PLSignUpData, completion: PLErrorCompletion) {
         PLFacade.instance._signUp(data, completion: completion)
     }
+    
+    class func sendPassword(email: String, completion: PLErrorCompletion) {
+        PLFacade.instance._sendPassword(email, completion: completion)
+    }
 }
 
 extension PLFacade {
@@ -51,6 +56,14 @@ extension PLFacade {
         networkManager.get(loginService, parameters: params) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
+    }
+    
+    func _sendPassword(email: String, completion: PLErrorCompletion) {
+        let passService = PLAPIService.SendPassword
+        let params = ["email" : email]
+        networkManager.get(passService, parameters: params, completion: { (dic, error) in
+            completion(error: error)
+        })
     }
     
     func handleUserLogin(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {

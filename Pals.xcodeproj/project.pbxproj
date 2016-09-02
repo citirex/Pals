@@ -32,6 +32,7 @@
 		D48390A31D786ABE00990E83 /* PLFakeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48390A21D786ABE00990E83 /* PLFakeFeed.swift */; };
 		D48390A51D787D3B00990E83 /* PLErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48390A41D787D3B00990E83 /* PLErrors.swift */; };
 		D48390A71D79746C00990E83 /* PLSignUpHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48390A61D79746C00990E83 /* PLSignUpHelpers.swift */; };
+		D483E1301D79A64400FCD614 /* signup.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E12F1D79A64400FCD614 /* signup.json */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 		E83FDBB31D797AFA00B51DBB /* PLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FDBB21D797AFA00B51DBB /* PLString.swift */; };
 		E857F02B1D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E857F0291D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib */; };
@@ -77,6 +78,7 @@
 		D48390A21D786ABE00990E83 /* PLFakeFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFakeFeed.swift; path = Classes/Model/PLFakeFeed.swift; sourceTree = "<group>"; };
 		D48390A41D787D3B00990E83 /* PLErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLErrors.swift; path = Classes/Model/PLErrors.swift; sourceTree = "<group>"; };
 		D48390A61D79746C00990E83 /* PLSignUpHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSignUpHelpers.swift; path = Classes/Extensions/PLSignUpHelpers.swift; sourceTree = "<group>"; };
+		D483E12F1D79A64400FCD614 /* signup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signup.json; sourceTree = "<group>"; };
 		E83FDBB21D797AFA00B51DBB /* PLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLString.swift; sourceTree = "<group>"; };
 		E857F0291D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLProfileDrinkCollectionViewCell.xib; path = Classes/UI/PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
 		E857F02A1D7801E90020B981 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLProfileHeaderView.xib; path = Classes/UI/PLProfileHeaderView.xib; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		D483909C1D78672700990E83 /* FakeFeeds */ = {
 			isa = PBXGroup;
 			children = (
+				D483E12F1D79A64400FCD614 /* signup.json */,
 				D483909D1D78672700990E83 /* login.json */,
 			);
 			path = FakeFeeds;
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D42F53D31D76B497005DEA34 /* LaunchScreen.storyboard in Resources */,
+				D483E1301D79A64400FCD614 /* signup.json in Resources */,
 				E857F02C1D7801E90020B981 /* PLProfileHeaderView.xib in Resources */,
 				D483909E1D78672700990E83 /* config.plist in Resources */,
 				E857F02B1D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
