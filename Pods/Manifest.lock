@@ -15,9 +15,9 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - RandomKit (1.6.0)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
   - SwiftQRCode (2.0.2)
 
 DEPENDENCIES:
@@ -29,7 +29,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   RandomKit: 9b33ce5fc448056e8ddaaef655da315b26f23e32
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
 PODFILE CHECKSUM: 5e80b3da741dca32c73c203a093f841da47e5df8
