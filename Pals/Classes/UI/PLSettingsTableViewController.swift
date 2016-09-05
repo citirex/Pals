@@ -10,6 +10,7 @@ import UIKit
 
 class PLSettingsViewController: UIViewController {
     
+    @IBOutlet weak var headerSectionView: UIView!
     @IBOutlet weak var userProfileImageView: PLImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -21,7 +22,7 @@ class PLSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
-        view.addGestureRecognizer(dismissTap)
+        headerSectionView.addGestureRecognizer(dismissTap)
     }
     
     
@@ -53,7 +54,6 @@ class PLSettingsViewController: UIViewController {
                 break
             }
         }
-
     }
 
     
@@ -73,11 +73,9 @@ extension PLSettingsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        
         var cell: UITableViewCell!
         
-        switch section {
+        switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
@@ -89,8 +87,13 @@ extension PLSettingsViewController: UITableViewDataSource {
             default: break
             }
         case 1:
-            let cellIdentifier = indexPath.row == 0 ? "NotificationsCell" : "AccountInfoCell"
-            cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+            switch indexPath.row {
+            case 0:
+                cell = tableView.dequeueReusableCellWithIdentifier("NotificationsCell")!
+            case 1:
+                cell = tableView.dequeueReusableCellWithIdentifier("AccountInfoCell")!
+            default: break
+            }
         default:
             return UITableViewCell()
         }
@@ -98,18 +101,25 @@ extension PLSettingsViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+
+extension PLSettingsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         if indexPath.section == 1 {
-            let segueIdentifier = indexPath.row == 0 ? "ShowNotifications" : "ShowAccountInfo"
-            performSegueWithIdentifier(segueIdentifier, sender: self)
+            switch indexPath.row {
+            case 0:
+                performSegueWithIdentifier("ShowNotifications", sender: self)
+            case 1:
+                performSegueWithIdentifier("ShowAccountInfo", sender: self)
+            default:
+                break
+            }
         }
     }
-    
-}
-
-extension PLSettingsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerIdentifier = section == 0 ? "CardsHeaderCell" : "SettingHeaderCell"

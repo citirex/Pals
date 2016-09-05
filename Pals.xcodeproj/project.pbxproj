@@ -50,6 +50,7 @@
 		E857F0341D7802180020B981 /* PLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F02F1D7802180020B981 /* PLButton.swift */; };
 		E857F0361D7802180020B981 /* PLSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0311D7802180020B981 /* PLSignUpViewController.swift */; };
 		E857F0371D7802180020B981 /* PLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0321D7802180020B981 /* PLTextField.swift */; };
+		E8BCCEC11D7D67A000A1AB85 /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCCEC01D7D67A000A1AB85 /* PLFriendProfileViewController.swift */; };
 		E8DBCECC1D7B13D1003727C7 /* PLSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBCECB1D7B13D1003727C7 /* PLSettingsTableViewController.swift */; };
 		E8DBCEDB1D7C3D09003727C7 /* PLNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBCEDA1D7C3D09003727C7 /* PLNavigationController.swift */; };
 		E8DBCEDD1D7C3D5C003727C7 /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBCEDC1D7C3D5C003727C7 /* PLImageView.swift */; };
@@ -107,6 +108,7 @@
 		E857F02F1D7802180020B981 /* PLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLButton.swift; path = Classes/UI/PLButton.swift; sourceTree = "<group>"; };
 		E857F0311D7802180020B981 /* PLSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSignUpViewController.swift; path = Classes/UI/PLSignUpViewController.swift; sourceTree = "<group>"; };
 		E857F0321D7802180020B981 /* PLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLTextField.swift; path = Classes/UI/PLTextField.swift; sourceTree = "<group>"; };
+		E8BCCEC01D7D67A000A1AB85 /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendProfileViewController.swift; path = Classes/UI/PLFriendProfileViewController.swift; sourceTree = "<group>"; };
 		E8DBCECB1D7B13D1003727C7 /* PLSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSettingsTableViewController.swift; path = Classes/UI/PLSettingsTableViewController.swift; sourceTree = "<group>"; };
 		E8DBCEDA1D7C3D09003727C7 /* PLNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNavigationController.swift; path = Classes/Extensions/PLNavigationController.swift; sourceTree = "<group>"; };
 		E8DBCEDC1D7C3D5C003727C7 /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLImageView.swift; path = Classes/UI/PLImageView.swift; sourceTree = "<group>"; };
@@ -264,9 +266,10 @@
 			isa = PBXGroup;
 			children = (
 				D42F53DD1D76C5B7005DEA34 /* PLLoginViewController.swift */,
-				E857F02D1D7801F40020B981 /* SignUpViewController */,
-				E8DBCECA1D7B137A003727C7 /* SettingsViewController */,
+				E857F02D1D7801F40020B981 /* SignUp */,
+				E8DBCECA1D7B137A003727C7 /* Settings */,
 				24CBED3E1D76D60F0028E5E3 /* Profile */,
+				E8BCCEC21D7D67A800A1AB85 /* FriendProfile */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -302,13 +305,13 @@
 			path = FakeFeeds;
 			sourceTree = "<group>";
 		};
-		E857F02D1D7801F40020B981 /* SignUpViewController */ = {
+		E857F02D1D7801F40020B981 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
 				E857F0311D7802180020B981 /* PLSignUpViewController.swift */,
 				E857F0381D78047D0020B981 /* Views */,
 			);
-			name = SignUpViewController;
+			name = SignUp;
 			sourceTree = "<group>";
 		};
 		E857F0381D78047D0020B981 /* Views */ = {
@@ -322,12 +325,20 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		E8DBCECA1D7B137A003727C7 /* SettingsViewController */ = {
+		E8BCCEC21D7D67A800A1AB85 /* FriendProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E8BCCEC01D7D67A000A1AB85 /* PLFriendProfileViewController.swift */,
+			);
+			name = FriendProfile;
+			sourceTree = "<group>";
+		};
+		E8DBCECA1D7B137A003727C7 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				E8DBCECB1D7B13D1003727C7 /* PLSettingsTableViewController.swift */,
 			);
-			name = SettingsViewController;
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,6 +485,7 @@
 				D42F53DE1D76C5B7005DEA34 /* PLLoginViewController.swift in Sources */,
 				D48390A11D78681B00990E83 /* PLSettingsManager.swift in Sources */,
 				D48390951D78236F00990E83 /* PLFacade.swift in Sources */,
+				E8BCCEC11D7D67A000A1AB85 /* PLFriendProfileViewController.swift in Sources */,
 				E8DBCEDD1D7C3D5C003727C7 /* PLImageView.swift in Sources */,
 				24CD9CDD1D77079300247FE8 /* TGLStackedLayout.m in Sources */,
 				24CD9CE31D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift in Sources */,

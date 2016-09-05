@@ -32,7 +32,7 @@ class PLProfileViewController: TGLStackedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupCollectionBackgroundView()
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         
