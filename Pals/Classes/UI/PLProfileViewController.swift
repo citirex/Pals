@@ -18,7 +18,7 @@ enum CurrentList {
 class PLProfileViewController: TGLStackedViewController {
 
     let collectionHelper = PLProfileCollectionHelper()
-    let collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
+    var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
     var currentList: CurrentList = .Drinks
     var firstLaunch: Bool = true
     var profile: PLUser? {
@@ -33,21 +33,8 @@ class PLProfileViewController: TGLStackedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupCollectionBackgroundView()
-        self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
+        setupCollectionView()
         
-        
-        var expoItemSize = CGSizeMake(collectionView!.bounds.size.width, 420)
-        if (UIDevice().type == .iPhone4 || UIDevice().type == .iPhone4S) {
-            //|| UIDevice().type == .simulator) {
-            expoItemSize.height = 340
-        }
-        self.exposedItemSize = expoItemSize
-        self.stackedLayout!.itemSize = self.exposedItemSize;
-        self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
-        
-        collectionHelper.collection = sampleDrinks
-        self.collectionView?.dataSource = collectionHelper
         profile = PLFacade.profile
         collectionHelper.fishUser = profile
     }
@@ -62,7 +49,6 @@ class PLProfileViewController: TGLStackedViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.collectionView!.backgroundColor = UIColor.clearColor() //need for collection background view
         if firstLaunch == true {
             showCards()
             firstLaunch = false
@@ -167,16 +153,23 @@ class PLProfileViewController: TGLStackedViewController {
         }
     }
     
-    func setupCollectionBackgroundView() {
-        var newFrame = self.collectionView!.bounds
-        newFrame.size.width = self.view.bounds.size.width
-        collectionBackgroundView.frame = newFrame
-        self.collectionView?.frame = newFrame
-        self.view.insertSubview(collectionBackgroundView, belowSubview: self.collectionView!)
-        let backgroundProxy = TGLBackgroundProxyView()
-        backgroundProxy.targetView = collectionBackgroundView
-        self.collectionView?.backgroundView = backgroundProxy
+    func setupCollectionView() {
+        setupCollectionBackgroundView(collectionBackgroundView)
         
+        self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
+        
+        
+        var expoItemSize = CGSizeMake(collectionView!.bounds.size.width, 420)
+        if (UIDevice().type == .iPhone4 || UIDevice().type == .iPhone4S) {
+            //|| UIDevice().type == .simulator) {
+            expoItemSize.height = 340
+        }
+        self.exposedItemSize = expoItemSize
+        self.stackedLayout!.itemSize = self.exposedItemSize;
+        self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
+        
+        collectionHelper.collection = sampleDrinks
+        self.collectionView?.dataSource = collectionHelper
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized(_:)))
         swipeLeft.direction = .Left
@@ -189,8 +182,6 @@ class PLProfileViewController: TGLStackedViewController {
     
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addFunds" {
             print("funds")

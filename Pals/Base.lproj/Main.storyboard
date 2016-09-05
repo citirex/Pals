@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -404,7 +404,7 @@
         <!--Order-->
         <scene sceneID="BwI-Fv-Me0">
             <objects>
-                <viewController id="Cmd-gA-94i" sceneMemberID="viewController">
+                <viewController id="Cmd-gA-94i" customClass="PLOrderViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tdv-ny-gZG"/>
                         <viewControllerLayoutGuide type="bottom" id="5ch-p3-Kg1"/>
@@ -412,9 +412,29 @@
                     <view key="view" contentMode="scaleToFill" id="Gr9-X3-Igb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0bn-WI-lMC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <collectionViewLayout key="collectionViewLayout" id="ZB5-D4-q0s" customClass="TGLStackedLayout"/>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Cmd-gA-94i" id="VkI-jd-F22"/>
+                                    <outlet property="delegate" destination="Cmd-gA-94i" id="gah-tR-NZW"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0bn-WI-lMC" secondAttribute="trailing" id="0Kf-g3-QC9"/>
+                            <constraint firstItem="0bn-WI-lMC" firstAttribute="top" secondItem="Gr9-X3-Igb" secondAttribute="top" id="cZB-IS-5hS"/>
+                            <constraint firstItem="0bn-WI-lMC" firstAttribute="leading" secondItem="Gr9-X3-Igb" secondAttribute="leading" id="gf6-ZY-Uj2"/>
+                            <constraint firstItem="0bn-WI-lMC" firstAttribute="bottom" secondItem="5ch-p3-Kg1" secondAttribute="top" id="lez-w0-iqK"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Order" image="icon_order" id="Plf-3r-qlm"/>
+                    <connections>
+                        <outlet property="collectionView" destination="0bn-WI-lMC" id="7cX-t3-ZUK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLJ-aX-0ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -32,6 +32,8 @@
 
 @property (nonatomic, strong, nullable) IBOutlet UICollectionView *collectionView;
 
+- (void)setupCollectionBackgroundView:(UIView * _Nonnull)backgroundView;
+
 /** The collection view layout object used when all items are collapsed.
  *
  * When using storyboards, this property is only intialized in method

@@ -24,17 +24,27 @@
 //  THE SOFTWARE.
 
 #import "TGLStackedViewController.h"
+#import "TGLBackgroundProxyView.h"
 
-@interface TGLStackedViewController () <UICollectionViewDelegate>
+@interface TGLStackedViewController () <UICollectionViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) TGLStackedLayout *stackedLayout;
 @property (nonatomic, strong) TGLExposedLayout *exposedLayout;
+
+@property (nonatomic, readonly) UIGestureRecognizer *collapseGestureRecognizer;
+@property (nonatomic, readonly) UIPanGestureRecognizer *collapsePanGestureRecognizer;
+@property (nonatomic, readonly) UIPinchGestureRecognizer *collapsePinchGestureRecognizer;
+
 
 @property (nonatomic, assign) BOOL interactiveTransitionInProgress;
 
 @end
 
 @implementation TGLStackedViewController
+
+@synthesize collapsePanGestureRecognizer = _collapsePanGestureRecognizer;
+@synthesize collapsePinchGestureRecognizer = _collapsePinchGestureRecognizer;
+
 
 + (Class)exposedLayoutClass {
 
@@ -96,7 +106,220 @@
     self.exposedPinningMode = TGLExposedLayoutPinningModeBelow;
     self.exposedTopPinningCount = 5;
     self.exposedBottomPinningCount = 5;
-    self.exposedItemsAreCollapsible = NO;
+    self.exposedItemsAreCollapsible = YES;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.collectionView.backgroundColor = [UIColor clearColor]; //need for collection background view
+}
+
+
+
+#pragma mark - Accessors
+
+- (UIGestureRecognizer *)collapseGestureRecognizer {
+    
+    if (self.exposedLayout == nil || !self.exposedItemsAreCollapsible) return nil;
+    
+    if (self.exposedLayout.pinningMode > TGLExposedLayoutPinningModeNone) {
+        
+        return self.collapsePanGestureRecognizer;
+        
+    } else {
+        
+        return self.collapsePinchGestureRecognizer;
+    }
+}
+
+- (UIPanGestureRecognizer *)collapsePanGestureRecognizer {
+    
+    if (_collapsePanGestureRecognizer == nil) {
+        
+        _collapsePanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleCollapsePanGesture:)];
+        _collapsePanGestureRecognizer.delegate = self;
+    }
+    
+    return _collapsePanGestureRecognizer;
+}
+
+- (UIPinchGestureRecognizer *)collapsePinchGestureRecognizer {
+    
+    if (_collapsePinchGestureRecognizer == nil) {
+        
+        _collapsePinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handleCollapsePinchGesture:)];
+        _collapsePinchGestureRecognizer.delegate = self;
+    }
+    
+    return _collapsePinchGestureRecognizer;
+}
+
+- (IBAction)handleCollapsePanGesture:(UIPanGestureRecognizer *)recognizer {
+    
+    static UICollectionViewTransitionLayout *transitionLayout;
+    static CGFloat transitionMaxThreshold;
+    static CGFloat transitionMinThreshold;
+    
+    switch (recognizer.state) {
+            
+        case UIGestureRecognizerStateBegan: {
+            
+            UICollectionViewCell *exposedCell = [self.collectionView cellForItemAtIndexPath:self.exposedItemIndexPath];
+            
+            __weak typeof(self) weakSelf = self;
+            
+            transitionLayout = [self.collectionView startInteractiveTransitionToCollectionViewLayout:self.stackedLayout completion:^ (BOOL completed, BOOL finish) {
+                
+                if (finish) {
+                    
+                    [weakSelf removeCollapseGestureRecognizersFromView:exposedCell];
+                    
+                    weakSelf.stackedLayout.overwriteContentOffset = NO;
+                    weakSelf.exposedItemIndexPath = nil;
+                    weakSelf.exposedLayout = nil;
+                }
+                
+                weakSelf.interactiveTransitionInProgress = NO;
+                
+                transitionLayout = nil;
+            }];
+            
+            transitionMaxThreshold = (self.collapsePanMaximumThreshold > 0.0) ? self.collapsePanMaximumThreshold : CGRectGetHeight(exposedCell.bounds);
+            transitionMinThreshold = MAX(self.collapsePanMinimumThreshold, 0.0);
+            
+            // Issue #37: Prevent item selection while interactive transition in progress
+            //
+            self.interactiveTransitionInProgress = YES;
+            
+            break;
+        }
+            
+        case UIGestureRecognizerStateChanged: {
+            
+            CGPoint currentOffset = [recognizer translationInView:self.collectionView];
+            
+            if (currentOffset.y >= 0.0) {
+                
+                transitionLayout.transitionProgress = MIN(currentOffset.y, transitionMaxThreshold) / transitionMaxThreshold;
+            }
+            
+            break;
+        }
+            
+        case UIGestureRecognizerStateEnded: {
+            
+            CGPoint currentOffset = [recognizer translationInView:self.collectionView];
+            CGPoint currentSpeed = [recognizer velocityInView:self.collectionView];
+            
+            if (currentOffset.y >= transitionMinThreshold && currentSpeed.y >= 0.0) {
+                
+                [self.collectionView deselectItemAtIndexPath:self.exposedItemIndexPath animated:YES];
+                [self.collectionView finishInteractiveTransition];
+                
+            } else {
+                
+                [self.collectionView cancelInteractiveTransition];
+            }
+            
+            break;
+        }
+            
+        case UIGestureRecognizerStateCancelled: {
+            
+            [self.collectionView cancelInteractiveTransition];
+            
+            break;
+        }
+            
+        default:
+            
+            break;
+    }
+}
+
+- (IBAction)handleCollapsePinchGesture:(UIPinchGestureRecognizer *)recognizer {
+    
+    static UICollectionViewTransitionLayout *transitionLayout;
+    static CGFloat transitionMinThreshold;
+    
+    switch (recognizer.state) {
+            
+        case UIGestureRecognizerStateBegan: {
+            
+            __weak typeof(self) weakSelf = self;
+            
+            transitionLayout = [self.collectionView startInteractiveTransitionToCollectionViewLayout:self.stackedLayout completion:^ (BOOL completed, BOOL finish) {
+                
+                if (finish) {
+                    
+                    UICollectionViewCell *exposedCell = [self.collectionView cellForItemAtIndexPath:weakSelf.exposedItemIndexPath];
+                    
+                    [weakSelf removeCollapseGestureRecognizersFromView:exposedCell];
+                    
+                    weakSelf.stackedLayout.overwriteContentOffset = NO;
+                    weakSelf.exposedItemIndexPath = nil;
+                    weakSelf.exposedLayout = nil;
+                }
+                
+                transitionLayout = nil;
+                
+                weakSelf.interactiveTransitionInProgress = NO;
+            }];
+            
+            transitionMinThreshold = weakSelf.collapsePinchMinimumThreshold;
+            
+            if (transitionMinThreshold < 0.0) transitionMinThreshold = 0.0; else if (transitionMinThreshold > 1.0) transitionMinThreshold = 1.0;
+            
+            transitionMinThreshold = 1.0 - transitionMinThreshold;
+            
+            // Issue #37: Prevent item selection while interactive transition in progress
+            //
+            self.interactiveTransitionInProgress = YES;
+            
+            break;
+        }
+            
+        case UIGestureRecognizerStateChanged: {
+            
+            CGFloat currentScale = recognizer.scale;
+            
+            if (currentScale >= 0.0 && currentScale <= 1.0) {
+                
+                transitionLayout.transitionProgress = 1.0 - currentScale;
+            }
+            
+            break;
+        }
+            
+        case UIGestureRecognizerStateEnded: {
+            
+            CGFloat currentScale = recognizer.scale;
+            CGFloat currentSpeed = recognizer.velocity;
+            
+            if (currentScale <= transitionMinThreshold && currentSpeed <= 0.0) {
+                
+                [self.collectionView deselectItemAtIndexPath:self.exposedItemIndexPath animated:YES];
+                [self.collectionView finishInteractiveTransition];
+                
+            } else {
+                
+                [self.collectionView cancelInteractiveTransition];
+            }
+            
+            break;
+        }
+            
+        case UIGestureRecognizerStateCancelled: {
+            
+            [self.collectionView cancelInteractiveTransition];
+            
+            break;
+        }
+            
+        default:
+            
+            break;
+    }
 }
 
 #pragma mark - UICollectionViewDelegate protocol
@@ -132,11 +355,11 @@
 - (void)setExposedItemIndexPath:(nullable NSIndexPath *)exposedItemIndexPath animated:(BOOL)animated {
     
     if (self.exposedItemIndexPath == nil && exposedItemIndexPath) {
-
+        
         // Exposed item while none is exposed yet
         //
         self.stackedLayout.contentOffset = self.collectionView.contentOffset;
-
+        
         TGLExposedLayout *exposedLayout = [[[self.class exposedLayoutClass] alloc] initWithExposedItemIndex:exposedItemIndexPath.item];
         
         exposedLayout.layoutMargin = self.exposedLayoutMargin;
@@ -148,17 +371,21 @@
         exposedLayout.pinningMode = self.exposedPinningMode;
         exposedLayout.topPinningCount = self.exposedTopPinningCount;
         exposedLayout.bottomPinningCount = self.exposedBottomPinningCount;
-
+        
         __weak typeof(self) weakSelf = self;
-
+        
         void (^completion) (BOOL) = ^ (BOOL finished) {
             
             weakSelf.stackedLayout.overwriteContentOffset = YES;
             weakSelf.exposedLayout = exposedLayout;
             
             _exposedItemIndexPath = exposedItemIndexPath;
+            
+            UICollectionViewCell *exposedCell = [weakSelf.collectionView cellForItemAtIndexPath:weakSelf.exposedItemIndexPath];
+            
+            [weakSelf addCollapseGestureRecognizerToView:exposedCell];
         };
-
+        
         if (animated) {
             
             [self.collectionView setCollectionViewLayout:exposedLayout animated:YES completion:completion];
@@ -175,6 +402,9 @@
         
         // We have another exposed item and we expose the new one instead
         //
+        UICollectionViewCell *exposedCell = [self.collectionView cellForItemAtIndexPath:self.exposedItemIndexPath];
+        
+        [self removeCollapseGestureRecognizersFromView:exposedCell];
         
         TGLExposedLayout *exposedLayout = [[TGLExposedLayout alloc] initWithExposedItemIndex:exposedItemIndexPath.item];
         
@@ -196,9 +426,11 @@
             
             _exposedItemIndexPath = exposedItemIndexPath;
             
+            UICollectionViewCell *exposedCell = [weakSelf.collectionView cellForItemAtIndexPath:weakSelf.exposedItemIndexPath];
             
+            [weakSelf addCollapseGestureRecognizerToView:exposedCell];
         };
-
+        
         if (animated) {
             
             [self.collectionView setCollectionViewLayout:exposedLayout animated:YES completion:completion];
@@ -219,8 +451,12 @@
         //
         [self.collectionView deselectItemAtIndexPath:self.exposedItemIndexPath animated:YES];
         
+        UICollectionViewCell *exposedCell = [self.collectionView cellForItemAtIndexPath:self.exposedItemIndexPath];
+        
+        [self removeCollapseGestureRecognizersFromView:exposedCell];
+        
         self.exposedLayout = nil;
-
+        
         _exposedItemIndexPath = nil;
         
         __weak typeof(self) weakSelf = self;
@@ -229,13 +465,13 @@
             
             weakSelf.stackedLayout.overwriteContentOffset = NO;
         };
-
+        
         if (animated) {
             
             [self.collectionView setCollectionViewLayout:self.stackedLayout animated:YES completion:completion];
-
+            
         } else {
-
+            
             self.collectionView.collectionViewLayout = self.stackedLayout;
             
             completion(YES);
@@ -263,6 +499,36 @@
     // supported, therefore MUST NOT be != 1
     //
     return 1;
+}
+
+#pragma mark - Helpers
+
+- (void)addCollapseGestureRecognizerToView:(UIView *)view {
+    
+    UIGestureRecognizer *recognizer = self.collapseGestureRecognizer;
+    
+    if (recognizer) [view addGestureRecognizer:recognizer];
+}
+
+- (void)removeCollapseGestureRecognizersFromView:(UIView *)view {
+    
+    // Make sure the gesture recognizers are not created lazily
+    // when removing them. Therefore use ivar to test for presence
+    // before removing
+    //
+    if (_collapsePanGestureRecognizer) [view removeGestureRecognizer:self.collapsePanGestureRecognizer];
+    if (_collapsePinchGestureRecognizer) [view removeGestureRecognizer:self.collapsePinchGestureRecognizer];
+}
+
+- (void)setupCollectionBackgroundView:(UIView *)backgroundView {
+    CGRect newFrame = self.collectionView.bounds;
+    newFrame.size.width = self.view.bounds.size.width;
+    backgroundView.frame = newFrame;
+    self.collectionView.frame = newFrame;
+    [self.view insertSubview:backgroundView belowSubview:self.collectionView];
+    TGLBackgroundProxyView * backgroundProxy = [[TGLBackgroundProxyView alloc] init];
+    backgroundProxy.targetView = backgroundView;
+    self.collectionView.backgroundView = backgroundProxy;
 }
 
 @end
