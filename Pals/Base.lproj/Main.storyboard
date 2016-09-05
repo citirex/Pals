@@ -418,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLJ-aX-0ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="584" y="-319"/>
+            <point key="canvasLocation" x="1116" y="-319"/>
         </scene>
         <!--Friends Table View Controller-->
         <scene sceneID="2Bh-WW-6vz">
@@ -483,7 +483,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8u-gs-ETu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679" y="-328"/>
+            <point key="canvasLocation" x="2211" y="-328"/>
         </scene>
         <!--Friend Profile-->
         <scene sceneID="pBT-w8-B4P">
@@ -532,6 +532,9 @@
                                             <state key="normal" title="Send Cover">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="sendCoverButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="rSr-rx-qzr"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6s6-7c-3QW">
                                             <rect key="frame" x="82" y="409" width="156" height="33"/>
@@ -542,6 +545,9 @@
                                             <state key="normal" title="Send a Drink">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="sendADrinkButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="8l5-pP-ESw"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -579,41 +585,12 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
+                        <outlet property="userProfileImageView" destination="FiR-Kx-BL2" id="LzX-id-vQ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165" y="648"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="AYi-si-nLO">
-            <objects>
-                <viewController storyboardIdentifier="temp" id="fnV-fQ-iCe" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Wob-UT-1Yo"/>
-                        <viewControllerLayoutGuide type="bottom" id="oDu-sB-87d"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZhC-pJ-fsA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Friend Profile" translatesAutoresizingMaskIntoConstraints="NO" id="IX3-5R-JaI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="IX3-5R-JaI" secondAttribute="trailing" id="2NT-XY-tNK"/>
-                            <constraint firstItem="IX3-5R-JaI" firstAttribute="top" secondItem="ZhC-pJ-fsA" secondAttribute="top" id="FdC-d5-Xze"/>
-                            <constraint firstItem="IX3-5R-JaI" firstAttribute="leading" secondItem="ZhC-pJ-fsA" secondAttribute="leading" id="OdC-qw-9gt"/>
-                            <constraint firstAttribute="bottom" secondItem="IX3-5R-JaI" secondAttribute="bottom" id="gNl-dV-YPf"/>
-                        </constraints>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s3F-RG-OqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1546" y="648"/>
+            <point key="canvasLocation" x="1679" y="436"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mNa-5k-She">
@@ -1012,24 +989,54 @@
             </objects>
             <point key="canvasLocation" x="-963" y="656"/>
         </scene>
-        <!--Location-->
-        <scene sceneID="pWK-1N-Tyf">
+        <!--Places-->
+        <scene sceneID="zYf-tM-7w9">
             <objects>
-                <viewController id="QbJ-bc-Gin" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KVR-50-oIg"/>
-                        <viewControllerLayoutGuide type="bottom" id="QoM-CA-8vb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="sQI-9U-jqO">
+                <tableViewController title="Places" id="fJn-hN-KiI" customClass="PLPlacesTableViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="110" sectionHeaderHeight="18" sectionFooterHeight="18" id="MXj-aa-ckD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Location" image="icon_location" id="Al3-aU-BnV"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e0C-VG-N4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <connections>
+                            <outlet property="dataSource" destination="fJn-hN-KiI" id="EP8-uK-tpO"/>
+                            <outlet property="delegate" destination="fJn-hN-KiI" id="tkF-di-4gZ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Locations" id="NSV-1V-OmB">
+                        <barButtonItem key="backBarButtonItem" title=" " id="BSC-Qo-21x"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="l5u-Eq-Jpy" kind="push" identifier="ShowPlaceProfile" id="t3g-I8-ONf"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ZO-zE-Lg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17" y="-328"/>
+            <point key="canvasLocation" x="434" y="-328"/>
+        </scene>
+        <!--Place Profile-->
+        <scene sceneID="dEs-Gh-gJX">
+            <objects>
+                <viewController storyboardIdentifier="PlaceProfileViewController" title="Place Profile" id="l5u-Eq-Jpy" customClass="PLPlaceProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pi6-Re-uDA"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ens-V9-Qyo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bo5-hy-sYX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9NP-b9-Iwt">
+                        <barButtonItem key="backBarButtonItem" title=" " id="FKh-c6-PCY"/>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1pR-lj-tH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-381" y="648"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vej-NY-WUf">
@@ -1044,7 +1051,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="fB4-6t-r2g" kind="relationship" relationship="viewControllers" id="FRn-7d-fx2"/>
-                        <segue destination="QbJ-bc-Gin" kind="relationship" relationship="viewControllers" id="mkX-l0-OIK"/>
+                        <segue destination="9Zg-pp-3Dn" kind="relationship" relationship="viewControllers" id="ukY-fN-2de"/>
                         <segue destination="Cmd-gA-94i" kind="relationship" relationship="viewControllers" id="fu0-1q-0Dg"/>
                         <segue destination="BjU-D1-zsC" kind="relationship" relationship="viewControllers" id="V62-ID-s7N"/>
                     </connections>
@@ -1109,7 +1116,31 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPz-kl-WYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1147" y="-328"/>
+            <point key="canvasLocation" x="1679" y="-328"/>
+        </scene>
+        <!--Location-->
+        <scene sceneID="bgB-Nn-eGT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Zg-pp-3Dn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Location" image="icon_location" id="89K-oH-mEz"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="ocs-sc-mQy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fJn-hN-KiI" kind="relationship" relationship="rootViewController" id="X6I-5h-qIL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jTd-DI-FAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-102" y="-328"/>
         </scene>
     </scenes>
     <resources>
