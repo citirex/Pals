@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -433,10 +433,143 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="s1m-56-s73"/>
+                    <connections>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="ShowFriendProfile" id="WVE-Ur-qtV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8u-gs-ETu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1679" y="-328"/>
+        </scene>
+        <!--Friend Profile-->
+        <scene sceneID="pBT-w8-B4P">
+            <objects>
+                <viewController title="Friend Profile" id="BXZ-AW-ugp" customClass="PLFriendProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xAn-zJ-Nh1"/>
+                        <viewControllerLayoutGuide type="bottom" id="KuD-LH-J5b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0b7-o8-tqn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="IU0-qZ-LiT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-eA-eO5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aQ7-Gj-h0R">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2" customClass="PLImageView" customModule="Pals" customModuleProvider="target">
+                                            <rect key="frame" x="95" y="95" width="130" height="130"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="130" id="EJ6-3o-ob9"/>
+                                                <constraint firstAttribute="height" constant="130" id="evT-iS-oOy"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-4Y-hBs" userLabel="Separator">
+                                            <rect key="frame" x="30" y="285" width="260" height="2"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="2" id="pNQ-ij-VKy"/>
+                                            </constraints>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMb-Zw-uOS">
+                                            <rect key="frame" x="89" y="326" width="142" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="rMb-Zw-uOS" secondAttribute="height" multiplier="142:33" id="sIL-Ny-2w9"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <state key="normal" title="Send Cover">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6s6-7c-3QW">
+                                            <rect key="frame" x="82" y="409" width="156" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="6s6-7c-3QW" secondAttribute="height" multiplier="71:15" id="yBD-8Q-1Ff"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <state key="normal" title="Send a Drink">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="QdR-4Y-hBs" secondAttribute="trailing" constant="30" id="4QR-yY-mbw"/>
+                                        <constraint firstItem="6s6-7c-3QW" firstAttribute="centerX" secondItem="rMb-Zw-uOS" secondAttribute="centerX" id="9wE-wQ-aeC"/>
+                                        <constraint firstItem="QdR-4Y-hBs" firstAttribute="leading" secondItem="aQ7-Gj-h0R" secondAttribute="leading" constant="30" id="HgI-ma-WfE"/>
+                                        <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="60" id="OKh-EX-9bV"/>
+                                        <constraint firstItem="QdR-4Y-hBs" firstAttribute="centerY" secondItem="aQ7-Gj-h0R" secondAttribute="centerY" constant="26.5" id="Ppx-bO-ff1"/>
+                                        <constraint firstItem="rMb-Zw-uOS" firstAttribute="width" secondItem="aQ7-Gj-h0R" secondAttribute="height" multiplier="142:519" id="ag0-Gw-E7a"/>
+                                        <constraint firstItem="rMb-Zw-uOS" firstAttribute="centerX" secondItem="aQ7-Gj-h0R" secondAttribute="centerX" id="d4m-TS-zaz"/>
+                                        <constraint firstItem="6s6-7c-3QW" firstAttribute="top" secondItem="rMb-Zw-uOS" secondAttribute="bottom" constant="50" id="fHi-Hd-hDK"/>
+                                        <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerX" secondItem="aQ7-Gj-h0R" secondAttribute="centerX" id="myj-ek-3Xr"/>
+                                        <constraint firstItem="rMb-Zw-uOS" firstAttribute="top" secondItem="QdR-4Y-hBs" secondAttribute="bottom" constant="39" id="o0h-y4-KE4"/>
+                                        <constraint firstItem="QdR-4Y-hBs" firstAttribute="centerX" secondItem="aQ7-Gj-h0R" secondAttribute="centerX" id="qdH-01-Yv7"/>
+                                        <constraint firstItem="FiR-Kx-BL2" firstAttribute="top" secondItem="aQ7-Gj-h0R" secondAttribute="top" constant="95" id="zGm-7x-p6X"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WW4-eA-eO5" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" id="6fM-hQ-n5r"/>
+                            <constraint firstItem="WW4-eA-eO5" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" id="9JZ-IG-xbC"/>
+                            <constraint firstItem="IU0-qZ-LiT" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" id="P8F-Lv-MMD"/>
+                            <constraint firstItem="KuD-LH-J5b" firstAttribute="top" secondItem="WW4-eA-eO5" secondAttribute="bottom" id="VhX-VF-x2h"/>
+                            <constraint firstItem="KuD-LH-J5b" firstAttribute="top" secondItem="IU0-qZ-LiT" secondAttribute="bottom" id="ayY-6B-m92"/>
+                            <constraint firstAttribute="trailing" secondItem="IU0-qZ-LiT" secondAttribute="trailing" id="nHc-S9-eTZ"/>
+                            <constraint firstItem="IU0-qZ-LiT" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" id="p5v-6C-PLe"/>
+                            <constraint firstAttribute="trailing" secondItem="WW4-eA-eO5" secondAttribute="trailing" id="z7F-fK-aMn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="4NI-ne-4iy"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1165" y="648"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AYi-si-nLO">
+            <objects>
+                <viewController storyboardIdentifier="temp" id="fnV-fQ-iCe" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wob-UT-1Yo"/>
+                        <viewControllerLayoutGuide type="bottom" id="oDu-sB-87d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZhC-pJ-fsA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Friend Profile" translatesAutoresizingMaskIntoConstraints="NO" id="IX3-5R-JaI">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IX3-5R-JaI" secondAttribute="trailing" id="2NT-XY-tNK"/>
+                            <constraint firstItem="IX3-5R-JaI" firstAttribute="top" secondItem="ZhC-pJ-fsA" secondAttribute="top" id="FdC-d5-Xze"/>
+                            <constraint firstItem="IX3-5R-JaI" firstAttribute="leading" secondItem="ZhC-pJ-fsA" secondAttribute="leading" id="OdC-qw-9gt"/>
+                            <constraint firstAttribute="bottom" secondItem="IX3-5R-JaI" secondAttribute="bottom" id="gNl-dV-YPf"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s3F-RG-OqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1546" y="648"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mNa-5k-She">
@@ -937,6 +1070,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Friend Profile" width="350" height="625"/>
         <image name="dots" width="22" height="22"/>
         <image name="fish_avatar" width="83" height="83"/>
         <image name="icon_friends" width="42" height="42"/>

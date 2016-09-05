@@ -55,6 +55,7 @@
 		E857F0341D7802180020B981 /* PLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F02F1D7802180020B981 /* PLButton.swift */; };
 		E857F0361D7802180020B981 /* PLSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0311D7802180020B981 /* PLSignUpViewController.swift */; };
 		E857F0371D7802180020B981 /* PLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857F0321D7802180020B981 /* PLTextField.swift */; };
+		E8BCCEC51D7D761E00A1AB85 /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCCEC41D7D761E00A1AB85 /* PLFriendProfileViewController.swift */; };
 		E8DBCECC1D7B13D1003727C7 /* PLSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBCECB1D7B13D1003727C7 /* PLSettingsTableViewController.swift */; };
 		E8DBCEDB1D7C3D09003727C7 /* PLNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBCEDA1D7C3D09003727C7 /* PLNavigationController.swift */; };
 		E8DBCEDD1D7C3D5C003727C7 /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DBCEDC1D7C3D5C003727C7 /* PLImageView.swift */; };
@@ -117,6 +118,7 @@
 		E857F02F1D7802180020B981 /* PLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLButton.swift; path = Classes/UI/PLButton.swift; sourceTree = "<group>"; };
 		E857F0311D7802180020B981 /* PLSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSignUpViewController.swift; path = Classes/UI/PLSignUpViewController.swift; sourceTree = "<group>"; };
 		E857F0321D7802180020B981 /* PLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLTextField.swift; path = Classes/UI/PLTextField.swift; sourceTree = "<group>"; };
+		E8BCCEC41D7D761E00A1AB85 /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendProfileViewController.swift; path = Classes/UI/PLFriendProfileViewController.swift; sourceTree = "<group>"; };
 		E8DBCECB1D7B13D1003727C7 /* PLSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSettingsTableViewController.swift; path = Classes/UI/PLSettingsTableViewController.swift; sourceTree = "<group>"; };
 		E8DBCEDA1D7C3D09003727C7 /* PLNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNavigationController.swift; path = Classes/Extensions/PLNavigationController.swift; sourceTree = "<group>"; };
 		E8DBCEDC1D7C3D5C003727C7 /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLImageView.swift; path = Classes/UI/PLImageView.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				E8DBCECA1D7B137A003727C7 /* Settings */,
 				24CBED3E1D76D60F0028E5E3 /* Profile */,
 				045772821D7D743D004D5B0C /* Friends */,
+				E8BCCEC31D7D75E000A1AB85 /* Friend Profile */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -343,6 +346,14 @@
 				E8DBCEDC1D7C3D5C003727C7 /* PLImageView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		E8BCCEC31D7D75E000A1AB85 /* Friend Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E8BCCEC41D7D761E00A1AB85 /* PLFriendProfileViewController.swift */,
+			);
+			name = "Friend Profile";
 			sourceTree = "<group>";
 		};
 		E8DBCECA1D7B137A003727C7 /* Settings */ = {
@@ -514,6 +525,7 @@
 				24788D551D7D72D9007BA3C3 /* PLDevice.swift in Sources */,
 				D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */,
 				D48390991D782E4500990E83 /* PLProfileManager.swift in Sources */,
+				E8BCCEC51D7D761E00A1AB85 /* PLFriendProfileViewController.swift in Sources */,
 				E84DB4211D79D97F00B16166 /* PLStoryboard.swift in Sources */,
 				E857F0371D7802180020B981 /* PLTextField.swift in Sources */,
 				24BB0C721D77272600B691D1 /* PLProfileHeaderView.swift in Sources */,
