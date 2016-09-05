@@ -11,7 +11,6 @@ import UIKit
 class PLProfileHeaderView: UIView {
     
     @IBOutlet var userNameLabel: UILabel!
-    @IBOutlet var editProfileButton: UIButton!
     @IBOutlet var userPicImageView: UIImageView!
     @IBOutlet var balanceButton: UIButton!
     @IBOutlet var myCoversButton: UIButton!

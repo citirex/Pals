@@ -51,6 +51,7 @@ class PLProfileViewController: TGLStackedViewController {
         if firstLaunch == true {
             collectionView?.alpha = 0
         }
+        navigationController?.presentTransparentNavigationBar()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -138,7 +139,6 @@ class PLProfileViewController: TGLStackedViewController {
     func setupUserInfo() {
         if let profile = profile {
             collectionBackgroundView.userNameLabel.text = profile.name
-            collectionBackgroundView.editProfileButton.addTarget(self, action: #selector(editProfileButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.balanceButton.setTitle(String(format: "$%.2f", profile.balance), forState: .Normal)
             collectionBackgroundView.balanceButton.addTarget(self, action: #selector(addFundsButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)

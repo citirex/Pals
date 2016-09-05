@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -23,14 +23,6 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ru8-xz-KpU">
-                    <rect key="frame" x="268" y="20" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="44" id="GHA-9s-CNH"/>
-                        <constraint firstAttribute="height" constant="44" id="q7P-DU-0Zk"/>
-                    </constraints>
-                    <state key="normal" image="icon_dots"/>
-                </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6gY-hN-GqU">
                     <rect key="frame" x="110" y="60" width="100" height="100"/>
                     <constraints>
@@ -106,11 +98,9 @@
                 <constraint firstAttribute="bottom" secondItem="d1f-d0-5ry" secondAttribute="bottom" id="JWb-Qb-NEI"/>
                 <constraint firstItem="d1S-qy-4KC" firstAttribute="top" secondItem="8Sc-c6-PaP" secondAttribute="top" constant="20" id="LvH-iY-JwU"/>
                 <constraint firstAttribute="trailing" secondItem="jEq-4t-NXz" secondAttribute="trailing" constant="16" id="P1l-eL-ap2"/>
-                <constraint firstAttribute="trailing" secondItem="Ru8-xz-KpU" secondAttribute="trailing" constant="8" id="R9I-zr-ABp"/>
                 <constraint firstItem="0yG-cs-2WH" firstAttribute="bottom" secondItem="p5u-zr-fNT" secondAttribute="bottom" id="RYx-eR-6vT"/>
                 <constraint firstItem="d1f-d0-5ry" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" id="SEz-5M-ocr"/>
                 <constraint firstItem="jEq-4t-NXz" firstAttribute="top" secondItem="DPh-LG-qCh" secondAttribute="bottom" constant="8" id="TAG-L4-klW"/>
-                <constraint firstItem="Ru8-xz-KpU" firstAttribute="top" secondItem="8Sc-c6-PaP" secondAttribute="top" constant="20" id="TGv-tX-3tK"/>
                 <constraint firstItem="oyP-lr-iOi" firstAttribute="centerX" secondItem="8Sc-c6-PaP" secondAttribute="centerX" id="TYY-mv-4BC"/>
                 <constraint firstItem="4Gd-Xm-g7B" firstAttribute="centerX" secondItem="oyP-lr-iOi" secondAttribute="centerX" id="YVu-CJ-ebI"/>
                 <constraint firstItem="0yG-cs-2WH" firstAttribute="centerX" secondItem="DPh-LG-qCh" secondAttribute="centerX" priority="250" id="Yp8-dI-Slt"/>
@@ -139,7 +129,6 @@
             <connections>
                 <outlet property="backgroundImageView" destination="d1f-d0-5ry" id="lT7-HI-Hj0"/>
                 <outlet property="balanceButton" destination="oyP-lr-iOi" id="1MU-Fv-Hwq"/>
-                <outlet property="editProfileButton" destination="Ru8-xz-KpU" id="epf-4e-7Hq"/>
                 <outlet property="myCoversButton" destination="DPh-LG-qCh" id="RWn-wv-tQp"/>
                 <outlet property="myCoversConstraint" destination="Yp8-dI-Slt" id="UNw-7G-Amf"/>
                 <outlet property="myDrinksButton" destination="p5u-zr-fNT" id="yp1-79-Pff"/>
@@ -150,7 +139,4 @@
             <point key="canvasLocation" x="352" y="281"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon_dots" width="42" height="42"/>
-    </resources>
 </document>

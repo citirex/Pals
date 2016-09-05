@@ -86,7 +86,6 @@ class PLSignUpViewController: UIViewController {
     @IBAction func loadImageButtonTapped(sender: UIButton) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
-        
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -96,25 +95,10 @@ class PLSignUpViewController: UIViewController {
         let password = passwordTextField.text!.trim()
         let picture = imageView.image != nil ? imageView.image : UIImage(named: "anonimus")
         
-        if username.isEmpty {
-            showAlert("Error", message: "Username must contain at least 1 character")
-            return
-        }
-      
-        if !email.isValidEmail {
-            showAlert("Error", message: "Please enter a valid email address")
-            return
-        }
-        
-        if password.isEmpty {
-            showAlert("Error", message: "Password must contain at least 1 character")
-            return
-        }
-        
-        if password != confirmPasswordTextField.text!.trim() {
-            showAlert("Error", message: "Password mismatch")
-            return
-        }
+        guard !username.isEmpty else { return showAlert("Error", message: "Username must contain at least 1 character") }
+        guard email.isValidEmail else { return showAlert("Error", message: "Please enter a valid email address") }
+        guard !password.isEmpty else { return showAlert("Error", message: "Password must contain at least 1 character") }
+        guard password == confirmPasswordTextField.text!.trim() else { return showAlert("Error", message: "Password mismatch") }
         
         let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
         
@@ -124,8 +108,8 @@ class PLSignUpViewController: UIViewController {
             self.spinner.stopAnimating()
             guard error == nil else { return self.showAlert("Error", message: error!.localizedDescription) }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
-            let profileViewController = tabBarController.viewControllers?.first as! PLProfileViewController
-            profileViewController.title = "Profile"
+            let navigationController = tabBarController.viewControllers?.first as! UINavigationController
+            _ = navigationController.viewControllers.first as! PLProfileViewController
             self.presentViewController(tabBarController, animated: true, completion: nil)
         }
     }
@@ -154,9 +138,6 @@ extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.layer.cornerRadius = imageView.bounds.size.width / 2
-            imageView.contentMode = .ScaleAspectFill
-            imageView.clipsToBounds = true
             imageView.image = imagePicked
         }
         dismissViewControllerAnimated(true, completion: nil)
