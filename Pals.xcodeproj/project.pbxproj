@@ -12,6 +12,7 @@
 		045772891D7D744D004D5B0C /* PLFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772851D7D744D004D5B0C /* PLFriendsModel.swift */; };
 		0457728A1D7D744D004D5B0C /* PLFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */; };
 		240ACB231D784BE000C8DD0E /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240ACB221D784BE000C8DD0E /* PLProfileCollectionHelper.swift */; };
+		24788D551D7D72D9007BA3C3 /* PLDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24788D541D7D72D9007BA3C3 /* PLDevice.swift */; };
 		2483B27D1D79C0E600E312C0 /* PLAddFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2483B27C1D79C0E600E312C0 /* PLAddFundsViewController.swift */; };
 		2483B27F1D79C27400E312C0 /* PLAddFundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2483B27E1D79C27400E312C0 /* PLAddFundsView.swift */; };
 		2483B2811D79C29800E312C0 /* PLAddFundsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2483B2801D79C29800E312C0 /* PLAddFundsView.xib */; };
@@ -65,6 +66,7 @@
 		045772851D7D744D004D5B0C /* PLFriendsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendsModel.swift; path = Classes/UI/PLFriendsModel.swift; sourceTree = "<group>"; };
 		045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendsTableViewController.swift; path = Classes/UI/PLFriendsTableViewController.swift; sourceTree = "<group>"; };
 		240ACB221D784BE000C8DD0E /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
+		24788D541D7D72D9007BA3C3 /* PLDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLDevice.swift; path = Classes/Extensions/PLDevice.swift; sourceTree = "<group>"; };
 		2483B27C1D79C0E600E312C0 /* PLAddFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLAddFundsViewController.swift; path = Classes/UI/PLAddFundsViewController.swift; sourceTree = "<group>"; };
 		2483B27E1D79C27400E312C0 /* PLAddFundsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLAddFundsView.swift; path = Classes/UI/PLAddFundsView.swift; sourceTree = "<group>"; };
 		2483B2801D79C29800E312C0 /* PLAddFundsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLAddFundsView.xib; path = Classes/UI/PLAddFundsView.xib; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				E84DB41F1D79D97F00B16166 /* PLStoryboard.swift */,
 				E84DB4201D79D97F00B16166 /* PLString.swift */,
 				E8DBCEDA1D7C3D09003727C7 /* PLNavigationController.swift */,
+				24788D541D7D72D9007BA3C3 /* PLDevice.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				E8DBCECC1D7B13D1003727C7 /* PLSettingsTableViewController.swift in Sources */,
 				0457728A1D7D744D004D5B0C /* PLFriendsTableViewController.swift in Sources */,
 				D42F53E01D76CABE005DEA34 /* PLUniqueObject.swift in Sources */,
+				24788D551D7D72D9007BA3C3 /* PLDevice.swift in Sources */,
 				D42F53C91D76B497005DEA34 /* AppDelegate.swift in Sources */,
 				D48390991D782E4500990E83 /* PLProfileManager.swift in Sources */,
 				E84DB4211D79D97F00B16166 /* PLStoryboard.swift in Sources */,

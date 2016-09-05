@@ -61,7 +61,7 @@
 
 - (void)initController {
     
-    _exposedLayoutMargin = UIEdgeInsetsMake(40.0, 0.0, 0.0, 0.0);
+    _exposedLayoutMargin = UIEdgeInsetsMake(60.0, 0.0, 0.0, 0.0);
     _exposedItemSize = CGSizeZero;
     _exposedTopOverlap = 5;//10.0;
     _exposedBottomOverlap = 5;//10.0;

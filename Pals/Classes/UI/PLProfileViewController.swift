@@ -36,7 +36,13 @@ class PLProfileViewController: TGLStackedViewController {
         setupCollectionBackgroundView()
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         
-        self.exposedItemSize = CGSizeMake(collectionView!.bounds.size.width, 420)
+        
+        var expoItemSize = CGSizeMake(collectionView!.bounds.size.width, 420)
+        if (UIDevice().type == .iPhone4 || UIDevice().type == .iPhone4S) {
+            //|| UIDevice().type == .simulator) {
+            expoItemSize.height = 340
+        }
+        self.exposedItemSize = expoItemSize
         self.stackedLayout!.itemSize = self.exposedItemSize;
         self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
         
@@ -62,7 +68,6 @@ class PLProfileViewController: TGLStackedViewController {
             firstLaunch = false
         }
     }
-    
     
     
     //MARK: - Actions
@@ -138,7 +143,7 @@ class PLProfileViewController: TGLStackedViewController {
     //MARK: - Setup
     func setupUserInfo() {
         if let profile = profile {
-            collectionBackgroundView.userNameLabel.text = profile.name
+            title = profile.name
             collectionBackgroundView.balanceButton.setTitle(String(format: "$%.2f", profile.balance), forState: .Normal)
             collectionBackgroundView.balanceButton.addTarget(self, action: #selector(addFundsButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)
