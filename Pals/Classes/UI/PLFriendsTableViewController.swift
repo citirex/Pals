@@ -10,19 +10,18 @@ import UIKit
 
 class PLFriendsTableViewController: UITableViewController {
 	
-	let searchController = UISearchController(searchResultsController: nil)
+	let searchBar = UISearchBar()
+	
+	@IBAction func searchButton(sender: AnyObject) {
+		navigationController!.navigationItem.titleView = searchBar
+		navigationItem.titleView = searchBar
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		navigationController?.presentTransparentNavigationBar()
-		
-		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
-		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-		
-		tableView.tableHeaderView = searchController.searchBar
-		
 	}
+
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return PLFriendsModel.FriendModel.itemsArray.count
@@ -43,7 +42,7 @@ class PLFriendsTableViewController: UITableViewController {
 	}
 	
 	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return 150
+		return 100
 	}
 	
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		045772871D7D744D004D5B0C /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772831D7D744D004D5B0C /* PLFriendCell.swift */; };
-		045772881D7D744D004D5B0C /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045772841D7D744D004D5B0C /* PLFriendCell.xib */; };
 		045772891D7D744D004D5B0C /* PLFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772851D7D744D004D5B0C /* PLFriendsModel.swift */; };
 		0457728A1D7D744D004D5B0C /* PLFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */; };
 		240ACB231D784BE000C8DD0E /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240ACB221D784BE000C8DD0E /* PLProfileCollectionHelper.swift */; };
@@ -63,7 +62,6 @@
 
 /* Begin PBXFileReference section */
 		045772831D7D744D004D5B0C /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendCell.swift; path = Classes/UI/PLFriendCell.swift; sourceTree = "<group>"; };
-		045772841D7D744D004D5B0C /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLFriendCell.xib; path = Classes/UI/PLFriendCell.xib; sourceTree = "<group>"; };
 		045772851D7D744D004D5B0C /* PLFriendsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendsModel.swift; path = Classes/UI/PLFriendsModel.swift; sourceTree = "<group>"; };
 		045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendsTableViewController.swift; path = Classes/UI/PLFriendsTableViewController.swift; sourceTree = "<group>"; };
 		240ACB221D784BE000C8DD0E /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				045772831D7D744D004D5B0C /* PLFriendCell.swift */,
-				045772841D7D744D004D5B0C /* PLFriendCell.xib */,
 				045772851D7D744D004D5B0C /* PLFriendsModel.swift */,
 				045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */,
 			);
@@ -429,7 +426,6 @@
 				D42F53D31D76B497005DEA34 /* LaunchScreen.storyboard in Resources */,
 				D483E1301D79A64400FCD614 /* signup.json in Resources */,
 				D483E1321D79BC2A00FCD614 /* sendpassword.json in Resources */,
-				045772881D7D744D004D5B0C /* PLFriendCell.xib in Resources */,
 				E857F02C1D7801E90020B981 /* PLProfileHeaderView.xib in Resources */,
 				D483909E1D78672700990E83 /* config.plist in Resources */,
 				2483B2811D79C29800E312C0 /* PLAddFundsView.xib in Resources */,

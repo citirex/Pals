@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+@IBDesignable
 class PLFriendCell: UITableViewCell {
 
 	@IBOutlet weak var avatarImage: PLImageView!
