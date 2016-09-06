@@ -1236,5 +1236,7 @@
         <image name="logo_image" width="500" height="500"/>
         <image name="pencil" width="128" height="128"/>
         <image name="plus" width="128" height="128"/>
+        <image name="pencil" width="22" height="22"/>
+        <image name="white_compass" width="22" height="22"/>
     </resources>
 </document>
