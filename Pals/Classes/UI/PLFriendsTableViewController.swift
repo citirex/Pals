@@ -69,6 +69,7 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowFriendProfile" {
             let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
+//			friendProfileViewController.backgroundImageView.tintColor = UIColor.magentaColor()
             friendProfileViewController.title = ""
         }
     }
@@ -108,29 +109,31 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		self.navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendsSearch"))!, animated: true)
+		searchBar.endEditing(true)
+		
+		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendsSearch"))!, animated: true)
 	}
 
 }
 
-extension PLFriendsTableViewController: UISearchResultsUpdating
-{
-	func updateSearchResultsForSearchController(searchController: UISearchController)
-	{
-		searchArray.removeAll(keepCapacity: false)
-		
-		let range = searchController.searchBar.text!.characters.startIndex ..< searchController.searchBar.text!.characters.endIndex
-		var searchString = String()
-		
-		searchController.searchBar.text?.enumerateSubstringsInRange(range, options: .ByComposedCharacterSequences, { (substring, substringRange, enclosingRange, success) in
-			searchString.appendContentsOf(substring!)
-			searchString.appendContentsOf("*")
-		})
-		
-		let searchPredicate = NSPredicate(format: "SELF LIKE[cd] %@", searchString)
-//		let array = (PLFriendsModel.FriendModel.itemsArray as NSArray).filteredArrayUsingPredicate(searchPredicate)
-//		searchArray = array as! [String]
-		tableView.reloadData()
-	}
-}
+//extension PLFriendsTableViewController: UISearchResultsUpdating
+//{
+//	func updateSearchResultsForSearchController(searchController: UISearchController)
+//	{
+//		searchArray.removeAll(keepCapacity: false)
+//		
+//		let range = searchController.searchBar.text!.characters.startIndex ..< searchController.searchBar.text!.characters.endIndex
+//		var searchString = String()
+//		
+//		searchController.searchBar.text?.enumerateSubstringsInRange(range, options: .ByComposedCharacterSequences, { (substring, substringRange, enclosingRange, success) in
+//			searchString.appendContentsOf(substring!)
+//			searchString.appendContentsOf("*")
+//		})
+//		
+//		let searchPredicate = NSPredicate(format: "SELF LIKE[cd] %@", searchString)
+////		let array = (PLFriendsModel.FriendModel.itemsArray as NSArray).filteredArrayUsingPredicate(searchPredicate)
+////		searchArray = array as! [String]
+//		tableView.reloadData()
+//	}
+//}
 

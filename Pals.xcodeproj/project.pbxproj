@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04532A591D7EBC530027FB31 /* PLFriendsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04532A581D7EBC530027FB31 /* PLFriendsSearchTableViewController.swift */; };
+		04532A5B1D7EF1B00027FB31 /* PLFriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04532A5A1D7EF1B00027FB31 /* PLFriendSearchTableViewCell.swift */; };
 		045772871D7D744D004D5B0C /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772831D7D744D004D5B0C /* PLFriendCell.swift */; };
 		045772891D7D744D004D5B0C /* PLFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772851D7D744D004D5B0C /* PLFriendsModel.swift */; };
 		0457728A1D7D744D004D5B0C /* PLFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */; };
@@ -70,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		04532A581D7EBC530027FB31 /* PLFriendsSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendsSearchTableViewController.swift; path = Classes/UI/PLFriendsSearchTableViewController.swift; sourceTree = "<group>"; };
+		04532A5A1D7EF1B00027FB31 /* PLFriendSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendSearchTableViewCell.swift; path = Classes/UI/PLFriendSearchTableViewCell.swift; sourceTree = "<group>"; };
 		045772831D7D744D004D5B0C /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendCell.swift; path = Classes/UI/PLFriendCell.swift; sourceTree = "<group>"; };
 		045772851D7D744D004D5B0C /* PLFriendsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendsModel.swift; path = Classes/UI/PLFriendsModel.swift; sourceTree = "<group>"; };
 		045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendsTableViewController.swift; path = Classes/UI/PLFriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				045772851D7D744D004D5B0C /* PLFriendsModel.swift */,
 				045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */,
 				04532A581D7EBC530027FB31 /* PLFriendsSearchTableViewController.swift */,
+				04532A5A1D7EF1B00027FB31 /* PLFriendSearchTableViewCell.swift */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				D48390A11D78681B00990E83 /* PLSettingsManager.swift in Sources */,
 				D48390951D78236F00990E83 /* PLFacade.swift in Sources */,
 				E8DBCEDD1D7C3D5C003727C7 /* PLImageView.swift in Sources */,
+				04532A5B1D7EF1B00027FB31 /* PLFriendSearchTableViewCell.swift in Sources */,
 				24CD9CDD1D77079300247FE8 /* TGLStackedLayout.m in Sources */,
 				24CD9CE31D77102D00247FE8 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
 				D48390A71D79746C00990E83 /* PLSignUpHelpers.swift in Sources */,

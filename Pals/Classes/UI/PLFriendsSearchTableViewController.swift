@@ -9,27 +9,24 @@
 import UIKit
 
 class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDelegate {
+	
 	var searchBar = UISearchBar()
 	
-	@IBAction func addButtonClicked(sender: AnyObject) {
-		
-		//friendsAddButtonOutlet.imageView?.image = UIImage(named: "success")
-	}
 	@IBAction func searchButton(sender: AnyObject) {
 		
 		if navigationItem.titleView != searchBar {
 			navigationItem.titleView = searchBar
 		} else {
 			navigationItem.titleView = nil
-			navigationItem.title = "Friends"
+			navigationItem.title = "Friends Search"
 		}
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let textFieldInsideSearchBar = self.searchBar.valueForKey("searchField") as! UITextField
+		let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as! UITextField
 		textFieldInsideSearchBar.leftViewMode = UITextFieldViewMode.Never
-		searchBar.placeholder = "Find Your Pals"
+		searchBar.placeholder = "Find Your Pals                           "
 		searchBar.layer.cornerRadius = 25
 		searchBar.clipsToBounds = true
 		searchBar.delegate = self
@@ -41,16 +38,17 @@ class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDele
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
-		let cell:PLFriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! PLFriendCell
+		let cell:PLFriendSearchTableViewCell = tableView.dequeueReusableCellWithIdentifier("FriendSearchCell") as! PLFriendSearchTableViewCell
 		
 		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
 		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
-		cell.friendsAddButtonOutlet.imageView?.image = UIImage(named: "plus")
+		cell.addButtonOutlet.setImage(UIImage(named: "plus"), forState: .Normal)
 		
 		return cell
 	}
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		print("Row \(indexPath.row) selected")
 	}
 	
