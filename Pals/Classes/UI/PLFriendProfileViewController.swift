@@ -20,6 +20,21 @@ class PLFriendProfileViewController: UIViewController {
         super.viewDidLoad()
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barStyle = .Black
+        navigationController?.navigationBar.tintColor = .whiteColor()
+        navigationController?.presentTransparentNavigationBar()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.barStyle = .Default
+        navigationController?.hideTransparentNavigationBar()
+    }
 
     
     // MARK: - Actions

@@ -127,3 +127,12 @@ extension PLSettingsViewController: UITableViewDelegate {
     }
     
 }
+
+
+extension PLSettingsViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+}
