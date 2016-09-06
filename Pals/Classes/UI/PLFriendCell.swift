@@ -12,6 +12,7 @@ class PLFriendCell: UITableViewCell {
 
 	@IBOutlet weak var avatarImage: PLImageView!
 	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var friendsAddButtonOutlet: UIButton!
 	
     override func awakeFromNib() {
         super.awakeFromNib()

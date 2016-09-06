@@ -1,23 +1,24 @@
 //
-//  PLFriendsTableViewController.swift
+//  PLFriendsSearchTableViewController.swift
 //  Pals
 //
-//  Created by Карпенко Михайло on 05.09.16.
+//  Created by Карпенко Михайло on 06.09.16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
 import UIKit
 
-class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
-	
+class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDelegate {
 	var searchBar = UISearchBar()
-	var searchArray = [String]()
 	
+	@IBAction func addButtonClicked(sender: AnyObject) {
+		
+		//friendsAddButtonOutlet.imageView?.image = UIImage(named: "success")
+	}
 	@IBAction func searchButton(sender: AnyObject) {
 		
 		if navigationItem.titleView != searchBar {
 			navigationItem.titleView = searchBar
-			searchBar.becomeFirstResponder()
 		} else {
 			navigationItem.titleView = nil
 			navigationItem.title = "Friends"
@@ -28,20 +29,14 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 		super.viewDidLoad()
 		let textFieldInsideSearchBar = self.searchBar.valueForKey("searchField") as! UITextField
 		textFieldInsideSearchBar.leftViewMode = UITextFieldViewMode.Never
-		searchArray = ["1","2","3"]
-		searchBar.placeholder = "Find Your Pals                                        "
+		searchBar.placeholder = "Find Your Pals"
 		searchBar.layer.cornerRadius = 25
 		searchBar.clipsToBounds = true
 		searchBar.delegate = self
 	}
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		switch navigationItem.titleView == searchBar {
-		case true:
-			return searchArray.count
-		case false:
-			return PLFriendsModel.FriendModel.itemsArray.count
-		}
+		return PLFriendsModel.FriendModel.itemsArray.count
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
@@ -50,12 +45,12 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 		
 		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
 		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
+		cell.friendsAddButtonOutlet.imageView?.image = UIImage(named: "plus")
 		
 		return cell
 	}
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		print("Row \(indexPath.row) selected")
 	}
 	
@@ -98,29 +93,6 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		self.navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendsSearch"))!, animated: true)
-	}
-
-}
-
-extension PLFriendsTableViewController: UISearchResultsUpdating
-{
-	func updateSearchResultsForSearchController(searchController: UISearchController)
-	{
-		searchArray.removeAll(keepCapacity: false)
-		
-		let range = searchController.searchBar.text!.characters.startIndex ..< searchController.searchBar.text!.characters.endIndex
-		var searchString = String()
-		
-		searchController.searchBar.text?.enumerateSubstringsInRange(range, options: .ByComposedCharacterSequences, { (substring, substringRange, enclosingRange, success) in
-			searchString.appendContentsOf(substring!)
-			searchString.appendContentsOf("*")
-		})
-		
-		let searchPredicate = NSPredicate(format: "SELF LIKE[cd] %@", searchString)
-//		let array = (PLFriendsModel.FriendModel.itemsArray as NSArray).filteredArrayUsingPredicate(searchPredicate)
-//		searchArray = array as! [String]
-		tableView.reloadData()
+		//search result from server
 	}
 }
-
