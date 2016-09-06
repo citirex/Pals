@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PLUser: PLUniqueObject {
+class PLUser: PLUniqueObject, PLCellRepresentable {
     var name: String
     var email: String
     var picture: NSURL
@@ -38,5 +38,10 @@ class PLUser: PLUniqueObject {
         dic[PLKeys.balance.string] = String(balance)
         dic.append(super.serialize())
         return dic
+    }
+    
+    var cellData: PLFriendCellData {
+        let data = PLFriendCellData(id: id, picture: picture, name: name)
+        return data
     }
 }

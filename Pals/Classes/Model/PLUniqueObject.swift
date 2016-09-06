@@ -26,20 +26,20 @@ enum PLKeys : String {
 
 class PLUniqueObject: PLSerializable {
     
-    var id: String
+    var id: UInt64
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let id = jsonDic[PLKeys.id.string] as? String
+            let id = jsonDic[PLKeys.id.string] as? NSNumber
         else {
             return nil
         }
-        self.id = id
+        self.id = id.unsignedLongLongValue
     }
     
     func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.id.string] = id
+        dic[PLKeys.id.string] = String(id)
         return dic
     }
     

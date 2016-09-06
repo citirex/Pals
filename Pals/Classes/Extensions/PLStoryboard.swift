@@ -8,17 +8,26 @@
 
 import Foundation
 
+enum PLStoryboardType : String {
+    case LoginViewController
+    case TabBarController
+    var string: String {return rawValue}
+}
 
 extension UIStoryboard {
     
-    class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Main", bundle: .mainBundle()) }
+    class var mainStoryboard: UIStoryboard { return UIStoryboard(name: "Main", bundle: .mainBundle()) }
     
     class func tabBarController() -> UIViewController? {
-        return mainStoryboard().instantiateViewControllerWithIdentifier("TabBarController")
+        return viewControllerWithType(.TabBarController)
+    }
+    
+    class func viewControllerWithType(type: PLStoryboardType) -> UIViewController? {
+        return mainStoryboard.instantiateViewControllerWithIdentifier(type.string)
     }
     
     class func loginViewController() -> PLLoginViewController? {
-        return mainStoryboard().instantiateViewControllerWithIdentifier("LoginViewController") as? PLLoginViewController
+        return viewControllerWithType(.LoginViewController) as? PLLoginViewController
     }
  
 }

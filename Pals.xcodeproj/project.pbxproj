@@ -53,9 +53,9 @@
 		D483E1361D79CC0F00FCD614 /* PLDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1351D79CC0F00FCD614 /* PLDrink.swift */; };
 		D483E1381D79CC2900FCD614 /* PLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1371D79CC2900FCD614 /* PLEvent.swift */; };
 		D483E13A1D79CDAA00FCD614 /* PLOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1391D79CDAA00FCD614 /* PLOrder.swift */; };
+		D483E8111D7F0ECC00FCD614 /* PLFriendCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8101D7F0ECC00FCD614 /* PLFriendCellData.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 		E80607231D7EFB2A001C0D81 /* PLPlaceProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80607221D7EFB2A001C0D81 /* PLPlaceProfileCollectionViewController.swift */; };
-		E80607271D7EFFB8001C0D81 /* PLEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80607251D7EFFB8001C0D81 /* PLEventCollectionViewCell.swift */; };
 		E80607281D7EFFB8001C0D81 /* PLEventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80607261D7EFFB8001C0D81 /* PLEventCollectionViewCell.xib */; };
 		E806072C1D7F003B001C0D81 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E806072A1D7F003B001C0D81 /* PLPlaceProfileHeader.swift */; };
 		E806072D1D7F003B001C0D81 /* PLPlaceProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E806072B1D7F003B001C0D81 /* PLPlaceProfileHeader.xib */; };
@@ -134,6 +134,7 @@
 		D483E1351D79CC0F00FCD614 /* PLDrink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLDrink.swift; path = Classes/Model/PLDrink.swift; sourceTree = "<group>"; };
 		D483E1371D79CC2900FCD614 /* PLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEvent.swift; path = Classes/Model/PLEvent.swift; sourceTree = "<group>"; };
 		D483E1391D79CDAA00FCD614 /* PLOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrder.swift; path = Classes/Model/PLOrder.swift; sourceTree = "<group>"; };
+		D483E8101D7F0ECC00FCD614 /* PLFriendCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendCellData.swift; path = Classes/UI/PLFriendCellData.swift; sourceTree = "<group>"; };
 		E80607221D7EFB2A001C0D81 /* PLPlaceProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileCollectionViewController.swift; path = Classes/UI/PLPlaceProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		E80607251D7EFFB8001C0D81 /* PLEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEventCollectionViewCell.swift; path = Classes/UI/PLEventCollectionViewCell.swift; sourceTree = "<group>"; };
 		E80607261D7EFFB8001C0D81 /* PLEventCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLEventCollectionViewCell.xib; path = Classes/UI/PLEventCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 		045772821D7D743D004D5B0C /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				D483E8101D7F0ECC00FCD614 /* PLFriendCellData.swift */,
 				045772831D7D744D004D5B0C /* PLFriendCell.swift */,
 				045772851D7D744D004D5B0C /* PLFriendsModel.swift */,
 				045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */,
@@ -642,6 +644,7 @@
 				D48390A11D78681B00990E83 /* PLSettingsManager.swift in Sources */,
 				D48390951D78236F00990E83 /* PLFacade.swift in Sources */,
 				24788D611D7E9A28007BA3C3 /* PLOrderOffersView.swift in Sources */,
+				D483E8111D7F0ECC00FCD614 /* PLFriendCellData.swift in Sources */,
 				E8DBCEDD1D7C3D5C003727C7 /* PLImageView.swift in Sources */,
 				04532A5B1D7EF1B00027FB31 /* PLFriendSearchTableViewCell.swift in Sources */,
 				24CD9CDD1D77079300247FE8 /* TGLStackedLayout.m in Sources */,

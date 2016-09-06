@@ -6,7 +6,12 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
+protocol PLCellRepresentable {
+    associatedtype EntityType
+    var cellData: EntityType {get}
+}
+
+
 @IBDesignable
 class PLFriendCell: UITableViewCell {
 
