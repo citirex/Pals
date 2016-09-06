@@ -159,3 +159,18 @@ extension PLSettingsViewController: UITextFieldDelegate {
         return false
     }
 }
+
+
+// MARK: - UIScrollViewDelegate
+
+extension PLSettingsViewController: UIScrollViewDelegate {
+
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        usernameTextField.resignFirstResponder()
+    }
+
+    func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
+        usernameTextField.resignFirstResponder()
+        return true
+    }
+}
