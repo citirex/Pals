@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,20 +12,80 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCX-DI-Uji">
-                    <rect key="frame" x="160" y="0.0" width="160" height="54"/>
-                    <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="2"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCX-DI-Uji">
+                    <rect key="frame" x="160" y="0.0" width="160" height="60"/>
+                    <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="ZqC-ed-JVy"/>
+                    </constraints>
+                    <state key="normal" title="Drinks">
+                        <color key="titleColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KE9-GV-Sit">
-                    <rect key="frame" x="0.0" y="0.0" width="160" height="54"/>
-                    <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="1"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KE9-GV-Sit">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+                    <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="yDb-WZ-k2U"/>
+                    </constraints>
+                    <state key="normal" title="Cover">
+                        <color key="titleColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zm8-KR-u9E">
+                    <rect key="frame" x="0.0" y="60" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="hIJ-kS-E66"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TbF-1u-JXB">
+                    <rect key="frame" x="160" y="56" width="160" height="4"/>
+                    <color key="backgroundColor" red="0.49019607840000001" green="0.29803921570000003" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="4" id="5Ba-9U-nWC"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3ZV-Nk-9CL">
+                    <rect key="frame" x="0.0" y="60" width="320" height="340"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="3ZV-Nk-9CL" firstAttribute="top" secondItem="Zm8-KR-u9E" secondAttribute="top" id="36k-c9-OZ9"/>
+                <constraint firstAttribute="trailing" secondItem="fCX-DI-Uji" secondAttribute="trailing" id="7Ax-0q-PhX"/>
+                <constraint firstItem="TbF-1u-JXB" firstAttribute="centerX" secondItem="KE9-GV-Sit" secondAttribute="centerX" priority="250" id="E3l-eX-YDC"/>
+                <constraint firstAttribute="trailing" secondItem="Zm8-KR-u9E" secondAttribute="trailing" id="Fej-h0-ACH"/>
+                <constraint firstItem="TbF-1u-JXB" firstAttribute="width" secondItem="o6R-OJ-Hn8" secondAttribute="width" multiplier="1:2" id="I4Z-WT-qz8"/>
+                <constraint firstItem="KE9-GV-Sit" firstAttribute="top" secondItem="o6R-OJ-Hn8" secondAttribute="top" id="IWn-M0-t2X"/>
+                <constraint firstItem="fCX-DI-Uji" firstAttribute="width" secondItem="o6R-OJ-Hn8" secondAttribute="width" multiplier="1:2" id="Q6S-Sy-MFT"/>
+                <constraint firstItem="KE9-GV-Sit" firstAttribute="leading" secondItem="o6R-OJ-Hn8" secondAttribute="leading" id="VQh-Qh-eiA"/>
+                <constraint firstItem="Zm8-KR-u9E" firstAttribute="top" secondItem="TbF-1u-JXB" secondAttribute="bottom" id="VZY-46-O6s"/>
+                <constraint firstItem="3ZV-Nk-9CL" firstAttribute="trailing" secondItem="Zm8-KR-u9E" secondAttribute="trailing" id="ZnS-1p-WtR"/>
+                <constraint firstItem="Zm8-KR-u9E" firstAttribute="top" secondItem="o6R-OJ-Hn8" secondAttribute="top" constant="60" id="ckI-Rl-TUw"/>
+                <constraint firstAttribute="bottom" secondItem="3ZV-Nk-9CL" secondAttribute="bottom" id="cmn-O4-Fm3"/>
+                <constraint firstItem="fCX-DI-Uji" firstAttribute="top" secondItem="o6R-OJ-Hn8" secondAttribute="top" id="gUX-is-9v5"/>
+                <constraint firstItem="TbF-1u-JXB" firstAttribute="centerX" secondItem="fCX-DI-Uji" secondAttribute="centerX" priority="750" id="lko-7Z-Fdd"/>
+                <constraint firstItem="KE9-GV-Sit" firstAttribute="width" secondItem="o6R-OJ-Hn8" secondAttribute="width" multiplier="1:2" id="snD-jr-vKR"/>
+                <constraint firstItem="3ZV-Nk-9CL" firstAttribute="leading" secondItem="Zm8-KR-u9E" secondAttribute="leading" id="yi0-Yy-hBa"/>
+                <constraint firstItem="Zm8-KR-u9E" firstAttribute="leading" secondItem="o6R-OJ-Hn8" secondAttribute="leading" id="ytf-Wb-nC8"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="coverButton" destination="KE9-GV-Sit" id="DG9-CF-j3K"/>
+                <outlet property="coverConstraint" destination="E3l-eX-YDC" id="DXh-9i-36L"/>
+                <outlet property="drinkButton" destination="fCX-DI-Uji" id="uoN-8h-2Wb"/>
+                <outlet property="drinkConstraint" destination="lko-7Z-Fdd" id="SJy-Wi-n9u"/>
+                <outlet property="tableView" destination="3ZV-Nk-9CL" id="J5u-BP-yUc"/>
+            </connections>
             <point key="canvasLocation" x="44" y="348"/>
         </view>
     </objects>

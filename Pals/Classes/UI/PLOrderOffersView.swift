@@ -10,6 +10,12 @@ import UIKit
 
 class PLOrderOffersView: UIView {
     
+    @IBOutlet var coverButton: UIButton!
+    @IBOutlet var drinkButton: UIButton!
     
+    @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet var coverConstraint: NSLayoutConstraint!
+    @IBOutlet var drinkConstraint: NSLayoutConstraint!
     
 }
