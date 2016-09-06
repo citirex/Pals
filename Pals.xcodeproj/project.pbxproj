@@ -184,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				24CD9CD41D77079300247FE8 /* Thrird Party Libraries */,
-				D42F53C81D76B497005DEA34 /* AppDelegate.swift */,
 				D42F53D11D76B497005DEA34 /* LaunchScreen.storyboard */,
 				D42F53D41D76B497005DEA34 /* Info.plist */,
 				24CD9CE01D77097000247FE8 /* Pals-Bridging-Header.h */,
@@ -277,6 +276,7 @@
 		D42F53C71D76B497005DEA34 /* Pals */ = {
 			isa = PBXGroup;
 			children = (
+				E80F928D1D7EA65D0066AA3F /* AppDelegate */,
 				D42F53E31D76D31D005DEA34 /* Extensions */,
 				D42F53DA1D76C28F005DEA34 /* Business */,
 				D42F53DB1D76C2A4005DEA34 /* Model */,
@@ -361,6 +361,14 @@
 				D483E1311D79BC2A00FCD614 /* sendpassword.json */,
 			);
 			path = FakeFeeds;
+			sourceTree = "<group>";
+		};
+		E80F928D1D7EA65D0066AA3F /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				D42F53C81D76B497005DEA34 /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
 			sourceTree = "<group>";
 		};
 		E857F02D1D7801F40020B981 /* SignUp */ = {

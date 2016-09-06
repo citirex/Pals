@@ -14,22 +14,46 @@ class PLSettingsViewController: UIViewController {
     @IBOutlet weak var userProfileImageView: PLImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var tableView: UITableView!
+    
+    var user: PLUser!
     
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
-        headerSectionView.addGestureRecognizer(dismissTap)
+        addGestures()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        setupHeaderSection()
     }
     
     
-    // MARK: - Dismiss Keyboard
+    private func setupHeaderSection() {
+        let imageData = NSData(contentsOfURL: user.picture)
+        let image = UIImage(data: imageData!)
+        
+        backgroundImageView.image = image
+        userProfileImageView.image = image
+        usernameTextField.text = user.name
+    }
     
-    func dismissKeyboard(sender: UITapGestureRecognizer) {
-        view.endEditing(true)
+    
+    // MARK: - Gestures
+    
+    private func addGestures() {
+        let editTap = UITapGestureRecognizer(target: self, action: #selector(textFieldEditing(_:)))
+        headerSectionView.addGestureRecognizer(editTap)
+    }
+    
+    func textFieldEditing(sender: UITapGestureRecognizer) {
+        if usernameTextField.isFirstResponder() {
+            usernameTextField.resignFirstResponder()
+        } else {
+            usernameTextField.becomeFirstResponder()
+        }
     }
 
     
@@ -38,7 +62,6 @@ class PLSettingsViewController: UIViewController {
     @IBAction func signOutButtonTapped(sender: UIButton) {
         print("Sign out tapped")
     }
-
 
 
     // MARK: - Navigation
@@ -126,4 +149,13 @@ extension PLSettingsViewController: UITableViewDelegate {
         return tableView.dequeueReusableCellWithIdentifier(headerIdentifier)
     }
     
+}
+
+
+extension PLSettingsViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
 }

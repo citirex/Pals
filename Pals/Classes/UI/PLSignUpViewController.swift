@@ -98,7 +98,7 @@ class PLSignUpViewController: UIViewController {
         guard !username.isEmpty else { return showAlert("Error", message: "Username must contain at least 1 character") }
         guard email.isValidEmail else { return showAlert("Error", message: "Please enter a valid email address") }
         guard !password.isEmpty else { return showAlert("Error", message: "Password must contain at least 1 character") }
-        guard password == confirmPasswordTextField.text!.trim() else { return showAlert("Error", message: "Password mismatch") }
+        guard validatePassword(password) else { return showAlert("Error", message: "Password mismatch") }
         
         let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
         
@@ -112,6 +112,10 @@ class PLSignUpViewController: UIViewController {
             _ = navigationController.viewControllers.first as! PLProfileViewController
             self.presentViewController(tabBarController, animated: true, completion: nil)
         }
+    }
+    
+    private func validatePassword(pass: String) -> Bool {
+        return pass == confirmPasswordTextField.text!.trim()
     }
 
     

@@ -16,14 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-        let mainStoryboardIpad = UIStoryboard(name: "Main", bundle: nil)
-        let viewControllerIdentifier = (isUserLoggedIn == true) ? "TabBarController" : "Login" // fix to show login or tabbar
-        let initialViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier(viewControllerIdentifier) as UIViewController
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = initialViewController
-        self.window?.makeKeyAndVisible()
         
+        // Appearance
+        UITabBar.appearance().tintColor = .whiteColor()
+
+        let initialViewController = isUserLoggedIn ? UIStoryboard.tabBarController() : UIStoryboard.loginViewController()
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = initialViewController
+        window?.makeKeyAndVisible()
         
         return true 
     }
@@ -47,5 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         
     }
+    
 }
 

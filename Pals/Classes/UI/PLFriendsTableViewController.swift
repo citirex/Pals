@@ -62,6 +62,16 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		return 100
 	}
+    
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowFriendProfile" {
+            let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
+            friendProfileViewController.title = ""
+        }
+    }
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)

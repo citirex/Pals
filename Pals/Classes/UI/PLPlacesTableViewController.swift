@@ -52,6 +52,12 @@ class PLPlacesTableViewController: UITableViewController {
         let nib = UINib(nibName: PLPlacesTableViewController.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesTableViewController.cellIdentifier)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
 
     
     // MARK: - Initialize search controller

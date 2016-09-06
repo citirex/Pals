@@ -16,5 +16,9 @@ extension UIStoryboard {
     class func tabBarController() -> UIViewController? {
         return mainStoryboard().instantiateViewControllerWithIdentifier("TabBarController")
     }
+    
+    class func loginViewController() -> PLLoginViewController? {
+        return mainStoryboard().instantiateViewControllerWithIdentifier("LoginViewController") as? PLLoginViewController
+    }
  
 }
