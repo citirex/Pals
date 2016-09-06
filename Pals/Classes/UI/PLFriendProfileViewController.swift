@@ -18,11 +18,13 @@ class PLFriendProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+//        setupView()
         
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.navigationBar.tintColor = .whiteColor()
@@ -34,6 +36,14 @@ class PLFriendProfileViewController: UIViewController {
         
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.hideTransparentNavigationBar()
+    }
+    
+    private func setupView() {
+        let imageData = NSData(contentsOfURL: user.picture)
+        let image = UIImage(data: imageData!)
+        
+        backgroundImageView.image = image
+        userProfileImageView.image = image
     }
 
     
