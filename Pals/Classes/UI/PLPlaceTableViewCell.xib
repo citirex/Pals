@@ -25,7 +25,7 @@
                         </view>
                         <blurEffect style="dark"/>
                     </visualEffectView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right-1" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-HL-u2s">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bold_arrow-right" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-HL-u2s">
                         <rect key="frame" x="285" y="47" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="6KC-op-MBu"/>
@@ -97,6 +97,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow-right-1" width="128" height="128"/>
+        <image name="bold_arrow-right" width="128" height="128"/>
     </resources>
 </document>
