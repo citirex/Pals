@@ -95,7 +95,7 @@ class PLSlidingViewController: UIViewController, UIGestureRecognizerDelegate {
                                             toItem: view,
                                             attribute: .Top,
                                             multiplier: 1,
-                                            constant: topOffsetMin)
+                                            constant: topOffsetMax)
         
         view.addConstraint(slidingConstraint!)
         setupGestures()

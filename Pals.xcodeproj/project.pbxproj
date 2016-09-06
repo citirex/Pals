@@ -14,6 +14,8 @@
 		0457728A1D7D744D004D5B0C /* PLFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */; };
 		240ACB231D784BE000C8DD0E /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240ACB221D784BE000C8DD0E /* PLProfileCollectionHelper.swift */; };
 		241969251D7EB3AC006B371F /* PLSlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241969241D7EB3AC006B371F /* PLSlidingViewController.swift */; };
+		241969291D7F0C17006B371F /* PLOrderDrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241969271D7F0C17006B371F /* PLOrderDrinkTableViewCell.swift */; };
+		2419692A1D7F0C17006B371F /* PLOrderDrinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241969281D7F0C17006B371F /* PLOrderDrinkTableViewCell.xib */; };
 		24788D551D7D72D9007BA3C3 /* PLDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24788D541D7D72D9007BA3C3 /* PLDevice.swift */; };
 		24788D581D7D9CCC007BA3C3 /* PLOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24788D571D7D9CCC007BA3C3 /* PLOrderViewController.swift */; };
 		24788D5D1D7DABDB007BA3C3 /* PLOrderBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24788D5C1D7DABDB007BA3C3 /* PLOrderBackgroundView.swift */; };
@@ -86,6 +88,8 @@
 		045772861D7D744D004D5B0C /* PLFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendsTableViewController.swift; path = Classes/UI/PLFriendsTableViewController.swift; sourceTree = "<group>"; };
 		240ACB221D784BE000C8DD0E /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
 		241969241D7EB3AC006B371F /* PLSlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLSlidingViewController.swift; path = Classes/UI/PLSlidingViewController.swift; sourceTree = "<group>"; };
+		241969271D7F0C17006B371F /* PLOrderDrinkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderDrinkTableViewCell.swift; path = Classes/UI/PLOrderDrinkTableViewCell.swift; sourceTree = "<group>"; };
+		241969281D7F0C17006B371F /* PLOrderDrinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderDrinkTableViewCell.xib; path = Classes/UI/PLOrderDrinkTableViewCell.xib; sourceTree = "<group>"; };
 		24788D541D7D72D9007BA3C3 /* PLDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLDevice.swift; path = Classes/Extensions/PLDevice.swift; sourceTree = "<group>"; };
 		24788D571D7D9CCC007BA3C3 /* PLOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderViewController.swift; path = Classes/UI/PLOrderViewController.swift; sourceTree = "<group>"; };
 		24788D5C1D7DABDB007BA3C3 /* PLOrderBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderBackgroundView.swift; path = Classes/UI/PLOrderBackgroundView.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 				24788D5E1D7DABED007BA3C3 /* PLOrderBackgroundView.xib */,
 				24788D601D7E9A28007BA3C3 /* PLOrderOffersView.swift */,
 				24788D621D7E9A41007BA3C3 /* PLOrderOffersView.xib */,
+				241969271D7F0C17006B371F /* PLOrderDrinkTableViewCell.swift */,
+				241969281D7F0C17006B371F /* PLOrderDrinkTableViewCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 				D42F53D31D76B497005DEA34 /* LaunchScreen.storyboard in Resources */,
 				24788D631D7E9A41007BA3C3 /* PLOrderOffersView.xib in Resources */,
 				D483E1301D79A64400FCD614 /* signup.json in Resources */,
+				2419692A1D7F0C17006B371F /* PLOrderDrinkTableViewCell.xib in Resources */,
 				D483E1321D79BC2A00FCD614 /* sendpassword.json in Resources */,
 				E857F02C1D7801E90020B981 /* PLProfileHeaderView.xib in Resources */,
 				E8BCCECC1D7D95EB00A1AB85 /* PLPlaceTableViewCell.xib in Resources */,
@@ -628,6 +635,7 @@
 				24CD9CDE1D77079300247FE8 /* TGLStackedViewController.m in Sources */,
 				24CBED3D1D76D6080028E5E3 /* PLProfileViewController.swift in Sources */,
 				D483E13A1D79CDAA00FCD614 /* PLOrder.swift in Sources */,
+				241969291D7F0C17006B371F /* PLOrderDrinkTableViewCell.swift in Sources */,
 				D48390971D7826FD00990E83 /* PLNetworkManager.swift in Sources */,
 				045772891D7D744D004D5B0C /* PLFriendsModel.swift in Sources */,
 				04532A591D7EBC530027FB31 /* PLFriendsSearchTableViewController.swift in Sources */,
