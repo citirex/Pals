@@ -80,7 +80,6 @@
 		D481FD821D80AE9300DD70F0 /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = D481FD361D80AE9200DD70F0 /* login.json */; };
 		D481FD831D80AE9300DD70F0 /* sendpassword.json in Resources */ = {isa = PBXBuildFile; fileRef = D481FD371D80AE9200DD70F0 /* sendpassword.json */; };
 		D481FD841D80AE9300DD70F0 /* signup.json in Resources */ = {isa = PBXBuildFile; fileRef = D481FD381D80AE9200DD70F0 /* signup.json */; };
-		D481FD851D80AE9300DD70F0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D481FD391D80AE9200DD70F0 /* Info.plist */; };
 		D481FD861D80AE9300DD70F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D481FD3A1D80AE9200DD70F0 /* LaunchScreen.storyboard */; };
 		D481FD871D80AE9300DD70F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D481FD3B1D80AE9200DD70F0 /* Main.storyboard */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
@@ -533,7 +532,6 @@
 				D481FD551D80AE9300DD70F0 /* PLAddFundsView.xib in Resources */,
 				D481FD7C1D80AE9300DD70F0 /* Assets.xcassets in Resources */,
 				D481FD641D80AE9300DD70F0 /* PLOrderDrinkTableViewCell.xib in Resources */,
-				D481FD851D80AE9300DD70F0 /* Info.plist in Resources */,
 				D481FD841D80AE9300DD70F0 /* signup.json in Resources */,
 				D481FD801D80AE9300DD70F0 /* friends2.json in Resources */,
 				D481FD661D80AE9300DD70F0 /* PLOrderOffersView.xib in Resources */,
