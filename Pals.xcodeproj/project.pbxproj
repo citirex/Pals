@@ -27,51 +27,10 @@
 		D483E8A01D80210600FCD614 /* PLPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8481D80210600FCD614 /* PLPlace.swift */; };
 		D483E8A11D80210600FCD614 /* PLUniqueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8491D80210600FCD614 /* PLUniqueObject.swift */; };
 		D483E8A21D80210600FCD614 /* PLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E84A1D80210600FCD614 /* PLUser.swift */; };
-		D483E8A31D80210600FCD614 /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E84C1D80210600FCD614 /* PLProfileCollectionHelper.swift */; };
 		D483E8A41D80210600FCD614 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D483E8501D80210600FCD614 /* TGLBackgroundProxyView.m */; };
 		D483E8A51D80210600FCD614 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D483E8521D80210600FCD614 /* TGLExposedLayout.m */; };
 		D483E8A61D80210600FCD614 /* TGLStackedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D483E8541D80210600FCD614 /* TGLStackedLayout.m */; };
 		D483E8A71D80210600FCD614 /* TGLStackedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D483E8561D80210600FCD614 /* TGLStackedViewController.m */; };
-		D483E8A81D80210600FCD614 /* PLAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8581D80210600FCD614 /* PLAddButton.swift */; };
-		D483E8A91D80210600FCD614 /* PLAddFundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8591D80210600FCD614 /* PLAddFundsView.swift */; };
-		D483E8AA1D80210600FCD614 /* PLAddFundsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E85A1D80210600FCD614 /* PLAddFundsView.xib */; };
-		D483E8AB1D80210600FCD614 /* PLAddFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E85B1D80210600FCD614 /* PLAddFundsViewController.swift */; };
-		D483E8AC1D80210600FCD614 /* PLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E85C1D80210600FCD614 /* PLButton.swift */; };
-		D483E8AD1D80210600FCD614 /* PLEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E85D1D80210600FCD614 /* PLEventCollectionViewCell.swift */; };
-		D483E8AE1D80210600FCD614 /* PLEventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E85E1D80210600FCD614 /* PLEventCollectionViewCell.xib */; };
-		D483E8AF1D80210600FCD614 /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E85F1D80210600FCD614 /* PLFriendCell.swift */; };
-		D483E8B01D80210600FCD614 /* PLFriendCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8601D80210600FCD614 /* PLFriendCellData.swift */; };
-		D483E8B11D80210600FCD614 /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8611D80210600FCD614 /* PLFriendProfileViewController.swift */; };
-		D483E8B21D80210600FCD614 /* PLFriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8621D80210600FCD614 /* PLFriendSearchTableViewCell.swift */; };
-		D483E8B31D80210600FCD614 /* PLFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8631D80210600FCD614 /* PLFriendsModel.swift */; };
-		D483E8B41D80210600FCD614 /* PLFriendsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8641D80210600FCD614 /* PLFriendsSearchTableViewController.swift */; };
-		D483E8B51D80210600FCD614 /* PLFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8651D80210600FCD614 /* PLFriendsTableViewController.swift */; };
-		D483E8B61D80210600FCD614 /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8661D80210600FCD614 /* PLImageView.swift */; };
-		D483E8B71D80210600FCD614 /* PLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8671D80210600FCD614 /* PLLoginViewController.swift */; };
-		D483E8B81D80210600FCD614 /* PLOrderBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8681D80210600FCD614 /* PLOrderBackgroundView.swift */; };
-		D483E8B91D80210600FCD614 /* PLOrderBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E8691D80210600FCD614 /* PLOrderBackgroundView.xib */; };
-		D483E8BA1D80210600FCD614 /* PLOrderDrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E86A1D80210600FCD614 /* PLOrderDrinkTableViewCell.swift */; };
-		D483E8BB1D80210600FCD614 /* PLOrderDrinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E86B1D80210600FCD614 /* PLOrderDrinkTableViewCell.xib */; };
-		D483E8BC1D80210600FCD614 /* PLOrderOffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E86C1D80210600FCD614 /* PLOrderOffersView.swift */; };
-		D483E8BD1D80210600FCD614 /* PLOrderOffersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E86D1D80210600FCD614 /* PLOrderOffersView.xib */; };
-		D483E8BE1D80210600FCD614 /* PLOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E86E1D80210600FCD614 /* PLOrderViewController.swift */; };
-		D483E8BF1D80210600FCD614 /* PLPlaceProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E86F1D80210600FCD614 /* PLPlaceProfileCollectionViewController.swift */; };
-		D483E8C01D80210600FCD614 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8701D80210600FCD614 /* PLPlaceProfileHeader.swift */; };
-		D483E8C11D80210600FCD614 /* PLPlaceProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E8711D80210600FCD614 /* PLPlaceProfileHeader.xib */; };
-		D483E8C21D80210600FCD614 /* PLPlaceProfileSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8721D80210600FCD614 /* PLPlaceProfileSectionHeader.swift */; };
-		D483E8C31D80210600FCD614 /* PLPlaceProfileSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E8731D80210600FCD614 /* PLPlaceProfileSectionHeader.xib */; };
-		D483E8C41D80210600FCD614 /* PLPlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8741D80210600FCD614 /* PLPlacesTableViewController.swift */; };
-		D483E8C51D80210600FCD614 /* PLPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8751D80210600FCD614 /* PLPlaceTableViewCell.swift */; };
-		D483E8C61D80210600FCD614 /* PLPlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E8761D80210600FCD614 /* PLPlaceTableViewCell.xib */; };
-		D483E8C71D80210600FCD614 /* PLProfileDrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8771D80210600FCD614 /* PLProfileDrinkCollectionViewCell.swift */; };
-		D483E8C81D80210600FCD614 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E8781D80210600FCD614 /* PLProfileDrinkCollectionViewCell.xib */; };
-		D483E8C91D80210600FCD614 /* PLProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8791D80210600FCD614 /* PLProfileHeaderView.swift */; };
-		D483E8CA1D80210600FCD614 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E87A1D80210600FCD614 /* PLProfileHeaderView.xib */; };
-		D483E8CB1D80210600FCD614 /* PLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E87B1D80210600FCD614 /* PLProfileViewController.swift */; };
-		D483E8CC1D80210600FCD614 /* PLSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E87C1D80210600FCD614 /* PLSettingsTableViewController.swift */; };
-		D483E8CD1D80210600FCD614 /* PLSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E87D1D80210600FCD614 /* PLSignUpViewController.swift */; };
-		D483E8CE1D80210600FCD614 /* PLSlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E87E1D80210600FCD614 /* PLSlidingViewController.swift */; };
-		D483E8CF1D80210600FCD614 /* PLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E87F1D80210600FCD614 /* PLTextField.swift */; };
 		D483E8D01D80210600FCD614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D483E8811D80210600FCD614 /* Assets.xcassets */; };
 		D483E8D11D80210600FCD614 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = D483E8821D80210600FCD614 /* config.plist */; };
 		D483E8D21D80210600FCD614 /* friends.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E8851D80210600FCD614 /* friends.json */; };
@@ -84,6 +43,47 @@
 		D483E8DA1D80210600FCD614 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D483E88D1D80210600FCD614 /* LaunchScreen.storyboard */; };
 		D483E8DB1D80210600FCD614 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D483E88E1D80210600FCD614 /* Main.storyboard */; };
 		D483E8DD1D80474F00FCD614 /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8DC1D80474F00FCD614 /* PLFriendsDatasource.swift */; };
+		D483E96B1D804A4900FCD614 /* PLAddFundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E93A1D804A4900FCD614 /* PLAddFundsView.swift */; };
+		D483E96C1D804A4900FCD614 /* PLAddFundsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E93B1D804A4900FCD614 /* PLAddFundsView.xib */; };
+		D483E96D1D804A4900FCD614 /* PLAddFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E93C1D804A4900FCD614 /* PLAddFundsViewController.swift */; };
+		D483E96E1D804A4900FCD614 /* PLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E93E1D804A4900FCD614 /* PLButton.swift */; };
+		D483E96F1D804A4900FCD614 /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E93F1D804A4900FCD614 /* PLImageView.swift */; };
+		D483E9701D804A4900FCD614 /* PLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9401D804A4900FCD614 /* PLTextField.swift */; };
+		D483E9711D804A4900FCD614 /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9421D804A4900FCD614 /* PLFriendCell.swift */; };
+		D483E9721D804A4900FCD614 /* PLFriendCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9431D804A4900FCD614 /* PLFriendCellData.swift */; };
+		D483E9731D804A4900FCD614 /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9441D804A4900FCD614 /* PLFriendProfileViewController.swift */; };
+		D483E9741D804A4900FCD614 /* PLFriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9451D804A4900FCD614 /* PLFriendSearchTableViewCell.swift */; };
+		D483E9751D804A4900FCD614 /* PLFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9461D804A4900FCD614 /* PLFriendsModel.swift */; };
+		D483E9761D804A4900FCD614 /* PLFriendsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9471D804A4900FCD614 /* PLFriendsSearchTableViewController.swift */; };
+		D483E9771D804A4900FCD614 /* PLFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9481D804A4900FCD614 /* PLFriendsTableViewController.swift */; };
+		D483E9781D804A4900FCD614 /* PLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E94A1D804A4900FCD614 /* PLLoginViewController.swift */; };
+		D483E9791D804A4900FCD614 /* PLOrderBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E94C1D804A4900FCD614 /* PLOrderBackgroundView.swift */; };
+		D483E97A1D804A4900FCD614 /* PLOrderBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E94D1D804A4900FCD614 /* PLOrderBackgroundView.xib */; };
+		D483E97B1D804A4900FCD614 /* PLOrderDrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E94E1D804A4900FCD614 /* PLOrderDrinkTableViewCell.swift */; };
+		D483E97C1D804A4900FCD614 /* PLOrderDrinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E94F1D804A4900FCD614 /* PLOrderDrinkTableViewCell.xib */; };
+		D483E97D1D804A4900FCD614 /* PLOrderOffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9501D804A4900FCD614 /* PLOrderOffersView.swift */; };
+		D483E97E1D804A4900FCD614 /* PLOrderOffersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E9511D804A4900FCD614 /* PLOrderOffersView.xib */; };
+		D483E97F1D804A4900FCD614 /* PLOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9521D804A4900FCD614 /* PLOrderViewController.swift */; };
+		D483E9801D804A4900FCD614 /* PLEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9541D804A4900FCD614 /* PLEventCollectionViewCell.swift */; };
+		D483E9811D804A4900FCD614 /* PLEventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E9551D804A4900FCD614 /* PLEventCollectionViewCell.xib */; };
+		D483E9821D804A4900FCD614 /* PLPlaceProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9561D804A4900FCD614 /* PLPlaceProfileCollectionViewController.swift */; };
+		D483E9831D804A4900FCD614 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9571D804A4900FCD614 /* PLPlaceProfileHeader.swift */; };
+		D483E9841D804A4900FCD614 /* PLPlaceProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E9581D804A4900FCD614 /* PLPlaceProfileHeader.xib */; };
+		D483E9851D804A4900FCD614 /* PLPlaceProfileSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9591D804A4900FCD614 /* PLPlaceProfileSectionHeader.swift */; };
+		D483E9861D804A4900FCD614 /* PLPlaceProfileSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E95A1D804A4900FCD614 /* PLPlaceProfileSectionHeader.xib */; };
+		D483E9871D804A4900FCD614 /* PLPlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E95B1D804A4900FCD614 /* PLPlacesTableViewController.swift */; };
+		D483E9881D804A4900FCD614 /* PLPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E95C1D804A4900FCD614 /* PLPlaceTableViewCell.swift */; };
+		D483E9891D804A4900FCD614 /* PLPlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E95D1D804A4900FCD614 /* PLPlaceTableViewCell.xib */; };
+		D483E98A1D804A4900FCD614 /* PLSlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E95E1D804A4900FCD614 /* PLSlidingViewController.swift */; };
+		D483E98B1D804A4900FCD614 /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9601D804A4900FCD614 /* PLProfileCollectionHelper.swift */; };
+		D483E98C1D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9611D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.swift */; };
+		D483E98D1D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E9621D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.xib */; };
+		D483E98E1D804A4900FCD614 /* PLProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9631D804A4900FCD614 /* PLProfileHeaderView.swift */; };
+		D483E98F1D804A4900FCD614 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D483E9641D804A4900FCD614 /* PLProfileHeaderView.xib */; };
+		D483E9901D804A4900FCD614 /* PLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9651D804A4900FCD614 /* PLProfileViewController.swift */; };
+		D483E9911D804A4900FCD614 /* PLSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9671D804A4900FCD614 /* PLSettingsViewController.swift */; };
+		D483E9921D804A4900FCD614 /* PLAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9691D804A4900FCD614 /* PLAddButton.swift */; };
+		D483E9931D804A4900FCD614 /* PLSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E96A1D804A4900FCD614 /* PLSignUpViewController.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,7 +112,6 @@
 		D483E8491D80210600FCD614 /* PLUniqueObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUniqueObject.swift; sourceTree = "<group>"; };
 		D483E84A1D80210600FCD614 /* PLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUser.swift; sourceTree = "<group>"; };
 		D483E84B1D80210600FCD614 /* Pals-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pals-Bridging-Header.h"; sourceTree = "<group>"; };
-		D483E84C1D80210600FCD614 /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
 		D483E84F1D80210600FCD614 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
 		D483E8501D80210600FCD614 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
 		D483E8511D80210600FCD614 /* TGLExposedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLExposedLayout.h; sourceTree = "<group>"; };
@@ -121,46 +120,6 @@
 		D483E8541D80210600FCD614 /* TGLStackedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLStackedLayout.m; sourceTree = "<group>"; };
 		D483E8551D80210600FCD614 /* TGLStackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLStackedViewController.h; sourceTree = "<group>"; };
 		D483E8561D80210600FCD614 /* TGLStackedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLStackedViewController.m; sourceTree = "<group>"; };
-		D483E8581D80210600FCD614 /* PLAddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddButton.swift; sourceTree = "<group>"; };
-		D483E8591D80210600FCD614 /* PLAddFundsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddFundsView.swift; sourceTree = "<group>"; };
-		D483E85A1D80210600FCD614 /* PLAddFundsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLAddFundsView.xib; sourceTree = "<group>"; };
-		D483E85B1D80210600FCD614 /* PLAddFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddFundsViewController.swift; sourceTree = "<group>"; };
-		D483E85C1D80210600FCD614 /* PLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLButton.swift; sourceTree = "<group>"; };
-		D483E85D1D80210600FCD614 /* PLEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEventCollectionViewCell.swift; sourceTree = "<group>"; };
-		D483E85E1D80210600FCD614 /* PLEventCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLEventCollectionViewCell.xib; sourceTree = "<group>"; };
-		D483E85F1D80210600FCD614 /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
-		D483E8601D80210600FCD614 /* PLFriendCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCellData.swift; sourceTree = "<group>"; };
-		D483E8611D80210600FCD614 /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendProfileViewController.swift; sourceTree = "<group>"; };
-		D483E8621D80210600FCD614 /* PLFriendSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendSearchTableViewCell.swift; sourceTree = "<group>"; };
-		D483E8631D80210600FCD614 /* PLFriendsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsModel.swift; sourceTree = "<group>"; };
-		D483E8641D80210600FCD614 /* PLFriendsSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchTableViewController.swift; sourceTree = "<group>"; };
-		D483E8651D80210600FCD614 /* PLFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsTableViewController.swift; sourceTree = "<group>"; };
-		D483E8661D80210600FCD614 /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImageView.swift; sourceTree = "<group>"; };
-		D483E8671D80210600FCD614 /* PLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLoginViewController.swift; sourceTree = "<group>"; };
-		D483E8681D80210600FCD614 /* PLOrderBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderBackgroundView.swift; sourceTree = "<group>"; };
-		D483E8691D80210600FCD614 /* PLOrderBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderBackgroundView.xib; sourceTree = "<group>"; };
-		D483E86A1D80210600FCD614 /* PLOrderDrinkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDrinkTableViewCell.swift; sourceTree = "<group>"; };
-		D483E86B1D80210600FCD614 /* PLOrderDrinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderDrinkTableViewCell.xib; sourceTree = "<group>"; };
-		D483E86C1D80210600FCD614 /* PLOrderOffersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderOffersView.swift; sourceTree = "<group>"; };
-		D483E86D1D80210600FCD614 /* PLOrderOffersView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderOffersView.xib; sourceTree = "<group>"; };
-		D483E86E1D80210600FCD614 /* PLOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderViewController.swift; sourceTree = "<group>"; };
-		D483E86F1D80210600FCD614 /* PLPlaceProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileCollectionViewController.swift; sourceTree = "<group>"; };
-		D483E8701D80210600FCD614 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileHeader.swift; sourceTree = "<group>"; };
-		D483E8711D80210600FCD614 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileHeader.xib; sourceTree = "<group>"; };
-		D483E8721D80210600FCD614 /* PLPlaceProfileSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileSectionHeader.swift; sourceTree = "<group>"; };
-		D483E8731D80210600FCD614 /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileSectionHeader.xib; sourceTree = "<group>"; };
-		D483E8741D80210600FCD614 /* PLPlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesTableViewController.swift; sourceTree = "<group>"; };
-		D483E8751D80210600FCD614 /* PLPlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceTableViewCell.swift; sourceTree = "<group>"; };
-		D483E8761D80210600FCD614 /* PLPlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceTableViewCell.xib; sourceTree = "<group>"; };
-		D483E8771D80210600FCD614 /* PLProfileDrinkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileDrinkCollectionViewCell.swift; sourceTree = "<group>"; };
-		D483E8781D80210600FCD614 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
-		D483E8791D80210600FCD614 /* PLProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileHeaderView.swift; sourceTree = "<group>"; };
-		D483E87A1D80210600FCD614 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileHeaderView.xib; sourceTree = "<group>"; };
-		D483E87B1D80210600FCD614 /* PLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileViewController.swift; sourceTree = "<group>"; };
-		D483E87C1D80210600FCD614 /* PLSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsTableViewController.swift; sourceTree = "<group>"; };
-		D483E87D1D80210600FCD614 /* PLSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSignUpViewController.swift; sourceTree = "<group>"; };
-		D483E87E1D80210600FCD614 /* PLSlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSlidingViewController.swift; sourceTree = "<group>"; };
-		D483E87F1D80210600FCD614 /* PLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTextField.swift; sourceTree = "<group>"; };
 		D483E8811D80210600FCD614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D483E8821D80210600FCD614 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		D483E8851D80210600FCD614 /* friends.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends.json; sourceTree = "<group>"; };
@@ -174,6 +133,47 @@
 		D483E88D1D80210600FCD614 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D483E88E1D80210600FCD614 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D483E8DC1D80474F00FCD614 /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
+		D483E93A1D804A4900FCD614 /* PLAddFundsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddFundsView.swift; sourceTree = "<group>"; };
+		D483E93B1D804A4900FCD614 /* PLAddFundsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLAddFundsView.xib; sourceTree = "<group>"; };
+		D483E93C1D804A4900FCD614 /* PLAddFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddFundsViewController.swift; sourceTree = "<group>"; };
+		D483E93E1D804A4900FCD614 /* PLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLButton.swift; sourceTree = "<group>"; };
+		D483E93F1D804A4900FCD614 /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImageView.swift; sourceTree = "<group>"; };
+		D483E9401D804A4900FCD614 /* PLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTextField.swift; sourceTree = "<group>"; };
+		D483E9421D804A4900FCD614 /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
+		D483E9431D804A4900FCD614 /* PLFriendCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCellData.swift; sourceTree = "<group>"; };
+		D483E9441D804A4900FCD614 /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendProfileViewController.swift; sourceTree = "<group>"; };
+		D483E9451D804A4900FCD614 /* PLFriendSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendSearchTableViewCell.swift; sourceTree = "<group>"; };
+		D483E9461D804A4900FCD614 /* PLFriendsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsModel.swift; sourceTree = "<group>"; };
+		D483E9471D804A4900FCD614 /* PLFriendsSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchTableViewController.swift; sourceTree = "<group>"; };
+		D483E9481D804A4900FCD614 /* PLFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsTableViewController.swift; sourceTree = "<group>"; };
+		D483E94A1D804A4900FCD614 /* PLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLoginViewController.swift; sourceTree = "<group>"; };
+		D483E94C1D804A4900FCD614 /* PLOrderBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderBackgroundView.swift; sourceTree = "<group>"; };
+		D483E94D1D804A4900FCD614 /* PLOrderBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderBackgroundView.xib; sourceTree = "<group>"; };
+		D483E94E1D804A4900FCD614 /* PLOrderDrinkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDrinkTableViewCell.swift; sourceTree = "<group>"; };
+		D483E94F1D804A4900FCD614 /* PLOrderDrinkTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderDrinkTableViewCell.xib; sourceTree = "<group>"; };
+		D483E9501D804A4900FCD614 /* PLOrderOffersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderOffersView.swift; sourceTree = "<group>"; };
+		D483E9511D804A4900FCD614 /* PLOrderOffersView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderOffersView.xib; sourceTree = "<group>"; };
+		D483E9521D804A4900FCD614 /* PLOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderViewController.swift; sourceTree = "<group>"; };
+		D483E9541D804A4900FCD614 /* PLEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEventCollectionViewCell.swift; sourceTree = "<group>"; };
+		D483E9551D804A4900FCD614 /* PLEventCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLEventCollectionViewCell.xib; sourceTree = "<group>"; };
+		D483E9561D804A4900FCD614 /* PLPlaceProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileCollectionViewController.swift; sourceTree = "<group>"; };
+		D483E9571D804A4900FCD614 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileHeader.swift; sourceTree = "<group>"; };
+		D483E9581D804A4900FCD614 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileHeader.xib; sourceTree = "<group>"; };
+		D483E9591D804A4900FCD614 /* PLPlaceProfileSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileSectionHeader.swift; sourceTree = "<group>"; };
+		D483E95A1D804A4900FCD614 /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileSectionHeader.xib; sourceTree = "<group>"; };
+		D483E95B1D804A4900FCD614 /* PLPlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesTableViewController.swift; sourceTree = "<group>"; };
+		D483E95C1D804A4900FCD614 /* PLPlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceTableViewCell.swift; sourceTree = "<group>"; };
+		D483E95D1D804A4900FCD614 /* PLPlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceTableViewCell.xib; sourceTree = "<group>"; };
+		D483E95E1D804A4900FCD614 /* PLSlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSlidingViewController.swift; sourceTree = "<group>"; };
+		D483E9601D804A4900FCD614 /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
+		D483E9611D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileDrinkCollectionViewCell.swift; sourceTree = "<group>"; };
+		D483E9621D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
+		D483E9631D804A4900FCD614 /* PLProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileHeaderView.swift; sourceTree = "<group>"; };
+		D483E9641D804A4900FCD614 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileHeaderView.xib; sourceTree = "<group>"; };
+		D483E9651D804A4900FCD614 /* PLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileViewController.swift; sourceTree = "<group>"; };
+		D483E9671D804A4900FCD614 /* PLSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsViewController.swift; sourceTree = "<group>"; };
+		D483E9691D804A4900FCD614 /* PLAddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddButton.swift; sourceTree = "<group>"; };
+		D483E96A1D804A4900FCD614 /* PLSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSignUpViewController.swift; sourceTree = "<group>"; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,13 +237,12 @@
 			isa = PBXGroup;
 			children = (
 				D483E8341D80210600FCD614 /* AppDelegate.swift */,
-				D483E8351D80210600FCD614 /* Business */,
-				D483E83B1D80210600FCD614 /* Extensions */,
-				D483E8421D80210600FCD614 /* Model */,
 				D483E84B1D80210600FCD614 /* Pals-Bridging-Header.h */,
-				D483E84C1D80210600FCD614 /* PLProfileCollectionHelper.swift */,
+				D483E8421D80210600FCD614 /* Model */,
+				D483E8351D80210600FCD614 /* Business */,
+				D483E9381D804A4900FCD614 /* UI */,
+				D483E83B1D80210600FCD614 /* Extensions */,
 				D483E84D1D80210600FCD614 /* Thrird Party */,
-				D483E8571D80210600FCD614 /* UI */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -312,53 +311,6 @@
 			path = TGLStackedViewController;
 			sourceTree = "<group>";
 		};
-		D483E8571D80210600FCD614 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				D483E8581D80210600FCD614 /* PLAddButton.swift */,
-				D483E8591D80210600FCD614 /* PLAddFundsView.swift */,
-				D483E85A1D80210600FCD614 /* PLAddFundsView.xib */,
-				D483E85B1D80210600FCD614 /* PLAddFundsViewController.swift */,
-				D483E85C1D80210600FCD614 /* PLButton.swift */,
-				D483E85D1D80210600FCD614 /* PLEventCollectionViewCell.swift */,
-				D483E85E1D80210600FCD614 /* PLEventCollectionViewCell.xib */,
-				D483E85F1D80210600FCD614 /* PLFriendCell.swift */,
-				D483E8601D80210600FCD614 /* PLFriendCellData.swift */,
-				D483E8611D80210600FCD614 /* PLFriendProfileViewController.swift */,
-				D483E8621D80210600FCD614 /* PLFriendSearchTableViewCell.swift */,
-				D483E8631D80210600FCD614 /* PLFriendsModel.swift */,
-				D483E8641D80210600FCD614 /* PLFriendsSearchTableViewController.swift */,
-				D483E8651D80210600FCD614 /* PLFriendsTableViewController.swift */,
-				D483E8661D80210600FCD614 /* PLImageView.swift */,
-				D483E8671D80210600FCD614 /* PLLoginViewController.swift */,
-				D483E8681D80210600FCD614 /* PLOrderBackgroundView.swift */,
-				D483E8691D80210600FCD614 /* PLOrderBackgroundView.xib */,
-				D483E86A1D80210600FCD614 /* PLOrderDrinkTableViewCell.swift */,
-				D483E86B1D80210600FCD614 /* PLOrderDrinkTableViewCell.xib */,
-				D483E86C1D80210600FCD614 /* PLOrderOffersView.swift */,
-				D483E86D1D80210600FCD614 /* PLOrderOffersView.xib */,
-				D483E86E1D80210600FCD614 /* PLOrderViewController.swift */,
-				D483E86F1D80210600FCD614 /* PLPlaceProfileCollectionViewController.swift */,
-				D483E8701D80210600FCD614 /* PLPlaceProfileHeader.swift */,
-				D483E8711D80210600FCD614 /* PLPlaceProfileHeader.xib */,
-				D483E8721D80210600FCD614 /* PLPlaceProfileSectionHeader.swift */,
-				D483E8731D80210600FCD614 /* PLPlaceProfileSectionHeader.xib */,
-				D483E8741D80210600FCD614 /* PLPlacesTableViewController.swift */,
-				D483E8751D80210600FCD614 /* PLPlaceTableViewCell.swift */,
-				D483E8761D80210600FCD614 /* PLPlaceTableViewCell.xib */,
-				D483E8771D80210600FCD614 /* PLProfileDrinkCollectionViewCell.swift */,
-				D483E8781D80210600FCD614 /* PLProfileDrinkCollectionViewCell.xib */,
-				D483E8791D80210600FCD614 /* PLProfileHeaderView.swift */,
-				D483E87A1D80210600FCD614 /* PLProfileHeaderView.xib */,
-				D483E87B1D80210600FCD614 /* PLProfileViewController.swift */,
-				D483E87C1D80210600FCD614 /* PLSettingsTableViewController.swift */,
-				D483E87D1D80210600FCD614 /* PLSignUpViewController.swift */,
-				D483E87E1D80210600FCD614 /* PLSlidingViewController.swift */,
-				D483E87F1D80210600FCD614 /* PLTextField.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		D483E8801D80210600FCD614 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +344,126 @@
 				D483E8881D80210600FCD614 /* friends3.json */,
 			);
 			path = Friends;
+			sourceTree = "<group>";
+		};
+		D483E9381D804A4900FCD614 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D483E93D1D804A4900FCD614 /* Basic */,
+				D483E9391D804A4900FCD614 /* AddFunds */,
+				D483E9411D804A4900FCD614 /* Friends */,
+				D483E9491D804A4900FCD614 /* Login */,
+				D483E94B1D804A4900FCD614 /* Order */,
+				D483E9531D804A4900FCD614 /* Places */,
+				D483E95E1D804A4900FCD614 /* PLSlidingViewController.swift */,
+				D483E95F1D804A4900FCD614 /* Profile */,
+				D483E9661D804A4900FCD614 /* Settings */,
+				D483E9681D804A4900FCD614 /* SignUp */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D483E9391D804A4900FCD614 /* AddFunds */ = {
+			isa = PBXGroup;
+			children = (
+				D483E93A1D804A4900FCD614 /* PLAddFundsView.swift */,
+				D483E93B1D804A4900FCD614 /* PLAddFundsView.xib */,
+				D483E93C1D804A4900FCD614 /* PLAddFundsViewController.swift */,
+			);
+			path = AddFunds;
+			sourceTree = "<group>";
+		};
+		D483E93D1D804A4900FCD614 /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				D483E93E1D804A4900FCD614 /* PLButton.swift */,
+				D483E93F1D804A4900FCD614 /* PLImageView.swift */,
+				D483E9401D804A4900FCD614 /* PLTextField.swift */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		D483E9411D804A4900FCD614 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				D483E9421D804A4900FCD614 /* PLFriendCell.swift */,
+				D483E9431D804A4900FCD614 /* PLFriendCellData.swift */,
+				D483E9441D804A4900FCD614 /* PLFriendProfileViewController.swift */,
+				D483E9451D804A4900FCD614 /* PLFriendSearchTableViewCell.swift */,
+				D483E9461D804A4900FCD614 /* PLFriendsModel.swift */,
+				D483E9471D804A4900FCD614 /* PLFriendsSearchTableViewController.swift */,
+				D483E9481D804A4900FCD614 /* PLFriendsTableViewController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		D483E9491D804A4900FCD614 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D483E94A1D804A4900FCD614 /* PLLoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		D483E94B1D804A4900FCD614 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				D483E94C1D804A4900FCD614 /* PLOrderBackgroundView.swift */,
+				D483E94D1D804A4900FCD614 /* PLOrderBackgroundView.xib */,
+				D483E94E1D804A4900FCD614 /* PLOrderDrinkTableViewCell.swift */,
+				D483E94F1D804A4900FCD614 /* PLOrderDrinkTableViewCell.xib */,
+				D483E9501D804A4900FCD614 /* PLOrderOffersView.swift */,
+				D483E9511D804A4900FCD614 /* PLOrderOffersView.xib */,
+				D483E9521D804A4900FCD614 /* PLOrderViewController.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		D483E9531D804A4900FCD614 /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				D483E9541D804A4900FCD614 /* PLEventCollectionViewCell.swift */,
+				D483E9551D804A4900FCD614 /* PLEventCollectionViewCell.xib */,
+				D483E9561D804A4900FCD614 /* PLPlaceProfileCollectionViewController.swift */,
+				D483E9571D804A4900FCD614 /* PLPlaceProfileHeader.swift */,
+				D483E9581D804A4900FCD614 /* PLPlaceProfileHeader.xib */,
+				D483E9591D804A4900FCD614 /* PLPlaceProfileSectionHeader.swift */,
+				D483E95A1D804A4900FCD614 /* PLPlaceProfileSectionHeader.xib */,
+				D483E95B1D804A4900FCD614 /* PLPlacesTableViewController.swift */,
+				D483E95C1D804A4900FCD614 /* PLPlaceTableViewCell.swift */,
+				D483E95D1D804A4900FCD614 /* PLPlaceTableViewCell.xib */,
+			);
+			path = Places;
+			sourceTree = "<group>";
+		};
+		D483E95F1D804A4900FCD614 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D483E9601D804A4900FCD614 /* PLProfileCollectionHelper.swift */,
+				D483E9611D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.swift */,
+				D483E9621D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.xib */,
+				D483E9631D804A4900FCD614 /* PLProfileHeaderView.swift */,
+				D483E9641D804A4900FCD614 /* PLProfileHeaderView.xib */,
+				D483E9651D804A4900FCD614 /* PLProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D483E9661D804A4900FCD614 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D483E9671D804A4900FCD614 /* PLSettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D483E9681D804A4900FCD614 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				D483E9691D804A4900FCD614 /* PLAddButton.swift */,
+				D483E96A1D804A4900FCD614 /* PLSignUpViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,27 +528,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D483E8B91D80210600FCD614 /* PLOrderBackgroundView.xib in Resources */,
-				D483E8CA1D80210600FCD614 /* PLProfileHeaderView.xib in Resources */,
 				D483E8D71D80210600FCD614 /* sendpassword.json in Resources */,
+				D483E98F1D804A4900FCD614 /* PLProfileHeaderView.xib in Resources */,
 				D483E8D01D80210600FCD614 /* Assets.xcassets in Resources */,
 				D483E8D51D80210600FCD614 /* friends3.json in Resources */,
+				D483E9811D804A4900FCD614 /* PLEventCollectionViewCell.xib in Resources */,
+				D483E9861D804A4900FCD614 /* PLPlaceProfileSectionHeader.xib in Resources */,
+				D483E98D1D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
+				D483E97E1D804A4900FCD614 /* PLOrderOffersView.xib in Resources */,
+				D483E97C1D804A4900FCD614 /* PLOrderDrinkTableViewCell.xib in Resources */,
 				D483E8DB1D80210600FCD614 /* Main.storyboard in Resources */,
 				D483E8D31D80210600FCD614 /* friends1.json in Resources */,
-				D483E8BB1D80210600FCD614 /* PLOrderDrinkTableViewCell.xib in Resources */,
-				D483E8C11D80210600FCD614 /* PLPlaceProfileHeader.xib in Resources */,
 				D483E8D21D80210600FCD614 /* friends.json in Resources */,
-				D483E8C81D80210600FCD614 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
-				D483E8AA1D80210600FCD614 /* PLAddFundsView.xib in Resources */,
+				D483E97A1D804A4900FCD614 /* PLOrderBackgroundView.xib in Resources */,
 				D483E8D61D80210600FCD614 /* login.json in Resources */,
-				D483E8BD1D80210600FCD614 /* PLOrderOffersView.xib in Resources */,
+				D483E96C1D804A4900FCD614 /* PLAddFundsView.xib in Resources */,
 				D483E8D11D80210600FCD614 /* config.plist in Resources */,
+				D483E9841D804A4900FCD614 /* PLPlaceProfileHeader.xib in Resources */,
 				D483E8D41D80210600FCD614 /* friends2.json in Resources */,
-				D483E8C61D80210600FCD614 /* PLPlaceTableViewCell.xib in Resources */,
-				D483E8C31D80210600FCD614 /* PLPlaceProfileSectionHeader.xib in Resources */,
 				D483E8DA1D80210600FCD614 /* LaunchScreen.storyboard in Resources */,
-				D483E8AE1D80210600FCD614 /* PLEventCollectionViewCell.xib in Resources */,
 				D483E8D81D80210600FCD614 /* signup.json in Resources */,
+				D483E9891D804A4900FCD614 /* PLPlaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,61 +608,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				D483E89A1D80210600FCD614 /* PLString.swift in Sources */,
-				D483E8A81D80210600FCD614 /* PLAddButton.swift in Sources */,
-				D483E8B11D80210600FCD614 /* PLFriendProfileViewController.swift in Sources */,
+				D483E98B1D804A4900FCD614 /* PLProfileCollectionHelper.swift in Sources */,
 				D483E88F1D80210600FCD614 /* AppDelegate.swift in Sources */,
-				D483E8BE1D80210600FCD614 /* PLOrderViewController.swift in Sources */,
+				D483E9731D804A4900FCD614 /* PLFriendProfileViewController.swift in Sources */,
 				D483E89E1D80210600FCD614 /* PLFakeFeed.swift in Sources */,
 				D483E8DD1D80474F00FCD614 /* PLFriendsDatasource.swift in Sources */,
+				D483E9791D804A4900FCD614 /* PLOrderBackgroundView.swift in Sources */,
 				D483E8911D80210600FCD614 /* PLNetworkManager.swift in Sources */,
+				D483E9781D804A4900FCD614 /* PLLoginViewController.swift in Sources */,
+				D483E98E1D804A4900FCD614 /* PLProfileHeaderView.swift in Sources */,
+				D483E9921D804A4900FCD614 /* PLAddButton.swift in Sources */,
 				D483E8941D80210600FCD614 /* PLSettingsManager.swift in Sources */,
-				D483E8AC1D80210600FCD614 /* PLButton.swift in Sources */,
 				D483E89B1D80210600FCD614 /* PLDrink.swift in Sources */,
 				D483E8A21D80210600FCD614 /* PLUser.swift in Sources */,
-				D483E8AD1D80210600FCD614 /* PLEventCollectionViewCell.swift in Sources */,
 				D483E8921D80210600FCD614 /* PLPageCollection.swift in Sources */,
-				D483E8B61D80210600FCD614 /* PLImageView.swift in Sources */,
 				D483E89D1D80210600FCD614 /* PLEvent.swift in Sources */,
+				D483E97B1D804A4900FCD614 /* PLOrderDrinkTableViewCell.swift in Sources */,
 				D483E8A61D80210600FCD614 /* TGLStackedLayout.m in Sources */,
 				D483E8A51D80210600FCD614 /* TGLExposedLayout.m in Sources */,
-				D483E8AF1D80210600FCD614 /* PLFriendCell.swift in Sources */,
-				D483E8B81D80210600FCD614 /* PLOrderBackgroundView.swift in Sources */,
 				D483E8A11D80210600FCD614 /* PLUniqueObject.swift in Sources */,
-				D483E8B21D80210600FCD614 /* PLFriendSearchTableViewCell.swift in Sources */,
 				D483E8931D80210600FCD614 /* PLProfileManager.swift in Sources */,
-				D483E8B41D80210600FCD614 /* PLFriendsSearchTableViewController.swift in Sources */,
-				D483E8C01D80210600FCD614 /* PLPlaceProfileHeader.swift in Sources */,
+				D483E9711D804A4900FCD614 /* PLFriendCell.swift in Sources */,
 				D483E8991D80210600FCD614 /* PLStoryboard.swift in Sources */,
-				D483E8C51D80210600FCD614 /* PLPlaceTableViewCell.swift in Sources */,
-				D483E8CC1D80210600FCD614 /* PLSettingsTableViewController.swift in Sources */,
+				D483E9741D804A4900FCD614 /* PLFriendSearchTableViewCell.swift in Sources */,
+				D483E97F1D804A4900FCD614 /* PLOrderViewController.swift in Sources */,
 				D483E8951D80210600FCD614 /* PLDevice.swift in Sources */,
+				D483E9831D804A4900FCD614 /* PLPlaceProfileHeader.swift in Sources */,
+				D483E9801D804A4900FCD614 /* PLEventCollectionViewCell.swift in Sources */,
+				D483E9881D804A4900FCD614 /* PLPlaceTableViewCell.swift in Sources */,
+				D483E9761D804A4900FCD614 /* PLFriendsSearchTableViewController.swift in Sources */,
 				D483E8901D80210600FCD614 /* PLFacade.swift in Sources */,
+				D483E96E1D804A4900FCD614 /* PLButton.swift in Sources */,
+				D483E9931D804A4900FCD614 /* PLSignUpViewController.swift in Sources */,
+				D483E9871D804A4900FCD614 /* PLPlacesTableViewController.swift in Sources */,
 				D483E89C1D80210600FCD614 /* PLErrors.swift in Sources */,
-				D483E8C41D80210600FCD614 /* PLPlacesTableViewController.swift in Sources */,
-				D483E8CE1D80210600FCD614 /* PLSlidingViewController.swift in Sources */,
+				D483E9821D804A4900FCD614 /* PLPlaceProfileCollectionViewController.swift in Sources */,
+				D483E96D1D804A4900FCD614 /* PLAddFundsViewController.swift in Sources */,
 				D483E8A41D80210600FCD614 /* TGLBackgroundProxyView.m in Sources */,
-				D483E8CD1D80210600FCD614 /* PLSignUpViewController.swift in Sources */,
-				D483E8CF1D80210600FCD614 /* PLTextField.swift in Sources */,
-				D483E8BF1D80210600FCD614 /* PLPlaceProfileCollectionViewController.swift in Sources */,
-				D483E8B31D80210600FCD614 /* PLFriendsModel.swift in Sources */,
+				D483E9751D804A4900FCD614 /* PLFriendsModel.swift in Sources */,
 				D483E8A01D80210600FCD614 /* PLPlace.swift in Sources */,
-				D483E8A31D80210600FCD614 /* PLProfileCollectionHelper.swift in Sources */,
-				D483E8AB1D80210600FCD614 /* PLAddFundsViewController.swift in Sources */,
 				D483E8981D80210600FCD614 /* PLSignUpHelpers.swift in Sources */,
+				D483E98C1D804A4900FCD614 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
+				D483E96B1D804A4900FCD614 /* PLAddFundsView.swift in Sources */,
+				D483E9851D804A4900FCD614 /* PLPlaceProfileSectionHeader.swift in Sources */,
+				D483E96F1D804A4900FCD614 /* PLImageView.swift in Sources */,
+				D483E9911D804A4900FCD614 /* PLSettingsViewController.swift in Sources */,
+				D483E97D1D804A4900FCD614 /* PLOrderOffersView.swift in Sources */,
 				D483E8971D80210600FCD614 /* PLNavigationController.swift in Sources */,
-				D483E8CB1D80210600FCD614 /* PLProfileViewController.swift in Sources */,
-				D483E8C21D80210600FCD614 /* PLPlaceProfileSectionHeader.swift in Sources */,
 				D483E8A71D80210600FCD614 /* TGLStackedViewController.m in Sources */,
-				D483E8BC1D80210600FCD614 /* PLOrderOffersView.swift in Sources */,
-				D483E8B51D80210600FCD614 /* PLFriendsTableViewController.swift in Sources */,
-				D483E8A91D80210600FCD614 /* PLAddFundsView.swift in Sources */,
+				D483E9771D804A4900FCD614 /* PLFriendsTableViewController.swift in Sources */,
 				D483E8961D80210600FCD614 /* PLDictionary.swift in Sources */,
-				D483E8B71D80210600FCD614 /* PLLoginViewController.swift in Sources */,
-				D483E8C71D80210600FCD614 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
-				D483E8BA1D80210600FCD614 /* PLOrderDrinkTableViewCell.swift in Sources */,
+				D483E98A1D804A4900FCD614 /* PLSlidingViewController.swift in Sources */,
 				D483E89F1D80210600FCD614 /* PLOrder.swift in Sources */,
-				D483E8B01D80210600FCD614 /* PLFriendCellData.swift in Sources */,
-				D483E8C91D80210600FCD614 /* PLProfileHeaderView.swift in Sources */,
+				D483E9701D804A4900FCD614 /* PLTextField.swift in Sources */,
+				D483E9901D804A4900FCD614 /* PLProfileViewController.swift in Sources */,
+				D483E9721D804A4900FCD614 /* PLFriendCellData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
