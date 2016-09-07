@@ -53,15 +53,10 @@
 		E81FD4AF1D8058CD000B0708 /* PLOrderOffersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81FD45A1D8058CD000B0708 /* PLOrderOffersView.xib */; };
 		E81FD4B01D8058CD000B0708 /* PLOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD45B1D8058CD000B0708 /* PLOrderViewController.swift */; };
 		E81FD4B11D8058CD000B0708 /* PLPlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD45D1D8058CD000B0708 /* PLPlaceProfileViewController.swift */; };
-		E81FD4B21D8058CD000B0708 /* PLPlaceProfileSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD45F1D8058CD000B0708 /* PLPlaceProfileSectionHeader.swift */; };
-		E81FD4B31D8058CD000B0708 /* PLPlaceProfileSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81FD4601D8058CD000B0708 /* PLPlaceProfileSectionHeader.xib */; };
 		E81FD4B41D8058CD000B0708 /* PLPlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD4611D8058CD000B0708 /* PLPlacesTableViewController.swift */; };
 		E81FD4B51D8058CD000B0708 /* PLPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD4621D8058CD000B0708 /* PLPlaceTableViewCell.swift */; };
 		E81FD4B61D8058CD000B0708 /* PLPlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81FD4631D8058CD000B0708 /* PLPlaceTableViewCell.xib */; };
-		E81FD4B71D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD4641D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.swift */; };
-		E81FD4B81D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81FD4651D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.xib */; };
 		E81FD4BA1D8058CD000B0708 /* PLSlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD4671D8058CD000B0708 /* PLSlidingViewController.swift */; };
-		E81FD4BB1D8058CD000B0708 /* PLStickyCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD4681D8058CD000B0708 /* PLStickyCollectionViewFlowLayout.swift */; };
 		E81FD4BC1D8058CD000B0708 /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD46A1D8058CD000B0708 /* PLProfileCollectionHelper.swift */; };
 		E81FD4BD1D8058CD000B0708 /* PLProfileDrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD46B1D8058CD000B0708 /* PLProfileDrinkCollectionViewCell.swift */; };
 		E81FD4BE1D8058CD000B0708 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81FD46C1D8058CD000B0708 /* PLProfileDrinkCollectionViewCell.xib */; };
@@ -84,6 +79,11 @@
 		E81FD4CF1D8058CD000B0708 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E81FD4821D8058CD000B0708 /* Info.plist */; };
 		E81FD4D01D8058CD000B0708 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81FD4831D8058CD000B0708 /* LaunchScreen.storyboard */; };
 		E81FD4D11D8058CD000B0708 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E81FD4841D8058CD000B0708 /* Main.storyboard */; };
+		E81FD4E81D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD4E41D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.swift */; };
+		E81FD4E91D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81FD4E51D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.xib */; };
+		E81FD4EB1D805EC1000B0708 /* PLStickyCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD4E71D805EC1000B0708 /* PLStickyCollectionViewFlowLayout.swift */; };
+		E81FD4EE1D806080000B0708 /* PLPlaceProfileSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FD4EC1D806080000B0708 /* PLPlaceProfileSectionHeader.swift */; };
+		E81FD4EF1D806080000B0708 /* PLPlaceProfileSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81FD4ED1D806080000B0708 /* PLPlaceProfileSectionHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,15 +140,10 @@
 		E81FD45A1D8058CD000B0708 /* PLOrderOffersView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderOffersView.xib; sourceTree = "<group>"; };
 		E81FD45B1D8058CD000B0708 /* PLOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderViewController.swift; sourceTree = "<group>"; };
 		E81FD45D1D8058CD000B0708 /* PLPlaceProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileViewController.swift; sourceTree = "<group>"; };
-		E81FD45F1D8058CD000B0708 /* PLPlaceProfileSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileSectionHeader.swift; sourceTree = "<group>"; };
-		E81FD4601D8058CD000B0708 /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileSectionHeader.xib; sourceTree = "<group>"; };
 		E81FD4611D8058CD000B0708 /* PLPlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesTableViewController.swift; sourceTree = "<group>"; };
 		E81FD4621D8058CD000B0708 /* PLPlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceTableViewCell.swift; sourceTree = "<group>"; };
 		E81FD4631D8058CD000B0708 /* PLPlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceTableViewCell.xib; sourceTree = "<group>"; };
-		E81FD4641D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileCollectionViewCell.swift; sourceTree = "<group>"; };
-		E81FD4651D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		E81FD4671D8058CD000B0708 /* PLSlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSlidingViewController.swift; sourceTree = "<group>"; };
-		E81FD4681D8058CD000B0708 /* PLStickyCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLStickyCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		E81FD46A1D8058CD000B0708 /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
 		E81FD46B1D8058CD000B0708 /* PLProfileDrinkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileDrinkCollectionViewCell.swift; sourceTree = "<group>"; };
 		E81FD46C1D8058CD000B0708 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -171,6 +166,11 @@
 		E81FD4821D8058CD000B0708 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E81FD4831D8058CD000B0708 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E81FD4841D8058CD000B0708 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E81FD4E41D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		E81FD4E51D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileCollectionViewCell.xib; sourceTree = "<group>"; };
+		E81FD4E71D805EC1000B0708 /* PLStickyCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLStickyCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		E81FD4EC1D806080000B0708 /* PLPlaceProfileSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileSectionHeader.swift; sourceTree = "<group>"; };
+		E81FD4ED1D806080000B0708 /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileSectionHeader.xib; sourceTree = "<group>"; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -318,10 +318,7 @@
 				E81FD4541D8058CD000B0708 /* Order */,
 				E81FD45C1D8058CD000B0708 /* Place Profile */,
 				E81FD45E1D8058CD000B0708 /* Places */,
-				E81FD4641D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.swift */,
-				E81FD4651D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.xib */,
 				E81FD4671D8058CD000B0708 /* PLSlidingViewController.swift */,
-				E81FD4681D8058CD000B0708 /* PLStickyCollectionViewFlowLayout.swift */,
 				E81FD4691D8058CD000B0708 /* Profile */,
 				E81FD4701D8058CD000B0708 /* Settings */,
 				E81FD4721D8058CD000B0708 /* SignUp */,
@@ -388,6 +385,11 @@
 			isa = PBXGroup;
 			children = (
 				E81FD45D1D8058CD000B0708 /* PLPlaceProfileViewController.swift */,
+				E81FD4EC1D806080000B0708 /* PLPlaceProfileSectionHeader.swift */,
+				E81FD4ED1D806080000B0708 /* PLPlaceProfileSectionHeader.xib */,
+				E81FD4E41D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.swift */,
+				E81FD4E51D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.xib */,
+				E81FD4E71D805EC1000B0708 /* PLStickyCollectionViewFlowLayout.swift */,
 			);
 			path = "Place Profile";
 			sourceTree = "<group>";
@@ -395,8 +397,6 @@
 		E81FD45E1D8058CD000B0708 /* Places */ = {
 			isa = PBXGroup;
 			children = (
-				E81FD45F1D8058CD000B0708 /* PLPlaceProfileSectionHeader.swift */,
-				E81FD4601D8058CD000B0708 /* PLPlaceProfileSectionHeader.xib */,
 				E81FD4611D8058CD000B0708 /* PLPlacesTableViewController.swift */,
 				E81FD4621D8058CD000B0708 /* PLPlaceTableViewCell.swift */,
 				E81FD4631D8058CD000B0708 /* PLPlaceTableViewCell.xib */,
@@ -532,11 +532,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E81FD4E91D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.xib in Resources */,
 				E81FD4D11D8058CD000B0708 /* Main.storyboard in Resources */,
-				E81FD4B81D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.xib in Resources */,
 				E81FD4BE1D8058CD000B0708 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				E81FD4CD1D8058CD000B0708 /* sendpassword.json in Resources */,
-				E81FD4B31D8058CD000B0708 /* PLPlaceProfileSectionHeader.xib in Resources */,
 				E81FD4C71D8058CD000B0708 /* config.plist in Resources */,
 				E81FD4C91D8058CD000B0708 /* friends1.json in Resources */,
 				E81FD49E1D8058CD000B0708 /* PLAddFundsView.xib in Resources */,
@@ -552,6 +551,7 @@
 				E81FD4CB1D8058CD000B0708 /* friends3.json in Resources */,
 				E81FD4C01D8058CD000B0708 /* PLProfileHeaderView.xib in Resources */,
 				E81FD4B61D8058CD000B0708 /* PLPlaceTableViewCell.xib in Resources */,
+				E81FD4EF1D806080000B0708 /* PLPlaceProfileSectionHeader.xib in Resources */,
 				E81FD4C81D8058CD000B0708 /* friends.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,14 +619,17 @@
 				E81FD4B01D8058CD000B0708 /* PLOrderViewController.swift in Sources */,
 				E81FD4AC1D8058CD000B0708 /* PLOrderDrinkTableViewCell.swift in Sources */,
 				E81FD4A01D8058CD000B0708 /* PLButton.swift in Sources */,
+				E81FD4E81D805EC1000B0708 /* PLPlaceProfileCollectionViewCell.swift in Sources */,
 				E81FD48A1D8058CD000B0708 /* PLProfileManager.swift in Sources */,
 				E81FD4991D8058CD000B0708 /* TGLBackgroundProxyView.m in Sources */,
+				E81FD4EE1D806080000B0708 /* PLPlaceProfileSectionHeader.swift in Sources */,
 				E81FD4911D8058CD000B0708 /* PLDrink.swift in Sources */,
 				E81FD49B1D8058CD000B0708 /* TGLStackedLayout.m in Sources */,
 				E81FD4981D8058CD000B0708 /* PLUser.swift in Sources */,
 				E81FD4C41D8058CD000B0708 /* PLSignUpData.swift in Sources */,
 				E81FD48E1D8058CD000B0708 /* PLNavigationController.swift in Sources */,
 				E81FD4931D8058CD000B0708 /* PLEvent.swift in Sources */,
+				E81FD4EB1D805EC1000B0708 /* PLStickyCollectionViewFlowLayout.swift in Sources */,
 				E81FD4971D8058CD000B0708 /* PLUniqueObject.swift in Sources */,
 				E81FD4A61D8058CD000B0708 /* PLFriendsModel.swift in Sources */,
 				E81FD4C31D8058CD000B0708 /* PLAddButton.swift in Sources */,
@@ -634,7 +637,6 @@
 				E81FD4B41D8058CD000B0708 /* PLPlacesTableViewController.swift in Sources */,
 				E81FD4A11D8058CD000B0708 /* PLImageView.swift in Sources */,
 				E81FD4871D8058CD000B0708 /* PLFriendsDatasource.swift in Sources */,
-				E81FD4B21D8058CD000B0708 /* PLPlaceProfileSectionHeader.swift in Sources */,
 				E81FD49D1D8058CD000B0708 /* PLAddFundsView.swift in Sources */,
 				E81FD4A51D8058CD000B0708 /* PLFriendProfileViewController.swift in Sources */,
 				E81FD48F1D8058CD000B0708 /* PLStoryboard.swift in Sources */,
@@ -648,7 +650,6 @@
 				E81FD49F1D8058CD000B0708 /* PLAddFundsViewController.swift in Sources */,
 				E81FD49C1D8058CD000B0708 /* TGLStackedViewController.m in Sources */,
 				E81FD4961D8058CD000B0708 /* PLPlace.swift in Sources */,
-				E81FD4BB1D8058CD000B0708 /* PLStickyCollectionViewFlowLayout.swift in Sources */,
 				E81FD48D1D8058CD000B0708 /* PLDictionary.swift in Sources */,
 				E81FD4BA1D8058CD000B0708 /* PLSlidingViewController.swift in Sources */,
 				E81FD4BC1D8058CD000B0708 /* PLProfileCollectionHelper.swift in Sources */,
@@ -665,7 +666,6 @@
 				E81FD4951D8058CD000B0708 /* PLOrder.swift in Sources */,
 				E81FD4A21D8058CD000B0708 /* PLTextField.swift in Sources */,
 				E81FD4AA1D8058CD000B0708 /* PLOrderBackgroundView.swift in Sources */,
-				E81FD4B71D8058CD000B0708 /* PLPlaceProfileCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
