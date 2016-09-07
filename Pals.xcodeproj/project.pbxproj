@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049791E81D804CD80044E655 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049791E71D804CD80044E655 /* PLFriendCell.xib */; };
 		D483E88F1D80210600FCD614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8341D80210600FCD614 /* AppDelegate.swift */; };
 		D483E8901D80210600FCD614 /* PLFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8361D80210600FCD614 /* PLFacade.swift */; };
 		D483E8911D80210600FCD614 /* PLNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8371D80210600FCD614 /* PLNetworkManager.swift */; };
@@ -52,7 +53,6 @@
 		D483E9711D804A4900FCD614 /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9421D804A4900FCD614 /* PLFriendCell.swift */; };
 		D483E9721D804A4900FCD614 /* PLFriendCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9431D804A4900FCD614 /* PLFriendCellData.swift */; };
 		D483E9731D804A4900FCD614 /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9441D804A4900FCD614 /* PLFriendProfileViewController.swift */; };
-		D483E9741D804A4900FCD614 /* PLFriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9451D804A4900FCD614 /* PLFriendSearchTableViewCell.swift */; };
 		D483E9751D804A4900FCD614 /* PLFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9461D804A4900FCD614 /* PLFriendsModel.swift */; };
 		D483E9761D804A4900FCD614 /* PLFriendsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9471D804A4900FCD614 /* PLFriendsSearchTableViewController.swift */; };
 		D483E9771D804A4900FCD614 /* PLFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E9481D804A4900FCD614 /* PLFriendsTableViewController.swift */; };
@@ -88,6 +88,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		049791E71D804CD80044E655 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +143,6 @@
 		D483E9421D804A4900FCD614 /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		D483E9431D804A4900FCD614 /* PLFriendCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCellData.swift; sourceTree = "<group>"; };
 		D483E9441D804A4900FCD614 /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendProfileViewController.swift; sourceTree = "<group>"; };
-		D483E9451D804A4900FCD614 /* PLFriendSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendSearchTableViewCell.swift; sourceTree = "<group>"; };
 		D483E9461D804A4900FCD614 /* PLFriendsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsModel.swift; sourceTree = "<group>"; };
 		D483E9471D804A4900FCD614 /* PLFriendsSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchTableViewController.swift; sourceTree = "<group>"; };
 		D483E9481D804A4900FCD614 /* PLFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -386,10 +386,10 @@
 		D483E9411D804A4900FCD614 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				049791E71D804CD80044E655 /* PLFriendCell.xib */,
 				D483E9421D804A4900FCD614 /* PLFriendCell.swift */,
 				D483E9431D804A4900FCD614 /* PLFriendCellData.swift */,
 				D483E9441D804A4900FCD614 /* PLFriendProfileViewController.swift */,
-				D483E9451D804A4900FCD614 /* PLFriendSearchTableViewCell.swift */,
 				D483E9461D804A4900FCD614 /* PLFriendsModel.swift */,
 				D483E9471D804A4900FCD614 /* PLFriendsSearchTableViewController.swift */,
 				D483E9481D804A4900FCD614 /* PLFriendsTableViewController.swift */,
@@ -531,6 +531,7 @@
 				D483E8D71D80210600FCD614 /* sendpassword.json in Resources */,
 				D483E98F1D804A4900FCD614 /* PLProfileHeaderView.xib in Resources */,
 				D483E8D01D80210600FCD614 /* Assets.xcassets in Resources */,
+				049791E81D804CD80044E655 /* PLFriendCell.xib in Resources */,
 				D483E8D51D80210600FCD614 /* friends3.json in Resources */,
 				D483E9811D804A4900FCD614 /* PLEventCollectionViewCell.xib in Resources */,
 				D483E9861D804A4900FCD614 /* PLPlaceProfileSectionHeader.xib in Resources */,
@@ -630,7 +631,6 @@
 				D483E8931D80210600FCD614 /* PLProfileManager.swift in Sources */,
 				D483E9711D804A4900FCD614 /* PLFriendCell.swift in Sources */,
 				D483E8991D80210600FCD614 /* PLStoryboard.swift in Sources */,
-				D483E9741D804A4900FCD614 /* PLFriendSearchTableViewCell.swift in Sources */,
 				D483E97F1D804A4900FCD614 /* PLOrderViewController.swift in Sources */,
 				D483E8951D80210600FCD614 /* PLDevice.swift in Sources */,
 				D483E9831D804A4900FCD614 /* PLPlaceProfileHeader.swift in Sources */,

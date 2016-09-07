@@ -30,6 +30,11 @@ class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDele
 		searchBar.layer.cornerRadius = 25
 		searchBar.clipsToBounds = true
 		searchBar.delegate = self
+		
+		tableView.separatorInset.left = 75
+		
+		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
+		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 	}
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,10 +43,12 @@ class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDele
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
-		let cell:PLFriendSearchTableViewCell = tableView.dequeueReusableCellWithIdentifier("FriendSearchCell") as! PLFriendSearchTableViewCell
+		let cell:PLFriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! PLFriendCell
 		
 		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
 		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
+		cell.accessoryType = .None
+		cell.addButtonOutlet.hidden = false
 		cell.addButtonOutlet.setImage(UIImage(named: "plus"), forState: .Normal)
 		
 		return cell
