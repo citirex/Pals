@@ -6,6 +6,10 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLFriendsDatasource: NSObject {
-
+class PLFriendsDatasource {
+    let collection: PLUserPageCollection
+    init() {
+//        let servise = PLKeys
+        collection = PLUserPageCollection(url: "")
+    }
 }

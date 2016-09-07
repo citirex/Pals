@@ -6,27 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
-
-enum PLKeys : String {
-    case id
-    case name
-    case picture
-    case email
-    case balance
-    case user
-    case response
-    case login
-    case password
-    case success
-    case per_page
-    case since
-    case page
-    var string : String {
-        return rawValue
-    }
-}
-
 class PLUniqueObject: PLSerializable {
     
     var id: UInt64

@@ -30,13 +30,13 @@ class PLPageCollection<T:PLUniqueObject> {
     weak var delegate: PLPageCollectionDelegate?
     var preset: PLPageCollectionPreset
     var objects = [T]()
+    var session: AFHTTPSessionManager?
     
     private var offset = UInt64(0)
     private var loading = false
     
     init(preset: PLPageCollectionPreset) {
         self.preset = preset
-        load()
     }
     
     var count: Int {
@@ -78,7 +78,10 @@ class PLPageCollection<T:PLUniqueObject> {
             offset = self.offset
         }
         let params = [preset.sizeKey : preset.size, preset.offsetKey : String(offset)]
-        AFHTTPSessionManager().GET(preset.url, parameters: params, progress: nil, success: { (task, response) in
+        if session == nil {
+            return
+        }
+        session!.GET(preset.url, parameters: params, progress: nil, success: { (task, response) in
             guard
                 let jsonObjects = response as? [Dictionary<String,AnyObject>]
             else {
@@ -120,8 +123,8 @@ class PLPalsPageCollection<T: PLUniqueObject>: PLPageCollection<T> {
     }
 }
 
-class PLUserPageCollection: PLPageCollection<PLUser> {
-    override init(preset: PLPageCollectionPreset) {
-        super.init(preset: preset)
+class PLUserPageCollection: PLPalsPageCollection<PLUser> {
+    override init(url: String, size: Int, offsetById: Bool) {
+        super.init(url: url, size: size, offsetById: offsetById)
     }
 }
