@@ -108,7 +108,7 @@ class PLPlacesTableViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowPlaceProfile" {
-            let placeProfileViewController = segue.destinationViewController as! PLPlaceProfileCollectionViewController
+            let placeProfileViewController = segue.destinationViewController as! PLPlaceProfileViewController
             placeProfileViewController.title = ""
         }
     }
