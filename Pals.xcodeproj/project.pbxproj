@@ -56,6 +56,11 @@
 		D483E1381D79CC2900FCD614 /* PLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1371D79CC2900FCD614 /* PLEvent.swift */; };
 		D483E13A1D79CDAA00FCD614 /* PLOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E1391D79CDAA00FCD614 /* PLOrder.swift */; };
 		D483E8111D7F0ECC00FCD614 /* PLFriendCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8101D7F0ECC00FCD614 /* PLFriendCellData.swift */; };
+		D483E8161D8001E600FCD614 /* friends.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E8131D8001E600FCD614 /* friends.json */; };
+		D483E8171D8001E600FCD614 /* friends1.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E8141D8001E600FCD614 /* friends1.json */; };
+		D483E8181D8001E600FCD614 /* friends2.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E8151D8001E600FCD614 /* friends2.json */; };
+		D483E82D1D80165800FCD614 /* friends3.json in Resources */ = {isa = PBXBuildFile; fileRef = D483E82C1D80165800FCD614 /* friends3.json */; };
+		D483E8311D8016BD00FCD614 /* PLPageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483E8301D8016BD00FCD614 /* PLPageCollection.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 		E80607231D7EFB2A001C0D81 /* PLPlaceProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80607221D7EFB2A001C0D81 /* PLPlaceProfileCollectionViewController.swift */; };
 		E80607281D7EFFB8001C0D81 /* PLEventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80607261D7EFFB8001C0D81 /* PLEventCollectionViewCell.xib */; };
@@ -139,6 +144,11 @@
 		D483E1371D79CC2900FCD614 /* PLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEvent.swift; path = Classes/Model/PLEvent.swift; sourceTree = "<group>"; };
 		D483E1391D79CDAA00FCD614 /* PLOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrder.swift; path = Classes/Model/PLOrder.swift; sourceTree = "<group>"; };
 		D483E8101D7F0ECC00FCD614 /* PLFriendCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendCellData.swift; path = Classes/UI/PLFriendCellData.swift; sourceTree = "<group>"; };
+		D483E8131D8001E600FCD614 /* friends.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends.json; sourceTree = "<group>"; };
+		D483E8141D8001E600FCD614 /* friends1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends1.json; sourceTree = "<group>"; };
+		D483E8151D8001E600FCD614 /* friends2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends2.json; sourceTree = "<group>"; };
+		D483E82C1D80165800FCD614 /* friends3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends3.json; sourceTree = "<group>"; };
+		D483E8301D8016BD00FCD614 /* PLPageCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPageCollection.swift; path = Classes/Business/PLPageCollection.swift; sourceTree = "<group>"; };
 		E80607221D7EFB2A001C0D81 /* PLPlaceProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileCollectionViewController.swift; path = Classes/UI/PLPlaceProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		E80607251D7EFFB8001C0D81 /* PLEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEventCollectionViewCell.swift; path = Classes/UI/PLEventCollectionViewCell.swift; sourceTree = "<group>"; };
 		E80607261D7EFFB8001C0D81 /* PLEventCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLEventCollectionViewCell.xib; path = Classes/UI/PLEventCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -336,6 +346,7 @@
 				D48390981D782E4500990E83 /* PLProfileManager.swift */,
 				D48390961D7826FD00990E83 /* PLNetworkManager.swift */,
 				D48390A01D78681B00990E83 /* PLSettingsManager.swift */,
+				D483E8301D8016BD00FCD614 /* PLPageCollection.swift */,
 			);
 			name = Business;
 			sourceTree = "<group>";
@@ -396,11 +407,23 @@
 		D483909C1D78672700990E83 /* FakeFeeds */ = {
 			isa = PBXGroup;
 			children = (
+				D483E8121D8001E600FCD614 /* Friends */,
 				D483E12F1D79A64400FCD614 /* signup.json */,
 				D483909D1D78672700990E83 /* login.json */,
 				D483E1311D79BC2A00FCD614 /* sendpassword.json */,
 			);
 			path = FakeFeeds;
+			sourceTree = "<group>";
+		};
+		D483E8121D8001E600FCD614 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				D483E8131D8001E600FCD614 /* friends.json */,
+				D483E8141D8001E600FCD614 /* friends1.json */,
+				D483E8151D8001E600FCD614 /* friends2.json */,
+				D483E82C1D80165800FCD614 /* friends3.json */,
+			);
+			path = Friends;
 			sourceTree = "<group>";
 		};
 		E80607241D7EFCEC001C0D81 /* Cells */ = {
@@ -563,17 +586,21 @@
 				D483E1301D79A64400FCD614 /* signup.json in Resources */,
 				2419692A1D7F0C17006B371F /* PLOrderDrinkTableViewCell.xib in Resources */,
 				D483E1321D79BC2A00FCD614 /* sendpassword.json in Resources */,
+				D483E8181D8001E600FCD614 /* friends2.json in Resources */,
 				E857F02C1D7801E90020B981 /* PLProfileHeaderView.xib in Resources */,
 				E8BCCECC1D7D95EB00A1AB85 /* PLPlaceTableViewCell.xib in Resources */,
 				D483909E1D78672700990E83 /* config.plist in Resources */,
 				2483B2811D79C29800E312C0 /* PLAddFundsView.xib in Resources */,
 				E80607281D7EFFB8001C0D81 /* PLEventCollectionViewCell.xib in Resources */,
+				D483E8161D8001E600FCD614 /* friends.json in Resources */,
 				E857F02B1D7801E90020B981 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				E80607311D7F00E4001C0D81 /* PLPlaceProfileSectionHeader.xib in Resources */,
 				D42F53D01D76B497005DEA34 /* Assets.xcassets in Resources */,
 				24788D5F1D7DABED007BA3C3 /* PLOrderBackgroundView.xib in Resources */,
+				D483E8171D8001E600FCD614 /* friends1.json in Resources */,
 				D483909F1D78672700990E83 /* login.json in Resources */,
 				D42F53CE1D76B497005DEA34 /* Main.storyboard in Resources */,
+				D483E82D1D80165800FCD614 /* friends3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,6 +703,7 @@
 				241969251D7EB3AC006B371F /* PLSlidingViewController.swift in Sources */,
 				E8BCCEC51D7D761E00A1AB85 /* PLFriendProfileViewController.swift in Sources */,
 				24788D581D7D9CCC007BA3C3 /* PLOrderViewController.swift in Sources */,
+				D483E8311D8016BD00FCD614 /* PLPageCollection.swift in Sources */,
 				E84DB4211D79D97F00B16166 /* PLStoryboard.swift in Sources */,
 				E857F0371D7802180020B981 /* PLTextField.swift in Sources */,
 				24BB0C721D77272600B691D1 /* PLProfileHeaderView.swift in Sources */,

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7B8B2FAFBA6371518A8E5DC1CB902858BEA30191",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DF33E35978130248B1B107FC874747908423CA37" : 0,
+    "7B8B2FAFBA6371518A8E5DC1CB902858BEA30191" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5B45AC18-7A7C-4E2D-BE19-A5D9BB62FC78",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DF33E35978130248B1B107FC874747908423CA37" : "..\/Test\/GH%20Viewer",
+    "7B8B2FAFBA6371518A8E5DC1CB902858BEA30191" : "Pals\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Pals",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Pals.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/citirex\/Pals.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7B8B2FAFBA6371518A8E5DC1CB902858BEA30191"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/VladislavSenyukov\/GHViewer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DF33E35978130248B1B107FC874747908423CA37"
+    }
+  ]
+}

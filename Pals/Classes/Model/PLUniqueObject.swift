@@ -19,6 +19,9 @@ enum PLKeys : String {
     case login
     case password
     case success
+    case per_page
+    case since
+    case page
     var string : String {
         return rawValue
     }
