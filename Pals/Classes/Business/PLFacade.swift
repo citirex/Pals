@@ -38,7 +38,6 @@ class PLFacade : PLFacadeInterface {
     class _PLFacade {
         let settingsManager = PLSettingsManager()
         private let profileManager = PLProfileManager()
-        private let networkManager = PLNetworkManager()
     }
 }
 
@@ -47,7 +46,7 @@ extension PLFacade._PLFacade {
         let params = data.params
         let imageData = UIImagePNGRepresentation(data.picture)!
         let attachment = PLUploadAttachment(name: "profileImage", mimeType: "image/png", data: imageData)
-        networkManager.post(PLAPIService.SignUp, parameters: params, attachment: attachment) { (dic, error) in
+        PLNetworkManager.post(PLAPIService.SignUp, parameters: params, attachment: attachment) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
     }
@@ -55,7 +54,7 @@ extension PLFacade._PLFacade {
     func _login(userName:String, password: String, completion: PLErrorCompletion) {
         let loginService = PLAPIService.Login
         let params = [PLKeys.login.string : userName, PLKeys.password.string : password]
-        networkManager.get(loginService, parameters: params) { (dic, error) in
+        PLNetworkManager.get(loginService, parameters: params) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
     }
@@ -63,7 +62,7 @@ extension PLFacade._PLFacade {
     func _sendPassword(email: String, completion: PLErrorCompletion) {
         let passService = PLAPIService.SendPassword
         let params = ["email" : email]
-        networkManager.get(passService, parameters: params, completion: { (dic, error) in
+        PLNetworkManager.get(passService, parameters: params, completion: { (dic, error) in
             self.handleErrorCompletion(error, errorCompletion: completion, completion: { () -> NSError? in
                 if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
                     if let success = response[PLKeys.success.string] as? Bool {
