@@ -14,8 +14,8 @@ class PLFriendProfileViewController: UIViewController {
     @IBOutlet weak var userProfileImageView: PLImageView!
     
     var user: PLUser!
-    
-    
+	var violetColor: UIColor?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +25,7 @@ class PLFriendProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         
 //        setupView()
+		violetColor = navigationController?.navigationBar.tintColor
         
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.navigationBar.tintColor = .whiteColor()
@@ -35,6 +36,7 @@ class PLFriendProfileViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.barStyle = .Default
+		navigationController?.navigationBar.tintColor = violetColor
         navigationController?.hideTransparentNavigationBar()
     }
     

@@ -8,11 +8,12 @@
 
 import UIKit
 
-class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDelegate {
+class PLFriendsSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 	
 	var searchBar = UISearchBar()
+	var tableView = UITableView()
 	
-	@IBAction func searchButton(sender: AnyObject) {
+	func searchButton(sender: AnyObject) {
 		
 		if navigationItem.titleView != searchBar {
 			navigationItem.titleView = searchBar
@@ -24,6 +25,15 @@ class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDele
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		tableView.frame = UIScreen.mainScreen().bounds
+		
+		tableView.delegate = self
+		tableView.dataSource = self
+		
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(PLFriendsSearchViewController.searchButton(_:)))
+		navigationItem.title = "Friends Search"
+		
 		let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as! UITextField
 		textFieldInsideSearchBar.leftViewMode = UITextFieldViewMode.Never
 		searchBar.placeholder = "Find Your Pals                           "
@@ -35,13 +45,15 @@ class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDele
 		
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
+		
+		view.addSubview(tableView)
 	}
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return PLFriendsModel.FriendModel.itemsArray.count
 	}
 	
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
 		let cell:PLFriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! PLFriendCell
 		
@@ -54,12 +66,12 @@ class PLFriendsSearchTableViewController: UITableViewController, UISearchBarDele
 		return cell
 	}
 	
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		print("Row \(indexPath.row) selected")
 	}
 	
-	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		return 100
 	}
 	
