@@ -12,6 +12,7 @@ private let kStillHeaderIdentifier = "stillHeader"
 private let kStickyHeaderIdentifier = "stickyHeader"
 private let kDrinkCellIdentifier = "drinkCell"
 
+
 class PLOrderViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
@@ -23,7 +24,7 @@ class PLOrderViewController: UIViewController {
             }
         }
     }
-    var currentList: CurrentList = .Drinks
+    private var currentTab: CurrentTab = .Drinks
     var drinks = [PLDrink]()
     
     //MARK: - View lifecycle
@@ -51,15 +52,22 @@ class PLOrderViewController: UIViewController {
     }
 }
 
-//MARK: - Order items delegate
-extension PLOrderViewController: OrderDrinksDelegate {
+//MARK: - Order items delegate, Tab changed delegate
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate {
     func updateOrderWith(drink: String, andCount count: Int) {
         if count == 0 {
             orderDrinks.removeValueForKey(drink)
         } else {
             orderDrinks.updateValue(count, forKey: drink)
         }
-        print(orderDrinks.debugDescription)
+    }
+    
+    func orderTabChanged(tab: CurrentTab) {
+        print("reload collection items")
+    }
+    
+    func vipButtonPressed() {
+        print("Vip button pressed")
     }
 }
 
@@ -93,14 +101,16 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if indexPath.section == 0 {
             
-            let cell = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath)
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLOrderStillHeader
+            header.delegate = self
             
-            return cell
+            return header
         } else {
             
-            let cell = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath)
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLOrdeStickyHeader
+            header.delegate = self
             
-            return cell
+            return header
         }
         
     }
