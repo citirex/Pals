@@ -8,12 +8,10 @@
 
 import UIKit
 
-class PLOrderOffersView: UIView {
+class PLOrdeStickyHeader: UICollectionViewCell {
     
     @IBOutlet var coverButton: UIButton!
     @IBOutlet var drinkButton: UIButton!
-    
-    @IBOutlet var tableView: UITableView!
     
     @IBOutlet var coverConstraint: NSLayoutConstraint!
     @IBOutlet var drinkConstraint: NSLayoutConstraint!

@@ -11,7 +11,7 @@ class PLOrder: PLUniqueObject {
     let accessCode: String
     let user: PLUser
     let place: PLPlace
-    var drinks = [PLDrink]()
+    var drinks = [String: Int]()//[PLDrink]()
     let isVIP: Bool
     let message: String
     

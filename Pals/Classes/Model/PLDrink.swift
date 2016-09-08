@@ -8,4 +8,8 @@
 
 class PLDrink : PLUniqueObject {
     
+    var drinkID: String? = nil
+    var name: String? = nil
+    var price: Float? = nil
+    
 }

@@ -14,4 +14,6 @@
 #import "TGLStackedViewController.h"
 #import "TGLBackgroundProxyView.h"
 
+#import "QTCollectionViewParallaxLayout.h"
+
 #endif /* Pals_Bridging_Header_h */

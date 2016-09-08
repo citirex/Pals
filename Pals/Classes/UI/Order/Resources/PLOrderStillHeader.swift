@@ -8,10 +8,8 @@
 
 import UIKit
 
-class PLOrderBackgroundView: UIView {
+class PLOrderStillHeader: UICollectionViewCell {
 
-    
-    
     @IBOutlet var labelVip: UILabel!
     @IBOutlet var crownImageView: UIImageView!
     @IBOutlet var labelOrder: UILabel!
