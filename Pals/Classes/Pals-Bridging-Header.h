@@ -15,5 +15,6 @@
 #import "TGLBackgroundProxyView.h"
 
 #import "QTCollectionViewParallaxLayout.h"
+#import <CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.h>
 
 #endif /* Pals_Bridging_Header_h */

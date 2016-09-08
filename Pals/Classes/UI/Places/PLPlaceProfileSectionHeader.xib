@@ -116,7 +116,7 @@
                 <outlet property="phoneNumberLabel" destination="vM2-oA-2h6" id="6GT-MJ-PvG"/>
                 <outlet property="placeAddressLabel" destination="bPY-sN-6nv" id="PU1-d4-hb7"/>
                 <outlet property="placeNameLabel" destination="0vA-Ca-YpO" id="gl1-2r-NP7"/>
-                <outlet property="topView" destination="1di-n4-vqL" id="CtL-Ow-CmV"/>
+                <outlet property="topOfView" destination="1di-n4-vqL" id="afs-UY-Iqo"/>
             </connections>
             <point key="canvasLocation" x="191" y="219.5"/>
         </collectionReusableView>

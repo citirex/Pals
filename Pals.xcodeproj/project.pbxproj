@@ -86,6 +86,9 @@
 		2480F9241D813E730095995F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8D31D813E730095995F /* Main.storyboard */; };
 		2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
+		E829DDC81D8145E600D8C130 /* PLUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC71D8145E600D8C130 /* PLUIView.swift */; };
+		E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */; };
+		E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,8 +143,8 @@
 		2480F8AA1D813E730095995F /* PLOrderStillHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderStillHeader.xib; sourceTree = "<group>"; };
 		2480F8AB1D813E730095995F /* PLOrdeStickyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrdeStickyHeader.swift; sourceTree = "<group>"; };
 		2480F8AC1D813E730095995F /* PLOrdeStickyHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrdeStickyHeader.xib; sourceTree = "<group>"; };
-		2480F8AE1D813E730095995F /* PLPlaceProfileSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceProfileSectionHeader.swift; sourceTree = "<group>"; };
-		2480F8AF1D813E730095995F /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceProfileSectionHeader.xib; sourceTree = "<group>"; };
+		2480F8AE1D813E730095995F /* PLPlaceProfileSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileSectionHeader.swift; path = Places/PLPlaceProfileSectionHeader.swift; sourceTree = "<group>"; };
+		2480F8AF1D813E730095995F /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileSectionHeader.xib; path = Places/PLPlaceProfileSectionHeader.xib; sourceTree = "<group>"; };
 		2480F8B01D813E730095995F /* PLPlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesTableViewController.swift; sourceTree = "<group>"; };
 		2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceTableViewCell.swift; sourceTree = "<group>"; };
 		2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceTableViewCell.xib; sourceTree = "<group>"; };
@@ -177,6 +180,9 @@
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E829DDC71D8145E600D8C130 /* PLUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUIView.swift; sourceTree = "<group>"; };
+		E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileHeader.swift; path = "Place Profile/PLPlaceProfileHeader.swift"; sourceTree = "<group>"; };
+		E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileHeader.xib; path = "Place Profile/PLPlaceProfileHeader.xib"; sourceTree = "<group>"; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,6 +243,7 @@
 				2480F87A1D813E730095995F /* PLNavigationController.swift */,
 				2480F87B1D813E730095995F /* PLStoryboard.swift */,
 				2480F87C1D813E730095995F /* PLString.swift */,
+				E829DDC71D8145E600D8C130 /* PLUIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,9 +296,7 @@
 				2480F8A21D813E730095995F /* Login */,
 				2480F8A41D813E730095995F /* Order */,
 				2480F8AD1D813E730095995F /* Places */,
-				2480F8B31D813E730095995F /* PLPlaceProfileCollectionViewCell.swift */,
-				2480F8B41D813E730095995F /* PLPlaceProfileCollectionViewCell.xib */,
-				2480F8B51D813E730095995F /* PLPlaceProfileViewController.swift */,
+				E829DDC61D81447600D8C130 /* Place Profile */,
 				2480F8B61D813E730095995F /* PLSlidingViewController.swift */,
 				2480F8B71D813E730095995F /* PLStickyCollectionViewFlowLayout.swift */,
 				2480F8B81D813E730095995F /* Profile */,
@@ -368,8 +373,6 @@
 		2480F8AD1D813E730095995F /* Places */ = {
 			isa = PBXGroup;
 			children = (
-				2480F8AE1D813E730095995F /* PLPlaceProfileSectionHeader.swift */,
-				2480F8AF1D813E730095995F /* PLPlaceProfileSectionHeader.xib */,
 				2480F8B01D813E730095995F /* PLPlacesTableViewController.swift */,
 				2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */,
 				2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */,
@@ -495,6 +498,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E829DDC61D81447600D8C130 /* Place Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2480F8B51D813E730095995F /* PLPlaceProfileViewController.swift */,
+				E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */,
+				E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */,
+				2480F8AE1D813E730095995F /* PLPlaceProfileSectionHeader.swift */,
+				2480F8AF1D813E730095995F /* PLPlaceProfileSectionHeader.xib */,
+				2480F8B31D813E730095995F /* PLPlaceProfileCollectionViewCell.swift */,
+				2480F8B41D813E730095995F /* PLPlaceProfileCollectionViewCell.xib */,
+			);
+			name = "Place Profile";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -567,6 +584,7 @@
 				2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */,
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
 				04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */,
+				E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
 				2480F9211D813E730095995F /* signup.json in Resources */,
 				2480F91D1D813E730095995F /* friends2.json in Resources */,
@@ -661,6 +679,7 @@
 				2480F8E21D813E730095995F /* PLStoryboard.swift in Sources */,
 				2480F9051D813E730095995F /* PLPlaceProfileSectionHeader.swift in Sources */,
 				2480F8DC1D813E730095995F /* PLPageCollection.swift in Sources */,
+				E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */,
 				2480F8F41D813E730095995F /* PLButton.swift in Sources */,
 				2480F8ED1D813E730095995F /* TGLBackgroundProxyView.m in Sources */,
 				2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */,
@@ -686,6 +705,7 @@
 				2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */,
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
 				2480F9101D813E730095995F /* PLProfileDrinkCollectionViewCell.swift in Sources */,
+				E829DDC81D8145E600D8C130 /* PLUIView.swift in Sources */,
 				2480F9151D813E730095995F /* PLSettingsViewController.swift in Sources */,
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,

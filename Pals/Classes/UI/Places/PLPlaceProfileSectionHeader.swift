@@ -11,19 +11,18 @@ import UIKit
 @IBDesignable
 class PLPlaceProfileSectionHeader: UICollectionReusableView {
 
+    @IBOutlet weak var topOfView: UIView!
     @IBOutlet weak var placeNameLabel: UILabel!
     @IBOutlet weak var musicGenresLabel: UILabel!
     @IBOutlet weak var closingTimeLabel: UILabel!
     @IBOutlet weak var placeAddressLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     
-    @IBOutlet weak var topView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        topView.layer.cornerRadius = 12
-        topView.layer.masksToBounds = true
+        topOfView.round([.TopLeft, .TopRight], radius: 12)
     }
    
 }

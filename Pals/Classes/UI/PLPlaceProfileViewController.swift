@@ -7,24 +7,35 @@
 //
 
 import UIKit
+import CSStickyHeaderFlowLayout
 
 class PLPlaceProfileViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    private var layout: CSStickyHeaderFlowLayout? {
+        return collectionView?.collectionViewLayout as? CSStickyHeaderFlowLayout
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = UIImage(named: "place_header")
-        let backgroundImage = UIImageView(image: image)
-        backgroundImage.contentMode = .ScaleAspectFill
+        reloadLayout()
         
-        collectionView.backgroundView = backgroundImage
-
+        collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
+        automaticallyAdjustsScrollViewInsets = false
+        
+        // Setup Cell
         let nib = UINib(nibName: "PLPlaceProfileCollectionViewCell", bundle: nil)
         collectionView?.registerNib(nib, forCellWithReuseIdentifier: "EventCell")
         
+        // Setup Header
+        let headerNib = UINib(nibName: "PLPlaceProfileHeader", bundle: nil)
+        collectionView!.registerNib(headerNib,
+                                    forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader,
+                                    withReuseIdentifier: "Header")
+        
+        // Setup Section Header
         let sectionHeaderNib = UINib(nibName: "PLPlaceProfileSectionHeader", bundle: nil)
         collectionView!.registerNib(sectionHeaderNib,
                                     forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
@@ -44,9 +55,18 @@ class PLPlaceProfileViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.hideTransparentNavigationBar()
     }
-
+    
+    private func reloadLayout() {
+        layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 200)
+        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 100)
+        layout!.parallaxHeaderAlwaysOnTop = true
+        layout!.disableStickyHeaders = false
+    }
 
 }
+
+
+// MARK: - UICollectionViewDataSource
 
 extension PLPlaceProfileViewController: UICollectionViewDataSource {
 
@@ -62,20 +82,29 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     }
 }
 
+
+// MARK: - UICollectionViewDelegate
+
 extension PLPlaceProfileViewController: UICollectionViewDelegate {
 
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
-        if kind == UICollectionElementKindSectionHeader {
-            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
-            return sectionHeader
-        } else {
+        switch kind {
+        case CSStickyHeaderParallaxHeader:
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath)
+            return view
+        case UICollectionElementKindSectionHeader:
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath)
+            return view
+        default:
             return UICollectionReusableView()
         }
     }
 
 }
 
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
 
