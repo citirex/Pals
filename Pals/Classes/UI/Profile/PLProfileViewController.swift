@@ -10,16 +10,11 @@ import UIKit
 import RandomKit
 import SDWebImage
 
-enum CurrentList {
-    case Covers
-    case Drinks
-}
-
 class PLProfileViewController: TGLStackedViewController {
 
     let collectionHelper = PLProfileCollectionHelper()
     var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
-    var currentList: CurrentList = .Drinks
+    private var currentTab: CurrentTab = .Drinks
     var firstLaunch: Bool = true
     var profile: PLUser? {
         didSet {
@@ -67,19 +62,19 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func myCoversButtonPressed(sender: AnyObject) {
-        if currentList != .Covers {
+        if currentTab != .Covers {
             setupCollectionForState(.Covers)
         }
     }
     
     func myDrinksButtonPressed(sender: AnyObject) {
-        if currentList != .Drinks {
+        if currentTab != .Drinks {
             setupCollectionForState(.Drinks)
         }
     }
     
-    func setupCollectionForState(state: CurrentList) {
-        currentList = state
+    func setupCollectionForState(state: CurrentTab) {
+        currentTab = state
         updateListIndicator()
         collectionHelper.collection = (state == .Drinks) ? sampleDrinks : sampleCovers
         collectionView?.reloadData({
@@ -145,8 +140,8 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func updateListIndicator() {
-        collectionBackgroundView.myCoversConstraint.priority = (currentList == .Covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
-        collectionBackgroundView.myDrinksConstraint.priority = (currentList == .Covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        collectionBackgroundView.myCoversConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
+        collectionBackgroundView.myDrinksConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
         
         UIView.animateWithDuration(0.2) {
             self.collectionBackgroundView.layoutIfNeeded()

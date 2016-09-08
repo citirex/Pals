@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol OrderDrinksDelegate: class {
+protocol OrderDrinksCounterDelegate: class {
     func updateOrderWith(drink:String, andCount count: Int)
 }
 
@@ -24,7 +24,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
     
     private var drinkID: String? = nil
     
-    weak var delegate: OrderDrinksDelegate?
+    weak var delegate: OrderDrinksCounterDelegate?
     
     
     
