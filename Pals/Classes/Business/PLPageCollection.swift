@@ -9,7 +9,7 @@
 import AFNetworking
 
 protocol PLPageCollectionDelegate : class {
-    func pageCollectionDidLoadPage()
+    func pageCollectionDidLoadPage(objects: [AnyObject])
     func pageCollectionDidFail(error: NSError)
 }
 
@@ -18,12 +18,20 @@ extension PLPageCollectionDelegate {
 }
 
 struct PLPageCollectionPreset {
+    var id = UInt64(0) // for specific user identifier
+    var idKey = "" // for specific user identifier
     let url: String
     let sizeKey: String
     let offsetKey: String
     let size: Int
-    // if true starts a next page from lastId+1 otherwise uses a last saved offset
-    let offsetById: Bool
+    let offsetById: Bool // if true starts a next page from lastId+1 otherwise uses a last saved offset
+    init(url: String, sizeKey: String, offsetKey: String, size: Int, offsetById: Bool) {
+        self.url = url
+        self.sizeKey = sizeKey
+        self.offsetKey = offsetKey
+        self.size = size
+        self.offsetById = offsetById
+    }
 }
 
 class PLPageCollection<T:PLUniqueObject> {
@@ -47,7 +55,13 @@ class PLPageCollection<T:PLUniqueObject> {
         return preset.size
     }
     
-    var lastLoadedCount = 0
+    var pagesLoaded: Int {
+        var pages = abs(count/pageSize)
+        if count%pageSize > 0 {
+            pages += 1
+        }
+        return pages
+    }
     
     subscript(index: Int) -> T {
         return objects[index]
@@ -55,54 +69,74 @@ class PLPageCollection<T:PLUniqueObject> {
     
     func load() {
         if !loading {
-            loadNext({ (error) in
-                self.loading = false
+            loadNext({ (objects, error) in
+                self.onPageLoad(objects)
                 if error != nil {
                     self.delegate?.pageCollectionDidFail(error!)
                 } else {
-                    self.delegate?.pageCollectionDidLoadPage()
+                    self.delegate?.pageCollectionDidLoadPage(objects)
                 }
             })
         }
     }
     
-    typealias LoadCompletion = (error: NSError?) -> ()
-    
-    func loadNext(completion: LoadCompletion) {
-        loading = true
-        var offset = UInt64(0)
-        if preset.offsetById {
-            let lastId = objects.last?.id
-            offset = lastId ?? 0
-        } else {
-            offset = self.offset
+    func onPageLoad(objects: [T]) {
+        if objects.count > 0 {
+            self.objects.appendContentsOf(objects)
+            if !self.preset.offsetById {
+                self.offset += UInt64(objects.count)
+            }
         }
-        let params = [preset.sizeKey : preset.size, preset.offsetKey : String(offset)]
+    }
+    
+    typealias PageLoadCompletion = (objects: [T], error: NSError?) -> ()
+    
+    func loadNext(completion: PageLoadCompletion) {
+        loading = true
+        let params = formParameters(preset, offset: offset)
         if session == nil {
             return
         }
         session!.GET(preset.url, parameters: params, progress: nil, success: { (task, response) in
+            self.loading = false
             guard
                 let jsonObjects = response as? [Dictionary<String,AnyObject>]
             else {
-                completion(error: NSError(domain: "PageCollection", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Failed to parse JSON"]))
+                let error = NSError(domain: "PageCollection", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Failed to parse JSON"])
+                completion(objects:[T](), error: error)
                 return
             }
-            var count = 0
-            for jsonObject in jsonObjects {
-                if let object = T(jsonDic: jsonObject) {
-                    self.objects.append(object)
-                    count += 1
-                }
-            }
-            if !self.preset.offsetById {
-                self.offset += UInt64(count)
-            }
-            self.lastLoadedCount = count
-            completion(error: nil)
+            let pageObjects = self.deserializeResponseDic(jsonObjects)
+            completion(objects: pageObjects, error: nil)
         }) { (task, error) in
-            completion(error: error)
+            self.loading = false
+            completion(objects:[T]() ,error: error)
         }
+    }
+    
+    func deserializeResponseDic(dic: [Dictionary<String,AnyObject>]) -> [T] {
+        var pageObjects = [T]()
+        for jsonObject in dic {
+            if let object = T(jsonDic: jsonObject) {
+                pageObjects.append(object)
+            }
+        }
+        return pageObjects
+    }
+    
+    func formParameters(preset: PLPageCollectionPreset, offset: UInt64) -> [String : AnyObject] {
+        var anOffset = offset
+        if preset.offsetById {
+            let lastId = objects.last?.id
+            anOffset = lastId ?? 0
+        }
+        var params = [String : AnyObject]()
+        params[preset.sizeKey] = String(preset.size)
+        params[preset.offsetKey] = String(anOffset)
+        if preset.id > 0 {
+            params[preset.idKey] = String(preset.id)
+        }
+        return params
     }
 }
 

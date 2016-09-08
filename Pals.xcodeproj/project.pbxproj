@@ -75,7 +75,7 @@
 		2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8C41D813E730095995F /* PLSignUpViewController.swift */; };
 		2480F9191D813E730095995F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8C61D813E730095995F /* Assets.xcassets */; };
 		2480F91A1D813E730095995F /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8C71D813E730095995F /* config.plist */; };
-		2480F91B1D813E730095995F /* friends.json in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8CA1D813E730095995F /* friends.json */; };
+		2480F91B1D813E730095995F /* friends0.json in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8CA1D813E730095995F /* friends0.json */; };
 		2480F91C1D813E730095995F /* friends1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8CB1D813E730095995F /* friends1.json */; };
 		2480F91D1D813E730095995F /* friends2.json in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8CC1D813E730095995F /* friends2.json */; };
 		2480F91E1D813E730095995F /* friends3.json in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8CD1D813E730095995F /* friends3.json */; };
@@ -162,7 +162,7 @@
 		2480F8C41D813E730095995F /* PLSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSignUpViewController.swift; sourceTree = "<group>"; };
 		2480F8C61D813E730095995F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2480F8C71D813E730095995F /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
-		2480F8CA1D813E730095995F /* friends.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends.json; sourceTree = "<group>"; };
+		2480F8CA1D813E730095995F /* friends0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends0.json; sourceTree = "<group>"; };
 		2480F8CB1D813E730095995F /* friends1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends1.json; sourceTree = "<group>"; };
 		2480F8CC1D813E730095995F /* friends2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends2.json; sourceTree = "<group>"; };
 		2480F8CD1D813E730095995F /* friends3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friends3.json; sourceTree = "<group>"; };
@@ -435,7 +435,7 @@
 		2480F8C91D813E730095995F /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				2480F8CA1D813E730095995F /* friends.json */,
+				2480F8CA1D813E730095995F /* friends0.json */,
 				2480F8CB1D813E730095995F /* friends1.json */,
 				2480F8CC1D813E730095995F /* friends2.json */,
 				2480F8CD1D813E730095995F /* friends3.json */,
@@ -577,7 +577,7 @@
 				2480F91E1D813E730095995F /* friends3.json in Resources */,
 				2480F9131D813E730095995F /* PLProfileHeaderView.xib in Resources */,
 				2480F9091D813E730095995F /* PLPlaceTableViewCell.xib in Resources */,
-				2480F91B1D813E730095995F /* friends.json in Resources */,
+				2480F91B1D813E730095995F /* friends0.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

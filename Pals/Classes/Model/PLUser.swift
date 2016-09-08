@@ -12,21 +12,22 @@ class PLUser: PLUniqueObject, PLCellRepresentable {
     var name: String
     var email: String
     var picture: NSURL
-    var balance: Float
+    var balance = Float(0)
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
             let name = jsonDic[PLKeys.name.string] as? String,
             let email = jsonDic[PLKeys.email.string] as? String,
-            let picture = jsonDic[PLKeys.picture.string] as? String,
-            let balance = jsonDic[PLKeys.balance.string] as? Float
+            let picture = jsonDic[PLKeys.picture.string] as? String
         else {
             return nil
         }
         self.name = name
         self.email = email
         self.picture = NSURL(string: picture)!
-        self.balance = balance
+        if let balance = jsonDic[PLKeys.balance.string] as? Float {
+            self.balance = balance
+        }
         super.init(jsonDic: jsonDic)
     }
     

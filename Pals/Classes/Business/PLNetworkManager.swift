@@ -42,9 +42,9 @@ class PLNetworkManager: PLNetworkManagerInterface {
         let dic = object as! [String : AnyObject]
         completion(dic: dic, error: nil)
     }
-    class func handleErrorCompletion(error: NSError, service: PLAPIService, completion: PLNetworkRequestCompletion) {
+    class func handleErrorCompletion(error: NSError, fakeFeedFilename: String, completion: PLNetworkRequestCompletion) {
         if PLFacade.instance.settingsManager.useFakeFeeds {
-            PLFakeFeed.load(service, completion: { (dict) in
+            PLFakeFeed.load(fakeFeedFilename, completion: { (dict) in
                 if dict.isEmpty {
                     completion(dic: [:], error: PLError(domain: .User, type: kPLErrorTypeBadResponse))
                 } else {
@@ -60,7 +60,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
         PLNetworkSession.shared.GET(service.string, parameters: parameters, progress: nil, success: { (task, response) in
             self.handleSuccessCompletion(response, completion: completion)
         }) { (task, error) in
-            self.handleErrorCompletion(error, service: service, completion: completion)
+            self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
     }
 
@@ -73,7 +73,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
         }, progress: nil, success: { (task, response) in
             self.handleSuccessCompletion(response, completion: completion)
         }) { (task, error) in
-            self.handleErrorCompletion(error, service: service, completion: completion)
+            self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
     }
     

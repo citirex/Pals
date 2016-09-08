@@ -13,6 +13,7 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 	var searchBar = UISearchBar()
 	
 	let usr = PLUser(jsonDic: ["":""])?.cellData
+    let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 	
 	@IBAction func searchButton(sender: AnyObject) {
 		
@@ -39,9 +40,24 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 		
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
+        
+        loadDatasource()
 	}
+    
+    func loadDatasource() {
+        // show spinner
+        datasource.load {[unowned self] (page, error) in
+            if error == nil {
+                self.tableView.beginUpdates()
+                // insert cells
+                self.tableView.endUpdates()
+                // hide spinner
+            }
+        }
+    }
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = datasource.count
 		return PLFriendsModel.FriendModel.itemsArray.count
 //		return Int(usr!.id)
 	}
@@ -53,6 +69,7 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 		
 		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
 		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
+        let user = datasource[indexPath.row].cellData
 //		let image = UIImageView?()
 //		image?.sd_setImageWithURL(usr!.picture)
 //		cell.avatarImage.image = image!.image
@@ -64,6 +81,12 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 		return cell
 	}
 	
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == datasource.count-1 {
+            loadDatasource()
+        }
+    }
+    
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		performSegueWithIdentifier("ShowFriendProfile", sender: self)
