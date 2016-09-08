@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CCD0DB1D81411800651508 /* PLFriendCell.xib */; };
 		2480F8D81D813E730095995F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F86F1D813E730095995F /* AppDelegate.swift */; };
 		2480F8D91D813E730095995F /* PLFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8711D813E730095995F /* PLFacade.swift */; };
 		2480F8DA1D813E730095995F /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8721D813E730095995F /* PLFriendsDatasource.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04CCD0DB1D81411800651508 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
 		2480F86F1D813E730095995F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2480F8711D813E730095995F /* PLFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFacade.swift; sourceTree = "<group>"; };
 		2480F8721D813E730095995F /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		2480F89B1D813E730095995F /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
 				2480F89C1D813E730095995F /* PLFriendCell.swift */,
 				2480F89D1D813E730095995F /* PLFriendCellData.swift */,
 				2480F89E1D813E730095995F /* PLFriendProfileViewController.swift */,
@@ -563,6 +566,7 @@
 				2480F91C1D813E730095995F /* friends1.json in Resources */,
 				2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */,
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
+				04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
 				2480F9211D813E730095995F /* signup.json in Resources */,
 				2480F91D1D813E730095995F /* friends2.json in Resources */,
