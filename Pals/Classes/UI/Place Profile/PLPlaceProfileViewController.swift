@@ -58,10 +58,20 @@ class PLPlaceProfileViewController: UIViewController {
     
     private func reloadLayout() {
         layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 200)
-        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 100)
+        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 80)
         layout!.parallaxHeaderAlwaysOnTop = true
         layout!.disableStickyHeaders = false
     }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowOrder" {
+        
+        }
+    }
+
 
 }
 
@@ -77,7 +87,7 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell", forIndexPath: indexPath)
             as! PLPlaceProfileCollectionViewCell
-        
+        cell
         return cell
     }
 }
@@ -94,7 +104,8 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath)
             return view
         case UICollectionElementKindSectionHeader:
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath)
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
+            view.delegate = self
             return view
         default:
             return UICollectionReusableView()
@@ -115,5 +126,14 @@ extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(view.frame.size.width, 95)
+    }
+}
+
+// MARK: -
+
+extension PLPlaceProfileViewController: PLPlaceProfileSectionHeaderDelegate {
+    
+    func didSelectOrderButton() {
+        performSegueWithIdentifier("ShowOrder", sender: self)
     }
 }
