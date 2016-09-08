@@ -19,6 +19,13 @@ enum PLKeys : String {
     case response
     case login
     case password
+    case genres
+    case address
+    case phone
+    case location
+    case close_time
+    case events
+    case drink
     case success
     case per_page
     case since

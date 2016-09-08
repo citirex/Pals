@@ -81,6 +81,11 @@
 		2480F9241D813E730095995F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8D31D813E730095995F /* Main.storyboard */; };
 		2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */; };
 		24CB94A11D814AE100A44CF7 /* PLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB94A01D814AE100A44CF7 /* PLConstants.swift */; };
+		D4CEC24D1D818B7300D4CD08 /* places0.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC2491D818B7300D4CD08 /* places0.json */; };
+		D4CEC24E1D818B7300D4CD08 /* places1.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24A1D818B7300D4CD08 /* places1.json */; };
+		D4CEC24F1D818B7300D4CD08 /* places2.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24B1D818B7300D4CD08 /* places2.json */; };
+		D4CEC2501D818B7300D4CD08 /* places3.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24C1D818B7300D4CD08 /* places3.json */; };
+		D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 		E829DDC81D8145E600D8C130 /* PLUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC71D8145E600D8C130 /* PLUIView.swift */; };
 		E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */; };
@@ -177,6 +182,11 @@
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4CEC2491D818B7300D4CD08 /* places0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places0.json; sourceTree = "<group>"; };
+		D4CEC24A1D818B7300D4CD08 /* places1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places1.json; sourceTree = "<group>"; };
+		D4CEC24B1D818B7300D4CD08 /* places2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places2.json; sourceTree = "<group>"; };
+		D4CEC24C1D818B7300D4CD08 /* places3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places3.json; sourceTree = "<group>"; };
+		D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocationManager.swift; sourceTree = "<group>"; };
 		E829DDC71D8145E600D8C130 /* PLUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUIView.swift; sourceTree = "<group>"; };
 		E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileHeader.swift; path = "Place Profile/PLPlaceProfileHeader.swift"; sourceTree = "<group>"; };
 		E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileHeader.xib; path = "Place Profile/PLPlaceProfileHeader.xib"; sourceTree = "<group>"; };
@@ -233,6 +243,7 @@
 				2480F8741D813E730095995F /* PLPageCollection.swift */,
 				2480F8751D813E730095995F /* PLProfileManager.swift */,
 				2480F8761D813E730095995F /* PLSettingsManager.swift */,
+				D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -431,6 +442,7 @@
 			isa = PBXGroup;
 			children = (
 				2480F8C91D813E730095995F /* Friends */,
+				D4CEC2481D818B7300D4CD08 /* Places */,
 				2480F8CE1D813E730095995F /* login.json */,
 				2480F8CF1D813E730095995F /* sendpassword.json */,
 				2480F8D01D813E730095995F /* signup.json */,
@@ -499,6 +511,17 @@
 				D42F53C51D76B497005DEA34 /* Pals.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D4CEC2481D818B7300D4CD08 /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				D4CEC2491D818B7300D4CD08 /* places0.json */,
+				D4CEC24A1D818B7300D4CD08 /* places1.json */,
+				D4CEC24B1D818B7300D4CD08 /* places2.json */,
+				D4CEC24C1D818B7300D4CD08 /* places3.json */,
+			);
+			path = Places;
 			sourceTree = "<group>";
 		};
 		E829DDC61D81447600D8C130 /* Place Profile */ = {
@@ -586,15 +609,19 @@
 				2480F91C1D813E730095995F /* friends1.json in Resources */,
 				2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */,
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
+				D4CEC24D1D818B7300D4CD08 /* places0.json in Resources */,
 				04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */,
 				E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */,
+				D4CEC24F1D818B7300D4CD08 /* places2.json in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
+				D4CEC24E1D818B7300D4CD08 /* places1.json in Resources */,
 				2480F9211D813E730095995F /* signup.json in Resources */,
 				2480F91D1D813E730095995F /* friends2.json in Resources */,
 				2480F8F21D813E730095995F /* PLAddFundsView.xib in Resources */,
 				2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */,
 				2480F9001D813E730095995F /* PLOrderDrinkCell.xib in Resources */,
 				2480F91F1D813E730095995F /* login.json in Resources */,
+				D4CEC2501D818B7300D4CD08 /* places3.json in Resources */,
 				2480F91E1D813E730095995F /* friends3.json in Resources */,
 				2480F9131D813E730095995F /* PLProfileHeaderView.xib in Resources */,
 				2480F9091D813E730095995F /* PLPlaceTableViewCell.xib in Resources */,
@@ -703,6 +730,7 @@
 				2480F90D1D813E730095995F /* PLSlidingViewController.swift in Sources */,
 				2480F90F1D813E730095995F /* PLProfileCollectionHelper.swift in Sources */,
 				2480F8F51D813E730095995F /* PLImageView.swift in Sources */,
+				D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */,
 				2480F8E01D813E730095995F /* PLDictionary.swift in Sources */,
 				2480F9121D813E730095995F /* PLProfileHeaderView.swift in Sources */,
 				2480F8F01D813E730095995F /* TGLStackedViewController.m in Sources */,
