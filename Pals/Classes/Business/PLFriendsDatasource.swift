@@ -12,17 +12,11 @@ class PLDatasource<T: PLUniqueObject> {
     let collection: PLPalsPageCollection<T>
     var completion: PLDatasourceLoadCompletion?
     
-    init(url: String, idPair : (String,UInt64), offsetById: Bool) {
+    init(url: String, params: PLURLParams, offsetById: Bool) {
         collection = PLPalsPageCollection(url: url, offsetById: offsetById)
-        collection.preset.idKey = idPair.0
-        collection.preset.id = idPair.1
+        collection.preset.params = params
         collection.session = PLNetworkSession.shared
         collection.delegate = self
-    }
-    
-    convenience init(url: String, id: UInt64, offsetById: Bool) {
-        let idPair = (PLKeys.id.string, id)
-        self.init(url: url, idPair: idPair, offsetById: offsetById)
     }
     
     //MARK: Interface
@@ -38,6 +32,7 @@ class PLDatasource<T: PLUniqueObject> {
     
     //MARK: To override
     func fakeFeedNameOnError(error: NSError) -> String {return ""}
+    func mainCollectionKey() -> String {return ""}
 }
 
 extension PLDatasource : PLPageCollectionDelegate {
@@ -51,13 +46,14 @@ extension PLDatasource : PLPageCollectionDelegate {
             PLNetworkManager.handleErrorCompletion(error, fakeFeedFilename: fakeFeedName) { (dic, error) in
                 guard
                     !dic.isEmpty,
-                    let fakeResponse = dic["response"] as? [Dictionary<String,AnyObject>]
+                    let fakeResponse = dic[PLKeys.response.string] as? Dictionary<String,AnyObject>,
+                    let jsonObjects = fakeResponse[self.mainCollectionKey()] as? [Dictionary<String,AnyObject>]
                 else {
                         let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
                         self.completion?(page: [AnyObject](), error: error)
                         return
                 }
-                let objects = self.collection.deserializeResponseDic(fakeResponse)
+                let objects = self.collection.deserializeResponseDic(jsonObjects)
                 self.collection.onPageLoad(objects)
                 self.completion?(page: objects, error: nil)
             }
@@ -69,18 +65,24 @@ extension PLDatasource : PLPageCollectionDelegate {
 
 class PLFriendsDatasource: PLDatasource<PLUser> {
     
-    override init(url: String, idPair: (String, UInt64), offsetById: Bool) {
-        super.init(url: url, idPair: idPair, offsetById: offsetById)
+    override init(url: String, params: PLURLParams, offsetById: Bool) {
+        super.init(url: url, params: params, offsetById: offsetById)
     }
     
     convenience init(userId: UInt64) {
         let service = PLAPIService.Friends.string
+        var params = PLURLParams()
+        params[PLKeys.id.string] = String(userId)
         let offsetById = false
-        self.init(url: service, id: userId, offsetById: offsetById)
+        self.init(url: service, params: params, offsetById: offsetById)
     }
     
     override func fakeFeedNameOnError(error: NSError) -> String {
         let name = PLAPIService.Friends.string + "\(collection.pagesLoaded)"
         return name
+    }
+    
+    override func mainCollectionKey() -> String {
+        return PLKeys.friends.string
     }
 }

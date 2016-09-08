@@ -17,6 +17,8 @@ extension PLPageCollectionDelegate {
     func pageCollectionDidFail(error: NSError) {}
 }
 
+typealias PLURLParams = [String:AnyObject]
+
 struct PLPageCollectionPreset {
     var id = UInt64(0) // for specific user identifier
     var idKey = "" // for specific user identifier
@@ -25,6 +27,7 @@ struct PLPageCollectionPreset {
     let offsetKey: String
     let size: Int
     let offsetById: Bool // if true starts a next page from lastId+1 otherwise uses a last saved offset
+    var params : PLURLParams?
     init(url: String, sizeKey: String, offsetKey: String, size: Int, offsetById: Bool) {
         self.url = url
         self.sizeKey = sizeKey
@@ -135,6 +138,11 @@ class PLPageCollection<T:PLUniqueObject> {
         params[preset.offsetKey] = String(anOffset)
         if preset.id > 0 {
             params[preset.idKey] = String(preset.id)
+        }
+        if let moreParams = preset.params {
+            for (key, value) in moreParams {
+                params[key] = value
+            }
         }
         return params
     }

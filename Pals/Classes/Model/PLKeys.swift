@@ -17,6 +17,8 @@ enum PLKeys : String {
     case balance
     case user
     case response
+    case friends
+    case places
     case login
     case password
     case genres

@@ -1,124 +1,126 @@
 {
-    "response" : [
-        {
-        "id" : 1,
-        "name" : "Raphael Keen",
-        "picture" : "https://robohash.org/raphaelkeen",
-        "email" : "raphaelkeen@gmail.com"
-        },
-        {
-        "id" : 2,
-        "name" : "Oliver Kersey",
-        "picture" : "https://robohash.org/oliverkersey",
-        "email" : "oliverkersey@gmail.com"
-        },
-        {
-        "id" : 3,
-        "name" : "Grier Nowell",
-        "picture" : "https://robohash.org/griernowell",
-        "email" : "griernowell@gmail.com"
-        },
-        {
-        "id" : 4,
-        "name" : "Kaolin Webb",
-        "picture" : "https://robohash.org/kaolinwebb",
-        "email" : "kaolinwebb@gmail.com"
-        },
-        {
-        "id" : 5,
-        "name" : "Anderson Lowell",
-        "picture" : "https://robohash.org/andersonlowell",
-        "email" : "andersonlowell@gmail.com"
-        },
-        {
-        "id" : 6,
-        "name" : "Neville Wilkins",
-        "picture" : "https://robohash.org/nevillewilkins",
-        "email" : "nevillewilkins@gmail.com"
-        },
-        {
-        "id" : 7,
-        "name" : "Miles Ogden",
-        "picture" : "https://robohash.org/milesogden",
-        "email" : "milesogden@gmail.com"
-        },
-        {
-        "id" : 8,
-        "name" : "Luther Mounce",
-        "picture" : "https://robohash.org/luthermounce",
-        "email" : "luthermounce@gmail.com"
-        },
-        {
-        "id" : 9,
-        "name" : "Lawrence Stacks",
-        "picture" : "https://robohash.org/lawrencestacks",
-        "email" : "lawrencestacks@gmail.com"
-        },
-        {
-        "id" : 10,
-        "name" : "Selby Myers",
-        "picture" : "https://robohash.org/selbymyers",
-        "email" : "selbymyers@gmail.com"
-        },
-        {
-        "id" : 11,
-        "name" : "Zak Corra",
-        "picture" : "https://robohash.org/zakcorra",
-        "email" : "zakcorra@gmail.com"
-        },
-        {
-        "id" : 12,
-        "name" : "Alexis Beck",
-        "picture" : "https://robohash.org/alexisbeck",
-        "email" : "alexisbeck@gmail.com"
-        },
-        {
-        "id" : 13,
-        "name" : "Barney Kelsey",
-        "picture" : "https://robohash.org/barneykelsey",
-        "email" : "barneykelsey@gmail.com"
-        },
-        {
-        "id" : 14,
-        "name" : "Read Tod",
-        "picture" : "https://robohash.org/readtod",
-        "email" : "readtod@gmail.com"
-        },
-        {
-        "id" : 15,
-        "name" : "Wisdom Blakeslee",
-        "picture" : "https://robohash.org/wisdomblakeslee",
-        "email" : "wisdomblakeslee@gmail.com"
-        },
-        {
-        "id" : 16,
-        "name" : "Ty Brasher",
-        "picture" : "https://robohash.org/tybrasher",
-        "email" : "tybrasher@gmail.com"
-        },
-        {
-        "id" : 17,
-        "name" : "Steven Gladwyn",
-        "picture" : "https://robohash.org/stevengladwyn",
-        "email" : "stevengladwyn@gmail.com"
-        },
-        {
-        "id" : 18,
-        "name" : "Sonnie Brock",
-        "picture" : "https://robohash.org/sonniebrock",
-        "email" : "sonniebrock@gmail.com"
-        },
-        {
-        "id" : 19,
-        "name" : "Chadwick Sandford",
-        "picture" : "https://robohash.org/chadwicksandford",
-        "email" : "chadwicksandford@gmail.com"
-        },
-        {
-        "id" : 20,
-        "name" : "Steven Whitney",
-        "picture" : "https://robohash.org/stevenwhitney",
-        "email" : "stevenwhitney@gmail.com"
-        }
-    ]
+    "response" : {
+        "friends" : [
+                     {
+                     "id" : 1,
+                     "name" : "Raphael Keen",
+                     "picture" : "https://robohash.org/raphaelkeen",
+                     "email" : "raphaelkeen@gmail.com"
+                     },
+                     {
+                     "id" : 2,
+                     "name" : "Oliver Kersey",
+                     "picture" : "https://robohash.org/oliverkersey",
+                     "email" : "oliverkersey@gmail.com"
+                     },
+                     {
+                     "id" : 3,
+                     "name" : "Grier Nowell",
+                     "picture" : "https://robohash.org/griernowell",
+                     "email" : "griernowell@gmail.com"
+                     },
+                     {
+                     "id" : 4,
+                     "name" : "Kaolin Webb",
+                     "picture" : "https://robohash.org/kaolinwebb",
+                     "email" : "kaolinwebb@gmail.com"
+                     },
+                     {
+                     "id" : 5,
+                     "name" : "Anderson Lowell",
+                     "picture" : "https://robohash.org/andersonlowell",
+                     "email" : "andersonlowell@gmail.com"
+                     },
+                     {
+                     "id" : 6,
+                     "name" : "Neville Wilkins",
+                     "picture" : "https://robohash.org/nevillewilkins",
+                     "email" : "nevillewilkins@gmail.com"
+                     },
+                     {
+                     "id" : 7,
+                     "name" : "Miles Ogden",
+                     "picture" : "https://robohash.org/milesogden",
+                     "email" : "milesogden@gmail.com"
+                     },
+                     {
+                     "id" : 8,
+                     "name" : "Luther Mounce",
+                     "picture" : "https://robohash.org/luthermounce",
+                     "email" : "luthermounce@gmail.com"
+                     },
+                     {
+                     "id" : 9,
+                     "name" : "Lawrence Stacks",
+                     "picture" : "https://robohash.org/lawrencestacks",
+                     "email" : "lawrencestacks@gmail.com"
+                     },
+                     {
+                     "id" : 10,
+                     "name" : "Selby Myers",
+                     "picture" : "https://robohash.org/selbymyers",
+                     "email" : "selbymyers@gmail.com"
+                     },
+                     {
+                     "id" : 11,
+                     "name" : "Zak Corra",
+                     "picture" : "https://robohash.org/zakcorra",
+                     "email" : "zakcorra@gmail.com"
+                     },
+                     {
+                     "id" : 12,
+                     "name" : "Alexis Beck",
+                     "picture" : "https://robohash.org/alexisbeck",
+                     "email" : "alexisbeck@gmail.com"
+                     },
+                     {
+                     "id" : 13,
+                     "name" : "Barney Kelsey",
+                     "picture" : "https://robohash.org/barneykelsey",
+                     "email" : "barneykelsey@gmail.com"
+                     },
+                     {
+                     "id" : 14,
+                     "name" : "Read Tod",
+                     "picture" : "https://robohash.org/readtod",
+                     "email" : "readtod@gmail.com"
+                     },
+                     {
+                     "id" : 15,
+                     "name" : "Wisdom Blakeslee",
+                     "picture" : "https://robohash.org/wisdomblakeslee",
+                     "email" : "wisdomblakeslee@gmail.com"
+                     },
+                     {
+                     "id" : 16,
+                     "name" : "Ty Brasher",
+                     "picture" : "https://robohash.org/tybrasher",
+                     "email" : "tybrasher@gmail.com"
+                     },
+                     {
+                     "id" : 17,
+                     "name" : "Steven Gladwyn",
+                     "picture" : "https://robohash.org/stevengladwyn",
+                     "email" : "stevengladwyn@gmail.com"
+                     },
+                     {
+                     "id" : 18,
+                     "name" : "Sonnie Brock",
+                     "picture" : "https://robohash.org/sonniebrock",
+                     "email" : "sonniebrock@gmail.com"
+                     },
+                     {
+                     "id" : 19,
+                     "name" : "Chadwick Sandford",
+                     "picture" : "https://robohash.org/chadwicksandford",
+                     "email" : "chadwicksandford@gmail.com"
+                     },
+                     {
+                     "id" : 20,
+                     "name" : "Steven Whitney",
+                     "picture" : "https://robohash.org/stevenwhitney",
+                     "email" : "stevenwhitney@gmail.com"
+                     }
+                     ]
+    }
 }
