@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class PLPlacesViewController: UIViewController {
     
@@ -17,6 +19,10 @@ class PLPlacesViewController: UIViewController {
 
     private var resultsController: UITableViewController!
     private var searchController: UISearchController!
+    
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
+    var region: (center: CLLocation, radius: Double)!
     
     //    var places: [PLPlace]!
     //    var filteredPlaces: [PLPlace]!
@@ -49,6 +55,7 @@ class PLPlacesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupLocationService()
         configureSearchController()
         
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
@@ -59,6 +66,14 @@ class PLPlacesViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
+    }
+    
+    func setupLocationService() {
+        locationManager.requestWhenInUseAuthorization()
+        guard CLLocationManager.locationServicesEnabled() else { return showAlert() }
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.startUpdatingLocation()
     }
     
     
@@ -79,6 +94,24 @@ class PLPlacesViewController: UIViewController {
         
         definesPresentationContext = true
     }
+    
+    func showAlert() {
+        let alertController = UIAlertController(
+            title: "Background Location Access Disabled",
+            message: "In order to be notified about adorable kittens near you, please open this app's settings and set location access to 'Always'.",
+            preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let openAction = UIAlertAction(title: "Open Settings", style: .Default) { action in
+            if let url = NSURL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+        alertController.addAction(openAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
 
 
     // MARK: - Navigation
@@ -89,7 +122,21 @@ class PLPlacesViewController: UIViewController {
             placeProfileViewController.title = ""
         }
     }
+    
+    
+//    let regionRadius: CLLocationDistance = 1000
+//    func centerMapOnLocation(location: CLLocation) {
+//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+//        let mapView = MKMapView()
+//        mapView.setRegion(coordinateRegion, animated: true)
+//    }
+    
+//    func coordinateRegionWithCenter(center: CLLocation) -> (location: CLLocation, region: CLLocation) {
+//
+//        return (currentLocation, region)
+//    }
 
+    
 }
 
 
@@ -121,6 +168,7 @@ extension PLPlacesViewController: UITableViewDataSource {
 
 }
 
+
 // MARK: - UISearchResultsUpdating
 
 extension PLPlacesViewController: UISearchResultsUpdating {
@@ -133,6 +181,41 @@ extension PLPlacesViewController: UISearchResultsUpdating {
         //            resultsController.tableView.reloadData()
         //        }
     }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension PLPlacesViewController: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedAlways:
+            manager.startUpdatingLocation()
+        case .NotDetermined:
+            manager.requestAlwaysAuthorization()
+        case .AuthorizedWhenInUse, .Restricted, .Denied:
+            showAlert()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        
+        if currentLocation == nil {
+            currentLocation = location
+            manager.stopUpdatingLocation()
+        } else if currentLocation == location {
+            manager.stopUpdatingLocation()
+        } else {
+            currentLocation = location
+            manager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Can't get your location!")
+    }
+
 }
 
 
