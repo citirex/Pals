@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -401,7 +401,7 @@
             </objects>
             <point key="canvasLocation" x="116" y="-1106"/>
         </scene>
-        <!--Order-->
+        <!--Order View Controller-->
         <scene sceneID="BwI-Fv-Me0">
             <objects>
                 <viewController id="Cmd-gA-94i" customClass="PLOrderViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
@@ -413,8 +413,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vez-d2-tfK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vez-d2-tfK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <collectionViewLayout key="collectionViewLayout" id="LvP-wR-NEX" customClass="QTCollectionViewParallaxLayout"/>
                                 <cells/>
                                 <connections>
@@ -425,21 +425,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Vez-d2-tfK" firstAttribute="top" secondItem="Gr9-X3-Igb" secondAttribute="top" id="EG0-v2-7ho"/>
                             <constraint firstItem="Vez-d2-tfK" firstAttribute="bottom" secondItem="5ch-p3-Kg1" secondAttribute="top" id="G8k-fd-5Rw"/>
+                            <constraint firstItem="Vez-d2-tfK" firstAttribute="top" secondItem="tdv-ny-gZG" secondAttribute="bottom" id="Hoc-6b-cLM"/>
                             <constraint firstItem="Vez-d2-tfK" firstAttribute="leading" secondItem="Gr9-X3-Igb" secondAttribute="leading" id="Sps-Xk-zCu"/>
                             <constraint firstAttribute="trailing" secondItem="Vez-d2-tfK" secondAttribute="trailing" id="XQe-En-VNU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Order" image="icon_order" id="Plf-3r-qlm"/>
-                    <navigationItem key="navigationItem" id="WrI-H9-YOE"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="cjc-f8-sKN"/>
                     <connections>
                         <outlet property="collectionView" destination="Vez-d2-tfK" id="UFt-Jh-3Cd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLJ-aX-0ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1116" y="-319"/>
+            <point key="canvasLocation" x="1648" y="-319"/>
         </scene>
         <!--Friend Profile-->
         <scene sceneID="pBT-w8-B4P">
@@ -539,7 +539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679" y="430"/>
+            <point key="canvasLocation" x="2271" y="430"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mNa-5k-She">
@@ -1026,7 +1026,7 @@
                     <connections>
                         <segue destination="fB4-6t-r2g" kind="relationship" relationship="viewControllers" id="FRn-7d-fx2"/>
                         <segue destination="9Zg-pp-3Dn" kind="relationship" relationship="viewControllers" id="ukY-fN-2de"/>
-                        <segue destination="Cmd-gA-94i" kind="relationship" relationship="viewControllers" id="fu0-1q-0Dg"/>
+                        <segue destination="62o-mM-bJf" kind="relationship" relationship="viewControllers" id="fu0-1q-0Dg"/>
                         <segue destination="BjU-D1-zsC" kind="relationship" relationship="viewControllers" id="V62-ID-s7N"/>
                     </connections>
                 </tabBarController>
@@ -1091,7 +1091,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPz-kl-WYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679" y="-328"/>
+            <point key="canvasLocation" x="2271" y="-328"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="kTI-9s-VJB">
@@ -1121,7 +1121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9B-MX-2Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2175" y="-328"/>
+            <point key="canvasLocation" x="2743" y="-328"/>
         </scene>
         <!--Friends Search View Controller-->
         <scene sceneID="A86-LJ-Tha">
@@ -1139,7 +1139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1K-dj-Sgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2588" y="-328"/>
+            <point key="canvasLocation" x="3150" y="-328"/>
         </scene>
         <!--Location-->
         <scene sceneID="bgB-Nn-eGT">
@@ -1164,6 +1164,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTd-DI-FAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-102" y="-328"/>
+        </scene>
+        <!--Order-->
+        <scene sceneID="qwj-7y-Cum">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="62o-mM-bJf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Order" image="icon_order" id="Plf-3r-qlm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="752-w8-tJo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Cmd-gA-94i" kind="relationship" relationship="rootViewController" id="iAT-Lj-Zfm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fx2-et-xKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1116" y="-319"/>
         </scene>
     </scenes>
     <resources>
