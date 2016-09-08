@@ -76,8 +76,8 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     }
     
     private func updateButtonsState() {
-        coverButton.selected = (currentTab == .Drinks) ? true : false
-        drinkButton.selected = (currentTab == .Drinks) ? false : true
+        coverButton.selected = (currentTab == .Drinks) ? false : true
+        drinkButton.selected = (currentTab == .Drinks) ? true : false
     }
     
     private func updateListIndicator() {

@@ -15,7 +15,7 @@ private let kDrinkCellIdentifier = "drinkCell"
 
 class PLOrderViewController: UIViewController {
     
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet private var collectionView: UICollectionView!
     
     var orderDrinks = [String: Int]() {
         didSet{
@@ -24,13 +24,29 @@ class PLOrderViewController: UIViewController {
             }
         }
     }
+    
     private var currentTab: CurrentTab = .Drinks
+    private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
+    private var vipButton: UIBarButtonItem? = nil
+    
+    
     var drinks = [PLDrink]()
+    var userName: String? = "Chose friend"
+    var placeName: String? = "Chose place"
+    var messageToUser: String? = "Enter descriprion"
+    
     
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        vipButton = UIBarButtonItem(title: "VIP", style: .Plain, target: self, action: #selector(vipButtonPressed(_:)))
+        vipButton?.setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 20.0)!,
+            NSForegroundColorAttributeName: UIColor.orangeColor()],
+                                          forState: UIControlState.Normal)
+        navigationItem.rightBarButtonItem = vipButton
+                
         collectionView.registerNib(UINib(nibName: "PLOrderStillHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrdeStickyHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrderDrinkCell", bundle: nil), forCellWithReuseIdentifier: kDrinkCellIdentifier)
@@ -50,6 +66,31 @@ class PLOrderViewController: UIViewController {
             drinks.append(drink!)
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.translucent = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.barTintColor = kPalsPurpleColor
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        animableVipView.frame = PLOrderAnimableVipView.suggestedFrame
+        navigationItem.titleView = animableVipView
+    }
+    
+    @objc private func vipButtonPressed(sender: UIBarButtonItem) {
+        print("Vip button pressed")
+        navigationItem.rightBarButtonItem = nil
+        animableVipView.animateVip()
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(restore), userInfo: nil, repeats: false)
+    }
+    
+    func restore() {
+        navigationItem.rightBarButtonItem = vipButton
+        animableVipView.restoreToDefaultState()
+    }
 }
 
 //MARK: - Order items delegate, Tab changed delegate
@@ -62,12 +103,22 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         }
     }
     
-    func orderTabChanged(tab: CurrentTab) {
-        print("reload collection items")
+    func userNamePressed(sender: AnyObject) {
+        if let friendsViewController = UIStoryboard.viewControllerWithType(.FriendsViewController) {
+
+            navigationController?.pushViewController(friendsViewController, animated: true)
+        }
     }
     
-    func vipButtonPressed() {
-        print("Vip button pressed")
+    func placeNamePressed(sender: AnyObject) {
+        if let locationsViewController = UIStoryboard.viewControllerWithType(.LocationsViewController) {
+            navigationController?.pushViewController(locationsViewController, animated: true)
+        }
+        
+    }
+    
+    func orderTabChanged(tab: CurrentTab) {
+        print("reload collection items")
     }
 }
 
@@ -103,6 +154,9 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLOrderStillHeader
             header.delegate = self
+            header.userNameButton.setTitle(userName, forState: .Normal)
+            header.placeNameButton.setTitle(placeName, forState: .Normal)
+            header.messageTextView.text = messageToUser
             
             return header
         } else {
@@ -117,7 +171,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     
     //MARK: Collection delegate
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let height: CGFloat = (section == 0) ? 206 : 61 // hardcore..
+        let height: CGFloat = (section == 0) ? 144 : 61 // hardcore..
         return CGSizeMake(collectionView.bounds.size.width, height)
     }
     

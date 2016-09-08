@@ -22,10 +22,10 @@
                             <constraint firstAttribute="height" constant="60" id="cxa-5d-wUz"/>
                         </constraints>
                         <state key="normal" title="Drinks">
-                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <state key="selected">
-                            <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="drinksButtonPressed:" destination="h5i-Lf-YVa" eventType="touchUpInside" id="oge-XT-w6a"/>
@@ -38,10 +38,10 @@
                             <constraint firstAttribute="height" constant="60" id="9GN-Wz-Ieq"/>
                         </constraints>
                         <state key="normal" title="Cover">
-                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <state key="selected">
-                            <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="coverButtonPressed:" destination="h5i-Lf-YVa" eventType="touchUpInside" id="PhI-FM-ZIf"/>

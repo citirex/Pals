@@ -11,6 +11,8 @@ import Foundation
 enum PLStoryboardType : String {
     case LoginViewController
     case TabBarController
+    case FriendsViewController
+    case LocationsViewController
     var string: String {return rawValue}
 }
 
