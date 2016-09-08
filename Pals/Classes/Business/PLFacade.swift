@@ -15,7 +15,7 @@ protocol PLFacadeInterface {
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
     static func sendPassword(email: String, completion: PLErrorCompletion)
     static func updateLocation(completion: PLLocationUpdateCompletion)
-    static func createNearRect(size: CGSize, completion: PLLocationRectCompletion)
+    static func fetchNearRect(size: CGSize, completion: PLLocationRectCompletion)
     static var profile: PLUser? {get}
 }
 
@@ -41,8 +41,8 @@ class PLFacade : PLFacadeInterface {
         PLFacade.instance._updateLocation(completion)
     }
     
-    class func createNearRect(size: CGSize, completion: PLLocationRectCompletion) {
-        PLFacade.instance._createNearRect(size, completion: completion)
+    class func fetchNearRect(size: CGSize, completion: PLLocationRectCompletion) {
+        PLFacade.instance._fetchNearRect(size, completion: completion)
     }
     
     class _PLFacade {
@@ -121,7 +121,7 @@ extension PLFacade._PLFacade {
         locationManager.updateLocation(completion)
     }
     
-    func _createNearRect(size: CGSize, completion: PLLocationRectCompletion) {
+    func _fetchNearRect(size: CGSize, completion: PLLocationRectCompletion) {
         locationManager.createNearRect(size, completion: completion)
     }
 }

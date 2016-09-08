@@ -10,7 +10,6 @@
 		04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CCD0DB1D81411800651508 /* PLFriendCell.xib */; };
 		2480F8D81D813E730095995F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F86F1D813E730095995F /* AppDelegate.swift */; };
 		2480F8D91D813E730095995F /* PLFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8711D813E730095995F /* PLFacade.swift */; };
-		2480F8DA1D813E730095995F /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8721D813E730095995F /* PLFriendsDatasource.swift */; };
 		2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8731D813E730095995F /* PLNetworkManager.swift */; };
 		2480F8DC1D813E730095995F /* PLPageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8741D813E730095995F /* PLPageCollection.swift */; };
 		2480F8DD1D813E730095995F /* PLProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8751D813E730095995F /* PLProfileManager.swift */; };
@@ -84,6 +83,9 @@
 		D4CEC24F1D818B7300D4CD08 /* places2.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24B1D818B7300D4CD08 /* places2.json */; };
 		D4CEC2501D818B7300D4CD08 /* places3.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24C1D818B7300D4CD08 /* places3.json */; };
 		D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */; };
+		D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */; };
+		D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */; };
+		D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 		E829DDC81D8145E600D8C130 /* PLUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC71D8145E600D8C130 /* PLUIView.swift */; };
 		E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */; };
@@ -101,7 +103,6 @@
 		04CCD0DB1D81411800651508 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
 		2480F86F1D813E730095995F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2480F8711D813E730095995F /* PLFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFacade.swift; sourceTree = "<group>"; };
-		2480F8721D813E730095995F /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
 		2480F8731D813E730095995F /* PLNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNetworkManager.swift; sourceTree = "<group>"; };
 		2480F8741D813E730095995F /* PLPageCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPageCollection.swift; sourceTree = "<group>"; };
 		2480F8751D813E730095995F /* PLProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileManager.swift; sourceTree = "<group>"; };
@@ -185,6 +186,9 @@
 		D4CEC24B1D818B7300D4CD08 /* places2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places2.json; sourceTree = "<group>"; };
 		D4CEC24C1D818B7300D4CD08 /* places3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places3.json; sourceTree = "<group>"; };
 		D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocationManager.swift; sourceTree = "<group>"; };
+		D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
+		D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatasource.swift; sourceTree = "<group>"; };
+		D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesDatasource.swift; sourceTree = "<group>"; };
 		E829DDC71D8145E600D8C130 /* PLUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUIView.swift; sourceTree = "<group>"; };
 		E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileHeader.swift; path = "Place Profile/PLPlaceProfileHeader.swift"; sourceTree = "<group>"; };
 		E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileHeader.xib; path = "Place Profile/PLPlaceProfileHeader.xib"; sourceTree = "<group>"; };
@@ -237,8 +241,8 @@
 		2480F8701D813E730095995F /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				D4CEC2531D81A3B400D4CD08 /* Datasources */,
 				2480F8711D813E730095995F /* PLFacade.swift */,
-				2480F8721D813E730095995F /* PLFriendsDatasource.swift */,
 				2480F8731D813E730095995F /* PLNetworkManager.swift */,
 				2480F8741D813E730095995F /* PLPageCollection.swift */,
 				2480F8751D813E730095995F /* PLProfileManager.swift */,
@@ -524,6 +528,16 @@
 			path = Places;
 			sourceTree = "<group>";
 		};
+		D4CEC2531D81A3B400D4CD08 /* Datasources */ = {
+			isa = PBXGroup;
+			children = (
+				D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */,
+				D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */,
+				D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */,
+			);
+			path = Datasources;
+			sourceTree = "<group>";
+		};
 		E829DDC61D81447600D8C130 /* Place Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +712,7 @@
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
 				2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */,
 				2480F8EF1D813E730095995F /* TGLStackedLayout.m in Sources */,
+				D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */,
 				2480F9171D813E730095995F /* PLSignUpData.swift in Sources */,
 				2480F8EE1D813E730095995F /* TGLExposedLayout.m in Sources */,
 				2480F8E61D813E730095995F /* PLEvent.swift in Sources */,
@@ -706,7 +721,6 @@
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				2480F9161D813E730095995F /* PLAddButton.swift in Sources */,
 				2480F8F71D813E730095995F /* PLFriendCell.swift in Sources */,
-				2480F8DA1D813E730095995F /* PLFriendsDatasource.swift in Sources */,
 				2480F8E21D813E730095995F /* PLStoryboard.swift in Sources */,
 				2480F8DC1D813E730095995F /* PLPageCollection.swift in Sources */,
 				E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */,
@@ -726,6 +740,7 @@
 				2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */,
 				2480F90E1D813E730095995F /* PLStickyCollectionViewFlowLayout.swift in Sources */,
 				2480F8F11D813E730095995F /* PLAddFundsView.swift in Sources */,
+				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
 				2480F90D1D813E730095995F /* PLSlidingViewController.swift in Sources */,
 				2480F90F1D813E730095995F /* PLProfileCollectionHelper.swift in Sources */,
 				2480F8F51D813E730095995F /* PLImageView.swift in Sources */,
@@ -738,6 +753,7 @@
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
 				2480F9101D813E730095995F /* PLProfileDrinkCollectionViewCell.swift in Sources */,
 				E829DDC81D8145E600D8C130 /* PLUIView.swift in Sources */,
+				D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */,
 				2480F9151D813E730095995F /* PLSettingsViewController.swift in Sources */,
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,

@@ -14,6 +14,7 @@ enum PLAPIService : String {
     case SignUp
     case SendPassword
     case Friends
+    case Places
     var string: String {return rawValue.lowercaseString}
 }
 

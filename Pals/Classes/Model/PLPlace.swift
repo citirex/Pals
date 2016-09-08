@@ -21,19 +21,19 @@ class PLPlace : PLUniqueObject {
         guard
             let name = jsonDic[PLKeys.name.string] as? String,
             let picture = jsonDic[PLKeys.picture.string] as? String,
-            let address = jsonDic[PLKeys.name.string] as? String,
-            let phone = jsonDic[PLKeys.name.string] as? String
+            let address = jsonDic[PLKeys.address.string] as? String,
+            let phone = jsonDic[PLKeys.phone.string] as? String
         else {
             return nil
         }
         self.name = name
         self.picture = NSURL(string: picture)!
-        if let musicGengres = jsonDic[PLKeys.name.string] as? String {
+        if let musicGengres = jsonDic[PLKeys.genres.string] as? String {
             self.musicGengres = musicGengres
         }
         self.address = address
         self.phone = phone
-        if let locationStr = jsonDic[PLKeys.name.string] as? String {
+        if let locationStr = jsonDic[PLKeys.location.string] as? String {
             let coords = locationStr.componentsSeparatedByString(":")
             if coords.count == 2,
                 let lat = Double(coords[0]),
@@ -41,7 +41,7 @@ class PLPlace : PLUniqueObject {
                 self.location = CLLocationCoordinate2D(latitude: lat, longitude: long)
             }
         }
-        if let closeTime = jsonDic[PLKeys.name.string] as? String {
+        if let closeTime = jsonDic[PLKeys.close_time.string] as? String {
             self.closeTime = closeTime
         }
         super.init(jsonDic: jsonDic)

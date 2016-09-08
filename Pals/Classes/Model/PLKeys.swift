@@ -28,6 +28,7 @@ enum PLKeys : String {
     case close_time
     case events
     case drink
+    case rect
     case success
     case per_page
     case since
