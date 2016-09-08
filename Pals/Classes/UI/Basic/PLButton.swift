@@ -29,5 +29,12 @@ class PLButton: UIButton {
             layer.masksToBounds = cornerRadius > 0
         }
     }
+    
+    @IBInspectable var rounded: Bool = false {
+        didSet {
+            layer.cornerRadius = rounded ? frame.width / 2 : 0
+            layer.masksToBounds = rounded ? true : false
+        }
+    }
 
 }

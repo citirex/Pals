@@ -8,12 +8,12 @@
 
 import UIKit
 
-class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
+class PLFriendsViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
 	
 	var searchBar = UISearchBar()
+	var tableView = UITableView()
 	
-	let usr = PLUser(jsonDic: ["":""])?.cellData
-    let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
+//    let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 	
 	@IBAction func searchButton(sender: AnyObject) {
 		
@@ -29,6 +29,11 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		tableView.frame = UIScreen.mainScreen().bounds
+		
+		tableView.delegate = self
+		tableView.dataSource = self
+		
 		let textFieldInsideSearchBar = self.searchBar.valueForKey("searchField") as! UITextField
 		textFieldInsideSearchBar.leftViewMode = UITextFieldViewMode.Never
 		searchBar.placeholder = "Find Your Pals                                        "
@@ -40,59 +45,59 @@ class PLFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 		
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-        
-        loadDatasource()
+		
+		view.addSubview(tableView)
+		
+//        loadDatasource()
 	}
     
-    func loadDatasource() {
-        // show spinner
-        datasource.load {[unowned self] (page, error) in
-            if error == nil {
-                self.tableView.beginUpdates()
-                // insert cells
-                self.tableView.endUpdates()
-                // hide spinner
-            }
-        }
-    }
+//    func loadDatasource() {
+//        // show spinner
+//        datasource.load {[unowned self] (page, error) in
+//            if error == nil {
+//                self.tableView.beginUpdates()
+//                // insert cells
+//                self.tableView.endUpdates()
+//                // hide spinner
+//			} else {
+//				
+//			}
+//        }
+//    }
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = datasource.count
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        let count = datasource.count
 		return PLFriendsModel.FriendModel.itemsArray.count
-//		return Int(usr!.id)
 	}
 	
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
 		let cell:PLFriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! PLFriendCell
 		
 		
 		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
 		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
-        let user = datasource[indexPath.row].cellData
-//		let image = UIImageView?()
-//		image?.sd_setImageWithURL(usr!.picture)
-//		cell.avatarImage.image = image!.image
-//		
-//		cell.nameLabel.text = usr!.name
+		
+//        let user = datasource[indexPath.row].cellData
+		
 		cell.addButtonOutlet.hidden = true
 		cell.accessoryType = .DisclosureIndicator
 		
 		return cell
 	}
 	
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == datasource.count-1 {
-            loadDatasource()
-        }
-    }
-    
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if indexPath.row == datasource.count-1 {
+//            loadDatasource()
+//        }
+//    }
+	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		performSegueWithIdentifier("ShowFriendProfile", sender: self)
 	}
 	
-	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		return 100
 	}
 	

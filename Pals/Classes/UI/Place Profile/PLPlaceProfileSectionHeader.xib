@@ -89,13 +89,23 @@
                         <constraint firstAttribute="bottom" secondItem="kSQ-sM-tVy" secondAttribute="bottom" constant="13" id="pXG-1Y-nFm"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AW4-sR-nJa">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AW4-sR-nJa" userLabel="Order Button" customClass="PLButton" customModule="Pals" customModuleProvider="target">
                     <rect key="frame" x="240" y="61" width="55" height="55"/>
+                    <color key="backgroundColor" red="0.21960784310000001" green="0.80784313730000001" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="12M-Tj-0qw"/>
                         <constraint firstAttribute="width" constant="55" id="20n-ZH-IEJ"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" image="arrow-right"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
             <constraints>
@@ -113,6 +123,7 @@
             <connections>
                 <outlet property="closingTimeLabel" destination="MBi-ZT-yQ9" id="69Y-Uw-qiW"/>
                 <outlet property="musicGenresLabel" destination="X0g-ou-tgV" id="ply-OL-G3w"/>
+                <outlet property="orderButton" destination="AW4-sR-nJa" id="j03-GG-oK0"/>
                 <outlet property="phoneNumberLabel" destination="vM2-oA-2h6" id="6GT-MJ-PvG"/>
                 <outlet property="placeAddressLabel" destination="bPY-sN-6nv" id="PU1-d4-hb7"/>
                 <outlet property="placeNameLabel" destination="0vA-Ca-YpO" id="gl1-2r-NP7"/>
@@ -121,4 +132,7 @@
             <point key="canvasLocation" x="191" y="219.5"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <image name="arrow-right" width="128" height="128"/>
+    </resources>
 </document>
