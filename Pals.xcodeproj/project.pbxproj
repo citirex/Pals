@@ -79,7 +79,6 @@
 		2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8D21D813E730095995F /* LaunchScreen.storyboard */; };
 		2480F9241D813E730095995F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8D31D813E730095995F /* Main.storyboard */; };
 		2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */; };
-		24CB94A11D814AE100A44CF7 /* PLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB94A01D814AE100A44CF7 /* PLConstants.swift */; };
 		D4CEC24D1D818B7300D4CD08 /* places0.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC2491D818B7300D4CD08 /* places0.json */; };
 		D4CEC24E1D818B7300D4CD08 /* places1.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24A1D818B7300D4CD08 /* places1.json */; };
 		D4CEC24F1D818B7300D4CD08 /* places2.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24B1D818B7300D4CD08 /* places2.json */; };
@@ -95,6 +94,7 @@
 		E829DDD51D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDD01D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib */; };
 		E829DDD61D8151BE00D8C130 /* PLPlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */; };
 		E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDD71D818EAC00D8C130 /* PLPlacesViewController.swift */; };
+		E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDDB1D819A6300D8C130 /* PLConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,7 +177,6 @@
 		2480F8D31D813E730095995F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2480F8D61D813E730095995F /* QTCollectionViewParallaxLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTCollectionViewParallaxLayout.h; sourceTree = "<group>"; };
 		2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTCollectionViewParallaxLayout.m; sourceTree = "<group>"; };
-		24CB94A01D814AE100A44CF7 /* PLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLConstants.swift; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +194,7 @@
 		E829DDD01D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileSectionHeader.xib; path = "Place Profile/PLPlaceProfileSectionHeader.xib"; sourceTree = "<group>"; };
 		E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileViewController.swift; path = "Place Profile/PLPlaceProfileViewController.swift"; sourceTree = "<group>"; };
 		E829DDD71D818EAC00D8C130 /* PLPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesViewController.swift; sourceTree = "<group>"; };
+		E829DDDB1D819A6300D8C130 /* PLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLConstants.swift; sourceTree = "<group>"; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,7 +257,7 @@
 				2480F87B1D813E730095995F /* PLStoryboard.swift */,
 				2480F87C1D813E730095995F /* PLString.swift */,
 				E829DDC71D8145E600D8C130 /* PLUIView.swift */,
-				24CB94A01D814AE100A44CF7 /* PLConstants.swift */,
+				E829DDDB1D819A6300D8C130 /* PLConstants.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -701,6 +701,7 @@
 				2480F9171D813E730095995F /* PLSignUpData.swift in Sources */,
 				2480F8EE1D813E730095995F /* TGLExposedLayout.m in Sources */,
 				2480F8E61D813E730095995F /* PLEvent.swift in Sources */,
+				E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */,
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				2480F9161D813E730095995F /* PLAddButton.swift in Sources */,

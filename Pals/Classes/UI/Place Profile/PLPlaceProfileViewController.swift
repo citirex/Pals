@@ -87,7 +87,6 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell", forIndexPath: indexPath)
             as! PLPlaceProfileCollectionViewCell
-        cell
         return cell
     }
 }
@@ -129,7 +128,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: -
+// MARK: - PLPlaceProfileSectionHeaderDelegate
 
 extension PLPlaceProfileViewController: PLPlaceProfileSectionHeaderDelegate {
     
