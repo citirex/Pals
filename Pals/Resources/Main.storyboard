@@ -414,7 +414,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vez-d2-tfK">
-                                <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <collectionViewLayout key="collectionViewLayout" id="LvP-wR-NEX" customClass="QTCollectionViewParallaxLayout"/>
                                 <cells/>
                                 <connections>
@@ -425,10 +425,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Vez-d2-tfK" firstAttribute="bottom" secondItem="5ch-p3-Kg1" secondAttribute="top" id="G8k-fd-5Rw"/>
-                            <constraint firstItem="Vez-d2-tfK" firstAttribute="top" secondItem="tdv-ny-gZG" secondAttribute="bottom" id="Hoc-6b-cLM"/>
-                            <constraint firstItem="Vez-d2-tfK" firstAttribute="leading" secondItem="Gr9-X3-Igb" secondAttribute="leading" id="Sps-Xk-zCu"/>
-                            <constraint firstAttribute="trailing" secondItem="Vez-d2-tfK" secondAttribute="trailing" id="XQe-En-VNU"/>
+                            <constraint firstItem="Vez-d2-tfK" firstAttribute="leading" secondItem="Gr9-X3-Igb" secondAttribute="leading" id="fVy-N1-u56"/>
+                            <constraint firstAttribute="trailing" secondItem="Vez-d2-tfK" secondAttribute="trailing" id="gfJ-cQ-hJD"/>
+                            <constraint firstItem="5ch-p3-Kg1" firstAttribute="top" secondItem="Vez-d2-tfK" secondAttribute="bottom" id="lBh-Ga-JNO"/>
+                            <constraint firstItem="Vez-d2-tfK" firstAttribute="top" secondItem="Gr9-X3-Igb" secondAttribute="top" id="vQG-El-Va2"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>

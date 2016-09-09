@@ -164,11 +164,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let place = datasource[indexPath.row]
         if let cell = cell as? PLPlaceTableViewCell {
-            cell.backgroundImageView.setImageWithURL(place.picture)
-            cell.placeNameLabel.text = place.name
-            cell.placeAddressLabel.text = place.address
-            cell.musicGenresLabel.text = place.musicGengres
-//            cell.distanceLabel.text = place.distance
+            cell.place = place
         }
     }
     
