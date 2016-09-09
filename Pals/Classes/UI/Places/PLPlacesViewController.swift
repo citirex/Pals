@@ -6,22 +6,27 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+
 class PLPlacesViewController: PLViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     static let nibName = "PLPlaceTableViewCell"
     static let cellIdentifier = "PlaceCell"
 
+    private var activityIndicator: UIActivityIndicatorView!
     private var resultsController: UITableViewController!
     private var searchController: UISearchController!
     
+    
     lazy var datasource: PLPlacesDatasource = {return PLPlacesDatasource()}()
+  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
+        createActivityIndicator()
         configureSearchController()
         
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
@@ -29,21 +34,23 @@ class PLPlacesViewController: PLViewController {
         loadPage()
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
     }
     
+    
     func loadPage() {
         activityIndicator.startAnimating()
-        datasource.load {[unowned self] page, error in
+        datasource.load { [unowned self] page, error in
             if error == nil {
                 let count = self.datasource.count
                 let lastLoadedCount = page.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()
-                    for i in count-lastLoadedCount..<count {
+                    for i in count - lastLoadedCount..<count {
                         indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
                     }
                     self.tableView?.beginUpdates()
@@ -56,6 +63,7 @@ class PLPlacesViewController: PLViewController {
             }
         }
     }
+    
     
     // MARK: - Initialize search controller
     
@@ -73,6 +81,9 @@ class PLPlacesViewController: PLViewController {
         
         definesPresentationContext = true
     }
+    
+    
+    // MARK: - Alert
     
     func showAlert() {
         let alertController = UIAlertController(
@@ -101,16 +112,45 @@ class PLPlacesViewController: PLViewController {
             placeProfileViewController.title = ""
         }
     }
+    
+    
+    // MARK: - Setup Activity Indicator
+    
+    private func createActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator!.translatesAutoresizingMaskIntoConstraints = false
+//        activityIndicator.hidesWhenStopped = true
+        tableView.addSubview(activityIndicator)
+        
+        addConstraints()
+    }
+    
+    private func addConstraints() {
+        tableView.addConstraint(NSLayoutConstraint(item: activityIndicator,
+            attribute: .CenterY,
+            relatedBy: .Equal,
+            toItem: tableView,
+            attribute: .CenterY,
+            multiplier: 1.0,
+            constant: 0))
+        
+        tableView.addConstraint(NSLayoutConstraint(item: activityIndicator,
+            attribute: .CenterX,
+            relatedBy: .Equal,
+            toItem: tableView,
+            attribute: .CenterX,
+            multiplier: 1.0,
+            constant: 0))
+    }
 
 }
+
 
 
 // MARK: - Table view data source
 
 extension PLPlacesViewController: UITableViewDataSource {
 
-    
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datasource.count
     }
@@ -124,7 +164,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let place = datasource[indexPath.row]
         if let cell = cell as? PLPlaceTableViewCell {
-//            cell.backgroundImageView.image = UIImage(data: NSData(contentsOfURL: place.picture)!)
+            cell.backgroundImageView.setImageWithURL(place.picture)
             cell.placeNameLabel.text = place.name
             cell.placeAddressLabel.text = place.address
             cell.musicGenresLabel.text = place.musicGengres
@@ -139,12 +179,13 @@ extension PLPlacesViewController: UITableViewDataSource {
 
 }
 
+
 // MARK: - Table view delegate
 
 extension PLPlacesViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == datasource.count-1 {
-            self.activityIndicator.startAnimating()
+        if indexPath.row == datasource.count - 1 {
+            activityIndicator.startAnimating()
             loadPage()
         }
     }
