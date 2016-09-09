@@ -16,16 +16,20 @@ class PLPlaceTableViewCell: UITableViewCell {
     @IBOutlet weak var musicGenresLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var place: PLPlace! {
+        didSet {
+            configureCell()
+        }
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    private func configureCell() {
+        let placeCellData = place.cellData
+        backgroundImageView.setImageWithURL(placeCellData.picture)
+        placeNameLabel.text = placeCellData.name
+        placeAddressLabel.text = placeCellData.address
+        musicGenresLabel.text = placeCellData.musicGengres
+//        distanceLabel.text = placeCellData.distance
+    }
+
 }
