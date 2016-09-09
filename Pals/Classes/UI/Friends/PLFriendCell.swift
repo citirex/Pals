@@ -15,10 +15,18 @@ class PLFriendCell: UITableViewCell{
 	@IBAction func addButtonClicked(sender: AnyObject) {
 		addButtonOutlet.setImage(UIImage(named: "success"), forState: .Normal)
 	}
+	
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
+	
+	var friend: PLUser? {
+		didSet {
+			let FriendCellData = friend!.cellData
+			avatarImage.setImageWithURL(FriendCellData.picture)
+			nameLabel.text = FriendCellData.name
+		}
+	}
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

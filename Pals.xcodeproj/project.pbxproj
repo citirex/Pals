@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F61D83083800C2E32D /* PLFriendCell.swift */; };
+		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
+		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
 		04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CCD0DB1D81411800651508 /* PLFriendCell.xib */; };
 		2480F8D81D813E730095995F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F86F1D813E730095995F /* AppDelegate.swift */; };
 		2480F8D91D813E730095995F /* PLFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8711D813E730095995F /* PLFacade.swift */; };
@@ -38,12 +41,8 @@
 		2480F8F41D813E730095995F /* PLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8981D813E730095995F /* PLButton.swift */; };
 		2480F8F51D813E730095995F /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8991D813E730095995F /* PLImageView.swift */; };
 		2480F8F61D813E730095995F /* PLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89A1D813E730095995F /* PLTextField.swift */; };
-		2480F8F71D813E730095995F /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89C1D813E730095995F /* PLFriendCell.swift */; };
 		2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89D1D813E730095995F /* PLFriendCellData.swift */; };
 		2480F8F91D813E730095995F /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89E1D813E730095995F /* PLFriendProfileViewController.swift */; };
-		2480F8FA1D813E730095995F /* PLFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89F1D813E730095995F /* PLFriendsModel.swift */; };
-		2480F8FB1D813E730095995F /* PLFriendsSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A01D813E730095995F /* PLFriendsSearchTableViewController.swift */; };
-		2480F8FC1D813E730095995F /* PLFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A11D813E730095995F /* PLFriendsTableViewController.swift */; };
 		2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A31D813E730095995F /* PLLoginViewController.swift */; };
 		2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A51D813E730095995F /* PLOrderViewController.swift */; };
 		2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */; };
@@ -113,6 +112,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		049BA9F61D83083800C2E32D /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
+		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
+		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
 		04CCD0DB1D81411800651508 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
 		2480F86F1D813E730095995F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2480F8711D813E730095995F /* PLFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFacade.swift; sourceTree = "<group>"; };
@@ -149,12 +151,8 @@
 		2480F8981D813E730095995F /* PLButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLButton.swift; sourceTree = "<group>"; };
 		2480F8991D813E730095995F /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImageView.swift; sourceTree = "<group>"; };
 		2480F89A1D813E730095995F /* PLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTextField.swift; sourceTree = "<group>"; };
-		2480F89C1D813E730095995F /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		2480F89D1D813E730095995F /* PLFriendCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCellData.swift; sourceTree = "<group>"; };
 		2480F89E1D813E730095995F /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendProfileViewController.swift; sourceTree = "<group>"; };
-		2480F89F1D813E730095995F /* PLFriendsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsModel.swift; sourceTree = "<group>"; };
-		2480F8A01D813E730095995F /* PLFriendsSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchTableViewController.swift; sourceTree = "<group>"; };
-		2480F8A11D813E730095995F /* PLFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsTableViewController.swift; sourceTree = "<group>"; };
 		2480F8A31D813E730095995F /* PLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLoginViewController.swift; sourceTree = "<group>"; };
 		2480F8A51D813E730095995F /* PLOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderViewController.swift; sourceTree = "<group>"; };
 		2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDrinkCell.swift; sourceTree = "<group>"; };
@@ -376,12 +374,11 @@
 			isa = PBXGroup;
 			children = (
 				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
-				2480F89C1D813E730095995F /* PLFriendCell.swift */,
 				2480F89D1D813E730095995F /* PLFriendCellData.swift */,
 				2480F89E1D813E730095995F /* PLFriendProfileViewController.swift */,
-				2480F89F1D813E730095995F /* PLFriendsModel.swift */,
-				2480F8A01D813E730095995F /* PLFriendsSearchTableViewController.swift */,
-				2480F8A11D813E730095995F /* PLFriendsTableViewController.swift */,
+				049BA9F61D83083800C2E32D /* PLFriendCell.swift */,
+				049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */,
+				049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -763,8 +760,8 @@
 				2480F8DE1D813E730095995F /* PLSettingsManager.swift in Sources */,
 				2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */,
 				2480F8DD1D813E730095995F /* PLProfileManager.swift in Sources */,
+				049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
-				2480F8FB1D813E730095995F /* PLFriendsSearchTableViewController.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
 				2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */,
@@ -778,7 +775,6 @@
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				2480F9161D813E730095995F /* PLAddButton.swift in Sources */,
-				2480F8F71D813E730095995F /* PLFriendCell.swift in Sources */,
 				2480F8E21D813E730095995F /* PLStoryboard.swift in Sources */,
 				2480F8DC1D813E730095995F /* PLPageCollection.swift in Sources */,
 				E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */,
@@ -789,7 +785,6 @@
 				2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */,
 				2480F8E81D813E730095995F /* PLKeys.swift in Sources */,
 				2480F9141D813E730095995F /* PLProfileViewController.swift in Sources */,
-				2480F8FA1D813E730095995F /* PLFriendsModel.swift in Sources */,
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
 				2480F9081D813E730095995F /* PLPlaceTableViewCell.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,
@@ -807,6 +802,8 @@
 				2480F90D1D813E730095995F /* PLSlidingViewController.swift in Sources */,
 				2480F90F1D813E730095995F /* PLProfileCollectionHelper.swift in Sources */,
 				2480F8F51D813E730095995F /* PLImageView.swift in Sources */,
+				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,
+				049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */,
 				D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */,
 				2480F8E01D813E730095995F /* PLDictionary.swift in Sources */,
 				2480F9121D813E730095995F /* PLProfileHeaderView.swift in Sources */,
@@ -825,7 +822,6 @@
 				2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */,
 				D4950AA21D82EB0500F48F4E /* PLOrderCellData.swift in Sources */,
 				E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */,
-				2480F8FC1D813E730095995F /* PLFriendsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  PLFriendsSearchTableViewController.swift
+//  PLFriendsSearchViewController.swift
 //  Pals
 //
 //  Created by Карпенко Михайло on 06.09.16.
@@ -48,15 +48,15 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return PLFriendsModel.FriendModel.itemsArray.count
+		return 1
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
 		let cell:PLFriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! PLFriendCell
 		
-		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
-		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
+//		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
+//		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
 		cell.accessoryType = .None
 		cell.addButtonOutlet.hidden = false
 		cell.addButtonOutlet.setImage(UIImage(named: "plus"), forState: .Normal)

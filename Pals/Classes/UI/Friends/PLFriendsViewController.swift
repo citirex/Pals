@@ -1,5 +1,5 @@
 //
-//  PLFriendsTableViewController.swift
+//  PLFriendsViewController.swift
 //  Pals
 //
 //  Created by Карпенко Михайло on 05.09.16.
@@ -10,8 +10,9 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	var searchBar = UISearchBar()
 	var tableView = UITableView()
+	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 	
-//    let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 	
 	@IBAction func searchButton(sender: AnyObject) {
 		
@@ -44,51 +45,76 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		
-		view.addSubview(tableView)
 		
-//        loadDatasource()
+		view.addSubview(tableView)
+		view.addSubview(spinner)
+
+		spinner.center = view.center
+		spinner.transform = CGAffineTransformMakeScale(2, 2)
+		tableView.hidden = true
+        loadDatasource()
 	}
     
-//    func loadDatasource() {
-//        // show spinner
-//        datasource.load {[unowned self] (page, error) in
-//            if error == nil {
-//                self.tableView.beginUpdates()
-//                // insert cells
-//                self.tableView.endUpdates()
-//                // hide spinner
-//			} else {
-//				
-//			}
-//        }
-//    }
+    func loadDatasource() {
+		self.spinner.startAnimating()
+        datasource.load {[unowned self] (page, error) in
+            if error == nil {
+				self.tableView.hidden = false
+				let count = self.datasource.count
+				let lastLoadedCount = page.count
+				if lastLoadedCount > 0 {
+					var indexPaths = [NSIndexPath]()
+					for i in count - lastLoadedCount..<count {
+						indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+					}
+					self.tableView.beginUpdates()
+					self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+					self.tableView.endUpdates()
+				}
+				self.spinner.stopAnimating()
+			} else {
+				self.alertCalled("You are alone.", mesage: "Your Friendlist is empty.")
+			}
+        }
+    }
+	
+	func alertCalled(title: String, mesage: String) {
+		let alert = UIAlertController(title: title, message: mesage, preferredStyle: UIAlertControllerStyle.Alert)
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+		self.presentViewController(alert, animated: true, completion: nil)
+	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let count = datasource.count
-		return PLFriendsModel.FriendModel.itemsArray.count
+        let count = datasource.count
+		return count
+	}
+	
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int
+	{
+		return 1
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
-		let cell:PLFriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! PLFriendCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
 		
-		
-		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
-		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
-		
-//        let user = datasource[indexPath.row].cellData
-		
+		let friend = datasource[indexPath.row]
+		if let cell = cell as? PLFriendCell {
+		cell.avatarImage.image = UIImage(data: NSData(contentsOfURL: friend.picture)!)
+		cell.nameLabel.text = friend.name
 		cell.addButtonOutlet.hidden = true
+		}
 		cell.accessoryType = .DisclosureIndicator
 		
 		return cell
 	}
 	
-//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if indexPath.row == datasource.count-1 {
-//            loadDatasource()
-//        }
-//    }
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+		
+        if indexPath.row == datasource.count-1 {
+            loadDatasource()
+        }
+    }
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -154,3 +180,4 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	}
 	
 }
+
