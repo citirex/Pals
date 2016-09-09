@@ -422,8 +422,7 @@
 			children = (
 				E829DDD71D818EAC00D8C130 /* PLPlacesViewController.swift */,
 				D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */,
-				2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */,
-				2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */,
+				E83C51051D82FEE50095A3C5 /* Cell */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -586,14 +585,47 @@
 			isa = PBXGroup;
 			children = (
 				E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */,
-				E829DDCD1D8151BE00D8C130 /* PLPlaceProfileCollectionViewCell.swift */,
-				E829DDCE1D8151BE00D8C130 /* PLPlaceProfileCollectionViewCell.xib */,
-				E829DDCF1D8151BE00D8C130 /* PLPlaceProfileSectionHeader.swift */,
-				E829DDD01D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib */,
+				E83C51041D82FE7D0095A3C5 /* Cell */,
+				E83C51031D82FE700095A3C5 /* Section Header */,
+				E83C51021D82FE630095A3C5 /* Header */,
+			);
+			name = "Place Profile";
+			sourceTree = "<group>";
+		};
+		E83C51021D82FE630095A3C5 /* Header */ = {
+			isa = PBXGroup;
+			children = (
 				E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */,
 				E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */,
 			);
-			name = "Place Profile";
+			name = Header;
+			sourceTree = "<group>";
+		};
+		E83C51031D82FE700095A3C5 /* Section Header */ = {
+			isa = PBXGroup;
+			children = (
+				E829DDCF1D8151BE00D8C130 /* PLPlaceProfileSectionHeader.swift */,
+				E829DDD01D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib */,
+			);
+			name = "Section Header";
+			sourceTree = "<group>";
+		};
+		E83C51041D82FE7D0095A3C5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E829DDCD1D8151BE00D8C130 /* PLPlaceProfileCollectionViewCell.swift */,
+				E829DDCE1D8151BE00D8C130 /* PLPlaceProfileCollectionViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		E83C51051D82FEE50095A3C5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */,
+				2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
