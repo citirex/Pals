@@ -6,9 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
-class PLSettingsViewController: UIViewController {
+class PLSettingsViewController: PLViewController {
     
     @IBOutlet weak var headerSectionView: UIView!
     @IBOutlet weak var userProfileImageView: PLImageView!

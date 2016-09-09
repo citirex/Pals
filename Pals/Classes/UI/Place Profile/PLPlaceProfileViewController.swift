@@ -6,10 +6,9 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
 import CSStickyHeaderFlowLayout
 
-class PLPlaceProfileViewController: UIViewController {
+class PLPlaceProfileViewController: PLViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 

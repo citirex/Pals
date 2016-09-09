@@ -8,28 +8,49 @@
 
 import MapKit.MKGeometry
 
-typealias PLLocationUpdateCompletion = (location: CLLocationCoordinate2D?, error: NSError?) -> ()
+typealias PLLocationUpdateCompletion = (location: CLLocation?, error: NSError?) -> ()
 typealias PLLocationRegionCompletion = (region: MKCoordinateRegion?, error: NSError?) -> ()
 
-class PLLocationManager : NSObject, CLLocationManagerDelegate {
-    var currentLocation: CLLocationCoordinate2D?
+class PLLocationManager : NSObject {
+    var currentLocation: CLLocation?
     
-    private var manager: CLLocationManager = {
-        // check authorization status
-        let manager = CLLocationManager()
-        return manager
-    }()
     private var needsUpdateNearRegion = true
     private var nearRegion: MKCoordinateRegion?
+    
+    lazy private var manager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        return manager
+    }()
+    private var authorizing = false
     private var onLocationUpdated: PLLocationUpdateCompletion?
     
-    func updateLocation(completion: PLLocationUpdateCompletion) {
+    typealias LocationStatusCompletion = (status: CLAuthorizationStatus, error: NSError?) -> ()
+    var statusCompletion: LocationStatusCompletion?
+    
+    func tryUpdate(completion: LocationStatusCompletion) {
         manager.delegate = self
-        onLocationUpdated = completion
-        // update location, remove hardcode
-        let locationCoord = CLLocationCoordinate2D(latitude: 50.448042, longitude: 30.497832)
-        currentLocation = locationCoord
-        onLocationUpdated!(location:currentLocation , error: nil)
+        let status = CLLocationManager.authorizationStatus()
+        switch status {
+        case .NotDetermined:
+            statusCompletion = completion
+            authorizing = true
+            manager.requestWhenInUseAuthorization()
+        default:
+            completion(status: status, error: nil)
+        }
+    }
+    
+    func updateLocation(completion: PLLocationUpdateCompletion?) {
+        self.onLocationUpdated = completion
+        tryUpdate { (status, error) in
+            if error == nil {
+                self.manager.startUpdatingLocation()
+            } else {
+                completion?(location: nil, error: error)
+                return
+            }
+        }
     }
     
     func fetchNearRegion(completion: PLLocationRegionCompletion) {
@@ -48,7 +69,8 @@ class PLLocationManager : NSObject, CLLocationManagerDelegate {
     func createNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
         updateLocation { (location, error) in
             if error == nil {
-                self.nearRegion = MKCoordinateRegionMakeWithDistance(location!, Double(size.width)/2.0, Double(size.height)/2)
+                let coordinate = location!.coordinate
+                self.nearRegion = MKCoordinateRegionMakeWithDistance(coordinate, Double(size.width)/2.0, Double(size.height)/2)
                 self.needsUpdateNearRegion = false
                 completion(region: self.nearRegion, error: nil)
             } else {
@@ -56,4 +78,57 @@ class PLLocationManager : NSObject, CLLocationManagerDelegate {
             }
         }
     }
+}
+
+extension PLLocationManager: CLLocationManagerDelegate {
+    
+    func checkAppState(status: CLAuthorizationStatus) {
+        switch UIApplication.sharedApplication().applicationState {
+        case .Active:
+            print("Active")
+        case .Inactive:
+            print("Inactive")
+        case .Background:
+            print("Background")
+        }
+        switch status {
+        case .AuthorizedWhenInUse:
+            print("AuthorizedWhenInUse")
+        case .NotDetermined:
+            print("NotDetermined")
+        case .Denied:
+            print("Denied")
+        case .Restricted:
+            print("Restricted")
+        default:
+            break
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        checkAppState(status)
+        switch status {
+        case .AuthorizedWhenInUse:
+            authorizing = false
+            manager.startUpdatingLocation()
+        case .Restricted, .Denied:
+            let error = PLError(domain: .Location, type: kPLErrorTypeLocationNotAvailable)
+            PLShowErrorAlert(error: error)
+        default :
+            break
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            currentLocation = location
+            onLocationUpdated?(location: location, error: nil)
+            onLocationUpdated = nil
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+//        PLShowErrorAlert(error: error)
+    }
+    
 }

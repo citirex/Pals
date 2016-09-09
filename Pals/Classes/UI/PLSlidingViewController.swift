@@ -6,9 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
-class PLSlidingViewController: UIViewController, UIGestureRecognizerDelegate {
+class PLSlidingViewController: PLViewController, UIGestureRecognizerDelegate {
     
     var backgroundView: UIView? = nil {
         didSet{

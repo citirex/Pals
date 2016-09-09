@@ -6,9 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
-class PLLoginViewController: UIViewController {
+class PLLoginViewController: PLViewController {
 	
 	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	private var currentTextField: PLTextField!
@@ -22,14 +20,14 @@ class PLLoginViewController: UIViewController {
         let userName = loginTextField.text!
         let password = passTextField.text!
         if userName.isEmpty {
-			alertCalled("Login error!", mesage: "Please enter your login.")
+			PLShowAlert("Login error!", message: "Please enter your login.")
         } else if password.isEmpty {
-			alertCalled("Login error!", mesage: "Please enter your password.")
+			PLShowAlert("Login error!", message: "Please enter your password.")
         } else {
 			spinner!.startAnimating()
             PLFacade.login(userName, password: password, completion: { (error) in
                 if error != nil {
-					self.alertCalled("Login error!", mesage: (error?.localizedDescription)!)
+					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
 					self.spinner?.stopAnimating()
                 } else {
                     self.showMainScreen()
@@ -59,11 +57,11 @@ class PLLoginViewController: UIViewController {
 						tittle = "Success!"
 						message = "Show password on your E-mail."
 					}
-					self.alertCalled(tittle, mesage: message)
+                    PLShowAlert(tittle, message: message)
 					self.spinner?.stopAnimating()
 				})
 			} else {
-				self.alertCalled("Incorrect email!", mesage: "Re-enter your email.")
+                PLShowAlert("Incorrect email!", message: "Re-enter your email.")
 			}
 		}))
 		presentViewController(alert, animated: true, completion: nil)
@@ -71,12 +69,6 @@ class PLLoginViewController: UIViewController {
 	@IBAction func registerButtonClicked(sender: AnyObject) {
 	}
 	@IBAction func unwindToLoginClicked(sender: UIStoryboardSegue) {
-	}
-	
-	func alertCalled(title: String, mesage: String) {
-		let alert = UIAlertController(title: title, message: mesage, preferredStyle: UIAlertControllerStyle.Alert)
-		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-		self.presentViewController(alert, animated: true, completion: nil)
 	}
 	
 	func showMainScreen() {

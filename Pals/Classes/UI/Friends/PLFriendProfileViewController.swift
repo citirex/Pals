@@ -6,9 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
-class PLFriendProfileViewController: UIViewController {
+class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var userProfileImageView: PLImageView!

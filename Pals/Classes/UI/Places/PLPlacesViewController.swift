@@ -6,11 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-import MapKit
-import CoreLocation.CLLocation
-
-class PLPlacesViewController: UIViewController {
+class PLPlacesViewController: PLViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,10 +15,6 @@ class PLPlacesViewController: UIViewController {
 
     private var resultsController: UITableViewController!
     private var searchController: UISearchController!
-    
-    let locationManager = CLLocationManager()
-    var currentLocation: CLLocation!
-    var region: (center: CLLocation, radius: Double)!
     
     //    var places: [PLPlace]!
     //    var filteredPlaces: [PLPlace]!
@@ -56,7 +48,6 @@ class PLPlacesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLocationService()
         configureSearchController()
         
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
@@ -72,26 +63,18 @@ class PLPlacesViewController: UIViewController {
     
     func loadPage() {
         // TODO: show spinner
-        self.datasource.load({ (page, error) in
+        self.datasource.load({[unowned self] (page, error) in
             if error == nil {
                 self.tableView.beginUpdates()
                 // insert cells
                 self.tableView.endUpdates()
                 // hide spinner
             } else {
+                PLShowErrorAlert(error: error!)
                 // show error
             }
         })
     }
-    
-    func setupLocationService() {
-        locationManager.requestWhenInUseAuthorization()
-        guard CLLocationManager.locationServicesEnabled() else { return showAlert() }
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            locationManager.startUpdatingLocation()
-    }
-    
     
     // MARK: - Initialize search controller
     
@@ -138,7 +121,7 @@ class PLPlacesViewController: UIViewController {
             placeProfileViewController.title = ""
         }
     }
-    
+
     
 //    let regionRadius: CLLocationDistance = 1000
 //    func centerMapOnLocation(location: CLLocation) {
@@ -198,40 +181,3 @@ extension PLPlacesViewController: UISearchResultsUpdating {
         //        }
     }
 }
-
-// MARK: - CLLocationManagerDelegate
-
-extension PLPlacesViewController: CLLocationManagerDelegate {
-    
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        switch CLLocationManager.authorizationStatus() {
-        case .AuthorizedAlways:
-            manager.startUpdatingLocation()
-        case .NotDetermined:
-            manager.requestAlwaysAuthorization()
-        case .AuthorizedWhenInUse, .Restricted, .Denied:
-            showAlert()
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        
-        if currentLocation == nil {
-            currentLocation = location
-            manager.stopUpdatingLocation()
-        } else if currentLocation == location {
-            manager.stopUpdatingLocation()
-        } else {
-            currentLocation = location
-            manager.startUpdatingLocation()
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Can't get your location!")
-    }
-
-}
-
-

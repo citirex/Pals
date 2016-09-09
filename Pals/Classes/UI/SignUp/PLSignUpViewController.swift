@@ -6,9 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
-class PLSignUpViewController: UIViewController {
+class PLSignUpViewController: PLViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameTextField: PLTextField!
@@ -95,10 +93,10 @@ class PLSignUpViewController: UIViewController {
         let password = passwordTextField.text!.trim()
         let picture = imageView.image != nil ? imageView.image : UIImage(named: "anonimus")
         
-        guard !username.isEmpty else { return showAlert("Error", message: "Username must contain at least 1 character") }
-        guard email.isValidEmail else { return showAlert("Error", message: "Please enter a valid email address") }
-        guard !password.isEmpty else { return showAlert("Error", message: "Password must contain at least 1 character") }
-        guard validatePassword(password) else { return showAlert("Error", message: "Password mismatch") }
+        guard !username.isEmpty else { return PLShowAlert("Error", message: "Username must contain at least 1 character") }
+        guard email.isValidEmail else { return PLShowAlert("Error", message: "Please enter a valid email address") }
+        guard !password.isEmpty else { return PLShowAlert("Error", message: "Password must contain at least 1 character") }
+        guard validatePassword(password) else { return PLShowAlert("Error", message: "Password mismatch") }
         
         let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
         
@@ -106,7 +104,7 @@ class PLSignUpViewController: UIViewController {
         spinner.startAnimating()
         PLFacade.signUp(userData) { error in
             self.spinner.stopAnimating()
-            guard error == nil else { return self.showAlert("Error", message: error!.localizedDescription) }
+            guard error == nil else { return PLShowAlert("Error", message: error!.localizedDescription) }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
             let navigationController = tabBarController.viewControllers?.first as! UINavigationController
             _ = navigationController.viewControllers.first as! PLProfileViewController
@@ -117,17 +115,6 @@ class PLSignUpViewController: UIViewController {
     private func validatePassword(pass: String) -> Bool {
         return pass == confirmPasswordTextField.text!.trim()
     }
-
-    
-    // MARK: - Alert
-    
-    func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(OKAction)
-        presentViewController(alertController, animated: true, completion: nil)
-    }
-
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent

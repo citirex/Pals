@@ -6,9 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
-class PLAddFundsViewController: UIViewController, UITextFieldDelegate {
+class PLAddFundsViewController: PLViewController, UITextFieldDelegate {
     
     let sumView = UINib(nibName: "PLAddFundsView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLAddFundsView
     var refillSum: String {

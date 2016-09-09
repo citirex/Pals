@@ -9,6 +9,7 @@
 enum PLErrorDomain : String {
     case Unknown
     case User
+    case Location
     var string: String {return rawValue}
 }
 
@@ -17,8 +18,10 @@ struct PLErrorType {
     var reason: String
 }
 
-let kPLErrorTypeBadResponse = PLErrorType(code: 1000, reason: "Server returned a bad response")
-let kPLErrorTypeWrongEmail = PLErrorType(code: 1001, reason: "This email is not associated with any user account")
+let kPLErrorTypeBadResponse = PLErrorType(code: 1000, reason: "Server returned a bad response.")
+let kPLErrorTypeWrongEmail = PLErrorType(code: 1001, reason: "This email is not associated with any user account.")
+let kPLErrorTypeLocationNotAvailable = PLErrorType(code: 1000, reason: "Location services are not available. Go to Settings to activate them.")
+let kPLErrorTypeLocationFailed = PLErrorType(code: 1001, reason: "Failed to fetch location data.")
 let kPLErrorUnknown =  NSError(domain: PLErrorDomain.Unknown.string, code: 0, userInfo: nil)
 
 class PLError : NSError {

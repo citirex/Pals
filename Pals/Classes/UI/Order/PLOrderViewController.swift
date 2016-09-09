@@ -6,14 +6,12 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
 private let kStillHeaderIdentifier = "stillHeader"
 private let kStickyHeaderIdentifier = "stickyHeader"
 private let kDrinkCellIdentifier = "drinkCell"
 
 
-class PLOrderViewController: UIViewController {
+class PLOrderViewController: PLViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
     
