@@ -35,6 +35,7 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        updateButtonsState()
         func setupGestureForDirection(direction: UISwipeGestureRecognizerDirection) {
             let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized(_:)))
             swipe.direction = direction

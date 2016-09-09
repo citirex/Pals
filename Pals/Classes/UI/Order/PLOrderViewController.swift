@@ -69,9 +69,7 @@ class PLOrderViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.translucent = false
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.barTintColor = kPalsPurpleColor
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -94,7 +92,9 @@ class PLOrderViewController: UIViewController {
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate {
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate {
+    
+    //MARK: Order drinks count
     func updateOrderWith(drink: String, andCount count: Int) {
         if count == 0 {
             orderDrinks.removeValueForKey(drink)
@@ -103,20 +103,35 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         }
     }
     
+    
+    //MARK: Cnange user
     func userNamePressed(sender: AnyObject) {
-        if let friendsViewController = UIStoryboard.viewControllerWithType(.FriendsViewController) {
-
-            navigationController?.pushViewController(friendsViewController, animated: true)
+        if let viewController = UIStoryboard.viewControllerWithType(.OrderFriendsViewController) as? PLOrderFriendsViewController {
+            viewController.delegate = self
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
+    func didSelectFriend(friend: String) {
+        userName = friend
+        collectionView.reloadSections(NSIndexSet(index: 0))
+    }
+    
+    //MARK: Cnange place
     func placeNamePressed(sender: AnyObject) {
-        if let locationsViewController = UIStoryboard.viewControllerWithType(.LocationsViewController) {
-            navigationController?.pushViewController(locationsViewController, animated: true)
+        if let viewController = UIStoryboard.viewControllerWithType(.OrderLocationsViewController) as? PLOrderPlacesViewController {
+            viewController.delegate = self
+            navigationController?.pushViewController(viewController, animated: true)
         }
         
     }
     
+    func didSelectNewPlace(place: String) {
+        placeName = place
+        collectionView.reloadSections(NSIndexSet(index: 0))
+    }
+    
+    //MARK: Order change tab
     func orderTabChanged(tab: CurrentTab) {
         print("reload collection items")
     }
@@ -163,6 +178,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLOrdeStickyHeader
             header.delegate = self
+            header.currentTab = .Drinks
             
             return header
         }
