@@ -1,10 +1,13 @@
+
+platform :ios, '8.0'
+
+use_frameworks!
+
 target 'Pals' do
 
 pod 'AFNetworking'
 pod 'SDWebImage'
 pod 'CSStickyHeaderFlowLayout'
-
-use_frameworks!
 pod 'SwiftQRCode'
 pod 'RandomKit'
 

@@ -12,7 +12,9 @@ import SDWebImage
 
 class PLProfileViewController: TGLStackedViewController {
 
-    let collectionHelper = PLProfileCollectionHelper()
+    var orderDatasource = PLOrderDatasource()
+    var collectionHelper = PLProfileCollectionHelper()
+    
     lazy var spinner: UIActivityIndicatorView = {
         let sp = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         return sp
@@ -24,21 +26,17 @@ class PLProfileViewController: TGLStackedViewController {
     var profile: PLUser? {
         didSet {
             if let user = profile {
-                datasource.userId = user.id
+                orderDatasource.userId = user.id
+                
             }
             setupUserInfo()
         }
     }
-    lazy var datasource = PLOrderDatasource()
-    
-    let sampleDrinks = [String](count: 13, repeatedValue: "Value")
-    let sampleCovers = [String](count: 1, repeatedValue: "Value")
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(spinner)
-        
         
         setupCollectionView()
         
@@ -49,34 +47,31 @@ class PLProfileViewController: TGLStackedViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if firstLaunch == true {
-            collectionView?.alpha = 0
-        }
         navigationController?.presentTransparentNavigationBar()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if firstLaunch == true {
-            showCards()
-            firstLaunch = false
-        }
     }
     
     func loadPage() {
         spinner.startAnimating()
-        datasource.load {[unowned self] page, error in
+        orderDatasource.load {[unowned self] page, error in
             if error == nil {
-                let count = self.datasource.count
+                let count = self.orderDatasource.count
                 let lastLoadedCount = page.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()
                     for i in count-lastLoadedCount..<count {
-                        indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+                        indexPaths.append(NSIndexPath(forItem: i, inSection: 0))
                     }
-//                    self.tableView?.beginUpdates()
-//                    self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
-//                    self.tableView?.endUpdates()
+                    
+                    if self.firstLaunch == true {
+                        self.collectionView?.reloadData()
+                        self.showCards()
+                        self.firstLaunch = false
+                    } else {
+                        self.collectionView?.performBatchUpdates({ 
+                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
+                        }, completion: nil)
+                        
+                    }
                 }
                 self.spinner.stopAnimating()
             } else {
@@ -110,11 +105,11 @@ class PLProfileViewController: TGLStackedViewController {
     func setupCollectionForState(state: CurrentTab) {
         currentTab = state
         updateListIndicator()
-        collectionHelper.collection = (state == .Drinks) ? sampleDrinks : sampleCovers
-        collectionView?.reloadData({
-            self.collectionView?.layoutIfNeeded()
-            self.showCards()
-        })
+//        collectionHelper.collection = (state == .Drinks) ? sampleDrinks : sampleCovers
+//        collectionView?.reloadData({
+//            self.collectionView?.layoutIfNeeded()
+//            self.showCards()
+//        })
     }
     
     func swipeRecognized(sender: UISwipeGestureRecognizer) {
@@ -197,7 +192,7 @@ class PLProfileViewController: TGLStackedViewController {
         self.stackedLayout!.itemSize = self.exposedItemSize;
         self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
         
-        collectionHelper.collection = sampleDrinks
+        collectionHelper.datasource = orderDatasource
         self.collectionView?.dataSource = collectionHelper
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized(_:)))
@@ -209,15 +204,20 @@ class PLProfileViewController: TGLStackedViewController {
         collectionBackgroundView.addGestureRecognizer(swipeRight)
     }
     
-    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addFunds" {
             print("funds")
         }
     }
-    
+}
 
+extension PLProfileViewController : UICollectionViewDelegate {
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == orderDatasource.count-1 {
+            loadPage()
+        }
+    }
 }
 
 extension UICollectionView {

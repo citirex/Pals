@@ -14,15 +14,17 @@ let drinkCellIdentifier = "DrinkCell"
 
 class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
     
-    var collection: [String]? = nil
+    weak var datasource: PLOrderDatasource?
     var fishUser: PLUser? = nil
-        
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collection?.count ?? 0
+        return datasource?.count ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(drinkCellIdentifier, forIndexPath: indexPath) as! PLProfileDrinkCollectionViewCell
+        // assign to a cell
+        let order = datasource?[indexPath.row].cellData
         
         
         cell.contentView.backgroundColor = UIColor.whiteColor()
