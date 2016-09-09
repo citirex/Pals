@@ -99,13 +99,14 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
         
         switch kind {
         case CSStickyHeaderParallaxHeader:
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath)
-            return view
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath)
+            return headerView
         case UICollectionElementKindSectionHeader:
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
-            view.delegate = self
-            return view
+            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
+            sectionHeader.delegate = self
+            return sectionHeader
         default:
+            assert(false, "Unsupported supplementary view kind")
             return UICollectionReusableView()
         }
     }

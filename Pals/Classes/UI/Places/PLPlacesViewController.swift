@@ -9,6 +9,7 @@
 class PLPlacesViewController: PLViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     static let nibName = "PLPlaceTableViewCell"
     static let cellIdentifier = "PlaceCell"
@@ -16,38 +17,11 @@ class PLPlacesViewController: PLViewController {
     private var resultsController: UITableViewController!
     private var searchController: UISearchController!
     
-    //    var places: [PLPlace]!
-    //    var filteredPlaces: [PLPlace]!
-    
-    var places: [String] = [
-        "One",
-        "Two",
-        "Three",
-        "Four",
-        "Five",
-        "Six",
-        "Seven",
-        "Eight",
-        "Nine"
-    ]
-    
-    var filteredPlaces: [String] = [
-        "One",
-        "Two",
-        "Three",
-        "Four",
-        "Five",
-        "Six",
-        "Seven",
-        "Eight",
-        "Nine"
-    ]
-    
     lazy var datasource: PLPlacesDatasource = {return PLPlacesDatasource()}()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+  
         configureSearchController()
         
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
@@ -62,18 +36,25 @@ class PLPlacesViewController: PLViewController {
     }
     
     func loadPage() {
-        // TODO: show spinner
-        self.datasource.load({[unowned self] (page, error) in
+        activityIndicator.startAnimating()
+        datasource.load {[unowned self] page, error in
             if error == nil {
-                self.tableView.beginUpdates()
-                // insert cells
-                self.tableView.endUpdates()
-                // hide spinner
+                let count = self.datasource.count
+                let lastLoadedCount = page.count
+                if lastLoadedCount > 0 {
+                    var indexPaths = [NSIndexPath]()
+                    for i in count-lastLoadedCount..<count {
+                        indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+                    }
+                    self.tableView?.beginUpdates()
+                    self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+                    self.tableView?.endUpdates()
+                }
+                self.activityIndicator.stopAnimating()
             } else {
                 PLShowErrorAlert(error: error!)
-                // show error
             }
-        })
+        }
     }
     
     // MARK: - Initialize search controller
@@ -84,7 +65,6 @@ class PLPlacesViewController: PLViewController {
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
-//        resultsController.tableView.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsController)
         searchController.searchResultsUpdater = self
@@ -122,29 +102,17 @@ class PLPlacesViewController: PLViewController {
         }
     }
 
-    
-//    let regionRadius: CLLocationDistance = 1000
-//    func centerMapOnLocation(location: CLLocation) {
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
-//        let mapView = MKMapView()
-//        mapView.setRegion(coordinateRegion, animated: true)
-//    }
-    
-//    func coordinateRegionWithCenter(center: CLLocation) -> (location: CLLocation, region: CLLocation) {
-//
-//        return (currentLocation, region)
-//    }
-
-    
 }
 
 
+// MARK: - Table view data source
+
 extension PLPlacesViewController: UITableViewDataSource {
 
-    // MARK: - Table view data source
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView === self.tableView ? places.count : filteredPlaces.count
+        return datasource.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -154,10 +122,14 @@ extension PLPlacesViewController: UITableViewDataSource {
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        //        let place = searchController.active ? filteredPlaces[indexPath.row] : places[indexPath.row]
-        //        if let cell = cell as? PLPlaceTableViewCell {
-        //
-        //        }
+        let place = datasource[indexPath.row]
+        if let cell = cell as? PLPlaceTableViewCell {
+//            cell.backgroundImageView.image = UIImage(data: NSData(contentsOfURL: place.picture)!)
+            cell.placeNameLabel.text = place.name
+            cell.placeAddressLabel.text = place.address
+            cell.musicGenresLabel.text = place.musicGengres
+//            cell.distanceLabel.text = place.distance
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -167,17 +139,29 @@ extension PLPlacesViewController: UITableViewDataSource {
 
 }
 
+// MARK: - Table view delegate
+
+extension PLPlacesViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == datasource.count-1 {
+            self.activityIndicator.startAnimating()
+            loadPage()
+        }
+    }
+    
+}
+
 
 // MARK: - UISearchResultsUpdating
 
 extension PLPlacesViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        //        if let searchText = searchController.searchBar.text {
-        //            filteredPlaces = searchText.isEmpty ? places : places.filter {
-        //                $0.name!.rangeOfString(searchText, options: [.CaseInsensitiveSearch, .AnchoredSearch]) != nil
-        //            }
-        //            resultsController.tableView.reloadData()
-        //        }
+//        if let searchText = searchController.searchBar.text {
+//            filteredPlaces = searchText.isEmpty ? datasource : datasource.filter {
+//                $0.name!.rangeOfString(searchText, options: [.CaseInsensitiveSearch, .AnchoredSearch]) != nil
+//            }
+//            resultsController.tableView.reloadData()
+//        }
     }
 }

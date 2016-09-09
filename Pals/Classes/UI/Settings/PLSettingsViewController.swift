@@ -12,6 +12,7 @@ class PLSettingsViewController: PLViewController {
     @IBOutlet weak var userProfileImageView: PLImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var editingView: UIView!
     
     var user: PLUser!
     
@@ -43,22 +44,28 @@ class PLSettingsViewController: PLViewController {
     
     private func addGestures() {
         let editTap = UITapGestureRecognizer(target: self, action: #selector(textFieldEditing(_:)))
-        headerSectionView.addGestureRecognizer(editTap)
+        editingView.addGestureRecognizer(editTap)
+        
+        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+        headerSectionView.addGestureRecognizer(dismissTap)
     }
     
-    func textFieldEditing(sender: UITapGestureRecognizer) {
-        if usernameTextField.isFirstResponder() {
-            usernameTextField.resignFirstResponder()
-        } else {
-            usernameTextField.becomeFirstResponder()
-        }
-    }
 
     
     // MARK: - Actions
     
     @IBAction func signOutButtonTapped(sender: UIButton) {
         print("Sign out tapped")
+    }
+    
+    func textFieldEditing(sender: UITapGestureRecognizer) {
+        usernameTextField.becomeFirstResponder()
+    }
+    
+    func dismissKeyboard(sender: UITapGestureRecognizer) {
+        if usernameTextField.isFirstResponder() {
+            usernameTextField.resignFirstResponder()
+        }
     }
 
 

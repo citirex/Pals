@@ -13,6 +13,8 @@ enum PLStoryboardType : String {
     case TabBarController
     case FriendsViewController
     case LocationsViewController
+    case OrderLocationsViewController
+    case OrderFriendsViewController
     var string: String {return rawValue}
 }
 
