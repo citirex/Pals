@@ -13,6 +13,7 @@ import CoreLocation.CLLocation
 class PLPlacesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     static let nibName = "PLPlaceTableViewCell"
     static let cellIdentifier = "PlaceCell"
@@ -24,38 +25,14 @@ class PLPlacesViewController: UIViewController {
     var currentLocation: CLLocation!
     var region: (center: CLLocation, radius: Double)!
     
-    //    var places: [PLPlace]!
-    //    var filteredPlaces: [PLPlace]!
     
-    var places: [String] = [
-        "One",
-        "Two",
-        "Three",
-        "Four",
-        "Five",
-        "Six",
-        "Seven",
-        "Eight",
-        "Nine"
-    ]
-    
-    var filteredPlaces: [String] = [
-        "One",
-        "Two",
-        "Three",
-        "Four",
-        "Five",
-        "Six",
-        "Seven",
-        "Eight",
-        "Nine"
-    ]
-    
-    lazy var datasource: PLPlacesDatasource = {return PLPlacesDatasource()}()
+    lazy var datasource: PLPlacesDatasource = { return PLPlacesDatasource() }()
+  
+    var places = [PLPlace]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+  
         setupLocationService()
         configureSearchController()
         
@@ -71,25 +48,29 @@ class PLPlacesViewController: UIViewController {
     }
     
     func loadPage() {
-        // TODO: show spinner
-        self.datasource.load({ (page, error) in
+        activityIndicator.startAnimating()
+        datasource.load { page, error in
             if error == nil {
                 self.tableView.beginUpdates()
-                // insert cells
+                for index in 0..<page.count {
+                    self.places.append(page[index] as! PLPlace)
+                    let paths = [NSIndexPath(forRow: index, inSection: 0)]
+                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic)
+                }
                 self.tableView.endUpdates()
-                // hide spinner
+                self.activityIndicator.stopAnimating()
             } else {
                 // show error
             }
-        })
+        }
     }
     
     func setupLocationService() {
         locationManager.requestWhenInUseAuthorization()
         guard CLLocationManager.locationServicesEnabled() else { return showAlert() }
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
     }
     
     
@@ -101,7 +82,6 @@ class PLPlacesViewController: UIViewController {
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
-//        resultsController.tableView.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsController)
         searchController.searchResultsUpdater = self
@@ -139,29 +119,17 @@ class PLPlacesViewController: UIViewController {
         }
     }
     
-    
-//    let regionRadius: CLLocationDistance = 1000
-//    func centerMapOnLocation(location: CLLocation) {
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
-//        let mapView = MKMapView()
-//        mapView.setRegion(coordinateRegion, animated: true)
-//    }
-    
-//    func coordinateRegionWithCenter(center: CLLocation) -> (location: CLLocation, region: CLLocation) {
-//
-//        return (currentLocation, region)
-//    }
-
-    
 }
 
 
+// MARK: - Table view data source
+
 extension PLPlacesViewController: UITableViewDataSource {
 
-    // MARK: - Table view data source
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView === self.tableView ? places.count : filteredPlaces.count
+        return places.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -171,10 +139,14 @@ extension PLPlacesViewController: UITableViewDataSource {
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        //        let place = searchController.active ? filteredPlaces[indexPath.row] : places[indexPath.row]
-        //        if let cell = cell as? PLPlaceTableViewCell {
-        //
-        //        }
+        let place = places[indexPath.row]
+        if let cell = cell as? PLPlaceTableViewCell {
+            cell.backgroundImageView.image = UIImage(data: NSData(contentsOfURL: place.picture)!)
+            cell.placeNameLabel.text = place.name
+            cell.placeAddressLabel.text = place.address
+            cell.musicGenresLabel.text = place.musicGengres
+//            cell.distanceLabel.text = place.distance
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -184,18 +156,28 @@ extension PLPlacesViewController: UITableViewDataSource {
 
 }
 
+// MARK: - Table view delegate
+
+extension PLPlacesViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+   
+    }
+    
+}
+
 
 // MARK: - UISearchResultsUpdating
 
 extension PLPlacesViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        //        if let searchText = searchController.searchBar.text {
-        //            filteredPlaces = searchText.isEmpty ? places : places.filter {
-        //                $0.name!.rangeOfString(searchText, options: [.CaseInsensitiveSearch, .AnchoredSearch]) != nil
-        //            }
-        //            resultsController.tableView.reloadData()
-        //        }
+//        if let searchText = searchController.searchBar.text {
+//            filteredPlaces = searchText.isEmpty ? datasource : datasource.filter {
+//                $0.name!.rangeOfString(searchText, options: [.CaseInsensitiveSearch, .AnchoredSearch]) != nil
+//            }
+//            resultsController.tableView.reloadData()
+//        }
     }
 }
 
