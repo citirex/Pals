@@ -44,7 +44,7 @@ class PLSettingsViewController: PLViewController {
     
     private func addGestures() {
         let editTap = UITapGestureRecognizer(target: self, action: #selector(textFieldEditing(_:)))
-        editingView.addGestureRecognizer(editTap)
+//        editingView.addGestureRecognizer(editTap)
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         headerSectionView.addGestureRecognizer(dismissTap)

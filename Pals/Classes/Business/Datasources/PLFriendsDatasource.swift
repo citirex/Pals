@@ -21,7 +21,7 @@ class PLFriendsDatasource: PLDatasource<PLUser> {
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLAPIService.Friends.string
+        return PLKeys.friends.string
     }
     
     override func mainCollectionKey() -> String {

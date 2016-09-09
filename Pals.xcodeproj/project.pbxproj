@@ -89,6 +89,8 @@
 		D4950A9C1D82DAE800F48F4E /* orders1.json in Resources */ = {isa = PBXBuildFile; fileRef = D4950A981D82DAE800F48F4E /* orders1.json */; };
 		D4950A9D1D82DAE800F48F4E /* orders2.json in Resources */ = {isa = PBXBuildFile; fileRef = D4950A991D82DAE800F48F4E /* orders2.json */; };
 		D4950A9E1D82DAE800F48F4E /* orders3.json in Resources */ = {isa = PBXBuildFile; fileRef = D4950A9A1D82DAE800F48F4E /* orders3.json */; };
+		D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */; };
+		D4950AA21D82EB0500F48F4E /* PLOrderCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950AA11D82EB0500F48F4E /* PLOrderCellData.swift */; };
 		D4CEC24D1D818B7300D4CD08 /* places0.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC2491D818B7300D4CD08 /* places0.json */; };
 		D4CEC24E1D818B7300D4CD08 /* places1.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24A1D818B7300D4CD08 /* places1.json */; };
 		D4CEC24F1D818B7300D4CD08 /* places2.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24B1D818B7300D4CD08 /* places2.json */; };
@@ -203,6 +205,8 @@
 		D4950A981D82DAE800F48F4E /* orders1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orders1.json; sourceTree = "<group>"; };
 		D4950A991D82DAE800F48F4E /* orders2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orders2.json; sourceTree = "<group>"; };
 		D4950A9A1D82DAE800F48F4E /* orders3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orders3.json; sourceTree = "<group>"; };
+		D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDatasource.swift; sourceTree = "<group>"; };
+		D4950AA11D82EB0500F48F4E /* PLOrderCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCellData.swift; sourceTree = "<group>"; };
 		D4CEC2491D818B7300D4CD08 /* places0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places0.json; sourceTree = "<group>"; };
 		D4CEC24A1D818B7300D4CD08 /* places1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places1.json; sourceTree = "<group>"; };
 		D4CEC24B1D818B7300D4CD08 /* places2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places2.json; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 				2480F8BC1D813E730095995F /* PLProfileHeaderView.swift */,
 				2480F8BD1D813E730095995F /* PLProfileHeaderView.xib */,
 				2480F8BE1D813E730095995F /* PLProfileViewController.swift */,
+				D4950AA11D82EB0500F48F4E /* PLOrderCellData.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -575,6 +580,7 @@
 				D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */,
 				D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */,
 				D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */,
+				D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */,
 			);
 			path = Datasources;
 			sourceTree = "<group>";
@@ -792,6 +798,7 @@
 				24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */,
 				2480F8DF1D813E730095995F /* PLDevice.swift in Sources */,
 				2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */,
+				D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */,
 				2480F8E51D813E730095995F /* PLErrors.swift in Sources */,
 				2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */,
 				2480F90E1D813E730095995F /* PLStickyCollectionViewFlowLayout.swift in Sources */,
@@ -816,6 +823,7 @@
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,
 				2480F8F61D813E730095995F /* PLTextField.swift in Sources */,
 				2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */,
+				D4950AA21D82EB0500F48F4E /* PLOrderCellData.swift in Sources */,
 				E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */,
 				2480F8FC1D813E730095995F /* PLFriendsTableViewController.swift in Sources */,
 			);

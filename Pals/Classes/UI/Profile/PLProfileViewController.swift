@@ -13,14 +13,23 @@ import SDWebImage
 class PLProfileViewController: TGLStackedViewController {
 
     let collectionHelper = PLProfileCollectionHelper()
+    lazy var spinner: UIActivityIndicatorView = {
+        let sp = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        return sp
+    }()
+    
     var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
     private var currentTab: CurrentTab = .Drinks
     var firstLaunch: Bool = true
     var profile: PLUser? {
         didSet {
+            if let user = profile {
+                datasource.userId = user.id
+            }
             setupUserInfo()
         }
     }
+    lazy var datasource = PLOrderDatasource()
     
     let sampleDrinks = [String](count: 13, repeatedValue: "Value")
     let sampleCovers = [String](count: 1, repeatedValue: "Value")
@@ -28,10 +37,14 @@ class PLProfileViewController: TGLStackedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(spinner)
+        
+        
         setupCollectionView()
         
         profile = PLFacade.profile
         collectionHelper.fishUser = profile
+        loadPage()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,6 +63,27 @@ class PLProfileViewController: TGLStackedViewController {
         }
     }
     
+    func loadPage() {
+        spinner.startAnimating()
+        datasource.load {[unowned self] page, error in
+            if error == nil {
+                let count = self.datasource.count
+                let lastLoadedCount = page.count
+                if lastLoadedCount > 0 {
+                    var indexPaths = [NSIndexPath]()
+                    for i in count-lastLoadedCount..<count {
+                        indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+                    }
+//                    self.tableView?.beginUpdates()
+//                    self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+//                    self.tableView?.endUpdates()
+                }
+                self.spinner.stopAnimating()
+            } else {
+                PLShowErrorAlert(error: error!)
+            }
+        }
+    }
     
     //MARK: - Actions
     func editProfileButtonPressed(sender: UIButton) {

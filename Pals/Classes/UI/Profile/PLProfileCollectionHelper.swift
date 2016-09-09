@@ -39,7 +39,6 @@ class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
         return cell
     }
     
-    
     func generateRandomColor() -> UIColor {
         let hue : CGFloat = CGFloat(arc4random() % 256) / 256
         let saturation : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5

@@ -48,6 +48,6 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
     }
     
     override func mainCollectionKey() -> String {
-        return PLAPIService.Places.string
+        return PLKeys.places.string
     }
 }
