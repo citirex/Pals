@@ -6,26 +6,38 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import CoreLocation.CLLocation
+import MapKit.MKGeometry
 
 class PLPlacesDatasource: PLDatasource<PLPlace> {
     
-    var rect : (CLLocationCoordinate2D,CLLocationCoordinate2D)? {
+    var region : MKCoordinateRegion? {
         didSet {
-            if let aRect = rect {
+            if let aRegion = region {
                 var params = PLURLParams()
-                let rectString = String(aRect.0.latitude) + ":" + String(aRect.0.longitude) + ":" + String(aRect.1.latitude) + ":" + String(aRect.1.longitude)
-                params[PLKeys.rect.string] = rectString
-                
+                params[PLKeys.lat.string] = aRegion.center.latitude
+                params[PLKeys.long.string] = aRegion.center.longitude
+                params[PLKeys.dlat.string] = aRegion.span.latitudeDelta
+                params[PLKeys.dlong.string] = aRegion.span.longitudeDelta
+                collection.preset.params = params
             }
         }
     }
     
+    override func load(completion: PLDatasourceLoadCompletion) {
+        PLFacade.fetchNearRegion { (region, error) in
+            if region != nil {
+                self.region = region
+                super.load(completion)
+            } else {
+                completion(page: [AnyObject](), error: error)
+            }
+        }
+    }
     override init(url: String, params: PLURLParams?, offsetById: Bool) {
         super.init(url: url, params: params, offsetById: offsetById)
     }
     
-    convenience init(rect: (CLLocationCoordinate2D,CLLocationCoordinate2D)) {
+    convenience init() {
         let service = PLAPIService.Places.string
         let offsetById = false
         self.init(url: service, offsetById: offsetById)

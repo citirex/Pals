@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import CoreLocation
 import MapKit
+import CoreLocation.CLLocation
 
 class PLPlacesViewController: UIViewController {
     
@@ -51,6 +51,7 @@ class PLPlacesViewController: UIViewController {
         "Nine"
     ]
     
+    lazy var datasource: PLPlacesDatasource = {return PLPlacesDatasource()}()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +61,27 @@ class PLPlacesViewController: UIViewController {
         
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
+        loadPage()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
+    }
+    
+    func loadPage() {
+        // TODO: show spinner
+        self.datasource.load({ (page, error) in
+            if error == nil {
+                self.tableView.beginUpdates()
+                // insert cells
+                self.tableView.endUpdates()
+                // hide spinner
+            } else {
+                // show error
+            }
+        })
     }
     
     func setupLocationService() {

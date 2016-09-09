@@ -14,8 +14,8 @@ protocol PLFacadeInterface {
     static func login(userName:String, password: String, completion: PLErrorCompletion)
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
     static func sendPassword(email: String, completion: PLErrorCompletion)
-    static func updateLocation(completion: PLLocationUpdateCompletion)
-    static func fetchNearRect(size: CGSize, completion: PLLocationRectCompletion)
+    static func fetchNearRegion(completion: PLLocationRegionCompletion)
+    static func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion)
     static var profile: PLUser? {get}
 }
 
@@ -37,12 +37,12 @@ class PLFacade : PLFacadeInterface {
         PLFacade.instance._sendPassword(email, completion: completion)
     }
     
-    class func updateLocation(completion: PLLocationUpdateCompletion) {
-        PLFacade.instance._updateLocation(completion)
+    class func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
+        PLFacade.instance._fetchNearRegion(size, completion: completion)
     }
     
-    class func fetchNearRect(size: CGSize, completion: PLLocationRectCompletion) {
-        PLFacade.instance._fetchNearRect(size, completion: completion)
+    class func fetchNearRegion(completion: PLLocationRegionCompletion) {
+        PLFacade.instance._fetchNearRegion(completion)
     }
     
     class _PLFacade {
@@ -117,11 +117,10 @@ extension PLFacade._PLFacade {
         }
     }
     
-    func _updateLocation(completion: PLLocationUpdateCompletion) {
-        locationManager.updateLocation(completion)
+    func _fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
+        locationManager.fetchNearRegion(size, completion: completion)
     }
-    
-    func _fetchNearRect(size: CGSize, completion: PLLocationRectCompletion) {
-        locationManager.createNearRect(size, completion: completion)
+    func _fetchNearRegion(completion: PLLocationRegionCompletion) {
+        locationManager.fetchNearRegion(completion)
     }
 }
