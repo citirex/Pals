@@ -24,10 +24,14 @@ class PLUniqueObject: PLSerializable {
         dic[PLKeys.id.string] = String(id)
         return dic
     }
-    
 }
 
 protocol PLSerializable {
     init?(jsonDic: [String:AnyObject])
     func serialize() -> [String : AnyObject]
+}
+
+protocol PLCellRepresentable {
+    associatedtype EntityType
+    var cellData: EntityType {get}
 }

@@ -7,12 +7,6 @@
 //
 import UIKit
 
-
-protocol PLCellRepresentable {
-	associatedtype EntityType
-	var cellData: EntityType {get}
-}
-
 class PLFriendCell: UITableViewCell{
 	
 	@IBOutlet weak var avatarImage: PLImageView!

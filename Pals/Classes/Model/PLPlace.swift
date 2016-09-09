@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-class PLPlace : PLUniqueObject {
+class PLPlace : PLUniqueObject, PLCellRepresentable {
     let name: String
     let picture: NSURL
     var musicGengres = ""
@@ -45,5 +45,9 @@ class PLPlace : PLUniqueObject {
             self.closeTime = closeTime
         }
         super.init(jsonDic: jsonDic)
+    }
+    
+    var cellData: PLPlaceCellData {
+        return PLPlaceCellData(name: name, picture: picture, musicGengres: musicGengres, address: address, location: location)
     }
 }
