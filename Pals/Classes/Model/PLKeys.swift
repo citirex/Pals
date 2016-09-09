@@ -6,10 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-// https://api.pals.com/login?login=username&password=12345
-// https://api.pals.com/friends?id=666&page=0&per_page=20
-// https://api.pals.com/places?lat=50.448042&long=30.497832&dlat=0.105235&dlong=0.120532
-
 enum PLKeys : String {
     case id
     case name
@@ -38,6 +34,11 @@ enum PLKeys : String {
     case long
     case dlat // delta latitude
     case dlong // delta longitude
+    case message
+    case place
+    case is_vip
+    case access_code
+    case qr_code
     var string : String {
         return rawValue
     }
