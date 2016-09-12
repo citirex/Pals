@@ -12,26 +12,26 @@ class PLFriendCell: UITableViewCell{
 	@IBOutlet weak var avatarImage: PLImageView!
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var addButtonOutlet: UIButton!
+    
 	@IBAction func addButtonClicked(sender: AnyObject) {
 		addButtonOutlet.setImage(UIImage(named: "success"), forState: .Normal)
 	}
 	
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-	
 	var friend: PLUser? {
 		didSet {
-			let FriendCellData = friend!.cellData
-			avatarImage.setImageWithURL(FriendCellData.picture)
-			nameLabel.text = FriendCellData.name
+            if let aFriend = friend {
+                let friendCellData = aFriend.cellData
+                avatarImage.setImageWithURL(friendCellData.picture)
+                nameLabel.text = friendCellData.name
+            } else {
+                print("Friend Cell Data is empty!")
+            }
 		}
 	}
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImage.image = nil
     }
     
 }
