@@ -19,7 +19,7 @@ class PLPlacesViewController: PLViewController {
     private var searchController: UISearchController!
     
     
-    lazy var datasource: PLPlacesDatasource = {return PLPlacesDatasource()}()
+    lazy var datasource: PLPlacesDatasource = { return PLPlacesDatasource() }()
   
     
     
