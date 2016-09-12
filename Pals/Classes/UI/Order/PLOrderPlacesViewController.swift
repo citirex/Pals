@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OrderPlacesDelegate: class {
-    func didSelectNewPlace(place: String)
+    func didSelectNewPlace(selectedPlace: PLPlace)
 }
 
 class PLOrderPlacesViewController: PLPlacesViewController {
@@ -26,6 +26,7 @@ class PLOrderPlacesViewController: PLPlacesViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationController?.navigationBar.backItem?.title = ""
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -34,7 +35,7 @@ class PLOrderPlacesViewController: PLPlacesViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.didSelectNewPlace("777") //FIXME: get actual data
+        delegate?.didSelectNewPlace(datasource[indexPath.row])
         navigationController?.popViewControllerAnimated(true)
     }
 

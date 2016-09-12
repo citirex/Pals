@@ -42,6 +42,17 @@ class PLOrder: PLUniqueObject, PLCellRepresentable {
         super.init(jsonDic: jsonDic)
     }
     
+    init(withUser user: PLUser, place: PLPlace, isVip vip: Bool, message: String?, qrCode:String, accessCode: String) {
+        self.user = user
+        self.place = place
+        self.message = message ?? ""
+        self.isVIP = vip
+        self.accessCode = accessCode
+        self.QRcode = qrCode
+
+        super.init(jsonDic: [:])!
+    }
+    
     override func serialize() -> [String : AnyObject] {
         return [:]
     }
