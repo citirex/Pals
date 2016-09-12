@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1010,7 +1010,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gQS-aH-ZRx" secondAttribute="trailing" id="3zy-3a-HkR"/>
                             <constraint firstItem="gQS-aH-ZRx" firstAttribute="leading" secondItem="bGV-ba-lIV" secondAttribute="leading" id="cLp-mj-xzK"/>
@@ -1188,9 +1188,13 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="62o-mM-bJf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Order" image="icon_order" id="Plf-3r-qlm"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="752-w8-tJo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="752-w8-tJo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.49019607840000001" green="0.29803921570000003" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1200,6 +1204,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fx2-et-xKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1116" y="-319"/>
+        </scene>
+        <!--Places-->
+        <scene sceneID="KFk-MJ-Tbl">
+            <objects>
+                <viewController storyboardIdentifier="OrderLocationsViewController" title="Places" id="BiK-Df-CVZ" customClass="PLOrderPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jgx-Jp-foC"/>
+                        <viewControllerLayoutGuide type="bottom" id="eM8-7w-0jP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6hk-pR-i7u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xtt-2T-UuI">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BiK-Df-CVZ" id="Yll-i2-DRH"/>
+                                    <outlet property="delegate" destination="BiK-Df-CVZ" id="MwD-Es-eKK"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xtt-2T-UuI" firstAttribute="leading" secondItem="6hk-pR-i7u" secondAttribute="leading" id="NM3-GY-KLt"/>
+                            <constraint firstItem="xtt-2T-UuI" firstAttribute="top" secondItem="6hk-pR-i7u" secondAttribute="top" id="YnE-Ge-YJX"/>
+                            <constraint firstItem="xtt-2T-UuI" firstAttribute="bottom" secondItem="eM8-7w-0jP" secondAttribute="top" id="j1j-mV-f92"/>
+                            <constraint firstAttribute="trailing" secondItem="xtt-2T-UuI" secondAttribute="trailing" id="jhO-e1-el5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Locations" id="Yr0-fr-OQF"/>
+                    <connections>
+                        <outlet property="tableView" destination="xtt-2T-UuI" id="Naw-fe-10Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tzM-ti-C30" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1648" y="338"/>
+        </scene>
+        <!--Friends View Controller-->
+        <scene sceneID="bO1-JD-FG4">
+            <objects>
+                <viewController storyboardIdentifier="OrderFriendsViewController" id="jAy-sW-H4G" userLabel="Friends View Controller" customClass="PLOrderFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oby-dQ-LYd"/>
+                        <viewControllerLayoutGuide type="bottom" id="0yM-XL-Gko"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lET-Bo-jEM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Friends" id="Zih-ll-z1X">
+                        <barButtonItem key="backBarButtonItem" title=" " id="JgM-0l-Rka"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="kNC-mN-f2t">
+                            <color key="tintColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="searchButton:" destination="jAy-sW-H4G" id="OWa-N5-3PI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="COd-BJ-6yM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1648" y="972"/>
         </scene>
     </scenes>
     <resources>

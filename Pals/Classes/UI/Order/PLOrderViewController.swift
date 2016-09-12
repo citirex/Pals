@@ -38,6 +38,7 @@ class PLOrderViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        animableVipView.frame = PLOrderAnimableVipView.suggestedFrame
         vipButton = UIBarButtonItem(title: "VIP", style: .Plain, target: self, action: #selector(vipButtonPressed(_:)))
         vipButton?.setTitleTextAttributes([
             NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 20.0)!,
@@ -67,13 +68,18 @@ class PLOrderViewController: PLViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if navigationItem.titleView != animableVipView {
+            navigationItem.titleView = animableVipView
+        }
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = kPalsPurpleColor
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        animableVipView.frame = PLOrderAnimableVipView.suggestedFrame
-        navigationItem.titleView = animableVipView
+        if navigationItem.titleView != animableVipView {
+            navigationItem.titleView = animableVipView
+        }
     }
     
     @objc private func vipButtonPressed(sender: UIBarButtonItem) {
