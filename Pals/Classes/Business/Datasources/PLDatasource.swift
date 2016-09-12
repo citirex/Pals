@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-typealias PLDatasourceLoadCompletion = (page: [AnyObject], error: NSError?) -> ()
+typealias PLDatasourceLoadCompletion = (objects: [AnyObject], error: NSError?) -> ()
 
 class PLDatasource<T: PLUniqueObject> {
     let collection: PLPalsPageCollection<T>
@@ -45,28 +45,30 @@ class PLDatasource<T: PLUniqueObject> {
 
 extension PLDatasource : PLPageCollectionDelegate {
     func pageCollectionDidLoadPage(objects: [AnyObject]) {
-        completion?(page: objects, error: nil)
+        completion?(objects: objects, error: nil)
     }
     
     func pageCollectionDidFail(error: NSError) {
         if PLFacade.instance.settingsManager.useFakeFeeds {
             let fakeFeedName = fakeFeedNameOnError(error)
             PLNetworkManager.handleErrorCompletion(error, fakeFeedFilename: fakeFeedName) { (dic, error) in
+                let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
                 guard
-                    !dic.isEmpty,
-                    let fakeResponse = dic[PLKeys.response.string] as? Dictionary<String,AnyObject>,
-                    let jsonObjects = fakeResponse[self.mainCollectionKey()] as? [Dictionary<String,AnyObject>]
-                    else {
-                        let error = PLError(domain: .User, type: kPLErrorTypeBadResponse)
-                        self.completion?(page: [AnyObject](), error: error)
-                        return
+                    !dic.isEmpty
+                else {
+                    self.completion?(objects: [AnyObject](), error: error)
+                    return
                 }
-                let objects = self.collection.deserializeResponseDic(jsonObjects)
-                self.collection.onPageLoad(objects)
-                self.completion?(page: objects, error: nil)
+                let response = self.collection.deserialize(dic)
+                if response.1 == nil {
+                    self.collection.onPageLoad(response.0)
+                    self.completion!(objects:response.0, error: nil)
+                } else {
+                    self.completion!(objects: [T](), error: error)
+                }
             }
         } else {
-            completion?(page: [AnyObject](), error: error)
+            completion?(objects: [AnyObject](), error: error)
         }
     }
 }

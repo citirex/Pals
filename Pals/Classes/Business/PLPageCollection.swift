@@ -19,6 +19,38 @@ extension PLPageCollectionDelegate {
 
 typealias PLURLParams = [String:AnyObject]
 
+class PLPageCollectionDeserializer<T:PLUniqueObject>: NSObject {
+    private var keyPath = [String]()
+
+    func appendPath(path: [String]) {
+        keyPath.appendContentsOf(path)
+    }
+    
+    func deserialize(page: AnyObject) -> ([T],NSError?) {
+        var objects: AnyObject?
+        for key in keyPath {
+            objects = page[key]
+            if objects == nil {
+                let error = NSError(domain: "PageCollection", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Failed to parse JSON"])
+                return ([T](), error)
+            }
+        }
+        let pageDics = objects as! [Dictionary<String,AnyObject>]
+        let deserializedObjects = deserializeResponseDic(pageDics)
+        return (deserializedObjects, nil)
+    }
+    
+    private func deserializeResponseDic(dic: [Dictionary<String,AnyObject>]) -> [T] {
+        var pageObjects = [T]()
+        for jsonObject in dic {
+            if let object = T(jsonDic: jsonObject) {
+                pageObjects.append(object)
+            }
+        }
+        return pageObjects
+    }
+}
+
 struct PLPageCollectionPreset {
     var id = UInt64(0) // for specific user identifier
     var idKey = "" // for specific user identifier
@@ -45,6 +77,7 @@ class PLPageCollection<T:PLUniqueObject> {
     
     private var offset = UInt64(0)
     private var loading = false
+    private var deserializer = PLPageCollectionDeserializer<T>()
     
     init(preset: PLPageCollectionPreset) {
         self.preset = preset
@@ -73,13 +106,50 @@ class PLPageCollection<T:PLUniqueObject> {
     func load() {
         if !loading {
             loadNext({ (objects, error) in
-                self.onPageLoad(objects)
                 if error != nil {
                     self.delegate?.pageCollectionDidFail(error!)
                 } else {
                     self.delegate?.pageCollectionDidLoadPage(objects)
                 }
             })
+        }
+    }
+    
+    func deserialize(page: AnyObject) -> ([T],NSError?) {
+        return deserializer.deserialize(page)
+    }
+    
+    func appendPath(path: [String]) {
+        deserializer.appendPath(path)
+    }
+    
+    typealias PageLoadCompletion = (objects: [T], error: NSError?) -> ()
+    let jsonError = NSError(domain: "PageCollection", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Failed to parse JSON"])
+    
+    private func loadNext(completion: PageLoadCompletion) {
+        loading = true
+        let params = formParameters(preset, offset: offset)
+        if session == nil {
+            return
+        }
+        session!.GET(preset.url, parameters: params, progress: nil, success: { (task, response) in
+            self.loading = false
+            guard
+                let page = response
+            else {
+                completion(objects:[T](), error: self.jsonError)
+                return
+            }
+            let response = self.deserializer.deserialize(page)
+            if response.1 == nil {
+                self.onPageLoad(response.0)
+                completion(objects: response.0, error: nil)
+            } else {
+                completion(objects: [T](), error: self.jsonError)
+            }
+        }) { (task, error) in
+            self.loading = false
+            completion(objects:[T]() ,error: error)
         }
     }
     
@@ -92,42 +162,7 @@ class PLPageCollection<T:PLUniqueObject> {
         }
     }
     
-    typealias PageLoadCompletion = (objects: [T], error: NSError?) -> ()
-    
-    func loadNext(completion: PageLoadCompletion) {
-        loading = true
-        let params = formParameters(preset, offset: offset)
-        if session == nil {
-            return
-        }
-        session!.GET(preset.url, parameters: params, progress: nil, success: { (task, response) in
-            self.loading = false
-            guard
-                let jsonObjects = response as? [Dictionary<String,AnyObject>]
-            else {
-                let error = NSError(domain: "PageCollection", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Failed to parse JSON"])
-                completion(objects:[T](), error: error)
-                return
-            }
-            let pageObjects = self.deserializeResponseDic(jsonObjects)
-            completion(objects: pageObjects, error: nil)
-        }) { (task, error) in
-            self.loading = false
-            completion(objects:[T]() ,error: error)
-        }
-    }
-    
-    func deserializeResponseDic(dic: [Dictionary<String,AnyObject>]) -> [T] {
-        var pageObjects = [T]()
-        for jsonObject in dic {
-            if let object = T(jsonDic: jsonObject) {
-                pageObjects.append(object)
-            }
-        }
-        return pageObjects
-    }
-    
-    func formParameters(preset: PLPageCollectionPreset, offset: UInt64) -> [String : AnyObject] {
+    private func formParameters(preset: PLPageCollectionPreset, offset: UInt64) -> [String : AnyObject] {
         var anOffset = offset
         if preset.offsetById {
             let lastId = objects.last?.id

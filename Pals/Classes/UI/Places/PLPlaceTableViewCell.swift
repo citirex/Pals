@@ -19,32 +19,31 @@ class PLPlaceTableViewCell: UITableViewCell {
     
     var place: PLPlace! {
         didSet {
-            configureCell()
+            setup()
         }
     }
 
     
-    private func configureCell() {
+    private func setup() {
         let placeCellData = place.cellData
         backgroundImageView.setImageWithURL(placeCellData.picture)
         placeNameLabel.text = placeCellData.name
         placeAddressLabel.text = placeCellData.address
         musicGenresLabel.text = placeCellData.musicGengres
-        distanceLabel.text = String(format: "%.1f Miles", distance(placeCellData.location))
+        distanceLabel.text = distance(placeCellData.location)
     }
 
-    private func distance(destination: CLLocationCoordinate2D) -> Double {
+    private func distance(destination: CLLocationCoordinate2D) -> String {
         let locationManager = PLLocationManager()
-        guard let currentLocation = locationManager.currentLocation else { return 0 }
+        var currentLocation = CLLocation()
+        locationManager.updateLocation { location, error in
+            guard error == nil else { return }
+            currentLocation = location!
+        }
         let placeLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
-        let distance = currentLocation.distanceFromLocation(placeLocation).miles()
-        return distance
+        let distance = currentLocation.distanceFromLocation(placeLocation)
+        return distance.stringWithUnit()
     }
 }
 
-extension CLLocationDistance {
 
-    func miles() -> Double {
-        return self / 1609.34
-    }
-}
