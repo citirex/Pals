@@ -117,7 +117,7 @@ static const NSInteger kHeaderZIndex = 1024;
                 attributes.zIndex = kHeaderZIndex;
             } else {
                 // For iOS 7.0, the cell zIndex should be above sticky section header
-                attributes.zIndex = 1;
+                attributes.zIndex = 0;
             }
         }];
         
