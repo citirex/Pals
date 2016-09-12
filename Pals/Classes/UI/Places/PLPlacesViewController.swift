@@ -21,7 +21,7 @@ class PLPlacesViewController: PLViewController {
     
     lazy var datasource: PLPlacesDatasource = { return PLPlacesDatasource() }()
   
-    
+    var selectedPlace: PLPlace!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +73,7 @@ class PLPlacesViewController: PLViewController {
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
+        resultsController.tableView.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsController)
         searchController.searchResultsUpdater = self
@@ -109,7 +110,7 @@ class PLPlacesViewController: PLViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowPlaceProfile" {
             let placeProfileViewController = segue.destinationViewController as! PLPlaceProfileViewController
-            placeProfileViewController.title = ""
+            placeProfileViewController.place = selectedPlace
         }
     }
     
@@ -119,7 +120,7 @@ class PLPlacesViewController: PLViewController {
     private func createActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicator!.translatesAutoresizingMaskIntoConstraints = false
-//        activityIndicator.hidesWhenStopped = true
+        activityIndicator.hidesWhenStopped = true
         tableView.addSubview(activityIndicator)
         
         addConstraints()
@@ -170,6 +171,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        selectedPlace = datasource[indexPath.row]
         performSegueWithIdentifier("ShowPlaceProfile", sender: self)
     }
 

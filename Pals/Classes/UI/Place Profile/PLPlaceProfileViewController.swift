@@ -16,6 +16,33 @@ class PLPlaceProfileViewController: PLViewController {
         return collectionView?.collectionViewLayout as? CSStickyHeaderFlowLayout
     }
     
+    var place: PLPlace!
+    var events = [
+        "One",
+        "Two",
+        "Three",
+        "Four",
+        "Five",
+        "Six",
+        "Seven",
+        "Eight",
+        "Nine",
+        "Ten"
+    ]
+    
+    var dates = [
+        "May 05, 2016",
+        "May 10, 2016",
+        "May 15, 2016",
+        "May 22, 2016",
+        "May 25, 2016",
+        "May 27, 2016",
+        "May 28, 2016",
+        "May 29, 2016",
+        "May 30, 2016",
+        "May 31, 2016"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,6 +113,9 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell", forIndexPath: indexPath)
             as! PLPlaceProfileCollectionViewCell
+        cell.eventImageView.setImageWithURL(place.picture)
+        cell.eventDateLabel.text = dates[indexPath.row]
+        cell.eventDescriptionLabel.text = events[indexPath.row]
         return cell
     }
 }
@@ -100,10 +130,18 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
         switch kind {
         case CSStickyHeaderParallaxHeader:
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! PLPlaceProfileHeader
+            headerView.headerImageView.setImageWithURL(place.picture)
             return headerView
         case UICollectionElementKindSectionHeader:
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
-            sectionHeader.delegate = self
+            sectionHeader.placeNameLabel.text = place.name
+            sectionHeader.musicGenresLabel.text = place.musicGengres
+            sectionHeader.closingTimeLabel.text = place.closeTime
+            sectionHeader.placeAddressLabel.text = place.address
+            sectionHeader.phoneNumberLabel.text = place.phone
+            sectionHeader.didTappedOrderButton = {
+                self.performSegueWithIdentifier("ShowOrder", sender: self)
+            }
             return sectionHeader
         default:
             assert(false, "Unsupported supplementary view kind")
@@ -125,14 +163,5 @@ extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(view.frame.size.width, 95)
-    }
-}
-
-// MARK: - PLPlaceProfileSectionHeaderDelegate
-
-extension PLPlaceProfileViewController: PLPlaceProfileSectionHeaderDelegate {
-    
-    func didSelectOrderButton() {
-        performSegueWithIdentifier("ShowOrder", sender: self)
     }
 }

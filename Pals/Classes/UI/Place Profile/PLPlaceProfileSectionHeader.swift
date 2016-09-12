@@ -8,15 +8,11 @@
 
 import UIKit
 
-protocol PLPlaceProfileSectionHeaderDelegate {
-    func didSelectOrderButton()
-}
-
-
 @IBDesignable
 class PLPlaceProfileSectionHeader: UICollectionReusableView {
     
-    var delegate: PLPlaceProfileSectionHeaderDelegate?
+    typealias didTappedOrderButtonDelegate = Void -> Void
+    var didTappedOrderButton: didTappedOrderButtonDelegate?
 
     @IBOutlet weak var topOfView: UIView!
     @IBOutlet weak var placeNameLabel: UILabel!
@@ -35,9 +31,7 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
     }
     
     func orderButtonTapped() {
-        print("orderButtonTapped")
-        
-        delegate?.didSelectOrderButton()
+        didTappedOrderButton!()
     }
    
 }

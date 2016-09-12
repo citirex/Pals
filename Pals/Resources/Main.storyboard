@@ -970,7 +970,9 @@
                             <constraint firstAttribute="trailing" secondItem="p65-8B-Ms9" secondAttribute="trailing" id="ZcF-eG-yjw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Locations" id="zEv-L9-i4R"/>
+                    <navigationItem key="navigationItem" title="Locations" id="zEv-L9-i4R">
+                        <barButtonItem key="backBarButtonItem" title=" " id="oUc-ib-AvO"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="p65-8B-Ms9" id="52w-RR-vWH"/>
                         <segue destination="0zz-mk-uMT" kind="push" identifier="ShowPlaceProfile" id="co8-8T-CdN"/>
@@ -1008,7 +1010,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gQS-aH-ZRx" secondAttribute="trailing" id="3zy-3a-HkR"/>
                             <constraint firstItem="gQS-aH-ZRx" firstAttribute="leading" secondItem="bGV-ba-lIV" secondAttribute="leading" id="cLp-mj-xzK"/>
