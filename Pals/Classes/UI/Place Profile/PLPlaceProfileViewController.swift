@@ -113,9 +113,6 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell", forIndexPath: indexPath)
             as! PLPlaceProfileCollectionViewCell
-        cell.eventImageView.setImageWithURL(place.picture)
-        cell.eventDateLabel.text = dates[indexPath.row]
-        cell.eventDescriptionLabel.text = events[indexPath.row]
         return cell
     }
 }
