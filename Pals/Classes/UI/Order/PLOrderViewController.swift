@@ -10,8 +10,6 @@ private let kStillHeaderIdentifier = "stillHeader"
 private let kStickyHeaderIdentifier = "stickyHeader"
 private let kDrinkCellIdentifier = "drinkCell"
 
-import RandomKit
-
 class PLOrderViewController: PLViewController {
     
     @IBOutlet private var collectionView: UICollectionView!

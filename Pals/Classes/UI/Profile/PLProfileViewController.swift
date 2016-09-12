@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RandomKit
 import AFNetworking
 
 class PLProfileViewController: TGLStackedViewController {
