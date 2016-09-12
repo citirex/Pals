@@ -44,12 +44,18 @@ class PLLocationManager : NSObject {
     func updateLocation(completion: PLLocationUpdateCompletion?) {
         self.onLocationUpdated = completion
         tryUpdate { (status, error) in
-            if error == nil {
-                self.manager.startUpdatingLocation()
-            } else {
-                completion?(location: nil, error: error)
+            #if (arch(i386) || arch(x86_64)) && os(iOS)
+                self.onLocationUpdated!(location: CLLocation(latitude: 30, longitude: 40), error: nil)
+                self.onLocationUpdated = nil
                 return
-            }
+            #else
+                if error == nil {
+                    self.manager.startUpdatingLocation()
+                } else {
+                    completion?(location: nil, error: error)
+                    return
+                }
+            #endif
         }
     }
     

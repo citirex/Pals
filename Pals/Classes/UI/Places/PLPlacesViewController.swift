@@ -12,6 +12,7 @@ class PLPlacesViewController: PLViewController {
     @IBOutlet weak var tableView: UITableView!
     
     static let nibName = "PLPlaceTableViewCell"
+    // TODO: cell identifier should be provided by cell not vc!!
     static let cellIdentifier = "PlaceCell"
 
     private var activityIndicator: UIActivityIndicatorView!
@@ -26,6 +27,7 @@ class PLPlacesViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.backgroundView?.backgroundColor = UIColor.clearColor()
         createActivityIndicator()
         configureSearchController()
         
@@ -37,7 +39,6 @@ class PLPlacesViewController: PLViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         tableView.reloadData()
     }
     
@@ -64,17 +65,18 @@ class PLPlacesViewController: PLViewController {
         }
     }
     
-    
     // MARK: - Initialize search controller
     
     func configureSearchController() {
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
+        //TODO: wtf why there is a table vc allocation???
         resultsController = UITableViewController(style: .Grouped)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
         
+        //TODO: remove search vc, add search bar to header
         searchController = UISearchController(searchResultsController: resultsController)
         searchController.searchResultsUpdater = self
         

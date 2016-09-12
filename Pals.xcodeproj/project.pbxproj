@@ -81,6 +81,9 @@
 		2489E7061D82AC81003811D5 /* PLOrderFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */; };
 		24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */; };
 		24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */; };
+		D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */; };
+		D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */; };
+		D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */; };
 		D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */; };
 		D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A921D82B32700F48F4E /* PLAlert.swift */; };
 		D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A941D82C71100F48F4E /* PLViewController.swift */; };
@@ -196,6 +199,11 @@
 		24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderAnimableVipView.xib; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
+		D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLBlurView.swift; sourceTree = "<group>"; };
+		D41194F01D86BB7100AED4D1 /* NSLayoutConstraint+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Additions.h"; sourceTree = "<group>"; };
+		D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Additions.m"; sourceTree = "<group>"; };
+		D41194F21D86BB7100AED4D1 /* View+LayoutConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+LayoutConstraints.h"; sourceTree = "<group>"; };
+		D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+LayoutConstraints.m"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCellData.swift; sourceTree = "<group>"; };
 		D4950A921D82B32700F48F4E /* PLAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAlert.swift; sourceTree = "<group>"; };
@@ -281,6 +289,7 @@
 		2480F8771D813E730095995F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D41194EF1D86BB7100AED4D1 /* Autolayout */,
 				2480F8781D813E730095995F /* PLDevice.swift */,
 				2480F8791D813E730095995F /* PLDictionary.swift */,
 				2480F87A1D813E730095995F /* PLNavigationController.swift */,
@@ -369,6 +378,7 @@
 				2480F89A1D813E730095995F /* PLTextField.swift */,
 				D4950A921D82B32700F48F4E /* PLAlert.swift */,
 				D4950A941D82C71100F48F4E /* PLViewController.swift */,
+				D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -531,6 +541,17 @@
 				3E1097158C5C13F1394D646D /* Pods_Pals.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D41194EF1D86BB7100AED4D1 /* Autolayout */ = {
+			isa = PBXGroup;
+			children = (
+				D41194F01D86BB7100AED4D1 /* NSLayoutConstraint+Additions.h */,
+				D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */,
+				D41194F21D86BB7100AED4D1 /* View+LayoutConstraints.h */,
+				D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */,
+			);
+			path = Autolayout;
 			sourceTree = "<group>";
 		};
 		D42F53BC1D76B497005DEA34 = {
@@ -802,6 +823,7 @@
 				2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */,
 				2480F8EF1D813E730095995F /* TGLStackedLayout.m in Sources */,
 				D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */,
+				D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */,
 				2480F9171D813E730095995F /* PLSignUpData.swift in Sources */,
 				2480F8EE1D813E730095995F /* TGLExposedLayout.m in Sources */,
 				2489E7061D82AC81003811D5 /* PLOrderFriendsViewController.swift in Sources */,
@@ -819,7 +841,9 @@
 				E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */,
 				2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */,
 				2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */,
+				D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */,
 				2480F8E81D813E730095995F /* PLKeys.swift in Sources */,
+				D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */,
 				2480F9141D813E730095995F /* PLProfileViewController.swift in Sources */,
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
 				2480F9081D813E730095995F /* PLPlaceTableViewCell.swift in Sources */,

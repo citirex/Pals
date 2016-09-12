@@ -5,6 +5,6 @@
 	<key>UseFakeFeeds</key>
 	<true/>
 	<key>FakeFeedLoadDelay</key>
-	<real>1.5</real>
+	<real>0.5</real>
 </dict>
 </plist>

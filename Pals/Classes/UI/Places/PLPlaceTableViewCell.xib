@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -11,20 +11,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEo-Zy-khD" id="Vox-eN-pcg">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="109.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MfP-jv-KNn" userLabel="Background Image View">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
-                    </imageView>
-                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tk-hY-Xyx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
-                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Me9-gt-lFO">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        </view>
-                        <blurEffect style="dark"/>
-                    </visualEffectView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nid-ZR-BIc" customClass="PLBlurImageView" customModule="Pals" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bold_arrow-right" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-HL-u2s">
                         <rect key="frame" x="285" y="47" width="15" height="15"/>
                         <constraints>
@@ -63,31 +56,28 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="TIo-HL-u2s" firstAttribute="centerY" secondItem="Vox-eN-pcg" secondAttribute="centerY" id="1v0-7a-i5f"/>
-                    <constraint firstItem="4tk-hY-Xyx" firstAttribute="top" secondItem="Vox-eN-pcg" secondAttribute="top" id="NSy-Xq-jQC"/>
-                    <constraint firstItem="4tk-hY-Xyx" firstAttribute="leading" secondItem="Vox-eN-pcg" secondAttribute="leading" id="OcD-hf-Mmg"/>
-                    <constraint firstAttribute="bottom" secondItem="4tk-hY-Xyx" secondAttribute="bottom" id="PgN-gf-rr9"/>
+                    <constraint firstItem="nid-ZR-BIc" firstAttribute="top" secondItem="Vox-eN-pcg" secondAttribute="top" id="J6a-Ze-Tjd"/>
                     <constraint firstItem="KH3-pA-dO4" firstAttribute="leading" secondItem="Vox-eN-pcg" secondAttribute="leading" constant="35" id="UU1-L2-dfx"/>
                     <constraint firstAttribute="trailing" secondItem="TIo-HL-u2s" secondAttribute="trailing" constant="20" id="aO9-C5-eWL"/>
                     <constraint firstItem="KH3-pA-dO4" firstAttribute="top" secondItem="Vox-eN-pcg" secondAttribute="top" constant="15" id="clw-3J-aUg"/>
-                    <constraint firstAttribute="bottom" secondItem="MfP-jv-KNn" secondAttribute="bottom" id="cxI-as-O2n"/>
                     <constraint firstItem="2fV-a8-axf" firstAttribute="leading" secondItem="KH3-pA-dO4" secondAttribute="leading" id="ecg-aG-Y3N"/>
-                    <constraint firstAttribute="trailing" secondItem="4tk-hY-Xyx" secondAttribute="trailing" id="lMo-oK-6u9"/>
                     <constraint firstAttribute="trailing" secondItem="CCk-0L-MfO" secondAttribute="trailing" constant="35" id="oFl-Fa-NXM"/>
                     <constraint firstItem="lPW-7c-MJr" firstAttribute="leading" secondItem="2fV-a8-axf" secondAttribute="leading" id="owD-Ja-EGu"/>
+                    <constraint firstAttribute="bottom" secondItem="nid-ZR-BIc" secondAttribute="bottom" id="pDL-1y-4Pj"/>
                     <constraint firstItem="CCk-0L-MfO" firstAttribute="top" secondItem="Vox-eN-pcg" secondAttribute="top" constant="15" id="pnl-vU-UBi"/>
-                    <constraint firstAttribute="trailing" secondItem="MfP-jv-KNn" secondAttribute="trailing" id="rWe-7c-1o9"/>
-                    <constraint firstItem="MfP-jv-KNn" firstAttribute="leading" secondItem="Vox-eN-pcg" secondAttribute="leading" id="uag-hf-Cmn"/>
-                    <constraint firstItem="MfP-jv-KNn" firstAttribute="top" secondItem="Vox-eN-pcg" secondAttribute="top" id="vHy-Fe-B6g"/>
+                    <constraint firstAttribute="trailing" secondItem="nid-ZR-BIc" secondAttribute="trailing" id="vs4-vl-Rcm"/>
                     <constraint firstItem="lPW-7c-MJr" firstAttribute="top" secondItem="2fV-a8-axf" secondAttribute="bottom" constant="8" id="wG1-KE-SiD"/>
+                    <constraint firstItem="nid-ZR-BIc" firstAttribute="leading" secondItem="Vox-eN-pcg" secondAttribute="leading" id="xdG-Ra-99Z"/>
                     <constraint firstItem="2fV-a8-axf" firstAttribute="top" secondItem="KH3-pA-dO4" secondAttribute="bottom" constant="8" id="yeV-Oq-myX"/>
                 </constraints>
             </tableViewCellContentView>
             <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="backgroundImageView" destination="MfP-jv-KNn" id="zBM-WL-n2C"/>
+                <outlet property="blurView" destination="nid-ZR-BIc" id="Gbn-8f-Gej"/>
                 <outlet property="distanceLabel" destination="CCk-0L-MfO" id="jGL-rK-VPR"/>
                 <outlet property="musicGenresLabel" destination="lPW-7c-MJr" id="kjV-Jx-jE3"/>
                 <outlet property="placeAddressLabel" destination="2fV-a8-axf" id="YCX-s7-cEd"/>

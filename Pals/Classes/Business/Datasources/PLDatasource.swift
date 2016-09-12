@@ -32,7 +32,7 @@ class PLDatasource<T: PLUniqueObject> {
     //MARK: Adapter getters
     var count: Int { return collection.count }
     var pagesLoaded: Int { return collection.pagesLoaded }
-    subscript(index: Int) -> T { return collection.objects[index] }
+    subscript(index: Int) -> T { return collection[index] }
     
     func fakeFeedNameOnError(error: NSError) -> String {
         let name = fakeFeedFilenameKey() + "\(collection.pagesLoaded)"

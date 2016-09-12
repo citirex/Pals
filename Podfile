@@ -10,5 +10,6 @@ pod 'SDWebImage'
 pod 'CSStickyHeaderFlowLayout'
 pod 'SwiftQRCode'
 pod 'RandomKit'
+pod 'GPUImage'
 
 end
