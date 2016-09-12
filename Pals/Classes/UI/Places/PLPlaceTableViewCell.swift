@@ -33,6 +33,7 @@ class PLPlaceTableViewCell: UITableViewCell {
         distanceLabel.text = distance(placeCellData.location)
     }
 
+    // TODO: - currentLocation = nil 
     private func distance(destination: CLLocationCoordinate2D) -> String {
         let locationManager = PLLocationManager()
         var currentLocation = CLLocation()
@@ -44,6 +45,7 @@ class PLPlaceTableViewCell: UITableViewCell {
         let distance = currentLocation.distanceFromLocation(placeLocation)
         return distance.stringWithUnit()
     }
+    
 }
 
 
