@@ -27,13 +27,10 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
         let service = PLAPIService.Orders.string
         let offsetById = false
         self.init(url: service, offsetById: offsetById)
+        collection.appendPath([PLKeys.orders.string])
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLKeys.orders.string
-    }
-    
-    override func mainCollectionKey() -> String {
         return PLKeys.orders.string
     }
     

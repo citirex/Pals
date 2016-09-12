@@ -29,7 +29,7 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
                 self.region = region
                 super.load(completion)
             } else {
-                completion(page: [AnyObject](), error: error)
+                completion(objects: [AnyObject](), error: error)
             }
         }
     }
@@ -41,13 +41,10 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
         let service = PLAPIService.Places.string
         let offsetById = false
         self.init(url: service, offsetById: offsetById)
+        collection.appendPath([PLKeys.places.string])
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLKeys.places.string
-    }
-    
-    override func mainCollectionKey() -> String {
         return PLKeys.places.string
     }
 }
