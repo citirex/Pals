@@ -78,7 +78,7 @@ class PLPlaceTableViewCell: UITableViewCell {
             }
         }
     }
-
+    
     private func distance(destination: CLLocationCoordinate2D) -> String {
 //        let locationManager = PLLocationManager()
 //        var currentLocation = CLLocation()

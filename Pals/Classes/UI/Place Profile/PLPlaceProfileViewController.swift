@@ -67,12 +67,18 @@ class PLPlaceProfileViewController: PLViewController {
                                     forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                     withReuseIdentifier: "SectionHeader")
     }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.presentTransparentNavigationBar()
+        let backButtonItem = PLBackBarButtonItem()
+        navigationItem.leftBarButtonItem = backButtonItem
+        backButtonItem.didTappedBackButton = {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -96,6 +102,17 @@ class PLPlaceProfileViewController: PLViewController {
         if segue.identifier == "ShowOrder" {
         
         }
+    }
+    
+    
+    private func convertTimeTo12HoursFormatString(formatString: String) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let date24 = dateFormatter.dateFromString(formatString)
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "h:mm a"
+        let date12 = dateFormatter.stringFromDate(date24!)
+        return date12
     }
 
 
@@ -133,7 +150,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
             sectionHeader.placeNameLabel.text = place.name
             sectionHeader.musicGenresLabel.text = place.musicGengres
-            sectionHeader.closingTimeLabel.text = place.closeTime
+            sectionHeader.closingTimeLabel.text = convertTimeTo12HoursFormatString(place.closeTime)
             sectionHeader.placeAddressLabel.text = place.address
             sectionHeader.phoneNumberLabel.text = place.phone
             sectionHeader.didTappedOrderButton = {

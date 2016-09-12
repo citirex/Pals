@@ -84,6 +84,7 @@
 		D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */; };
 		D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
+		D46D2B891D875BB10058060E /* PLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B881D875BB10058060E /* PLImage.swift */; };
 		D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */; };
 		D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A921D82B32700F48F4E /* PLAlert.swift */; };
 		D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A941D82C71100F48F4E /* PLViewController.swift */; };
@@ -121,6 +122,7 @@
 		E83B4E441D86CA1A002E72F6 /* PLSettingsSectionFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83B4E421D86CA1A002E72F6 /* PLSettingsSectionFooter.xib */; };
 		E83B4E471D86CA51002E72F6 /* PLSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B4E451D86CA51002E72F6 /* PLSettingsCell.swift */; };
 		E83B4E481D86CA51002E72F6 /* PLSettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83B4E461D86CA51002E72F6 /* PLSettingsCell.xib */; };
+		E83B4E4F1D87364E002E72F6 /* PLBackBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */; };
 		E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */; };
 /* End PBXBuildFile section */
 
@@ -214,6 +216,7 @@
 		D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+LayoutConstraints.m"; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46D2B861D87583B0058060E /* PLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLColor.swift; sourceTree = "<group>"; };
+		D46D2B881D875BB10058060E /* PLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImage.swift; sourceTree = "<group>"; };
 		D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCellData.swift; sourceTree = "<group>"; };
 		D4950A921D82B32700F48F4E /* PLAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAlert.swift; sourceTree = "<group>"; };
 		D4950A941D82C71100F48F4E /* PLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +253,7 @@
 		E83B4E421D86CA1A002E72F6 /* PLSettingsSectionFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingsSectionFooter.xib; sourceTree = "<group>"; };
 		E83B4E451D86CA51002E72F6 /* PLSettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsCell.swift; sourceTree = "<group>"; };
 		E83B4E461D86CA51002E72F6 /* PLSettingsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingsCell.xib; sourceTree = "<group>"; };
+		E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLBackBarButtonItem.swift; sourceTree = "<group>"; };
 		E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationDistance.swift; sourceTree = "<group>"; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,6 +321,7 @@
 				E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */,
 				E829DDDB1D819A6300D8C130 /* PLConstants.swift */,
 				D46D2B861D87583B0058060E /* PLColor.swift */,
+				D46D2B881D875BB10058060E /* PLImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				D4950A921D82B32700F48F4E /* PLAlert.swift */,
 				D4950A941D82C71100F48F4E /* PLViewController.swift */,
 				D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */,
+				E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -908,11 +914,13 @@
 				2489E7061D82AC81003811D5 /* PLOrderFriendsViewController.swift in Sources */,
 				2480F8E61D813E730095995F /* PLEvent.swift in Sources */,
 				E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */,
+				E83B4E4F1D87364E002E72F6 /* PLBackBarButtonItem.swift in Sources */,
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				2480F9161D813E730095995F /* PLAddButton.swift in Sources */,
 				2480F8E21D813E730095995F /* PLStoryboard.swift in Sources */,
 				2480F8DC1D813E730095995F /* PLPageCollection.swift in Sources */,
+				D46D2B891D875BB10058060E /* PLImage.swift in Sources */,
 				E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */,
 				2480F8F41D813E730095995F /* PLButton.swift in Sources */,
 				2480F8ED1D813E730095995F /* TGLBackgroundProxyView.m in Sources */,

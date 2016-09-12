@@ -57,7 +57,16 @@ class PLSettingsViewController: PLViewController {
                                     withReuseIdentifier: "SectionFooter")
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let backButtonItem = PLBackBarButtonItem()
+        navigationItem.leftBarButtonItem = backButtonItem
+        backButtonItem.didTappedBackButton = {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+
     private func reloadLayout() {
         layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 275)
         layout!.parallaxHeaderAlwaysOnTop = true

@@ -38,7 +38,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ApplesCool" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="bgB-r9-lkB" customClass="PLEditTextField" customModule="Pals" customModuleProvider="target">
-                                <rect key="frame" x="118" y="181" width="85" height="17"/>
+                                <rect key="frame" x="121" y="181" width="78" height="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="phn-7f-cl9"/>
@@ -51,7 +51,7 @@
                                 </connections>
                             </textField>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" translatesAutoresizingMaskIntoConstraints="NO" id="a0w-hD-tWf">
-                                <rect key="frame" x="208" y="178" width="17" height="17"/>
+                                <rect key="frame" x="204" y="178" width="17" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="17" id="sH5-YT-9d3"/>
                                     <constraint firstAttribute="height" constant="17" id="yJ3-wY-DgP"/>
@@ -60,11 +60,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bgB-r9-lkB" secondAttribute="trailing" id="5wP-8i-zKA"/>
                             <constraint firstItem="SsF-Bj-o7s" firstAttribute="centerX" secondItem="fCu-2D-qjY" secondAttribute="centerX" id="723-Pk-q0H"/>
                             <constraint firstAttribute="bottom" secondItem="hB2-z4-hV4" secondAttribute="bottom" id="DJP-o0-Sbx"/>
                             <constraint firstAttribute="trailing" secondItem="tuK-bp-My1" secondAttribute="trailing" id="DWq-Ka-jbh"/>
-                            <constraint firstAttribute="trailing" secondItem="bgB-r9-lkB" secondAttribute="trailing" priority="749" constant="117" id="I9G-Lz-IuP"/>
                             <constraint firstItem="tuK-bp-My1" firstAttribute="leading" secondItem="fCu-2D-qjY" secondAttribute="leading" id="IKG-m1-AUo"/>
                             <constraint firstAttribute="trailing" secondItem="hB2-z4-hV4" secondAttribute="trailing" id="KcP-Nj-Oxg"/>
                             <constraint firstItem="a0w-hD-tWf" firstAttribute="leading" secondItem="bgB-r9-lkB" secondAttribute="trailing" constant="5" id="Rfc-cZ-vqY"/>
@@ -72,9 +70,7 @@
                             <constraint firstItem="a0w-hD-tWf" firstAttribute="bottom" secondItem="bgB-r9-lkB" secondAttribute="bottom" constant="-3" id="a8R-bL-GEj"/>
                             <constraint firstItem="SsF-Bj-o7s" firstAttribute="top" secondItem="fCu-2D-qjY" secondAttribute="top" constant="70" id="adg-W0-Ic9"/>
                             <constraint firstItem="bgB-r9-lkB" firstAttribute="centerX" secondItem="SsF-Bj-o7s" secondAttribute="centerX" id="j9v-I7-v7H"/>
-                            <constraint firstItem="bgB-r9-lkB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fCu-2D-qjY" secondAttribute="leading" id="jyf-4R-9RT"/>
                             <constraint firstItem="bgB-r9-lkB" firstAttribute="top" secondItem="SsF-Bj-o7s" secondAttribute="bottom" constant="5" id="jyw-9M-euF"/>
-                            <constraint firstItem="bgB-r9-lkB" firstAttribute="leading" secondItem="fCu-2D-qjY" secondAttribute="leading" priority="749" constant="118" id="kCM-If-aIN"/>
                             <constraint firstAttribute="bottom" secondItem="tuK-bp-My1" secondAttribute="bottom" id="kVP-u2-klQ"/>
                             <constraint firstItem="hB2-z4-hV4" firstAttribute="leading" secondItem="fCu-2D-qjY" secondAttribute="leading" id="kas-Ey-fDx"/>
                             <constraint firstItem="tuK-bp-My1" firstAttribute="top" secondItem="fCu-2D-qjY" secondAttribute="top" id="sjR-12-ETo"/>
@@ -96,6 +92,7 @@
                 <outlet property="userProfileImageView" destination="SsF-Bj-o7s" id="bum-sR-D9W"/>
                 <outlet property="usernameTextField" destination="bgB-r9-lkB" id="mQj-7r-4gl"/>
             </connections>
+            <point key="canvasLocation" x="132" y="379.5"/>
         </collectionViewCell>
     </objects>
     <resources>
