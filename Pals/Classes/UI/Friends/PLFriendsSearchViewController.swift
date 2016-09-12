@@ -55,6 +55,11 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		loadDatasource()
 	}
 	
+	override func viewDidLayoutSubviews() {
+		let bottomOffset = tabBarController?.tabBar.frame.height
+		self.tableView.contentInset = UIEdgeInsetsMake(bottomOffset!, 0, bottomOffset!, 0)
+	}
+	
 	func loadDatasource() {
 		self.spinner.startAnimating()
 		datasource.load {[unowned self] (page, error) in
@@ -73,17 +78,10 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 				}
 				self.spinner.stopAnimating()
 			} else {
-				self.alertCalled("You are alone.", mesage: "Your Friendlist is empty.")
+				PLShowAlert("Error!", message: "Cannot download your friends.")
 			}
 		}
 	}
-	
-	func alertCalled(title: String, mesage: String) {
-		let alert = UIAlertController(title: title, message: mesage, preferredStyle: UIAlertControllerStyle.Alert)
-		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-		self.presentViewController(alert, animated: true, completion: nil)
-	}
-
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let count = datasource.count
@@ -95,7 +93,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
 		
 		let friend = datasource[indexPath.row]
-		if let cell = cell as? PLFriendCell {
+		if let cell = cell as? PLFriendSearchCell {
 			cell.friend = friend
 			cell.addButtonOutlet.hidden = false
 			cell.addButtonOutlet.setImage(UIImage(named: "plus"), forState: .Normal)
