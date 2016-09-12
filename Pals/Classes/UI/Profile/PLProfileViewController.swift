@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import RandomKit
-import SDWebImage
+import AFNetworking
 
 class PLProfileViewController: TGLStackedViewController {
 
@@ -27,11 +26,12 @@ class PLProfileViewController: TGLStackedViewController {
         didSet {
             if let user = profile {
                 orderDatasource.userId = user.id
-                
             }
             setupUserInfo()
         }
     }
+    
+    private var tempPaths: [NSIndexPath]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,6 @@ class PLProfileViewController: TGLStackedViewController {
         setupCollectionView()
         
         profile = PLFacade.profile
-        collectionHelper.fishUser = profile
         loadPage()
     }
     
@@ -52,6 +51,7 @@ class PLProfileViewController: TGLStackedViewController {
     
     func loadPage() {
         spinner.startAnimating()
+        spinner.center = view.center
         orderDatasource.load {[unowned self] page, error in
             if error == nil {
                 let count = self.orderDatasource.count
@@ -63,14 +63,18 @@ class PLProfileViewController: TGLStackedViewController {
                     }
                     
                     if self.firstLaunch == true {
-                        self.collectionView?.reloadData()
-                        self.showCards()
+                        self.collectionView?.alpha = 0
+                        self.collectionView?.reloadData({
+                            self.collectionView?.layoutIfNeeded()
+                            self.showCards()
+                        })
                         self.firstLaunch = false
                     } else {
-                        self.collectionView?.performBatchUpdates({ 
+                        self.collectionView?.performBatchUpdates({
                             self.collectionView?.insertItemsAtIndexPaths(indexPaths)
-                        }, completion: nil)
-                        
+                            }, completion: { (completion) in
+                                print("psy")
+                        })
                     }
                 }
                 self.spinner.stopAnimating()
@@ -158,12 +162,15 @@ class PLProfileViewController: TGLStackedViewController {
             collectionBackgroundView.balanceButton.addTarget(self, action: #selector(addFundsButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.myDrinksButton.addTarget(self, action: #selector(myDrinksButtonPressed(_:)), forControlEvents: .TouchUpInside)
-            collectionBackgroundView.userPicImageView.sd_setImageWithURL(profile.picture, placeholderImage: UIImage(named: "avatar_placeholder"),  completed: {[unowned self] (image, error, SDImageCacheType, url) in
-                if error != nil {
+            
+            
+            collectionBackgroundView.userPicImageView.setImageWithURLRequest(NSURLRequest(URL: profile.picture),
+                                                                             placeholderImage: UIImage(named: "avatar_placeholder"),
+                                                                             success: { (retuqest, response, image) in
+                                                                                self.collectionBackgroundView.userPicImageView.image = image
+                                                                                self.collectionBackgroundView.applyBlurEffect(image)
+                }, failure: { (request, response, error) in
                     print("Error when downloading profile image: \(error.debugDescription)")
-                } else {
-                    self.collectionBackgroundView.applyBlurEffect(image)
-                }
             })
         }
     }

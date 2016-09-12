@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OrderFriendsDelegate: class {
-    func didSelectFriend(friend: String)
+    func didSelectFriend(selectedFriend: PLUser)
 }
 
 class PLOrderFriendsViewController: PLFriendsViewController {
@@ -25,10 +25,11 @@ class PLOrderFriendsViewController: PLFriendsViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationController?.navigationBar.backItem?.title = ""
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.didSelectFriend("Jason Borne") //FIXME: get actual data
+        delegate?.didSelectFriend(datasource[indexPath.row])
         navigationController?.popViewControllerAnimated(true)
     }
 

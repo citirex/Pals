@@ -30,6 +30,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		
 		tableView.frame = UIScreen.mainScreen().bounds
 		
+		
 		tableView.delegate = self
 		tableView.dataSource = self
 		
@@ -54,6 +55,11 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		tableView.hidden = true
         loadDatasource()
 	}
+	
+	override func viewDidLayoutSubviews() {
+		let bottomOffset = tabBarController?.tabBar.frame.height
+		self.tableView.contentInset = UIEdgeInsetsMake(bottomOffset!, 0, bottomOffset!, 0)
+	}
     
     func loadDatasource() {
 		self.spinner.startAnimating()
@@ -73,17 +79,10 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 				}
 				self.spinner.stopAnimating()
 			} else {
-				self.alertCalled("You are alone.", mesage: "Your Friendlist is empty.")
+				PLShowAlert("Error!", message: "Cannot download your friends.")
 			}
         }
     }
-	
-	func alertCalled(title: String, mesage: String) {
-		let alert = UIAlertController(title: title, message: mesage, preferredStyle: UIAlertControllerStyle.Alert)
-		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-		self.presentViewController(alert, animated: true, completion: nil)
-	}
-	
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = datasource.count
@@ -125,7 +124,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		return 100
 	}
 	
-	
 	// MARK: - Navigation
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -138,6 +136,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 			friendProfileViewController.title = ""
 		}
 	}
+	
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)

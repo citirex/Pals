@@ -6,68 +6,66 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+import CSStickyHeaderFlowLayout
+
 class PLSettingsViewController: PLViewController {
     
-    @IBOutlet weak var headerSectionView: UIView!
-    @IBOutlet weak var userProfileImageView: PLImageView!
-    @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var editingView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var layout: CSStickyHeaderFlowLayout? {
+        return collectionView?.collectionViewLayout as? CSStickyHeaderFlowLayout
+    }
+
+    private let headerTitles = ["Cards", "Notifications"]
+    private var cardData  = ["Privat Bank", "**** **** **** 4321"]
+    private let services = ["Notifications", "Account Info"]
+    private let numberOfItems = 2
+    
     
     var user: PLUser!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addGestures()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        reloadLayout()
         
-//        setupHeaderSection()
-    }
-    
-    
-    private func setupHeaderSection() {
-        let imageData = NSData(contentsOfURL: user.picture)
-        let image = UIImage(data: imageData!)
+        collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
+        automaticallyAdjustsScrollViewInsets = false
         
-        backgroundImageView.image = image
-        userProfileImageView.image = image
-        usernameTextField.text = user.name
-    }
-    
-    
-    // MARK: - Gestures
-    
-    private func addGestures() {
-        let editTap = UITapGestureRecognizer(target: self, action: #selector(textFieldEditing(_:)))
-        editingView.addGestureRecognizer(editTap)
+        // Setup Cell
+        let nib = UINib(nibName: "PLSettingsCell", bundle: nil)
+        collectionView?.registerNib(nib, forCellWithReuseIdentifier: "SettingsCell")
         
-        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
-        headerSectionView.addGestureRecognizer(dismissTap)
+        // Setup Header
+        let headerNib = UINib(nibName: "PLSettingsHeader", bundle: nil)
+        collectionView!.registerNib(headerNib,
+                                    forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader,
+                                    withReuseIdentifier: "Header")
+        
+        // Setup Section Header
+        let sectionHeaderNib = UINib(nibName: "PLSettingsSectionHeader", bundle: nil)
+        collectionView!.registerNib(sectionHeaderNib,
+                                    forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                    withReuseIdentifier: "SectionHeader")
+        
+        // Setup Section Footer
+        let sectionFooterNib = UINib(nibName: "PLSettingsSectionFooter", bundle: nil)
+        collectionView!.registerNib(sectionFooterNib,
+                                    forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                                    withReuseIdentifier: "SectionFooter")
     }
     
-
     
-    // MARK: - Actions
-    
-    @IBAction func signOutButtonTapped(sender: UIButton) {
-        print("Sign out tapped")
-    }
-    
-    func textFieldEditing(sender: UITapGestureRecognizer) {
-        usernameTextField.becomeFirstResponder()
-    }
-    
-    func dismissKeyboard(sender: UITapGestureRecognizer) {
-        if usernameTextField.isFirstResponder() {
-            usernameTextField.resignFirstResponder()
-        }
+    private func reloadLayout() {
+        layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 275)
+        layout!.parallaxHeaderAlwaysOnTop = true
+        layout!.disableStickyHeaders = false
     }
 
+
+    
 
     // MARK: - Navigation
 
@@ -88,55 +86,37 @@ class PLSettingsViewController: PLViewController {
 }
 
 
-// MARK: - Table view data source
+// MARK: - UICollectionViewDataSource
 
-extension PLSettingsViewController: UITableViewDataSource {
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+extension PLSettingsViewController: UICollectionViewDataSource {
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return headerTitles.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return numberOfItems
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell!
-        
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SettingsCell", forIndexPath: indexPath)
+            as! PLSettingsCell
+
         switch indexPath.section {
         case 0:
-            switch indexPath.row {
-            case 0:
-                cell = tableView.dequeueReusableCellWithIdentifier("CardNameCell")!
-                cell.textLabel?.text = "Privat Bank"
-            case 1:
-                cell = tableView.dequeueReusableCellWithIdentifier("CardNumberCell")!
-                cell.textLabel?.text = "**** **** **** 4321"
-            default: break
-            }
+            cell.titleLabel.text = cardData[indexPath.row]
         case 1:
-            switch indexPath.row {
-            case 0:
-                cell = tableView.dequeueReusableCellWithIdentifier("NotificationsCell")!
-            case 1:
-                cell = tableView.dequeueReusableCellWithIdentifier("AccountInfoCell")!
-            default: break
-            }
+            cell.titleLabel.text = services[indexPath.row]
         default:
-            return UITableViewCell()
+            break
         }
-
+        cell.separatorView.hidden = indexPath.row % 2 != 0 ? true : false
+        
         return cell
     }
     
-}
-
-
-extension PLSettingsViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
@@ -149,33 +129,55 @@ extension PLSettingsViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerIdentifier = section == 0 ? "CardsHeaderCell" : "SettingHeaderCell"
-        return tableView.dequeueReusableCellWithIdentifier(headerIdentifier)
+}
+
+
+// MARK: - UICollectionViewDelegate
+
+extension PLSettingsViewController: UICollectionViewDelegate {
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case CSStickyHeaderParallaxHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! PLSettingsHeader
+//            headerView.backgroundImageView.setImageWithURL(user.picture)
+//            headerView.userProfileImageView.setImageWithURL(user.picture)
+            return headerView
+        case UICollectionElementKindSectionHeader:
+            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLSettingsSectionHeader
+            sectionHeader.headerLabel.text = headerTitles[indexPath.section]
+            return sectionHeader
+        case UICollectionElementKindSectionFooter:
+            let sectionFooter = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionFooter", forIndexPath: indexPath) as! PLSettingsSectionFooter
+            sectionFooter.didTappedSignOutButton = {
+                print("Sign Out")
+            }
+            return sectionFooter
+        default:
+            assert(false, "Unsupported supplementary view kind")
+            return UICollectionReusableView()
+        }
     }
     
 }
 
 
-extension PLSettingsViewController: UITextFieldDelegate {
+// MARK: - UICollectionViewDelegateFlowLayout
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
+extension PLSettingsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSizeMake(view.frame.size.width, 40)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return section == 1 ? CGSizeMake(view.frame.size.width, 50) : CGSizeZero
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(view.frame.size.width, 44)
     }
 }
 
-
-// MARK: - UIScrollViewDelegate
-
-extension PLSettingsViewController: UIScrollViewDelegate {
-
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        usernameTextField.resignFirstResponder()
-    }
-
-    func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
-        usernameTextField.resignFirstResponder()
-        return true
-    }
-}

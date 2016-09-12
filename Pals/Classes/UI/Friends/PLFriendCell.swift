@@ -33,5 +33,9 @@ class PLFriendCell: UITableViewCell{
         super.prepareForReuse()
         avatarImage.image = nil
     }
-    
+}
+
+
+class PLFriendSearchCell: PLFriendCell{
+	
 }

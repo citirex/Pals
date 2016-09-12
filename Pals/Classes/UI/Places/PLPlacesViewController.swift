@@ -19,7 +19,6 @@ class PLPlacesViewController: PLViewController {
     private var resultsController: UITableViewController!
     private var searchController: UISearchController!
     
-    
     lazy var datasource: PLPlacesDatasource = { return PLPlacesDatasource() }()
   
     var selectedPlace: PLPlace!
@@ -36,12 +35,10 @@ class PLPlacesViewController: PLViewController {
         loadPage()
     }
     
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
-    
     
     func loadPage() {
         activityIndicator.startAnimating()
@@ -69,22 +66,19 @@ class PLPlacesViewController: PLViewController {
     
     func configureSearchController() {
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
-        //TODO: wtf why there is a table vc allocation???
         resultsController = UITableViewController(style: .Grouped)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
-        
-        //TODO: remove search vc, add search bar to header
         searchController = UISearchController(searchResultsController: resultsController)
         searchController.searchResultsUpdater = self
-        
+        tableView.backgroundView = UIView()
         tableView.tableHeaderView = searchController.searchBar
-        
+        searchController.searchBar.barTintColor = mainColor
+        searchController.searchBar.tintColor = UIColor.whiteColor()
         definesPresentationContext = true
     }
-    
     
     // MARK: - Alert
     
@@ -148,8 +142,6 @@ class PLPlacesViewController: PLViewController {
 
 }
 
-
-
 // MARK: - Table view data source
 
 extension PLPlacesViewController: UITableViewDataSource {
@@ -179,7 +171,6 @@ extension PLPlacesViewController: UITableViewDataSource {
 
 }
 
-
 // MARK: - Table view delegate
 
 extension PLPlacesViewController: UITableViewDelegate {
@@ -191,7 +182,6 @@ extension PLPlacesViewController: UITableViewDelegate {
     }
     
 }
-
 
 // MARK: - UISearchResultsUpdating
 

@@ -23,3 +23,5 @@ enum TabBarController: Int {
 var kPalsPurpleColor: UIColor {
     return UIColor(red:0.49, green:0.30, blue:0.62, alpha:1.0)
 }
+
+let mainColor = UIColor(r: 125, g: 76, b: 158)

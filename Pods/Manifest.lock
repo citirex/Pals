@@ -16,28 +16,20 @@ PODS:
     - AFNetworking/NSURLSession
   - CSStickyHeaderFlowLayout (0.2.10)
   - GPUImage (0.1.7)
-  - RandomKit (1.6.0)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
   - SwiftQRCode (2.0.2)
 
 DEPENDENCIES:
   - AFNetworking
   - CSStickyHeaderFlowLayout
   - GPUImage
-  - RandomKit
-  - SDWebImage
   - SwiftQRCode
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
-  RandomKit: 9b33ce5fc448056e8ddaaef655da315b26f23e32
-  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
-PODFILE CHECKSUM: c3bdf3b493fcece22f16115ec93dc6173ddd384b
+PODFILE CHECKSUM: 561c0d2e68d2a1cac54e697729e33346990a5911
 
 COCOAPODS: 1.1.0.rc.1

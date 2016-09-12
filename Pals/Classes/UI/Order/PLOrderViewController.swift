@@ -10,29 +10,43 @@ private let kStillHeaderIdentifier = "stillHeader"
 private let kStickyHeaderIdentifier = "stickyHeader"
 private let kDrinkCellIdentifier = "drinkCell"
 
-
 class PLOrderViewController: PLViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
-    
+
+    var order: PLOrder? = nil
+    var user: PLUser? = nil
+    var place: PLPlace? = nil
+    var message: String? = nil
+    var isVip = false
     var orderDrinks = [String: Int]() {
         didSet{
-            if orderDrinks.count > 0 {
-                print("Show orderButton")
-            }
+            orderDrinks.count > 0 ? showCheckoutButton() : hideCheckoutButton()
         }
     }
+    
+    var drinks = [PLDrink]()
     
     private var currentTab: CurrentTab = .Drinks
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
     private var vipButton: UIBarButtonItem? = nil
     
+    lazy private var checkoutButton: UIButton = {
+        let buttonFrame = CGRectMake(0,0,180,60)
+        let button = UIButton(frame: buttonFrame)
+        button.setTitle("Send", forState: .Normal)
+        button.backgroundColor = UIColor(red:0.22, green:0.81, blue:0.51, alpha:0.9)
+        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.layer.cornerRadius = buttonFrame.size.height / 2
+        button.hidden = true
+        self.view.addSubview(button)
+        button.addTarget(self, action: #selector(checkoutButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        return button
+    }()
     
-    var drinks = [PLDrink]()
-    var userName: String? = "Chose friend"
-    var placeName: String? = "Chose place"
-    var messageToUser: String? = "Enter descriprion"
-    
+    private let placeholderUserName = "Chose user"
+    private let placeholderPlaceName = "Chose place"
+    private let placeholderMessageToUser = "Enter descriprion"
     
     //MARK: - View lifecycle
     override func viewDidLoad() {
@@ -50,8 +64,9 @@ class PLOrderViewController: PLViewController {
         collectionView.registerNib(UINib(nibName: "PLOrdeStickyHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrderDrinkCell", bundle: nil), forCellWithReuseIdentifier: kDrinkCellIdentifier)
         
-        var i = 0
         
+        // sample fish data
+        var i = 0
         while (i < 14) {
             
             let drink = PLDrink(jsonDic: ["id" : i])
@@ -71,6 +86,7 @@ class PLOrderViewController: PLViewController {
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
         }
+        navigationController?.navigationBar.backItem?.title = ""
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.barTintColor = kPalsPurpleColor
     }
@@ -83,15 +99,77 @@ class PLOrderViewController: PLViewController {
     }
     
     @objc private func vipButtonPressed(sender: UIBarButtonItem) {
-        print("Vip button pressed")
         navigationItem.rightBarButtonItem = nil
+        isVip = true
         animableVipView.animateVip()
         NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(restore), userInfo: nil, repeats: false)
     }
     
     func restore() {
+        isVip = false
         navigationItem.rightBarButtonItem = vipButton
         animableVipView.restoreToDefaultState()
+    }
+    
+    func showCheckoutButton() {
+        if checkoutButton.hidden != false {
+            let originYFinish = view.bounds.size.height - 80
+            var frame = checkoutButton.frame
+            
+            frame.origin.x = view.center.x - frame.size.width / 2
+            frame.origin.y = view.bounds.size.height
+            checkoutButton.frame = frame
+            checkoutButton.hidden = false
+            frame.origin.y = originYFinish
+            
+            UIView.animateWithDuration(0.3,
+                                       delay: 0,
+                                       options: .BeginFromCurrentState,
+                                       animations: { 
+                                        self.checkoutButton.frame = frame
+                }, completion: nil)
+        }
+    }
+    
+    func hideCheckoutButton() {
+        if checkoutButton.hidden != true {
+            var frame = checkoutButton.frame
+            frame.origin.x = view.center.x - frame.size.width / 2
+            frame.origin.y = view.bounds.size.height
+            
+            
+            UIView.animateWithDuration(0.3,
+                                       delay: 0,
+                                       options: .BeginFromCurrentState,
+                                       animations: {
+                                        self.checkoutButton.frame = frame
+                }, completion: { (completion) in
+                    self.checkoutButton.hidden = true
+            })
+        }
+    }
+    
+    @objc private func checkoutButtonPressed(sender: UIButton) {
+        guard let selectedUser = user else {
+            checkoutButton.shake()
+            PLShowAlert(title: "Need to chose user")
+            return
+        }
+        guard let selectedPlace = place else {
+            checkoutButton.shake()
+            PLShowAlert(title: "Need to chose place")
+            return
+        }
+        
+        
+        let qrCode = String.randomAlphaNumericString(8)
+        let accessCode = String.randomAlphaNumericString(8)
+        
+        
+        order = PLOrder(withUser: selectedUser, place: selectedPlace, isVip: isVip, message: message, qrCode: qrCode, accessCode: accessCode)
+        order?.drinks = orderDrinks
+        
+        print(order.debugDescription)
     }
 }
 
@@ -116,8 +194,8 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         }
     }
     
-    func didSelectFriend(friend: String) {
-        userName = friend
+    func didSelectFriend(selectedFriend: PLUser) {
+        user = selectedFriend
         collectionView.reloadSections(NSIndexSet(index: 0))
     }
     
@@ -130,8 +208,8 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         
     }
     
-    func didSelectNewPlace(place: String) {
-        placeName = place
+    func didSelectNewPlace(selectedPlace: PLPlace) {
+        place = selectedPlace
         collectionView.reloadSections(NSIndexSet(index: 0))
     }
     
@@ -173,9 +251,9 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLOrderStillHeader
             header.delegate = self
-            header.userNameButton.setTitle(userName, forState: .Normal)
-            header.placeNameButton.setTitle(placeName, forState: .Normal)
-            header.messageTextView.text = messageToUser
+            header.userNameButton.setTitle(user?.name ?? placeholderUserName, forState: .Normal)
+            header.placeNameButton.setTitle(place?.name ?? placeholderPlaceName, forState: .Normal)
+            header.messageTextView.text = message ?? placeholderMessageToUser
             
             return header
         } else {
