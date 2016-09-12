@@ -26,11 +26,12 @@ class PLProfileViewController: TGLStackedViewController {
         didSet {
             if let user = profile {
                 orderDatasource.userId = user.id
-                
             }
             setupUserInfo()
         }
     }
+    
+    private var tempPaths: [NSIndexPath]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,6 @@ class PLProfileViewController: TGLStackedViewController {
         setupCollectionView()
         
         profile = PLFacade.profile
-        collectionHelper.fishUser = profile
         loadPage()
     }
     
@@ -51,6 +51,7 @@ class PLProfileViewController: TGLStackedViewController {
     
     func loadPage() {
         spinner.startAnimating()
+        spinner.center = view.center
         orderDatasource.load {[unowned self] page, error in
             if error == nil {
                 let count = self.orderDatasource.count
@@ -62,14 +63,18 @@ class PLProfileViewController: TGLStackedViewController {
                     }
                     
                     if self.firstLaunch == true {
-                        self.collectionView?.reloadData()
-                        self.showCards()
+                        self.collectionView?.alpha = 0
+                        self.collectionView?.reloadData({
+                            self.collectionView?.layoutIfNeeded()
+                            self.showCards()
+                        })
                         self.firstLaunch = false
                     } else {
-                        self.collectionView?.performBatchUpdates({ 
+                        self.collectionView?.performBatchUpdates({
                             self.collectionView?.insertItemsAtIndexPaths(indexPaths)
-                        }, completion: nil)
-                        
+                            }, completion: { (completion) in
+                                print("psy")
+                        })
                     }
                 }
                 self.spinner.stopAnimating()

@@ -26,7 +26,8 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.cornerRadius = 20
+        layer.cornerRadius = 20
+        userView.layer.cornerRadius = 10
     }
     
     override func prepareForReuse() {
