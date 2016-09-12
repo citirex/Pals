@@ -57,7 +57,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".5 Miles" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCk-0L-MfO">
-                        <rect key="frame" x="247" y="15" width="38" height="12"/>
+                        <rect key="frame" x="195" y="15" width="90" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="pd1-NU-lSP"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
