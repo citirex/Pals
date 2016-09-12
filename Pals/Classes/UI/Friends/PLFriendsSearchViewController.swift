@@ -10,6 +10,8 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	var searchBar = UISearchBar()
 	var tableView = UITableView()
+	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+	let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 	
 	func searchButton(sender: AnyObject) {
 		
@@ -45,23 +47,70 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		
 		view.addSubview(tableView)
+		view.addSubview(spinner)
+		
+		spinner.center = view.center
+		spinner.transform = CGAffineTransformMakeScale(2, 2)
+		tableView.hidden = true
+		loadDatasource()
 	}
 	
+	func loadDatasource() {
+		self.spinner.startAnimating()
+		datasource.load {[unowned self] (page, error) in
+			if error == nil {
+				self.tableView.hidden = false
+				let count = self.datasource.count
+				let lastLoadedCount = page.count
+				if lastLoadedCount > 0 {
+					var indexPaths = [NSIndexPath]()
+					for i in count - lastLoadedCount..<count {
+						indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+					}
+					self.tableView.beginUpdates()
+					self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+					self.tableView.endUpdates()
+				}
+				self.spinner.stopAnimating()
+			} else {
+				self.alertCalled("You are alone.", mesage: "Your Friendlist is empty.")
+			}
+		}
+	}
+	
+	func alertCalled(title: String, mesage: String) {
+		let alert = UIAlertController(title: title, message: mesage, preferredStyle: UIAlertControllerStyle.Alert)
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+		self.presentViewController(alert, animated: true, completion: nil)
+	}
+
+	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		let count = datasource.count
+		return count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
-		let cell:PLFriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! PLFriendCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
 		
-//		cell.avatarImage.image = UIImage(named: PLFriendsModel.FriendModel.itemsArray[indexPath.row].backgroundImageName)
-//		cell.nameLabel.text = PLFriendsModel.FriendModel.itemsArray[indexPath.row].titleText
+		let friend = datasource[indexPath.row]
+		if let cell = cell as? PLFriendCell {
+			cell.friend = friend
+			cell.addButtonOutlet.hidden = false
+			cell.addButtonOutlet.setImage(UIImage(named: "plus"), forState: .Normal)
+		}
+		
 		cell.accessoryType = .None
-		cell.addButtonOutlet.hidden = false
-		cell.addButtonOutlet.setImage(UIImage(named: "plus"), forState: .Normal)
 		
 		return cell
+	}
+	
+	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+		
+		if indexPath.row == datasource.count-1 {
+			loadDatasource()
+		}
 	}
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -80,9 +129,9 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	}
 	override func viewDidDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
+		searchBar.endEditing(true)
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 		navigationItem.titleView = nil
-		navigationItem.title = "Friends"
 	}
 	
 	// MARK: - Dismiss Keyboard

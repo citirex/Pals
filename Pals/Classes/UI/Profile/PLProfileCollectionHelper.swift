@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftQRCode
-import SDWebImage
 
 let drinkCellIdentifier = "DrinkCell"
 
@@ -33,9 +32,9 @@ class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
         cell.drinkQRCodeImageView.image = QRCode.generateImage("AAAA777", avatarImage: nil)
         
         if let user = fishUser {
-            cell.userPicImageView.sd_setImageWithURL(user.picture)
+            cell.userPicImageView.setImageWithURL(user.picture)
             cell.userNicknameLabel.text = user.name
-//            cell.userMessageLabel.text = 
+//            cell.userMessageLabel.text = use
         }
         
         return cell

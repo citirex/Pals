@@ -86,14 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RandomKit/RandomKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftQRCode/SwiftQRCode.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RandomKit/RandomKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftQRCode/SwiftQRCode.framework"
 fi

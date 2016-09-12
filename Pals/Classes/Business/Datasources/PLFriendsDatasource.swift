@@ -18,13 +18,10 @@ class PLFriendsDatasource: PLDatasource<PLUser> {
         params[PLKeys.id.string] = String(userId)
         let offsetById = false
         self.init(url: service, params: params, offsetById: offsetById)
+        collection.appendPath([PLKeys.friends.string])
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLKeys.friends.string
-    }
-    
-    override func mainCollectionKey() -> String {
         return PLKeys.friends.string
     }
 }

@@ -6,9 +6,7 @@ use_frameworks!
 target 'Pals' do
 
 pod 'AFNetworking'
-pod 'SDWebImage'
 pod 'CSStickyHeaderFlowLayout'
 pod 'SwiftQRCode'
-pod 'RandomKit'
 
 end

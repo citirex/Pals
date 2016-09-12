@@ -53,7 +53,6 @@
 		2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8AC1D813E730095995F /* PLOrdeStickyHeader.xib */; };
 		2480F9081D813E730095995F /* PLPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */; };
 		2480F9091D813E730095995F /* PLPlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */; };
-		2480F90D1D813E730095995F /* PLSlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8B61D813E730095995F /* PLSlidingViewController.swift */; };
 		2480F90E1D813E730095995F /* PLStickyCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8B71D813E730095995F /* PLStickyCollectionViewFlowLayout.swift */; };
 		2480F90F1D813E730095995F /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8B91D813E730095995F /* PLProfileCollectionHelper.swift */; };
 		2480F9101D813E730095995F /* PLProfileDrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8BA1D813E730095995F /* PLProfileDrinkCollectionViewCell.swift */; };
@@ -173,7 +172,6 @@
 		2480F8AC1D813E730095995F /* PLOrdeStickyHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrdeStickyHeader.xib; sourceTree = "<group>"; };
 		2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceTableViewCell.swift; sourceTree = "<group>"; };
 		2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceTableViewCell.xib; sourceTree = "<group>"; };
-		2480F8B61D813E730095995F /* PLSlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSlidingViewController.swift; sourceTree = "<group>"; };
 		2480F8B71D813E730095995F /* PLStickyCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLStickyCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		2480F8B91D813E730095995F /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
 		2480F8BA1D813E730095995F /* PLProfileDrinkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileDrinkCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 				2480F8A41D813E730095995F /* Order */,
 				2480F8AD1D813E730095995F /* Places */,
 				E829DDC61D81447600D8C130 /* Place Profile */,
-				2480F8B61D813E730095995F /* PLSlidingViewController.swift */,
 				2480F8B71D813E730095995F /* PLStickyCollectionViewFlowLayout.swift */,
 				2480F8B81D813E730095995F /* Profile */,
 				2480F8BF1D813E730095995F /* Settings */,
@@ -451,12 +448,9 @@
 		2480F8B81D813E730095995F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				2480F8B91D813E730095995F /* PLProfileCollectionHelper.swift */,
-				2480F8BA1D813E730095995F /* PLProfileDrinkCollectionViewCell.swift */,
-				2480F8BB1D813E730095995F /* PLProfileDrinkCollectionViewCell.xib */,
-				2480F8BC1D813E730095995F /* PLProfileHeaderView.swift */,
-				2480F8BD1D813E730095995F /* PLProfileHeaderView.xib */,
 				2480F8BE1D813E730095995F /* PLProfileViewController.swift */,
+				2480F8B91D813E730095995F /* PLProfileCollectionHelper.swift */,
+				24A3E3811D86D15D008AB9EF /* Resources */,
 				D4950AA11D82EB0500F48F4E /* PLOrderCellData.swift */,
 			);
 			path = Profile;
@@ -537,6 +531,17 @@
 				2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */,
 			);
 			path = QTCollectionParallaxLayout;
+			sourceTree = "<group>";
+		};
+		24A3E3811D86D15D008AB9EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2480F8BA1D813E730095995F /* PLProfileDrinkCollectionViewCell.swift */,
+				2480F8BB1D813E730095995F /* PLProfileDrinkCollectionViewCell.xib */,
+				2480F8BC1D813E730095995F /* PLProfileHeaderView.swift */,
+				2480F8BD1D813E730095995F /* PLProfileHeaderView.xib */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		3031C286B9CA11146B8E1FA5 /* Pods */ = {
@@ -848,7 +853,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -909,7 +914,6 @@
 				2480F90E1D813E730095995F /* PLStickyCollectionViewFlowLayout.swift in Sources */,
 				2480F8F11D813E730095995F /* PLAddFundsView.swift in Sources */,
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
-				2480F90D1D813E730095995F /* PLSlidingViewController.swift in Sources */,
 				2480F90F1D813E730095995F /* PLProfileCollectionHelper.swift in Sources */,
 				2480F8F51D813E730095995F /* PLImageView.swift in Sources */,
 				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,

@@ -84,6 +84,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		self.presentViewController(alert, animated: true, completion: nil)
 	}
 	
+	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = datasource.count
 		return count
@@ -100,9 +101,8 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		
 		let friend = datasource[indexPath.row]
 		if let cell = cell as? PLFriendCell {
-		cell.avatarImage.image = UIImage(data: NSData(contentsOfURL: friend.picture)!)
-		cell.nameLabel.text = friend.name
-		cell.addButtonOutlet.hidden = true
+			cell.friend = friend
+			cell.addButtonOutlet.hidden = true
 		}
 		cell.accessoryType = .DisclosureIndicator
 		
@@ -180,4 +180,3 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	}
 	
 }
-

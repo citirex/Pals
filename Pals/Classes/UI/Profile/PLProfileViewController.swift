@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import RandomKit
-import SDWebImage
+import AFNetworking
 
 class PLProfileViewController: TGLStackedViewController {
 
@@ -158,12 +157,15 @@ class PLProfileViewController: TGLStackedViewController {
             collectionBackgroundView.balanceButton.addTarget(self, action: #selector(addFundsButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.myDrinksButton.addTarget(self, action: #selector(myDrinksButtonPressed(_:)), forControlEvents: .TouchUpInside)
-            collectionBackgroundView.userPicImageView.sd_setImageWithURL(profile.picture, placeholderImage: UIImage(named: "avatar_placeholder"),  completed: {[unowned self] (image, error, SDImageCacheType, url) in
-                if error != nil {
+            
+            
+            collectionBackgroundView.userPicImageView.setImageWithURLRequest(NSURLRequest(URL: profile.picture),
+                                                                             placeholderImage: UIImage(named: "avatar_placeholder"),
+                                                                             success: { (retuqest, response, image) in
+                                                                                self.collectionBackgroundView.userPicImageView.image = image
+                                                                                self.collectionBackgroundView.applyBlurEffect(image)
+                }, failure: { (request, response, error) in
                     print("Error when downloading profile image: \(error.debugDescription)")
-                } else {
-                    self.collectionBackgroundView.applyBlurEffect(image)
-                }
             })
         }
     }
