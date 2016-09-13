@@ -38,9 +38,6 @@
                             <constraint firstAttribute="height" constant="28" id="Que-B5-HEP"/>
                             <constraint firstAttribute="width" constant="28" id="f9a-cD-JKV"/>
                         </constraints>
-                        <connections>
-                            <action selector="addFriend:" destination="h6j-Oo-ZWw" eventType="touchUpInside" id="ApT-h6-umI"/>
-                        </connections>
                     </button>
                 </subviews>
                 <constraints>

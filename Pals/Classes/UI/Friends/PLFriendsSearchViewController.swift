@@ -17,6 +17,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		
 		if navigationItem.titleView != searchBar {
 			navigationItem.titleView = searchBar
+			searchBar.becomeFirstResponder()
 		} else {
 			navigationItem.titleView = nil
 			navigationItem.title = "Friends Search"
@@ -114,6 +115,8 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		print("Row \(indexPath.row) selected")
+		
+		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendProfile"))!, animated: true)
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

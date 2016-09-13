@@ -116,24 +116,11 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-		performSegueWithIdentifier("ShowFriendProfile", sender: self)
+		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendProfile"))!, animated: true)
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		return 100
-	}
-	
-	// MARK: - Navigation
-	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "ShowFriendProfile" {
-			let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
-			friendProfileViewController.title = ""
-		}
-		if segue.identifier == "FriendsSearch" {
-			let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
-			friendProfileViewController.title = ""
-		}
 	}
 	
 	
