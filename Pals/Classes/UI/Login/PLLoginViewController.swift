@@ -93,12 +93,27 @@ class PLLoginViewController: PLViewController {
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		
+		anime()
 //		viewAppearLogo(logoImage, center: 0, alfa: 1.0, flag: true)
 //		viewAppearLogo(loginView, center: -view.bounds.height, alfa: 0.0, flag: true)
 		
 		hideKeyboardWhenTappedAround()
         }
+	
+	
+		func anime() {
+			self.logoTopC?.constant = 50
+			self.loginViewBotC!.constant = 500
+			UIView.animateWithDuration(1, delay: 2.2, options: .CurveEaseOut, animations: {
+				self.loginViewBotC?.constant = 0
+					self.view.layoutIfNeeded()
+				}, completion: {_ in
+			})
+		}
+	
     }
+
+
 	
 	func viewAppearLogo(view: UIView, center: CGFloat, alfa: CGFloat, flag: Bool) {
 		view.alpha = alfa

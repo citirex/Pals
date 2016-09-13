@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,24 +16,25 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_image" translatesAutoresizingMaskIntoConstraints="NO" id="sb8-Oc-Ftq" userLabel="logo_image">
-                                <rect key="frame" x="156" y="159" width="289" height="282"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sb8-Oc-Ftq" userLabel="logo_image">
+                                <rect key="frame" x="88" y="212" width="144" height="144"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="sb8-Oc-Ftq" secondAttribute="height" multiplier="48:47" id="fqP-gQ-TQ2"/>
+                                    <constraint firstAttribute="width" secondItem="sb8-Oc-Ftq" secondAttribute="height" multiplier="1:1" id="iKa-zs-OHL"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="48:48" constant="-311" id="Gjn-SW-5GV"/>
                             <constraint firstItem="sb8-Oc-Ftq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RBN-Gc-uHi"/>
+                            <constraint firstItem="sb8-Oc-Ftq" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.45" id="XYo-7j-3dw"/>
                             <constraint firstItem="sb8-Oc-Ftq" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="qAn-v0-hCY"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -40,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo_image" width="500" height="500"/>
+        <image name="logo" width="264" height="266"/>
     </resources>
 </document>
