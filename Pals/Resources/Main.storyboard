@@ -103,8 +103,8 @@
                                             <segue destination="CEl-2k-qJd" kind="modal" id="AQZ-n1-OwN"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzL-8u-7vD">
-                                        <rect key="frame" x="96" y="326" width="130" height="12"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzL-8u-7vD">
+                                        <rect key="frame" x="95" y="326" width="130" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="1Vb-6M-32A"/>
                                             <constraint firstAttribute="height" constant="12" id="AOh-g5-oc3"/>

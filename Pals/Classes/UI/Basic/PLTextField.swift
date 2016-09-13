@@ -22,8 +22,8 @@ class PLTextField: UITextField {
     }
     
     override func drawRect(rect: CGRect) {
-        let startingPoint = CGPoint(x: rect.minX, y: rect.maxY)
-        let endingPoint = CGPoint(x: rect.maxX, y: rect.maxY)
+        let startingPoint = CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMaxY(rect))
+        let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
         
         let path = UIBezierPath()
         path.moveToPoint(startingPoint)
