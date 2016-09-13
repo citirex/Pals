@@ -11,10 +11,9 @@ class PLFriendCell: UITableViewCell{
 	
 	@IBOutlet weak var avatarImage: PLImageView!
 	@IBOutlet weak var nameLabel: UILabel!
-	@IBOutlet weak var addButtonOutlet: UIButton!
+	@IBOutlet weak var addButton: UIButton!
     
-	@IBAction func addButtonClicked(sender: AnyObject) {
-		addButtonOutlet.setImage(UIImage(named: "success"), forState: .Normal)
+	@IBAction func addFriend(sender: AnyObject) {
 	}
 	
 	var friend: PLUser? {
@@ -38,4 +37,7 @@ class PLFriendCell: UITableViewCell{
 
 class PLFriendSearchCell: PLFriendCell{
 	
+	override func addFriend(sender: AnyObject) {
+		addButton.setImage(UIImage(named: "success"), forState: .Normal)
+	}
 }

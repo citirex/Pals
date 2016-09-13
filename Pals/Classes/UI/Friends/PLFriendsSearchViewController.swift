@@ -27,6 +27,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		super.viewDidLoad()
 		
 		tableView.frame = UIScreen.mainScreen().bounds
+		tableView.keyboardDismissMode = .OnDrag
 		
 		tableView.delegate = self
 		tableView.dataSource = self
@@ -56,8 +57,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	}
 	
 	override func viewDidLayoutSubviews() {
-		let bottomOffset = tabBarController?.tabBar.frame.height
-		self.tableView.contentInset = UIEdgeInsetsMake(bottomOffset!, 0, bottomOffset!, 0)
+		self.tableView.contentInset = UIEdgeInsetsMake(49, 0, 49, 0)
 	}
 	
 	func loadDatasource() {
@@ -95,8 +95,8 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		let friend = datasource[indexPath.row]
 		if let cell = cell as? PLFriendSearchCell {
 			cell.friend = friend
-			cell.addButtonOutlet.hidden = false
-			cell.addButtonOutlet.setImage(UIImage(named: "plus"), forState: .Normal)
+			cell.addButton.hidden = false
+			cell.addButton.setImage(UIImage(named: "plus"), forState: .Normal)
 		}
 		
 		cell.accessoryType = .None

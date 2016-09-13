@@ -39,7 +39,7 @@
                             <constraint firstAttribute="width" constant="28" id="f9a-cD-JKV"/>
                         </constraints>
                         <connections>
-                            <action selector="addButtonClicked:" destination="h6j-Oo-ZWw" eventType="touchUpInside" id="VuK-hl-nSH"/>
+                            <action selector="addFriend:" destination="h6j-Oo-ZWw" eventType="touchUpInside" id="ApT-h6-umI"/>
                         </connections>
                     </button>
                 </subviews>
@@ -53,7 +53,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="addButtonOutlet" destination="ln0-zj-9z3" id="vBU-0N-YOI"/>
+                <outlet property="addButton" destination="ln0-zj-9z3" id="p8I-0G-yXZ"/>
                 <outlet property="avatarImage" destination="hRP-ZY-VP5" id="ylt-u9-uk8"/>
                 <outlet property="nameLabel" destination="wDg-L8-s0E" id="4gA-C5-ZgV"/>
             </connections>

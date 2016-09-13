@@ -28,6 +28,13 @@ class PLFriendProfileViewController: PLViewController {
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.navigationBar.tintColor = .whiteColor()
         navigationController?.presentTransparentNavigationBar()
+		
+		let backButtonItem = PLBackBarButtonItem()
+		navigationItem.leftBarButtonItem = backButtonItem
+		backButtonItem.didTappedBackButton = {
+			self.navigationController?.popViewControllerAnimated(true)
+		}
+		
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -45,7 +52,7 @@ class PLFriendProfileViewController: PLViewController {
         backgroundImageView.image = image
         userProfileImageView.image = image
     }
-
+	
     
     // MARK: - Actions
     
