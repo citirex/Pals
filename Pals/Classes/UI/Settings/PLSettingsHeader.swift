@@ -11,7 +11,7 @@ import UIKit
 class PLSettingsHeader: UICollectionViewCell {
     
     @IBOutlet weak var headerSectionView: UIView!
-    @IBOutlet weak var userProfileImageView: PLImageView!
+    @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var usernameTextField: PLEditTextField!
     @IBOutlet weak var pensilImageView: UIImageView!

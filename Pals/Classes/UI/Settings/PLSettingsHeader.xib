@@ -27,7 +27,7 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="SsF-Bj-o7s" customClass="PLImageView" customModule="Pals" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="SsF-Bj-o7s">
                                 <rect key="frame" x="107" y="70" width="106" height="106"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="106" id="D1p-Bj-IEU"/>
@@ -94,7 +94,7 @@
                 <outlet property="userProfileImageView" destination="SsF-Bj-o7s" id="bum-sR-D9W"/>
                 <outlet property="usernameTextField" destination="bgB-r9-lkB" id="mQj-7r-4gl"/>
             </connections>
-            <point key="canvasLocation" x="132" y="379.5"/>
+            <point key="canvasLocation" x="208" y="289.5"/>
         </collectionViewCell>
     </objects>
     <resources>
