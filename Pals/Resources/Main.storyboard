@@ -79,7 +79,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="t3M-pp-Eco"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Login">
                                             <color key="titleColor" red="0.1764705882" green="0.035294117649999998" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -190,8 +189,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtN-Hu-bFN" userLabel="Image View Container">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="236"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8S-kq-QI5" userLabel="Add Image Button" customClass="PLAddButton" customModule="Pals" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8S-kq-QI5" userLabel="Add Image Button">
                                                         <rect key="frame" x="85" y="60" width="150" height="150"/>
+                                                        <state key="normal" image="sign-in-plus"/>
                                                         <connections>
                                                             <action selector="loadImageButtonTapped:" destination="CEl-2k-qJd" eventType="touchUpInside" id="hwb-J9-5bl"/>
                                                         </connections>
@@ -1052,6 +1052,7 @@
         <image name="icon_profile" width="42" height="42"/>
         <image name="left_arrow" width="22" height="22"/>
         <image name="logo" width="264" height="266"/>
+        <image name="sign-in-plus" width="260" height="260"/>
         <image name="white_compass" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>

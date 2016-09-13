@@ -10,6 +10,9 @@ import UIKit
 import CoreLocation
 
 class PLPlaceTableViewCell: UITableViewCell {
+    
+    static let nibName = "PLPlaceTableViewCell"
+    static let identifier = "PlaceCell"
 
     @IBOutlet weak var blurView: PLBlurImageView!
     @IBOutlet weak var placeNameLabel: UILabel!

@@ -10,14 +10,20 @@
 class PLPlacesViewController: PLViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    static let nibName = "PLPlaceTableViewCell"
-    // TODO: cell identifier should be provided by cell not vc!!
-    static let cellIdentifier = "PlaceCell"
-
-    private var activityIndicator: UIActivityIndicatorView!
+   
     private var resultsController: UITableViewController!
     private var searchController: UISearchController!
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .grayColor()
+        self.tableView.addSubview(activityIndicator)
+        activityIndicator.addConstraintCentered()
+        return activityIndicator
+    }()
+    
+
     
     lazy var datasource: PLPlacesDatasource = { return PLPlacesDatasource() }()
   
@@ -27,11 +33,11 @@ class PLPlacesViewController: PLViewController {
         super.viewDidLoad()
         
         tableView.backgroundView?.backgroundColor = UIColor.clearColor()
-        createActivityIndicator()
+//        createActivityIndicator()
         configureSearchController()
         
-        let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
+        let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
         loadPage()
     }
     
@@ -65,9 +71,9 @@ class PLPlacesViewController: PLViewController {
     // MARK: - Initialize search controller
     
     func configureSearchController() {
-        let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
+        let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         resultsController = UITableViewController(style: .Grouped)
-        resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
+        resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
@@ -110,37 +116,8 @@ class PLPlacesViewController: PLViewController {
         }
     }
     
-    
-    // MARK: - Setup Activity Indicator
-    
-    private func createActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityIndicator!.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-        tableView.addSubview(activityIndicator)
-        
-        addConstraints()
-    }
-    
-    private func addConstraints() {
-        tableView.addConstraint(NSLayoutConstraint(item: activityIndicator,
-            attribute: .CenterY,
-            relatedBy: .Equal,
-            toItem: tableView,
-            attribute: .CenterY,
-            multiplier: 1.0,
-            constant: 0))
-        
-        tableView.addConstraint(NSLayoutConstraint(item: activityIndicator,
-            attribute: .CenterX,
-            relatedBy: .Equal,
-            toItem: tableView,
-            attribute: .CenterX,
-            multiplier: 1.0,
-            constant: 0))
-    }
-
 }
+
 
 // MARK: - Table view data source
 
@@ -151,7 +128,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(PLPlacesViewController.cellIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(PLPlaceTableViewCell.identifier, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
@@ -170,6 +147,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     }
 
 }
+
 
 // MARK: - Table view delegate
 
