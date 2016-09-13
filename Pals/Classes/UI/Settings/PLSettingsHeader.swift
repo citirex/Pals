@@ -15,12 +15,13 @@ class PLSettingsHeader: UICollectionViewCell {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var usernameTextField: PLEditTextField!
     @IBOutlet weak var pensilImageView: UIImageView!
-
+    @IBOutlet weak var textFieldWidthConstraint: NSLayoutConstraint!
     
+    private let offset: CGFloat = 70.0
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         addGestures()
         
         usernameTextField.delegate = self
@@ -51,8 +52,34 @@ class PLSettingsHeader: UICollectionViewCell {
             usernameTextField.resignFirstResponder()
         }
     }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+     
+        addConstraints()
+    }
     
+    private func addConstraints() {
+        let screenWidth = UIScreen.mainScreen().bounds.width - offset
+        let contentSize = usernameTextField.intrinsicContentSize()
+        let constant = contentSize.width > screenWidth ? screenWidth : contentSize.width
+        let relate: NSLayoutRelation = contentSize.width > screenWidth ? .Equal : .GreaterThanOrEqual
+        usernameTextField.removeConstraint(textFieldWidthConstraint)
+        textFieldWidthConstraint = NSLayoutConstraint(item: usernameTextField,
+                                                      attribute: .Width,
+                                                      relatedBy: relate,
+                                                      toItem: nil,
+                                                      attribute: .NotAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: constant)
+        usernameTextField.addConstraint(textFieldWidthConstraint)
+        UIView.animateWithDuration(0.1, animations: {
+            self.usernameTextField.updateConstraintsIfNeeded()
+        })
+    }
+
 }
+
 
 // MARK: - UITextFieldDelegate
 

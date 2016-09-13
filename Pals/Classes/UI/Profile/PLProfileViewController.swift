@@ -213,8 +213,16 @@ class PLProfileViewController: TGLStackedViewController {
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "addFunds" {
-            print("funds")
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "addFunds":
+                print("funds")
+            case "ShowSettings":
+                let settingsViewController = segue.destinationViewController as! PLSettingsViewController
+                settingsViewController.user = profile
+            default:
+                break
+            }
         }
     }
 }
