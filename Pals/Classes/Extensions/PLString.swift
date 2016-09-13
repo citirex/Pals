@@ -34,4 +34,14 @@ extension String {
         return randomString
     }
     
+    func convertTimeTo12HoursFormat() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let date24 = dateFormatter.dateFromString(self)
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "h:mm a"
+        let date12 = dateFormatter.stringFromDate(date24!)
+        return date12
+    }
+
 }
