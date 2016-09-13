@@ -22,6 +22,7 @@ enum PLAPIService : String {
     case Friends
     case Places
     case Orders
+    case Drinks
     var string: String {return rawValue.lowercaseString}
 }
 

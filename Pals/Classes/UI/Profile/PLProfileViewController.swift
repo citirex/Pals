@@ -31,8 +31,6 @@ class PLProfileViewController: TGLStackedViewController {
         }
     }
     
-    private var tempPaths: [NSIndexPath]?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

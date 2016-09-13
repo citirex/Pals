@@ -1,0 +1,124 @@
+{
+    "drinks":[
+              {
+              "id":1,
+              "name":"Rogan Svitle 4.5%",
+              "price":12.9,
+              "type":1
+              },
+              {
+              "id":2,
+              "name":"Chernigivske 5%",
+              "price":9.50,
+              "type":1
+              },
+              {
+              "id":3,
+              "name":"Vodka Pshenichna 40%",
+              "price":29.0,
+              "type":2
+              },
+              {
+              "id":4,
+              "name":"Pornvejn 777 12%",
+              "price":18.22,
+              "type":1
+              },
+              {
+              "id":5,
+              "name":"Mojito NO Alcohol",
+              "price":40.0,
+              "type":0
+              },
+              {
+              "id":6,
+              "name":"Rogan Svitle 4.5%",
+              "price":12.9,
+              "type":1
+              },
+              {
+              "id":7,
+              "name":"Chernigivske 5%",
+              "price":9.50,
+              "type":1
+              },
+              {
+              "id":8,
+              "name":"Vodka Pshenichna 40%",
+              "price":29.0,
+              "type":2
+              },
+              {
+              "id":9,
+              "name":"Pornvejn 777 12%",
+              "price":18.22,
+              "type":1
+              },
+              {
+              "id":10,
+              "name":"Mojito NO Alcohol",
+              "price":40.0,
+              "type":0
+              },
+              {
+              "id":11,
+              "name":"Rogan Svitle 4.5%",
+              "price":12.9,
+              "type":1
+              },
+              {
+              "id":12,
+              "name":"Chernigivske 5%",
+              "price":9.50,
+              "type":1
+              },
+              {
+              "id":13,
+              "name":"Vodka Pshenichna 40%",
+              "price":29.0,
+              "type":2
+              },
+              {
+              "id":14,
+              "name":"Pornvejn 777 12%",
+              "price":18.22,
+              "type":1
+              },
+              {
+              "id":15,
+              "name":"Mojito NO Alcohol",
+              "price":40.0,
+              "type":0
+              },
+              {
+              "id":16,
+              "name":"Rogan Svitle 4.5%",
+              "price":12.9,
+              "type":1
+              },
+              {
+              "id":17,
+              "name":"Chernigivske 5%",
+              "price":9.50,
+              "type":1
+              },
+              {
+              "id":18,
+              "name":"Vodka Pshenichna 40%",
+              "price":29.0,
+              "type":2
+              },
+              {
+              "id":19,
+              "name":"Pornvejn 777 12%",
+              "price":18.22,
+              "type":1
+              },
+              {
+              "id":20,
+              "name":"Mojito NO Alcohol",
+              "price":40.0,
+              "type":0
+              }
+              ]
+}

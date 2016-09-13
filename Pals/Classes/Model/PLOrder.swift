@@ -11,7 +11,7 @@ class PLOrder: PLUniqueObject, PLCellRepresentable {
     let accessCode: String
     let user: PLUser
     let place: PLPlace
-    var drinks = [String: Int]()//[PLDrink]()
+    var drinks = [UInt64: Int]()//[PLDrink]()
     let isVIP: Bool
     let message: String
     

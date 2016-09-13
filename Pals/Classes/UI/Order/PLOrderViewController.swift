@@ -16,16 +16,27 @@ class PLOrderViewController: PLViewController {
 
     var order: PLOrder? = nil
     var user: PLUser? = nil
-    var place: PLPlace? = nil
+    var place: PLPlace? = nil {
+        didSet{
+            if let aPlace = place {
+                drinksDatasource.placeId = aPlace.id
+                loadPage()
+            }
+        }
+    }
     var message: String? = nil
     var isVip = false
-    var orderDrinks = [String: Int]() {
+    var orderDrinks = [UInt64: Int]() {
         didSet{
             orderDrinks.count > 0 ? showCheckoutButton() : hideCheckoutButton()
         }
     }
+    lazy var spinner: UIActivityIndicatorView = {
+        let sp = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        return sp
+    }()
     
-    var drinks = [PLDrink]()
+    var drinksDatasource = PLDrinksDatasource()
     
     private var currentTab: CurrentTab = .Drinks
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
@@ -54,6 +65,7 @@ class PLOrderViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.insertSubview(spinner, aboveSubview: collectionView)
         animableVipView.frame = PLOrderAnimableVipView.suggestedFrame
         vipButton = UIBarButtonItem(title: "VIP", style: .Plain, target: self, action: #selector(vipButtonPressed(_:)))
         vipButton?.setTitleTextAttributes([
@@ -65,22 +77,6 @@ class PLOrderViewController: PLViewController {
         collectionView.registerNib(UINib(nibName: "PLOrderStillHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrdeStickyHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrderDrinkCell", bundle: nil), forCellWithReuseIdentifier: kDrinkCellIdentifier)
-        
-        
-        // sample fish data
-        var i = 0
-        while (i < 14) {
-            
-            let drink = PLDrink(jsonDic: ["id" : i])
-            drink?.drinkID = "\(i)"
-            drink?.name = (i % 2 == 1) ? "Chernigivske \(i)%" : "Obolon \(i)%"
-            drink?.price = Float(arc4random() % 100)
-            if i == 7 {
-                drink?.price = 0
-            }
-            i += 1
-            drinks.append(drink!)
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -97,6 +93,23 @@ class PLOrderViewController: PLViewController {
         super.viewDidAppear(animated)
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
+        }
+    }
+    
+    func loadPage() {
+        spinner.startAnimating()
+        spinner.center = view.center
+        drinksDatasource.load {[unowned self] page, error in
+            if error == nil {
+                let lastLoadedCount = page.count
+                if lastLoadedCount > 0 {
+                    self.collectionView.reloadData()
+                    //animate adding cells
+                }
+                self.spinner.stopAnimating()
+            } else {
+                PLShowErrorAlert(error: error!)
+            }
         }
     }
     
@@ -190,7 +203,7 @@ class PLOrderViewController: PLViewController {
 extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, UITextViewDelegate {
     
     //MARK: Order drinks count
-    func updateOrderWith(drink: String, andCount count: Int) {
+    func updateOrderWith(drink: UInt64, andCount count: Int) {
         if count == 0 {
             orderDrinks.removeValueForKey(drink)
         } else {
@@ -261,7 +274,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 1 {
-            return drinks.count
+            return drinksDatasource.count ?? 0
         }
         return 0
     }
@@ -272,14 +285,15 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(kDrinkCellIdentifier, forIndexPath: indexPath) as! PLOrderDrinkCell
-        let drink = drinks[indexPath.row]
+        
+        let drink = drinksDatasource[indexPath.row].cellData
         
         cell.delegate = self
         cell.setupWith(drink)
-        if let count = orderDrinks[drink.drinkID!] {
+        if let count = orderDrinks[drink.drinkId] {
             cell.drinkCount = count
         }
-        
+
         return cell
     }
     
@@ -323,4 +337,10 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         return 0
     }
     
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == drinksDatasource.count-1 {
+            loadPage()
+        }
+    }
 }
+

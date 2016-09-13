@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OrderDrinksCounterDelegate: class {
-    func updateOrderWith(drink:String, andCount count: Int)
+    func updateOrderWith(drink:UInt64, andCount count: Int)
 }
 
 class PLOrderDrinkCell: UICollectionViewCell {
@@ -22,16 +22,16 @@ class PLOrderDrinkCell: UICollectionViewCell {
     
     @IBOutlet var drinkCountLabel: UILabel!
     
-    private var drinkID: String? = nil
+    private var drinkID: UInt64? = nil
     
     weak var delegate: OrderDrinksCounterDelegate?
     
     
     
-    func setupWith(drink: PLDrink) {
-        drinkID = drink.drinkID
+    func setupWith(drink: PLDrinkCellData) {
+        drinkID = drink.drinkId
         drinkNameLabel.text = drink.name
-        drinkPriceLabel.text = (drink.price > 0) ? String(format: "$%2.f", drink.price!) : "Specify"
+        drinkPriceLabel.text = (drink.price > 0) ? String(format: "$%2.f", drink.price) : "Specify"
     }
     
     var drinkCount: Int {
@@ -57,16 +57,12 @@ class PLOrderDrinkCell: UICollectionViewCell {
     @IBAction func minusButtonPressed(sender: UIButton) {
         if drinkCount > 0 {
             drinkCount -= 1
-            if delegate != nil {
-                delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
-            }
+            delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
         }
     }
     
     @IBAction func plusButtonPressed(sender: UIButton) {
         drinkCount += 1
-        if delegate != nil {
-            delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
-        }
+        delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
     }
 }

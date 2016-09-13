@@ -8,7 +8,10 @@
 
 enum PLKeys : String {
     case id
+    case place_id
     case name
+    case price
+    case type
     case picture
     case email
     case balance
@@ -26,6 +29,7 @@ enum PLKeys : String {
     case close_time
     case events
     case drink
+    case drinks
     case rect
     case success
     case per_page
