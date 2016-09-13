@@ -84,7 +84,6 @@ class PLLocationManager : NSObject {
             }
         }
     }
-    
 }
 
 extension PLLocationManager: CLLocationManagerDelegate {

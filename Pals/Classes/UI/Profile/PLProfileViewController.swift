@@ -49,6 +49,10 @@ class PLProfileViewController: TGLStackedViewController {
         navigationController?.presentTransparentNavigationBar()
     }
     
+//    override func viewDidAppear(animated: Bool) {
+//        tabBarController?.tabBar.items?[TabBarController.TabProfile.int].badgeValue = nil
+//    }
+    
     func loadPage() {
         spinner.startAnimating()
         spinner.center = view.center
@@ -70,11 +74,17 @@ class PLProfileViewController: TGLStackedViewController {
                         })
                         self.firstLaunch = false
                     } else {
-                        self.collectionView?.performBatchUpdates({
-                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
-                            }, completion: { (completion) in
-                                print("psy")
-                        })
+                        UIView.animateWithDuration(1,
+                            delay: 0.0,
+                            usingSpringWithDamping: 0.77,
+                            initialSpringVelocity: 0.0,
+                            options: UIViewAnimationOptions(),
+                            animations: {
+                                self.collectionView?.performBatchUpdates({
+                                    self.collectionView?.insertItemsAtIndexPaths(indexPaths)
+                                    }, completion: nil)
+                            },
+                            completion: nil)
                     }
                 }
                 self.spinner.stopAnimating()

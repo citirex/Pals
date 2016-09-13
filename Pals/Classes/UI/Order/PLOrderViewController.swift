@@ -44,6 +44,8 @@ class PLOrderViewController: PLViewController {
         return button
     }()
     
+    var dismissTap: UITapGestureRecognizer? = nil
+    
     private let placeholderUserName = "Chose user"
     private let placeholderPlaceName = "Chose place"
     private let placeholderMessageToUser = "Enter descriprion"
@@ -137,7 +139,6 @@ class PLOrderViewController: PLViewController {
             frame.origin.x = view.center.x - frame.size.width / 2
             frame.origin.y = view.bounds.size.height
             
-            
             UIView.animateWithDuration(0.3,
                                        delay: 0,
                                        options: .BeginFromCurrentState,
@@ -165,16 +166,28 @@ class PLOrderViewController: PLViewController {
         let qrCode = String.randomAlphaNumericString(8)
         let accessCode = String.randomAlphaNumericString(8)
         
-        
         order = PLOrder(withUser: selectedUser, place: selectedPlace, isVip: isVip, message: message, qrCode: qrCode, accessCode: accessCode)
         order?.drinks = orderDrinks
         
         print(order.debugDescription)
+        
+        order = nil
+        orderDrinks.removeAll()
+        collectionView.reloadSections(NSIndexSet(index: 1))
+        
+        let tabArray = self.tabBarController?.tabBar.items as NSArray!
+        let tabItem = tabArray.objectAtIndex(TabBarController.TabProfile.int) as! UITabBarItem
+        
+        if let badgeValue = tabItem.badgeValue, nextValue = Int(badgeValue)?.successor() {
+            tabItem.badgeValue = String(nextValue)
+        } else {
+            tabItem.badgeValue = "1"
+        }
     }
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate {
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, UITextViewDelegate {
     
     //MARK: Order drinks count
     func updateOrderWith(drink: String, andCount count: Int) {
@@ -205,7 +218,6 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
             viewController.delegate = self
             navigationController?.pushViewController(viewController, animated: true)
         }
-        
     }
     
     func didSelectNewPlace(selectedPlace: PLPlace) {
@@ -217,6 +229,31 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     func orderTabChanged(tab: CurrentTab) {
         print("reload collection items")
     }
+    
+    //MARK: TextView delegate
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.text == placeholderMessageToUser {
+            textView.text = ""
+        }
+        addGesture()
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        message = textView.text
+    }
+    
+    private func addGesture() {
+        if dismissTap == nil {
+            dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+        }
+        collectionView.addGestureRecognizer(dismissTap!)
+    }
+    
+    func dismissKeyboard(sender: UITapGestureRecognizer) {
+            collectionView.removeGestureRecognizer(dismissTap!)
+            view.endEditing(true)
+    }
+
 }
 
 //MARK: - CollectionView dataSource
@@ -254,6 +291,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             header.userNameButton.setTitle(user?.name ?? placeholderUserName, forState: .Normal)
             header.placeNameButton.setTitle(place?.name ?? placeholderPlaceName, forState: .Normal)
             header.messageTextView.text = message ?? placeholderMessageToUser
+            header.messageTextView.delegate = self
             
             return header
         } else {

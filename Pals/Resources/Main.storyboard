@@ -555,7 +555,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xqB-wZ-lQh">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <collectionViewLayout key="collectionViewLayout" id="cdL-w4-diz" customClass="TGLStackedLayout"/>
+                                <collectionViewLayout key="collectionViewLayout" id="cdL-w4-diz" customClass="PLCollectionParalaxLayout" customModule="Pals" customModuleProvider="target"/>
                                 <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="Vp1-10-wGA" id="35T-LS-PTp"/>
