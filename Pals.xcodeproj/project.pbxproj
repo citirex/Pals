@@ -270,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				2480F86E1D813E730095995F /* Classes */,
-				E8DA8B781D8832E8008782E5 /* Thrird Party */,
 				2480F8C51D813E730095995F /* Resources */,
 				2480F8D41D813E730095995F /* Thrird Party Libraries */,
 				2480F8871D813E730095995F /* Pals-Bridging-Header.h */,
@@ -497,6 +496,7 @@
 		2480F8D41D813E730095995F /* Thrird Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E8DA8B791D8832E8008782E5 /* TGLStackedViewController */,
 				2480F8D51D813E730095995F /* QTCollectionParallaxLayout */,
 			);
 			path = "Thrird Party Libraries";
@@ -689,15 +689,6 @@
 			name = AppDelegate;
 			sourceTree = "<group>";
 		};
-		E8DA8B781D8832E8008782E5 /* Thrird Party */ = {
-			isa = PBXGroup;
-			children = (
-				E8DA8B791D8832E8008782E5 /* TGLStackedViewController */,
-			);
-			name = "Thrird Party";
-			path = "Pals/Classes/Thrird Party";
-			sourceTree = SOURCE_ROOT;
-		};
 		E8DA8B791D8832E8008782E5 /* TGLStackedViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,7 +701,8 @@
 				E8DA8B801D8832E8008782E5 /* TGLStackedViewController.h */,
 				E8DA8B811D8832E8008782E5 /* TGLStackedViewController.m */,
 			);
-			path = TGLStackedViewController;
+			name = TGLStackedViewController;
+			path = "../Classes/Thrird Party/TGLStackedViewController";
 			sourceTree = "<group>";
 		};
 		E8DA8B861D88334F008782E5 /* Profile */ = {

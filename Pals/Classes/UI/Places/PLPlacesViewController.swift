@@ -12,8 +12,7 @@ class PLPlacesViewController: PLViewController {
     @IBOutlet weak var tableView: UITableView!
     
     static let nibName = "PLPlaceTableViewCell"
-    // TODO: cell identifier should be provided by cell not vc!!
-    static let cellIdentifier = "PlaceCell"
+   
 
     private var activityIndicator: UIActivityIndicatorView!
     private var resultsController: UITableViewController!
@@ -31,7 +30,7 @@ class PLPlacesViewController: PLViewController {
         configureSearchController()
         
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
+        tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
         loadPage()
     }
     
@@ -67,7 +66,7 @@ class PLPlacesViewController: PLViewController {
     func configureSearchController() {
         let nib = UINib(nibName: PLPlacesViewController.nibName, bundle: nil)
         resultsController = UITableViewController(style: .Grouped)
-        resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlacesViewController.cellIdentifier)
+        resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
@@ -116,6 +115,7 @@ class PLPlacesViewController: PLViewController {
     private func createActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicator!.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.color = UIColor.grayColor()
         activityIndicator.hidesWhenStopped = true
         tableView.addSubview(activityIndicator)
         
@@ -151,7 +151,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(PLPlacesViewController.cellIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(PLPlaceTableViewCell.identifier, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }

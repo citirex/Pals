@@ -28,9 +28,10 @@ class PLBackBarButtonItem: UIBarButtonItem {
         button.setImage(UIImage(named: "white_left_arrow"), forState: .Normal)
         button.frame = CGRectMake(0, 0, 30, 30)
         button.addTarget(self, action: #selector(backButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        button.layer.shadowOpacity = 0.7
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 5
         button.layer.shadowColor = UIColor.blackColor().CGColor
-        button.layer.shadowOffset = CGSizeMake(0, 3)
+        button.layer.shadowOffset = CGSizeMake(2, 2)
         customView = button
     }
     
