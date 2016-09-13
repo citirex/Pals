@@ -11,10 +11,13 @@ class PLLoginViewController: PLViewController {
 	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	private var currentTextField: PLTextField!
 
-	@IBOutlet weak var animationView: UIView!
+	@IBOutlet weak var loginView: UIView!
 	@IBOutlet weak var logoImage: UIImageView!
 	@IBOutlet weak var loginTextField: PLTextField!
 	@IBOutlet weak var passTextField: PLTextField!
+    
+    @IBOutlet var loginViewBotC: NSLayoutConstraint?
+    @IBOutlet var logoTopC: NSLayoutConstraint?
     
 	@IBAction func loginButtonClicked(sender: AnyObject) {
         let userName = loginTextField.text!
@@ -90,8 +93,8 @@ class PLLoginViewController: PLViewController {
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		
-		viewAppearLogo(logoImage, center: 0, alfa: 1.0, flag: true)
-		viewAppearLogo(animationView, center: -view.bounds.height, alfa: 0.0, flag: true)
+//		viewAppearLogo(logoImage, center: 0, alfa: 1.0, flag: true)
+//		viewAppearLogo(loginView, center: -view.bounds.height, alfa: 0.0, flag: true)
 		
 		hideKeyboardWhenTappedAround()
         }
