@@ -13,21 +13,21 @@ class PLTextField: UITextField {
     
     @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
-            let line = UIView(frame: CGRect(x: 0.0, y: bounds.height, width: bounds.width, height: borderWidth))
-            line.translatesAutoresizingMaskIntoConstraints = false
-            line.backgroundColor = borderColor
-            addSubview(line)
+            let separator = UIView(frame: CGRect(x: 0.0, y: bounds.height, width: bounds.width, height: borderWidth))
+            separator.translatesAutoresizingMaskIntoConstraints = false
+            separator.backgroundColor = separatorColor
+            addSubview(separator)
             
-            let views = ["line" : line]
+            let views = ["line" : separator]
             let metrics = ["lineWidth" : borderWidth]
             addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[line]|", options: [], metrics: nil, views: views))
             addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[line(==lineWidth)]|", options: [], metrics: metrics, views: views))
         }
     }
     
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable var separatorColor: UIColor? {
         didSet {
-            layer.borderColor = borderColor?.CGColor
+            layer.borderColor = separatorColor?.CGColor
         }
     }
     

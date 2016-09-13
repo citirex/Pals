@@ -12,6 +12,7 @@ import AFNetworking
 // https://api.pals.com/friends?id=666&page=0&per_page=20
 // https://api.pals.com/places?lat=50.448042&long=30.497832&dlat=0.105235&dlong=0.120532
 // https://api.pals.com/orders?id=666&page=0&per_page=20
+// https://api.pals.com/drinks?place_id=123&page=0&per_page=20
 
 enum PLAPIService : String {
     case Login

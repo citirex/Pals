@@ -9,7 +9,7 @@
 class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var userProfileImageView: PLImageView!
+    @IBOutlet weak var userProfileImageView: UIImageView!
     
     var user: PLUser!
 	var violetColor: UIColor?

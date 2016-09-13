@@ -18,6 +18,7 @@ enum TabBarController: Int {
     case TabLocation
     case TabOrder
     case TabFriends
+    var int: Int {return rawValue}
 }
 
 var kPalsPurpleColor: UIColor {

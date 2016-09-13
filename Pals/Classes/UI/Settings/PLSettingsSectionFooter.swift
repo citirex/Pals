@@ -13,7 +13,7 @@ class PLSettingsSectionFooter: UICollectionReusableView {
     typealias didTappedSignOutButtonDelegate = Void -> Void
     var didTappedSignOutButton: didTappedSignOutButtonDelegate?
     
-    @IBOutlet weak var signOutButton: PLButton!
+    @IBOutlet weak var signOutButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,7 +22,6 @@ class PLSettingsSectionFooter: UICollectionReusableView {
     }
     
     func signOutTapped() {
-        print("signOutTapped")
         didTappedSignOutButton!()
     }
 }

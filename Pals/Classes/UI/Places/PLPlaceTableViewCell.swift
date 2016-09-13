@@ -16,6 +16,7 @@ class PLPlaceTableViewCell: UITableViewCell {
     @IBOutlet weak var placeAddressLabel: UILabel!
     @IBOutlet weak var musicGenresLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var arrowRightImageView: UIImageView!
     
     var currentUrl = ""
     
@@ -47,6 +48,12 @@ class PLPlaceTableViewCell: UITableViewCell {
         placeAddressLabel.text = placeCellData.address
         musicGenresLabel.text = placeCellData.musicGengres
         distanceLabel.text = distance(placeCellData.location)
+        
+        placeNameLabel.addShadow()
+        placeAddressLabel.addShadow()
+        musicGenresLabel.addShadow()
+        distanceLabel.addShadow()
+        arrowRightImageView.addShadow()
     }
     
     func setBlurredImage(url: NSURL) {

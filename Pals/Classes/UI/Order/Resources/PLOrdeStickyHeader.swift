@@ -44,6 +44,9 @@ class PLOrdeStickyHeader: UICollectionViewCell {
         setupGestureForDirection(.Left)
         setupGestureForDirection(.Right)
         //FIXME: Memory leak?
+        
+        coverButton.round([.TopLeft], radius: 12)
+        drinkButton.round([.TopRight], radius: 12)
     }
     
     @objc private func swipeRecognized(sender: UISwipeGestureRecognizer) {
@@ -78,7 +81,7 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     
     private func updateButtonsState() {
         coverButton.selected = (currentTab == .Drinks) ? false : true
-        drinkButton.selected = (currentTab == .Drinks) ? true : false
+        drinkButton.selected = !coverButton.selected
     }
     
     private func updateListIndicator() {

@@ -9,7 +9,7 @@ import UIKit
 
 class PLFriendCell: UITableViewCell{
 	
-	@IBOutlet weak var avatarImage: PLImageView!
+	@IBOutlet weak var avatarImage: UIImageView!
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var addButton: UIButton!
     

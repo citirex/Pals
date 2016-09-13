@@ -69,6 +69,7 @@ class PLSettingsViewController: PLViewController {
 
     private func reloadLayout() {
         layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 275)
+        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 20)
         layout!.parallaxHeaderAlwaysOnTop = true
         layout!.disableStickyHeaders = false
     }
@@ -150,8 +151,9 @@ extension PLSettingsViewController: UICollectionViewDelegate {
         switch kind {
         case CSStickyHeaderParallaxHeader:
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! PLSettingsHeader
-//            headerView.backgroundImageView.setImageWithURL(user.picture)
-//            headerView.userProfileImageView.setImageWithURL(user.picture)
+            headerView.backgroundImageView.setImageWithURL(user.picture)
+            headerView.userProfileImageView.setImageWithURL(user.picture)
+            headerView.usernameTextField.text = user.name
             return headerView
         case UICollectionElementKindSectionHeader:
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLSettingsSectionHeader
