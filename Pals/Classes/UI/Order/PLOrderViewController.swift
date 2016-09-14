@@ -20,6 +20,7 @@ class PLOrderViewController: PLViewController {
         didSet{
             if let aPlace = place {
                 drinksDatasource.placeId = aPlace.id
+                orderDrinks.removeAll()
                 loadPage()
             }
         }
@@ -32,10 +33,10 @@ class PLOrderViewController: PLViewController {
         }
     }
     lazy var spinner: UIActivityIndicatorView = {
-        let sp = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        let sp = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         return sp
     }()
-    
+    var firstLaunch: Bool = true
     var drinksDatasource = PLDrinksDatasource()
     
     private var currentTab: CurrentTab = .Drinks
@@ -77,6 +78,7 @@ class PLOrderViewController: PLViewController {
         collectionView.registerNib(UINib(nibName: "PLOrderStillHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrdeStickyHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrderDrinkCell", bundle: nil), forCellWithReuseIdentifier: kDrinkCellIdentifier)
+        collectionView.backgroundColor = UIColor.whiteColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -101,15 +103,27 @@ class PLOrderViewController: PLViewController {
         spinner.center = view.center
         drinksDatasource.load {[unowned self] page, error in
             if error == nil {
+                let count = self.drinksDatasource.count
                 let lastLoadedCount = page.count
                 if lastLoadedCount > 0 {
-                    self.collectionView.reloadData()
-                    //animate adding cells
+                    var indexPaths = [NSIndexPath]()
+                    for i in count-lastLoadedCount..<count {
+                        indexPaths.append(NSIndexPath(forItem: i, inSection: 1))
+                    }
+                    
+                    if self.firstLaunch == true {
+                        self.collectionView?.reloadData()
+                        self.firstLaunch = false
+                    } else {
+                        self.collectionView?.performBatchUpdates({
+                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
+                            }, completion: nil)
+                    }
                 }
-                self.spinner.stopAnimating()
             } else {
                 PLShowErrorAlert(error: error!)
             }
+            self.spinner.stopAnimating()
         }
     }
     

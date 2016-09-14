@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -79,6 +79,12 @@
                         <constraint firstAttribute="height" constant="1" id="mtI-RA-J83"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no love from your PALS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFG-0l-ezT">
+                    <rect key="frame" x="66" y="353" width="189" height="22"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -95,6 +101,7 @@
                 <constraint firstItem="d1f-d0-5ry" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" id="SEz-5M-ocr"/>
                 <constraint firstItem="jEq-4t-NXz" firstAttribute="top" secondItem="DPh-LG-qCh" secondAttribute="bottom" constant="8" id="TAG-L4-klW"/>
                 <constraint firstItem="oyP-lr-iOi" firstAttribute="centerX" secondItem="8Sc-c6-PaP" secondAttribute="centerX" id="TYY-mv-4BC"/>
+                <constraint firstItem="JFG-0l-ezT" firstAttribute="centerY" secondItem="8Sc-c6-PaP" secondAttribute="centerY" constant="80" id="WRi-8S-jZz"/>
                 <constraint firstItem="4Gd-Xm-g7B" firstAttribute="centerX" secondItem="oyP-lr-iOi" secondAttribute="centerX" id="YVu-CJ-ebI"/>
                 <constraint firstItem="0yG-cs-2WH" firstAttribute="centerX" secondItem="DPh-LG-qCh" secondAttribute="centerX" priority="250" id="Yp8-dI-Slt"/>
                 <constraint firstItem="0yG-cs-2WH" firstAttribute="centerX" secondItem="p5u-zr-fNT" secondAttribute="centerX" priority="750" id="Yqc-0y-CcX"/>
@@ -106,6 +113,7 @@
                 <constraint firstItem="DPh-LG-qCh" firstAttribute="top" secondItem="oyP-lr-iOi" secondAttribute="bottom" constant="8" id="jDH-cH-FMk"/>
                 <constraint firstItem="oyP-lr-iOi" firstAttribute="top" secondItem="6gY-hN-GqU" secondAttribute="bottom" constant="8" id="mto-Ab-AVj"/>
                 <constraint firstItem="6gY-hN-GqU" firstAttribute="centerY" secondItem="8Sc-c6-PaP" secondAttribute="centerY" id="o7f-3W-1nA"/>
+                <constraint firstItem="JFG-0l-ezT" firstAttribute="centerX" secondItem="8Sc-c6-PaP" secondAttribute="centerX" id="qaC-ni-6q8"/>
                 <constraint firstAttribute="trailing" secondItem="p5u-zr-fNT" secondAttribute="trailing" constant="30" id="tRV-lY-KnV"/>
                 <constraint firstItem="6gY-hN-GqU" firstAttribute="top" secondItem="8Sc-c6-PaP" secondAttribute="top" constant="60" id="x12-6i-3AE"/>
             </constraints>

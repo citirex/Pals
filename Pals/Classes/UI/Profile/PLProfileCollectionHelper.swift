@@ -24,11 +24,11 @@ class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
         if let order = datasource?[indexPath.row].cellData {
             cell.contentView.backgroundColor = UIColor.whiteColor()
             cell.headerView.backgroundColor = generateRandomColor()
-            cell.barTitleLabel.text = order.place.name
-            cell.barCaptionLabel.text = order.place.musicGengres
+            cell.cardTitleLabel.text = order.place.name
+            cell.cardCaptionLabel.text = order.place.musicGengres
             cell.barPlaceLabel.text = order.place.address
-            cell.drinkQRCodeLabel.text = order.QRcode
-            cell.drinkQRCodeImageView.image = QRCode.generateImage(order.QRcode, avatarImage: nil)
+            cell.cardQRCodeLabel.text = order.QRcode
+            cell.cardQRCodeImageView.image = QRCode.generateImage(order.QRcode, avatarImage: nil)
             
             cell.userPicImageView.setImageWithURL(order.user.picture)
             cell.userNicknameLabel.text = order.user.name

@@ -590,7 +590,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="pKf-FG-PN8"/>
                         <barButtonItem key="rightBarButtonItem" image="dots" id="XXS-z7-BSm">
                             <connections>
-                                <segue destination="Sm1-O6-b85" kind="push" identifier="ShowSettings" id="YbE-ky-2AC"/>
+                                <segue destination="kGG-tj-ywv" kind="push" id="pGy-cO-7A6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -602,91 +602,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8L-iT-ZrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-688" y="-328"/>
-        </scene>
-        <!--Notifications-->
-        <scene sceneID="51i-uH-dXc">
-            <objects>
-                <viewController title="Notifications" id="q02-xo-5Ga" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4Vn-uT-AOs"/>
-                        <viewControllerLayoutGuide type="bottom" id="Klx-eC-5yt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eUl-ex-y1f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="FOP-c6-1eA">
-                        <barButtonItem key="backBarButtonItem" title=" " id="Iaq-5Q-GH0"/>
-                    </navigationItem>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gkm-c2-n1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2389" y="1240"/>
-        </scene>
-        <!--Account Info-->
-        <scene sceneID="1ok-ZZ-IjV">
-            <objects>
-                <viewController title="Account Info" id="8Yv-Bg-9nT" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uAD-FL-GTS"/>
-                        <viewControllerLayoutGuide type="bottom" id="3CU-Z2-8B5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ne9-yq-I78">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="QrL-CV-Bik">
-                        <barButtonItem key="backBarButtonItem" title=" " id="k1i-sP-I7W"/>
-                    </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3bK-Kp-wrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1758" y="1240"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="3zr-5g-aWE">
-            <objects>
-                <viewController title="Settings" hidesBottomBarWhenPushed="YES" id="Sm1-O6-b85" customClass="PLSettingsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Bm4-n5-nGQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="620"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ju3-ML-bh1" customClass="CSStickyHeaderFlowLayout">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="Sm1-O6-b85" id="ch8-cH-rM0"/>
-                            <outlet property="delegate" destination="Sm1-O6-b85" id="FXe-dS-twK"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="MF7-Fe-SmU">
-                        <barButtonItem key="backBarButtonItem" title=" " id="yn1-Um-MhQ"/>
-                    </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="620"/>
-                    <connections>
-                        <outlet property="collectionView" destination="Bm4-n5-nGQ" id="a4j-7A-O1h"/>
-                        <segue destination="q02-xo-5Ga" kind="push" identifier="ShowNotifications" id="mwb-v1-oAf"/>
-                        <segue destination="8Yv-Bg-9nT" kind="push" identifier="ShowAccountInfo" id="aZp-8W-TOu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aSR-M8-xy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2066" y="456"/>
         </scene>
         <!--Add Funds View Controller-->
         <scene sceneID="8Aw-c5-sLx">
@@ -827,6 +742,76 @@
             </objects>
             <point key="canvasLocation" x="674" y="-1106"/>
         </scene>
+        <!--Template-->
+        <scene sceneID="eRg-wO-ewP">
+            <objects>
+                <viewController storyboardIdentifier="Template" title="Template" id="LUV-e9-Rea" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bj9-bd-P92"/>
+                        <viewControllerLayoutGuide type="bottom" id="8n5-5Z-rim"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hou-LT-Qxg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="DUp-pG-ScC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DUp-pG-ScC" firstAttribute="leading" secondItem="Hou-LT-Qxg" secondAttribute="leading" id="PTR-DA-XJX"/>
+                            <constraint firstItem="DUp-pG-ScC" firstAttribute="top" secondItem="Hou-LT-Qxg" secondAttribute="top" id="ffR-N6-yPo"/>
+                            <constraint firstAttribute="bottom" secondItem="DUp-pG-ScC" secondAttribute="bottom" id="gT1-5v-5Fw"/>
+                            <constraint firstAttribute="trailing" secondItem="DUp-pG-ScC" secondAttribute="trailing" id="hwj-7g-Yyj"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OBn-YK-poq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2269" y="438"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="ajY-eh-z6Z">
+            <objects>
+                <viewController title="Settings" id="kGG-tj-ywv" customClass="PLSettingsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="boX-sb-AbH"/>
+                        <viewControllerLayoutGuide type="bottom" id="XIp-w9-9kT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zYV-Ec-IbB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Bbi-Pj-gDT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" red="0.26274509800000001" green="0.18039215689999999" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kGG-tj-ywv" id="1aq-m6-2lU"/>
+                                    <outlet property="delegate" destination="kGG-tj-ywv" id="Xso-lE-Cr1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XIp-w9-9kT" firstAttribute="top" secondItem="Bbi-Pj-gDT" secondAttribute="bottom" id="ikQ-VI-3yY"/>
+                            <constraint firstItem="Bbi-Pj-gDT" firstAttribute="top" secondItem="zYV-Ec-IbB" secondAttribute="topMargin" id="o7c-0M-cpw"/>
+                            <constraint firstItem="Bbi-Pj-gDT" firstAttribute="leading" secondItem="zYV-Ec-IbB" secondAttribute="leading" id="rd9-rh-aje"/>
+                            <constraint firstAttribute="trailing" secondItem="Bbi-Pj-gDT" secondAttribute="trailing" id="xRb-0M-DLc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="hTN-A6-74m"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="tableView" destination="Bbi-Pj-gDT" id="NQy-oQ-Oya"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hPz-Zt-74a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1919" y="438"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="3aq-hf-WDg">
             <objects>
@@ -856,6 +841,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.35686274509803922" green="0.16862745098039217" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1045,6 +1031,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Settings" width="417" height="739"/>
         <image name="black_compass" width="22" height="22"/>
         <image name="dots" width="22" height="22"/>
         <image name="fish_avatar" width="83" height="83"/>
