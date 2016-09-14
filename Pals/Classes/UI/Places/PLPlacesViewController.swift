@@ -23,17 +23,15 @@ class PLPlacesViewController: PLViewController {
         return activityIndicator
     }()
     
-
-    
     lazy var datasource: PLPlacesDatasource = { return PLPlacesDatasource() }()
-  
-    var selectedPlace: PLPlace!
+    private var selectedPlace: PLPlace!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.backgroundView?.backgroundColor = UIColor.clearColor()
-//        createActivityIndicator()
         configureSearchController()
         
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
@@ -41,10 +39,12 @@ class PLPlacesViewController: PLViewController {
         loadPage()
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
     
     func loadPage() {
         activityIndicator.startAnimating()
@@ -68,6 +68,7 @@ class PLPlacesViewController: PLViewController {
         }
     }
     
+    
     // MARK: - Initialize search controller
     
     func configureSearchController() {
@@ -85,6 +86,7 @@ class PLPlacesViewController: PLViewController {
         searchController.searchBar.tintColor = UIColor.whiteColor()
         definesPresentationContext = true
     }
+    
     
     // MARK: - Alert
     

@@ -226,8 +226,7 @@ class PLProfileViewController: TGLStackedViewController {
             case "addFunds":
                 print("funds")
             case "ShowSettings":
-                let settingsViewController = segue.destinationViewController as! PLSettingsViewController
-                settingsViewController.user = profile
+                print("Settings")
             default:
                 break
             }
