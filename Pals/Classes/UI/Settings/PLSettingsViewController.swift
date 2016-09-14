@@ -35,26 +35,26 @@ class PLSettingsViewController: PLViewController {
         automaticallyAdjustsScrollViewInsets = false
         
         // Setup Cell
-        let nib = UINib(nibName: "PLSettingsCell", bundle: nil)
-        collectionView?.registerNib(nib, forCellWithReuseIdentifier: "SettingsCell")
+        let nib = UINib(nibName: PLSettingsCell.nibName, bundle: nil)
+        collectionView?.registerNib(nib, forCellWithReuseIdentifier: PLSettingsCell.identifier)
         
         // Setup Header
-        let headerNib = UINib(nibName: "PLSettingsHeader", bundle: nil)
+        let headerNib = UINib(nibName: PLSettingsHeader.nibName, bundle: nil)
         collectionView!.registerNib(headerNib,
                                     forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader,
-                                    withReuseIdentifier: "Header")
+                                    withReuseIdentifier: PLSettingsHeader.identifier)
         
         // Setup Section Header
-        let sectionHeaderNib = UINib(nibName: "PLSettingsSectionHeader", bundle: nil)
+        let sectionHeaderNib = UINib(nibName: PLSettingsSectionHeader.nibName, bundle: nil)
         collectionView!.registerNib(sectionHeaderNib,
                                     forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                                    withReuseIdentifier: "SectionHeader")
+                                    withReuseIdentifier: PLSettingsSectionHeader.identifier)
         
         // Setup Section Footer
-        let sectionFooterNib = UINib(nibName: "PLSettingsSectionFooter", bundle: nil)
+        let sectionFooterNib = UINib(nibName: PLSettingsSectionFooter.nibName, bundle: nil)
         collectionView!.registerNib(sectionFooterNib,
                                     forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
-                                    withReuseIdentifier: "SectionFooter")
+                                    withReuseIdentifier: PLSettingsSectionFooter.identifier)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -109,7 +109,7 @@ extension PLSettingsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SettingsCell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PLSettingsCell.identifier, forIndexPath: indexPath)
             as! PLSettingsCell
 
         switch indexPath.section {
@@ -150,17 +150,17 @@ extension PLSettingsViewController: UICollectionViewDelegate {
         
         switch kind {
         case CSStickyHeaderParallaxHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! PLSettingsHeader
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLSettingsHeader.identifier, forIndexPath: indexPath) as! PLSettingsHeader
             headerView.backgroundImageView.setImageWithURL(user.picture)
             headerView.userProfileImageView.setImageWithURL(user.picture)
             headerView.usernameTextField.text = user.name
             return headerView
         case UICollectionElementKindSectionHeader:
-            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLSettingsSectionHeader
+            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLSettingsSectionHeader.identifier, forIndexPath: indexPath) as! PLSettingsSectionHeader
             sectionHeader.headerLabel.text = headerTitles[indexPath.section]
             return sectionHeader
         case UICollectionElementKindSectionFooter:
-            let sectionFooter = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionFooter", forIndexPath: indexPath) as! PLSettingsSectionFooter
+            let sectionFooter = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLSettingsSectionFooter.identifier, forIndexPath: indexPath) as! PLSettingsSectionFooter
             sectionFooter.didTappedSignOutButton = {
                 print("Sign Out")
             }

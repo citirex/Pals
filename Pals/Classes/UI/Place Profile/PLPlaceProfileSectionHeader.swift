@@ -11,6 +11,9 @@ import UIKit
 @IBDesignable
 class PLPlaceProfileSectionHeader: UICollectionReusableView {
     
+    static let nibName = "PLPlaceProfileSectionHeader"
+    static let identifier = "SectionHeader"
+    
     typealias didTappedOrderButtonDelegate = Void -> Void
     var didTappedOrderButton: didTappedOrderButtonDelegate?
 

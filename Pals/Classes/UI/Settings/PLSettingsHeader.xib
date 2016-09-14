@@ -27,7 +27,7 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="SsF-Bj-o7s">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="SsF-Bj-o7s">
                                 <rect key="frame" x="107" y="70" width="106" height="106"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="106" id="D1p-Bj-IEU"/>
@@ -98,7 +98,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="fish_avatar" width="83" height="83"/>
+        <image name="no_image" width="1000" height="1000"/>
         <image name="pencil" width="22" height="22"/>
     </resources>
 </document>

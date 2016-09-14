@@ -10,6 +10,9 @@ import UIKit
 
 class PLSettingsHeader: UICollectionViewCell {
     
+    static let nibName = "PLSettingsHeader"
+    static let identifier = "Header"
+    
     @IBOutlet weak var headerSectionView: UIView!
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
