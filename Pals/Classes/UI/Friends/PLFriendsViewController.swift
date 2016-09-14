@@ -12,6 +12,12 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	var tableView = UITableView()
 	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
+	var searchActive : Bool = false
+	var filtered = [PLUser]()
+	
+	var collectionUsers: [PLUser] {
+		return datasource.collection.objects ?? []
+	}
 	
 	
 	@IBAction func searchButton(sender: AnyObject) {
@@ -33,6 +39,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		
 		tableView.delegate = self
 		tableView.dataSource = self
+		searchBar.delegate = self
 		
 		let textFieldInsideSearchBar = self.searchBar.valueForKey("searchField") as! UITextField
 		textFieldInsideSearchBar.leftViewMode = UITextFieldViewMode.Never
@@ -40,12 +47,12 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		searchBar.layer.cornerRadius = 25
 		searchBar.clipsToBounds = true
 		searchBar.delegate = self
+		searchBar.setShowsCancelButton(false, animated: true)
 		
 		tableView.separatorInset.left = 75
 		
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-		
 		
 		view.addSubview(tableView)
 		view.addSubview(spinner)
@@ -54,6 +61,18 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		spinner.transform = CGAffineTransformMakeScale(2, 2)
 		tableView.hidden = true
         loadDatasource()
+	}
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		registerKeyboardNotifications()
+	}
+	override func viewDidDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		NSNotificationCenter.defaultCenter().removeObserver(self)
+		navigationItem.titleView = nil
+		navigationItem.title = "Friends"
 	}
 	
 	override func viewDidLayoutSubviews() {
@@ -83,9 +102,54 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
         }
     }
 	
+	// MARK: - Search
+	
+	func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+		searchActive = true
+	}
+	
+	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+		searchActive = false
+	}
+	
+	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+		searchActive = false
+	}
+	
+	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+		searchActive = false
+		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendsSearch"))!, animated: true)
+	}
+	
+	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+		
+			filtered = collectionUsers.filter({ (user) -> Bool in
+				let tmp: NSString = user.name
+				let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+				return range.location != NSNotFound
+			})
+		
+		searchActive = (filtered.count > 0) ? true : false
+		self.tableView.reloadData()
+	}
+	
+	
+	// MARK: - tableView
+	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = datasource.count
-		return count
+		
+		if searchBar.text > "" && filtered.count == 0 {
+			tableView.hidden = true
+		} else {
+			tableView.hidden = false
+		}
+		
+		
+		if(searchActive) {
+			return filtered.count
+		} else {
+			return datasource.count
+		}
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -95,16 +159,18 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
-		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
+		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
 		
-		let friend = datasource[indexPath.row]
-		if let cell = cell as? PLFriendCell {
+		print("filter count: \(filtered.count)")
+		
+		let friend = (filtered.count > 0) ? filtered[indexPath.row] :
+			datasource[indexPath.row]
+		
 			cell.friend = friend
-			cell.addButton.hidden = true
-		}
 		cell.accessoryType = .DisclosureIndicator
 		
 		return cell
+		
 	}
 	
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -121,19 +187,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		return 100
-	}
-	
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		registerKeyboardNotifications()
-	}
-	override func viewDidDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		NSNotificationCenter.defaultCenter().removeObserver(self)
-		navigationItem.titleView = nil
-		navigationItem.title = "Friends"
 	}
 	
 	// MARK: - Dismiss Keyboard
@@ -156,12 +209,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		let tapOnScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
 		tapOnScreen.cancelsTouchesInView = false
 		view.addGestureRecognizer(tapOnScreen)
-	}
-	
-	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		searchBar.endEditing(true)
-		
-		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendsSearch"))!, animated: true)
 	}
 	
 }
