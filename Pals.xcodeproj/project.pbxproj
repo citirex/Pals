@@ -69,7 +69,8 @@
 		24C20C661D8837F70040F2F5 /* drinks1.json in Resources */ = {isa = PBXBuildFile; fileRef = 24C20C631D8837F70040F2F5 /* drinks1.json */; };
 		24C20C671D8837F70040F2F5 /* drinks2.json in Resources */ = {isa = PBXBuildFile; fileRef = 24C20C641D8837F70040F2F5 /* drinks2.json */; };
 		24C20C681D8837F70040F2F5 /* drinks3.json in Resources */ = {isa = PBXBuildFile; fileRef = 24C20C651D8837F70040F2F5 /* drinks3.json */; };
-		24C20C6B1D88405C0040F2F5 /* PLDrinkCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6A1D88405C0040F2F5 /* PLDrinkCellData.swift */; };
+		24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */; };
+		24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */; };
 		24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */; };
 		24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */; };
 		D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */; };
@@ -189,7 +190,8 @@
 		24C20C631D8837F70040F2F5 /* drinks1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drinks1.json; sourceTree = "<group>"; };
 		24C20C641D8837F70040F2F5 /* drinks2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drinks2.json; sourceTree = "<group>"; };
 		24C20C651D8837F70040F2F5 /* drinks3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drinks3.json; sourceTree = "<group>"; };
-		24C20C6A1D88405C0040F2F5 /* PLDrinkCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkCellData.swift; sourceTree = "<group>"; };
+		24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCheckoutOrder.swift; sourceTree = "<group>"; };
+		24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkset.swift; sourceTree = "<group>"; };
 		24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderAnimableVipView.swift; sourceTree = "<group>"; };
 		24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderAnimableVipView.xib; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,15 +325,16 @@
 			isa = PBXGroup;
 			children = (
 				2480F87E1D813E730095995F /* PLDrink.swift */,
+				24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */,
 				2480F87F1D813E730095995F /* PLErrors.swift */,
 				2480F8801D813E730095995F /* PLEvent.swift */,
 				2480F8811D813E730095995F /* PLFakeFeed.swift */,
 				2480F8821D813E730095995F /* PLKeys.swift */,
 				2480F8831D813E730095995F /* PLOrder.swift */,
+				24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */,
 				2480F8841D813E730095995F /* PLPlace.swift */,
 				2480F8851D813E730095995F /* PLUniqueObject.swift */,
 				2480F8861D813E730095995F /* PLUser.swift */,
-				24C20C691D88403D0040F2F5 /* Resources */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -519,14 +522,6 @@
 			path = Drinks;
 			sourceTree = "<group>";
 		};
-		24C20C691D88403D0040F2F5 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				24C20C6A1D88405C0040F2F5 /* PLDrinkCellData.swift */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		3031C286B9CA11146B8E1FA5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +692,7 @@
 		E8DA8B861D88334F008782E5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */,
 				E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */,
 				E8DA8B881D88334F008782E5 /* PLOrderCellData.swift */,
 				E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */,
@@ -704,7 +700,6 @@
 				E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */,
 				E8DA8B8C1D88334F008782E5 /* PLProfileHeaderView.swift */,
 				E8DA8B8D1D88334F008782E5 /* PLProfileHeaderView.xib */,
-				E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -880,6 +875,7 @@
 				2480F8DD1D813E730095995F /* PLProfileManager.swift in Sources */,
 				049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */,
 				E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */,
+				24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
@@ -908,6 +904,7 @@
 				2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */,
 				2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */,
 				D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */,
+				24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */,
 				E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */,
 				2480F8E81D813E730095995F /* PLKeys.swift in Sources */,
 				D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */,
@@ -937,7 +934,6 @@
 				E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */,
 				D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */,
 				2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */,
-				24C20C6B1D88405C0040F2F5 /* PLDrinkCellData.swift in Sources */,
 				E829DDD21D8151BE00D8C130 /* PLPlaceProfileCollectionViewCell.swift in Sources */,
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
 				E8DA8B841D8832E8008782E5 /* TGLStackedLayout.m in Sources */,

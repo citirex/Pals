@@ -65,8 +65,8 @@
     _exposedLayoutMargin = UIEdgeInsetsMake(60.0, 0.0, 0.0, 0.0);
     _exposedItemSize = CGSizeZero;
     _exposedTopOverlap = 5;//10.0;
-    _exposedBottomOverlap = 5;//10.0;
-    _exposedBottomOverlapCount = 1;
+    _exposedBottomOverlap = 1;//10.0;
+    _exposedBottomOverlapCount = 10;
     
     _exposedPinningMode = TGLExposedLayoutPinningModeAll;
 //    _exposedTopPinningCount = -1;
@@ -96,7 +96,7 @@
     self.stackedLayout.topReveal = 60;
     self.exposedPinningMode = TGLExposedLayoutPinningModeBelow;
     self.exposedTopPinningCount = 5;
-    self.exposedBottomPinningCount = 5;
+    self.exposedBottomPinningCount = 1;
     self.exposedItemsAreCollapsible = YES;
 }
 
