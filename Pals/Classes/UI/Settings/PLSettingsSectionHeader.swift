@@ -10,6 +10,9 @@ import UIKit
 
 class PLSettingsSectionHeader: UICollectionReusableView {
     
+    static let nibName = "PLSettingsSectionHeader"
+    static let identifier = "SectionHeader"
+    
     @IBOutlet weak var headerLabel: UILabel!
 
     

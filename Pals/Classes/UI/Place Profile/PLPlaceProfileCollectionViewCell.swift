@@ -10,6 +10,9 @@ import UIKit
 
 class PLPlaceProfileCollectionViewCell: UICollectionViewCell {
     
+    static let nibName = "PLPlaceProfileCollectionViewCell"
+    static let identifier = "EventCell"
+    
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventDateLabel: UILabel!
     @IBOutlet weak var eventDescriptionLabel: UILabel!

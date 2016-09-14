@@ -10,6 +10,9 @@ import UIKit
 
 class PLSettingsCell: UICollectionViewCell {
     
+    static let nibName = "PLSettingsCell"
+    static let identifier = "SettingsCell"
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
 

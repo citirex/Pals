@@ -10,6 +10,9 @@ import UIKit
 
 class PLSettingsSectionFooter: UICollectionReusableView {
     
+    static let nibName = "PLSettingsSectionFooter"
+    static let identifier = "SectionFooter"
+    
     typealias didTappedSignOutButtonDelegate = Void -> Void
     var didTappedSignOutButton: didTappedSignOutButtonDelegate?
     
