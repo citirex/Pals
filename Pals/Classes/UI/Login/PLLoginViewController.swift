@@ -70,6 +70,9 @@ class PLLoginViewController: PLViewController {
 	}
 	@IBAction func registerButtonClicked(sender: AnyObject) {
 	}
+    
+    // MARK: - Navigation
+    
 	@IBAction func unwindToLoginClicked(sender: UIStoryboardSegue) {
 	}
 	
@@ -88,9 +91,7 @@ class PLLoginViewController: PLViewController {
 		
 		loginTextField.delegate = self
 		passTextField.delegate = self
-		
-		loginButton.layer.cornerRadius = 0.5 * loginButton.bounds.size.height
-		
+				
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 		

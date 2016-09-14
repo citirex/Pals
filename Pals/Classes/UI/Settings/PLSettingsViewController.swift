@@ -8,12 +8,21 @@
 
 import UIKit
 
+
 class PLSettingsViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
     private let numberOfSections = 3
     private let items = [["Account", "Card Info", "Add Funds", "Notifications"], ["Order History"], ["Help and FAQ", "Terms of Service", "Privacy Policy"]]
+    
+    private let segueIdentifiers = [
+        "ShowEditProfile",
+        "ShowCardInfo",
+        "ShowAddFunds"
+    ]
+    
+    var user: PLUser!
     
     
     override func viewDidLoad() {
@@ -47,8 +56,17 @@ class PLSettingsViewController: PLViewController {
     // MARK: - Navigations
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "" {
-            
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "ShowEditProfile":
+            let editProfileViewController = segue.destinationViewController as! PLEditProfileViewController
+            editProfileViewController.user = user
+        case "ShowCardInfo":
+            print("ShowCardInfo")
+        case "ShowAddFunds":
+            print("Add Funds")
+        default:
+            break
         }
     }
 
@@ -97,5 +115,13 @@ extension PLSettingsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let identifier = segueIdentifiers[indexPath.row]
+                performSegueWithIdentifier(identifier, sender: self)
+            }
+        }
+        
     }
 }

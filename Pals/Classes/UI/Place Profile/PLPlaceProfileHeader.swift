@@ -14,10 +14,6 @@ class PLPlaceProfileHeader: UICollectionViewCell {
     static let identifier = "Header"
 
     @IBOutlet weak var headerImageView: UIImageView!
+ 
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
 }

@@ -17,37 +17,19 @@ class PLPlaceProfileViewController: PLViewController {
     }
     
     var place: PLPlace!
-    var events = [
-        "One",
-        "Two",
-        "Three",
-        "Four",
-        "Five",
-        "Six",
-        "Seven",
-        "Eight",
-        "Nine",
-        "Ten"
-    ]
-    
-    var dates = [
-        "May 05, 2016",
-        "May 10, 2016",
-        "May 15, 2016",
-        "May 22, 2016",
-        "May 25, 2016",
-        "May 27, 2016",
-        "May 28, 2016",
-        "May 29, 2016",
-        "May 30, 2016",
-        "May 31, 2016"
-    ]
-    
+  
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         reloadLayout()
         setupCollectionView()
+        
+        let backButtonItem = PLBackBarButtonItem()
+        navigationItem.leftBarButtonItem = backButtonItem
+        backButtonItem.didTappedBackButton = {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
 
     
@@ -56,11 +38,6 @@ class PLPlaceProfileViewController: PLViewController {
         
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.presentTransparentNavigationBar()
-        let backButtonItem = PLBackBarButtonItem()
-        navigationItem.leftBarButtonItem = backButtonItem
-        backButtonItem.didTappedBackButton = {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -78,8 +55,8 @@ class PLPlaceProfileViewController: PLViewController {
         automaticallyAdjustsScrollViewInsets = false
         
         // Setup Cell
-        let nib = UINib(nibName: PLPlaceProfileCollectionViewCell.nibName, bundle: nil)
-        collectionView?.registerNib(nib, forCellWithReuseIdentifier: PLPlaceProfileCollectionViewCell.identifier)
+        let nib = UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil)
+        collectionView?.registerNib(nib, forCellWithReuseIdentifier: PLPlaceProfileCell.identifier)
         
         // Setup Header
         let headerNib = UINib(nibName: PLPlaceProfileHeader.nibName, bundle: nil)
@@ -106,7 +83,8 @@ class PLPlaceProfileViewController: PLViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowOrder" {
-        
+            let orderViewController = segue.destinationViewController as! PLOrderViewController
+            orderViewController.place = place
         }
     }
 
@@ -122,8 +100,8 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PLPlaceProfileCollectionViewCell.identifier, forIndexPath: indexPath)
-            as! PLPlaceProfileCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PLPlaceProfileCell.identifier, forIndexPath: indexPath)
+            as! PLPlaceProfileCell
         cell.eventImageView.setImageWithURL(place.picture)
         return cell
     }

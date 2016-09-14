@@ -18,6 +18,8 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	var collectionUsers: [PLUser] {
 		return datasource.collection.objects ?? []
 	}
+    
+    private var selectedFriend: PLUser!
 	
 	
 	@IBAction func searchButton(sender: AnyObject) {
@@ -182,7 +184,8 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendProfile"))!, animated: true)
+        selectedFriend = datasource[indexPath.row]
+        performSegueWithIdentifier("ShowFriendProfile", sender: self)
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -210,5 +213,13 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		tapOnScreen.cancelsTouchesInView = false
 		view.addGestureRecognizer(tapOnScreen)
 	}
-	
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard segue.identifier == "ShowFriendProfile" else { return }
+        let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
+        friendProfileViewController.friend = selectedFriend
+    }
+    
 }

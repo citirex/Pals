@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="PLPlaceProfileCollectionViewCell" customModule="Pals" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="PLPlaceProfileCell" customModule="Pals" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -35,28 +35,18 @@
                             <constraint firstAttribute="height" constant="36" id="sD0-Gq-Rk1"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sey-ZL-s0o" userLabel="Bottom Line">
-                        <rect key="frame" x="65" y="94" width="255" height="1"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="Acm-th-VUH"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Sey-ZL-s0o" secondAttribute="bottom" id="6HW-aq-wJP"/>
                 <constraint firstItem="Vvu-c8-yZ3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="6g7-Wk-ywH"/>
-                <constraint firstItem="Sey-ZL-s0o" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="65" id="776-ZA-zbH"/>
                 <constraint firstItem="kQT-vU-nJx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="FgC-24-HIz"/>
                 <constraint firstAttribute="trailing" secondItem="vgI-7H-cvm" secondAttribute="trailing" constant="20" id="MLW-WR-lgp"/>
                 <constraint firstItem="vgI-7H-cvm" firstAttribute="top" secondItem="Vvu-c8-yZ3" secondAttribute="bottom" constant="10" id="ONm-i0-5xM"/>
-                <constraint firstAttribute="trailing" secondItem="Sey-ZL-s0o" secondAttribute="trailing" id="ZDp-2s-kPK"/>
                 <constraint firstItem="kQT-vU-nJx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="eAx-Iq-vP1"/>
                 <constraint firstItem="Vvu-c8-yZ3" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ent-bd-CyP"/>
                 <constraint firstItem="vgI-7H-cvm" firstAttribute="leading" secondItem="kQT-vU-nJx" secondAttribute="trailing" constant="8" id="wd3-mN-k9C"/>

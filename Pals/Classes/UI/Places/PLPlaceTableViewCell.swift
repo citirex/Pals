@@ -24,15 +24,9 @@ class PLPlaceTableViewCell: UITableViewCell {
     var currentUrl = ""
     
     var place: PLPlace! {
-        didSet {
-            setup()
-        }
+        didSet { setup() }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        backgroundColor = UIColor.clearColor()
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

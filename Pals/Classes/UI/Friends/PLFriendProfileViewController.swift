@@ -9,48 +9,40 @@
 class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var userProfileImageView: UIImageView!
+    @IBOutlet weak var friendProfileImageView: UIImageView!
     
-    var user: PLUser!
-	var violetColor: UIColor?
+    var friend: PLUser!
+    
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+        
+        let backButtonItem = PLBackBarButtonItem()
+        navigationItem.leftBarButtonItem = backButtonItem
+        backButtonItem.didTappedBackButton = {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-//        setupView()
-		violetColor = navigationController?.navigationBar.tintColor
-        
         navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.tintColor = .whiteColor()
         navigationController?.presentTransparentNavigationBar()
-		
-		let backButtonItem = PLBackBarButtonItem()
-		navigationItem.leftBarButtonItem = backButtonItem
-		backButtonItem.didTappedBackButton = {
-			self.navigationController?.popViewControllerAnimated(true)
-		}
-		
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.barStyle = .Default
-		navigationController?.navigationBar.tintColor = violetColor
         navigationController?.hideTransparentNavigationBar()
     }
     
-    private func setupView() {
-        let imageData = NSData(contentsOfURL: user.picture)
-        let image = UIImage(data: imageData!)
-        
-        backgroundImageView.image = image
-        userProfileImageView.image = image
+    private func configureView() {
+        backgroundImageView.setImageWithURL(friend.picture)
+        friendProfileImageView.setImageWithURL(friend.picture)
     }
 	
     

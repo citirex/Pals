@@ -8,18 +8,17 @@
 
 class PLSignUpViewController: PLViewController {
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameTextField: PLTextField!
+    @IBOutlet weak var userProfileImageView: UIImageView!
+    @IBOutlet weak var usernameTextField: PLTextField!
     @IBOutlet weak var emailTextField: PLTextField!
     @IBOutlet weak var passwordTextField: PLTextField!
     @IBOutlet weak var confirmPasswordTextField: PLTextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var textFieldsContainer: UIView!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let imagePicker = UIImagePickerController()
-    
-    private var margin: CGFloat = 20
+    private let margin: CGFloat = 20
     
     
     override func viewDidLoad() {
@@ -39,6 +38,7 @@ class PLSignUpViewController: PLViewController {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
@@ -88,22 +88,22 @@ class PLSignUpViewController: PLViewController {
     }
     
     @IBAction func signUpButtonTapped(sender: AnyObject) {
-        let username = nameTextField.text!.trim()
+        let username = usernameTextField.text!.trim()
         let email = emailTextField.text!.trim()
         let password = passwordTextField.text!.trim()
-        let picture = imageView.image != nil ? imageView.image : UIImage(named: "anonimus")
+        let picture = userProfileImageView.image
         
         guard !username.isEmpty else { return PLShowAlert("Error", message: "Username must contain at least 1 character") }
         guard email.isValidEmail else { return PLShowAlert("Error", message: "Please enter a valid email address") }
         guard !password.isEmpty else { return PLShowAlert("Error", message: "Password must contain at least 1 character") }
         guard validatePassword(password) else { return PLShowAlert("Error", message: "Password mismatch") }
         
-        let userData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
+        let signUpData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
         
-        // TODO: - pass user data
-        spinner.startAnimating()
-        PLFacade.signUp(userData) { error in
-            self.spinner.stopAnimating()
+        // TODO: - Need pass user to profile
+        activityIndicator.startAnimating()
+        PLFacade.signUp(signUpData) { error in
+            self.activityIndicator.stopAnimating()
             guard error == nil else { return PLShowAlert("Error", message: error!.localizedDescription) }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
             let navigationController = tabBarController.viewControllers?.first as! UINavigationController
@@ -129,7 +129,7 @@ extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.image = imagePicked
+            userProfileImageView.image = imagePicked
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
