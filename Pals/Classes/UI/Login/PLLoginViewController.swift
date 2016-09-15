@@ -11,6 +11,8 @@ class PLLoginViewController: PLViewController {
 	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	private var currentTextField: PLTextField!
 
+	@IBOutlet weak var contentView: UIView!
+	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var loginButton: UIButton!
 	@IBOutlet weak var loginView: UIView!
 	@IBOutlet weak var logoImage: UIImageView!
@@ -91,19 +93,18 @@ class PLLoginViewController: PLViewController {
 		
 		loginTextField.delegate = self
 		passTextField.delegate = self
-				
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-		view.addGestureRecognizer(tap)
 		
 		anime()
 		
-		hideKeyboardWhenTappedAround()
+		let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+		view.addGestureRecognizer(dismissTap)
+		
         }
 	
 	
 		func anime() {
 			self.logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (self.logoImage.bounds.height / 2)
-			self.loginViewBotC!.constant = -self.loginView.bounds.height
+			self.loginViewBotC!.constant = -(self.loginView.bounds.height * 2)
 			self.view.layoutIfNeeded()
 			
 			UIView.animateWithDuration(1, delay: 2.2, options: .CurveEaseOut, animations: {
@@ -114,19 +115,49 @@ class PLLoginViewController: PLViewController {
 			})
 		}
 	
-    }
-
-
-extension UIViewController {
-	func hideKeyboardWhenTappedAround() {
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-		view.addGestureRecognizer(tap)
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		registerKeyboardNotifications()
 	}
 	
-	func dismissKeyboard() {
+	override func viewDidDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		
+		NSNotificationCenter.defaultCenter().removeObserver(self)
+	}
+	
+	// MARK: - Dismiss Keyboard
+	
+	func dismissKeyboard(sender: UITapGestureRecognizer) {
 		view.endEditing(true)
 	}
-}
+	
+	
+	// MARK: - Notifications
+	
+	private func registerKeyboardNotifications() {
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+	}
+	
+	// MARK: - Keyboard
+	
+	func keyboardWillShow(notification: NSNotification) {
+		let userInfo = notification.userInfo!
+		let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+		let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + 53, 0.0)
+		scrollView.contentInset = contentInsets
+		scrollView.scrollIndicatorInsets = contentInsets
+	}
+	
+	func keyboardWillHide(notification: NSNotification) {
+		let contentInsets = UIEdgeInsetsZero
+		scrollView.contentInset = contentInsets
+		scrollView.scrollIndicatorInsets = contentInsets
+	}
+	
+    }
 
 extension PLLoginViewController: UITextFieldDelegate {
 	
