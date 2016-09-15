@@ -17,55 +17,19 @@ class PLPlaceProfileViewController: PLViewController {
     }
     
     var place: PLPlace!
-    var events = [
-        "One",
-        "Two",
-        "Three",
-        "Four",
-        "Five",
-        "Six",
-        "Seven",
-        "Eight",
-        "Nine",
-        "Ten"
-    ]
-    
-    var dates = [
-        "May 05, 2016",
-        "May 10, 2016",
-        "May 15, 2016",
-        "May 22, 2016",
-        "May 25, 2016",
-        "May 27, 2016",
-        "May 28, 2016",
-        "May 29, 2016",
-        "May 30, 2016",
-        "May 31, 2016"
-    ]
-    
+  
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         reloadLayout()
+        setupCollectionView()
         
-        collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
-        automaticallyAdjustsScrollViewInsets = false
-        
-        // Setup Cell
-        let nib = UINib(nibName: "PLPlaceProfileCollectionViewCell", bundle: nil)
-        collectionView?.registerNib(nib, forCellWithReuseIdentifier: "EventCell")
-        
-        // Setup Header
-        let headerNib = UINib(nibName: "PLPlaceProfileHeader", bundle: nil)
-        collectionView!.registerNib(headerNib,
-                                    forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader,
-                                    withReuseIdentifier: "Header")
-        
-        // Setup Section Header
-        let sectionHeaderNib = UINib(nibName: "PLPlaceProfileSectionHeader", bundle: nil)
-        collectionView!.registerNib(sectionHeaderNib,
-                                    forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                                    withReuseIdentifier: "SectionHeader")
+        let backBarButtonItem = PLBackBarButtonItem()
+        navigationItem.leftBarButtonItem = backBarButtonItem
+        backBarButtonItem.didTappedBackButton = {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
 
     
@@ -74,11 +38,6 @@ class PLPlaceProfileViewController: PLViewController {
         
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.presentTransparentNavigationBar()
-        let backButtonItem = PLBackBarButtonItem()
-        navigationItem.leftBarButtonItem = backButtonItem
-        backButtonItem.didTappedBackButton = {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -86,6 +45,30 @@ class PLPlaceProfileViewController: PLViewController {
         
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.hideTransparentNavigationBar()
+    }
+    
+    
+    // MARK: - Configure collectionView
+    
+    private func setupCollectionView() {
+        collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
+        automaticallyAdjustsScrollViewInsets = false
+        
+        // Setup Cell
+        let nib = UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil)
+        collectionView?.registerNib(nib, forCellWithReuseIdentifier: PLPlaceProfileCell.identifier)
+        
+        // Setup Header
+        let headerNib = UINib(nibName: PLPlaceProfileHeader.nibName, bundle: nil)
+        collectionView!.registerNib(headerNib,
+                                    forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader,
+                                    withReuseIdentifier: PLPlaceProfileHeader.identifier)
+        
+        // Setup Section Header
+        let sectionHeaderNib = UINib(nibName: PLPlaceProfileSectionHeader.nibName, bundle: nil)
+        collectionView!.registerNib(sectionHeaderNib,
+                                    forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                    withReuseIdentifier: PLPlaceProfileSectionHeader.identifier)
     }
     
     private func reloadLayout() {
@@ -100,21 +83,10 @@ class PLPlaceProfileViewController: PLViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowOrder" {
-        
+            let orderViewController = segue.destinationViewController as! PLOrderViewController
+            orderViewController.place = place
         }
     }
-//    
-//    
-//    private func convertTimeTo12HoursFormatString(formatString: String) -> String {
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "HH:mm"
-//        let date24 = dateFormatter.dateFromString(formatString)
-//        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-//        dateFormatter.dateFormat = "h:mm a"
-//        let date12 = dateFormatter.stringFromDate(date24!)
-//        return date12
-//    }
-
 
 }
 
@@ -128,8 +100,9 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell", forIndexPath: indexPath)
-            as! PLPlaceProfileCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PLPlaceProfileCell.identifier, forIndexPath: indexPath)
+            as! PLPlaceProfileCell
+        cell.eventImageView.setImageWithURL(place.picture)
         return cell
     }
 }
@@ -143,11 +116,11 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
         
         switch kind {
         case CSStickyHeaderParallaxHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! PLPlaceProfileHeader
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileHeader
             headerView.headerImageView.setImageWithURL(place.picture)
             return headerView
         case UICollectionElementKindSectionHeader:
-            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
+            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileSectionHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
             sectionHeader.placeNameLabel.text = place.name
             sectionHeader.musicGenresLabel.text = place.musicGengres
             sectionHeader.closingTimeLabel.text = place.closeTime

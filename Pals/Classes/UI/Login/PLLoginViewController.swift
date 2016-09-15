@@ -11,6 +11,9 @@ class PLLoginViewController: PLViewController {
 	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	private var currentTextField: PLTextField!
 
+	@IBOutlet weak var contentView: UIView!
+	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var loginButton: UIButton!
 	@IBOutlet weak var loginView: UIView!
 	@IBOutlet weak var logoImage: UIImageView!
 	@IBOutlet weak var loginTextField: PLTextField!
@@ -23,14 +26,15 @@ class PLLoginViewController: PLViewController {
         let userName = loginTextField.text!
         let password = passTextField.text!
         if userName.isEmpty {
-			PLShowAlert("Login error!", message: "Please enter your login.")
+//			PLShowAlert("Login error!", message: "Please enter your login.")
         } else if password.isEmpty {
-			PLShowAlert("Login error!", message: "Please enter your password.")
+//			PLShowAlert("Login error!", message: "Please enter your password.")
         } else {
 			spinner!.startAnimating()
             PLFacade.login(userName, password: password, completion: { (error) in
                 if error != nil {
-					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
+//					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
+					PLShowAlert(message: "Wrong Username/Password!")
 					self.spinner?.stopAnimating()
                 } else {
                     self.showMainScreen()
@@ -51,26 +55,26 @@ class PLLoginViewController: PLViewController {
 			if (textField.text?.trim().isValidEmail)! {
 				self.spinner!.startAnimating()
 				PLFacade.sendPassword(textField.text!, completion: { (error) in
-					var tittle = ""
 					var message = ""
-					if error != nil {
-						tittle = "Error!"
-						message = (error?.localizedDescription)!
+					if error == nil {
+						message = "Sent!"
 					} else {
-						tittle = "Success!"
-						message = "Show password on your E-mail."
+						message = (error?.localizedDescription)!
 					}
-                    PLShowAlert(tittle, message: message)
+                    PLShowAlert(message: message)
 					self.spinner?.stopAnimating()
 				})
 			} else {
-                PLShowAlert("Incorrect email!", message: "Re-enter your email.")
+                PLShowAlert(message: "This Email doesn't exist!")
 			}
 		}))
 		presentViewController(alert, animated: true, completion: nil)
 	}
 	@IBAction func registerButtonClicked(sender: AnyObject) {
 	}
+    
+    // MARK: - Navigation
+    
 	@IBAction func unwindToLoginClicked(sender: UIStoryboardSegue) {
 	}
 	
@@ -90,55 +94,70 @@ class PLLoginViewController: PLViewController {
 		loginTextField.delegate = self
 		passTextField.delegate = self
 		
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-		view.addGestureRecognizer(tap)
-		
 		anime()
-//		viewAppearLogo(logoImage, center: 0, alfa: 1.0, flag: true)
-//		viewAppearLogo(loginView, center: -view.bounds.height, alfa: 0.0, flag: true)
 		
-		hideKeyboardWhenTappedAround()
+		let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+		view.addGestureRecognizer(dismissTap)
+		
         }
 	
 	
 		func anime() {
-			self.logoTopC?.constant = 50
-			self.loginViewBotC!.constant = 500
+			self.logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (self.logoImage.bounds.height / 2)
+			self.loginViewBotC!.constant = -(self.loginView.bounds.height * 2)
+			self.view.layoutIfNeeded()
+			
 			UIView.animateWithDuration(1, delay: 2.2, options: .CurveEaseOut, animations: {
 				self.loginViewBotC?.constant = 0
+				self.logoTopC?.constant = 50
 					self.view.layoutIfNeeded()
 				}, completion: {_ in
 			})
 		}
 	
-    }
-
-
-	
-	func viewAppearLogo(view: UIView, center: CGFloat, alfa: CGFloat, flag: Bool) {
-		view.alpha = alfa
-		UIView.animateWithDuration(1, delay: 0.2, options: .CurveEaseOut, animations: {
-			view.alpha = 1.0
-			if flag{
-				view.center.y = center
-			}else{
-				view.center.y += view.bounds.height
-			}
-			}, completion: {_ in
-		})
-	}
-
-
-extension UIViewController {
-	func hideKeyboardWhenTappedAround() {
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-		view.addGestureRecognizer(tap)
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		registerKeyboardNotifications()
 	}
 	
-	func dismissKeyboard() {
+	override func viewDidDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		
+		NSNotificationCenter.defaultCenter().removeObserver(self)
+	}
+	
+	// MARK: - Dismiss Keyboard
+	
+	func dismissKeyboard(sender: UITapGestureRecognizer) {
 		view.endEditing(true)
 	}
-}
+	
+	
+	// MARK: - Notifications
+	
+	private func registerKeyboardNotifications() {
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+	}
+	
+	// MARK: - Keyboard
+	
+	func keyboardWillShow(notification: NSNotification) {
+		let userInfo = notification.userInfo!
+		let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+		let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + 53, 0.0)
+		scrollView.contentInset = contentInsets
+		scrollView.scrollIndicatorInsets = contentInsets
+	}
+	
+	func keyboardWillHide(notification: NSNotification) {
+		let contentInsets = UIEdgeInsetsZero
+		scrollView.contentInset = contentInsets
+		scrollView.scrollIndicatorInsets = contentInsets
+	}
+	
+    }
 
 extension PLLoginViewController: UITextFieldDelegate {
 	

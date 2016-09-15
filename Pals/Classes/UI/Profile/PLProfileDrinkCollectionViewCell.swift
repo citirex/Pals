@@ -11,11 +11,11 @@
 class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var headerView: UIView!
-    @IBOutlet var barTitleLabel: UILabel!
-    @IBOutlet var barCaptionLabel: UILabel!
+    @IBOutlet var cardTitleLabel: UILabel!
+    @IBOutlet var cardCaptionLabel: UILabel!
     @IBOutlet var barPlaceLabel: UILabel!
-    @IBOutlet var drinkQRCodeLabel: UILabel!
-    @IBOutlet var drinkQRCodeImageView: UIImageView!
+    @IBOutlet var cardQRCodeLabel: UILabel!
+    @IBOutlet var cardQRCodeImageView: UIImageView!
     @IBOutlet private var scrollView: UIScrollView!
     
     @IBOutlet var userView: UIView!
@@ -26,7 +26,8 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        layer.cornerRadius = 20
+        contentView.backgroundColor = UIColor.whiteColor()
+        round([.TopLeft, .TopRight], radius: 20)
         userView.layer.cornerRadius = 10
     }
     

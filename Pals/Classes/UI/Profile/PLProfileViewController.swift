@@ -15,8 +15,7 @@ class PLProfileViewController: TGLStackedViewController {
     var collectionHelper = PLProfileCollectionHelper()
     
     lazy var spinner: UIActivityIndicatorView = {
-        let sp = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        return sp
+        return UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     }()
     
     var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
@@ -35,7 +34,6 @@ class PLProfileViewController: TGLStackedViewController {
         super.viewDidLoad()
 
         view.addSubview(spinner)
-        
         setupCollectionView()
         
         profile = PLFacade.profile
@@ -117,11 +115,6 @@ class PLProfileViewController: TGLStackedViewController {
     func setupCollectionForState(state: CurrentTab) {
         currentTab = state
         updateListIndicator()
-//        collectionHelper.collection = (state == .Drinks) ? sampleDrinks : sampleCovers
-//        collectionView?.reloadData({
-//            self.collectionView?.layoutIfNeeded()
-//            self.showCards()
-//        })
     }
     
     func swipeRecognized(sender: UISwipeGestureRecognizer) {
@@ -198,11 +191,10 @@ class PLProfileViewController: TGLStackedViewController {
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         
         
-        var expoItemSize = CGSizeMake(collectionView!.bounds.size.width, 420)
-        if (UIDevice().type == .iPhone4 || UIDevice().type == .iPhone4S) {
-            //|| UIDevice().type == .simulator) {
-            expoItemSize.height = 340
-        }
+        let tabBarHeight = self.tabBarController!.tabBar.frame.height
+        let exposedCardHeight = collectionView!.bounds.size.height - tabBarHeight - 60
+        
+        let expoItemSize = CGSizeMake(collectionView!.bounds.size.width, exposedCardHeight)
         self.exposedItemSize = expoItemSize
         self.stackedLayout!.itemSize = self.exposedItemSize;
         self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);

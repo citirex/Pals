@@ -13,13 +13,12 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="place_profile" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-ii-jgL">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-ii-jgL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="1b4-ii-jgL" secondAttribute="trailing" id="8zK-Xe-A2r"/>
                 <constraint firstItem="1b4-ii-jgL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Iw9-bU-NmY"/>
@@ -33,6 +32,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="place_profile" width="2000" height="1042"/>
+        <image name="no_image" width="1000" height="1000"/>
     </resources>
 </document>

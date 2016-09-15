@@ -1,194 +1,123 @@
 //
-//  PLSettingsTableViewController.swift
+//  PLSettingsViewController.swift
 //  Pals
 //
-//  Created by Vitaliy Delidov on 9/3/16.
+//  Created by Vitaliy Delidov on 9/14/16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import CSStickyHeaderFlowLayout
+import UIKit
+
 
 class PLSettingsViewController: PLViewController {
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    private var layout: CSStickyHeaderFlowLayout? {
-        return collectionView?.collectionViewLayout as? CSStickyHeaderFlowLayout
-    }
 
-    private let headerTitles = ["Cards", "Notifications"]
-    private var cardData  = ["Privat Bank", "**** **** **** 4321"]
-    private let services = ["Notifications", "Account Info"]
-    private let numberOfItems = 2
+    @IBOutlet weak var tableView: UITableView!
     
+    private let numberOfSections = 3
+    private let items = [["Account", "Card Info", "Add Funds", "Notifications"], ["Order History"], ["Help and FAQ", "Terms of Service", "Privacy Policy"]]
+    
+    private let segueIdentifiers = [
+        "ShowEditProfile",
+        "ShowCardInfo",
+        "ShowAddFunds"
+    ]
     
     var user: PLUser!
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reloadLayout()
-        
-        collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
-        automaticallyAdjustsScrollViewInsets = false
-        
         // Setup Cell
-        let nib = UINib(nibName: "PLSettingsCell", bundle: nil)
-        collectionView?.registerNib(nib, forCellWithReuseIdentifier: "SettingsCell")
-        
-        // Setup Header
-        let headerNib = UINib(nibName: "PLSettingsHeader", bundle: nil)
-        collectionView!.registerNib(headerNib,
-                                    forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader,
-                                    withReuseIdentifier: "Header")
-        
-        // Setup Section Header
-        let sectionHeaderNib = UINib(nibName: "PLSettingsSectionHeader", bundle: nil)
-        collectionView!.registerNib(sectionHeaderNib,
-                                    forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                                    withReuseIdentifier: "SectionHeader")
-        
-        // Setup Section Footer
-        let sectionFooterNib = UINib(nibName: "PLSettingsSectionFooter", bundle: nil)
-        collectionView!.registerNib(sectionFooterNib,
-                                    forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
-                                    withReuseIdentifier: "SectionFooter")
+        let nib = UINib(nibName: PLSettingsTableViewCell.nibName, bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: PLSettingsTableViewCell.identifier)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let backButtonItem = PLBackBarButtonItem()
-        navigationItem.leftBarButtonItem = backButtonItem
-        backButtonItem.didTappedBackButton = {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-    }
-
-    private func reloadLayout() {
-        layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 275)
-        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 20)
-        layout!.parallaxHeaderAlwaysOnTop = true
-        layout!.disableStickyHeaders = false
-    }
-
-
     
+        navigationController?.hideTransparentNavigationBar()
+        tabBarController?.tabBar.hidden = false
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+    
+        navigationController?.presentTransparentNavigationBar()
+    }
+    
+    
+    // MARK: - Notifications
 
-    // MARK: - Navigation
-
+    private func notificationsChanged(state: Bool) {
+        print(state)
+    }
+    
+    
+    // MARK: - Navigations
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            switch identifier {
-            case "ShowNotifications":
-                print("Show Notifications View Controller")
-            case "ShowAccountInfo":
-                print("Show Account Info ViewController")
-            default:
-                break
-            }
-        }
-    }
-
-    
-}
-
-
-// MARK: - UICollectionViewDataSource
-
-extension PLSettingsViewController: UICollectionViewDataSource {
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return headerTitles.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfItems
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SettingsCell", forIndexPath: indexPath)
-            as! PLSettingsCell
-
-        switch indexPath.section {
-        case 0:
-            cell.titleLabel.text = cardData[indexPath.row]
-        case 1:
-            cell.titleLabel.text = services[indexPath.row]
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "ShowEditProfile":
+            let editProfileViewController = segue.destinationViewController as! PLEditProfileViewController
+            editProfileViewController.user = user
+        case "ShowCardInfo":
+            tabBarController?.tabBar.hidden = true
+            hidesBottomBarWhenPushed = true
+        case "ShowAddFunds":
+            print("Add Funds")
         default:
             break
         }
-        cell.separatorView.hidden = indexPath.row % 2 != 0 ? true : false
-        
+    }
+
+}
+
+
+// MARK: - UITableViewDataSource
+
+extension PLSettingsViewController: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return numberOfSections
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items[section].count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(PLSettingsTableViewCell.identifier, forIndexPath: indexPath) as! PLSettingsTableViewCell
+        configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            switch indexPath.row {
-            case 0:
-                performSegueWithIdentifier("ShowNotifications", sender: self)
-            case 1:
-                performSegueWithIdentifier("ShowAccountInfo", sender: self)
-            default:
-                break
+    private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        guard let cell = cell as? PLSettingsTableViewCell else { return }
+        if indexPath.section == 0 {
+            if indexPath.row == items[indexPath.section].endIndex - 1 {
+                cell.settingsSwitch.hidden = false
+                cell.selectionStyle = .None
+                cell.accessoryType = .None
+                cell.didChangedNotificationsSwitch = { state in
+                    self.notificationsChanged(state)
+                }
             }
         }
+        cell.settingsLabel?.text = items[indexPath.section][indexPath.row]
     }
-    
+
 }
 
 
-// MARK: - UICollectionViewDelegate
+// MARK: - UITableViewDelegate
 
-extension PLSettingsViewController: UICollectionViewDelegate {
+extension PLSettingsViewController: UITableViewDelegate {
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case CSStickyHeaderParallaxHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! PLSettingsHeader
-            headerView.backgroundImageView.setImageWithURL(user.picture)
-            headerView.userProfileImageView.setImageWithURL(user.picture)
-            headerView.usernameTextField.text = user.name
-            return headerView
-        case UICollectionElementKindSectionHeader:
-            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as! PLSettingsSectionHeader
-            sectionHeader.headerLabel.text = headerTitles[indexPath.section]
-            return sectionHeader
-        case UICollectionElementKindSectionFooter:
-            let sectionFooter = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionFooter", forIndexPath: indexPath) as! PLSettingsSectionFooter
-            sectionFooter.didTappedSignOutButton = {
-                print("Sign Out")
-            }
-            return sectionFooter
-        default:
-            assert(false, "Unsupported supplementary view kind")
-            return UICollectionReusableView()
-        }
-    }
-    
-}
-
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension PLSettingsViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 40)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return section == 1 ? CGSizeMake(view.frame.size.width, 50) : CGSizeZero
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 44)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let identifier = segueIdentifiers[indexPath.row]
+        performSegueWithIdentifier(identifier, sender: self)
     }
 }
-

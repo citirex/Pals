@@ -61,3 +61,13 @@ class PLOrder: PLUniqueObject, PLCellRepresentable {
         return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, QRcode: QRcode, accessCode: accessCode)
     }
 }
+
+struct PLOrderCellData {
+    let user: PLUser
+    let place: PLPlace
+    let isVIP: Bool
+    let message: String
+    let QRcode: String
+    let accessCode: String
+}
+

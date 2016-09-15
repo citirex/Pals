@@ -10,13 +10,23 @@ import Foundation
 
 extension UIView {
     
-    @IBInspectable var rounded: Bool {
+    var rounded: Bool {
         get {
             return layer.cornerRadius > 0
         }
         set {
-            layer.cornerRadius = newValue ? frame.width / 2 : 0
+            layer.cornerRadius = newValue ? frame.height / 2 : 0
             layer.masksToBounds = newValue ? true : false
+        }
+    }
+    
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
         }
     }
     
@@ -58,6 +68,37 @@ extension UIView {
         layer.shadowOpacity = shadowOpacity
         layer.masksToBounds = false
         layer.shouldRasterize = true
+    }
+    
+    
+    // Borders
+    
+    func addTopBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(0, 0, frame.size.width, width)
+        layer.addSublayer(border)
+    }
+    
+    func addRightBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(frame.size.width - width, 0, width, frame.size.height)
+        layer.addSublayer(border)
+    }
+    
+    func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(0, frame.size.height - width, frame.size.width, width)
+        layer.addSublayer(border)
+    }
+    
+    func addLeftBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(0, 0, width, frame.size.height)
+        layer.addSublayer(border)
     }
 
 }

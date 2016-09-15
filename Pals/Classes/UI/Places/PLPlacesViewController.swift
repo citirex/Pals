@@ -23,35 +23,28 @@ class PLPlacesViewController: PLViewController {
         return activityIndicator
     }()
     
-
-    
     lazy var datasource: PLPlacesDatasource = { return PLPlacesDatasource() }()
-  
-    var selectedPlace: PLPlace!
+    private var selectedPlace: PLPlace!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundView?.backgroundColor = UIColor.clearColor()
-//        createActivityIndicator()
+        loadPage()
         configureSearchController()
         
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
-        loadPage()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
     
-    func loadPage() {
+    private func loadPage() {
         activityIndicator.startAnimating()
-        datasource.load { [unowned self] page, error in
+        datasource.load { [unowned self] pages, error in
             if error == nil {
                 let count = self.datasource.count
-                let lastLoadedCount = page.count
+                let lastLoadedCount = pages.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()
                     for i in count - lastLoadedCount..<count {
@@ -68,44 +61,28 @@ class PLPlacesViewController: PLViewController {
         }
     }
     
+    
     // MARK: - Initialize search controller
     
-    func configureSearchController() {
+    private func configureSearchController() {
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         resultsController = UITableViewController(style: .Grouped)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
+        
         searchController = UISearchController(searchResultsController: resultsController)
         searchController.searchResultsUpdater = self
+        searchController.searchBar.barTintColor = mainColor
+        searchController.searchBar.tintColor = .whiteColor()
+        
         tableView.backgroundView = UIView()
         tableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.barTintColor = mainColor
-        searchController.searchBar.tintColor = UIColor.whiteColor()
+
         definesPresentationContext = true
     }
     
-    // MARK: - Alert
-    
-    func showAlert() {
-        let alertController = UIAlertController(
-            title: "Background Location Access Disabled",
-            message: "In order to be notified about adorable kittens near you, please open this app's settings and set location access to 'Always'.",
-            preferredStyle: .Alert)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        let openAction = UIAlertAction(title: "Open Settings", style: .Default) { action in
-            if let url = NSURL(string: UIApplicationOpenSettingsURLString) {
-                UIApplication.sharedApplication().openURL(url)
-            }
-        }
-        alertController.addAction(openAction)
-        presentViewController(alertController, animated: true, completion: nil)
-    }
-
 
     // MARK: - Navigation
     
@@ -152,14 +129,15 @@ extension PLPlacesViewController: UITableViewDataSource {
 // MARK: - Table view delegate
 
 extension PLPlacesViewController: UITableViewDelegate {
+    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == datasource.count - 1 {
-            activityIndicator.startAnimating()
             loadPage()
         }
     }
     
 }
+
 
 // MARK: - UISearchResultsUpdating
 

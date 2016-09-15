@@ -34,11 +34,23 @@ class PLDrink : PLUniqueObject, PLCellRepresentable {
     }
     
     override func serialize() -> [String : AnyObject] {
-        return [:]
+        var dic = [String : AnyObject]()
+        dic[PLKeys.name.string] = name
+        dic[PLKeys.price.string] = price
+        dic[PLKeys.type.string] = type.rawValue
+        dic.append(super.serialize())
+        return dic
     }
     
     var cellData: PLDrinkCellData {
         return PLDrinkCellData(drinkId: id, name: name, price: price, type: type)
     }
     
+}
+
+struct PLDrinkCellData {
+    var drinkId: UInt64
+    var name: String
+    var price: Float
+    var type: DrinkType
 }
