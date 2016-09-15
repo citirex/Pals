@@ -22,8 +22,19 @@ class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(drinkCellIdentifier, forIndexPath: indexPath) as! PLProfileDrinkCollectionViewCell
         if let order = datasource?[indexPath.row].cellData {
-            cell.contentView.backgroundColor = UIColor.whiteColor()
-            cell.headerView.backgroundColor = generateRandomColor()
+            
+            if order.isVIP == true {
+                cell.headerView.backgroundColor = kPalsOrderCardVIPColor
+            } else if (indexPath.row % 4 == 1) { //FIXME: myself order
+                cell.headerView.backgroundColor = kPalsOrderCardMyselfColor
+            } else if (indexPath.row % 4 == 2) {
+                cell.headerView.backgroundColor = kPalsOrderCardDrinkStrongColor
+            } else if (indexPath.row % 4 == 3) {
+                cell.headerView.backgroundColor = kPalsOrderCardDrinkLightColor
+            } else if (indexPath.row % 4 == 0) {
+                cell.headerView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
+            }
+            
             cell.cardTitleLabel.text = order.place.name
             cell.cardCaptionLabel.text = order.place.musicGengres
             cell.barPlaceLabel.text = order.place.address

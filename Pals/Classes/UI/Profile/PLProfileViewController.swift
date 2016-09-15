@@ -15,8 +15,7 @@ class PLProfileViewController: TGLStackedViewController {
     var collectionHelper = PLProfileCollectionHelper()
     
     lazy var spinner: UIActivityIndicatorView = {
-        let sp = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        return sp
+        return UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     }()
     
     var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView

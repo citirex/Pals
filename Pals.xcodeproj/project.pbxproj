@@ -70,6 +70,8 @@
 		24C20C681D8837F70040F2F5 /* drinks3.json in Resources */ = {isa = PBXBuildFile; fileRef = 24C20C651D8837F70040F2F5 /* drinks3.json */; };
 		24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */; };
 		24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */; };
+		24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */; };
+		24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */; };
 		24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */; };
 		24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */; };
 		D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */; };
@@ -113,7 +115,6 @@
 		E8DA8B841D8832E8008782E5 /* TGLStackedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7F1D8832E8008782E5 /* TGLStackedLayout.m */; };
 		E8DA8B851D8832E8008782E5 /* TGLStackedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B811D8832E8008782E5 /* TGLStackedViewController.m */; };
 		E8DA8B8F1D88334F008782E5 /* PLCollectionParalaxLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */; };
-		E8DA8B901D88334F008782E5 /* PLOrderCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B881D88334F008782E5 /* PLOrderCellData.swift */; };
 		E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */; };
 		E8DA8B921D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */; };
 		E8DA8B931D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */; };
@@ -191,6 +192,8 @@
 		24C20C651D8837F70040F2F5 /* drinks3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drinks3.json; sourceTree = "<group>"; };
 		24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCheckoutOrder.swift; sourceTree = "<group>"; };
 		24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkset.swift; sourceTree = "<group>"; };
+		24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCoverCell.swift; sourceTree = "<group>"; };
+		24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCoverCell.xib; sourceTree = "<group>"; };
 		24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderAnimableVipView.swift; sourceTree = "<group>"; };
 		24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderAnimableVipView.xib; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,7 +245,6 @@
 		E8DA8B801D8832E8008782E5 /* TGLStackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLStackedViewController.h; sourceTree = "<group>"; };
 		E8DA8B811D8832E8008782E5 /* TGLStackedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLStackedViewController.m; sourceTree = "<group>"; };
 		E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCollectionParalaxLayout.swift; sourceTree = "<group>"; };
-		E8DA8B881D88334F008782E5 /* PLOrderCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCellData.swift; sourceTree = "<group>"; };
 		E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
 		E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileDrinkCollectionViewCell.swift; sourceTree = "<group>"; };
 		E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -418,6 +420,8 @@
 			children = (
 				2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */,
 				2480F8A81D813E730095995F /* PLOrderDrinkCell.xib */,
+				24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */,
+				24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */,
 				2480F8A91D813E730095995F /* PLOrderStillHeader.swift */,
 				2480F8AA1D813E730095995F /* PLOrderStillHeader.xib */,
 				2480F8AB1D813E730095995F /* PLOrdeStickyHeader.swift */,
@@ -694,7 +698,6 @@
 			children = (
 				E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */,
 				E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */,
-				E8DA8B881D88334F008782E5 /* PLOrderCellData.swift */,
 				E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */,
 				E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */,
 				E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */,
@@ -819,6 +822,7 @@
 				D4CEC2501D818B7300D4CD08 /* places3.json in Resources */,
 				D4950A9B1D82DAE800F48F4E /* orders0.json in Resources */,
 				2480F91E1D813E730095995F /* friends3.json in Resources */,
+				24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */,
 				D4950A9E1D82DAE800F48F4E /* orders3.json in Resources */,
 				24C20C671D8837F70040F2F5 /* drinks2.json in Resources */,
 				2480F9091D813E730095995F /* PLPlaceTableViewCell.xib in Resources */,
@@ -896,6 +900,7 @@
 				24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
+				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
 				E8DA8B851D8832E8008782E5 /* TGLStackedViewController.m in Sources */,
 				2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */,
@@ -927,7 +932,6 @@
 				2480F8E81D813E730095995F /* PLKeys.swift in Sources */,
 				D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */,
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
-				E8DA8B901D88334F008782E5 /* PLOrderCellData.swift in Sources */,
 				2480F9081D813E730095995F /* PLPlaceTableViewCell.swift in Sources */,
 				E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,

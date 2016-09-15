@@ -14,7 +14,7 @@ class PLOrderViewController: PLViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
 
-    var order: PLOrder? = nil
+    var order: PLCheckoutOrder? = nil
     var user: PLUser? = nil
     var place: PLPlace? = nil {
         didSet{
@@ -27,7 +27,7 @@ class PLOrderViewController: PLViewController {
     }
     var message: String? = nil
     var isVip = false
-    var orderDrinks = [UInt64: Int]() {
+    var orderDrinks = [String: String]() {
         didSet{
             orderDrinks.count > 0 ? showCheckoutButton() : hideCheckoutButton()
         }
@@ -193,10 +193,17 @@ class PLOrderViewController: PLViewController {
         let qrCode = String.randomAlphaNumericString(8)
         let accessCode = String.randomAlphaNumericString(8)
         
-        order = PLOrder(withUser: selectedUser, place: selectedPlace, isVip: isVip, message: message, qrCode: qrCode, accessCode: accessCode)
-        order?.drinks = orderDrinks
+
         
-        print(order.debugDescription)
+        order = PLCheckoutOrder(qrCode: qrCode,
+                                       accessCode: accessCode,
+                                       user: selectedUser,
+                                       place: selectedPlace,
+                                       drinks: orderDrinks,
+                                       isVip: isVip,
+                                       message: message)
+        
+        print(order?.serialize())
         
         order = nil
         orderDrinks.removeAll()
@@ -217,11 +224,11 @@ class PLOrderViewController: PLViewController {
 extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, UITextViewDelegate {
     
     //MARK: Order drinks count
-    func updateOrderWith(drink: UInt64, andCount count: Int) {
+    func updateOrderWith(drink: UInt64, andCount count: UInt64) {
         if count == 0 {
-            orderDrinks.removeValueForKey(drink)
+            orderDrinks.removeValueForKey(String(drink))
         } else {
-            orderDrinks.updateValue(count, forKey: drink)
+            orderDrinks.updateValue(String(count), forKey: String(drink))
         }
     }
     
@@ -304,8 +311,8 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         
         cell.delegate = self
         cell.setupWith(drink)
-        if let count = orderDrinks[drink.drinkId] {
-            cell.drinkCount = count
+        if let count = orderDrinks[String(drink.drinkId)] {
+            cell.drinkCount = UInt64(count)!
         }
 
         return cell
