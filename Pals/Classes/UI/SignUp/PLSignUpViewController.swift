@@ -16,7 +16,7 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var textFieldsContainer: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+
     private let imagePicker = UIImagePickerController()
     private let margin: CGFloat = 20
     

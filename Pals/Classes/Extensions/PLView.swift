@@ -10,13 +10,23 @@ import Foundation
 
 extension UIView {
     
-    @IBInspectable var rounded: Bool {
+    var rounded: Bool {
         get {
             return layer.cornerRadius > 0
         }
         set {
-            layer.cornerRadius = newValue ? frame.width / 2 : 0
+            layer.cornerRadius = newValue ? frame.height / 2 : 0
             layer.masksToBounds = newValue ? true : false
+        }
+    }
+    
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
         }
     }
     
