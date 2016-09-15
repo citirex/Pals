@@ -163,8 +163,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
 		
-		print("filter count: \(filtered.count)")
-		
 		let friend = (filtered.count > 0) ? filtered[indexPath.row] :
 			datasource[indexPath.row]
 		
