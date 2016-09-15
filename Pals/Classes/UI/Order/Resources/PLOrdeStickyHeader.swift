@@ -14,6 +14,8 @@ protocol OrderCurrentTabDelegate: class {
 
 class PLOrdeStickyHeader: UICollectionViewCell {
     
+    static let height: CGFloat = 70
+    
     @IBOutlet private var coverButton: UIButton!
     @IBOutlet private var drinkButton: UIButton!
     
@@ -44,10 +46,7 @@ class PLOrdeStickyHeader: UICollectionViewCell {
         setupGestureForDirection(.Left)
         setupGestureForDirection(.Right)
         //FIXME: Memory leak?
-        
-        coverButton.round([.TopLeft], radius: 12)
-        drinkButton.round([.TopRight], radius: 12)
-    }
+        }
     
     @objc private func swipeRecognized(sender: UISwipeGestureRecognizer) {
         switch sender.direction {

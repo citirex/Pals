@@ -16,10 +16,15 @@ protocol OrderHeaderBehaviourDelegate: class {
 
 class PLOrderStillHeader: UICollectionViewCell {
     
-    @IBOutlet var userNameButton: UIButton!
-    @IBOutlet var placeNameButton: UIButton!
-    @IBOutlet var messageTextView: UITextView!
+    static let height: CGFloat = 88
+
+    @IBOutlet private var userNameLabel: UILabel!
+    @IBOutlet private var placeNameLabel: UILabel!
     
+    weak var delegate: OrderHeaderBehaviourDelegate?
+    
+    
+    //MARK: actions
     @IBAction private func userNameButtonPressed(sender: UIButton) {
         delegate?.userNamePressed(sender)
     }
@@ -28,6 +33,23 @@ class PLOrderStillHeader: UICollectionViewCell {
         delegate?.placeNamePressed(sender)
     }
     
-    weak var delegate: OrderHeaderBehaviourDelegate?
+    //MARK: getters
+    var userName: String? {
+        get{
+            return userNameLabel.text
+        }
+        set{
+            userNameLabel.text = newValue
+        }
+    }
+    
+    var placeName: String? {
+        get{
+            return placeNameLabel.text
+        }
+        set{
+            placeNameLabel.text = newValue
+        }
+    }
     
 }

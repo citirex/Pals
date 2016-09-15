@@ -14,46 +14,41 @@ protocol OrderDrinksCounterDelegate: class {
 
 class PLOrderDrinkCell: UICollectionViewCell {
     
-    @IBOutlet var drinkNameLabel: UILabel!
-    @IBOutlet var drinkPriceLabel: UILabel!
+    static let height: CGFloat = 112
     
-    @IBOutlet var plusLabel: UILabel!
-    @IBOutlet var minusLabel: UILabel!
+    @IBOutlet private var drinkNameLabel: UILabel!
+    @IBOutlet private var drinkPriceLabel: UILabel!
     
-    @IBOutlet var drinkCountLabel: UILabel!
+    @IBOutlet private var drinkCountLabel: UILabel!
+    
+    @IBOutlet private var bgView: UIView!
     
     private var drinkID: UInt64? = nil
     
     weak var delegate: OrderDrinksCounterDelegate?
     
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        bgView.layer.cornerRadius = 10
+        
+    }
     
     func setupWith(drink: PLDrinkCellData) {
         drinkID = drink.drinkId
         drinkNameLabel.text = drink.name
         drinkPriceLabel.text = (drink.price > 0) ? String(format: "$%2.f", drink.price) : "Specify"
-    }
-    
-    var drinkCount: UInt64 {
-        get{
-            return UInt64(drinkCountLabel.text!)!
+        switch drink.type {
+        case DrinkType.Light:
+            bgView.backgroundColor = kPalsOrderCardDrinkLightColor
+        case DrinkType.Strong:
+            bgView.backgroundColor = kPalsOrderCardDrinkStrongColor
+        case DrinkType.Undefined:
+            bgView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
         }
-        set{
-            drinkCountLabel.text = "\(newValue)"
-        }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        plusLabel.layer.cornerRadius = 14
-        minusLabel.layer.cornerRadius = 14
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        drinkCount = 0
-    }
-    
+    //MARK: Actions
     @IBAction func minusButtonPressed(sender: UIButton) {
         if drinkCount > 0 {
             drinkCount -= 1
@@ -65,4 +60,22 @@ class PLOrderDrinkCell: UICollectionViewCell {
         drinkCount += 1
         delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
     }
+    
+    
+    //MARK: Getters
+    var drinkCount: UInt64 {
+        get{
+            return UInt64(drinkCountLabel.text!)!
+        }
+        set{
+            drinkCountLabel.text = "\(newValue)"
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        drinkCount = 0
+    }
+    
+    
 }
