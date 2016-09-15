@@ -39,7 +39,7 @@ class PLOrderViewController: PLViewController {
     var firstLaunch: Bool = true
     var drinksDatasource = PLDrinksDatasource()
     
-    private var currentTab: CurrentTab = .Drinks
+    var currentTab: CurrentTab = .Drinks
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
     private var vipButton: UIBarButtonItem? = nil
     

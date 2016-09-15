@@ -6,12 +6,18 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+enum SectionOrder {
+    case Cover
+    case Drinks
+}
+
 class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: UIImageView!
     
     var friend: PLUser!
+    private var sectionOrder: SectionOrder!
     
 	
     override func viewDidLoad() {
@@ -49,18 +55,23 @@ class PLFriendProfileViewController: PLViewController {
     // MARK: - Actions
     
     @IBAction func sendCoverButtonTapped(sender: UIButton) {
-        print("Send cover")
+        sectionOrder = .Cover
+        performSegueWithIdentifier("ShowOrder", sender: self)
     }
 
     @IBAction func sendADrinkButtonTapped(sender: UIButton) {
-        print("Send a drink")
+        sectionOrder = .Drinks
+        performSegueWithIdentifier("ShowOrder", sender: self)
     }
     
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        guard segue.identifier == "ShowOrder" else { return }
+        let orderViewController = segue.destinationViewController as! PLOrderViewController
+        orderViewController.user = friend
+//        orderViewController.currentTab = sectionOrder
     }
     
     

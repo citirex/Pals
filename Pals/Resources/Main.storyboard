@@ -477,7 +477,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <blurEffect style="dark"/>
+                                <blurEffect style="light"/>
                             </visualEffectView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2">
                                 <rect key="frame" x="95" y="95" width="130" height="130"/>
@@ -517,7 +517,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WW4-eA-eO5" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" id="0TP-WE-p3C"/>
                             <constraint firstItem="6s6-7c-3QW" firstAttribute="leading" secondItem="rMb-Zw-uOS" secondAttribute="leading" id="0sj-pn-wyH"/>
@@ -541,6 +541,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4NI-ne-4iy">
+                        <barButtonItem key="backBarButtonItem" title=" " id="9MO-wJ-53a"/>
                         <barButtonItem key="rightBarButtonItem" image="dots" id="AKF-lV-M1l">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -550,6 +551,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
+                        <segue destination="Cmd-gA-94i" kind="push" identifier="ShowOrder" id="W4C-oA-n8n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1202,6 +1204,6 @@
         <image name="white_compass" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7t9-ty-AuM"/>
+        <segue reference="W4C-oA-n8n"/>
     </inferredMetricsTieBreakers>
 </document>
