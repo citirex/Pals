@@ -26,7 +26,7 @@ class PLBackBarButtonItem: UIBarButtonItem {
     func setup() {
         let button = UIButton()
         button.setImage(UIImage(named: "white_left_arrow"), forState: .Normal)
-        button.frame = CGRectMake(0, 0, 30, 30)
+        button.frame = CGRectMake(0, 0, 22, 22)
         button.addTarget(self, action: #selector(backButtonTapped(_:)), forControlEvents: .TouchUpInside)
         button.layer.shadowOpacity = 1.0
         button.layer.shadowRadius = 5

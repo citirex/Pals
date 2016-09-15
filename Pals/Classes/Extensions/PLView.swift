@@ -69,5 +69,36 @@ extension UIView {
         layer.masksToBounds = false
         layer.shouldRasterize = true
     }
+    
+    
+    // Borders
+    
+    func addTopBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(0, 0, frame.size.width, width)
+        layer.addSublayer(border)
+    }
+    
+    func addRightBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(frame.size.width - width, 0, width, frame.size.height)
+        layer.addSublayer(border)
+    }
+    
+    func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(0, frame.size.height - width, frame.size.width, width)
+        layer.addSublayer(border)
+    }
+    
+    func addLeftBorderWithColor(color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.CGColor
+        border.frame = CGRectMake(0, 0, width, frame.size.height)
+        layer.addSublayer(border)
+    }
 
 }

@@ -26,9 +26,7 @@ class PLPlaceProfileViewController: PLViewController {
         setupCollectionView()
         
         let backBarButtonItem = PLBackBarButtonItem()
-//        navigationItem.leftBarButtonItem = backButtonItem
-        navigationItem.backBarButtonItem = backBarButtonItem
-//        navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButtonItem
+        navigationItem.leftBarButtonItem = backBarButtonItem
         backBarButtonItem.didTappedBackButton = {
             self.navigationController?.popViewControllerAnimated(true)
         }

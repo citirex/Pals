@@ -26,4 +26,8 @@ extension UIColor {
         let color = UIColor(r: r, g: g, b: b)
         return color
     }
+    
+    class func completeButtonTintColor() -> UIColor {
+        return UIColor(r: 214.0, g: 46.0, b: 225.0)
+    }
 }

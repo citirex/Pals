@@ -106,6 +106,7 @@
 		E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDDB1D819A6300D8C130 /* PLConstants.swift */; };
 		E83B4E4F1D87364E002E72F6 /* PLBackBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */; };
 		E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */; };
+		E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */; };
 		E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */; };
 		E8BB9A7A1D89347D00DD6987 /* PLSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A781D89347D00DD6987 /* PLSettingsTableViewCell.swift */; };
 		E8BB9A7B1D89347D00DD6987 /* PLSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BB9A791D89347D00DD6987 /* PLSettingsTableViewCell.xib */; };
@@ -232,6 +233,7 @@
 		E829DDDB1D819A6300D8C130 /* PLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLConstants.swift; sourceTree = "<group>"; };
 		E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLBackBarButtonItem.swift; sourceTree = "<group>"; };
 		E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationDistance.swift; sourceTree = "<group>"; };
+		E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLCardInfoViewController.swift; path = "Card Info/PLCardInfoViewController.swift"; sourceTree = "<group>"; };
 		E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsViewController.swift; sourceTree = "<group>"; };
 		E8BB9A781D89347D00DD6987 /* PLSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		E8BB9A791D89347D00DD6987 /* PLSettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingsTableViewCell.xib; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				E8DA8B861D88334F008782E5 /* Profile */,
 				2480F8BF1D813E730095995F /* Settings */,
 				E8BB9A6A1D892D3200DD6987 /* Edit Profile */,
+				E886AFAA1D8A98790014DF4D /* Card Info */,
 				2480F8C11D813E730095995F /* SignUp */,
 			);
 			path = UI;
@@ -650,6 +653,14 @@
 				2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		E886AFAA1D8A98790014DF4D /* Card Info */ = {
+			isa = PBXGroup;
+			children = (
+				E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */,
+			);
+			name = "Card Info";
 			sourceTree = "<group>";
 		};
 		E8BB9A6A1D892D3200DD6987 /* Edit Profile */ = {
@@ -958,6 +969,7 @@
 				2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */,
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
 				E8DA8B841D8832E8008782E5 /* TGLStackedLayout.m in Sources */,
+				E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */,
 				D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */,
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,

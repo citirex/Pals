@@ -37,6 +37,7 @@ class PLSettingsViewController: PLViewController {
         super.viewWillAppear(animated)
     
         navigationController?.hideTransparentNavigationBar()
+        tabBarController?.tabBar.hidden = false
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -62,7 +63,8 @@ class PLSettingsViewController: PLViewController {
             let editProfileViewController = segue.destinationViewController as! PLEditProfileViewController
             editProfileViewController.user = user
         case "ShowCardInfo":
-            print("ShowCardInfo")
+            tabBarController?.tabBar.hidden = true
+            hidesBottomBarWhenPushed = true
         case "ShowAddFunds":
             print("Add Funds")
         default:
@@ -115,13 +117,7 @@ extension PLSettingsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                let identifier = segueIdentifiers[indexPath.row]
-                performSegueWithIdentifier(identifier, sender: self)
-            }
-        }
-        
+        let identifier = segueIdentifiers[indexPath.row]
+        performSegueWithIdentifier(identifier, sender: self)
     }
 }
