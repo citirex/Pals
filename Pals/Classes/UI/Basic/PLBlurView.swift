@@ -17,15 +17,24 @@ class PLBlurImageView: UIImageView {
         return q
     }()
     
-    func addBlur(image: UIImage, completion: (image: UIImage)->Bool) {
+    func addBlur(image: UIImage) {
+        addBlur(image, completion: nil)
+    }
+    
+    func addBlur(image: UIImage, completion: ((image: UIImage)->Bool)?) {
         queue.cancelAllOperations()
         let operation = PLBlurTask(image: image, view: self)
         operation.completionBlock = { [unowned self, operation] in
             if let image = operation.blurredImage {
                 dispatch_async(dispatch_get_main_queue(), {
-                    if completion(image: image) {
+                    if completion != nil {
+                        if completion!(image: image) {
+                            self.image = image
+                        }
+                    } else {
                         self.image = image
                     }
+
                 })
             }
         }
