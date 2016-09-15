@@ -21,7 +21,7 @@ class PLPlaceProfileCell: UICollectionViewCell {
     
     
     override func drawRect(rect: CGRect) {
-        let startingPoint = CGPoint(x: CGRectGetMinX(rect) - offset, y: CGRectGetMaxY(rect))
+        let startingPoint = CGPoint(x: CGRectGetMinX(rect) + offset, y: CGRectGetMaxY(rect))
         let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
         
         let path = UIBezierPath()
