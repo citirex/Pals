@@ -15,6 +15,7 @@ class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var friend: PLUser!
     private var sectionOrder: SectionOrder!
@@ -74,5 +75,24 @@ class PLFriendProfileViewController: PLViewController {
 //        orderViewController.currentTab = sectionOrder
     }
     
+    
+    // MARK: - Layout
+    
+    override func viewWillLayoutSubviews() {
+        let scrollViewBounds = scrollView.bounds
+        let contentViewBounds = view.bounds
+        
+        var scrollViewInsets = UIEdgeInsetsZero
+        scrollViewInsets.top = scrollViewBounds.size.height / 2
+        scrollViewInsets.top -= contentViewBounds.size.height / 2
+        
+        scrollViewInsets.bottom = scrollViewBounds.size.height / 2
+        scrollViewInsets.bottom -= contentViewBounds.size.height / 2
+        scrollViewInsets.bottom += 1
+        
+        scrollView.contentInset = scrollViewInsets
+        
+        super.viewWillLayoutSubviews()
+    }
     
 }

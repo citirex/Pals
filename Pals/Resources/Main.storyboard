@@ -467,10 +467,10 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbH-yy-e8r">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="fish_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="IU0-qZ-LiT">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="IU0-qZ-LiT">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                     </imageView>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-eA-eO5">
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-eA-eO5">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aQ7-Gj-h0R">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
@@ -478,71 +478,72 @@
                                         </view>
                                         <blurEffect style="light"/>
                                     </visualEffectView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2">
+                                        <rect key="frame" x="95" y="75" width="130" height="130"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="130" id="8dg-Pf-2aQ"/>
+                                            <constraint firstAttribute="width" constant="130" id="C2v-eP-fQH"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-4Y-hBs" userLabel="Separator">
+                                        <rect key="frame" x="22" y="285" width="276" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="fSm-4l-n74"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMb-Zw-uOS">
+                                        <rect key="frame" x="110" y="326" width="100" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Send Cover">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendCoverButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="rSr-rx-qzr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6s6-7c-3QW">
+                                        <rect key="frame" x="110" y="410" width="100" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Send a Drink">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendADrinkButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="8l5-pP-ESw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="80" id="0mB-xy-Ykk"/>
+                                    <constraint firstAttribute="trailing" secondItem="QdR-4Y-hBs" secondAttribute="trailing" constant="22" id="23G-cX-4PK"/>
+                                    <constraint firstItem="rMb-Zw-uOS" firstAttribute="leading" secondItem="6s6-7c-3QW" secondAttribute="leading" id="2TF-ed-4q6"/>
+                                    <constraint firstItem="6s6-7c-3QW" firstAttribute="top" secondItem="rMb-Zw-uOS" secondAttribute="bottom" constant="51" id="7co-ZJ-w7J"/>
+                                    <constraint firstItem="QdR-4Y-hBs" firstAttribute="leading" secondItem="QbH-yy-e8r" secondAttribute="leading" constant="22" id="8vm-9O-DLB"/>
                                     <constraint firstAttribute="trailing" secondItem="IU0-qZ-LiT" secondAttribute="trailing" id="Cpm-8m-M09"/>
                                     <constraint firstAttribute="trailing" secondItem="WW4-eA-eO5" secondAttribute="trailing" id="Guh-ma-Sex"/>
                                     <constraint firstItem="IU0-qZ-LiT" firstAttribute="top" secondItem="QbH-yy-e8r" secondAttribute="top" id="Jyo-yE-2SH"/>
                                     <constraint firstAttribute="bottom" secondItem="WW4-eA-eO5" secondAttribute="bottom" id="P1q-ko-cra"/>
+                                    <constraint firstAttribute="bottom" secondItem="6s6-7c-3QW" secondAttribute="bottom" constant="76" id="Pqe-tj-Sg6"/>
+                                    <constraint firstItem="rMb-Zw-uOS" firstAttribute="top" secondItem="QdR-4Y-hBs" secondAttribute="bottom" constant="40" id="QOL-Ld-PFf"/>
+                                    <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerX" secondItem="QbH-yy-e8r" secondAttribute="centerX" id="WEu-wa-zUN"/>
                                     <constraint firstItem="IU0-qZ-LiT" firstAttribute="leading" secondItem="QbH-yy-e8r" secondAttribute="leading" id="ZOV-Ok-X70"/>
                                     <constraint firstItem="WW4-eA-eO5" firstAttribute="leading" secondItem="QbH-yy-e8r" secondAttribute="leading" id="dRP-7J-Q0e"/>
+                                    <constraint firstItem="FiR-Kx-BL2" firstAttribute="top" secondItem="QbH-yy-e8r" secondAttribute="top" constant="75" id="dbX-tN-jCq"/>
                                     <constraint firstItem="WW4-eA-eO5" firstAttribute="top" secondItem="QbH-yy-e8r" secondAttribute="top" id="hyw-DF-Zn7"/>
+                                    <constraint firstItem="rMb-Zw-uOS" firstAttribute="centerX" secondItem="QdR-4Y-hBs" secondAttribute="centerX" id="j1a-fi-zK2"/>
+                                    <constraint firstItem="rMb-Zw-uOS" firstAttribute="centerX" secondItem="FiR-Kx-BL2" secondAttribute="centerX" id="jdi-Rl-hGc"/>
                                     <constraint firstAttribute="bottom" secondItem="IU0-qZ-LiT" secondAttribute="bottom" id="qMR-ZF-c5c"/>
+                                    <constraint firstItem="rMb-Zw-uOS" firstAttribute="trailing" secondItem="6s6-7c-3QW" secondAttribute="trailing" id="wer-Lm-uWv"/>
                                 </constraints>
                             </scrollView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2">
-                                <rect key="frame" x="95" y="95" width="130" height="130"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="8dg-Pf-2aQ"/>
-                                    <constraint firstAttribute="width" constant="130" id="C2v-eP-fQH"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-4Y-hBs" userLabel="Separator">
-                                <rect key="frame" x="22" y="285" width="276" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="fSm-4l-n74"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMb-Zw-uOS">
-                                <rect key="frame" x="110" y="326" width="100" height="33"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Send Cover">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendCoverButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="rSr-rx-qzr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6s6-7c-3QW">
-                                <rect key="frame" x="110" y="409" width="100" height="33"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Send a Drink">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendADrinkButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="8l5-pP-ESw"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6s6-7c-3QW" firstAttribute="leading" secondItem="rMb-Zw-uOS" secondAttribute="leading" id="0sj-pn-wyH"/>
-                            <constraint firstItem="6s6-7c-3QW" firstAttribute="top" secondItem="rMb-Zw-uOS" secondAttribute="bottom" constant="50" id="5JA-Tg-SaS"/>
-                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="6nm-6u-Ptc"/>
-                            <constraint firstItem="6s6-7c-3QW" firstAttribute="trailing" secondItem="rMb-Zw-uOS" secondAttribute="trailing" id="7vm-Zw-fM3"/>
                             <constraint firstItem="QbH-yy-e8r" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" id="ALJ-bk-oNR"/>
                             <constraint firstItem="KuD-LH-J5b" firstAttribute="top" secondItem="QbH-yy-e8r" secondAttribute="bottom" id="FuF-Nc-Md8"/>
-                            <constraint firstItem="rMb-Zw-uOS" firstAttribute="top" secondItem="QdR-4Y-hBs" secondAttribute="bottom" constant="40" id="Rq2-7G-a7S"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="QdR-4Y-hBs" secondAttribute="trailing" constant="6" id="b89-Yt-pFN"/>
-                            <constraint firstItem="6s6-7c-3QW" firstAttribute="height" secondItem="rMb-Zw-uOS" secondAttribute="height" id="bfv-oo-9nl"/>
-                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="60" id="bhV-ih-nOB"/>
-                            <constraint firstItem="rMb-Zw-uOS" firstAttribute="centerX" secondItem="QdR-4Y-hBs" secondAttribute="centerX" id="h3l-v2-Gth"/>
-                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="top" secondItem="xAn-zJ-Nh1" secondAttribute="bottom" constant="75" id="hE0-fD-Rpi"/>
-                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leadingMargin" constant="6" id="mDh-4n-Xus"/>
                             <constraint firstItem="QbH-yy-e8r" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" id="mjK-V1-d9M"/>
                             <constraint firstAttribute="trailing" secondItem="QbH-yy-e8r" secondAttribute="trailing" id="wBB-2T-GEg"/>
                         </constraints>
@@ -558,6 +559,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
+                        <outlet property="scrollView" destination="QbH-yy-e8r" id="hCD-cy-aoe"/>
                         <segue destination="Cmd-gA-94i" kind="push" identifier="ShowOrder" id="W4C-oA-n8n"/>
                     </connections>
                 </viewController>
