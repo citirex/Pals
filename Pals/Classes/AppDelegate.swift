@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
+        application.statusBarStyle = .LightContent
         
         return true 
     }

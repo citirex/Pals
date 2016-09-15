@@ -115,11 +115,6 @@ class PLSignUpViewController: PLViewController {
     private func validatePassword(pass: String) -> Bool {
         return pass == confirmPasswordTextField.text!.trim()
     }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
 }
 
 

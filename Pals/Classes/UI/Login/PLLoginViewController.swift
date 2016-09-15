@@ -1,4 +1,4 @@
-//
+ //
 //  PLLoginViewController.swift
 //  Pals
 //
@@ -22,19 +22,22 @@ class PLLoginViewController: PLViewController {
     @IBOutlet var loginViewBotC: NSLayoutConstraint?
     @IBOutlet var logoTopC: NSLayoutConstraint?
     
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
+    
 	@IBAction func loginButtonClicked(sender: AnyObject) {
         let userName = loginTextField.text!
         let password = passTextField.text!
         if userName.isEmpty {
-//			PLShowAlert("Login error!", message: "Please enter your login.")
+			PLShowAlert("Login error!", message: "Please enter your login.")
         } else if password.isEmpty {
-//			PLShowAlert("Login error!", message: "Please enter your password.")
+			PLShowAlert("Login error!", message: "Please enter your password.")
         } else {
 			spinner!.startAnimating()
             PLFacade.login(userName, password: password, completion: { (error) in
                 if error != nil {
-//					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
-					PLShowAlert(message: "Wrong Username/Password!")
+					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
 					self.spinner?.stopAnimating()
                 } else {
                     self.showMainScreen()
@@ -84,25 +87,18 @@ class PLLoginViewController: PLViewController {
 		presentViewController(vc, animated: true, completion: nil)
 	}
 	
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
-	}
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		loginTextField.delegate = self
 		passTextField.delegate = self
 		
-		anime()
-		
+		animateSplashToLogin()
 		let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
 		view.addGestureRecognizer(dismissTap)
-		
-        }
+    }
 	
-	
-		func anime() {
+		func animateSplashToLogin() {
 			self.logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (self.logoImage.bounds.height / 2)
 			self.loginViewBotC!.constant = -(self.loginView.bounds.height * 2)
 			self.view.layoutIfNeeded()
@@ -111,8 +107,7 @@ class PLLoginViewController: PLViewController {
 				self.loginViewBotC?.constant = 0
 				self.logoTopC?.constant = 50
 					self.view.layoutIfNeeded()
-				}, completion: {_ in
-			})
+            }, completion: nil)
 		}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -132,7 +127,6 @@ class PLLoginViewController: PLViewController {
 	func dismissKeyboard(sender: UITapGestureRecognizer) {
 		view.endEditing(true)
 	}
-	
 	
 	// MARK: - Notifications
 	
@@ -157,7 +151,7 @@ class PLLoginViewController: PLViewController {
 		scrollView.scrollIndicatorInsets = contentInsets
 	}
 	
-    }
+}
 
 extension PLLoginViewController: UITextFieldDelegate {
 	
