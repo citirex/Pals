@@ -26,6 +26,7 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        contentView.backgroundColor = UIColor.whiteColor()
         round([.TopLeft, .TopRight], radius: 20)
         userView.layer.cornerRadius = 10
     }

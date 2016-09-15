@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OrderDrinksCounterDelegate: class {
-    func updateOrderWith(drink:UInt64, andCount count: Int)
+    func updateOrderWith(drink:UInt64, andCount count: UInt64)
 }
 
 class PLOrderDrinkCell: UICollectionViewCell {
@@ -34,9 +34,9 @@ class PLOrderDrinkCell: UICollectionViewCell {
         drinkPriceLabel.text = (drink.price > 0) ? String(format: "$%2.f", drink.price) : "Specify"
     }
     
-    var drinkCount: Int {
+    var drinkCount: UInt64 {
         get{
-            return Int(drinkCountLabel.text!)!
+            return UInt64(drinkCountLabel.text!)!
         }
         set{
             drinkCountLabel.text = "\(newValue)"
