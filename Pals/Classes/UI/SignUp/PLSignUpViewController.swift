@@ -87,7 +87,7 @@ class PLSignUpViewController: PLViewController {
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    @IBAction func signUpButtonTapped(sender: AnyObject) {
+    @IBAction func signUpButtonTapped(sender: UIButton) {
         let username = usernameTextField.text!.trim()
         let email = emailTextField.text!.trim()
         let password = passwordTextField.text!.trim()
@@ -145,7 +145,6 @@ extension PLSignUpViewController: UITextFieldDelegate {
             nextResponder.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
-            signUpButtonTapped(self)
         }
         return false
     }
