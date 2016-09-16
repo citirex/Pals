@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sb8-Oc-Ftq" userLabel="logo_image">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sb8-Oc-Ftq">
                                 <rect key="frame" x="114" y="275" width="186" height="186"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sb8-Oc-Ftq" secondAttribute="height" multiplier="1:1" id="iKa-zs-OHL"/>
