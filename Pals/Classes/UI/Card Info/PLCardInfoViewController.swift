@@ -77,7 +77,7 @@ class PLCardInfoViewController: PLViewController {
     
     // AccessoryView on keyboard
     
-    private func createAccessoryView() -> UIView {
+    private func inputAccessoryView() -> UIView {
         let accessoryView = UIButton(type: .System)
         accessoryView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50)
         accessoryView.setTitle("Complete", forState: .Normal)
@@ -97,7 +97,7 @@ class PLCardInfoViewController: PLViewController {
 extension PLCardInfoViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        textField.inputAccessoryView = createAccessoryView()
+        textField.inputAccessoryView = inputAccessoryView()
     }
 }
 
