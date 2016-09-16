@@ -72,11 +72,13 @@
 		24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */; };
 		24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */; };
 		24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */; };
+		24DA61171D8BF642007F4973 /* PLCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DA61161D8BF642007F4973 /* PLCover.swift */; };
 		24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */; };
 		24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */; };
 		D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */; };
 		D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */; };
 		D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */; };
+		D4246F601D8BF6A300740DE8 /* PLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4246F5F1D8BF6A300740DE8 /* PLTabBarController.swift */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
 		D46D2B891D875BB10058060E /* PLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B881D875BB10058060E /* PLImage.swift */; };
 		D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */; };
@@ -195,6 +197,7 @@
 		24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkset.swift; sourceTree = "<group>"; };
 		24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCoverCell.swift; sourceTree = "<group>"; };
 		24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCoverCell.xib; sourceTree = "<group>"; };
+		24DA61161D8BF642007F4973 /* PLCover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCover.swift; sourceTree = "<group>"; };
 		24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderAnimableVipView.swift; sourceTree = "<group>"; };
 		24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderAnimableVipView.xib; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +207,7 @@
 		D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Additions.m"; sourceTree = "<group>"; };
 		D41194F21D86BB7100AED4D1 /* View+LayoutConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+LayoutConstraints.h"; sourceTree = "<group>"; };
 		D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+LayoutConstraints.m"; sourceTree = "<group>"; };
+		D4246F5F1D8BF6A300740DE8 /* PLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLTabBarController.swift; path = Tabbar/PLTabBarController.swift; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46D2B861D87583B0058060E /* PLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLColor.swift; sourceTree = "<group>"; };
 		D46D2B881D875BB10058060E /* PLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImage.swift; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 			children = (
 				2480F87E1D813E730095995F /* PLDrink.swift */,
 				24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */,
+				24DA61161D8BF642007F4973 /* PLCover.swift */,
 				2480F87F1D813E730095995F /* PLErrors.swift */,
 				2480F8801D813E730095995F /* PLEvent.swift */,
 				2480F8811D813E730095995F /* PLFakeFeed.swift */,
@@ -348,6 +353,7 @@
 		2480F8921D813E730095995F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D4246F5E1D8BF66800740DE8 /* Tabbar */,
 				2480F8931D813E730095995F /* AddFunds */,
 				2480F8971D813E730095995F /* Basic */,
 				2480F89B1D813E730095995F /* Friends */,
@@ -554,6 +560,14 @@
 				D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */,
 			);
 			path = Autolayout;
+			sourceTree = "<group>";
+		};
+		D4246F5E1D8BF66800740DE8 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				D4246F5F1D8BF6A300740DE8 /* PLTabBarController.swift */,
+			);
+			name = Tabbar;
 			sourceTree = "<group>";
 		};
 		D42F53BC1D76B497005DEA34 = {
@@ -932,6 +946,7 @@
 				D46D2B891D875BB10058060E /* PLImage.swift in Sources */,
 				E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */,
 				E829DDD61D8151BE00D8C130 /* PLPlaceProfileViewController.swift in Sources */,
+				24DA61171D8BF642007F4973 /* PLCover.swift in Sources */,
 				E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */,
 				E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */,
 				E8E4A12E1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift in Sources */,
@@ -976,6 +991,7 @@
 				2480F8F61D813E730095995F /* PLTextField.swift in Sources */,
 				2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */,
 				E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */,
+				D4246F601D8BF6A300740DE8 /* PLTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

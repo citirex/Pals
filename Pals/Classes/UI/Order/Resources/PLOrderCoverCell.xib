@@ -17,16 +17,24 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdb-Id-x89">
                         <rect key="frame" x="16" y="6" width="288" height="188"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djl-DJ-s1g">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="26" translatesAutoresizingMaskIntoConstraints="NO" id="djl-DJ-s1g">
                                 <rect key="frame" x="16" y="8" width="256" height="172"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFL-yo-NPo">
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="188"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.23137254901960785" green="0.80000000000000004" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="djl-DJ-s1g" firstAttribute="top" secondItem="Wdb-Id-x89" secondAttribute="top" constant="8" id="C7f-e5-NZH"/>
+                            <constraint firstAttribute="trailing" secondItem="eFL-yo-NPo" secondAttribute="trailing" id="WWg-kA-K48"/>
+                            <constraint firstItem="eFL-yo-NPo" firstAttribute="top" secondItem="Wdb-Id-x89" secondAttribute="top" id="d3K-en-31b"/>
+                            <constraint firstItem="eFL-yo-NPo" firstAttribute="leading" secondItem="Wdb-Id-x89" secondAttribute="leading" id="e76-7P-jm0"/>
+                            <constraint firstAttribute="bottom" secondItem="eFL-yo-NPo" secondAttribute="bottom" id="erW-gO-bQE"/>
                             <constraint firstItem="djl-DJ-s1g" firstAttribute="leading" secondItem="Wdb-Id-x89" secondAttribute="leading" constant="16" id="loN-el-Jqu"/>
                             <constraint firstAttribute="trailing" secondItem="djl-DJ-s1g" secondAttribute="trailing" constant="16" id="rpY-Vj-YhZ"/>
                             <constraint firstAttribute="bottom" secondItem="djl-DJ-s1g" secondAttribute="bottom" constant="8" id="uxu-Yb-vYd"/>
@@ -44,6 +52,7 @@
             </constraints>
             <connections>
                 <outlet property="bgView" destination="Wdb-Id-x89" id="Ufp-sr-jZt"/>
+                <outlet property="dimmedView" destination="eFL-yo-NPo" id="HoG-7d-zJg"/>
                 <outlet property="titleLabel" destination="djl-DJ-s1g" id="xvg-Nj-cPc"/>
             </connections>
             <point key="canvasLocation" x="567" y="298"/>

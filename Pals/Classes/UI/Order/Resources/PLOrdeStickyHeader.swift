@@ -26,11 +26,8 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     
     var currentTab: CurrentTab = .Drinks {
         didSet{
-            if currentTab == .Drinks {
-                drinksButtonPressed(nil)
-            } else {
-                coverButtonPressed(nil)
-            }
+            updateButtonsState()
+            updateListIndicator()
         }
     }
     
@@ -72,15 +69,15 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     }
     
     private func setupCollectionForState(state: CurrentTab) {
-        delegate?.orderTabChanged(state)
         currentTab = state
         updateButtonsState()
         updateListIndicator()
+        delegate?.orderTabChanged(state)
     }
     
     private func updateButtonsState() {
         coverButton.selected = (currentTab == .Drinks) ? false : true
-        drinkButton.selected = !coverButton.selected
+        drinkButton.selected = (currentTab == .Drinks) ? true : false
     }
     
     private func updateListIndicator() {

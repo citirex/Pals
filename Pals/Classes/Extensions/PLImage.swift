@@ -62,3 +62,39 @@ extension UIImage {
         return newImage
     }
 }
+
+extension UIImage {
+    
+    func withColor(color1: UIColor) -> UIImage {
+        return imageWithColor(color1).imageWithRenderingMode(.AlwaysOriginal)
+    }
+    
+    func imageWithColor(color1: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        color1.setFill()
+        
+        let context = UIGraphicsGetCurrentContext()
+        CGContextTranslateCTM(context, 0, self.size.height)
+        CGContextScaleCTM(context, 1.0, -1.0);
+        CGContextSetBlendMode(context, CGBlendMode.Normal)
+        
+        let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
+        CGContextClipToMask(context, rect, self.CGImage)
+        CGContextFillRect(context, rect)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    static func imageWithSolidColor(color: UIColor, frame: CGRect) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+        color.setFill()
+        UIRectFill(frame)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
+}
