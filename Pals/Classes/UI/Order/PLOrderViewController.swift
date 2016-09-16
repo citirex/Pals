@@ -258,14 +258,10 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         
         if let index = orderCovers.indexOf(coverID) {
             orderCovers.removeAtIndex(index)
-            UIView.animateWithDuration(0.3, animations: {
-                coverCell.bgView.backgroundColor = kPalsOrderCoverItemColor
-            })
+            coverCell.setDimmed(false, animated: true)
         } else {
             orderCovers.append(coverID)
-//            UIView.animateWithDuration(0.3, animations: {
-////                coverCell.bgView.backgroundColor = kPalsOrderCoverDimmedItemColor
-//            })
+            coverCell.setDimmed(true, animated: true)
         }
     }
     
@@ -374,7 +370,10 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         case CurrentTab.Covers:
             let cell = dequeuedCell as! PLOrderCoverCell
             let cover = covers[indexPath.row]
-            cell.titleLabel.text = cover.name
+            cell.coverTitle = cover.name
+            if (orderCovers.indexOf(covers[indexPath.row].id) != nil) {
+                cell.setDimmed(true, animated: false)
+            }
             return cell
         }
     }

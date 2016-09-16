@@ -8,21 +8,48 @@
 
 import UIKit
 
+private let kDimmed: CGFloat = 0.3
+private let kTransparent: CGFloat = 0
+
 class PLOrderCoverCell: UICollectionViewCell {
     
     static let height: CGFloat = 200.0
     
-    @IBOutlet var bgView: UIView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var dimmedView: UIView!
+    @IBOutlet private var bgView: UIView!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var dimmedView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        bgView.layer.cornerRadius = 20
-        
+        bgView.layer.cornerRadius = 10
+        bgView.clipsToBounds = true
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dimmedView.alpha = 0
+    }
     
-
+    func setDimmed(dimmed: Bool,animated: Bool) {
+        if animated == true {
+            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { 
+                self.dimmedView.alpha = (dimmed == true) ? kDimmed : kTransparent
+                }, completion: nil)
+           
+        } else {
+            dimmedView.hidden = (dimmed == true) ? false : true
+            dimmedView.alpha = (dimmed == true) ? kDimmed : kTransparent
+        }
+    }
+    
+    var coverTitle: String?{
+        set{
+            titleLabel.text = newValue
+        }
+        get{
+           return titleLabel.text
+        }
+    }
+    
 }
