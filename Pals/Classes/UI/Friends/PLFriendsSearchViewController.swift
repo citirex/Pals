@@ -12,16 +12,10 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	var tableView = UITableView()
 	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 	let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
+	var seekerFriend: PLFriendsViewController?
 	
 	func searchButton(sender: AnyObject) {
 		
-		if navigationItem.titleView != searchBar {
-			navigationItem.titleView = searchBar
-			searchBar.becomeFirstResponder()
-		} else {
-			navigationItem.titleView = nil
-			navigationItem.title = "Friends Search"
-		}
 	}
 	
 	override func viewDidLoad() {
@@ -34,7 +28,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		tableView.dataSource = self
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(PLFriendsSearchViewController.searchButton(_:)))
-		navigationItem.title = "Friends Search"
+		navigationItem.titleView = searchBar
 		
 		let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as! UITextField
 		textFieldInsideSearchBar.leftViewMode = UITextFieldViewMode.Never
@@ -57,12 +51,23 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		loadDatasource()
 	}
 	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		registerKeyboardNotifications()
+	}
+	override func viewDidDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		searchBar.endEditing(true)
+		NSNotificationCenter.defaultCenter().removeObserver(self)
+	}
+	
 	override func viewDidLayoutSubviews() {
 		self.tableView.contentInset = UIEdgeInsetsMake(49, 0, 49, 0)
 	}
 	
 	func loadDatasource() {
 		self.spinner.startAnimating()
+//		self.view.userInteractionEnabled = false
 		datasource.load {[unowned self] (page, error) in
 			if error == nil {
 				self.tableView.hidden = false
@@ -77,12 +82,15 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 					self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
 					self.tableView.endUpdates()
 				}
+//				self.view.userInteractionEnabled = true
 				self.spinner.stopAnimating()
 			} else {
 				PLShowAlert("Error!", message: "Cannot download your friends.")
 			}
 		}
 	}
+	
+	// MARK: - Table View
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let count = datasource.count
@@ -91,14 +99,11 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
 		
-		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
+		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
 		
 		let friend = datasource[indexPath.row]
-		if let cell = cell as? PLFriendSearchCell {
-			cell.friend = friend
-			cell.addButton.hidden = false
-			cell.addButton.setImage(UIImage(named: "plus"), forState: .Normal)
-		}
+		
+		cell.friend = friend
 		
 		cell.accessoryType = .None
 		
@@ -114,25 +119,11 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-		print("Row \(indexPath.row) selected")
 		
-		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendProfile"))!, animated: true)
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		return 100
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		registerKeyboardNotifications()
-	}
-	override func viewDidDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		searchBar.endEditing(true)
-		NSNotificationCenter.defaultCenter().removeObserver(self)
-		navigationItem.titleView = nil
 	}
 	
 	// MARK: - Dismiss Keyboard

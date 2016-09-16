@@ -73,6 +73,7 @@ class PLLoginViewController: PLViewController {
 		} else if password.isEmpty {
 			PLShowAlert("Login error!", message: "Please enter your password.")
 		} else {
+			self.view.userInteractionEnabled = false
 			spinner!.startAnimating()
 			PLFacade.login(userName, password: password, completion: { (error) in
 				if error != nil {
@@ -80,6 +81,7 @@ class PLLoginViewController: PLViewController {
 					self.spinner?.stopAnimating()
 				} else {
 					self.showMainScreen()
+					self.view.userInteractionEnabled = false
 					self.spinner?.stopAnimating()
 				}
 			})
