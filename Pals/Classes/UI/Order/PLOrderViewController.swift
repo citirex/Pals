@@ -55,7 +55,11 @@ class PLOrderViewController: PLViewController {
     //Sample var
     private var covers = [PLCover]()
     
-    private var orderCovers = [UInt64]()
+    private var orderCovers = [UInt64]() {
+        didSet{
+            print(orderCovers.debugDescription)
+        }
+    }
     
     
     //MARK: - View lifecycle
@@ -248,11 +252,16 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     }
     
     //sample fish
-    func updateOrderWithCover(cover: PLCover) {
-        if let index = orderCovers.indexOf(cover.id) {
+    func updateOrderAt(indexPath: NSIndexPath) {
+        let coverCell = collectionView.cellForItemAtIndexPath(indexPath) as! PLOrderCoverCell
+        let coverID = covers[indexPath.row].id
+        
+        if let index = orderCovers.indexOf(coverID) {
             orderCovers.removeAtIndex(index)
+            coverCell.setDimmed(false, animated: true)
         } else {
-            orderCovers.append(cover.id)
+            orderCovers.append(coverID)
+            coverCell.setDimmed(true, animated: true)
         }
     }
     
@@ -361,7 +370,10 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         case CurrentTab.Covers:
             let cell = dequeuedCell as! PLOrderCoverCell
             let cover = covers[indexPath.row]
-            cell.titleLabel.text = cover.name
+            cell.coverTitle = cover.name
+            if (orderCovers.indexOf(covers[indexPath.row].id) != nil) {
+                cell.setDimmed(true, animated: false)
+            }
             return cell
         }
     }
@@ -391,9 +403,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         case CurrentTab.Drinks:
             break
         case CurrentTab.Covers:
-            let item = covers[indexPath.row]
-            
-            
+            updateOrderAt(indexPath)
         }
     }
     

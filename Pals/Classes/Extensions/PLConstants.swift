@@ -56,12 +56,10 @@ var kPalsOrderCardMyselfColor: UIColor {
     return UIColor(red:0.51, green:0.19, blue:0.32, alpha:1.0)
 }
 
-//3BCC88 cover background color
+//3CB17A cover background color
 var kPalsOrderCoverItemColor: UIColor {
-    return UIColor(red:0.23, green:0.80, blue:0.53, alpha:1.0)
+    return UIColor(red:0.24, green:0.69, blue:0.48, alpha:1.0)
 }
-
-
 
 
 let mainColor = UIColor(r: 125, g: 76, b: 158)

@@ -65,7 +65,10 @@ class PLSettingsViewController: PLViewController {
             let cardInfoViewController = segue.destinationViewController as! PLCardInfoViewController
             cardInfoViewController.hidesBottomBarWhenPushed = true
         case "ShowAddFunds":
-            print("Add Funds")
+            let refillBalanceViewController = segue.destinationViewController as! PLRefillBalanceViewController
+            refillBalanceViewController.navigationController?.navigationBar.barStyle = .Default
+            refillBalanceViewController.hidesBottomBarWhenPushed = true
+            refillBalanceViewController.balance = 200 // For Test
         default:
             break
         }
@@ -82,15 +85,18 @@ extension PLSettingsViewController: UITableViewDataSource {
         return numberOfSections
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items[section].count
     }
+    
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(PLSettingsTableViewCell.identifier, forIndexPath: indexPath) as! PLSettingsTableViewCell
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
+    
     
     private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         guard let cell = cell as? PLSettingsTableViewCell else { return }
@@ -116,7 +122,13 @@ extension PLSettingsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let identifier = segueIdentifiers[indexPath.row]
-        performSegueWithIdentifier(identifier, sender: self)
+        
+        // For test
+        if indexPath.section == 0 {
+            if indexPath.row == segueIdentifiers.count { return }
+            let identifier = segueIdentifiers[indexPath.row]
+            performSegueWithIdentifier(identifier, sender: self)
+        }
+        
     }
 }

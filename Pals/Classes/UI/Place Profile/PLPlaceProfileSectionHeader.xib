@@ -108,6 +108,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="1di-n4-vqL" secondAttribute="trailing" id="ArT-mq-utT"/>
                 <constraint firstItem="AW4-sR-nJa" firstAttribute="top" secondItem="1di-n4-vqL" secondAttribute="bottom" constant="-29" id="DaA-pW-D8v"/>

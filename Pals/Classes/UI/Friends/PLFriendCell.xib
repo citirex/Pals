@@ -32,25 +32,15 @@
                         <color key="textColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ln0-zj-9z3">
-                        <rect key="frame" x="279" y="8" width="28" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="28" id="Que-B5-HEP"/>
-                            <constraint firstAttribute="width" constant="28" id="f9a-cD-JKV"/>
-                        </constraints>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="ln0-zj-9z3" secondAttribute="trailing" constant="5" id="2Hd-vA-V33"/>
                     <constraint firstItem="hRP-ZY-VP5" firstAttribute="leading" secondItem="2Tn-dW-eIA" secondAttribute="leadingMargin" multiplier="1.3" id="4sW-2w-7U1"/>
-                    <constraint firstItem="ln0-zj-9z3" firstAttribute="centerY" secondItem="2Tn-dW-eIA" secondAttribute="centerY" id="WMP-LH-Tt6"/>
                     <constraint firstItem="wDg-L8-s0E" firstAttribute="centerY" secondItem="2Tn-dW-eIA" secondAttribute="centerY" id="bFf-7p-gPO"/>
                     <constraint firstItem="hRP-ZY-VP5" firstAttribute="centerY" secondItem="2Tn-dW-eIA" secondAttribute="centerY" id="jzx-bg-7Zx"/>
                     <constraint firstItem="wDg-L8-s0E" firstAttribute="leading" secondItem="hRP-ZY-VP5" secondAttribute="trailing" constant="28" id="y0y-QJ-Cfy"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="addButton" destination="ln0-zj-9z3" id="p8I-0G-yXZ"/>
                 <outlet property="avatarImage" destination="hRP-ZY-VP5" id="ylt-u9-uk8"/>
                 <outlet property="nameLabel" destination="wDg-L8-s0E" id="4gA-C5-ZgV"/>
             </connections>

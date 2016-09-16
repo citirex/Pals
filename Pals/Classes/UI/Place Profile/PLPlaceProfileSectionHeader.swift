@@ -29,7 +29,7 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        topOfView.round([.TopLeft, .TopRight], radius: 12)
+        topOfView.round([.TopLeft, .TopRight], radius: 10)
         orderButton.addTarget(self, action: #selector(orderButtonTapped), forControlEvents: .TouchUpInside)
     }
     

@@ -30,4 +30,8 @@ extension UIColor {
     class func completeButtonTintColor() -> UIColor {
         return UIColor(r: 214.0, g: 46.0, b: 225.0)
     }
+    
+    class func refillButtonBackgroudColor() -> UIColor {
+        return UIColor(r: 56.0, g: 206.0, b: 130.0)
+    }
 }

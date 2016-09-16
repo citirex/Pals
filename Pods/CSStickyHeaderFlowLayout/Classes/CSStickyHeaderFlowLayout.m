@@ -169,7 +169,7 @@ static const NSInteger kHeaderZIndex = 1024;
         }
         
         // For debugging purpose
-        //     [self debugLayoutAttributes:allItems];
+        // [self debugLayoutAttributes:allItems];
         
         return allItems;
     } else {

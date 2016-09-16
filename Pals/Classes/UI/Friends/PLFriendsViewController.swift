@@ -23,7 +23,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	
 	@IBAction func searchButton(sender: AnyObject) {
-		
 		if navigationItem.titleView != searchBar {
 			navigationItem.titleView = searchBar
 			searchBar.becomeFirstResponder()
@@ -36,8 +35,11 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
+		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		tableView.frame = UIScreen.mainScreen().bounds
 		tableView.keyboardDismissMode = .OnDrag
+		tableView.separatorInset.left = 75
 		
 		tableView.delegate = self
 		tableView.dataSource = self
@@ -51,30 +53,21 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		searchBar.delegate = self
 		searchBar.setShowsCancelButton(false, animated: true)
 		
-		tableView.separatorInset.left = 75
-		
-		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
-		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-		
 		view.addSubview(tableView)
 		view.addSubview(spinner)
 
 		spinner.center = view.center
 		spinner.transform = CGAffineTransformMakeScale(2, 2)
-		tableView.hidden = true
         loadDatasource()
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		
 		registerKeyboardNotifications()
 	}
 	override func viewDidDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
 		NSNotificationCenter.defaultCenter().removeObserver(self)
-		navigationItem.titleView = nil
-		navigationItem.title = "Friends"
 	}
 	
 	override func viewDidLayoutSubviews() {
@@ -83,6 +76,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
     
     func loadDatasource() {
 		self.spinner.startAnimating()
+//		self.view.userInteractionEnabled = false
         datasource.load {[unowned self] (page, error) in
             if error == nil {
 				self.tableView.hidden = false
@@ -97,6 +91,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 					self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
 					self.tableView.endUpdates()
 				}
+//				self.view.userInteractionEnabled = true
 				self.spinner.stopAnimating()
 			} else {
 				PLShowAlert("Error!", message: "Cannot download your friends.")
@@ -119,8 +114,8 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		searchActive = false
-		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("FriendsSearch"))!, animated: true)
+		searchBar.endEditing(true)
+		performSegueWithIdentifier("ShowFriendSearch", sender: self)
 	}
 	
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -182,7 +177,11 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        selectedFriend = datasource[indexPath.row]
+		if searchBar.text > "" {
+			selectedFriend = filtered[indexPath.row]
+		} else {
+			selectedFriend = datasource[indexPath.row]
+		}
         performSegueWithIdentifier("ShowFriendProfile", sender: self)
 	}
 	
@@ -215,9 +214,15 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		
+		if segue.identifier == "ShowFriendSearch" {
+			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
+			friendSearchViewController.seekerFriend?.searchBar.text = searchBar.text
+		}
+		
         guard segue.identifier == "ShowFriendProfile" else { return }
         let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
         friendProfileViewController.friend = selectedFriend
     }
-    
+	
 }

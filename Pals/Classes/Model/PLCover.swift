@@ -10,19 +10,19 @@ import Foundation
 
 class PLCover: PLUniqueObject, PLCellRepresentable {
     
-    var name: String
-    var price: Float
+    var name: String = ""
+    var price: Float = 0
 
     required init?(jsonDic: [String : AnyObject]) {
-        guard
-            let coverName = jsonDic[PLKeys.name.string] as? String,
-            let coverPrice = jsonDic[PLKeys.price.string] as? Float
-            else {
-                return nil
-        }
-        
-        self.name = coverName
-        self.price = coverPrice
+////        guard
+//            let coverName = jsonDic[PLKeys.name.string] as? String,
+//            let coverPrice = jsonDic[PLKeys.price.string] as? Float
+//            else {
+//                return nil
+//        }
+//        
+//        self.name = coverName
+//        self.price = coverPrice
         super.init(jsonDic: jsonDic)
     }
     
