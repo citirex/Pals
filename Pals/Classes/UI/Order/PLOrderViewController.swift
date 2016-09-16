@@ -263,9 +263,9 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
             })
         } else {
             orderCovers.append(coverID)
-            UIView.animateWithDuration(0.3, animations: {
-                coverCell.bgView.backgroundColor = kPalsOrderCoverDimmedItemColor
-            })
+//            UIView.animateWithDuration(0.3, animations: {
+////                coverCell.bgView.backgroundColor = kPalsOrderCoverDimmedItemColor
+//            })
         }
     }
     
