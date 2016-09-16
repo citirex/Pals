@@ -25,11 +25,15 @@ var kPalsPurpleColor: UIColor {
     return UIColor(red:0.49, green:0.30, blue:0.62, alpha:1.0)
 }
 
+var kPalsGoldColor: UIColor {
+    return UIColor(red:0.85, green:0.73, blue:0.19, alpha:1.0)
+}
+
 
 //MARK: - Order
 //D9BA30 VIP card color
 var kPalsOrderCardVIPColor: UIColor {
-    return UIColor(red:0.85, green:0.73, blue:0.19, alpha:1.0)
+    return kPalsGoldColor
 }
 
 //322C58 liquor card color
