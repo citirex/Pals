@@ -13,6 +13,7 @@ class PLLoginViewController: PLViewController {
 
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var textFieldsView: UIView!
 	@IBOutlet weak var loginButton: UIButton!
 	@IBOutlet weak var loginView: UIView!
 	@IBOutlet weak var logoImage: UIImageView!
@@ -27,24 +28,7 @@ class PLLoginViewController: PLViewController {
     }
     
 	@IBAction func loginButtonClicked(sender: AnyObject) {
-        let userName = loginTextField.text!
-        let password = passTextField.text!
-        if userName.isEmpty {
-			PLShowAlert("Login error!", message: "Please enter your login.")
-        } else if password.isEmpty {
-			PLShowAlert("Login error!", message: "Please enter your password.")
-        } else {
-			spinner!.startAnimating()
-            PLFacade.login(userName, password: password, completion: { (error) in
-                if error != nil {
-					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
-					self.spinner?.stopAnimating()
-                } else {
-                    self.showMainScreen()
-					self.spinner?.stopAnimating()
-                }
-            })
-        }
+		loginToMainScreen()
 	}
 	
 	@IBAction func forgotButtonClicked(sender: AnyObject) {
@@ -79,6 +63,27 @@ class PLLoginViewController: PLViewController {
     // MARK: - Navigation
     
 	@IBAction func unwindToLoginClicked(sender: UIStoryboardSegue) {
+	}
+	
+	func loginToMainScreen() {
+		let userName = loginTextField.text!
+		let password = passTextField.text!
+		if userName.isEmpty {
+			PLShowAlert("Login error!", message: "Please enter your login.")
+		} else if password.isEmpty {
+			PLShowAlert("Login error!", message: "Please enter your password.")
+		} else {
+			spinner!.startAnimating()
+			PLFacade.login(userName, password: password, completion: { (error) in
+				if error != nil {
+					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
+					self.spinner?.stopAnimating()
+				} else {
+					self.showMainScreen()
+					self.spinner?.stopAnimating()
+				}
+			})
+		}
 	}
 	
 	func showMainScreen() {
@@ -140,9 +145,15 @@ class PLLoginViewController: PLViewController {
 	func keyboardWillShow(notification: NSNotification) {
 		let userInfo = notification.userInfo!
 		let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
-		let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + 53, 0.0)
+		let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + 20, 0.0)
 		scrollView.contentInset = contentInsets
 		scrollView.scrollIndicatorInsets = contentInsets
+		var visibleRect = view.frame
+		visibleRect.size.height -= keyboardSize.height
+		
+		if CGRectContainsPoint(visibleRect, textFieldsView!.frame.origin) {
+			scrollView.scrollRectToVisible(textFieldsView!.frame, animated: true)
+		}
 	}
 	
 	func keyboardWillHide(notification: NSNotification) {
@@ -161,7 +172,7 @@ extension PLLoginViewController: UITextFieldDelegate {
 			nextResponder.becomeFirstResponder()
 		} else {
 			textField.resignFirstResponder()
-			loginButtonClicked(self)
+			loginToMainScreen()
 		}
 		return false
 	}
