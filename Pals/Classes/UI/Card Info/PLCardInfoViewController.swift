@@ -73,8 +73,7 @@ class PLCardInfoViewController: PLViewController {
         
         super.viewWillLayoutSubviews()
     }
-    
-    
+
     
     // AccessoryView on keyboard
     

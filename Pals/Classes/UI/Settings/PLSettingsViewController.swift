@@ -37,7 +37,6 @@ class PLSettingsViewController: PLViewController {
         super.viewWillAppear(animated)
     
         navigationController?.hideTransparentNavigationBar()
-        tabBarController?.tabBar.hidden = false
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -63,8 +62,8 @@ class PLSettingsViewController: PLViewController {
             let editProfileViewController = segue.destinationViewController as! PLEditProfileViewController
             editProfileViewController.user = user
         case "ShowCardInfo":
-            tabBarController?.tabBar.hidden = true
-            hidesBottomBarWhenPushed = true
+            let cardInfoViewController = segue.destinationViewController as! PLCardInfoViewController
+            cardInfoViewController.hidesBottomBarWhenPushed = true
         case "ShowAddFunds":
             print("Add Funds")
         default:
