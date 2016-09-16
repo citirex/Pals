@@ -11,7 +11,7 @@ class PLOrder: PLUniqueObject, PLCellRepresentable {
     let accessCode: String
     let user: PLUser
     let place: PLPlace
-    var drinks = [UInt64: Int]()//[PLDrink]()
+    var drinkSets = [PLDrinkset]()
     let isVIP: Bool
     let message: String
     
@@ -22,7 +22,8 @@ class PLOrder: PLUniqueObject, PLCellRepresentable {
             let message = jsonDic[PLKeys.message.string] as? String,
             let isVIP = jsonDic[PLKeys.is_vip.string] as? Bool,
             let accessCode = jsonDic[PLKeys.access_code.string] as? String,
-            let QRcode = jsonDic[PLKeys.qr_code.string] as? String
+            let QRcode = jsonDic[PLKeys.qr_code.string] as? String,
+            let drinkSetsArray = jsonDic[PLKeys.drinks.string] as? [Dictionary<String,AnyObject>]
         else {
             return nil
         }
@@ -39,6 +40,12 @@ class PLOrder: PLUniqueObject, PLCellRepresentable {
         self.isVIP = isVIP
         self.accessCode = accessCode
         self.QRcode = QRcode
+        for drinkSetDic in drinkSetsArray {
+            if let drinkSet = PLDrinkset(jsonDic: drinkSetDic) {
+                drinkSets.append(drinkSet)
+            }
+        }
+        
         super.init(jsonDic: jsonDic)
     }
     

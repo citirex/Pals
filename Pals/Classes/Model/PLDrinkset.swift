@@ -16,7 +16,7 @@ class PLDrinkset : PLUniqueObject, PLCellRepresentable {
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let aQuantity = jsonDic[PLKeys.quantity.string] as? UInt64,
+            let aQuantity = jsonDic[PLKeys.quantity.string] as? NSNumber,
             let drinkDic = jsonDic[PLKeys.drink.string] as? Dictionary<String,AnyObject>
             else {
                 return nil
@@ -27,7 +27,7 @@ class PLDrinkset : PLUniqueObject, PLCellRepresentable {
             else {
                 return nil
         }
-        self.quantity = aQuantity
+        self.quantity = aQuantity.unsignedLongLongValue
         self.drink = aDrink
 
         super.init(jsonDic: jsonDic)
