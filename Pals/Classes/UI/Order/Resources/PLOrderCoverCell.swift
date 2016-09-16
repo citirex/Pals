@@ -14,6 +14,7 @@ class PLOrderCoverCell: UICollectionViewCell {
     
     @IBOutlet var bgView: UIView!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var dimmedView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,5 +22,7 @@ class PLOrderCoverCell: UICollectionViewCell {
         bgView.layer.cornerRadius = 20
         
     }
+    
+    
 
 }
