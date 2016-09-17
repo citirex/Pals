@@ -13,12 +13,14 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var emailTextField: PLTextField!
     @IBOutlet weak var passwordTextField: PLTextField!
     @IBOutlet weak var confirmPasswordTextField: PLTextField!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var textFieldsContainer: UIView!
+    @IBOutlet weak var addProfileImageButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
 
     private let imagePicker = UIImagePickerController()
-    private let margin: CGFloat = 20
+    private let margin: CGFloat = 100.0
     
     
     override func viewDidLoad() {
@@ -42,11 +44,6 @@ class PLSignUpViewController: PLViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    // MARK: - Dismiss Keyboard
-    
-    func dismissKeyboard(sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
     
     
     // MARK: - Notifications
@@ -55,13 +52,16 @@ class PLSignUpViewController: PLViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
-    
-    // MARK: - Keyboard
+ 
     
     func keyboardWillShow(notification: NSNotification) {
         let userInfo = notification.userInfo!
         let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
         let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + margin, 0.0)
+        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
+        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey]?.unsignedIntegerValue
+        let options = UIViewAnimationOptions(rawValue: curve!<<16)
+        
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
         var visibleRect = view.frame
@@ -69,15 +69,36 @@ class PLSignUpViewController: PLViewController {
         
         if CGRectContainsPoint(visibleRect, textFieldsContainer!.frame.origin) {
             scrollView.scrollRectToVisible(textFieldsContainer!.frame, animated: true)
+            UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: {
+                self.addProfileImageButton.alpha = 0
+                self.userProfileImageView.alpha = 0
+                }, completion: nil)
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
+        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey]?.unsignedIntegerValue
+        let options = UIViewAnimationOptions(rawValue: curve!<<16)
+        
+        UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: {
+            self.addProfileImageButton.alpha = 1
+            self.userProfileImageView.alpha = 1
+            }, completion: nil)
+        
         let contentInsets = UIEdgeInsetsZero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
 
+    
+    // MARK: - Dismiss Keyboard
+    
+    func dismissKeyboard(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     
     // MARK: - Actions
     
@@ -88,6 +109,12 @@ class PLSignUpViewController: PLViewController {
     }
     
     @IBAction func signUpButtonTapped(sender: UIButton) {
+        signUp()
+    }
+    
+    // MARK: - Private methods
+    
+    private func signUp() {
         let username = usernameTextField.text!.trim()
         let email = emailTextField.text!.trim()
         let password = passwordTextField.text!.trim()
@@ -144,6 +171,7 @@ extension PLSignUpViewController: UITextFieldDelegate {
         if let nextResponder = textField.superview!.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
+            signUp()
             textField.resignFirstResponder()
         }
         return false

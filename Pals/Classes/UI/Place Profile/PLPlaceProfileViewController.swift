@@ -25,11 +25,11 @@ class PLPlaceProfileViewController: PLViewController {
         reloadLayout()
         setupCollectionView()
         
-        let backBarButtonItem = PLBackBarButtonItem()
-        navigationItem.leftBarButtonItem = backBarButtonItem
-        backBarButtonItem.didTappedBackButton = {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
+//        let backBarButtonItem = PLBackBarButtonItem()
+//        navigationItem.leftBarButtonItem = backBarButtonItem
+//        backBarButtonItem.didTappedBackButton = {
+//            self.navigationController?.popViewControllerAnimated(true)
+//        }
     }
 
     
@@ -83,8 +83,7 @@ class PLPlaceProfileViewController: PLViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowOrder" {
-            let orderViewController = segue.destinationViewController as! PLOrderViewController
-            orderViewController.place = place
+        
         }
     }
 
@@ -127,7 +126,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             sectionHeader.placeAddressLabel.text = place.address
             sectionHeader.phoneNumberLabel.text = place.phone
             sectionHeader.didTappedOrderButton = {
-                self.performSegueWithIdentifier("ShowOrder", sender: self)
+//                self.performSegueWithIdentifier("ShowOrder", sender: self)
             }
             return sectionHeader
         default:
@@ -144,11 +143,11 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
 extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 165)
+        return CGSizeMake(view.frame.size.width, 200)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 95)
+        return CGSizeMake(view.frame.size.width, 120)
     }
 }

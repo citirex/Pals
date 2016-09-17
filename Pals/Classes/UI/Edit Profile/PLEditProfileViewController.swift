@@ -14,8 +14,7 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var addProfileImageButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
-    @IBOutlet weak var scrollView: UIScrollView!
-    
+
     private let imagePicker = UIImagePickerController()
     private var isEditing = false
     
@@ -86,26 +85,6 @@ class PLEditProfileViewController: PLViewController {
         view.endEditing(true)
     }
     
-
-    // MARK: - Layout
-    
-    override func viewWillLayoutSubviews() {
-        let scrollViewBounds = scrollView.bounds
-        let contentViewBounds = view.bounds
-        
-        var scrollViewInsets = UIEdgeInsetsZero
-        scrollViewInsets.top = scrollViewBounds.size.height / 2
-        scrollViewInsets.top -= contentViewBounds.size.height / 2
-        
-        scrollViewInsets.bottom = scrollViewBounds.size.height / 2
-        scrollViewInsets.bottom -= contentViewBounds.size.height / 2
-        scrollViewInsets.bottom += 1
-        
-        scrollView.contentInset = scrollViewInsets
-        
-        super.viewWillLayoutSubviews()
-    }
-
     
     // MARK: - update UI
     
@@ -124,21 +103,6 @@ class PLEditProfileViewController: PLViewController {
 }
 
 
-// MARK: - UIScrollViewDelegate
-
-extension PLEditProfileViewController: UIScrollViewDelegate {
-
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        dismissKeyboard(self)
-    }
-    
-    func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
-        dismissKeyboard(self)
-        return true
-    }
-
-}
-
 
 // MARK: - UITextFieldDelegate
 
@@ -147,6 +111,11 @@ extension PLEditProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange
+        range: NSRange, replacementString string: String) -> Bool {
+        return true
     }
     
 }

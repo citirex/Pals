@@ -39,6 +39,7 @@ class PLOrderViewController: PLViewController {
             orderDrinks.count > 0 ? showCheckoutButton() : hideCheckoutButton()
         }
     }
+   
     
     private var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     private var firstLaunch: Bool = true
@@ -87,9 +88,8 @@ class PLOrderViewController: PLViewController {
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
         }
-        navigationController?.navigationBar.backItem?.title = ""
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.barTintColor = (isVip == true) ? kPalsGoldColor : kPalsPurpleColor
+        navigationController?.navigationBar.barTintColor = (isVip == true) ? kPalsGoldColor : kPalsPurpleColor
+        navigationController?.presentTransparentNavigationBar()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -97,6 +97,12 @@ class PLOrderViewController: PLViewController {
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.barTintColor = nil
     }
     
     
@@ -155,6 +161,12 @@ class PLOrderViewController: PLViewController {
             self.navigationController?.navigationBar.barTintColor = (self.isVip == true) ? kPalsGoldColor : kPalsPurpleColor
             
         }
+    }
+    
+    // MARK: - Navigation
+    
+    @IBAction func backBarButtonItemTapped(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(false, completion: nil)
     }
 }
 
