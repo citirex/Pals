@@ -40,6 +40,7 @@
                         <constraint firstItem="MBi-ZT-yQ9" firstAttribute="top" secondItem="X0g-ou-tgV" secondAttribute="bottom" constant="10" id="7y4-Op-cmE"/>
                         <constraint firstItem="0vA-Ca-YpO" firstAttribute="leading" secondItem="1di-n4-vqL" secondAttribute="leading" constant="25" id="POw-CA-hd9"/>
                         <constraint firstItem="MBi-ZT-yQ9" firstAttribute="leading" secondItem="X0g-ou-tgV" secondAttribute="leading" id="Vis-xr-Maf"/>
+                        <constraint firstAttribute="height" constant="110" id="gdR-9R-5Xt"/>
                         <constraint firstItem="X0g-ou-tgV" firstAttribute="top" secondItem="0vA-Ca-YpO" secondAttribute="bottom" constant="10" id="jVk-Kz-LXb"/>
                     </constraints>
                 </view>
@@ -66,8 +67,11 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-4F-ek6">
-                            <rect key="frame" x="133" y="69" width="54" height="17"/>
+                            <rect key="frame" x="130" y="69" width="60" height="17"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="Y3D-RV-Kk7"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.41176470590000003" green="0.19215686269999999" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -86,6 +90,7 @@
                         <constraint firstAttribute="bottom" secondItem="Vr4-Gu-Wm9" secondAttribute="bottom" id="Ift-28-eD4"/>
                         <constraint firstItem="vM2-oA-2h6" firstAttribute="top" secondItem="bPY-sN-6nv" secondAttribute="bottom" constant="10" id="KaB-mf-SIW"/>
                         <constraint firstItem="kSQ-sM-tVy" firstAttribute="leading" secondItem="e58-Sn-T3o" secondAttribute="leading" constant="25" id="Kyh-96-xK6"/>
+                        <constraint firstAttribute="height" constant="90" id="Q4z-oJ-2sr"/>
                         <constraint firstAttribute="trailing" secondItem="Vr4-Gu-Wm9" secondAttribute="trailing" id="QEs-Q5-y1k"/>
                         <constraint firstItem="Og2-4F-ek6" firstAttribute="top" secondItem="vM2-oA-2h6" secondAttribute="bottom" constant="14" id="WOd-ak-LQd"/>
                         <constraint firstItem="bPY-sN-6nv" firstAttribute="top" secondItem="e58-Sn-T3o" secondAttribute="top" constant="15" id="bge-JI-Nfk"/>
@@ -124,7 +129,6 @@
                 <constraint firstAttribute="trailing" secondItem="e58-Sn-T3o" secondAttribute="trailing" id="HUS-Q0-yaD"/>
                 <constraint firstAttribute="bottom" secondItem="e58-Sn-T3o" secondAttribute="bottom" id="Rfm-jK-5vo"/>
                 <constraint firstItem="e58-Sn-T3o" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="SZI-hS-pnP"/>
-                <constraint firstItem="e58-Sn-T3o" firstAttribute="height" secondItem="1di-n4-vqL" secondAttribute="height" constant="-20" id="een-Rc-zkS"/>
                 <constraint firstItem="1di-n4-vqL" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="g05-O0-158"/>
                 <constraint firstItem="e58-Sn-T3o" firstAttribute="top" secondItem="1di-n4-vqL" secondAttribute="bottom" id="iL1-Ug-vCS"/>
             </constraints>

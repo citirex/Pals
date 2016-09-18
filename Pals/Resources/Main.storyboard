@@ -605,6 +605,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
+                        <segue destination="Cmd-gA-94i" kind="push" identifier="ShowOrder" id="mrq-MK-55o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -743,6 +744,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="gQS-aH-ZRx" id="wK7-9W-pTH"/>
+                        <segue destination="Cmd-gA-94i" kind="push" identifier="ShowOrder" id="1Zi-Tu-8Fy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wf-4F-yEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1276,6 +1278,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1387,5 +1392,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="u5L-qT-vQG"/>
+        <segue reference="5Sl-5v-r30"/>
     </inferredMetricsTieBreakers>
 </document>

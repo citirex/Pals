@@ -50,12 +50,12 @@ class PLFriendProfileViewController: PLViewController {
     
     @IBAction func sendCoverButtonTapped(sender: UIButton) {
         sectionOrder = .Cover
-//        performSegueWithIdentifier("ShowOrder", sender: self)
+        performSegueWithIdentifier("ShowOrder", sender: self)
     }
 
     @IBAction func sendADrinkButtonTapped(sender: UIButton) {
         sectionOrder = .Drinks
-//        performSegueWithIdentifier("ShowOrder", sender: self)
+        performSegueWithIdentifier("ShowOrder", sender: self)
     }
     
     
@@ -63,7 +63,9 @@ class PLFriendProfileViewController: PLViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard segue.identifier == "ShowOrder" else { return }
-
+        let orderViewController = segue.destinationViewController as! PLOrderViewController
+        orderViewController.user = friend
+        //        orderViewController.sectionOrder = sectionOrder
     }
 
     

@@ -89,6 +89,8 @@ class PLOrderViewController: PLViewController {
             navigationItem.titleView = animableVipView
         }
         navigationController?.navigationBar.barTintColor = (isVip == true) ? kPalsGoldColor : kPalsPurpleColor
+      
+        navigationController?.navigationBar.barStyle = .Black
         navigationController?.presentTransparentNavigationBar()
     }
     

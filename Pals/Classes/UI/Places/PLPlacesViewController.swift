@@ -39,6 +39,13 @@ class PLPlacesViewController: PLViewController {
         tableView.contentOffset = CGPointMake(0, searchController.searchBar.frame.size.height)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barStyle = .Default
+        navigationController?.navigationBar.barTintColor = nil
+        navigationController?.hideTransparentNavigationBar()
+    }
     
     private func loadPage() {
         activityIndicator.startAnimating()

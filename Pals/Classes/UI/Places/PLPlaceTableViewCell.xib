@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bold_arrow-right" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-HL-u2s">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-HL-u2s">
                         <rect key="frame" x="282" y="65" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="65C-pQ-Uyz"/>
@@ -88,6 +88,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="bold_arrow-right" width="128" height="128"/>
+        <image name="arrow-right" width="128" height="128"/>
     </resources>
 </document>
