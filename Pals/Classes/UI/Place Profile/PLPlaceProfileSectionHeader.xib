@@ -140,7 +140,7 @@
                 <outlet property="placeNameLabel" destination="0vA-Ca-YpO" id="gl1-2r-NP7"/>
                 <outlet property="topOfView" destination="1di-n4-vqL" id="afs-UY-Iqo"/>
             </connections>
-            <point key="canvasLocation" x="191" y="219"/>
+            <point key="canvasLocation" x="-37" y="-86"/>
         </collectionReusableView>
     </objects>
     <resources>
