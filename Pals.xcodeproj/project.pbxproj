@@ -78,13 +78,20 @@
 		D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
 		D46D2B891D875BB10058060E /* PLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B881D875BB10058060E /* PLImage.swift */; };
+		D47B454A1D8FE57A0042EB9A /* covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45461D8FE57A0042EB9A /* covers0.json */; };
+		D47B454B1D8FE57A0042EB9A /* covers1.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45471D8FE57A0042EB9A /* covers1.json */; };
+		D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B454E1D8FED1B0042EB9A /* PLCoversDatasource.swift */; };
+		D47B45581D9002AB0042EB9A /* order_covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45501D9002AB0042EB9A /* order_covers0.json */; };
+		D47B45591D9002AB0042EB9A /* order_covers1.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45511D9002AB0042EB9A /* order_covers1.json */; };
+		D47B455C1D9002AB0042EB9A /* order_drinks0.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45541D9002AB0042EB9A /* order_drinks0.json */; };
+		D47B455D1D9002AB0042EB9A /* order_drinks1.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45551D9002AB0042EB9A /* order_drinks1.json */; };
+		D47B455E1D9002AB0042EB9A /* order_drinks2.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45561D9002AB0042EB9A /* order_drinks2.json */; };
+		D47B455F1D9002AB0042EB9A /* order_drinks3.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45571D9002AB0042EB9A /* order_drinks3.json */; };
+		D47B45611D9014380042EB9A /* covers2.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45601D9014380042EB9A /* covers2.json */; };
+		D47B45631D9014640042EB9A /* order_covers2.json in Resources */ = {isa = PBXBuildFile; fileRef = D47B45621D9014640042EB9A /* order_covers2.json */; };
 		D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */; };
 		D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A921D82B32700F48F4E /* PLAlert.swift */; };
 		D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A941D82C71100F48F4E /* PLViewController.swift */; };
-		D4950A9B1D82DAE800F48F4E /* orders0.json in Resources */ = {isa = PBXBuildFile; fileRef = D4950A971D82DAE800F48F4E /* orders0.json */; };
-		D4950A9C1D82DAE800F48F4E /* orders1.json in Resources */ = {isa = PBXBuildFile; fileRef = D4950A981D82DAE800F48F4E /* orders1.json */; };
-		D4950A9D1D82DAE800F48F4E /* orders2.json in Resources */ = {isa = PBXBuildFile; fileRef = D4950A991D82DAE800F48F4E /* orders2.json */; };
-		D4950A9E1D82DAE800F48F4E /* orders3.json in Resources */ = {isa = PBXBuildFile; fileRef = D4950A9A1D82DAE800F48F4E /* orders3.json */; };
 		D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */; };
 		D4CEC24D1D818B7300D4CD08 /* places0.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC2491D818B7300D4CD08 /* places0.json */; };
 		D4CEC24E1D818B7300D4CD08 /* places1.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CEC24A1D818B7300D4CD08 /* places1.json */; };
@@ -206,13 +213,20 @@
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46D2B861D87583B0058060E /* PLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLColor.swift; sourceTree = "<group>"; };
 		D46D2B881D875BB10058060E /* PLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImage.swift; sourceTree = "<group>"; };
+		D47B45461D8FE57A0042EB9A /* covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers0.json; sourceTree = "<group>"; };
+		D47B45471D8FE57A0042EB9A /* covers1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers1.json; sourceTree = "<group>"; };
+		D47B454E1D8FED1B0042EB9A /* PLCoversDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCoversDatasource.swift; sourceTree = "<group>"; };
+		D47B45501D9002AB0042EB9A /* order_covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_covers0.json; sourceTree = "<group>"; };
+		D47B45511D9002AB0042EB9A /* order_covers1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_covers1.json; sourceTree = "<group>"; };
+		D47B45541D9002AB0042EB9A /* order_drinks0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_drinks0.json; sourceTree = "<group>"; };
+		D47B45551D9002AB0042EB9A /* order_drinks1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_drinks1.json; sourceTree = "<group>"; };
+		D47B45561D9002AB0042EB9A /* order_drinks2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_drinks2.json; sourceTree = "<group>"; };
+		D47B45571D9002AB0042EB9A /* order_drinks3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_drinks3.json; sourceTree = "<group>"; };
+		D47B45601D9014380042EB9A /* covers2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers2.json; sourceTree = "<group>"; };
+		D47B45621D9014640042EB9A /* order_covers2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_covers2.json; sourceTree = "<group>"; };
 		D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCellData.swift; sourceTree = "<group>"; };
 		D4950A921D82B32700F48F4E /* PLAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAlert.swift; sourceTree = "<group>"; };
 		D4950A941D82C71100F48F4E /* PLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLViewController.swift; sourceTree = "<group>"; };
-		D4950A971D82DAE800F48F4E /* orders0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orders0.json; sourceTree = "<group>"; };
-		D4950A981D82DAE800F48F4E /* orders1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orders1.json; sourceTree = "<group>"; };
-		D4950A991D82DAE800F48F4E /* orders2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orders2.json; sourceTree = "<group>"; };
-		D4950A9A1D82DAE800F48F4E /* orders3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orders3.json; sourceTree = "<group>"; };
 		D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2491D818B7300D4CD08 /* places0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places0.json; sourceTree = "<group>"; };
 		D4CEC24A1D818B7300D4CD08 /* places1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places1.json; sourceTree = "<group>"; };
@@ -481,6 +495,7 @@
 				D4CEC2481D818B7300D4CD08 /* Places */,
 				D4950A961D82DAE800F48F4E /* Orders */,
 				24C20C601D8833390040F2F5 /* Drinks */,
+				D47B45451D8FE57A0042EB9A /* Covers */,
 				2480F8CE1D813E730095995F /* login.json */,
 				2480F8CF1D813E730095995F /* sendpassword.json */,
 				2480F8D01D813E730095995F /* signup.json */,
@@ -574,13 +589,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D47B45451D8FE57A0042EB9A /* Covers */ = {
+			isa = PBXGroup;
+			children = (
+				D47B45461D8FE57A0042EB9A /* covers0.json */,
+				D47B45471D8FE57A0042EB9A /* covers1.json */,
+				D47B45601D9014380042EB9A /* covers2.json */,
+			);
+			path = Covers;
+			sourceTree = "<group>";
+		};
 		D4950A961D82DAE800F48F4E /* Orders */ = {
 			isa = PBXGroup;
 			children = (
-				D4950A971D82DAE800F48F4E /* orders0.json */,
-				D4950A981D82DAE800F48F4E /* orders1.json */,
-				D4950A991D82DAE800F48F4E /* orders2.json */,
-				D4950A9A1D82DAE800F48F4E /* orders3.json */,
+				D47B45541D9002AB0042EB9A /* order_drinks0.json */,
+				D47B45551D9002AB0042EB9A /* order_drinks1.json */,
+				D47B45561D9002AB0042EB9A /* order_drinks2.json */,
+				D47B45571D9002AB0042EB9A /* order_drinks3.json */,
+				D47B45501D9002AB0042EB9A /* order_covers0.json */,
+				D47B45511D9002AB0042EB9A /* order_covers1.json */,
+				D47B45621D9014640042EB9A /* order_covers2.json */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -604,6 +632,7 @@
 				D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */,
 				D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */,
 				24C20C551D8820C00040F2F5 /* PLDrinksDatasource.swift */,
+				D47B454E1D8FED1B0042EB9A /* PLCoversDatasource.swift */,
 			);
 			path = Datasources;
 			sourceTree = "<group>";
@@ -810,24 +839,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D47B45591D9002AB0042EB9A /* order_covers1.json in Resources */,
+				D47B45631D9014640042EB9A /* order_covers2.json in Resources */,
 				E829DDD51D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib in Resources */,
 				E8DA8B951D88334F008782E5 /* PLProfileHeaderView.xib in Resources */,
 				E829DDD31D8151BE00D8C130 /* PLPlaceProfileCell.xib in Resources */,
+				D47B454A1D8FE57A0042EB9A /* covers0.json in Resources */,
 				2480F9241D813E730095995F /* Main.storyboard in Resources */,
-				D4950A9C1D82DAE800F48F4E /* orders1.json in Resources */,
 				2480F9201D813E730095995F /* sendpassword.json in Resources */,
+				D47B454B1D8FE57A0042EB9A /* covers1.json in Resources */,
 				2480F91A1D813E730095995F /* config.plist in Resources */,
 				2480F91C1D813E730095995F /* friends1.json in Resources */,
 				2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */,
+				D47B455E1D9002AB0042EB9A /* order_drinks2.json in Resources */,
 				E8DA8B931D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
 				24C20C681D8837F70040F2F5 /* drinks3.json in Resources */,
 				E8BB9A7B1D89347D00DD6987 /* PLSettingsTableViewCell.xib in Resources */,
 				D4CEC24D1D818B7300D4CD08 /* places0.json in Resources */,
-				D4950A9D1D82DAE800F48F4E /* orders2.json in Resources */,
 				04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */,
 				E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */,
+				D47B45581D9002AB0042EB9A /* order_covers0.json in Resources */,
 				D4CEC24F1D818B7300D4CD08 /* places2.json in Resources */,
+				D47B455F1D9002AB0042EB9A /* order_drinks3.json in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
 				D4CEC24E1D818B7300D4CD08 /* places1.json in Resources */,
 				2480F9211D813E730095995F /* signup.json in Resources */,
@@ -838,10 +872,11 @@
 				2480F9001D813E730095995F /* PLOrderDrinkCell.xib in Resources */,
 				2480F91F1D813E730095995F /* login.json in Resources */,
 				D4CEC2501D818B7300D4CD08 /* places3.json in Resources */,
-				D4950A9B1D82DAE800F48F4E /* orders0.json in Resources */,
+				D47B455C1D9002AB0042EB9A /* order_drinks0.json in Resources */,
+				D47B455D1D9002AB0042EB9A /* order_drinks1.json in Resources */,
+				D47B45611D9014380042EB9A /* covers2.json in Resources */,
 				2480F91E1D813E730095995F /* friends3.json in Resources */,
 				24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */,
-				D4950A9E1D82DAE800F48F4E /* orders3.json in Resources */,
 				24C20C671D8837F70040F2F5 /* drinks2.json in Resources */,
 				2480F9091D813E730095995F /* PLPlaceTableViewCell.xib in Resources */,
 				2480F91B1D813E730095995F /* friends0.json in Resources */,
@@ -917,6 +952,7 @@
 				E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */,
 				24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
+				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,

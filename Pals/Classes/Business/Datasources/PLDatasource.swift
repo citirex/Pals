@@ -32,6 +32,7 @@ class PLDatasource<T: PLUniqueObject> {
     //MARK: Adapter getters
     var count: Int { return collection.count }
     var pagesLoaded: Int { return collection.pagesLoaded }
+    var empty: Bool { return collection.empty }
     subscript(index: Int) -> T { return collection[index] }
     
     func fakeFeedNameOnError(error: NSError) -> String {
@@ -39,8 +40,8 @@ class PLDatasource<T: PLUniqueObject> {
         return name
     }
     //MARK: To override
-    func fakeFeedFilenameKey() -> String {return ""}
-    func mainCollectionKey() -> String {return ""}
+    func fakeFeedFilenameKey() -> String { return "" }
+    func mainCollectionKey() -> String { return "" }
 }
 
 extension PLDatasource : PLPageCollectionDelegate {

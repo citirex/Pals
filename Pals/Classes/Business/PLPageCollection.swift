@@ -60,6 +60,7 @@ struct PLPageCollectionPreset {
     let size: Int
     let offsetById: Bool // if true starts a next page from lastId+1 otherwise uses a last saved offset
     var params : PLURLParams?
+    
     init(url: String, sizeKey: String, offsetKey: String, size: Int, offsetById: Bool) {
         self.url = url
         self.sizeKey = sizeKey
@@ -67,6 +68,19 @@ struct PLPageCollectionPreset {
         self.size = size
         self.offsetById = offsetById
     }
+    
+    subscript(key: String) -> AnyObject? {
+        set(newValue) {
+            if params == nil {
+                params = PLURLParams()
+            }
+            params![key] = newValue
+        }
+        get {
+            return params?[key]
+        }
+    }
+    
 }
 
 class PLPageCollection<T:PLUniqueObject> {
@@ -86,6 +100,7 @@ class PLPageCollection<T:PLUniqueObject> {
     var count: Int {
         return objects.count
     }
+    var empty: Bool { return objects.count > 0 ? false : true }
     
     var pageSize: Int {
         return preset.size
@@ -148,6 +163,7 @@ class PLPageCollection<T:PLUniqueObject> {
                 completion(objects: [T](), error: self.jsonError)
             }
         }) { (task, error) in
+            print("Failed to load: \((task?.originalRequest?.URL?.absoluteString)!)")
             self.loading = false
             completion(objects:[T]() ,error: error)
         }

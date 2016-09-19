@@ -45,7 +45,7 @@ class PLOrderViewController: PLViewController {
     private var firstLaunch: Bool = true
     private var drinksDatasource = PLDrinksDatasource()
     
-    var currentTab: CurrentTab = .Drinks
+    var currentTab = PLCollectionSectionType.Drinks
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
     private var vipButton: UIBarButtonItem? = nil
     private var checkoutButton = UIButton(frame: CGRectZero)
@@ -307,7 +307,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     }
     
     //MARK: Order change tab
-    func orderTabChanged(tab: CurrentTab) {
+    func orderTabChanged(tab: PLCollectionSectionType) {
         currentTab = tab
         UIView.animateWithDuration(0, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {
             }) { (complete) in
@@ -353,9 +353,9 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         
         if section == 1 {
             switch currentTab {
-            case CurrentTab.Drinks:
+            case .Drinks:
                 return drinksDatasource.count ?? 0
-            case CurrentTab.Covers:
+            case .Covers:
                 return covers.count
             }
         }
@@ -371,7 +371,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         let dequeuedCell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
         
         switch currentTab {
-        case CurrentTab.Drinks:
+        case .Drinks:
             let cell = dequeuedCell as! PLOrderDrinkCell
             let drink = drinksDatasource[indexPath.row].cellData
             
@@ -381,7 +381,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
                 cell.drinkCount = UInt64(count)!
             }
             return cell
-        case CurrentTab.Covers:
+        case .Covers:
             let cell = dequeuedCell as! PLOrderCoverCell
             let cover = covers[indexPath.row]
             cell.coverTitle = cover.name
@@ -414,9 +414,9 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     //MARK: Collection delegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         switch currentTab {
-        case CurrentTab.Drinks:
+        case .Drinks:
             break
-        case CurrentTab.Covers:
+        case .Covers:
             updateOrderAt(indexPath)
         }
     }
@@ -441,11 +441,11 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         switch currentTab {
-        case CurrentTab.Drinks:
+        case .Drinks:
             if indexPath.row == drinksDatasource.count-1 {
                 loadPage()
             }
-        case CurrentTab.Covers: break
+        case .Covers: break
         }
     }
 }

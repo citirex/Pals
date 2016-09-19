@@ -1,13 +1,12 @@
 //
-//  PLDrinksDatasource
+//  PLCoversDatasource.swift
 //  Pals
 //
-//  Created by Maks Sergeychuk on 9/13/16.
+//  Created by ruckef on 19.09.16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLDrinksDatasource: PLDatasource<PLDrink> {
-    
+class PLCoversDatasource: PLDatasource<PLCover> {
     var placeId: UInt64? {
         didSet {
             if let id = placeId {
@@ -21,11 +20,11 @@ class PLDrinksDatasource: PLDatasource<PLDrink> {
     }
     
     convenience init() {
-        self.init(url: PLAPIService.Drinks.string, offsetById: false)
-        collection.appendPath([PLKeys.drinks.string])
+        self.init(url: PLAPIService.Covers.string, offsetById: false)
+        collection.appendPath([PLKeys.covers.string])
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLKeys.drinks.string
+        return PLKeys.covers.string
     }
 }

@@ -11,8 +11,10 @@ import AFNetworking
 // https://api.pals.com/login?login=username&password=12345
 // https://api.pals.com/friends?id=666&page=0&per_page=20
 // https://api.pals.com/places?lat=50.448042&long=30.497832&dlat=0.105235&dlong=0.120532
-// https://api.pals.com/orders?id=666&page=0&per_page=20
+// https://api.pals.com/orders?id=666&type=1&page=0&per_page=20
+// https://api.pals.com/orders?id=667&type=2&page=0&per_page=20
 // https://api.pals.com/drinks?place_id=123&page=0&per_page=20
+// https://api.pals.com/covers?place_id=123&page=0&per_page=20
 
 enum PLAPIService : String {
     case Login
@@ -23,6 +25,7 @@ enum PLAPIService : String {
     case Places
     case Orders
     case Drinks
+    case Covers
     var string: String {return rawValue.lowercaseString}
 }
 

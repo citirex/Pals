@@ -21,6 +21,8 @@ enum PLKeys : String {
     case friends
     case places
     case orders
+    case order_drinks
+    case order_covers
     case login
     case password
     case genres
@@ -31,6 +33,7 @@ enum PLKeys : String {
     case events
     case drink
     case drinks
+    case covers
     case rect
     case success
     case per_page
