@@ -1089,7 +1089,6 @@
         <!--Refill Balance-->
         <scene sceneID="fiz-Fs-6gc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="msw-gU-pec" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Refill Balance" id="wZt-xG-ynN" customClass="PLAddFundsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="akK-3v-2Ac"/>
@@ -1128,6 +1127,7 @@
                         <outlet property="balanceTextField" destination="d53-m2-u3B" id="MsP-Cc-Ef4"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="msw-gU-pec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2320" y="-623"/>
         </scene>
@@ -1183,6 +1183,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fB4-6t-r2g" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="profile-tab" id="Ujp-Yc-X83"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="yjv-WV-8BH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="XZV-Ci-cP6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1263,6 +1264,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ehC-fs-qip"/>
+                    <connections>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="ShowFriendsProfile" id="apm-CY-cnT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1K-dj-Sgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1391,7 +1395,8 @@
         <image name="sign-in-plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u5L-qT-vQG"/>
         <segue reference="1Zi-Tu-8Fy"/>
+        <segue reference="apm-CY-cnT"/>
+        <segue reference="u5L-qT-vQG"/>
     </inferredMetricsTieBreakers>
 </document>
