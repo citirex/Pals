@@ -17,6 +17,8 @@ class PLAddFundsViewController: PLViewController {
     @IBOutlet weak var balanceTextField: UITextField!
     
     
+    var user: PLUser!
+    
     
     //MARK: - View life cycle
     override func viewDidLoad() {
@@ -29,8 +31,6 @@ class PLAddFundsViewController: PLViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        showAlert()
-        
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.navigationBar.tintColor = .navigationBarTintColor()
     }
@@ -42,12 +42,18 @@ class PLAddFundsViewController: PLViewController {
         navigationController?.navigationBar.tintColor = .whiteColor()
     }
     
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        balanceTextField.becomeFirstResponder()
+    }
+    
    
     //MARK: - Actions
     
     func refillButtonPressed(sender: AnyObject) {
-        view.endEditing(true)
-        navigationController?.popViewControllerAnimated(true)
+        showAlert()
     }
     
     
@@ -62,7 +68,8 @@ class PLAddFundsViewController: PLViewController {
         alertController.addAction(cancelAction)
         
         let OKAction = UIAlertAction(title: "Yes", style: .Default) { action in
-            self.balanceTextField.becomeFirstResponder()
+            self.view.endEditing(true)
+            self.navigationController?.popViewControllerAnimated(true)
         }
         alertController.addAction(OKAction)
         presentViewController(alertController, animated: true, completion: nil)
