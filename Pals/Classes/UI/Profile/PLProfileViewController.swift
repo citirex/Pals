@@ -6,25 +6,40 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import AFNetworking
-
 class PLProfileViewController: TGLStackedViewController {
 
-    var orderDrinksDatasource = PLOrderDatasource(orderType: .Drinks)
-    var collectionHelper = PLProfileCollectionHelper()
+    private var orderDrinksDatasource = PLOrderDatasource(orderType: .Drinks)
+    private var orderCoversDatasource = PLOrderDatasource(orderType: .Covers)
+    private var collectionHelper = PLProfileCollectionHelper()
+    private var currentDatasource = PLOrderDatasource()
     
     lazy var spinner: UIActivityIndicatorView = {
         return UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     }()
     
     var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
-    private var currentTab = PLCollectionSectionType.Drinks
-//    private var currentDatasource
+    
+    private var currentTab = PLCollectionSectionType.Drinks {
+        didSet {
+            switch currentTab {
+            case .Drinks:
+                currentDatasource = orderDrinksDatasource
+            case .Covers:
+                currentDatasource = orderCoversDatasource
+            }
+            collectionHelper.datasource = currentDatasource
+            collectionView?.reloadData()
+            if currentDatasource.empty {
+                loadPage()
+            }
+        }
+    }
     
     var profile: PLUser? {
         didSet {
             if let user = profile {
                 orderDrinksDatasource.userId = user.id
+                orderCoversDatasource.userId = user.id
             }
             setupUserInfo()
         }
@@ -33,6 +48,7 @@ class PLProfileViewController: TGLStackedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        currentTab = .Drinks
         view.addSubview(spinner)
         setupCollectionView()
         
@@ -48,9 +64,9 @@ class PLProfileViewController: TGLStackedViewController {
     func loadPage() {
         spinner.startAnimating()
         spinner.center = view.center
-        orderDrinksDatasource.load {[unowned self] page, error in
+        currentDatasource.load {[unowned self] page, error in
             if error == nil {
-                let count = self.orderDrinksDatasource.count
+                let count = self.currentDatasource.count
                 let lastLoadedCount = page.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()
@@ -58,7 +74,7 @@ class PLProfileViewController: TGLStackedViewController {
                         indexPaths.append(NSIndexPath(forItem: i, inSection: 0))
                     }
                     
-                    if self.orderDrinksDatasource.pagesLoaded == 1 {
+                    if self.currentDatasource.pagesLoaded == 1 {
                         self.collectionView?.alpha = 0
                         self.collectionView?.reloadData({
                             self.collectionView?.layoutIfNeeded()
@@ -189,7 +205,7 @@ class PLProfileViewController: TGLStackedViewController {
         self.stackedLayout!.itemSize = self.exposedItemSize;
         self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
         
-        collectionHelper.datasource = orderDrinksDatasource
+        collectionHelper.datasource = currentDatasource
         self.collectionView?.dataSource = collectionHelper
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized(_:)))
@@ -219,7 +235,7 @@ class PLProfileViewController: TGLStackedViewController {
 
 extension PLProfileViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == orderDrinksDatasource.count-1 {
+        if indexPath.row == currentDatasource.count-1 {
             loadPage()
         }
     }

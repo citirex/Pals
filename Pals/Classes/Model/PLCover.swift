@@ -6,23 +6,20 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
-
 class PLCover: PLUniqueObject, PLCellRepresentable {
     
     var name: String = ""
     var price: Float = 0
 
     required init?(jsonDic: [String : AnyObject]) {
-////        guard
-//            let coverName = jsonDic[PLKeys.name.string] as? String,
-//            let coverPrice = jsonDic[PLKeys.price.string] as? Float
-//            else {
-//                return nil
-//        }
-//        
-//        self.name = coverName
-//        self.price = coverPrice
+        guard
+            let name = jsonDic[PLKeys.name.string] as? String,
+            let price = jsonDic[PLKeys.price.string] as? Float
+        else {
+            return nil
+        }
+        self.name = name
+        self.price = price
         super.init(jsonDic: jsonDic)
     }
     

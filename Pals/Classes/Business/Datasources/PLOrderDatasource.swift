@@ -23,7 +23,10 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
         }
     }
     
+    var orderType: PLOrderType
+    
     override init(url: String, params: PLURLParams?, offsetById: Bool) {
+        orderType = .All
         super.init(url: url, params: params, offsetById: offsetById)
     }
     
@@ -35,10 +38,11 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
         self.init(url: PLAPIService.Orders.string, offsetById: false)
         collection.appendPath([PLKeys.orders.string])
         collection.preset[PLKeys.type.string] = orderType.number
+        self.orderType = orderType
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLKeys.order_drinks.string
+        return (orderType == .Covers ? PLKeys.order_covers : PLKeys.order_drinks).string
     }
     
 }
