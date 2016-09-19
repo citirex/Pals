@@ -18,6 +18,35 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [
+                        {
+                             "drink" : {
+                                "id":13,
+                                "name":"Vodka Pshenichna 40%",
+                                "price":29.0,
+                                "type":2
+                             },
+                            "quantity" : 3
+                        },
+                        {
+                            "drink" : {
+                                "id":14,
+                                "name":"Portwine 777 12%",
+                                "price":18.22,
+                                "type":1
+                            },
+                            "quantity" : 4
+                        },
+                        {
+                            "drink" : {
+                                "id":15,
+                                "name":"Mojito NO Alcohol",
+                                "price":40.0,
+                                "type":0
+                            },
+                            "quantity" : 1
+                        }
+                        ],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -41,6 +70,26 @@
                "location":"50.449099:30.499075",
                "close_time":"18:00"
             },
+            "drinks" : [
+                            {
+                                "drink" : {
+                                    "id":13,
+                                    "name":"Vodka Pshenichna 40%",
+                                    "price":29.0,
+                                    "type":2
+                                },
+                                "quantity" : 2
+                            },
+                            {
+                                "drink" : {
+                                    "id":14,
+                                    "name":"Portwine 777 12%",
+                                    "price":18.22,
+                                    "type":1
+                                },
+                                "quantity" : 5
+                            }
+                        ],
             "message":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.",
             "is_vip":1,
             "access_code":"FFGG333",
@@ -64,6 +113,17 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [
+                            {
+                                "drink" : {
+                                       "id":6,
+                                       "name":"Rogan Svitle 4.5%",
+                                       "price":12.9,
+                                       "type":1
+                                },
+                                "quantity" : 1
+                           }
+                        ],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -87,6 +147,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -110,6 +171,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -133,6 +195,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -156,6 +219,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -179,6 +243,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -202,6 +267,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -225,6 +291,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -248,6 +315,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -271,6 +339,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -294,6 +363,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -317,6 +387,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -340,6 +411,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -363,6 +435,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -386,6 +459,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -409,6 +483,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -432,6 +507,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",
@@ -455,6 +531,7 @@
                "location":"50.448298:30.496656",
                "close_time":"20:00"
             },
+            "drinks" : [],
             "message":"Hi, check out this amazing tasty coffee!",
             "is_vip":0,
             "access_code":"BBBB666",

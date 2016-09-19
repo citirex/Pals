@@ -16,6 +16,8 @@ class PLCardInfoViewController: PLViewController {
     @IBOutlet weak var cvvCodeTextField: UITextField!
 
     
+    var user: PLUser!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

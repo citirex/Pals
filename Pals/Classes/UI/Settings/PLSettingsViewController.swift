@@ -63,10 +63,10 @@ class PLSettingsViewController: PLViewController {
             editProfileViewController.user = user
         case "ShowCardInfo":
             let cardInfoViewController = segue.destinationViewController as! PLCardInfoViewController
-            cardInfoViewController.hidesBottomBarWhenPushed = true
+            cardInfoViewController.user = user
         case "ShowAddFunds":
             let refillBalanceViewController = segue.destinationViewController as! PLAddFundsViewController
-            refillBalanceViewController.hidesBottomBarWhenPushed = true
+            refillBalanceViewController.user = user
         default:
             break
         }
