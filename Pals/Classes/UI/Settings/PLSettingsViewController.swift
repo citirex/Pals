@@ -16,17 +16,15 @@ class PLSettingsViewController: PLViewController {
     private let numberOfSections = 3
     private let items = [["Account", "Card Info", "Add Funds", "Notifications"], ["Order History"], ["Help and FAQ", "Terms of Service", "Privacy Policy"]]
     
-    private let segueIdentifiers = [
-        "ShowEditProfile",
-        "ShowCardInfo",
-        "ShowAddFunds"
-    ]
+    private let segueIdentifiers = [["ShowEditProfile", "ShowCardInfo", "ShowAddFunds"], ["ShowHistory"]]
     
     var user: PLUser!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.backgroundColor = .affairColor()
         
         // Setup Cell
         let nib = UINib(nibName: PLSettingsTableViewCell.nibName, bundle: nil)
@@ -67,6 +65,9 @@ class PLSettingsViewController: PLViewController {
         case "ShowAddFunds":
             let refillBalanceViewController = segue.destinationViewController as! PLAddFundsViewController
             refillBalanceViewController.user = user
+            case "ShowHistory":
+            let historyViewController = segue.destinationViewController as! PLHistoryViewController
+            historyViewController.user = user
         default:
             break
         }
@@ -121,12 +122,7 @@ extension PLSettingsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        // For test
-        if indexPath.section == 0 {
-            if indexPath.row == segueIdentifiers.count { return }
-            let identifier = segueIdentifiers[indexPath.row]
-            performSegueWithIdentifier(identifier, sender: self)
-        }
-        
+        let identifier = segueIdentifiers[indexPath.section][indexPath.row]
+        performSegueWithIdentifier(identifier, sender: self)
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OrderCurrentTabDelegate: class {
-    func orderTabChanged(tab: CurrentTab)
+    func orderTabChanged(tab: PLCollectionSectionType)
 }
 
 class PLOrdeStickyHeader: UICollectionViewCell {
@@ -24,7 +24,7 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     
     weak var delegate: OrderCurrentTabDelegate?
     
-    var currentTab: CurrentTab = .Drinks {
+    var currentTab = PLCollectionSectionType.Drinks {
         didSet{
             updateButtonsState()
             updateListIndicator()
@@ -68,7 +68,7 @@ class PLOrdeStickyHeader: UICollectionViewCell {
         }
     }
     
-    private func setupCollectionForState(state: CurrentTab) {
+    private func setupCollectionForState(state: PLCollectionSectionType) {
         currentTab = state
         updateButtonsState()
         updateListIndicator()

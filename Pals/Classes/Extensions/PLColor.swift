@@ -38,4 +38,9 @@ extension UIColor {
     class func navigationBarTintColor() -> UIColor {
         return UIColor(r: 104.0, g: 50.0, b: 144.0)
     }
+    
+    // navigation bar color
+    class func affairColor() -> UIColor {
+        return UIColor(r: 91.0, g: 43.0, b: 133.0)
+    }
 }

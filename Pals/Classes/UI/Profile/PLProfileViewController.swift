@@ -6,12 +6,11 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
 import AFNetworking
 
 class PLProfileViewController: TGLStackedViewController {
 
-    var orderDatasource = PLOrderDatasource()
+    var orderDrinksDatasource = PLOrderDatasource(orderType: .Drinks)
     var collectionHelper = PLProfileCollectionHelper()
     
     lazy var spinner: UIActivityIndicatorView = {
@@ -19,12 +18,13 @@ class PLProfileViewController: TGLStackedViewController {
     }()
     
     var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
-    private var currentTab: CurrentTab = .Drinks
-    var firstLaunch: Bool = true
+    private var currentTab = PLCollectionSectionType.Drinks
+//    private var currentDatasource
+    
     var profile: PLUser? {
         didSet {
             if let user = profile {
-                orderDatasource.userId = user.id
+                orderDrinksDatasource.userId = user.id
             }
             setupUserInfo()
         }
@@ -45,16 +45,12 @@ class PLProfileViewController: TGLStackedViewController {
         navigationController?.presentTransparentNavigationBar()
     }
     
-//    override func viewDidAppear(animated: Bool) {
-//        tabBarController?.tabBar.items?[TabBarController.TabProfile.int].badgeValue = nil
-//    }
-    
     func loadPage() {
         spinner.startAnimating()
         spinner.center = view.center
-        orderDatasource.load {[unowned self] page, error in
+        orderDrinksDatasource.load {[unowned self] page, error in
             if error == nil {
-                let count = self.orderDatasource.count
+                let count = self.orderDrinksDatasource.count
                 let lastLoadedCount = page.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()
@@ -62,13 +58,12 @@ class PLProfileViewController: TGLStackedViewController {
                         indexPaths.append(NSIndexPath(forItem: i, inSection: 0))
                     }
                     
-                    if self.firstLaunch == true {
+                    if self.orderDrinksDatasource.pagesLoaded == 1 {
                         self.collectionView?.alpha = 0
                         self.collectionView?.reloadData({
                             self.collectionView?.layoutIfNeeded()
                             self.showCards()
                         })
-                        self.firstLaunch = false
                     } else {
                         UIView.animateWithDuration(1,
                             delay: 0.0,
@@ -91,13 +86,8 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     //MARK: - Actions
-    func editProfileButtonPressed(sender: UIButton) {
-        print("Edit button pressed")
-    }
-    
     func addFundsButtonPressed(sender: UIButton) {
         performSegueWithIdentifier("ShowAddFunds", sender: nil)
-        print("Add funds button pressed")
     }
     
     func myCoversButtonPressed(sender: AnyObject) {
@@ -112,9 +102,18 @@ class PLProfileViewController: TGLStackedViewController {
         }
     }
     
-    func setupCollectionForState(state: CurrentTab) {
+    func setupCollectionForState(state: PLCollectionSectionType) {
         currentTab = state
         updateListIndicator()
+        
+    }
+    
+    func updateListIndicator() {
+        collectionBackgroundView.myCoversConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
+        collectionBackgroundView.myDrinksConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        UIView.animateWithDuration(0.2) {
+            self.collectionBackgroundView.layoutIfNeeded()
+        }
     }
     
     func swipeRecognized(sender: UISwipeGestureRecognizer) {
@@ -170,19 +169,9 @@ class PLProfileViewController: TGLStackedViewController {
                                                                              success: { (retuqest, response, image) in
                                                                                 self.collectionBackgroundView.userPicImageView.image = image
                                                                                 self.collectionBackgroundView.backgroundImageView.image = image
-//                                                                                self.collectionBackgroundView.applyBlurEffect(image)
                 }, failure: { (request, response, error) in
                     print("Error when downloading profile image: \(error.debugDescription)")
             })
-        }
-    }
-    
-    func updateListIndicator() {
-        collectionBackgroundView.myCoversConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
-        collectionBackgroundView.myDrinksConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
-        
-        UIView.animateWithDuration(0.2) {
-            self.collectionBackgroundView.layoutIfNeeded()
         }
     }
     
@@ -200,7 +189,7 @@ class PLProfileViewController: TGLStackedViewController {
         self.stackedLayout!.itemSize = self.exposedItemSize;
         self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
         
-        collectionHelper.datasource = orderDatasource
+        collectionHelper.datasource = orderDrinksDatasource
         self.collectionView?.dataSource = collectionHelper
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized(_:)))
@@ -230,7 +219,7 @@ class PLProfileViewController: TGLStackedViewController {
 
 extension PLProfileViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == orderDatasource.count-1 {
+        if indexPath.row == orderDrinksDatasource.count-1 {
             loadPage()
         }
     }

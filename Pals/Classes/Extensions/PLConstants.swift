@@ -6,9 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
-
-enum CurrentTab {
+enum PLCollectionSectionType {
     case Covers
     case Drinks
 }

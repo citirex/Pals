@@ -28,15 +28,5 @@ class PLSettingsTableViewCell: UITableViewCell {
         let state = sender.on ? true : false
         didChangedNotificationsSwitch!(state: state)
     }
-    
-    
-//    if switchBtn.on{
-//    stateLabelObj.text = "Switch btn is on now"
-//    }else{
-//    stateLabelObj.text = "Switch btn is off now"
-//    }
-//    }
-    
-    //    @IBAction func changeSwitchButtonTapped(sender: UIButton) {
-//}
+
 }
