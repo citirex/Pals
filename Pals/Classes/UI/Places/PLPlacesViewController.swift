@@ -13,10 +13,10 @@ class PLPlacesViewController: PLViewController {
    
     private var resultsController: UITableViewController!
     private var searchController: UISearchController!
+    
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
         activityIndicator.color = .grayColor()
         self.tableView.addSubview(activityIndicator)
         activityIndicator.addConstraintCentered()
@@ -36,8 +36,16 @@ class PLPlacesViewController: PLViewController {
         
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
+        tableView.contentOffset = CGPointMake(0, searchController.searchBar.frame.size.height)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barStyle = .Default
+        navigationController?.navigationBar.barTintColor = nil
+        navigationController?.hideTransparentNavigationBar()
+    }
     
     private func loadPage() {
         activityIndicator.startAnimating()
@@ -68,16 +76,14 @@ class PLPlacesViewController: PLViewController {
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         resultsController = UITableViewController(style: .Grouped)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
-        resultsController.tableView.rowHeight = 110.0
+        resultsController.tableView.rowHeight = 150.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchBar.tintColor = .darkGrayColor()
         searchController.searchResultsUpdater = self
-        searchController.searchBar.barTintColor = mainColor
-        searchController.searchBar.tintColor = .whiteColor()
-        
-        tableView.backgroundView = UIView()
+    
         tableView.tableHeaderView = searchController.searchBar
 
         definesPresentationContext = true

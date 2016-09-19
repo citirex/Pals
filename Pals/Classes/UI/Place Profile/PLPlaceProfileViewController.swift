@@ -24,12 +24,7 @@ class PLPlaceProfileViewController: PLViewController {
         
         reloadLayout()
         setupCollectionView()
-        
-        let backBarButtonItem = PLBackBarButtonItem()
-        navigationItem.leftBarButtonItem = backBarButtonItem
-        backBarButtonItem.didTappedBackButton = {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
+        setupBackBarButtonItem()
     }
 
     
@@ -45,6 +40,15 @@ class PLPlaceProfileViewController: PLViewController {
         
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.hideTransparentNavigationBar()
+    }
+    
+    
+    func setupBackBarButtonItem() {
+        let backBarButtonItem = PLBackBarButtonItem()
+        backBarButtonItem.didTappedBackButton = { self.navigationController?.popViewControllerAnimated(true) }
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -20
+        navigationItem.setLeftBarButtonItems([negativeSpacer, backBarButtonItem], animated: false)
     }
     
     
@@ -125,7 +129,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             sectionHeader.musicGenresLabel.text = place.musicGengres
             sectionHeader.closingTimeLabel.text = place.closeTime
             sectionHeader.placeAddressLabel.text = place.address
-            sectionHeader.phoneNumberLabel.text = place.phone
+            sectionHeader.phoneNumberLabel.text = phoneNumberFormat(place.phone)
             sectionHeader.didTappedOrderButton = {
                 self.performSegueWithIdentifier("ShowOrder", sender: self)
             }
@@ -134,6 +138,17 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             assert(false, "Unsupported supplementary view kind")
             return UICollectionReusableView()
         }
+    }
+    
+    
+    //TODO: - need make string extension
+    
+    func phoneNumberFormat(phoneNumber: String) -> String {
+        return String(format: "(%@) %@-%@",
+            phoneNumber.substringWithRange(phoneNumber.startIndex.advancedBy(1) ... phoneNumber.startIndex.advancedBy(3)),
+            phoneNumber.substringWithRange(phoneNumber.startIndex.advancedBy(4) ... phoneNumber.startIndex.advancedBy(7)),
+            phoneNumber.substringWithRange(phoneNumber.startIndex.advancedBy(7) ... phoneNumber.startIndex.advancedBy(11))
+        )
     }
 
 }
@@ -144,11 +159,11 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
 extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 165)
+        return CGSizeMake(view.frame.size.width, 200)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 95)
+        return CGSizeMake(view.frame.size.width, 120)
     }
 }

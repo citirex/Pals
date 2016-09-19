@@ -17,8 +17,9 @@ class PLPlaceProfileCell: UICollectionViewCell {
     @IBOutlet weak var eventDateLabel: UILabel!
     @IBOutlet weak var eventDescriptionLabel: UILabel!
     
-    private let offset: CGFloat = 65
+    private let offset: CGFloat = 80
     
+
     
     override func drawRect(rect: CGRect) {
         let startingPoint = CGPoint(x: CGRectGetMinX(rect) + offset, y: CGRectGetMaxY(rect))

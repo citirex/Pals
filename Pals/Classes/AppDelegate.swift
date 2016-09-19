@@ -16,15 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        // Appearance
-        UITabBar.appearance().tintColor = .whiteColor()
 
         let initialViewController = isUserLoggedIn ? UIStoryboard.tabBarController() : UIStoryboard.loginViewController()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
-        application.statusBarStyle = .LightContent
         
         return true 
     }

@@ -27,7 +27,7 @@ class PLProfileHeaderView: UIView {
     
     
     func applyBlurEffect(image: UIImage){
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for fullscreen blur effect
         blurEffectView.frame = backgroundImageView.bounds

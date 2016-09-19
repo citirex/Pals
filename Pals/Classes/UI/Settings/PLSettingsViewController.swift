@@ -65,10 +65,8 @@ class PLSettingsViewController: PLViewController {
             let cardInfoViewController = segue.destinationViewController as! PLCardInfoViewController
             cardInfoViewController.hidesBottomBarWhenPushed = true
         case "ShowAddFunds":
-            let refillBalanceViewController = segue.destinationViewController as! PLRefillBalanceViewController
-            refillBalanceViewController.navigationController?.navigationBar.barStyle = .Default
+            let refillBalanceViewController = segue.destinationViewController as! PLAddFundsViewController
             refillBalanceViewController.hidesBottomBarWhenPushed = true
-            refillBalanceViewController.balance = 200 // For Test
         default:
             break
         }

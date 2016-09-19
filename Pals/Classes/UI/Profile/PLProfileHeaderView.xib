@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -13,10 +13,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d1f-d0-5ry">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d1f-d0-5ry">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wd2-lI-gI1">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fAv-FN-Dvd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6gY-hN-GqU">
                     <rect key="frame" x="110" y="60" width="100" height="100"/>
                     <constraints>
@@ -33,7 +40,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Funds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gd-Xm-g7B">
                     <rect key="frame" x="116" y="198" width="88" height="14"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                    <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyP-lr-iOi">
@@ -45,7 +52,7 @@
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
                     <state key="normal" title="$73.45">
-                        <color key="titleColor" red="0.45301992248692824" green="1" blue="0.47204207256500152" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.18823529411764706" green="0.7686274509803922" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yG-cs-2WH">
@@ -93,12 +100,15 @@
                 <constraint firstItem="p5u-zr-fNT" firstAttribute="width" secondItem="8Sc-c6-PaP" secondAttribute="width" multiplier="1:2" id="7yC-Gt-vqW"/>
                 <constraint firstItem="6gY-hN-GqU" firstAttribute="width" secondItem="8Sc-c6-PaP" secondAttribute="width" multiplier="3:10" id="9rg-bu-xA7"/>
                 <constraint firstItem="jEq-4t-NXz" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" constant="16" id="AZQ-NG-JPW"/>
+                <constraint firstItem="wd2-lI-gI1" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" id="B2O-Uq-5Z1"/>
                 <constraint firstAttribute="trailing" secondItem="d1f-d0-5ry" secondAttribute="trailing" id="Emt-EZ-58k"/>
                 <constraint firstItem="d1f-d0-5ry" firstAttribute="top" secondItem="8Sc-c6-PaP" secondAttribute="top" id="If9-FI-bit"/>
                 <constraint firstAttribute="bottom" secondItem="d1f-d0-5ry" secondAttribute="bottom" id="JWb-Qb-NEI"/>
+                <constraint firstAttribute="bottom" secondItem="wd2-lI-gI1" secondAttribute="bottom" id="MS2-mk-y3l"/>
                 <constraint firstAttribute="trailing" secondItem="jEq-4t-NXz" secondAttribute="trailing" constant="16" id="P1l-eL-ap2"/>
                 <constraint firstItem="0yG-cs-2WH" firstAttribute="bottom" secondItem="p5u-zr-fNT" secondAttribute="bottom" id="RYx-eR-6vT"/>
                 <constraint firstItem="d1f-d0-5ry" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" id="SEz-5M-ocr"/>
+                <constraint firstItem="wd2-lI-gI1" firstAttribute="top" secondItem="8Sc-c6-PaP" secondAttribute="top" id="SLr-2z-dcW"/>
                 <constraint firstItem="jEq-4t-NXz" firstAttribute="top" secondItem="DPh-LG-qCh" secondAttribute="bottom" constant="8" id="TAG-L4-klW"/>
                 <constraint firstItem="oyP-lr-iOi" firstAttribute="centerX" secondItem="8Sc-c6-PaP" secondAttribute="centerX" id="TYY-mv-4BC"/>
                 <constraint firstItem="JFG-0l-ezT" firstAttribute="centerY" secondItem="8Sc-c6-PaP" secondAttribute="centerY" constant="80" id="WRi-8S-jZz"/>
@@ -108,6 +118,7 @@
                 <constraint firstItem="p5u-zr-fNT" firstAttribute="top" secondItem="oyP-lr-iOi" secondAttribute="bottom" constant="8" id="a48-qk-r0S"/>
                 <constraint firstItem="4Gd-Xm-g7B" firstAttribute="bottom" secondItem="oyP-lr-iOi" secondAttribute="bottom" constant="-6" id="bnC-RW-mWy"/>
                 <constraint firstItem="DPh-LG-qCh" firstAttribute="width" secondItem="8Sc-c6-PaP" secondAttribute="width" multiplier="1:2" id="elu-BT-OeO"/>
+                <constraint firstAttribute="trailing" secondItem="wd2-lI-gI1" secondAttribute="trailing" id="iLz-Rc-eZy"/>
                 <constraint firstItem="4Gd-Xm-g7B" firstAttribute="width" secondItem="oyP-lr-iOi" secondAttribute="width" id="iT5-BB-2cq"/>
                 <constraint firstItem="6gY-hN-GqU" firstAttribute="centerX" secondItem="8Sc-c6-PaP" secondAttribute="centerX" id="ihg-Km-bAO"/>
                 <constraint firstItem="DPh-LG-qCh" firstAttribute="top" secondItem="oyP-lr-iOi" secondAttribute="bottom" constant="8" id="jDH-cH-FMk"/>

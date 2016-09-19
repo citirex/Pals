@@ -15,7 +15,7 @@ class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: UIImageView!
-    @IBOutlet weak var scrollView: UIScrollView!
+
     
     var friend: PLUser!
     private var sectionOrder: SectionOrder!
@@ -24,14 +24,10 @@ class PLFriendProfileViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureView()
-        
-        let backButtonItem = PLBackBarButtonItem()
-        navigationItem.leftBarButtonItem = backButtonItem
-        backButtonItem.didTappedBackButton = {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
+        backgroundImageView.setImageWithURL(friend.picture)
+        friendProfileImageView.setImageWithURL(friend.picture)
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,18 +36,15 @@ class PLFriendProfileViewController: PLViewController {
         navigationController?.presentTransparentNavigationBar()
     }
     
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.hideTransparentNavigationBar()
     }
+
     
-    private func configureView() {
-        backgroundImageView.setImageWithURL(friend.picture)
-        friendProfileImageView.setImageWithURL(friend.picture)
-    }
-	
     
     // MARK: - Actions
     
@@ -72,27 +65,8 @@ class PLFriendProfileViewController: PLViewController {
         guard segue.identifier == "ShowOrder" else { return }
         let orderViewController = segue.destinationViewController as! PLOrderViewController
         orderViewController.user = friend
-//        orderViewController.currentTab = sectionOrder
+        //        orderViewController.sectionOrder = sectionOrder
     }
-    
-    
-    // MARK: - Layout
-    
-    override func viewWillLayoutSubviews() {
-        let scrollViewBounds = scrollView.bounds
-        let contentViewBounds = view.bounds
-        
-        var scrollViewInsets = UIEdgeInsetsZero
-        scrollViewInsets.top = scrollViewBounds.size.height / 2
-        scrollViewInsets.top -= contentViewBounds.size.height / 2
-        
-        scrollViewInsets.bottom = scrollViewBounds.size.height / 2
-        scrollViewInsets.bottom -= contentViewBounds.size.height / 2
-        scrollViewInsets.bottom += 1
-        
-        scrollView.contentInset = scrollViewInsets
-        
-        super.viewWillLayoutSubviews()
-    }
+
     
 }

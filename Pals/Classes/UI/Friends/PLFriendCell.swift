@@ -58,6 +58,10 @@ class PLFriendCell: UITableViewCell{
 			}
 		}
 	}
+    
+    func buttonAction(sender: UIButton) {
+    
+    }
 }
 
 
@@ -68,7 +72,7 @@ class PLFriendSearchCell: PLFriendCell{
 	func addFriend() {
 		btn.backgroundColor = UIColor.greenColor()
 		btn.setTitle("Click Me", forState: UIControlState.Normal)
-		btn.addTarget(self, action: Selector("buttonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        btn.addTarget(self, action: #selector(buttonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 		self.contentView.addSubview(btn)
 		self.contentView.tintColor = UIColor.greenColor()
 	}

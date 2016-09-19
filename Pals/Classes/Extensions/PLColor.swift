@@ -34,4 +34,8 @@ extension UIColor {
     class func refillButtonBackgroudColor() -> UIColor {
         return UIColor(r: 56.0, g: 206.0, b: 130.0)
     }
+    
+    class func navigationBarTintColor() -> UIColor {
+        return UIColor(r: 104.0, g: 50.0, b: 144.0)
+    }
 }

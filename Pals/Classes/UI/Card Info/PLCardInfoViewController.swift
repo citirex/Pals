@@ -14,7 +14,6 @@ class PLCardInfoViewController: PLViewController {
     @IBOutlet weak var expirationDateTextField: UITextField!
     @IBOutlet weak var zipCodeTextField: UITextField!
     @IBOutlet weak var cvvCodeTextField: UITextField!
-    @IBOutlet weak var scrollView: UIScrollView!
 
     
     
@@ -23,6 +22,12 @@ class PLCardInfoViewController: PLViewController {
         
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        creditCardNumberTextField.becomeFirstResponder()
     }
 
     
@@ -33,8 +38,9 @@ class PLCardInfoViewController: PLViewController {
     
     // MARK: - Actions
     
-    @IBAction func completeButtonTapped(sender: AnyObject) {
-        print("completeButtonTapped")
+    func completeButtonTapped(sender: AnyObject) {
+        dismissKeyboard(sender)
+        navigationController?.popViewControllerAnimated(true)
     }
     
     
@@ -54,28 +60,9 @@ class PLCardInfoViewController: PLViewController {
         expirationDateTextField.text = dateFormatter.stringFromDate(sender.date)
     }
     
-    
-    // MARK: - Layout
-    
-    override func viewWillLayoutSubviews() {
-        let scrollViewBounds = scrollView.bounds
-        let contentViewBounds = view.bounds
-        
-        var scrollViewInsets = UIEdgeInsetsZero
-        scrollViewInsets.top = scrollViewBounds.size.height / 2
-        scrollViewInsets.top -= contentViewBounds.size.height / 2
-        
-        scrollViewInsets.bottom = scrollViewBounds.size.height / 2
-        scrollViewInsets.bottom -= contentViewBounds.size.height / 2
-        scrollViewInsets.bottom += 1
-        
-        scrollView.contentInset = scrollViewInsets
-        
-        super.viewWillLayoutSubviews()
-    }
 
     
-    // AccessoryView on keyboard
+    // MARK: - AccessoryView on keyboard
     
     private func inputAccessoryView() -> UIView {
         let accessoryView = UIButton(type: .System)
@@ -99,19 +86,9 @@ extension PLCardInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.inputAccessoryView = inputAccessoryView()
     }
-}
-
-
-// MARK: - UIScrollViewDelegate
-
-extension PLCardInfoViewController: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        dismissKeyboard(self)
-    }
-    
-    func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
-        dismissKeyboard(self)
+    func textField(textField: UITextField, shouldChangeCharactersInRange
+        range: NSRange, replacementString string: String) -> Bool {
         return true
     }
     

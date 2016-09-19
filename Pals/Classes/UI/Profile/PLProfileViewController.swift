@@ -96,7 +96,7 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func addFundsButtonPressed(sender: UIButton) {
-        performSegueWithIdentifier("addFunds", sender: nil)
+        performSegueWithIdentifier("ShowAddFunds", sender: nil)
         print("Add funds button pressed")
     }
     
@@ -169,7 +169,8 @@ class PLProfileViewController: TGLStackedViewController {
                                                                              placeholderImage: UIImage(named: "avatar_placeholder"),
                                                                              success: { (retuqest, response, image) in
                                                                                 self.collectionBackgroundView.userPicImageView.image = image
-                                                                                self.collectionBackgroundView.applyBlurEffect(image)
+                                                                                self.collectionBackgroundView.backgroundImageView.image = image
+//                                                                                self.collectionBackgroundView.applyBlurEffect(image)
                 }, failure: { (request, response, error) in
                     print("Error when downloading profile image: \(error.debugDescription)")
             })
@@ -215,8 +216,8 @@ class PLProfileViewController: TGLStackedViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
-            case "addFunds":
-                print("funds")
+            case "ShowAddFunds":
+                print("ShowaAddFunds")
             case "ShowSettings":
                 let settingsViewController = segue.destinationViewController as! PLSettingsViewController
                 settingsViewController.user = profile

@@ -6,47 +6,95 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLAddFundsViewController: PLViewController, UITextFieldDelegate {
+class PLAddFundsViewController: PLViewController {
     
-    let sumView = UINib(nibName: "PLAddFundsView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLAddFundsView
-    var refillSum: String {
-        guard let sum = sumView.sumTextField.text?.substringFromIndex(sumView.sumTextField.text!.startIndex.advancedBy(1)) where sum.isEmpty == false else { return "0" }
-            return sum
-    }
+//    var refillSum: String {
+//        guard let sum = sumView.sumTextField.text?.substringFromIndex(sumView.sumTextField.text!.startIndex.advancedBy(1)) where sum.isEmpty == false else { return "0" }
+//            return sum
+//    }
+    
+    
+    @IBOutlet weak var balanceTextField: UITextField!
+    
     
     
     //MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sumView.frame = view.bounds
-        view.addSubview(sumView)
-        sumView.sumTextField.delegate = self
-        sumView.sumTextField.text = "$0"
-        
-        let buttonFrame = CGRectMake(0, 0, sumView.bounds.size.width, 44)
-        let refillButton = UIButton(frame: buttonFrame)
-        refillButton.setTitle("Refill", forState: .Normal)
-        refillButton.titleLabel?.font = UIFont.systemFontOfSize(20)
-        refillButton.backgroundColor = UIColor(red:0.17, green:0.83, blue:0.61, alpha:1.0)
-        refillButton.addTarget(self, action: #selector(refillButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        
-        sumView.sumTextField.inputAccessoryView = refillButton
+        balanceTextField.text = "$0"
     }
+ 
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if sumView.sumTextField.canBecomeFirstResponder() {
-            sumView.sumTextField.becomeFirstResponder()
-        }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        showAlert()
+        
+        navigationController?.navigationBar.barStyle = .Default
+        navigationController?.navigationBar.tintColor = .navigationBarTintColor()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        sumView.sumTextField.resignFirstResponder()
+        
+        navigationController?.navigationBar.barStyle = .Black
+        navigationController?.navigationBar.tintColor = .whiteColor()
     }
     
-    //MARK: - TextField Delegate
+   
+    //MARK: - Actions
+    
+    func refillButtonPressed(sender: AnyObject) {
+        view.endEditing(true)
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    // MARK: - Alert
+    
+    private func showAlert() {
+        let alertController = UIAlertController(title: "You amount was \(balanceTextField.text!)", message: "Are you sure?", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "No", style: .Destructive) { action in
+            
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "Yes", style: .Default) { action in
+            self.balanceTextField.becomeFirstResponder()
+        }
+        alertController.addAction(OKAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    
+    // MARK: - AccessoryView on keyboard
+    
+    private func inputAccessoryView() -> UIView {
+        let accessoryView = UIButton(type: .System)
+        accessoryView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50)
+        accessoryView.tintColor = .whiteColor()
+        accessoryView.setTitle("Refill", forState: .Normal)
+        accessoryView.titleLabel?.font = UIFont.systemFontOfSize(17)
+        accessoryView.backgroundColor = .refillButtonBackgroudColor()
+        accessoryView.addTarget(self, action: #selector(refillButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        return accessoryView
+    }
+    
+}
+
+
+
+//MARK: - TextField Delegate
+
+extension PLAddFundsViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.inputAccessoryView = inputAccessoryView()
+    }
+    
+    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if range.location > 0 && range.location < 6  {
             if textField.text?.hasPrefix("$0") == true {
@@ -58,17 +106,5 @@ class PLAddFundsViewController: PLViewController, UITextFieldDelegate {
             return true
         }
         return false
-    }
-    
-    
-    //MARK: - Actions
-    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
-        print("Cancel refilling")
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func refillButtonPressed(sender: AnyObject) {
-        print("Refill by: [\(refillSum)]")
-        dismissViewControllerAnimated(true, completion: nil)
     }
 }

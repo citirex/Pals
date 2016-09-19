@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "white_compass.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "white_compass@2x.png",
+      "filename" : "shadow_white_left_arrow@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "white_compass@3X.png",
+      "filename" : "shadow_white_left_arrow@3x.png",
       "scale" : "3x"
     }
   ],
