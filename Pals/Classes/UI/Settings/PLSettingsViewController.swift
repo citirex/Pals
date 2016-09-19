@@ -24,6 +24,8 @@ class PLSettingsViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.backgroundColor = .affairColor()
+        
         // Setup Cell
         let nib = UINib(nibName: PLSettingsTableViewCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLSettingsTableViewCell.identifier)

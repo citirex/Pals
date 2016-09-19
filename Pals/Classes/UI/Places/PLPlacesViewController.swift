@@ -6,13 +6,22 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+class SearchController: UISearchController {
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    
+}
+
 
 class PLPlacesViewController: PLViewController {
     
     @IBOutlet weak var tableView: UITableView!
    
     private var resultsController: UITableViewController!
-    private var searchController: UISearchController!
+    private var searchController: SearchController!
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -34,6 +43,8 @@ class PLPlacesViewController: PLViewController {
         loadPage()
         configureSearchController()
         
+        tableView.backgroundColor = .affairColor()
+        
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
         tableView.contentOffset = CGPointMake(0, searchController.searchBar.frame.size.height)
@@ -42,8 +53,8 @@ class PLPlacesViewController: PLViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .Default
-        navigationController?.navigationBar.barTintColor = nil
+        navigationController?.navigationBar.barStyle = .Black
+        navigationController?.navigationBar.barTintColor = .affairColor()
         navigationController?.hideTransparentNavigationBar()
     }
     
@@ -76,12 +87,15 @@ class PLPlacesViewController: PLViewController {
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         resultsController = UITableViewController(style: .Grouped)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
+        resultsController.tableView.backgroundColor = .affairColor()
+        resultsController.childViewControllerForStatusBarStyle()
         resultsController.tableView.rowHeight = 150.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
         
-        searchController = UISearchController(searchResultsController: resultsController)
-        searchController.searchBar.tintColor = .darkGrayColor()
+        searchController = SearchController(searchResultsController: resultsController)
+        searchController.searchBar.barTintColor = .affairColor()
+        searchController.searchBar.tintColor = .whiteColor()
         searchController.searchResultsUpdater = self
     
         tableView.tableHeaderView = searchController.searchBar
