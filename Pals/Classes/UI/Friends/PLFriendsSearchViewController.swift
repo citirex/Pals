@@ -73,7 +73,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	}
 	
 	override func viewDidLayoutSubviews() {
-		self.tableView.contentInset = UIEdgeInsetsMake(49, 0, 49, 0)
+		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 49)
 	}
 	
 	func loadDatasource() {
@@ -141,7 +141,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		selectedFriend = datasource[indexPath.row]
-		performSegueWithIdentifier("ShowFriendProfile", sender: self)
+		performSegueWithIdentifier("ShowFriendsProfile", sender: self)
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -185,12 +185,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		
-		if segue.identifier == "ShowFriendSearch" {
-			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
-			friendSearchViewController.seekerText = searchBar.text
-		}
-		
-		guard segue.identifier == "ShowFriendProfile" else { return }
+		guard segue.identifier == "ShowFriendsProfile" else { return }
 		let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
 		friendProfileViewController.friend = selectedFriend
 	}

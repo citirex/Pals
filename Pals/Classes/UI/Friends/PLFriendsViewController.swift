@@ -37,7 +37,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-		tableView.frame = UIScreen.mainScreen().bounds
 		tableView.keyboardDismissMode = .OnDrag
 		tableView.separatorInset.left = 75
 		
@@ -63,20 +62,24 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		navigationItem.titleView = nil
+		navigationItem.title = "Friends"
 		registerKeyboardNotifications()
 	}
 	override func viewDidDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
+		filtered = []
+		tableView.reloadData()
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
 	override func viewDidLayoutSubviews() {
-		self.tableView.contentInset = UIEdgeInsetsMake(49, 0, 49, 0)
+		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 49)
 	}
     
     func loadDatasource() {
 		self.spinner.startAnimating()
-//		self.view.userInteractionEnabled = false
+		self.view.userInteractionEnabled = false
         datasource.load {[unowned self] (page, error) in
             if error == nil {
 				self.tableView.hidden = false
@@ -91,7 +94,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 					self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
 					self.tableView.endUpdates()
 				}
-//				self.view.userInteractionEnabled = true
+				self.view.userInteractionEnabled = true
 				self.spinner.stopAnimating()
 			} else {
 				PLShowAlert("Error!", message: "Cannot download your friends.")
@@ -119,6 +122,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchBar.endEditing(true)
 		performSegueWithIdentifier("ShowFriendSearch", sender: self)
+		searchBar.text = ""
 	}
 	
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -135,6 +139,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	
 	// MARK: - tableView
+	
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		

@@ -8,7 +8,7 @@
 
 //import UIKit
 
-class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
+class PLProfileDrinkCollectionViewCell: PLCollectionViewCell {
 
     @IBOutlet var headerView: UIView!
     @IBOutlet var cardTitleLabel: UILabel!
@@ -23,12 +23,13 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     @IBOutlet var userNicknameLabel: UILabel!
     @IBOutlet var userMessageLabel: UILabel!
     
+//    private var 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         contentView.backgroundColor = UIColor.whiteColor()
-        round([.TopLeft, .TopRight], radius: 20)
         userView.layer.cornerRadius = 10
+        setRoundedCorners([.TopLeft,.TopRight], withRadius: 20)
     }
     
     override func prepareForReuse() {
@@ -40,4 +41,5 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         userPicImageView.layer.cornerRadius = userPicImageView.bounds.width / 2
     }
+    
 }

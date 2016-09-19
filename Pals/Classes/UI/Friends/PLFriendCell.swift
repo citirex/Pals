@@ -58,31 +58,17 @@ class PLFriendCell: UITableViewCell{
 			}
 		}
 	}
-    
-    func buttonAction(sender: UIButton) {
-    
-    }
 }
 
 
 class PLFriendSearchCell: PLFriendCell{
-	
-	let btn: UIButton = UIButton(frame: CGRectMake(50, 50, 50, 50))
-	
-	func addFriend() {
-		btn.backgroundColor = UIColor.greenColor()
-		btn.setTitle("Click Me", forState: UIControlState.Normal)
-        btn.addTarget(self, action: #selector(buttonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-		self.contentView.addSubview(btn)
-		self.contentView.tintColor = UIColor.greenColor()
-	}
 	
 	override func setup() {
 		if let aFriend = friend {
 			let friendCellData = aFriend.cellData
 			setCorrectImage(friendCellData.picture)
 			nameLabel.text = friendCellData.name
-			addFriend()
+//
 		} else {
 			print("Friend Cell Data is empty!")
 		}

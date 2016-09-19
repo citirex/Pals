@@ -8,10 +8,9 @@
 
 class PLProfileViewController: TGLStackedViewController {
 
-    private var orderDrinksDatasource = PLOrderDatasource(orderType: .Drinks)
-    private var orderCoversDatasource = PLOrderDatasource(orderType: .Covers)
     private var collectionHelper = PLProfileCollectionHelper()
-    private var currentDatasource = PLOrderDatasource()
+    private var datasourceSwitcher = PLProfileDatasourceSwitcher()
+    private var currentDatasource: PLOrderDatasource { return datasourceSwitcher.currentDatasource }
     
     lazy var spinner: UIActivityIndicatorView = {
         return UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -20,15 +19,14 @@ class PLProfileViewController: TGLStackedViewController {
     var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
     
     private var currentTab = PLCollectionSectionType.Drinks {
+        willSet {
+            datasourceSwitcher.saveOffset(collectionView!.contentOffset, forType: currentTab)
+        }
         didSet {
-            switch currentTab {
-            case .Drinks:
-                currentDatasource = orderDrinksDatasource
-            case .Covers:
-                currentDatasource = orderCoversDatasource
-            }
+            datasourceSwitcher.switchDatasource(currentTab)
             collectionHelper.datasource = currentDatasource
             collectionView?.reloadData()
+            collectionView?.contentOffset = datasourceSwitcher.currentOffset
             if currentDatasource.empty {
                 loadPage()
             }
@@ -38,8 +36,7 @@ class PLProfileViewController: TGLStackedViewController {
     var profile: PLUser? {
         didSet {
             if let user = profile {
-                orderDrinksDatasource.userId = user.id
-                orderCoversDatasource.userId = user.id
+                datasourceSwitcher.updateUserId(user.id)
             }
             setupUserInfo()
         }
@@ -67,6 +64,7 @@ class PLProfileViewController: TGLStackedViewController {
         currentDatasource.load {[unowned self] page, error in
             if error == nil {
                 let count = self.currentDatasource.count
+                self.collectionBackgroundView.noItemsLabel.hidden = true
                 let lastLoadedCount = page.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()

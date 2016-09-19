@@ -88,10 +88,8 @@ class PLOrderViewController: PLViewController {
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
         }
+        navigationController?.navigationBar.translucent = false
         navigationController?.navigationBar.barTintColor = (isVip == true) ? kPalsGoldColor : kPalsPurpleColor
-      
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.presentTransparentNavigationBar()
     }
     
     override func viewDidAppear(animated: Bool) {

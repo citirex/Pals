@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -144,6 +144,7 @@
                 <outlet property="myCoversConstraint" destination="Yp8-dI-Slt" id="UNw-7G-Amf"/>
                 <outlet property="myDrinksButton" destination="p5u-zr-fNT" id="yp1-79-Pff"/>
                 <outlet property="myDrinksConstraint" destination="Yqc-0y-CcX" id="tua-aL-hVn"/>
+                <outlet property="noItemsLabel" destination="JFG-0l-ezT" id="8Yr-FK-PbK"/>
                 <outlet property="userPicImageView" destination="6gY-hN-GqU" id="RKQ-eD-16z"/>
             </connections>
             <point key="canvasLocation" x="352" y="281"/>

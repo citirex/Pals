@@ -669,11 +669,11 @@
                         <viewControllerLayoutGuide type="bottom" id="MpU-82-hvx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JBn-st-onN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p65-8B-Ms9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -691,7 +691,7 @@
                             <constraint firstAttribute="trailing" secondItem="p65-8B-Ms9" secondAttribute="trailing" id="ZcF-eG-yjw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Places" id="zEv-L9-i4R">
+                    <navigationItem key="navigationItem" title="Locations" id="zEv-L9-i4R">
                         <barButtonItem key="backBarButtonItem" title=" " id="oUc-ib-AvO"/>
                     </navigationItem>
                     <connections>
@@ -1089,7 +1089,6 @@
         <!--Refill Balance-->
         <scene sceneID="fiz-Fs-6gc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="msw-gU-pec" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Refill Balance" id="wZt-xG-ynN" customClass="PLAddFundsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="akK-3v-2Ac"/>
@@ -1128,8 +1127,48 @@
                         <outlet property="balanceTextField" destination="d53-m2-u3B" id="MsP-Cc-Ef4"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="msw-gU-pec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2320" y="-623"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="ESD-Th-IME">
+            <objects>
+                <viewController id="nZe-CE-B1W" customClass="PLHistoryViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o0i-RS-Nuy"/>
+                        <viewControllerLayoutGuide type="bottom" id="TN8-qH-eNb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="34p-9K-RAP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="88" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i7u-E5-AkU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="nZe-CE-B1W" id="Mqv-X8-esO"/>
+                                    <outlet property="delegate" destination="nZe-CE-B1W" id="6Gn-0C-Boe"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i7u-E5-AkU" secondAttribute="trailing" id="UTW-b9-HkK"/>
+                            <constraint firstItem="TN8-qH-eNb" firstAttribute="top" secondItem="i7u-E5-AkU" secondAttribute="bottom" id="aZ0-14-KKu"/>
+                            <constraint firstItem="i7u-E5-AkU" firstAttribute="top" secondItem="34p-9K-RAP" secondAttribute="top" id="meW-np-xhZ"/>
+                            <constraint firstItem="i7u-E5-AkU" firstAttribute="leading" secondItem="34p-9K-RAP" secondAttribute="leading" id="vgP-NU-Ti2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="History" id="KUL-25-LGA"/>
+                    <connections>
+                        <outlet property="tableView" destination="i7u-E5-AkU" id="dIz-Cx-INx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6tj-H2-9S7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1868" y="-623"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ajY-eh-z6Z">
@@ -1166,11 +1205,13 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="gwc-0C-pd5"/>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="Bbi-Pj-gDT" id="NQy-oQ-Oya"/>
                         <segue destination="2zm-V5-MZy" kind="push" identifier="ShowEditProfile" id="VEu-3C-tGk"/>
                         <segue destination="DmR-jl-w2z" kind="push" identifier="ShowCardInfo" id="hI8-KA-Tkg"/>
                         <segue destination="wZt-xG-ynN" kind="push" identifier="ShowAddFunds" id="u5L-qT-vQG"/>
+                        <segue destination="nZe-CE-B1W" kind="push" identifier="ShowHistory" id="w9H-LU-6PB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPz-Zt-74a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1183,6 +1224,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fB4-6t-r2g" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="profile-tab" id="Ujp-Yc-X83"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="yjv-WV-8BH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="XZV-Ci-cP6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1263,6 +1305,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ehC-fs-qip"/>
+                    <connections>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="ShowFriendsProfile" id="apm-CY-cnT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1K-dj-Sgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1274,7 +1319,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Zg-pp-3Dn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Location" image="places-tab" selectedImage="places-tab" id="89K-oH-mEz"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="ocs-sc-mQy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="ocs-sc-mQy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1391,7 +1436,8 @@
         <image name="sign-in-plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u5L-qT-vQG"/>
         <segue reference="1Zi-Tu-8Fy"/>
+        <segue reference="apm-CY-cnT"/>
+        <segue reference="u5L-qT-vQG"/>
     </inferredMetricsTieBreakers>
 </document>
