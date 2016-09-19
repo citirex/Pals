@@ -64,13 +64,13 @@
     
     _exposedLayoutMargin = UIEdgeInsetsMake(60.0, 0.0, 0.0, 0.0);
     _exposedItemSize = CGSizeZero;
-    _exposedTopOverlap = 5;//10.0;
+    _exposedTopOverlap = 3;//10.0;
     _exposedBottomOverlap = 1;//10.0;
-    _exposedBottomOverlapCount = 10;
+    _exposedBottomOverlapCount = 0;
     
     _exposedPinningMode = TGLExposedLayoutPinningModeAll;
-//    _exposedTopPinningCount = -1;
-//    _exposedBottomPinningCount = -1;
+    _exposedTopPinningCount = 3;
+    _exposedBottomPinningCount = 0;
     
     _exposedItemsAreCollapsible = YES;
     
@@ -94,9 +94,9 @@
     
     //custom setup
     self.stackedLayout.topReveal = 60;
-    self.exposedPinningMode = TGLExposedLayoutPinningModeBelow;
-    self.exposedTopPinningCount = 5;
-    self.exposedBottomPinningCount = 1;
+//    self.exposedPinningMode = TGLExposedLayoutPinningModeBelow;
+//    self.exposedTopPinningCount = 5;
+//    self.exposedBottomPinningCount = 1;
     self.exposedItemsAreCollapsible = YES;
 }
 
@@ -273,8 +273,7 @@
 #pragma mark - Helpers
 
 - (void)setupCollectionBackgroundView:(UIView *)backgroundView {
-    CGRect newFrame = self.collectionView.bounds;
-    newFrame.size.width = self.view.bounds.size.width;
+    CGRect newFrame = self.view.bounds;
     backgroundView.frame = newFrame;
     self.collectionView.frame = newFrame;
     [self.view insertSubview:backgroundView belowSubview:self.collectionView];

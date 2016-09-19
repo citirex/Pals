@@ -18,6 +18,8 @@ class PLProfileHeaderView: UIView {
     
     @IBOutlet var myCoversConstraint: NSLayoutConstraint!
     @IBOutlet var myDrinksConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var noItemsLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,13 +43,5 @@ class PLProfileHeaderView: UIView {
         }
 
     }
-    
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }

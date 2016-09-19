@@ -50,7 +50,8 @@ class PLProfileViewController: TGLStackedViewController {
         spinner.center = view.center
         orderDrinksDatasource.load {[unowned self] page, error in
             if error == nil {
-                let count = self.orderDrinksDatasource.count
+                 let count = self.orderDrinksDatasource.count
+                self.collectionBackgroundView.noItemsLabel.hidden = true
                 let lastLoadedCount = page.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()

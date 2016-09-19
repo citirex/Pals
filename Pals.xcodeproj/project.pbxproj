@@ -54,6 +54,7 @@
 		2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */; };
 		2489E7041D82950E003811D5 /* PLOrderPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */; };
 		2489E7061D82AC81003811D5 /* PLOrderFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */; };
+		24AE702F1D90162E0064E7B2 /* PLCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */; };
 		24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C551D8820C00040F2F5 /* PLDrinksDatasource.swift */; };
 		24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */; };
 		24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */; };
@@ -189,6 +190,7 @@
 		2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTCollectionViewParallaxLayout.m; sourceTree = "<group>"; };
 		2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderPlacesViewController.swift; sourceTree = "<group>"; };
 		2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderFriendsViewController.swift; sourceTree = "<group>"; };
+		24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCollectionViewCell.swift; sourceTree = "<group>"; };
 		24C20C551D8820C00040F2F5 /* PLDrinksDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinksDatasource.swift; sourceTree = "<group>"; };
 		24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCheckoutOrder.swift; sourceTree = "<group>"; };
 		24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkset.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				2480F8791D813E730095995F /* PLDictionary.swift */,
 				2480F87A1D813E730095995F /* PLNavigationController.swift */,
 				2480F87B1D813E730095995F /* PLStoryboard.swift */,
+				24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */,
 				2480F87C1D813E730095995F /* PLString.swift */,
 				E8DA8B581D881D7C008782E5 /* PLView.swift */,
 				E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */,
@@ -999,6 +1002,7 @@
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
 				E8DA8B851D8832E8008782E5 /* TGLStackedViewController.m in Sources */,
+				24AE702F1D90162E0064E7B2 /* PLCollectionViewCell.swift in Sources */,
 				2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */,
 				D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */,
 				E8BB9A7A1D89347D00DD6987 /* PLSettingsTableViewCell.swift in Sources */,
