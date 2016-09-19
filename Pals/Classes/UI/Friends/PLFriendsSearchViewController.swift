@@ -12,10 +12,19 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	var tableView = UITableView()
 	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 	let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
-	var seekerFriend: PLFriendsViewController?
+	var seekerText: String?
+	
+	private var selectedFriend: PLUser!
+	
+	var collectionUsers: [PLUser] {
+		return datasource.collection.objects ?? []
+	}
 	
 	func searchButton(sender: AnyObject) {
+		sendSearchFriendsRequest()
+		tableView.reloadData()
 		
+		searchBar.endEditing(true)
 	}
 	
 	override func viewDidLoad() {
@@ -47,13 +56,15 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		
 		spinner.center = view.center
 		spinner.transform = CGAffineTransformMakeScale(2, 2)
-		tableView.hidden = true
 		loadDatasource()
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		navigationController?.navigationBar.tintColor = UIColor.navigationBarTintColor()
 		registerKeyboardNotifications()
+		
+		searchBar.text = seekerText
 	}
 	override func viewDidDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -67,10 +78,8 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	func loadDatasource() {
 		self.spinner.startAnimating()
-//		self.view.userInteractionEnabled = false
 		datasource.load {[unowned self] (page, error) in
 			if error == nil {
-				self.tableView.hidden = false
 				let count = self.datasource.count
 				let lastLoadedCount = page.count
 				if lastLoadedCount > 0 {
@@ -82,7 +91,6 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 					self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
 					self.tableView.endUpdates()
 				}
-//				self.view.userInteractionEnabled = true
 				self.spinner.stopAnimating()
 			} else {
 				PLShowAlert("Error!", message: "Cannot download your friends.")
@@ -90,11 +98,25 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		}
 	}
 	
+	// MARK: - Search
+	
+	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+		sendSearchFriendsRequest()
+		tableView.reloadData()
+		searchBar.endEditing(true)
+	}
+	
 	// MARK: - Table View
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let count = datasource.count
-		return count
+		
+		if searchBar.text > "" && datasource.count == 0 {
+			tableView.hidden = true
+		} else {
+			tableView.hidden = false
+		}
+		
+		return datasource.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
@@ -104,7 +126,6 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		let friend = datasource[indexPath.row]
 		
 		cell.friend = friend
-		
 		cell.accessoryType = .None
 		
 		return cell
@@ -119,7 +140,8 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-		
+		selectedFriend = datasource[indexPath.row]
+		performSegueWithIdentifier("ShowFriendProfile", sender: self)
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -148,7 +170,28 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		view.addGestureRecognizer(tapOnScreen)
 	}
 	
-	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		//search result from server
+	func sendSearchFriendsRequest() -> [PLUser] {
+		
+		let filtered = collectionUsers.filter({ (user) -> Bool in
+			let tmp: NSString = user.name
+			let range = tmp.rangeOfString(searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
+			return range.location != NSNotFound
+		})
+		
+		print("req with word: \(searchBar.text!)")
+		
+		return filtered
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		
+		if segue.identifier == "ShowFriendSearch" {
+			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
+			friendSearchViewController.seekerText = searchBar.text
+		}
+		
+		guard segue.identifier == "ShowFriendProfile" else { return }
+		let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
+		friendProfileViewController.friend = selectedFriend
 	}
 }

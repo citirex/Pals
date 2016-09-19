@@ -106,6 +106,9 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	}
 	
 	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+		if searchBar.text > "" {
+			searchActive = true
+		}
 		searchActive = false
 	}
 	
@@ -149,8 +152,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		}
 	}
 	
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int
-	{
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
 	
@@ -217,7 +219,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		
 		if segue.identifier == "ShowFriendSearch" {
 			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
-			friendSearchViewController.seekerFriend?.searchBar.text = searchBar.text
+			friendSearchViewController.seekerText = searchBar.text
 		}
 		
         guard segue.identifier == "ShowFriendProfile" else { return }

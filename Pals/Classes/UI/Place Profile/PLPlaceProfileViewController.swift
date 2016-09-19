@@ -166,4 +166,5 @@ extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(view.frame.size.width, 120)
     }
+    
 }

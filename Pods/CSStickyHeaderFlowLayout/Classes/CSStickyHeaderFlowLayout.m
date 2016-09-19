@@ -32,7 +32,10 @@ static const NSInteger kHeaderZIndex = 1024;
 
     if ([elementKind isEqualToString:CSStickyHeaderParallaxHeader]) {
         // sticky header do not need to offset
-        return nil;
+//        return nil;
+        CGRect frame = attributes.frame;
+        frame.origin.y += self.parallaxHeaderReferenceSize.height + 50;
+        attributes.frame = frame;
     } else {
         // offset others
 

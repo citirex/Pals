@@ -34,6 +34,7 @@ class PLFriendProfileViewController: PLViewController {
         
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.presentTransparentNavigationBar()
+		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     
