@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07j-kW-8Lp">
-                        <rect key="frame" x="8" y="12" width="40" height="20"/>
+                        <rect key="frame" x="15" y="12" width="40" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -27,9 +27,9 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="07j-kW-8Lp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="0Pb-wm-Tqw"/>
                     <constraint firstItem="WLi-Wk-v9O" firstAttribute="centerY" secondItem="07j-kW-8Lp" secondAttribute="centerY" id="4Rf-2T-M9a"/>
                     <constraint firstItem="07j-kW-8Lp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YT6-d8-to1"/>
+                    <constraint firstItem="07j-kW-8Lp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="fId-s5-asP"/>
                     <constraint firstItem="WLi-Wk-v9O" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="oej-W8-oNo"/>
                 </constraints>
             </tableViewCellContentView>
