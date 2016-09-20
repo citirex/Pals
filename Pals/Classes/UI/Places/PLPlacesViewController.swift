@@ -10,13 +10,15 @@ class PLPlacesViewController: PLViewController {
     
     @IBOutlet weak var tableView: UITableView!
    
+    private var activityIndicator: UIActivityIndicatorView!
     private var resultsController: UITableViewController!
     private var searchController: PLSearchController!
-    private var activityIndicator: UIActivityIndicatorView!
     
     private lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
     private var selectedPlace: PLPlace!
     private var previousFilter = ""
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,8 @@ class PLPlacesViewController: PLViewController {
         
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
-        loadPage()
+        
+        loadPlaces()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -81,10 +84,12 @@ class PLPlacesViewController: PLViewController {
         resultsController = UITableViewController(style: .Plain)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
         resultsController.tableView.backgroundColor = .affairColor()
+        resultsController.tableView.tableFooterView = UIView()
         resultsController.tableView.backgroundView = UIView()
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
+        
         searchController = PLSearchController(searchResultsController: resultsController)
         searchController.searchBar.placeholder = "Find a Place"
         searchController.searchBar.barTintColor = .affairColor()
@@ -143,10 +148,7 @@ extension PLPlacesViewController: UITableViewDataSource {
 extension PLPlacesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-
-        if places.shouldLoadNextPage(indexPath) {
-            loadPage()
-        }
+        if places.shouldLoadNextPage(indexPath) { loadPlaces() }
     }
     
 }

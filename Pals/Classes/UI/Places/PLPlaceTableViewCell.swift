@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GPUImage
 import CoreLocation
 
 class PLPlaceTableViewCell: UITableViewCell {
@@ -15,6 +16,7 @@ class PLPlaceTableViewCell: UITableViewCell {
     static let identifier = "PlaceCell"
 
     @IBOutlet weak var blurView: PLBlurImageView!
+    @IBOutlet weak var placeImageView: UIImageView!
     @IBOutlet weak var placeNameLabel: UILabel!
     @IBOutlet weak var placeAddressLabel: UILabel!
     @IBOutlet weak var musicGenresLabel: UILabel!
@@ -34,22 +36,19 @@ class PLPlaceTableViewCell: UITableViewCell {
     }
 
     private func setup() {
-        guard
-            let placeCellData = cellData
-        else {
-            return
-        }
+        guard let placeCellData = cellData else { return }
+        
         setBlurredImage(placeCellData.picture)
         updateDistance(placeCellData.location)
         placeNameLabel.text = placeCellData.name
         placeAddressLabel.text = placeCellData.address
         musicGenresLabel.text = placeCellData.musicGengres
-        
-        placeNameLabel.addShadow()
-        placeAddressLabel.addShadow()
-        musicGenresLabel.addShadow()
-        distanceLabel.addShadow()
+
+        addShadowForCell()
     }
+    
+   
+    
     
     func setBlurredImage(url: NSURL) {
         blurView.image = nil
@@ -66,7 +65,7 @@ class PLPlaceTableViewCell: UITableViewCell {
                     return
                 }
                 dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-                    self.blurView.addBlur(image, completion: { (image) -> Bool in
+                    self.blurView.addBlur(image, completion: { (image) -> Bool in                        
                         if urlString != self.currentUrl {
                             return false
                         }
@@ -81,7 +80,15 @@ class PLPlaceTableViewCell: UITableViewCell {
         }
     }
     
-    func updateDistance(destination: CLLocationCoordinate2D) {
+    private func addShadowForCell() {
+        placeNameLabel.addShadow()
+        placeAddressLabel.addShadow()
+        musicGenresLabel.addShadow()
+        distanceLabel.addShadow()
+    }
+    
+    
+    private func updateDistance(destination: CLLocationCoordinate2D) {
         guard
             let currentLocation = PLFacade.instance.locationManager.currentLocation
         else {

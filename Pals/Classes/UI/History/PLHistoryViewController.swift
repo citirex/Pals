@@ -12,41 +12,57 @@ class PLHistoryViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var user: PLUser!
-    
+    private var activityIndicator: UIActivityIndicatorView!
     private lazy var orderDatasource: PLOrderDatasource = {
         let orderDatasource = PLOrderDatasource(orderType: .Drinks)
         orderDatasource.userId = self.user.id
         return orderDatasource
     }()
     
-    
-    var orders = [PLOrder]()
+    var user: PLUser!
+    private var orders = [PLOrder]()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        orderDatasource.load { objects, error in
-            self.orders = objects as! [PLOrder]
-            self.tableView.reloadData()
-        }
+        setupTableView()
+        configureActivityIndicator()
+        view.addSubview(activityIndicator)
         
-        setup()
+        loadOrders()
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        activityIndicator.center = view.center
         navigationController?.hideTransparentNavigationBar()
+    }
+    
+    
+    private func loadOrders() {
+        activityIndicator.startAnimating()
+        orderDatasource.load { objects, error in
+            guard error == nil else { return }
+            self.orders = objects as! [PLOrder]
+            self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator.color = .grayColor()
+        activityIndicator.hidesWhenStopped = true
     }
     
     
     // MARK: - Private methods
     
-    private func setup() {
+    private func setupTableView() {
         let cellNib = UINib(nibName: PLHistoryCell.nibName, bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: PLHistoryCell.reuseIdentifier)
         
