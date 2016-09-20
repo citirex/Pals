@@ -58,11 +58,4 @@ class PLFriendCell: UITableViewCell{
 			}
 		}
 	}
-	
-	func addFriendAction(sender: UIButton!){
-		print("baton")
-		if sender.imageView?.image == UIImage(named: "plus"){
-			
-		}
-	}
 }

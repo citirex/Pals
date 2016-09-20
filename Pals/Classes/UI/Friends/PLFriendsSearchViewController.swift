@@ -196,10 +196,17 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		let addFriendButtonView = UIView(frame: CGRectMake(0,0,22,22))
 		addFriendButtonView.backgroundColor = UIColor.clearColor()
 		let addFriendButton = UIButton(frame: CGRect(x: 0, y: 0, width: addFriendButtonView.bounds.width, height: addFriendButtonView.bounds.height))
-		addFriendButton.addTarget(self, action: #selector(PLFriendCell.addFriendAction), forControlEvents: .TouchUpInside)
+		addFriendButton.addTarget(self, action: #selector(addFriendAction), forControlEvents: .TouchUpInside)
 		addFriendButton.setImage(UIImage(named: "plus"), forState: .Normal)
 		addFriendButtonView.addSubview(addFriendButton)
 		
 		return addFriendButtonView
+	}
+	
+	func addFriendAction(sender: UIButton!){
+		print("baton")
+		if sender.imageView?.image == UIImage(named: "plus"){
+			
+		}
 	}
 }
