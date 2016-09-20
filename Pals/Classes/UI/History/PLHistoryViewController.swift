@@ -14,17 +14,18 @@ class PLHistoryViewController: UIViewController {
     
     var user: PLUser!
     
-    let numberOfSections = 10
     
-    lazy var datasource: PLOrderDatasource = {
-        let datasource = PLOrderDatasource()
-        datasource.userId = self.user.id
-        return datasource }()
+    let datasource = PLOrderDatasource(orderType: .Drinks)
+    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datasource.userId = user.id
+        
+        print("user id \(user.id)")
         
         let cellNib = UINib(nibName: PLHistoryCell.nibName, bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: PLHistoryCell.reuseIdentifier)
@@ -46,14 +47,22 @@ class PLHistoryViewController: UIViewController {
     private func loadPage() {
         datasource.load { pages, error in
             if error == nil {
+                let orders = pages as! [PLOrder]
                 var indexPaths = [NSIndexPath]()
-                for index in 0..<pages.count {
+                
+                for section in 0..<orders.count {
+                    print("section: \(section)")
+                  
+                    for row in 0..<orders[section].drinkSets.count {
                     
-                    indexPaths.append(NSIndexPath(forRow: index, inSection: 0))
+                        print("row: \(row)")
+                        
+                        indexPaths.append(NSIndexPath(forRow: row, inSection: section))
+                    }
                 }
-                self.tableView?.beginUpdates()
-                self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
-                self.tableView?.endUpdates()
+//                self.tableView?.beginUpdates()
+//                self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+//                self.tableView?.endUpdates()
                 
             } else {
                 PLShowErrorAlert(error: error!)
@@ -74,20 +83,19 @@ extension PLHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let order = datasource[section]
-        return order.drinkSets.count
+        return datasource[section].drinkSets.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(PLHistoryCell.reuseIdentifier, forIndexPath: indexPath)
-        configureCell(cell, atIndexPath: indexPath)
+       // configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let order = datasource[indexPath.row]
+        let drink = datasource[indexPath.section].drinkSets[indexPath.row].drink
         if let cell = cell as? PLHistoryCell {
-            cell.drink = order.drinkSets[indexPath.row].drink
+            cell.drink = drink
         }
     }
     

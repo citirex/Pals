@@ -27,6 +27,8 @@ extension UIColor {
         return color
     }
     
+    
+    //TODO: - Should Rename
     class func completeButtonTintColor() -> UIColor {
         return UIColor(r: 214.0, g: 46.0, b: 225.0)
     }
@@ -38,6 +40,9 @@ extension UIColor {
     class func navigationBarTintColor() -> UIColor {
         return UIColor(r: 104.0, g: 50.0, b: 144.0)
     }
+    
+    
+    /// Place screen
     
     // navigation bar color
     class func affairColor() -> UIColor {
