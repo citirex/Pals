@@ -97,7 +97,7 @@ class PLPlacesViewController: PLViewController {
         searchController.searchBar.tintColor = .whiteColor()
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.delegate = self
+//        searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
     }
