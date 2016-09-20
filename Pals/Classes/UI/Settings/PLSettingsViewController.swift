@@ -16,39 +16,35 @@ class PLSettingsViewController: PLViewController {
     private let numberOfSections = 3
     private let items = [["Account", "Card Info", "Add Funds", "Notifications"], ["Order History"], ["Help and FAQ", "Terms of Service", "Privacy Policy"]]
     
-    private let segueIdentifiers = [["ShowEditProfile", "ShowCardInfo", "ShowAddFunds"], ["ShowHistory"]]
+    private let segueIdentifiers = [["ShowEditProfile", "ShowCardInfo", "ShowAddFunds", "ShowNotifications"], ["ShowHistory"]]
+    
     
     var user: PLUser!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = .affairColor()
-        
         // Setup Cell
-        let nib = UINib(nibName: PLSettingsTableViewCell.nibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLSettingsTableViewCell.identifier)
+        let nib = UINib(nibName: PLSettingCell.nibName, bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: PLSettingCell.identifier)
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     
+        configureNavigationBar()
+    }
+    
+    
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.barStyle = .Black
+        navigationController?.navigationBar.barTintColor = .affairColor()
         navigationController?.hideTransparentNavigationBar()
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    
-        navigationController?.presentTransparentNavigationBar()
-    }
-    
-    
-    // MARK: - Notifications
-
-    private func notificationsChanged(state: Bool) {
-        print(state)
-    }
+   
     
     
     // MARK: - Navigations
@@ -65,7 +61,9 @@ class PLSettingsViewController: PLViewController {
         case "ShowAddFunds":
             let refillBalanceViewController = segue.destinationViewController as! PLAddFundsViewController
             refillBalanceViewController.user = user
-            case "ShowHistory":
+        case "ShowNotifications":
+            print()
+        case "ShowHistory":
             let historyViewController = segue.destinationViewController as! PLHistoryViewController
             historyViewController.user = user
         default:
@@ -91,25 +89,15 @@ extension PLSettingsViewController: UITableViewDataSource {
     
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(PLSettingsTableViewCell.identifier, forIndexPath: indexPath) as! PLSettingsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(PLSettingCell.identifier, forIndexPath: indexPath) as! PLSettingCell
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
     
     private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        guard let cell = cell as? PLSettingsTableViewCell else { return }
-        if indexPath.section == 0 {
-            if indexPath.row == items[indexPath.section].endIndex - 1 {
-                cell.settingsSwitch.hidden = false
-                cell.selectionStyle = .None
-                cell.accessoryType = .None
-                cell.didChangedNotificationsSwitch = { state in
-                    self.notificationsChanged(state)
-                }
-            }
-        }
-        cell.settingsLabel?.text = items[indexPath.section][indexPath.row]
+        guard let cell = cell as? PLSettingCell else { return }
+        cell.textLabel?.text = items[indexPath.section][indexPath.row]
     }
 
 }

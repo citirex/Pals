@@ -33,11 +33,12 @@ class PLPlacesViewController: PLViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
         activityIndicator.center = view.center
         configureNavigationBar()
     }
  
-    private func loadPage() {
+    private func loadPlaces() {
         activityIndicator.startAnimating()
         places.load { places, error in
             if error == nil {
@@ -142,6 +143,7 @@ extension PLPlacesViewController: UITableViewDataSource {
 extension PLPlacesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+
         if places.shouldLoadNextPage(indexPath) {
             loadPage()
         }
