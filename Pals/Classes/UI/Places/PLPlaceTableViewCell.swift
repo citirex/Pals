@@ -23,7 +23,7 @@ class PLPlaceTableViewCell: UITableViewCell {
     
     var currentUrl = ""
     
-    var place: PLPlace! {
+    var cellData: PLPlaceCellData? {
         didSet { setup() }
     }
     
@@ -34,17 +34,16 @@ class PLPlaceTableViewCell: UITableViewCell {
     }
 
     private func setup() {
-        let placeCellData = place.cellData
-        
-        if place == nil {
+        guard
+            let placeCellData = cellData
+        else {
             return
         }
-        
         setBlurredImage(placeCellData.picture)
+        updateDistance(placeCellData.location)
         placeNameLabel.text = placeCellData.name
         placeAddressLabel.text = placeCellData.address
         musicGenresLabel.text = placeCellData.musicGengres
-        distanceLabel.text = distance(placeCellData.location)
         
         placeNameLabel.addShadow()
         placeAddressLabel.addShadow()
@@ -83,16 +82,17 @@ class PLPlaceTableViewCell: UITableViewCell {
         }
     }
     
-    private func distance(destination: CLLocationCoordinate2D) -> String {
-//        let locationManager = PLLocationManager()
-//        var currentLocation = CLLocation()
-//        locationManager.updateLocation { location, error in
-//            guard error == nil else { return }
-//            currentLocation = location!
-//        }
-//        let placeLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
-//        let distance = currentLocation.distanceFromLocation(placeLocation)
-//        return distance.stringWithUnit()
-        return "1.5 km"
+    func updateDistance(destination: CLLocationCoordinate2D) {
+        guard
+            let currentLocation = PLFacade.instance.locationManager.currentLocation
+        else {
+            distanceLabel.text = ""
+            return
+        }
+        let placeLocation = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
+        let distance = currentLocation.distanceFromLocation(placeLocation)
+        let distanceStr = distance.stringWithUnit()
+        distanceLabel.text = distanceStr
     }
+
 }

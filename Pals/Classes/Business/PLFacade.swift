@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
-
 typealias PLErrorCompletion = (error: NSError?) -> ()
 
 protocol PLFacadeInterface {

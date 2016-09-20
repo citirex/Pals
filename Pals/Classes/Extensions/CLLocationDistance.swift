@@ -6,7 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
 
 extension CLLocationDistance {
