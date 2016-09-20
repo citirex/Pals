@@ -68,6 +68,7 @@
 		D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
 		D46D2B891D875BB10058060E /* PLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B881D875BB10058060E /* PLImage.swift */; };
+		D46E81631D91370100A781C7 /* PLSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46E81621D91370100A781C7 /* PLSearchController.swift */; };
 		D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B454E1D8FED1B0042EB9A /* PLCoversDatasource.swift */; };
 		D47B45661D903DF80042EB9A /* PLProfileDatasourceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B45651D903DF80042EB9A /* PLProfileDatasourceContainer.swift */; };
 		D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */; };
@@ -122,8 +123,11 @@
 		E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */; };
 		E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */; };
 		E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */; };
-		E8BB9A7A1D89347D00DD6987 /* PLSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A781D89347D00DD6987 /* PLSettingsTableViewCell.swift */; };
-		E8BB9A7B1D89347D00DD6987 /* PLSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BB9A791D89347D00DD6987 /* PLSettingsTableViewCell.xib */; };
+		E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */; };
+		E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86821D913A7B0079855C /* PLNotificationCell.swift */; };
+		E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BE86831D913A7B0079855C /* PLNotificationCell.xib */; };
+		E8BE868A1D9166620079855C /* PLSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86881D9166620079855C /* PLSettingCell.swift */; };
+		E8BE868B1D9166620079855C /* PLSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BE86891D9166620079855C /* PLSettingCell.xib */; };
 		E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B581D881D7C008782E5 /* PLView.swift */; };
 		E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */; };
 		E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7D1D8832E8008782E5 /* TGLExposedLayout.m */; };
@@ -210,6 +214,7 @@
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46D2B861D87583B0058060E /* PLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLColor.swift; sourceTree = "<group>"; };
 		D46D2B881D875BB10058060E /* PLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImage.swift; sourceTree = "<group>"; };
+		D46E81621D91370100A781C7 /* PLSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchController.swift; sourceTree = "<group>"; };
 		D47B454E1D8FED1B0042EB9A /* PLCoversDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCoversDatasource.swift; sourceTree = "<group>"; };
 		D47B45651D903DF80042EB9A /* PLProfileDatasourceContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileDatasourceContainer.swift; sourceTree = "<group>"; };
 		D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCellData.swift; sourceTree = "<group>"; };
@@ -263,8 +268,11 @@
 		E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationDistance.swift; sourceTree = "<group>"; };
 		E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLCardInfoViewController.swift; path = "Card Info/PLCardInfoViewController.swift"; sourceTree = "<group>"; };
 		E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsViewController.swift; sourceTree = "<group>"; };
-		E8BB9A781D89347D00DD6987 /* PLSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsTableViewCell.swift; sourceTree = "<group>"; };
-		E8BB9A791D89347D00DD6987 /* PLSettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingsTableViewCell.xib; sourceTree = "<group>"; };
+		E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationsViewController.swift; path = Notifications/PLNotificationsViewController.swift; sourceTree = "<group>"; };
+		E8BE86821D913A7B0079855C /* PLNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationCell.swift; path = Notifications/PLNotificationCell.swift; sourceTree = "<group>"; };
+		E8BE86831D913A7B0079855C /* PLNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLNotificationCell.xib; path = Notifications/PLNotificationCell.xib; sourceTree = "<group>"; };
+		E8BE86881D9166620079855C /* PLSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingCell.swift; sourceTree = "<group>"; };
+		E8BE86891D9166620079855C /* PLSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingCell.xib; sourceTree = "<group>"; };
 		E8DA8B581D881D7C008782E5 /* PLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
 		E8DA8B7A1D8832E8008782E5 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
 		E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
@@ -393,6 +401,7 @@
 				E886AFAA1D8A98790014DF4D /* Card Info */,
 				E837C1C41D8FEAE60080A074 /* History */,
 				2480F8C11D813E730095995F /* SignUp */,
+				E8BE86871D913AA20079855C /* Notifications */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -413,6 +422,7 @@
 				D4950A941D82C71100F48F4E /* PLViewController.swift */,
 				D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */,
 				E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */,
+				D46E81621D91370100A781C7 /* PLSearchController.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -763,10 +773,28 @@
 		E8BB9A771D89332100DD6987 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				E8BB9A781D89347D00DD6987 /* PLSettingsTableViewCell.swift */,
-				E8BB9A791D89347D00DD6987 /* PLSettingsTableViewCell.xib */,
+				E8BE86881D9166620079855C /* PLSettingCell.swift */,
+				E8BE86891D9166620079855C /* PLSettingCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		E8BE86861D913A8A0079855C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E8BE86821D913A7B0079855C /* PLNotificationCell.swift */,
+				E8BE86831D913A7B0079855C /* PLNotificationCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		E8BE86871D913AA20079855C /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */,
+				E8BE86861D913A8A0079855C /* Cell */,
+			);
+			name = Notifications;
 			sourceTree = "<group>";
 		};
 		E8DA8B5C1D882896008782E5 /* AppDelegate */ = {
@@ -914,15 +942,16 @@
 				E837C2081D902CAE0080A074 /* order_drinks3.json in Resources */,
 				E8DA8B931D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
-				E8BB9A7B1D89347D00DD6987 /* PLSettingsTableViewCell.xib in Resources */,
 				E837C1FB1D902CAE0080A074 /* drinks2.json in Resources */,
 				E837C2011D902CAE0080A074 /* login.json in Resources */,
 				04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */,
+				E8BE868B1D9166620079855C /* PLSettingCell.xib in Resources */,
 				E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */,
 				E837C1FE1D902CAE0080A074 /* friends1.json in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
 				E837C1D21D8FF8E70080A074 /* PLHistorySectionHeader.xib in Resources */,
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
+				E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */,
 				E837C2021D902CAE0080A074 /* order_covers0.json in Resources */,
 				2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */,
 				E837C1F91D902CAE0080A074 /* drinks0.json in Resources */,
@@ -994,10 +1023,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8BE868A1D9166620079855C /* PLSettingCell.swift in Sources */,
 				E8E4A1321D89EC0A00EA0DFE /* PLEditProfileViewController.swift in Sources */,
 				2480F8E31D813E730095995F /* PLString.swift in Sources */,
 				2480F8D81D813E730095995F /* AppDelegate.swift in Sources */,
 				2480F8F91D813E730095995F /* PLFriendProfileViewController.swift in Sources */,
+				D46E81631D91370100A781C7 /* PLSearchController.swift in Sources */,
 				E837C1C61D8FEB690080A074 /* PLHistoryViewController.swift in Sources */,
 				2480F8E71D813E730095995F /* PLFakeFeed.swift in Sources */,
 				E829DDD41D8151BE00D8C130 /* PLPlaceProfileSectionHeader.swift in Sources */,
@@ -1010,13 +1041,14 @@
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
+				E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */,
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
 				E8DA8B851D8832E8008782E5 /* TGLStackedViewController.m in Sources */,
 				24AE702F1D90162E0064E7B2 /* PLCollectionViewCell.swift in Sources */,
 				2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */,
+				E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */,
 				D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */,
-				E8BB9A7A1D89347D00DD6987 /* PLSettingsTableViewCell.swift in Sources */,
 				E837C1D11D8FF8E70080A074 /* PLHistorySectionHeader.swift in Sources */,
 				D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */,
 				2480F9171D813E730095995F /* PLSignUpData.swift in Sources */,

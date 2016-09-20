@@ -21,7 +21,6 @@ extension UINavigationController {
         navigationBar.setBackgroundImage(UIImage(), forBarPosition: .Any, barMetrics: .Default)
         navigationBar.shadowImage = UIImage()
         navigationBar.translucent = false
-        
     }
 
 }

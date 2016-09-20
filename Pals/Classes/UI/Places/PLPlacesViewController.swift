@@ -6,16 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-
-class PLSearchController: UISearchController {
-
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
-}
-
-
 class PLPlacesViewController: PLViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -25,10 +15,8 @@ class PLPlacesViewController: PLViewController {
     private var activityIndicator: UIActivityIndicatorView!
     
     private lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
-    private var filteredPlaces: [PLPlace]!
     private var selectedPlace: PLPlace!
-    
-    
+    private var previousFilter = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,19 +28,18 @@ class PLPlacesViewController: PLViewController {
         
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
+        loadPage()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        loadPage()
+
+        activityIndicator.center = view.center
         configureNavigationBar()
     }
-    
  
-    private func loadPage() {
+    private func loadPlaces() {
         activityIndicator.startAnimating()
-        activityIndicator.center = view.center
         places.load { places, error in
             if error == nil {
                 let count = self.places.count
@@ -98,19 +85,17 @@ class PLPlacesViewController: PLViewController {
         resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
-        
         searchController = PLSearchController(searchResultsController: resultsController)
         searchController.searchBar.placeholder = "Find a Place"
         searchController.searchBar.barTintColor = .affairColor()
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.tintColor = .whiteColor()
         searchController.searchResultsUpdater = self
-    
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
-
         definesPresentationContext = true
     }
-    
 
     // MARK: - Navigation
     
@@ -120,7 +105,6 @@ class PLPlacesViewController: PLViewController {
             placeProfileViewController.place = selectedPlace
         }
     }
-    
     
 }
 
@@ -154,31 +138,56 @@ extension PLPlacesViewController: UITableViewDataSource {
 
 }
 
-
 // MARK: - Table view delegate
 
 extension PLPlacesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == places.count - 1 {
+
+        if places.shouldLoadNextPage(indexPath) {
             loadPage()
         }
     }
     
 }
 
+// MARK: - UISearchControllerDelegate
+
+extension PLPlacesViewController : UISearchControllerDelegate {
+    func willDismissSearchController(searchController: UISearchController) {
+        let offset = tableView.contentOffset.y + tableView.contentInset.top
+        if offset >= searchController.searchBar.frame.height {
+            UIView.animateWithDuration(0.25) {
+                searchController.searchBar.alpha = 0
+            }
+        }
+    }
+    
+    func didDismissSearchController(searchController: UISearchController) {
+        if searchController.searchBar.alpha == 0 {
+            UIView.animateWithDuration(0.25) {
+                searchController.searchBar.alpha = 1
+            }
+        }
+    }
+}
 
 // MARK: - UISearchResultsUpdating
 
 extension PLPlacesViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-//        if let searchText = searchController.searchBar.text {
-//            filteredPlaces = searchText.isEmpty ? places : places.filter {
-//                $0.name!.rangeOfString(searchText, options: [.CaseInsensitiveSearch, .AnchoredSearch]) != nil
-//            }
-//            resultsController.tableView.reloadData()
-//        }
+        places.searching = searchController.active
+        let filter = searchController.searchBar.text!
+        if filter.isEmpty {
+            places.searching = false
+        } else {
+            activityIndicator.startAnimating()
+            places.filter(filter, completion: { [unowned self] in
+                self.resultsController.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
+            })
+        }
     }
 }
 

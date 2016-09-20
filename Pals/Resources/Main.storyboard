@@ -621,11 +621,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cPl-tf-43y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SvM-dB-CmC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xqB-wZ-lQh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <collectionViewLayout key="collectionViewLayout" id="cdL-w4-diz" customClass="PLCollectionParalaxLayout" customModule="Pals" customModuleProvider="target"/>
                                 <cells/>
                                 <connections>
@@ -650,7 +650,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="xqB-wZ-lQh" id="vTe-9e-k3T"/>
                         <segue destination="wZt-xG-ynN" kind="push" identifier="ShowAddFunds" id="Qau-vR-zQT"/>
@@ -1130,6 +1129,46 @@
             </objects>
             <point key="canvasLocation" x="-1384" y="101"/>
         </scene>
+        <!--Notifications-->
+        <scene sceneID="Ms5-44-pwz">
+            <objects>
+                <viewController id="7U6-k9-nlT" customClass="PLNotificationsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KDa-NA-Lfz"/>
+                        <viewControllerLayoutGuide type="bottom" id="KK4-QP-KvD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9mN-N9-SC2">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TbL-20-nNy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.1803921568627451" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="7U6-k9-nlT" id="Iea-xA-Ycy"/>
+                                    <outlet property="delegate" destination="7U6-k9-nlT" id="lCG-SX-CYo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TbL-20-nNy" firstAttribute="top" secondItem="KDa-NA-Lfz" secondAttribute="bottom" id="V1B-dT-uL5"/>
+                            <constraint firstAttribute="trailing" secondItem="TbL-20-nNy" secondAttribute="trailing" id="bSi-9w-1AT"/>
+                            <constraint firstItem="KK4-QP-KvD" firstAttribute="top" secondItem="TbL-20-nNy" secondAttribute="bottom" id="kId-j6-VcQ"/>
+                            <constraint firstItem="TbL-20-nNy" firstAttribute="leading" secondItem="9mN-N9-SC2" secondAttribute="leading" id="kpK-9y-NfU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notifications" id="flO-7F-a25"/>
+                    <connections>
+                        <outlet property="tableView" destination="TbL-20-nNy" id="7rI-tC-45y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ip-9m-HYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1008" y="97"/>
+        </scene>
         <!--History-->
         <scene sceneID="ESD-Th-IME">
             <objects>
@@ -1139,11 +1178,11 @@
                         <viewControllerLayoutGuide type="bottom" id="TN8-qH-eNb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="34p-9K-RAP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="88" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i7u-E5-AkU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
@@ -1167,7 +1206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tj-H2-9S7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-932" y="101"/>
+            <point key="canvasLocation" x="-628" y="101"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ajY-eh-z6Z">
@@ -1178,12 +1217,12 @@
                         <viewControllerLayoutGuide type="bottom" id="XIp-w9-9kT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zYV-Ec-IbB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Bbi-Pj-gDT">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <color key="backgroundColor" red="0.26274509800000001" green="0.18039215689999999" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.1803921568627451" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
@@ -1204,13 +1243,13 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="gwc-0C-pd5"/>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="Bbi-Pj-gDT" id="NQy-oQ-Oya"/>
                         <segue destination="2zm-V5-MZy" kind="push" identifier="ShowEditProfile" id="VEu-3C-tGk"/>
                         <segue destination="DmR-jl-w2z" kind="push" identifier="ShowCardInfo" id="hI8-KA-Tkg"/>
                         <segue destination="wZt-xG-ynN" kind="push" identifier="ShowAddFunds" id="u5L-qT-vQG"/>
                         <segue destination="nZe-CE-B1W" kind="push" identifier="ShowHistory" id="w9H-LU-6PB"/>
+                        <segue destination="7U6-k9-nlT" kind="push" identifier="ShowNotifications" id="1aQ-v7-etf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPz-Zt-74a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1224,11 +1263,12 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="profile-tab" id="Ujp-Yc-X83"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="yjv-WV-8BH"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="XZV-Ci-cP6">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="XZV-Ci-cP6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.40784313729999999" green="0.1960784314" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.35686274509803922" green="0.16862745098039217" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1430,8 +1470,8 @@
         <image name="sign-in-plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u5L-qT-vQG"/>
         <segue reference="ovy-Gk-Wh0"/>
+        <segue reference="u5L-qT-vQG"/>
         <segue reference="5Sl-5v-r30"/>
     </inferredMetricsTieBreakers>
 </document>

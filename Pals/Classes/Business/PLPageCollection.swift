@@ -86,7 +86,13 @@ struct PLPageCollectionPreset {
 class PLPageCollection<T:PLUniqueObject> {
     weak var delegate: PLPageCollectionDelegate?
     var preset: PLPageCollectionPreset
-    var objects = [T]()
+    private var _objects = [T]()
+    private var filtered = [T]()
+    var objects: [T] {
+        return searching ? filtered : _objects
+    }
+    
+    var searching = false
     var session: AFHTTPSessionManager?
     
     private var offset = UInt64(0)
@@ -116,6 +122,29 @@ class PLPageCollection<T:PLUniqueObject> {
     
     subscript(index: Int) -> T {
         return objects[index]
+    }
+    
+    func shouldLoadNextPage(indexPath: NSIndexPath) -> Bool {
+        if searching {
+            return false
+        }
+        if indexPath.row == objects.count - 1 {
+            return true
+        }
+        return false
+    }
+    
+    func filter(criteria: (object: T) -> Bool, completion: ()->()) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { 
+            self.filtered.removeAll()
+            let newFiltered = self._objects.filter { (object) -> Bool in
+                return criteria(object: object)
+            }
+            self.filtered.appendContentsOf(newFiltered)
+            dispatch_async(dispatch_get_main_queue(), { 
+                completion()
+            })
+        }
     }
     
     func load() {
@@ -171,7 +200,7 @@ class PLPageCollection<T:PLUniqueObject> {
     
     func onPageLoad(objects: [T]) {
         if objects.count > 0 {
-            self.objects.appendContentsOf(objects)
+            self._objects.appendContentsOf(objects)
             if !self.preset.offsetById {
                 self.offset += UInt64(objects.count)
             }
