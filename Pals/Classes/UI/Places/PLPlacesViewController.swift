@@ -6,12 +6,12 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class SearchController: UISearchController {
-    
+
+class PLSearchController: UISearchController {
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-    
     
 }
 
@@ -21,18 +21,11 @@ class PLPlacesViewController: PLViewController {
     @IBOutlet weak var tableView: UITableView!
    
     private var resultsController: UITableViewController!
-    private var searchController: SearchController!
+    private var searchController: PLSearchController!
+    private var activityIndicator: UIActivityIndicatorView!
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.color = .grayColor()
-        self.tableView.addSubview(activityIndicator)
-        activityIndicator.addConstraintCentered()
-        return activityIndicator
-    }()
-    
-    lazy var datasource: PLPlacesDatasource = { return PLPlacesDatasource() }()
+    private lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
+    private var filteredPlaces: [PLPlace]!
     private var selectedPlace: PLPlace!
     
     
@@ -40,30 +33,30 @@ class PLPlacesViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadPage()
         configureSearchController()
-        
-        tableView.backgroundColor = .affairColor()
+        configureActivityIndicator()
+        view.addSubview(activityIndicator)
+        tableView.backgroundView = UIView()
         
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
-        tableView.contentOffset = CGPointMake(0, searchController.searchBar.frame.size.height)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.barTintColor = .affairColor()
-        navigationController?.hideTransparentNavigationBar()
+        loadPage()
+        configureNavigationBar()
     }
     
+ 
     private func loadPage() {
         activityIndicator.startAnimating()
-        datasource.load { [unowned self] pages, error in
+        activityIndicator.center = view.center
+        places.load { places, error in
             if error == nil {
-                let count = self.datasource.count
-                let lastLoadedCount = pages.count
+                let count = self.places.count
+                let lastLoadedCount = places.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()
                     for i in count - lastLoadedCount..<count {
@@ -81,20 +74,35 @@ class PLPlacesViewController: PLViewController {
     }
     
     
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator.hidesWhenStopped = true
+    }
+    
+    
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.barStyle = .Black
+        navigationController?.navigationBar.barTintColor = .affairColor()
+        navigationController?.hideTransparentNavigationBar()
+    }
+    
+    
     // MARK: - Initialize search controller
     
     private func configureSearchController() {
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
-        resultsController = UITableViewController(style: .Grouped)
+        resultsController = UITableViewController(style: .Plain)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
         resultsController.tableView.backgroundColor = .affairColor()
-        resultsController.childViewControllerForStatusBarStyle()
-        resultsController.tableView.rowHeight = 150.0
+        resultsController.tableView.backgroundView = UIView()
+        resultsController.tableView.rowHeight = 110.0
         resultsController.tableView.dataSource = self
         resultsController.tableView.delegate = self
         
-        searchController = SearchController(searchResultsController: resultsController)
+        searchController = PLSearchController(searchResultsController: resultsController)
+        searchController.searchBar.placeholder = "Find a Place"
         searchController.searchBar.barTintColor = .affairColor()
+        searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.tintColor = .whiteColor()
         searchController.searchResultsUpdater = self
     
@@ -113,6 +121,7 @@ class PLPlacesViewController: PLViewController {
         }
     }
     
+    
 }
 
 
@@ -121,7 +130,7 @@ class PLPlacesViewController: PLViewController {
 extension PLPlacesViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
+        return places.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -131,7 +140,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let place = datasource[indexPath.row]
+        let place = places[indexPath.row]
         if let cell = cell as? PLPlaceTableViewCell {
             cell.place = place
         }
@@ -139,7 +148,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        selectedPlace = datasource[indexPath.row]
+        selectedPlace = places[indexPath.row]
         performSegueWithIdentifier("ShowPlaceProfile", sender: self)
     }
 
@@ -151,7 +160,7 @@ extension PLPlacesViewController: UITableViewDataSource {
 extension PLPlacesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == datasource.count - 1 {
+        if indexPath.row == places.count - 1 {
             loadPage()
         }
     }
@@ -165,10 +174,11 @@ extension PLPlacesViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
 //        if let searchText = searchController.searchBar.text {
-//            filteredPlaces = searchText.isEmpty ? datasource : datasource.filter {
+//            filteredPlaces = searchText.isEmpty ? places : places.filter {
 //                $0.name!.rangeOfString(searchText, options: [.CaseInsensitiveSearch, .AnchoredSearch]) != nil
 //            }
 //            resultsController.tableView.reloadData()
 //        }
     }
 }
+

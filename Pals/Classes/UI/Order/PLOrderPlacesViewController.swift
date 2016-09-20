@@ -35,7 +35,7 @@ class PLOrderPlacesViewController: PLPlacesViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.didSelectNewPlace(datasource[indexPath.row])
+//        delegate?.didSelectNewPlace(datasource[indexPath.row])
         navigationController?.popViewControllerAnimated(true)
     }
 

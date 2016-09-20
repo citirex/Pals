@@ -50,7 +50,6 @@ class PLPlaceTableViewCell: UITableViewCell {
         placeAddressLabel.addShadow()
         musicGenresLabel.addShadow()
         distanceLabel.addShadow()
-        //arrowRightImageView.addShadow()
     }
     
     func setBlurredImage(url: NSURL) {
