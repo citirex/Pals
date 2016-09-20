@@ -58,19 +58,11 @@ class PLFriendCell: UITableViewCell{
 			}
 		}
 	}
-}
-
-
-class PLFriendSearchCell: PLFriendCell{
 	
-	override func setup() {
-		if let aFriend = friend {
-			let friendCellData = aFriend.cellData
-			setCorrectImage(friendCellData.picture)
-			nameLabel.text = friendCellData.name
-//
-		} else {
-			print("Friend Cell Data is empty!")
+	func addFriendAction(sender: UIButton!){
+		print("baton")
+		if sender.imageView?.image == UIImage(named: "plus"){
+			
 		}
 	}
 }

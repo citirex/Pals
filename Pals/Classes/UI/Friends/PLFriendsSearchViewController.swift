@@ -123,10 +123,11 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
 		
-		let friend = datasource[indexPath.row]
-		
-		cell.friend = friend
 		cell.accessoryType = .None
+		cell.accessoryView = addFriendClicked()
+		
+		let friend = datasource[indexPath.row]
+		cell.friend = friend
 		
 		return cell
 	}
@@ -188,5 +189,17 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		guard segue.identifier == "ShowFriendsProfile" else { return }
 		let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
 		friendProfileViewController.friend = selectedFriend
+	}
+	
+	func addFriendClicked() -> UIView {
+		
+		let addFriendButtonView = UIView(frame: CGRectMake(0,0,22,22))
+		addFriendButtonView.backgroundColor = UIColor.clearColor()
+		let addFriendButton = UIButton(frame: CGRect(x: 0, y: 0, width: addFriendButtonView.bounds.width, height: addFriendButtonView.bounds.height))
+		addFriendButton.addTarget(self, action: #selector(PLFriendCell.addFriendAction), forControlEvents: .TouchUpInside)
+		addFriendButton.setImage(UIImage(named: "plus"), forState: .Normal)
+		addFriendButtonView.addSubview(addFriendButton)
+		
+		return addFriendButtonView
 	}
 }
