@@ -29,10 +29,22 @@ class PLDatasource<T: PLUniqueObject> {
         collection.load()
     }
     
+    func filter(criteria: (object: T) -> Bool, completion: ()->()) {
+        collection.filter(criteria, completion: completion)
+    }
+    
+    func shouldLoadNextPage(indexPath: NSIndexPath) -> Bool {
+        return collection.shouldLoadNextPage(indexPath)
+    }
+    
     //MARK: Adapter getters
     var count: Int { return collection.count }
     var pagesLoaded: Int { return collection.pagesLoaded }
     var empty: Bool { return collection.empty }
+    var searching: Bool {
+        get { return collection.searching }
+        set { collection.searching = newValue }
+    }
     subscript(index: Int) -> T { return collection[index] }
     
     func fakeFeedNameOnError(error: NSError) -> String {

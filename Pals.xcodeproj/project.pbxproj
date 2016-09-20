@@ -68,6 +68,7 @@
 		D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
 		D46D2B891D875BB10058060E /* PLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B881D875BB10058060E /* PLImage.swift */; };
+		D46E81631D91370100A781C7 /* PLSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46E81621D91370100A781C7 /* PLSearchController.swift */; };
 		D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B454E1D8FED1B0042EB9A /* PLCoversDatasource.swift */; };
 		D47B45661D903DF80042EB9A /* PLProfileDatasourceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B45651D903DF80042EB9A /* PLProfileDatasourceContainer.swift */; };
 		D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */; };
@@ -210,6 +211,7 @@
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D46D2B861D87583B0058060E /* PLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLColor.swift; sourceTree = "<group>"; };
 		D46D2B881D875BB10058060E /* PLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImage.swift; sourceTree = "<group>"; };
+		D46E81621D91370100A781C7 /* PLSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchController.swift; sourceTree = "<group>"; };
 		D47B454E1D8FED1B0042EB9A /* PLCoversDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCoversDatasource.swift; sourceTree = "<group>"; };
 		D47B45651D903DF80042EB9A /* PLProfileDatasourceContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileDatasourceContainer.swift; sourceTree = "<group>"; };
 		D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCellData.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				D4950A941D82C71100F48F4E /* PLViewController.swift */,
 				D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */,
 				E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */,
+				D46E81621D91370100A781C7 /* PLSearchController.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -998,6 +1001,7 @@
 				2480F8E31D813E730095995F /* PLString.swift in Sources */,
 				2480F8D81D813E730095995F /* AppDelegate.swift in Sources */,
 				2480F8F91D813E730095995F /* PLFriendProfileViewController.swift in Sources */,
+				D46E81631D91370100A781C7 /* PLSearchController.swift in Sources */,
 				E837C1C61D8FEB690080A074 /* PLHistoryViewController.swift in Sources */,
 				2480F8E71D813E730095995F /* PLFakeFeed.swift in Sources */,
 				E829DDD41D8151BE00D8C130 /* PLPlaceProfileSectionHeader.swift in Sources */,
