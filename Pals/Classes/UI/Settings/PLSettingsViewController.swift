@@ -38,21 +38,7 @@ class PLSettingsViewController: PLViewController {
         let nib = UINib(nibName: PLSettingCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLSettingCell.identifier)
     }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    
-        configureNavigationBar()
-    }
-    
-    
-    private func configureNavigationBar() {
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.barTintColor = .affairColor()
-        navigationController?.hideTransparentNavigationBar()
-    }
-   
+
     
     
     // MARK: - Navigations
@@ -74,6 +60,12 @@ class PLSettingsViewController: PLViewController {
         case "ShowHistory":
             let historyViewController = segue.destinationViewController as! PLHistoryViewController
             historyViewController.user = user
+        case "ShowHelpAndFAQ":
+            print("ShowHelpAndFAQ")
+        case "ShowTermsOfService":
+            print("ShowTermsOfService")
+        case "ShowPrivacyPolicy":
+            print("ShowPrivacyPolicy")
         default:
             break
         }

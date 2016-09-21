@@ -32,14 +32,14 @@ class PLPlaceProfileViewController: PLViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.barStyle = .Black
-        navigationController?.presentTransparentNavigationBar()
+        navigationController?.setNavigationBarTransparent(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.barStyle = .Default
-        navigationController?.hideTransparentNavigationBar()
+        navigationController?.setNavigationBarTransparent(false)
     }
     
     

@@ -25,6 +25,8 @@ class PLEditProfileViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateUI()
+        
         imagePicker.delegate = self
         usernameTextField.text = user.name
         userProfileImageView.setImageWithURL(user.picture)
@@ -37,8 +39,16 @@ class PLEditProfileViewController: PLViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateUI()
+        navigationController?.setNavigationBarTransparent(true)
     }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarTransparent(false)
+    }
+    
 
     
     // MARK: - Actions

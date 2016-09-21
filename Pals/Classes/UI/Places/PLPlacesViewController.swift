@@ -25,7 +25,6 @@ class PLPlacesViewController: PLViewController {
         
         configureSearchController()
         configureActivityIndicator()
-        view.addSubview(activityIndicator)
         tableView.backgroundView = UIView()
         
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
@@ -37,9 +36,9 @@ class PLPlacesViewController: PLViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        activityIndicator.center = view.center
         configureNavigationBar()
     }
+    
  
     private func loadPlaces() {
         activityIndicator.startAnimating()
@@ -67,13 +66,16 @@ class PLPlacesViewController: PLViewController {
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
     }
     
     
     private func configureNavigationBar() {
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.navigationBar.barTintColor = .affairColor()
-        navigationController?.hideTransparentNavigationBar()
+        navigationController?.setNavigationBarTransparent(false)
     }
     
     
@@ -97,7 +99,7 @@ class PLPlacesViewController: PLViewController {
         searchController.searchBar.tintColor = .whiteColor()
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-//        searchController.delegate = self
+        searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
     }
@@ -155,7 +157,8 @@ extension PLPlacesViewController: UITableViewDelegate {
 
 // MARK: - UISearchControllerDelegate
 
-extension PLPlacesViewController : UISearchControllerDelegate {
+extension PLPlacesViewController: UISearchControllerDelegate {
+    
     func willDismissSearchController(searchController: UISearchController) {
         let offset = tableView.contentOffset.y + tableView.contentInset.top
         if offset >= searchController.searchBar.frame.height {
@@ -172,6 +175,7 @@ extension PLPlacesViewController : UISearchControllerDelegate {
             }
         }
     }
+    
 }
 
 // MARK: - UISearchResultsUpdating

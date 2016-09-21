@@ -34,7 +34,7 @@ class PLNotificationsViewController: PLViewController {
     private func configureNavigationBar() {
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.navigationBar.barTintColor = .affairColor()
-        navigationController?.hideTransparentNavigationBar()
+        navigationController?.setNavigationBarTransparent(false)
     }
 
 }

@@ -32,7 +32,8 @@ class PLAddFundsViewController: PLViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.barStyle = .Default
-        navigationController?.navigationBar.tintColor = .navigationBarTintColor()
+        navigationController?.navigationBar.tintColor = .eminenceColor()
+        navigationController?.setNavigationBarTransparent(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -40,6 +41,7 @@ class PLAddFundsViewController: PLViewController {
         
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.navigationBar.tintColor = .whiteColor()
+        navigationController?.setNavigationBarTransparent(false)
     }
     
     
@@ -84,7 +86,7 @@ class PLAddFundsViewController: PLViewController {
         accessoryView.tintColor = .whiteColor()
         accessoryView.setTitle("Refill", forState: .Normal)
         accessoryView.titleLabel?.font = UIFont.systemFontOfSize(17)
-        accessoryView.backgroundColor = .refillButtonBackgroudColor()
+        accessoryView.backgroundColor = .caribeanGreenColor()
         accessoryView.addTarget(self, action: #selector(refillButtonPressed(_:)), forControlEvents: .TouchUpInside)
         return accessoryView
     }

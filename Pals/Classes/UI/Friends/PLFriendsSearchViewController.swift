@@ -61,7 +61,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		navigationController?.navigationBar.tintColor = UIColor.navigationBarTintColor()
+		navigationController?.navigationBar.tintColor = UIColor.vividViolet()
 		registerKeyboardNotifications()
 		
 		searchBar.text = seekerText

@@ -42,6 +42,7 @@ class PLProfileViewController: TGLStackedViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,10 +54,20 @@ class PLProfileViewController: TGLStackedViewController {
         loadPage()
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.presentTransparentNavigationBar()
+        
+        navigationController?.setNavigationBarTransparent(true)
     }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarTransparent(false)
+    }
+
     
     func loadPage() {
         spinner.startAnimating()
