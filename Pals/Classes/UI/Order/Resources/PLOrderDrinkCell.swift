@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OrderDrinksCounterDelegate: class {
-    func updateOrderWith(cell:PLOrderDrinkCell, andCount count: UInt64)
+    func updateOrderWith(drink: UInt64, andCount count: UInt64)
 }
 
 class PLOrderDrinkCell: UICollectionViewCell {
@@ -38,21 +38,21 @@ class PLOrderDrinkCell: UICollectionViewCell {
     func setupWith(drink: PLDrinkCellData, isVip vip: Bool) {
         drinkID = drink.drinkId
         drinkNameLabel.text = drink.name
-        drinkPriceLabel.text = (drink.price > 0) ? String(format: "$%2.f", drink.price) : "Specify"
+        drinkPriceLabel.text = (drink.price > 0) ? "$" + String(format: "%.2f", drink.price) : "Specify"
         setupColorsForVipState(vip, withType: drink.type)
     }
     
     //MARK: Actions
-    @IBAction private func minusButtonPressed(sender: UIButton) {
+    @IBAction func minusButtonPressed(sender: UIButton) {
         if drinkCount > 0 {
             drinkCount -= 1
-            delegate?.updateOrderWith(self, andCount: drinkCount)
+            delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
         }
     }
     
-    @IBAction private func plusButtonPressed(sender: UIButton) {
+    @IBAction func plusButtonPressed(sender: UIButton) {
         drinkCount += 1
-        delegate?.updateOrderWith(self, andCount: drinkCount)
+        delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
     }
     
     private func setupColorsForVipState(isVip: Bool, withType type: DrinkType) {

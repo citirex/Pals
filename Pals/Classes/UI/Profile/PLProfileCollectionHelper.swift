@@ -34,9 +34,16 @@ class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
             } else if (indexPath.row % 4 == 0) {
                 cell.headerView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
             }
+        
+            if datasource?.orderType == .Covers {
+                cell.cardTitleLabel.text = (order.isVIP) ? "VIP" : order.place.name
+                cell.cardCaptionLabel.text = (order.isVIP) ? order.place.name : order.place.musicGengres
+            } else {
+                cell.cardTitleLabel.text = order.place.name
+                cell.cardCaptionLabel.text = order.place.musicGengres
+            }
             
-            cell.cardTitleLabel.text = order.place.name
-            cell.cardCaptionLabel.text = order.place.musicGengres
+            
             cell.barPlaceLabel.text = order.place.address
             cell.cardQRCodeLabel.text = order.QRcode
             cell.cardQRCodeImageView.image = QRCode.generateImage(order.QRcode, avatarImage: nil)

@@ -14,10 +14,9 @@ class PLPlacesViewController: PLViewController {
     private var resultsController: UITableViewController!
     private var searchController: PLSearchController!
     
-    private lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
+    lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
     private var selectedPlace: PLPlace!
     private var previousFilter = ""
-    
     
     
     override func viewDidLoad() {

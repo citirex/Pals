@@ -41,7 +41,6 @@ class PLOrderViewController: PLViewController {
     }
    
     
-    private var totalAmount: Float = 0
     private var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     private var firstLaunch: Bool = true
     private var drinksDatasource = PLDrinksDatasource()
@@ -212,8 +211,16 @@ extension PLOrderViewController {
     }
     
     func calculateTotalAmount() -> String {
-//         drinksDatasource.collection.objects
-        return "$666"
+        let keys = orderDrinks.keys
+        var amount: Float = 0.0
+        for aDrink in drinksDatasource.collection.objects {
+            if keys.contains("\(aDrink.id)") {
+                if let count = Float(orderDrinks["\(aDrink.id)"]!) {
+                    amount += aDrink.price * count
+                }
+            }
+        }
+        return "$" + String(format: "%.2f", amount)
     }
     
     func createNewOrderWithMessage(message: String) {
@@ -243,28 +250,11 @@ extension PLOrderViewController {
 extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, CheckoutOrderPopupDelegate {
     
     //MARK: Order drinks count
-    func updateOrderWith(cell: PLOrderDrinkCell, andCount count: UInt64) {
-        
-        let currentDrink = drinksDatasource.collection.objects[(collectionView.indexPathForCell(cell)?.row)!]
-        
-        
-//        let drinkset = PLDrinkset(aDrink: currentDrink, andCount: count)
-//        
-//        let drinkss = [PLDrinkset];
-//        
-//        if drinkss.contains(drinkset) {
-//            
-//        }
-        
+    func updateOrderWith(drink: UInt64, andCount count: UInt64) {
         if count == 0 {
-//            totalAmount = 0
-            orderDrinks.removeValueForKey(String(currentDrink.id))
+            orderDrinks.removeValueForKey(String(drink))
         } else {
-//            if orderDrinks[String(currentDrink.id)] {
-//                
-//            }
-//            totalAmount = 0
-            orderDrinks.updateValue(String(count), forKey: String(currentDrink.id))
+            orderDrinks.updateValue(String(count), forKey: String(drink))
         }
     }
     

@@ -1450,6 +1450,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Locations" id="Yr0-fr-OQF"/>
+                    <connections>
+                        <outlet property="tableView" destination="xtt-2T-UuI" id="S0K-ZK-05A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzM-ti-C30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
