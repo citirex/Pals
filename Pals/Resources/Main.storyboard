@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -659,10 +659,10 @@
             </objects>
             <point key="canvasLocation" x="-1189" y="-1442"/>
         </scene>
-        <!--Locations-->
+        <!--Places-->
         <scene sceneID="DGm-Lb-BtU">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="0Ei-uX-tOV" customClass="PLPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Places" extendedLayoutIncludesOpaqueBars="YES" id="0Ei-uX-tOV" customClass="PLPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5lK-XI-0Q4"/>
                         <viewControllerLayoutGuide type="bottom" id="4MT-Ur-fQ2"/>
@@ -709,13 +709,13 @@
         <!--Place Profile-->
         <scene sceneID="Ogc-1T-UGd">
             <objects>
-                <viewController title="Place Profile" id="0zz-mk-uMT" customClass="PLPlaceProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Place Profile" extendedLayoutIncludesOpaqueBars="YES" id="0zz-mk-uMT" customClass="PLPlaceProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u9v-Jv-pTT"/>
                         <viewControllerLayoutGuide type="bottom" id="isy-AG-3wD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bGV-ba-lIV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gQS-aH-ZRx">
@@ -737,7 +737,7 @@
                             <constraint firstAttribute="trailing" secondItem="gQS-aH-ZRx" secondAttribute="trailing" id="3zy-3a-HkR"/>
                             <constraint firstItem="gQS-aH-ZRx" firstAttribute="leading" secondItem="bGV-ba-lIV" secondAttribute="leading" id="cLp-mj-xzK"/>
                             <constraint firstItem="gQS-aH-ZRx" firstAttribute="top" secondItem="bGV-ba-lIV" secondAttribute="top" id="hUd-5u-RZf"/>
-                            <constraint firstAttribute="bottom" secondItem="gQS-aH-ZRx" secondAttribute="bottom" id="lYa-hP-Aeg"/>
+                            <constraint firstItem="isy-AG-3wD" firstAttribute="top" secondItem="gQS-aH-ZRx" secondAttribute="bottom" id="wQa-LW-ah9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CR0-dh-ffx">
@@ -1513,6 +1513,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="gjM-dJ-x9G">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.35686274509803922" green="0.16862745098039217" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1539,7 +1540,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ovy-Gk-Wh0"/>
+        <segue reference="1Zi-Tu-8Fy"/>
         <segue reference="u5L-qT-vQG"/>
-        <segue reference="5Sl-5v-r30"/>
     </inferredMetricsTieBreakers>
 </document>
