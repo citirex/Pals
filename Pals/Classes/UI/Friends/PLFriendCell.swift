@@ -5,12 +5,22 @@
 //  Created by Карпенко Михайло on 07.09.16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
+
 import UIKit
 
 class PLFriendCell: UITableViewCell{
 	
 	@IBOutlet weak var avatarImage: UIImageView!
 	@IBOutlet weak var nameLabel: UILabel!
+	
+	var friendStatus: PLAddFriendStatus = .NotFriend
+	
+	lazy var addButton: UIButton = {
+		let button = UIButton(frame: CGRect(x: 0, y: 0, width: 33, height: 33))
+		button.addTarget(self, action: #selector(addFriendAction(_:)), forControlEvents: .TouchUpInside)
+		button.setImage(UIImage(named: "plus"), forState: .Normal)
+		return button
+	}()
 
 	var currentUrl = ""
 	
@@ -32,6 +42,7 @@ class PLFriendCell: UITableViewCell{
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImage.image = nil
+		addButton.imageView?.image = UIImage(named: "plus")
     }
 	
 	func setCorrectImage(url: NSURL) {
@@ -57,5 +68,19 @@ class PLFriendCell: UITableViewCell{
 				}
 			}
 		}
+	}
+	
+	
+	func addFriendAction(sender: UIButton){
+		
+		if friendStatus == .NotFriend{
+			print("sendYES")
+			friendStatus = .Friend
+		addButton.setImage(UIImage(named: "success"), forState: .Normal)
+		} else {
+			print("sendNO")
+		}
+		
+		
 	}
 }
