@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OrderDrinksCounterDelegate: class {
-    func updateOrderWith(drink:UInt64, andCount count: UInt64)
+    func updateOrderWith(cell:PLOrderDrinkCell, andCount count: UInt64)
 }
 
 class PLOrderDrinkCell: UICollectionViewCell {
@@ -18,7 +18,8 @@ class PLOrderDrinkCell: UICollectionViewCell {
     
     @IBOutlet private var drinkNameLabel: UILabel!
     @IBOutlet private var drinkPriceLabel: UILabel!
-    
+    @IBOutlet private var drinkMinusCounterButton: UIButton!
+    @IBOutlet private var drinkPlusCounterButton: UIButton!
     @IBOutlet private var drinkCountLabel: UILabel!
     
     @IBOutlet private var bgView: UIView!
@@ -34,31 +35,49 @@ class PLOrderDrinkCell: UICollectionViewCell {
         
     }
     
-    func setupWith(drink: PLDrinkCellData) {
+    func setupWith(drink: PLDrinkCellData, isVip vip: Bool) {
         drinkID = drink.drinkId
         drinkNameLabel.text = drink.name
         drinkPriceLabel.text = (drink.price > 0) ? String(format: "$%2.f", drink.price) : "Specify"
-        switch drink.type {
-        case DrinkType.Light:
-            bgView.backgroundColor = kPalsOrderCardDrinkLightColor
-        case DrinkType.Strong:
-            bgView.backgroundColor = kPalsOrderCardDrinkStrongColor
-        case DrinkType.Undefined:
-            bgView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
-        }
+        setupColorsForVipState(vip, withType: drink.type)
     }
     
     //MARK: Actions
-    @IBAction func minusButtonPressed(sender: UIButton) {
+    @IBAction private func minusButtonPressed(sender: UIButton) {
         if drinkCount > 0 {
             drinkCount -= 1
-            delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
+            delegate?.updateOrderWith(self, andCount: drinkCount)
         }
     }
     
-    @IBAction func plusButtonPressed(sender: UIButton) {
+    @IBAction private func plusButtonPressed(sender: UIButton) {
         drinkCount += 1
-        delegate?.updateOrderWith(drinkID!, andCount: drinkCount)
+        delegate?.updateOrderWith(self, andCount: drinkCount)
+    }
+    
+    private func setupColorsForVipState(isVip: Bool, withType type: DrinkType) {
+        if isVip == true {
+            setupTextWith(color: UIColor.blackColor())
+            bgView.backgroundColor = UIColor.whiteColor()
+        } else {
+            setupTextWith(color: UIColor.whiteColor())
+            switch type {
+            case .Light:
+                bgView.backgroundColor = kPalsOrderCardDrinkLightColor
+            case .Strong:
+                bgView.backgroundColor = kPalsOrderCardDrinkStrongColor
+            case .Undefined:
+                bgView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
+            }
+        }
+    }
+    
+    private func setupTextWith(color color: UIColor) {
+        drinkNameLabel.textColor = color
+        drinkPriceLabel.textColor = color
+        drinkMinusCounterButton.setTitleColor(color, forState: .Normal)
+        drinkPlusCounterButton.setTitleColor(color, forState: .Normal)
+        drinkCountLabel.textColor = color
     }
     
     
@@ -75,7 +94,6 @@ class PLOrderDrinkCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         drinkCount = 0
+        
     }
-    
-    
 }

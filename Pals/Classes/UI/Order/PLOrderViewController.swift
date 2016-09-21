@@ -11,7 +11,7 @@ private let kStickyHeaderIdentifier = "stickyHeader"
 private let kDrinkCellIdentifier = "drinkCell"
 private let kCoverCellIdentifier = "coverCell"
 
-private let kCheckoutButtonHeight: CGFloat = 64
+private let kCheckoutButtonHeight: CGFloat = 74
 
 class PLOrderViewController: PLViewController {
     
@@ -41,12 +41,19 @@ class PLOrderViewController: PLViewController {
     }
    
     
+    private var totalAmount: Float = 0
     private var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     private var firstLaunch: Bool = true
     private var drinksDatasource = PLDrinksDatasource()
     
     var currentTab = PLCollectionSectionType.Drinks
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
+    private lazy var checkoutPopupViewController : PLOrderCheckoutPopupViewController = {
+        let popup = PLOrderCheckoutPopupViewController(nibName: "PLOrderCheckoutPopupViewController", bundle: nil)
+        popup.delegate = self
+        popup.modalPresentationStyle = .OverCurrentContext
+       return popup
+    }()
     private var vipButton: UIBarButtonItem? = nil
     private var checkoutButton = UIButton(frame: CGRectZero)
     
@@ -69,18 +76,6 @@ class PLOrderViewController: PLViewController {
         
         setupCheckoutButton()
         setupCollectionView()
-        
-        // sample fish data
-        var i = 0
-        while (i < 3) {
-            
-            let cover = PLCover(jsonDic: ["id" : i])
-            cover?.name = (i % 2 == 1) ? "$8.00" : "Single person%"
-            cover?.price = Float(arc4random() % 100)
-
-            i += 1
-            covers.append(cover!)
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -101,7 +96,6 @@ class PLOrderViewController: PLViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         navigationController?.navigationBar.barTintColor = nil
     }
     
@@ -142,10 +136,8 @@ class PLOrderViewController: PLViewController {
 //        navigationItem.rightBarButtonItem = nil
         isVip = !isVip
         (isVip == true) ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
-    
-        
-        
-        
+        collectionView.reloadSections(NSIndexSet(index: 1))
+
 //        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(restore), userInfo: nil, repeats: false)
     }
     
@@ -159,12 +151,10 @@ class PLOrderViewController: PLViewController {
         UIView.animateWithDuration(0.3) {
             self.bgImageView.image = (self.isVip == true) ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
             self.navigationController?.navigationBar.barTintColor = (self.isVip == true) ? kPalsGoldColor : kPalsPurpleColor
-            
         }
     }
     
     // MARK: - Navigation
-    
     @IBAction func backBarButtonItemTapped(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(false, completion: nil)
     }
@@ -174,19 +164,15 @@ class PLOrderViewController: PLViewController {
 extension PLOrderViewController {
     private func showCheckoutButton() {
         if checkoutButton.hidden != false {
-            let originYFinish = view.bounds.size.height - kCheckoutButtonHeight
+            let originYFinish = view.bounds.size.height - kCheckoutButtonHeight + 10
             var frame = checkoutButton.frame
-            
             frame.origin.y = view.bounds.size.height
             checkoutButton.frame = frame
             checkoutButton.hidden = false
             frame.origin.y = originYFinish
             
-            UIView.animateWithDuration(0.3,
-                                       delay: 0,
-                                       options: .BeginFromCurrentState,
-                                       animations: {
-                                        self.checkoutButton.frame = frame
+            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.AllowUserInteraction], animations: {
+                self.checkoutButton.frame = frame
                 }, completion: nil)
         }
     }
@@ -196,10 +182,7 @@ extension PLOrderViewController {
             var frame = checkoutButton.frame
             frame.origin.y = view.bounds.size.height
             
-            UIView.animateWithDuration(0.3,
-                                       delay: 0,
-                                       options: .BeginFromCurrentState,
-                                       animations: {
+            UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations: {
                                         self.checkoutButton.frame = frame
                 }, completion: { (completion) in
                     self.checkoutButton.hidden = true
@@ -208,31 +191,41 @@ extension PLOrderViewController {
     }
     
     @objc private func checkoutButtonPressed(sender: UIButton) {
-        guard let selectedUser = user else {
+        guard user != nil else {
             checkoutButton.shake()
             PLShowAlert(title: "Need to chose user")
             return
         }
-        guard let selectedPlace = place else {
+        guard place != nil else {
             checkoutButton.shake()
             PLShowAlert(title: "Need to chose place")
             return
         }
         
+        checkoutPopupViewController.userName = user?.name
+        checkoutPopupViewController.locationName = place?.name
+        checkoutPopupViewController.orderAmount = calculateTotalAmount()
+        tabBarController!.presentViewController(checkoutPopupViewController, animated: false) {
+            self.checkoutPopupViewController.show()
+        }
+    }
+    
+    func calculateTotalAmount() -> String {
+//         drinksDatasource.collection.objects
+        return "$666"
+    }
+    
+    func createNewOrderWithMessage(message: String) {
+        let qrCode = String.randomAlphaNumericString(8).uppercaseString
+        let accessCode = String.randomAlphaNumericString(8).uppercaseString
         
-        let qrCode = String.randomAlphaNumericString(8)
-        let accessCode = String.randomAlphaNumericString(8)
-        
-        
-        
-        //FIXME: need to show checkout popup
         order = PLCheckoutOrder(qrCode: qrCode,
                                 accessCode: accessCode,
-                                user: selectedUser,
-                                place: selectedPlace,
+                                user: user!,
+                                place: place!,
                                 drinks: orderDrinks,
                                 isVip: isVip,
-                                message: nil)
+                                message: message)
         
         print(order?.serialize())
         
@@ -240,26 +233,37 @@ extension PLOrderViewController {
         orderDrinks.removeAll()
         collectionView.reloadSections(NSIndexSet(index: 1))
         
-        let tabArray = self.tabBarController?.tabBar.items as NSArray!
-        let tabItem = tabArray.objectAtIndex(TabBarController.TabProfile.int) as! UITabBarItem
-        
-        if let badgeValue = tabItem.badgeValue, nextValue = Int(badgeValue)?.successor() {
-            tabItem.badgeValue = String(nextValue)
-        } else {
-            tabItem.badgeValue = "1"
-        }
+        tabBarController?.incrementCounterNumberOn(.TabProfile)
+        tabBarController?.switchTabTo(.TabProfile)
     }
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, UITextViewDelegate {
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, CheckoutOrderPopupDelegate {
     
     //MARK: Order drinks count
-    func updateOrderWith(drink: UInt64, andCount count: UInt64) {
+    func updateOrderWith(cell: PLOrderDrinkCell, andCount count: UInt64) {
+        
+        let currentDrink = drinksDatasource.collection.objects[(collectionView.indexPathForCell(cell)?.row)!]
+        
+        
+//        let drinkset = PLDrinkset(aDrink: currentDrink, andCount: count)
+//        
+//        let drinkss = [PLDrinkset];
+//        
+//        if drinkss.contains(drinkset) {
+//            
+//        }
+        
         if count == 0 {
-            orderDrinks.removeValueForKey(String(drink))
+//            totalAmount = 0
+            orderDrinks.removeValueForKey(String(currentDrink.id))
         } else {
-            orderDrinks.updateValue(String(count), forKey: String(drink))
+//            if orderDrinks[String(currentDrink.id)] {
+//                
+//            }
+//            totalAmount = 0
+            orderDrinks.updateValue(String(count), forKey: String(currentDrink.id))
         }
     }
     
@@ -311,6 +315,18 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
             }) { (complete) in
                 self.collectionView.reloadSections(NSIndexSet(index: 1))
         }
+    }
+    
+    //MARK: - Checkout Popup 
+    func cancelButtonPressed() {
+        checkoutPopupViewController.hide()
+        
+    }
+    func sendButtonPressedWith(message: String) {
+        checkoutPopupViewController.hide()
+        
+        createNewOrderWithMessage(message)
+        
     }
     
     //MARK: - Setup
@@ -374,7 +390,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             let drink = drinksDatasource[indexPath.row].cellData
             
             cell.delegate = self
-            cell.setupWith(drink)
+            cell.setupWith(drink, isVip: isVip)
             if let count = orderDrinks[String(drink.drinkId)] {
                 cell.drinkCount = UInt64(count)!
             }

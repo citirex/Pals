@@ -14,9 +14,17 @@ class PLSettingsViewController: PLViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let numberOfSections = 3
-    private let items = [["Account", "Card Info", "Add Funds", "Notifications"], ["Order History"], ["Help and FAQ", "Terms of Service", "Privacy Policy"]]
+    private let items = [
+        ["Account", "Card Info", "Add Funds", "Notifications"],
+        ["Order History"],
+        ["Help and FAQ", "Terms of Service", "Privacy Policy"]
+    ]
     
-    private let segueIdentifiers = [["ShowEditProfile", "ShowCardInfo", "ShowAddFunds", "ShowNotifications"], ["ShowHistory"]]
+    private let segueIdentifiers = [
+        ["ShowEditProfile", "ShowCardInfo", "ShowAddFunds", "ShowNotifications"],
+        ["ShowHistory"],
+        ["ShowHelpAndFAQ", "ShowTermsOfService", "ShowPrivacyPolicy"]
+    ]
     
     
     var user: PLUser!
@@ -30,21 +38,7 @@ class PLSettingsViewController: PLViewController {
         let nib = UINib(nibName: PLSettingCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLSettingCell.identifier)
     }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    
-        configureNavigationBar()
-    }
-    
-    
-    private func configureNavigationBar() {
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.barTintColor = .affairColor()
-        navigationController?.hideTransparentNavigationBar()
-    }
-   
+
     
     
     // MARK: - Navigations
@@ -66,6 +60,12 @@ class PLSettingsViewController: PLViewController {
         case "ShowHistory":
             let historyViewController = segue.destinationViewController as! PLHistoryViewController
             historyViewController.user = user
+        case "ShowHelpAndFAQ":
+            print("ShowHelpAndFAQ")
+        case "ShowTermsOfService":
+            print("ShowTermsOfService")
+        case "ShowPrivacyPolicy":
+            print("ShowPrivacyPolicy")
         default:
             break
         }

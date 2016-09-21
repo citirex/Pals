@@ -28,24 +28,38 @@ extension UIColor {
     }
     
     
-    //TODO: - Should Rename
-    class func completeButtonTintColor() -> UIColor {
-        return UIColor(r: 214.0, g: 46.0, b: 225.0)
+    /// Place screen navigation bar color
+    
+    class func affairColor() -> UIColor {
+        return UIColor(r: 91.0, g: 43.0, b: 133.0)
     }
     
-    class func refillButtonBackgroudColor() -> UIColor {
-        return UIColor(r: 56.0, g: 206.0, b: 130.0)
-    }
     
-    class func navigationBarTintColor() -> UIColor {
+    /// Add Funds  back barButtonItem
+    
+    class func eminenceColor() -> UIColor {
         return UIColor(r: 104.0, g: 50.0, b: 144.0)
     }
     
     
-    /// Place screen
+    /// Add Funds  refill button
     
-    // navigation bar color
-    class func affairColor() -> UIColor {
-        return UIColor(r: 91.0, g: 43.0, b: 133.0)
+    class func caribeanGreenColor() -> UIColor {
+        return UIColor(r: 56.0, g: 206.0, b: 130.0)
     }
+    
+    
+    /// Card Info  complete button
+    
+    class func mediumOrchidColor() -> UIColor {
+        return UIColor(r: 184.0, g: 9.0, b: 222.0)
+    }
+    
+ 
+    /// Friends  search icon
+    
+    class func vividViolet() -> UIColor {
+        return UIColor(r: 136.0, g: 41.0, b: 152.0)
+    }
+    
 }

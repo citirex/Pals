@@ -33,8 +33,8 @@ class PLFriendProfileViewController: PLViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.barStyle = .Black
-        navigationController?.presentTransparentNavigationBar()
-		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.setNavigationBarTransparent(true)
+		navigationController?.navigationBar.tintColor = .whiteColor()
     }
     
     
@@ -42,7 +42,7 @@ class PLFriendProfileViewController: PLViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.barStyle = .Default
-        navigationController?.hideTransparentNavigationBar()
+        navigationController?.setNavigationBarTransparent(false)
     }
 
     

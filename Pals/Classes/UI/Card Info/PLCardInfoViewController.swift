@@ -26,6 +26,21 @@ class PLCardInfoViewController: PLViewController {
         view.addGestureRecognizer(dismissTap)
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarTransparent(true)
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarTransparent(false)
+    }
+
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -71,7 +86,7 @@ class PLCardInfoViewController: PLViewController {
         accessoryView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50)
         accessoryView.setTitle("Complete", forState: .Normal)
         accessoryView.backgroundColor = .whiteColor()
-        accessoryView.tintColor = .completeButtonTintColor()
+        accessoryView.tintColor = .mediumOrchidColor()
         accessoryView.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
         accessoryView.addTarget(self, action: #selector(completeButtonTapped(_:)), forControlEvents: .TouchUpInside)
         return accessoryView

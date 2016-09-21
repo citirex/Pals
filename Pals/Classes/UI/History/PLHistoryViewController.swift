@@ -1,14 +1,14 @@
-    //
+//
 //  PLHistoryViewController.swift
 //  Pals
 //
-//  Created by Vitaliy Delidov on 9/19/16.
+//  Created by Vitaliy Delidov on 9/21/16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
 import UIKit
 
-class PLHistoryViewController: UIViewController {
+class PLHistoryViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,25 +29,15 @@ class PLHistoryViewController: UIViewController {
         
         setupTableView()
         configureActivityIndicator()
-        view.addSubview(activityIndicator)
         
         loadOrders()
     }
     
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        activityIndicator.center = view.center
-        navigationController?.hideTransparentNavigationBar()
-    }
-    
-    
     private func loadOrders() {
-        activityIndicator.startAnimating()
-        orderDatasource.load { objects, error in
+        orderDatasource.load { orders, error in
             guard error == nil else { return }
-            self.orders = objects as! [PLOrder]
+            self.orders = orders as! [PLOrder]
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
         }
@@ -55,8 +45,11 @@ class PLHistoryViewController: UIViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityIndicator.color = .grayColor()
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .grayColor()
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
     }
     
     
@@ -69,14 +62,14 @@ class PLHistoryViewController: UIViewController {
         let sectionHeaderNib = UINib(nibName: PLHistorySectionHeader.nibName, bundle: nil)
         tableView.registerNib(sectionHeaderNib, forCellReuseIdentifier: PLHistorySectionHeader.reuseIdentifier)
     }
-
+    
 }
 
 
 // MARK: - UITableViewDataSource
 
 extension PLHistoryViewController: UITableViewDataSource {
-
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return orders.count ?? 0
     }
