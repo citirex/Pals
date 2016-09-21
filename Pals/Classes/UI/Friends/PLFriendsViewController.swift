@@ -11,28 +11,17 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	private var resultsController: UITableViewController!
 	private var searchController: PLSearchController!
 	
-//	var searchBar = UISearchBar()
+
 	var tableView = UITableView()
 	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
-	var searchActive : Bool = false
-//	var filtered = [PLUser]()
-	
-//	var collectionUsers: [PLUser] {
-//		return datasource.collection.objects ?? []
-//	}
+
 	
     private var selectedFriend: PLUser!
 	
 	
 	@IBAction func searchButton(sender: AnyObject) {
-//		if navigationItem.titleView != searchBar {
-//			navigationItem.titleView = searchBar
-//			searchBar.becomeFirstResponder()
-//		} else {
-//			navigationItem.titleView = nil
-//			navigationItem.title = "Friends"
-//		}
+		performSegueWithIdentifier("ShowFriendSearch", sender: self)
 	}
 	
 	override func viewDidLoad() {
@@ -47,15 +36,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		
 		tableView.delegate = self
 		tableView.dataSource = self
-//		searchBar.delegate = self
-		
-//		let textFieldInsideSearchBar = self.searchBar.valueForKey("searchField") as! UITextField
-//		textFieldInsideSearchBar.leftViewMode = UITextFieldViewMode.Never
-//		searchBar.placeholder = "Find Your Pals                                        "
-//		searchBar.layer.cornerRadius = 25
-//		searchBar.clipsToBounds = true
-//		searchBar.delegate = self
-//		searchBar.setShowsCancelButton(false, animated: true)
 		
 		view.addSubview(tableView)
 		view.addSubview(spinner)
@@ -73,7 +53,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	}
 	override func viewDidDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-//		filtered = []
 		tableView.reloadData()
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
@@ -84,7 +63,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
     
     func loadDatasource() {
 		self.spinner.startAnimating()
-		self.view.userInteractionEnabled = false
         datasource.load {[unowned self] (page, error) in
             if error == nil {
 				self.tableView.hidden = false
@@ -99,7 +77,6 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 					self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
 					self.tableView.endUpdates()
 				}
-				self.view.userInteractionEnabled = true
 				self.spinner.stopAnimating()
 			} else {
 				PLShowAlert("Error!", message: "Cannot download your friends.")
@@ -110,10 +87,10 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	// MARK: - Initialize search controller
 	
 	private func configureSearchController() {
-		let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
+		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		resultsController = UITableViewController(style: .Plain)
-		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
-		resultsController.tableView.backgroundColor = .affairColor()
+		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
+		resultsController.tableView.backgroundColor = .miracleColor()
 		resultsController.tableView.tableFooterView = UIView()
 		resultsController.tableView.backgroundView = UIView()
 		resultsController.tableView.rowHeight = 110.0
@@ -121,10 +98,10 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		resultsController.tableView.delegate = self
 		
 		searchController = PLSearchController(searchResultsController: resultsController)
-		searchController.searchBar.placeholder = "Find your Friends"
-		searchController.searchBar.barTintColor = .affairColor()
+		searchController.searchBar.placeholder = "Find Your Pals"
+		searchController.searchBar.barTintColor = .miracleColor()
 		searchController.searchBar.backgroundImage = UIImage()
-		searchController.searchBar.tintColor = .whiteColor()
+		searchController.searchBar.tintColor = .miracleColor()
 		searchController.searchResultsUpdater = self
 		searchController.dimsBackgroundDuringPresentation = false
 		searchController.delegate = self
@@ -132,59 +109,16 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		definesPresentationContext = true
 	}
 	
-	// MARK: - Search
-	
-	func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-		searchActive = true
-	}
-	
-	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-		if searchBar.text > "" {
-			searchActive = true
-		}
-		searchActive = false
-	}
-	
-	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-		searchActive = false
-	}
-	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchBar.endEditing(true)
-		performSegueWithIdentifier("ShowFriendSearch", sender: self)
-		searchBar.text = ""
 	}
-	
-//	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-//		
-//			filtered = collectionUsers.filter({ (user) -> Bool in
-//				let tmp: NSString = user.name
-//				let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
-//				return range.location != NSNotFound
-//			})
-//
-//		searchActive = (filtered.count > 0) ? true : false
-//		self.tableView.reloadData()
-//	}
 	
 	
 	// MARK: - tableView
 	
 	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		
-//		if searchBar.text > "" && filtered.count == 0 {
-//			tableView.hidden = true
-//		} else {
-//			tableView.hidden = false
-//		}
-		
-		
-//		if(searchActive) {
-//			return filtered.count
-//		} else {
-			return datasource.count
-//		}
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+		return datasource.count
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -195,8 +129,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
 		
-		let friend = //(filtered.count > 0) ? filtered[indexPath.row] :
-			datasource[indexPath.row]
+		let friend = datasource[indexPath.row]
 		
 			cell.friend = friend
 		cell.accessoryType = .DisclosureIndicator
@@ -214,11 +147,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//		if searchBar.text > "" {
-//			selectedFriend = filtered[indexPath.row]
-//		} else {
-//			selectedFriend = datasource[indexPath.row]
-//		}
+		selectedFriend = datasource[indexPath.row]
         performSegueWithIdentifier("ShowFriendProfile", sender: self)
 	}
 	
@@ -226,35 +155,12 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		return 100
 	}
 	
-	// MARK: - Dismiss Keyboard
-//	func dismissKeyboard(sender: UITapGestureRecognizer) {
-//		searchBar.endEditing(true)
-//	}
-	
-	// MARK: - Notifications
-//	private func registerKeyboardNotifications() {
-//		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-//		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-//	}
-	
-	// MARK: - Keyboard
-//	func keyboardWillShow(notification: NSNotification) {
-//		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:))))
-//	}
-//	func keyboardWillHide(notification: NSNotification) {
-//		
-//		let tapOnScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
-//		tapOnScreen.cancelsTouchesInView = false
-//		view.addGestureRecognizer(tapOnScreen)
-//	}
-	
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		
 		if segue.identifier == "ShowFriendSearch" {
-//			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
-//			friendSearchViewController.seekerText = searchBar.text
+			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
 		}
 		
         guard segue.identifier == "ShowFriendProfile" else { return }
@@ -295,13 +201,16 @@ extension PLFriendsViewController: UISearchResultsUpdating {
 		if filter.isEmpty {
 			datasource.searching = false
 		} else {
-//			spinner.startAnimating()
+			spinner.startAnimating()
 			
-//			datasource.filter({ (user) -> Bool in
-//				let tmp: NSString = user.name
-//				let range = tmp.rangeOfString(filter, options: NSStringCompareOptions.CaseInsensitiveSearch)
-//				return range.location != NSNotFound
-//			})
+			datasource.filter({ (user) -> Bool in
+				let tmp: NSString = user.name
+				let range = tmp.rangeOfString(filter, options: NSStringCompareOptions.CaseInsensitiveSearch)
+				return range.location != NSNotFound
+			}) { [unowned self] in
+				self.resultsController.tableView.reloadData()
+				self.spinner.stopAnimating()
+			}
 
 		}
 	}

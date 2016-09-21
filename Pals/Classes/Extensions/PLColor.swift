@@ -34,7 +34,7 @@ extension UIColor {
         return UIColor(r: 91.0, g: 43.0, b: 133.0)
     }
     
-    
+	
     /// Add Funds  back barButtonItem
     
     class func eminenceColor() -> UIColor {
@@ -61,5 +61,11 @@ extension UIColor {
     class func vividViolet() -> UIColor {
         return UIColor(r: 136.0, g: 41.0, b: 152.0)
     }
+	
+	/// Friends navigation bar
+	
+	class func miracleColor() -> UIColor {
+		return UIColor(r: 251.0, g: 251.0, b: 251.0)
+	}
     
 }
