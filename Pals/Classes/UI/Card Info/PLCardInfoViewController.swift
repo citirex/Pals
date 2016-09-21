@@ -19,6 +19,7 @@ class PLCardInfoViewController: PLViewController {
     var user: PLUser!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -25,7 +25,7 @@ class PLBackBarButtonItem: UIBarButtonItem {
     }
     
     func setup() {
-        let backImage  = UIImage(named: "white_left_arrow")!.imageWithRenderingMode(.AlwaysOriginal)
+        let backImage  = UIImage(named: "back_arrow")!.imageWithRenderingMode(.AlwaysOriginal)
         let backButton = UIButton(frame: CGRectMake(0, 0, 44, 44))
         backButton.setImage(backImage, forState: .Normal)
         backButton.layer.shadowRadius = 5
@@ -43,20 +43,4 @@ class PLBackBarButtonItem: UIBarButtonItem {
     
 }
 
-
-/// Example:
-
- /*
- 
-override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
- 
-     let backBarButtonItem = PLBackBarButtonItem()
-     backBarButtonItem.didTappedBackButton = { self.navigationController?.popViewControllerAnimated(true) }
-     let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
-     negativeSpacer.width = -20
-     navigationItem.setLeftBarButtonItems([negativeSpacer, backBarButtonItem], animated: false)
- }
- 
- */
 

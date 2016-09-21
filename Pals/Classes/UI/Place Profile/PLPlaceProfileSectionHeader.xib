@@ -108,7 +108,7 @@
                         <constraint firstAttribute="height" constant="60" id="Q1M-lg-52H"/>
                         <constraint firstAttribute="width" constant="60" id="YfN-7a-qVD"/>
                     </constraints>
-                    <state key="normal" image="arrow-right"/>
+                    <state key="normal" image="shopping_cart"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -145,6 +145,6 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="arrow-right" width="128" height="128"/>
+        <image name="shopping_cart" width="36" height="33"/>
     </resources>
 </document>

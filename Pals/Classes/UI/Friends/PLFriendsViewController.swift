@@ -157,7 +157,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		
 		if segue.identifier == "ShowFriendSearch" {
-			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
+			_ = segue.destinationViewController as! PLFriendsSearchViewController
 		}
 		
         guard segue.identifier == "ShowFriendProfile" else { return }

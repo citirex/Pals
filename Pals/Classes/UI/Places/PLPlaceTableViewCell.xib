@@ -18,9 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9PV-x4-fVC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basement" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KH3-pA-dO4">
                         <rect key="frame" x="38" y="15" width="69" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -48,23 +45,20 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-HL-u2s">
-                        <rect key="frame" x="285" y="45" width="20" height="20"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="TIo-HL-u2s">
+                        <rect key="frame" x="285" y="49" width="20" height="12"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="AE2-DO-rm9"/>
+                            <constraint firstAttribute="height" constant="12" id="AE2-DO-rm9"/>
                             <constraint firstAttribute="width" constant="20" id="TXH-1x-ugy"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="9PV-x4-fVC" firstAttribute="leading" secondItem="Vox-eN-pcg" secondAttribute="leading" id="6oF-JY-6T6"/>
                     <constraint firstAttribute="trailing" secondItem="CCk-0L-MfO" secondAttribute="trailing" constant="38" id="9xf-as-wIy"/>
-                    <constraint firstAttribute="trailing" secondItem="9PV-x4-fVC" secondAttribute="trailing" id="Gwz-ol-fjn"/>
                     <constraint firstItem="nid-ZR-BIc" firstAttribute="top" secondItem="Vox-eN-pcg" secondAttribute="top" id="J6a-Ze-Tjd"/>
                     <constraint firstItem="CCk-0L-MfO" firstAttribute="bottom" secondItem="KH3-pA-dO4" secondAttribute="bottom" id="QAf-4u-wbm"/>
                     <constraint firstItem="2fV-a8-axf" firstAttribute="leading" secondItem="KH3-pA-dO4" secondAttribute="leading" id="T9Q-q3-jor"/>
-                    <constraint firstAttribute="bottom" secondItem="9PV-x4-fVC" secondAttribute="bottom" id="d62-D9-DEV"/>
                     <constraint firstItem="CCk-0L-MfO" firstAttribute="top" secondItem="Vox-eN-pcg" secondAttribute="top" constant="15" id="eMM-QU-zYY"/>
                     <constraint firstItem="2fV-a8-axf" firstAttribute="top" secondItem="KH3-pA-dO4" secondAttribute="bottom" constant="8" id="gyi-HL-0A0"/>
                     <constraint firstAttribute="trailing" secondItem="TIo-HL-u2s" secondAttribute="trailing" constant="15" id="hhs-u9-yQC"/>
@@ -76,7 +70,6 @@
                     <constraint firstItem="TIo-HL-u2s" firstAttribute="centerY" secondItem="Vox-eN-pcg" secondAttribute="centerY" id="xLN-4F-gXf"/>
                     <constraint firstItem="nid-ZR-BIc" firstAttribute="leading" secondItem="Vox-eN-pcg" secondAttribute="leading" id="xdG-Ra-99Z"/>
                     <constraint firstItem="lPW-7c-MJr" firstAttribute="top" secondItem="2fV-a8-axf" secondAttribute="bottom" constant="8" id="yGP-5b-30F"/>
-                    <constraint firstItem="9PV-x4-fVC" firstAttribute="top" secondItem="Vox-eN-pcg" secondAttribute="top" id="yWf-Y7-xMh"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -88,13 +81,12 @@
                 <outlet property="distanceLabel" destination="CCk-0L-MfO" id="jGL-rK-VPR"/>
                 <outlet property="musicGenresLabel" destination="lPW-7c-MJr" id="kjV-Jx-jE3"/>
                 <outlet property="placeAddressLabel" destination="2fV-a8-axf" id="YCX-s7-cEd"/>
-                <outlet property="placeImageView" destination="9PV-x4-fVC" id="CKg-he-l9x"/>
                 <outlet property="placeNameLabel" destination="KH3-pA-dO4" id="3pb-gw-guL"/>
             </connections>
             <point key="canvasLocation" x="132" y="34"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow-right" width="128" height="128"/>
+        <image name="chevron" width="6" height="10"/>
     </resources>
 </document>

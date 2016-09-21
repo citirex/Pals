@@ -13,7 +13,7 @@ class PLSettingsViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private let numberOfSections = 3
+
     private let items = [
         ["Account", "Card Info", "Add Funds", "Notifications"],
         ["Order History"],
@@ -79,7 +79,7 @@ class PLSettingsViewController: PLViewController {
 extension PLSettingsViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return numberOfSections
+        return items.count
     }
     
     

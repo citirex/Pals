@@ -37,7 +37,11 @@ class PLHistoryViewController: PLViewController {
     private func loadOrders() {
         orderDatasource.load { orders, error in
             guard error == nil else { return }
-            self.orders = orders as! [PLOrder]
+            for order in orders as! [PLOrder] {
+                if order.drinkSets.count > 0 {
+                    self.orders.append(order)
+                }
+            }
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
         }
@@ -45,11 +49,13 @@ class PLHistoryViewController: PLViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = .grayColor()
-        activityIndicator.center = view.center
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
+        
+        activityIndicator.addConstraintCentered()
     }
     
     

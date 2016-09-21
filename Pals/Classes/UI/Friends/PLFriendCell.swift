@@ -42,8 +42,8 @@ class PLFriendCell: UITableViewCell{
 	
     override func prepareForReuse() {
         super.prepareForReuse()
-        avatarImage.image = UIImage(named: "icon_user_placeholder")
-		addButton.imageView?.image = UIImage(named: "plus")
+        avatarImage.image = UIImage(named: "user")
+		addButton.imageView?.image = UIImage(named: "contact_add")
     }
 	
 	func setCorrectImage(url: NSURL) {
@@ -78,7 +78,7 @@ class PLFriendCell: UITableViewCell{
 		if friendStatus == .NotFriend{
 			print("sendYES")
 			friendStatus = .Friend
-		addButton.setImage(UIImage(named: "success"), forState: .Normal)
+		addButton.setImage(UIImage(named: "check_mark"), forState: .Normal)
 		} else {
 			print("sendNO")
 		}

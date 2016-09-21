@@ -16,7 +16,6 @@ class PLPlaceTableViewCell: UITableViewCell {
     static let identifier = "PlaceCell"
 
     @IBOutlet weak var blurView: PLBlurImageView!
-    @IBOutlet weak var placeImageView: UIImageView!
     @IBOutlet weak var placeNameLabel: UILabel!
     @IBOutlet weak var placeAddressLabel: UILabel!
     @IBOutlet weak var musicGenresLabel: UILabel!
@@ -24,16 +23,17 @@ class PLPlaceTableViewCell: UITableViewCell {
     @IBOutlet weak var arrowRightImageView: UIImageView!
     
     var currentUrl = ""
-    
     var cellData: PLPlaceCellData? {
         didSet { setup() }
     }
+    
     
     
     override func prepareForReuse() {
         super.prepareForReuse()
         blurView?.removeBlur()
     }
+    
 
     private func setup() {
         guard let placeCellData = cellData else { return }
@@ -44,7 +44,7 @@ class PLPlaceTableViewCell: UITableViewCell {
         placeAddressLabel.text = placeCellData.address
         musicGenresLabel.text = placeCellData.musicGengres
 
-        addShadowForCell()
+        addShadowForLabels()
     }
     
    
@@ -80,7 +80,7 @@ class PLPlaceTableViewCell: UITableViewCell {
         }
     }
     
-    private func addShadowForCell() {
+    private func addShadowForLabels() {
         placeNameLabel.addShadow()
         placeAddressLabel.addShadow()
         musicGenresLabel.addShadow()

@@ -54,7 +54,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
-                                                        <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <state key="normal" title="Want to be a Pal? Register now!">
@@ -136,13 +136,13 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="5vX-o6-eMg"/>
-                                                    <constraint firstItem="RdC-BM-16D" firstAttribute="top" secondItem="GFl-8W-xw3" secondAttribute="bottom" multiplier="1.3" id="E0L-MU-Agf"/>
+                                                    <constraint firstItem="RdC-BM-16D" firstAttribute="top" secondItem="GFl-8W-xw3" secondAttribute="bottom" multiplier="1.3" constant="-3.8000000000000682" id="E0L-MU-Agf"/>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="0.46" id="JB2-w3-Cum"/>
                                                     <constraint firstAttribute="trailing" secondItem="RdC-BM-16D" secondAttribute="trailing" id="Jqm-Lx-37M"/>
                                                     <constraint firstItem="WXu-2n-otd" firstAttribute="centerY" secondItem="xXN-Bq-AeA" secondAttribute="centerY" multiplier="0.9" constant="2.4499999999999886" id="SFk-gU-COb"/>
                                                     <constraint firstItem="ymg-DV-zCV" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="51:88" id="Y61-hh-g0M"/>
                                                     <constraint firstItem="Xzj-qM-z68" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="afn-Av-KT1"/>
-                                                    <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.07" id="iwQ-b7-KJ7"/>
+                                                    <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.07" constant="4.2399999999999949" id="iwQ-b7-KJ7"/>
                                                     <constraint firstItem="RdC-BM-16D" firstAttribute="leading" secondItem="xXN-Bq-AeA" secondAttribute="leading" id="olt-uM-QmV"/>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="top" secondItem="Xzj-qM-z68" secondAttribute="bottom" multiplier="1.1" id="rON-0f-dr2"/>
                                                     <constraint firstItem="WXu-2n-otd" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" constant="1" id="sTW-Hn-HHH"/>
@@ -225,7 +225,7 @@
                                                     <constraint firstAttribute="height" constant="150" id="iy1-DM-Noq"/>
                                                     <constraint firstAttribute="width" constant="150" id="pqU-om-3de"/>
                                                 </constraints>
-                                                <state key="normal" image="sign-in-plus"/>
+                                                <state key="normal" image="sign_in_plus"/>
                                                 <connections>
                                                     <action selector="loadImageButtonTapped:" destination="CEl-2k-qJd" eventType="touchUpInside" id="hwb-J9-5bl"/>
                                                 </connections>
@@ -596,7 +596,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4NI-ne-4iy">
                         <barButtonItem key="backBarButtonItem" title=" " id="9MO-wJ-53a"/>
-                        <barButtonItem key="rightBarButtonItem" image="dots" id="AKF-lV-M1l">
+                        <barButtonItem key="rightBarButtonItem" image="more_button" id="AKF-lV-M1l">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -644,7 +644,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="J6l-kW-jmK">
                         <barButtonItem key="backBarButtonItem" title=" " id="pKf-FG-PN8"/>
-                        <barButtonItem key="rightBarButtonItem" image="dots" id="XXS-z7-BSm">
+                        <barButtonItem key="rightBarButtonItem" image="more_button" id="XXS-z7-BSm">
                             <connections>
                                 <segue destination="kGG-tj-ywv" kind="push" identifier="ShowSettings" id="pGy-cO-7A6"/>
                             </connections>
@@ -811,7 +811,7 @@
                                             <constraint firstAttribute="height" constant="100" id="TsE-vZ-sSZ"/>
                                             <constraint firstAttribute="width" constant="100" id="zZK-Kg-q8t"/>
                                         </constraints>
-                                        <state key="normal" image="sign-in-plus"/>
+                                        <state key="normal" image="sign_in_plus"/>
                                         <connections>
                                             <action selector="loadImageButtonTapped:" destination="2zm-V5-MZy" eventType="touchUpInside" id="bRo-fK-F8d"/>
                                         </connections>
@@ -920,7 +920,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cu1-zI-ZhN">
-                        <barButtonItem key="rightBarButtonItem" image="pencil" id="7d5-mz-c5W">
+                        <barButtonItem key="rightBarButtonItem" image="edit" id="7d5-mz-c5W">
                             <connections>
                                 <action selector="editBarBattonItemTapped:" destination="2zm-V5-MZy" id="T4Z-SO-kUO"/>
                             </connections>
@@ -1332,7 +1332,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="yjv-WV-8BH"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="XZV-Ci-cP6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="back_arrow" backIndicatorTransitionMaskImage="back_arrow" id="XZV-Ci-cP6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1353,7 +1353,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BjU-D1-zsC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="friends-tab" id="W0H-zb-9Jg"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="BKz-I3-7zW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="back_arrow" backIndicatorTransitionMaskImage="back_arrow" id="BKz-I3-7zW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1493,7 +1493,7 @@
                     <tabBarItem key="tabBarItem" title="Order" image="order-tab" selectedImage="order-tab" id="EYz-RM-H3y"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="IX5-Ra-oxX"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="8IW-Rq-YCE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" backIndicatorImage="back_arrow" backIndicatorTransitionMaskImage="back_arrow" id="8IW-Rq-YCE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1514,7 +1514,7 @@
                     <tabBarItem key="tabBarItem" title="Locations" image="places-tab" selectedImage="places-tab" id="d2O-5d-6Ze"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="left_arrow" backIndicatorTransitionMaskImage="left_arrow" id="gjM-dJ-x9G">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="back_arrow" backIndicatorTransitionMaskImage="back_arrow" id="gjM-dJ-x9G">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1531,16 +1531,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dots" width="22" height="22"/>
+        <image name="back_arrow" width="20" height="20"/>
+        <image name="edit" width="25" height="25"/>
         <image name="friends-tab" width="31" height="29"/>
-        <image name="left_arrow" width="22" height="22"/>
         <image name="logo" width="264" height="266"/>
+        <image name="more_button" width="5" height="21"/>
         <image name="order-tab" width="23" height="25"/>
         <image name="order_bg" width="125" height="195"/>
-        <image name="pencil" width="22" height="22"/>
         <image name="places-tab" width="28" height="26"/>
         <image name="profile-tab" width="20" height="26"/>
-        <image name="sign-in-plus" width="260" height="260"/>
+        <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ovy-Gk-Wh0"/>
