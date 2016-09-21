@@ -97,7 +97,6 @@ class PLPlacesViewController: PLViewController {
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.tintColor = .whiteColor()
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
         searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
@@ -195,4 +194,8 @@ extension PLPlacesViewController: UISearchResultsUpdating {
         }
     }
 }
+
+
+
+
 
