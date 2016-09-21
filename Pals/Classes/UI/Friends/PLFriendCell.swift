@@ -30,6 +30,7 @@ class PLFriendCell: UITableViewCell{
 	
 	func setup() {
 		if let aFriend = friend {
+			avatarImage.backgroundColor = UIColor.affairColor()
 			let friendCellData = aFriend.cellData
 			setCorrectImage(friendCellData.picture)
 			nameLabel.text = friendCellData.name
@@ -41,11 +42,12 @@ class PLFriendCell: UITableViewCell{
 	
     override func prepareForReuse() {
         super.prepareForReuse()
-        avatarImage.image = nil
+        avatarImage.image = UIImage(named: "icon_user_placeholder")
 		addButton.imageView?.image = UIImage(named: "plus")
     }
 	
 	func setCorrectImage(url: NSURL) {
+		avatarImage.backgroundColor = UIColor.affairColor()
 		avatarImage.image = nil
 		let urlString = url.absoluteString
 		let request = NSURLRequest(URL: url)

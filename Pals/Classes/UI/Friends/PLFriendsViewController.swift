@@ -139,10 +139,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	}
 	
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-		
-        if indexPath.row == datasource.count-1 {
-            loadDatasource()
-        }
+		if datasource.shouldLoadNextPage(indexPath) { loadDatasource() }
     }
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
