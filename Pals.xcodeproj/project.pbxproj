@@ -55,6 +55,8 @@
 		2489E7041D82950E003811D5 /* PLOrderPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */; };
 		2489E7061D82AC81003811D5 /* PLOrderFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */; };
 		24AE702F1D90162E0064E7B2 /* PLCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */; };
+		24B5DD181D91564D0021050D /* PLOrderCheckoutPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B5DD161D91564D0021050D /* PLOrderCheckoutPopupViewController.swift */; };
+		24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B5DD171D91564D0021050D /* PLOrderCheckoutPopupViewController.xib */; };
 		24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C551D8820C00040F2F5 /* PLDrinksDatasource.swift */; };
 		24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */; };
 		24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */; };
@@ -196,6 +198,8 @@
 		2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderPlacesViewController.swift; sourceTree = "<group>"; };
 		2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderFriendsViewController.swift; sourceTree = "<group>"; };
 		24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCollectionViewCell.swift; sourceTree = "<group>"; };
+		24B5DD161D91564D0021050D /* PLOrderCheckoutPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCheckoutPopupViewController.swift; sourceTree = "<group>"; };
+		24B5DD171D91564D0021050D /* PLOrderCheckoutPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCheckoutPopupViewController.xib; sourceTree = "<group>"; };
 		24C20C551D8820C00040F2F5 /* PLDrinksDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinksDatasource.swift; sourceTree = "<group>"; };
 		24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCheckoutOrder.swift; sourceTree = "<group>"; };
 		24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkset.swift; sourceTree = "<group>"; };
@@ -471,6 +475,8 @@
 				2480F8AC1D813E730095995F /* PLOrdeStickyHeader.xib */,
 				24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */,
 				24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */,
+				24B5DD161D91564D0021050D /* PLOrderCheckoutPopupViewController.swift */,
+				24B5DD171D91564D0021050D /* PLOrderCheckoutPopupViewController.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -952,6 +958,7 @@
 				E837C1D21D8FF8E70080A074 /* PLHistorySectionHeader.xib in Resources */,
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
 				E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */,
+				24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */,
 				E837C2021D902CAE0080A074 /* order_covers0.json in Resources */,
 				2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */,
 				E837C1F91D902CAE0080A074 /* drinks0.json in Resources */,
@@ -1109,6 +1116,7 @@
 				D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */,
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,
+				24B5DD181D91564D0021050D /* PLOrderCheckoutPopupViewController.swift in Sources */,
 				2480F8F61D813E730095995F /* PLTextField.swift in Sources */,
 				2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */,
 				E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */,

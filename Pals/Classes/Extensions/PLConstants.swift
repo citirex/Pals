@@ -11,7 +11,7 @@ enum PLCollectionSectionType {
     case Drinks
 }
 
-enum TabBarController: Int {
+enum TabBarControllerTabs: Int {
     case TabProfile = 0
     case TabLocation
     case TabOrder

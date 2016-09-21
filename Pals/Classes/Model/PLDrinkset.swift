@@ -32,6 +32,13 @@ class PLDrinkset : PLUniqueObject, PLCellRepresentable {
 
         super.init(jsonDic: jsonDic)
     }
+    
+    init?(aDrink: PLDrink, andCount count: UInt64) {
+        drink = aDrink
+        quantity = count
+        
+        super.init(jsonDic: [:])
+    }
 
     override func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()

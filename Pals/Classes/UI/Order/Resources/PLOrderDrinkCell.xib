@@ -99,7 +99,9 @@
             <connections>
                 <outlet property="bgView" destination="IAB-rG-Q14" id="HEZ-Ij-LYQ"/>
                 <outlet property="drinkCountLabel" destination="xPo-Ed-rhg" id="Tga-PD-84P"/>
+                <outlet property="drinkMinusCounterButton" destination="Cct-rT-MvK" id="zRB-po-xAu"/>
                 <outlet property="drinkNameLabel" destination="6Wh-qi-sWo" id="591-Bs-As8"/>
+                <outlet property="drinkPlusCounterButton" destination="TdL-iY-ydE" id="jEt-IN-Ou9"/>
                 <outlet property="drinkPriceLabel" destination="fZ7-tK-EcZ" id="cKs-v0-rXG"/>
             </connections>
             <point key="canvasLocation" x="193" y="360"/>

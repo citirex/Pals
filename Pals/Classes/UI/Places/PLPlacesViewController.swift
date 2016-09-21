@@ -8,7 +8,7 @@
 
 class PLPlacesViewController: PLViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
    
     private var activityIndicator: UIActivityIndicatorView!
     private var resultsController: UITableViewController!

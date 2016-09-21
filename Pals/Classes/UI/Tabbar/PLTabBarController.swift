@@ -20,5 +20,29 @@ class PLTabBarController: UITabBarController {
             item.setTitleTextAttributes([NSForegroundColorAttributeName : unselectedColor], forState: .Normal)
         }
     }
+}
+
+extension UITabBarController {
     
+    func switchTabTo(tab: TabBarControllerTabs) {
+        selectedIndex = tab.int
+    }
+    
+    func setCounterNumber(number:Int, onTab tab:TabBarControllerTabs) {
+        let tabItem = tabBar.items![tab.int]
+        tabItem.badgeValue = String(number)
+    }
+    
+    func incrementCounterNumberOn(tab: TabBarControllerTabs) {
+        let tabItem = tabBar.items![tab.int]
+        if let badgeValue = tabItem.badgeValue, nextValue = Int(badgeValue)?.successor() {
+            tabItem.badgeValue = String(nextValue)
+        } else {
+            tabItem.badgeValue = "1"
+        }
+    }
+    
+    func resetConterNumberOn(tab: TabBarControllerTabs) {
+        tabBar.items![tab.int].badgeValue = nil
+    }
 }
