@@ -95,7 +95,7 @@ class PLSignUpViewController: PLViewController {
     
     // MARK: - Dismiss Keyboard
     
-    func dismissKeyboard(sender: UITapGestureRecognizer) {
+    func dismissKeyboard(sender: AnyObject) {
         view.endEditing(true)
     }
     
@@ -109,6 +109,7 @@ class PLSignUpViewController: PLViewController {
     }
     
     @IBAction func signUpButtonTapped(sender: UIButton) {
+        dismissKeyboard(sender)
         signUp()
     }
     
@@ -118,14 +119,14 @@ class PLSignUpViewController: PLViewController {
         let username = usernameTextField.text!.trim()
         let email = emailTextField.text!.trim()
         let password = passwordTextField.text!.trim()
-        let picture = userProfileImageView.image
+        let picture = userProfileImageView.image ?? UIImage()
         
         guard !username.isEmpty else { return PLShowAlert("Error", message: "Username must contain at least 1 character") }
         guard email.isValidEmail else { return PLShowAlert("Error", message: "Please enter a valid email address") }
         guard !password.isEmpty else { return PLShowAlert("Error", message: "Password must contain at least 1 character") }
         guard validatePassword(password) else { return PLShowAlert("Error", message: "Password mismatch") }
         
-        let signUpData = PLSignUpData(username: username, email: email, password: password, picture: picture!)
+        let signUpData = PLSignUpData(username: username, email: email, password: password, picture: picture)
         
         // TODO: - Need pass user to profile
         activityIndicator.startAnimating()
@@ -142,6 +143,7 @@ class PLSignUpViewController: PLViewController {
     private func validatePassword(pass: String) -> Bool {
         return pass == confirmPasswordTextField.text!.trim()
     }
+
 }
 
 

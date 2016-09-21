@@ -14,10 +14,9 @@ class PLPlacesViewController: PLViewController {
     private var resultsController: UITableViewController!
     private var searchController: PLSearchController!
     
-    private lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
+    lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
     private var selectedPlace: PLPlace!
     private var previousFilter = ""
-    
     
     
     override func viewDidLoad() {
@@ -98,7 +97,6 @@ class PLPlacesViewController: PLViewController {
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.tintColor = .whiteColor()
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
         searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
@@ -196,4 +194,8 @@ extension PLPlacesViewController: UISearchResultsUpdating {
         }
     }
 }
+
+
+
+
 
