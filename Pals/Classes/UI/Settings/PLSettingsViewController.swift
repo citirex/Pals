@@ -65,36 +65,10 @@ class PLSettingsViewController: PLViewController {
         let nib = UINib(nibName: PLSettingCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLSettingCell.identifier)
     }
-
     
-    
-    // MARK: - Navigations
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let indexPath = sender as! NSIndexPath
-        let item = sections[indexPath.section].items[indexPath.row]
-        
-        switch item {
-        case .Account:
-            let editProfileViewController = segue.destinationViewController as! PLEditProfileViewController
-            editProfileViewController.user = user
-        case .CardInfo:
-            let cardInfoViewController = segue.destinationViewController as! PLCardInfoViewController
-            cardInfoViewController.user = user
-        case .AddFunds:
-            let refillBalanceViewController = segue.destinationViewController as! PLAddFundsViewController
-            refillBalanceViewController.user = user
-        case .Notifications: print()
-        case .OrderHistory:
-            let historyViewController = segue.destinationViewController as! PLOrderHistoryViewController
-            historyViewController.user = user
-        case .HelpAndFAQ: print()
-        case .TermsOfService: print()
-        case .PrivacyPolicy: print()
-        }
-    }
 
 }
+
 
 
 // MARK: - UITableViewDataSource
@@ -124,6 +98,7 @@ extension PLSettingsViewController: UITableViewDataSource {
     }
 
 }
+
 
 
 // MARK: - UITableViewDelegate

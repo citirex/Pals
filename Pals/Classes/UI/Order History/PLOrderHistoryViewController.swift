@@ -13,15 +13,12 @@ class PLOrderHistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var activityIndicator: UIActivityIndicatorView!
+    private let dates = ["Yesterday", "Last Week", "2 Weeks Ago"]
     private lazy var orders: PLOrderDatasource = {
         let orderDatasource = PLOrderDatasource(orderType: .Drinks)
-        orderDatasource.userId = self.user.id
         return orderDatasource
     }()
     
-    var user: PLUser!
-    
-    private let dates = ["Yesterday", "Last Week", "2 Weeks Ago"]
     
     
     override func viewDidLoad() {
@@ -33,27 +30,20 @@ class PLOrderHistoryViewController: UIViewController {
         loadOrders()
     }
     
-    var numberOfSections = 0
+    
     private func loadOrders() {
         activityIndicator.startAnimating()
-        orders.load { orders, error in
+        orders.load { objects, error in
             guard error == nil else { return }
-            
-            let orders = orders as! [PLOrder]
+            let orders = objects as! [PLOrder]
             var indexPaths = [NSIndexPath]()
+            let filterOrders = orders.filter { $0.drinkSets.count > 0 }
             
-            for order in orders {
-                if order.drinkSets.count > 0 {
-                    self.numberOfSections += 1
-                }
-            }
-            
-            for section in 0..<self.numberOfSections {
-                for row in 0..<orders[section].drinkSets.count {
+            for section in 0..<filterOrders.count {
+                for row in 0..<filterOrders[section].drinkSets.count {
                     indexPaths.append(NSIndexPath(forRow: row, inSection: section))
                 }
             }
-
             self.tableView?.beginUpdates()
             self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
             self.tableView?.endUpdates()
@@ -92,7 +82,7 @@ class PLOrderHistoryViewController: UIViewController {
 extension PLOrderHistoryViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return dates.count
     }
     
     

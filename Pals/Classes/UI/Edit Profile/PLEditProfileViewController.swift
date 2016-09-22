@@ -28,8 +28,8 @@ class PLEditProfileViewController: PLViewController {
         updateUI()
         
         imagePicker.delegate = self
-        usernameTextField.text = user.name
-        userProfileImageView.setImageWithURL(user.picture)
+//        usernameTextField.text = user.name
+//        userProfileImageView.setImageWithURL(user.picture)
     
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
