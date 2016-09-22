@@ -95,7 +95,7 @@ class PLPlacesViewController: PLViewController {
         searchController.searchBar.placeholder = "Find a Place"
         searchController.searchBar.barTintColor = .affairColor()
         searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.tintColor = .whiteColor()
+        searchController.searchBar.tintColor = .affairColor() //.whiteColor()
         searchController.searchResultsUpdater = self
         searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar

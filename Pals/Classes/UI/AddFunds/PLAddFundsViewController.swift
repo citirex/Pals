@@ -96,13 +96,10 @@ class PLAddFundsViewController: PLViewController {
 
 
 //MARK: - TextField Delegate
-
 extension PLAddFundsViewController: UITextFieldDelegate {
-    
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.inputAccessoryView = inputAccessoryView()
     }
-    
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if range.location > 0 && range.location < 6  {

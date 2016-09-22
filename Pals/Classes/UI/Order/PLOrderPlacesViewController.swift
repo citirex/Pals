@@ -15,28 +15,15 @@ protocol OrderPlacesDelegate: class {
 class PLOrderPlacesViewController: PLPlacesViewController {
     
     weak var delegate: OrderPlacesDelegate?
-    
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        navigationController?.navigationBar.backItem?.title = ""
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         delegate?.didSelectNewPlace(places[indexPath.row])
         navigationController?.popViewControllerAnimated(true)
     }
-
 }

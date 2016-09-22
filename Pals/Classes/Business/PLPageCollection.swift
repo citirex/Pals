@@ -226,6 +226,12 @@ class PLPageCollection<T:PLUniqueObject> {
         }
         return params
     }
+    
+    func clean() {
+        filtered.removeAll()
+        _objects.removeAll()
+        offset = 0
+    }
 }
 
 class PLPalsPageCollection<T: PLUniqueObject>: PLPageCollection<T> {

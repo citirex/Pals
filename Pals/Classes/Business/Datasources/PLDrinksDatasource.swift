@@ -11,6 +11,7 @@ class PLDrinksDatasource: PLDatasource<PLDrink> {
     var placeId: UInt64? {
         didSet {
             if let id = placeId {
+                collection.clean()
                 collection.preset[PLKeys.place_id.string] = String(id)
             }
         }
