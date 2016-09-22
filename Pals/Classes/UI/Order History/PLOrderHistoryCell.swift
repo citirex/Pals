@@ -1,17 +1,17 @@
 //
-//  PLHistoryCell.swift
+//  PLOrderHistoryCell.swift
 //  Pals
 //
-//  Created by Vitaliy Delidov on 9/21/16.
+//  Created by Vitaliy Delidov on 9/22/16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
 import UIKit
 
-class PLHistoryCell: UITableViewCell {
+class PLOrderHistoryCell: UITableViewCell {
 
-    static let nibName = "PLHistoryCell"
-    static let reuseIdentifier = "HistoryCell"
+    static let nibName = "PLOrderHistoryCell"
+    static let reuseIdentifier = "OrderHistoryCell"
     
     
     var drink: PLDrink! {

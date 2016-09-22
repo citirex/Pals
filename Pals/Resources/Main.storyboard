@@ -813,7 +813,6 @@
         <!--Edit Profile-->
         <scene sceneID="6ZS-At-sJb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yHY-ln-VaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Edit Profile" id="2zm-V5-MZy" customClass="PLEditProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VG4-8h-pCL"/>
@@ -981,6 +980,7 @@
                         <outlet property="usernameTextField" destination="LeK-JZ-Gnu" id="dkS-lw-UmI"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yHY-ln-VaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3170" y="553"/>
         </scene>
@@ -1222,7 +1222,7 @@
         <!--Order History-->
         <scene sceneID="ESD-Th-IME">
             <objects>
-                <viewController title="Order History" id="nZe-CE-B1W" customClass="PLHistoryViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Order History" id="nZe-CE-B1W" customClass="PLOrderHistoryViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o0i-RS-Nuy"/>
                         <viewControllerLayoutGuide type="bottom" id="TN8-qH-eNb"/>
@@ -1359,7 +1359,7 @@
                         <segue destination="2zm-V5-MZy" kind="push" identifier="ShowEditProfile" id="VEu-3C-tGk"/>
                         <segue destination="DmR-jl-w2z" kind="push" identifier="ShowCardInfo" id="hI8-KA-Tkg"/>
                         <segue destination="wZt-xG-ynN" kind="push" identifier="ShowAddFunds" id="u5L-qT-vQG"/>
-                        <segue destination="nZe-CE-B1W" kind="push" identifier="ShowHistory" id="w9H-LU-6PB"/>
+                        <segue destination="nZe-CE-B1W" kind="push" identifier="ShowOrderHistory" id="w9H-LU-6PB"/>
                         <segue destination="7U6-k9-nlT" kind="push" identifier="ShowNotifications" id="1aQ-v7-etf"/>
                         <segue destination="3bt-QB-wbc" kind="push" identifier="ShowPrivacyPolicy" id="clz-JR-gtC"/>
                         <segue destination="s05-6w-Owi" kind="push" identifier="ShowTermsOfService" id="1uY-N7-tZa"/>
