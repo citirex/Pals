@@ -14,15 +14,16 @@ class PLOrderHistoryCell: UITableViewCell {
     static let reuseIdentifier = "OrderHistoryCell"
     
     
-    var drink: PLDrink! {
+    var drinkCellData: PLDrinkCellData! {
         didSet {
             setup()
         }
     }
     
     func setup() {
-        textLabel?.text = drink.name
-        detailTextLabel?.text = String(format: "$%0.2f", drink.price)
+        guard let drinkCellData = drinkCellData else { return }
+        textLabel?.text = drinkCellData.name
+        detailTextLabel?.text = String(format: "$%0.2f", drinkCellData.price)
     }
     
 }

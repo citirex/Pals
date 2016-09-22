@@ -16,7 +16,7 @@ class PLOrderHistorySectionHeader: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var placeNameLabel: UILabel!
     
-    var drink: PLDrink! {
+    var orderCellData: PLOrderCellData! {
         didSet {
             setup()
         }
@@ -38,8 +38,9 @@ class PLOrderHistorySectionHeader: UITableViewCell {
     
     
     func setup() {
-        dateLabel.text = "Last Week"
-        placeNameLabel.text = "The Marky Bark Pub"
+        guard let orderCellData = orderCellData else { return }
+//        dateLabel.text = orderCellData.date
+        placeNameLabel.text = orderCellData.place.name
     }
     
 }

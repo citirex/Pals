@@ -13,15 +13,15 @@ class PLOrderHistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var activityIndicator: UIActivityIndicatorView!
-    private lazy var orderDatasource: PLOrderDatasource = {
+    private lazy var orders: PLOrderDatasource = {
         let orderDatasource = PLOrderDatasource(orderType: .Drinks)
         orderDatasource.userId = self.user.id
         return orderDatasource
     }()
     
     var user: PLUser!
-    private var orders = [PLOrder]()
     
+    private let dates = ["Yesterday", "Last Week", "2 Weeks Ago"]
     
     
     override func viewDidLoad() {
@@ -33,15 +33,31 @@ class PLOrderHistoryViewController: UIViewController {
         loadOrders()
     }
     
-    
+    var numberOfSections = 0
     private func loadOrders() {
-        orderDatasource.load { orders, error in
+        activityIndicator.startAnimating()
+        orders.load { orders, error in
             guard error == nil else { return }
-            for order in orders as! [PLOrder] {
+            
+            let orders = orders as! [PLOrder]
+            var indexPaths = [NSIndexPath]()
+            
+            for order in orders {
                 if order.drinkSets.count > 0 {
-                    self.orders.append(order)
+                    self.numberOfSections += 1
                 }
             }
+            
+            for section in 0..<self.numberOfSections {
+                for row in 0..<orders[section].drinkSets.count {
+                    indexPaths.append(NSIndexPath(forRow: row, inSection: section))
+                }
+            }
+
+            self.tableView?.beginUpdates()
+            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+            self.tableView?.endUpdates()
+
             self.tableView.reloadData()
             self.activityIndicator.stopAnimating()
         }
@@ -52,7 +68,6 @@ class PLOrderHistoryViewController: UIViewController {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = .grayColor()
-        activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
         
         activityIndicator.addConstraintCentered()
@@ -77,12 +92,12 @@ class PLOrderHistoryViewController: UIViewController {
 extension PLOrderHistoryViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return orders.count ?? 0
+        return 3
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders[section].drinkSets.count ?? 0
+        return orders.count > 0 ? orders[section].drinkSets.count : 0
     }
     
     
@@ -95,7 +110,7 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let drink = orders[indexPath.section].drinkSets[indexPath.row].drink
         if let cell = cell as? PLOrderHistoryCell {
-            cell.drink = drink
+            cell.drinkCellData = drink.cellData
         }
     }
     
@@ -108,8 +123,10 @@ extension PLOrderHistoryViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeader = tableView.dequeueReusableCellWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as! PLOrderHistorySectionHeader
-        //        sectionHeader.dateLabel.text = orders[section].date
-        sectionHeader.placeNameLabel.text = orders[section].place.name
+        
+        guard orders.count > 0 else { return UIView() }
+        sectionHeader.dateLabel.text = dates[section]
+        sectionHeader.orderCellData = orders[section].cellData
         return sectionHeader
     }
     

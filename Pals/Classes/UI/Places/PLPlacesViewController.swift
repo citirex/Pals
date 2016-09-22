@@ -131,7 +131,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let place = places[indexPath.row]
         if let cell = cell as? PLPlaceTableViewCell {
-            cell.cellData = place.cellData
+            cell.placeCellData = place.cellData
         }
     }
     

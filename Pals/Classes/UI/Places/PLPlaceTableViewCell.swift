@@ -23,7 +23,7 @@ class PLPlaceTableViewCell: UITableViewCell {
     @IBOutlet weak var arrowRightImageView: UIImageView!
     
     var currentUrl = ""
-    var cellData: PLPlaceCellData? {
+    var placeCellData: PLPlaceCellData? {
         didSet { setup() }
     }
     
@@ -36,14 +36,12 @@ class PLPlaceTableViewCell: UITableViewCell {
     
 
     private func setup() {
-        guard let placeCellData = cellData else { return }
-        
+        guard let placeCellData = placeCellData else { return }
         setBlurredImage(placeCellData.picture)
         updateDistance(placeCellData.location)
         placeNameLabel.text = placeCellData.name
         placeAddressLabel.text = placeCellData.address
         musicGenresLabel.text = placeCellData.musicGengres
-
         addShadowForLabels()
     }
     
