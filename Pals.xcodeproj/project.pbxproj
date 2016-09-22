@@ -832,8 +832,8 @@
 			children = (
 				D47B45641D90371C0042EB9A /* DatasourceSwitcher */,
 				E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */,
-				E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */,
 				E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */,
+				E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */,
 				E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */,
 				E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */,
 				E8DA8B8C1D88334F008782E5 /* PLProfileHeaderView.swift */,

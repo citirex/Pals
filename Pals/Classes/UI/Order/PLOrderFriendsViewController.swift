@@ -16,21 +16,16 @@ class PLOrderFriendsViewController: PLFriendsViewController {
 
     weak var delegate: OrderFriendsDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        navigationController?.navigationBar.backItem?.title = ""
+        navigationController?.navigationBar.barTintColor = UIColor.miracleColor()
+        navigationController?.navigationBar.tintColor = UIColor.affairColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.affairColor()]
+        navigationController?.navigationBar.barStyle = .Default
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         delegate?.didSelectFriend(datasource[indexPath.row])
         navigationController?.popViewControllerAnimated(true)
     }
-
 }

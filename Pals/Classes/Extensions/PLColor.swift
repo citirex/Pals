@@ -28,10 +28,10 @@ extension UIColor {
     }
     
     
-    /// Place screen navigation bar color
+    /// Navigation bar color #6F4097
     
     class func affairColor() -> UIColor {
-        return UIColor(r: 91.0, g: 43.0, b: 133.0)
+        return UIColor(red:0.44, green:0.25, blue:0.59, alpha:1.0)
     }
     
 	
