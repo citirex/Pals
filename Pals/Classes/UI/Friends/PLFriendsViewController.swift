@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearchBarDelegate, UITableViewDelegate {
 	
 	private var resultsController: UITableViewController!
 	private var searchController: PLSearchController!
@@ -27,6 +27,7 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		navigationController?.setNavigationBarTransparent(false)
 		configureSearchController()
 		
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
@@ -47,18 +48,16 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		navigationItem.titleView = nil
 		navigationItem.title = "Friends"
-//		registerKeyboardNotifications()
 	}
 	override func viewDidDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		tableView.reloadData()
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+		searchController.active = false
 	}
 	
 	override func viewDidLayoutSubviews() {
-		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 49)
+		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+		resultsController.tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 49)
 	}
     
     func loadDatasource() {
@@ -93,36 +92,35 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
 		resultsController.tableView.backgroundColor = .miracleColor()
 		resultsController.tableView.tableFooterView = UIView()
 		resultsController.tableView.backgroundView = UIView()
-		resultsController.tableView.rowHeight = 110.0
+		resultsController.tableView.rowHeight = 100.0
 		resultsController.tableView.dataSource = self
 		resultsController.tableView.delegate = self
+		resultsController.tableView.keyboardDismissMode = .OnDrag
 		
 		searchController = PLSearchController(searchResultsController: resultsController)
 		searchController.searchBar.placeholder = "Find Your Pals"
+		searchController.searchBar.backgroundColor = .miracleColor()
 		searchController.searchBar.barTintColor = .miracleColor()
 		searchController.searchBar.backgroundImage = UIImage()
-		searchController.searchBar.tintColor = .miracleColor()
+		searchController.searchBar.tintColor = .affairColor()
 		searchController.searchResultsUpdater = self
 		searchController.dimsBackgroundDuringPresentation = false
-		searchController.delegate = self
+		searchController.searchBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
+		searchController.searchBar.delegate = self
 		tableView.tableHeaderView = searchController.searchBar
 		definesPresentationContext = true
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		searchBar.endEditing(true)
+		performSegueWithIdentifier("ShowFriendSearch", sender: self)
 	}
+	
 	
 	
 	// MARK: - tableView
 	
-	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
 		return datasource.count
-	}
-	
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return 1
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
@@ -157,7 +155,8 @@ class PLFriendsViewController: PLViewController, UISearchBarDelegate, UITableVie
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		
 		if segue.identifier == "ShowFriendSearch" {
-			_ = segue.destinationViewController as! PLFriendsSearchViewController
+			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
+			friendSearchViewController.seekerText = searchController.searchBar.text
 		}
 		
         guard segue.identifier == "ShowFriendProfile" else { return }

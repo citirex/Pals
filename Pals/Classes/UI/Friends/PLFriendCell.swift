@@ -18,7 +18,7 @@ class PLFriendCell: UITableViewCell{
 	lazy var addButton: UIButton = {
 		let button = UIButton(frame: CGRect(x: 0, y: 0, width: 33, height: 33))
 		button.addTarget(self, action: #selector(addFriendAction(_:)), forControlEvents: .TouchUpInside)
-		button.setImage(UIImage(named: "plus"), forState: .Normal)
+		button.setImage(UIImage(named: "contact_add"), forState: .Normal)
 		return button
 	}()
 
@@ -30,9 +30,14 @@ class PLFriendCell: UITableViewCell{
 	
 	func setup() {
 		if let aFriend = friend {
-			avatarImage.backgroundColor = UIColor.affairColor()
 			let friendCellData = aFriend.cellData
-			setCorrectImage(friendCellData.picture)
+			if friendCellData.picture.absoluteString == "" {
+				avatarImage.backgroundColor = UIColor.affairColor()
+				avatarImage.image = UIImage(named: "user")
+			} else {
+				avatarImage.backgroundColor = UIColor.clearColor()
+				setCorrectImage(friendCellData.picture)
+			}
 			nameLabel.text = friendCellData.name
 			
 		} else {
@@ -42,12 +47,10 @@ class PLFriendCell: UITableViewCell{
 	
     override func prepareForReuse() {
         super.prepareForReuse()
-        avatarImage.image = UIImage(named: "user")
-		addButton.imageView?.image = UIImage(named: "contact_add")
+        avatarImage.image = nil
     }
 	
 	func setCorrectImage(url: NSURL) {
-		avatarImage.backgroundColor = UIColor.affairColor()
 		avatarImage.image = nil
 		let urlString = url.absoluteString
 		let request = NSURLRequest(URL: url)
@@ -79,6 +82,7 @@ class PLFriendCell: UITableViewCell{
 			print("sendYES")
 			friendStatus = .Friend
 		addButton.setImage(UIImage(named: "check_mark"), forState: .Normal)
+			
 		} else {
 			print("sendNO")
 		}
