@@ -22,12 +22,12 @@ extension UIStoryboard {
     
     class var mainStoryboard: UIStoryboard { return UIStoryboard(name: "Main", bundle: .mainBundle()) }
     
-    class func tabBarController() -> UIViewController? {
-        return viewControllerWithType(.TabBarController)
-    }
-    
     class func viewControllerWithType(type: PLStoryboardType) -> UIViewController? {
         return mainStoryboard.instantiateViewControllerWithIdentifier(type.string)
+    }
+    
+    class func tabBarController() -> UIViewController? {
+        return viewControllerWithType(.TabBarController)
     }
     
     class func loginViewController() -> PLLoginViewController? {

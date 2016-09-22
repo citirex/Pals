@@ -55,17 +55,8 @@ class PLEditProfileViewController: PLViewController {
 
     @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
         isEditing = !isEditing
-        
         updateUI()
-        
-        if isEditing {
-            usernameTextField.becomeFirstResponder()
-        }
-    }
-    
-
-    @IBAction func invitePalsButtonTapped(sender: UIButton) {
-        print("invitePalsButtonTapped")
+        if isEditing { usernameTextField.becomeFirstResponder() }
     }
     
     
@@ -75,7 +66,7 @@ class PLEditProfileViewController: PLViewController {
         let cancelAction = UIAlertAction(title: "No", style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let OKAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
+        let OKAction = UIAlertAction(title: "Yes", style: .Default) { action in
             let loginViewController = UIStoryboard.loginViewController()
             self.presentViewController(loginViewController!, animated: true, completion: nil)
         }
@@ -87,6 +78,8 @@ class PLEditProfileViewController: PLViewController {
     @IBAction func loadImageButtonTapped(sender: UIButton) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
+        imagePicker.navigationBar.tintColor = .affairColor()
+        imagePicker.modalPresentationStyle = .OverCurrentContext
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -103,10 +96,12 @@ class PLEditProfileViewController: PLViewController {
             usernameTextField.enabled = true
             phoneNumberTextField.enabled = true
             addProfileImageButton.enabled = true
+            addProfileImageButton.hidden = false
         } else {
             usernameTextField.enabled = false
             phoneNumberTextField.enabled = false
             addProfileImageButton.enabled = false
+            addProfileImageButton.hidden = true
         }
     }
 
@@ -145,5 +140,6 @@ extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
 }
 

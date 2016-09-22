@@ -67,14 +67,19 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		navigationController?.navigationBar.tintColor = UIColor.vividViolet()
-		registerKeyboardNotifications()
-		
-		searchBar.text = seekerText
+        searchBar.text = seekerText
+        registerKeyboardNotifications()
+        navigationController?.navigationBar.barStyle = .Default
+		navigationController?.navigationBar.tintColor = .vividViolet()
+        navigationController?.navigationBar.barTintColor = .miracleColor()
 	}
-	override func viewDidDisappear(animated: Bool) {
+    
+	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
 		searchBar.endEditing(true)
+        navigationController?.navigationBar.barStyle = .Black
+        navigationController?.navigationBar.tintColor = .whiteColor()
+        navigationController?.navigationBar.barTintColor = .affairColor()
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
