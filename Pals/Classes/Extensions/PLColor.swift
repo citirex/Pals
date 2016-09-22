@@ -62,7 +62,7 @@ extension UIColor {
         return UIColor(r: 136.0, g: 41.0, b: 152.0)
     }
 	
-	/// Friends navigation bar
+	/// Friends  navigation bar
 	
 	class func miracleColor() -> UIColor {
 		return UIColor(r: 251.0, g: 251.0, b: 251.0)

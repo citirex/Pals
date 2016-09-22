@@ -91,8 +91,6 @@
 		E829DDD61D8151BE00D8C130 /* PLPlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */; };
 		E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDD71D818EAC00D8C130 /* PLPlacesViewController.swift */; };
 		E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDDB1D819A6300D8C130 /* PLConstants.swift */; };
-		E837C1D11D8FF8E70080A074 /* PLHistorySectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E837C1CF1D8FF8E70080A074 /* PLHistorySectionHeader.swift */; };
-		E837C1D21D8FF8E70080A074 /* PLHistorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E837C1D01D8FF8E70080A074 /* PLHistorySectionHeader.xib */; };
 		E837C1F61D902CAE0080A074 /* covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1D91D902CAE0080A074 /* covers0.json */; };
 		E837C1F71D902CAE0080A074 /* covers1.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1DA1D902CAE0080A074 /* covers1.json */; };
 		E837C1F81D902CAE0080A074 /* covers2.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1DB1D902CAE0080A074 /* covers2.json */; };
@@ -121,9 +119,11 @@
 		E83B4E4F1D87364E002E72F6 /* PLBackBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */; };
 		E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */; };
 		E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */; };
-		E8A04EBF1D92A4D500863B79 /* PLHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A04EBD1D92A4D500863B79 /* PLHistoryCell.swift */; };
-		E8A04EC01D92A4D500863B79 /* PLHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A04EBE1D92A4D500863B79 /* PLHistoryCell.xib */; };
-		E8A04EC21D92A52E00863B79 /* PLHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A04EC11D92A52E00863B79 /* PLHistoryViewController.swift */; };
+		E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */; };
+		E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E471D941A4700037A81 /* PLOrderHistoryCell.swift */; };
+		E8B53E4A1D941A4800037A81 /* PLOrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B53E481D941A4700037A81 /* PLOrderHistoryCell.xib */; };
+		E8B53E4D1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E4B1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift */; };
+		E8B53E4E1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B53E4C1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib */; };
 		E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */; };
 		E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */; };
 		E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86821D913A7B0079855C /* PLNotificationCell.swift */; };
@@ -238,8 +238,6 @@
 		E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileViewController.swift; path = "Place Profile/PLPlaceProfileViewController.swift"; sourceTree = "<group>"; };
 		E829DDD71D818EAC00D8C130 /* PLPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesViewController.swift; sourceTree = "<group>"; };
 		E829DDDB1D819A6300D8C130 /* PLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLConstants.swift; sourceTree = "<group>"; };
-		E837C1CF1D8FF8E70080A074 /* PLHistorySectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLHistorySectionHeader.swift; path = History/PLHistorySectionHeader.swift; sourceTree = "<group>"; };
-		E837C1D01D8FF8E70080A074 /* PLHistorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLHistorySectionHeader.xib; path = History/PLHistorySectionHeader.xib; sourceTree = "<group>"; };
 		E837C1D91D902CAE0080A074 /* covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers0.json; sourceTree = "<group>"; };
 		E837C1DA1D902CAE0080A074 /* covers1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers1.json; sourceTree = "<group>"; };
 		E837C1DB1D902CAE0080A074 /* covers2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers2.json; sourceTree = "<group>"; };
@@ -268,9 +266,11 @@
 		E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLBackBarButtonItem.swift; sourceTree = "<group>"; };
 		E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationDistance.swift; sourceTree = "<group>"; };
 		E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLCardInfoViewController.swift; path = "Card Info/PLCardInfoViewController.swift"; sourceTree = "<group>"; };
-		E8A04EBD1D92A4D500863B79 /* PLHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLHistoryCell.swift; path = History/PLHistoryCell.swift; sourceTree = "<group>"; };
-		E8A04EBE1D92A4D500863B79 /* PLHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLHistoryCell.xib; path = History/PLHistoryCell.xib; sourceTree = "<group>"; };
-		E8A04EC11D92A52E00863B79 /* PLHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLHistoryViewController.swift; path = History/PLHistoryViewController.swift; sourceTree = "<group>"; };
+		E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistoryViewController.swift; path = "Order History/PLOrderHistoryViewController.swift"; sourceTree = "<group>"; };
+		E8B53E471D941A4700037A81 /* PLOrderHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistoryCell.swift; path = "Order History/PLOrderHistoryCell.swift"; sourceTree = "<group>"; };
+		E8B53E481D941A4700037A81 /* PLOrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistoryCell.xib; path = "Order History/PLOrderHistoryCell.xib"; sourceTree = "<group>"; };
+		E8B53E4B1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistorySectionHeader.swift; path = "Order History/PLOrderHistorySectionHeader.swift"; sourceTree = "<group>"; };
+		E8B53E4C1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistorySectionHeader.xib; path = "Order History/PLOrderHistorySectionHeader.xib"; sourceTree = "<group>"; };
 		E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsViewController.swift; sourceTree = "<group>"; };
 		E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationsViewController.swift; path = Notifications/PLNotificationsViewController.swift; sourceTree = "<group>"; };
 		E8BE86821D913A7B0079855C /* PLNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationCell.swift; path = Notifications/PLNotificationCell.swift; sourceTree = "<group>"; };
@@ -403,7 +403,7 @@
 				2480F8BF1D813E730095995F /* Settings */,
 				E8BB9A6A1D892D3200DD6987 /* Edit Profile */,
 				E886AFAA1D8A98790014DF4D /* Card Info */,
-				E837C1C41D8FEAE60080A074 /* History */,
+				E8B53E421D9419A400037A81 /* Order History */,
 				2480F8C11D813E730095995F /* SignUp */,
 				E8BE86871D913AA20079855C /* Notifications */,
 			);
@@ -624,34 +624,6 @@
 			name = "Place Profile";
 			sourceTree = "<group>";
 		};
-		E837C1C41D8FEAE60080A074 /* History */ = {
-			isa = PBXGroup;
-			children = (
-				E8A04EC11D92A52E00863B79 /* PLHistoryViewController.swift */,
-				E837C1C71D8FED770080A074 /* Section Header */,
-				E837C1CE1D8FF8520080A074 /* Cell */,
-			);
-			name = History;
-			sourceTree = "<group>";
-		};
-		E837C1C71D8FED770080A074 /* Section Header */ = {
-			isa = PBXGroup;
-			children = (
-				E837C1CF1D8FF8E70080A074 /* PLHistorySectionHeader.swift */,
-				E837C1D01D8FF8E70080A074 /* PLHistorySectionHeader.xib */,
-			);
-			name = "Section Header";
-			sourceTree = "<group>";
-		};
-		E837C1CE1D8FF8520080A074 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E8A04EBD1D92A4D500863B79 /* PLHistoryCell.swift */,
-				E8A04EBE1D92A4D500863B79 /* PLHistoryCell.xib */,
-			);
-			name = Cell;
-			sourceTree = "<group>";
-		};
 		E837C1D71D902CAD0080A074 /* FakeFeeds */ = {
 			isa = PBXGroup;
 			children = (
@@ -766,6 +738,34 @@
 				E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */,
 			);
 			name = "Card Info";
+			sourceTree = "<group>";
+		};
+		E8B53E421D9419A400037A81 /* Order History */ = {
+			isa = PBXGroup;
+			children = (
+				E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */,
+				E8B53E461D941A2000037A81 /* Section Header */,
+				E8B53E451D941A1A00037A81 /* Cell */,
+			);
+			name = "Order History";
+			sourceTree = "<group>";
+		};
+		E8B53E451D941A1A00037A81 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E8B53E471D941A4700037A81 /* PLOrderHistoryCell.swift */,
+				E8B53E481D941A4700037A81 /* PLOrderHistoryCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		E8B53E461D941A2000037A81 /* Section Header */ = {
+			isa = PBXGroup;
+			children = (
+				E8B53E4B1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift */,
+				E8B53E4C1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib */,
+			);
+			name = "Section Header";
 			sourceTree = "<group>";
 		};
 		E8BB9A6A1D892D3200DD6987 /* Edit Profile */ = {
@@ -926,7 +926,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8A04EC01D92A4D500863B79 /* PLHistoryCell.xib in Resources */,
 				E837C2031D902CAE0080A074 /* order_covers1.json in Resources */,
 				E837C2071D902CAE0080A074 /* order_drinks2.json in Resources */,
 				E829DDD51D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib in Resources */,
@@ -950,13 +949,13 @@
 				E8DA8B931D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
 				E837C1FB1D902CAE0080A074 /* drinks2.json in Resources */,
+				E8B53E4A1D941A4800037A81 /* PLOrderHistoryCell.xib in Resources */,
 				E837C2011D902CAE0080A074 /* login.json in Resources */,
 				04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */,
 				E8BE868B1D9166620079855C /* PLSettingCell.xib in Resources */,
 				E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */,
 				E837C1FE1D902CAE0080A074 /* friends1.json in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
-				E837C1D21D8FF8E70080A074 /* PLHistorySectionHeader.xib in Resources */,
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
 				E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */,
 				24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */,
@@ -965,6 +964,7 @@
 				E837C1F91D902CAE0080A074 /* drinks0.json in Resources */,
 				24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */,
 				2480F9001D813E730095995F /* PLOrderDrinkCell.xib in Resources */,
+				E8B53E4E1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib in Resources */,
 				24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */,
 				E837C1FC1D902CAE0080A074 /* drinks3.json in Resources */,
 				E837C2061D902CAE0080A074 /* order_drinks1.json in Resources */,
@@ -1039,6 +1039,7 @@
 				2480F8E71D813E730095995F /* PLFakeFeed.swift in Sources */,
 				E829DDD41D8151BE00D8C130 /* PLPlaceProfileSectionHeader.swift in Sources */,
 				2480F8DE1D813E730095995F /* PLSettingsManager.swift in Sources */,
+				E8B53E4D1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift in Sources */,
 				2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */,
 				2480F8DD1D813E730095995F /* PLProfileManager.swift in Sources */,
 				049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */,
@@ -1055,7 +1056,6 @@
 				2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */,
 				E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */,
 				D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */,
-				E837C1D11D8FF8E70080A074 /* PLHistorySectionHeader.swift in Sources */,
 				D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */,
 				2480F9171D813E730095995F /* PLSignUpData.swift in Sources */,
 				2489E7061D82AC81003811D5 /* PLOrderFriendsViewController.swift in Sources */,
@@ -1091,21 +1091,21 @@
 				E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */,
 				24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */,
 				D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */,
+				E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */,
 				2489E7041D82950E003811D5 /* PLOrderPlacesViewController.swift in Sources */,
 				24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */,
 				2480F8DF1D813E730095995F /* PLDevice.swift in Sources */,
 				D46D2B871D87583B0058060E /* PLColor.swift in Sources */,
 				2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */,
-				E8A04EC21D92A52E00863B79 /* PLHistoryViewController.swift in Sources */,
 				D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */,
 				2480F8E51D813E730095995F /* PLErrors.swift in Sources */,
 				2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */,
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
 				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,
 				049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */,
-				E8A04EBF1D92A4D500863B79 /* PLHistoryCell.swift in Sources */,
 				E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */,
 				D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */,
+				E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */,
 				2480F8E01D813E730095995F /* PLDictionary.swift in Sources */,
 				E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */,
 				D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */,

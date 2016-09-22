@@ -8,24 +8,51 @@
 
 import UIKit
 
+private enum SectionType {
+    case General
+    case Archive
+    case Support
+}
+
+private enum Item: String {
+    case Account = "Account"
+    case CardInfo = "Card Info"
+    case AddFunds = "Add Funds"
+    case Notifications = "Notifications"
+    case OrderHistory = "Order History"
+    case HelpAndFAQ = "Help and FAQ"
+    case TermsOfService = "Terms of Service"
+    case PrivacyPolicy = "Privacy Policy"
+    
+    var segueIdentifier: String {
+        switch self {
+        case .Account: return "ShowEditProfile"
+        case .CardInfo: return "ShowCardInfo"
+        case .AddFunds: return "ShowAddFunds"
+        case .Notifications: return "ShowNotifications"
+        case .OrderHistory: return "ShowOrderHistory"
+        case .HelpAndFAQ: return "ShowHelpAndFAQ"
+        case .TermsOfService: return "ShowTermsOfService"
+        case .PrivacyPolicy: return "ShowPrivacyPolicy"
+        }
+    }
+}
+
+private struct Section {
+    var type: SectionType
+    var items: [Item]
+}
+
 
 class PLSettingsViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-
-    private let items = [
-        ["Account", "Card Info", "Add Funds", "Notifications"],
-        ["Order History"],
-        ["Help and FAQ", "Terms of Service", "Privacy Policy"]
+    private var sections = [
+        Section(type: .General, items: [.Account, .CardInfo, .AddFunds, .Notifications]),
+        Section(type: .Archive, items: [.OrderHistory]),
+        Section(type: .Support, items: [.HelpAndFAQ, .TermsOfService, .PrivacyPolicy])
     ]
-    
-    private let segueIdentifiers = [
-        ["ShowEditProfile", "ShowCardInfo", "ShowAddFunds", "ShowNotifications"],
-        ["ShowHistory"],
-        ["ShowHelpAndFAQ", "ShowTermsOfService", "ShowPrivacyPolicy"]
-    ]
-    
     
     var user: PLUser!
     
@@ -44,30 +71,26 @@ class PLSettingsViewController: PLViewController {
     // MARK: - Navigations
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = segue.identifier else { return }
-        switch identifier {
-        case "ShowEditProfile":
+        let indexPath = sender as! NSIndexPath
+        let item = sections[indexPath.section].items[indexPath.row]
+        
+        switch item {
+        case .Account:
             let editProfileViewController = segue.destinationViewController as! PLEditProfileViewController
             editProfileViewController.user = user
-        case "ShowCardInfo":
+        case .CardInfo:
             let cardInfoViewController = segue.destinationViewController as! PLCardInfoViewController
             cardInfoViewController.user = user
-        case "ShowAddFunds":
+        case .AddFunds:
             let refillBalanceViewController = segue.destinationViewController as! PLAddFundsViewController
             refillBalanceViewController.user = user
-        case "ShowNotifications":
-            print()
-        case "ShowHistory":
-            let historyViewController = segue.destinationViewController as! PLHistoryViewController
+        case .Notifications: print()
+        case .OrderHistory:
+            let historyViewController = segue.destinationViewController as! PLOrderHistoryViewController
             historyViewController.user = user
-        case "ShowHelpAndFAQ":
-            print("ShowHelpAndFAQ")
-        case "ShowTermsOfService":
-            print("ShowTermsOfService")
-        case "ShowPrivacyPolicy":
-            print("ShowPrivacyPolicy")
-        default:
-            break
+        case .HelpAndFAQ: print()
+        case .TermsOfService: print()
+        case .PrivacyPolicy: print()
         }
     }
 
@@ -79,12 +102,12 @@ class PLSettingsViewController: PLViewController {
 extension PLSettingsViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return items.count
+        return sections.count
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items[section].count
+        return sections[section].items.count
     }
     
 
@@ -97,7 +120,7 @@ extension PLSettingsViewController: UITableViewDataSource {
     
     private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         guard let cell = cell as? PLSettingCell else { return }
-        cell.textLabel?.text = items[indexPath.section][indexPath.row]
+        cell.textLabel?.text = sections[indexPath.section].items[indexPath.row].rawValue
     }
 
 }
@@ -109,8 +132,9 @@ extension PLSettingsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        let identifier = segueIdentifiers[indexPath.section][indexPath.row]
-        performSegueWithIdentifier(identifier, sender: self)
+        let item = sections[indexPath.section].items[indexPath.row]
+        performSegueWithIdentifier(item.segueIdentifier, sender: indexPath)
     }
+    
 }
+

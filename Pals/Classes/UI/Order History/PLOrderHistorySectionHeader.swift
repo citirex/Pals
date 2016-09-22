@@ -1,16 +1,16 @@
 //
-//  PLHistorySectionHeader.swift
+//  PLOrderHistorySectionHeader.swift
 //  Pals
 //
-//  Created by Vitaliy Delidov on 9/19/16.
+//  Created by Vitaliy Delidov on 9/22/16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
 import UIKit
 
-class PLHistorySectionHeader: UITableViewCell {
-    
-    static let nibName = "PLHistorySectionHeader"
+class PLOrderHistorySectionHeader: UITableViewCell {
+
+    static let nibName = "PLOrderHistorySectionHeader"
     static let reuseIdentifier = "SectionHeader"
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -41,4 +41,5 @@ class PLHistorySectionHeader: UITableViewCell {
         dateLabel.text = "Last Week"
         placeNameLabel.text = "The Marky Bark Pub"
     }
+    
 }

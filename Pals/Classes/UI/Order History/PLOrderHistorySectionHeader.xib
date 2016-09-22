@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionHeader" id="vrw-Ie-TIy" customClass="PLOrderHistorySectionHeader" customModule="Pals" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vrw-Ie-TIy" id="qr1-6A-WWH">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JxS-2l-Zft" userLabel="Date View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDE-Ni-etI">
+                                <rect key="frame" x="142" y="11" width="36" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="1jB-eq-Jla"/>
+                            <constraint firstItem="dDE-Ni-etI" firstAttribute="centerY" secondItem="JxS-2l-Zft" secondAttribute="centerY" id="8cb-dp-cvo"/>
+                            <constraint firstItem="dDE-Ni-etI" firstAttribute="centerX" secondItem="JxS-2l-Zft" secondAttribute="centerX" id="sRp-fg-zgb"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rbs-Xd-f5W" userLabel="Place View">
+                        <rect key="frame" x="0.0" y="44" width="320" height="43"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6P-p2-oPe">
+                                <rect key="frame" x="139" y="11" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40784313729999999" green="0.1960784314" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="B6P-p2-oPe" firstAttribute="centerX" secondItem="Rbs-Xd-f5W" secondAttribute="centerX" id="iZv-Vr-5w8"/>
+                            <constraint firstItem="B6P-p2-oPe" firstAttribute="centerY" secondItem="Rbs-Xd-f5W" secondAttribute="centerY" id="zDO-SA-aLq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Rbs-Xd-f5W" firstAttribute="top" secondItem="JxS-2l-Zft" secondAttribute="bottom" id="2Vu-Wd-uJj"/>
+                    <constraint firstItem="JxS-2l-Zft" firstAttribute="leading" secondItem="qr1-6A-WWH" secondAttribute="leading" id="4Xd-GL-nbp"/>
+                    <constraint firstAttribute="trailing" secondItem="JxS-2l-Zft" secondAttribute="trailing" id="BkL-Fh-98F"/>
+                    <constraint firstItem="JxS-2l-Zft" firstAttribute="top" secondItem="qr1-6A-WWH" secondAttribute="top" id="DyS-IF-Ltn"/>
+                    <constraint firstAttribute="trailing" secondItem="Rbs-Xd-f5W" secondAttribute="trailing" id="a9G-RQ-nQx"/>
+                    <constraint firstItem="Rbs-Xd-f5W" firstAttribute="leading" secondItem="qr1-6A-WWH" secondAttribute="leading" id="fMQ-Oa-jtV"/>
+                    <constraint firstAttribute="bottom" secondItem="Rbs-Xd-f5W" secondAttribute="bottom" id="wDk-5o-cUP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="dateLabel" destination="dDE-Ni-etI" id="0nb-gk-Awp"/>
+                <outlet property="placeNameLabel" destination="B6P-p2-oPe" id="zx0-fx-tLy"/>
+            </connections>
+            <point key="canvasLocation" x="-27" y="241"/>
+        </tableViewCell>
+    </objects>
+</document>
