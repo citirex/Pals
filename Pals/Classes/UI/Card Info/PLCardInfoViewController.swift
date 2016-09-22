@@ -14,9 +14,6 @@ class PLCardInfoViewController: PLViewController {
     @IBOutlet weak var expirationDateTextField: UITextField!
     @IBOutlet weak var zipCodeTextField: UITextField!
     @IBOutlet weak var cvvCodeTextField: UITextField!
-
-    
-    var user: PLUser!
     
     
     

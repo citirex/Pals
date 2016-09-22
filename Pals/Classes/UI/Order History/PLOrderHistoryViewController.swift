@@ -31,6 +31,8 @@ class PLOrderHistoryViewController: UIViewController {
     }
     
     
+    // MARK: - Private methods
+    
     private func loadOrders() {
         activityIndicator.startAnimating()
         orders.load { objects, error in
@@ -53,6 +55,7 @@ class PLOrderHistoryViewController: UIViewController {
         }
     }
     
+    
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -63,8 +66,6 @@ class PLOrderHistoryViewController: UIViewController {
         activityIndicator.addConstraintCentered()
     }
     
-    
-    // MARK: - Private methods
     
     private func setupTableView() {
         let cellNib = UINib(nibName: PLOrderHistoryCell.nibName, bundle: nil)

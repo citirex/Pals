@@ -24,10 +24,10 @@ class PLPlacesViewController: PLViewController {
         
         configureSearchController()
         configureActivityIndicator()
-        tableView.backgroundView = UIView()
         
         let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
+        tableView.backgroundView = UIView()
         
         loadPlaces()
     }
@@ -95,7 +95,7 @@ class PLPlacesViewController: PLViewController {
         searchController.searchBar.placeholder = "Find a Place"
         searchController.searchBar.barTintColor = .affairColor()
         searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.tintColor = .affairColor() //.whiteColor()
+        searchController.searchBar.tintColor = .whiteColor()
         searchController.searchResultsUpdater = self
         searchController.delegate = self
         tableView.tableHeaderView = searchController.searchBar

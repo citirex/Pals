@@ -24,7 +24,7 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
     @IBOutlet weak var placeAddressLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var orderButton: UIButton!
-    
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

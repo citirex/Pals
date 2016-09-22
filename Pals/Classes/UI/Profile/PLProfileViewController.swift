@@ -112,7 +112,7 @@ class PLProfileViewController: TGLStackedViewController {
     
     //MARK: - Actions
     func addFundsButtonPressed(sender: UIButton) {
-        performSegueWithIdentifier("ShowAddFunds", sender: nil)
+        performSegueWithIdentifier("ShowAddFunds", sender: sender)
     }
     
     func myCoversButtonPressed(sender: AnyObject) {
@@ -226,20 +226,6 @@ class PLProfileViewController: TGLStackedViewController {
         collectionBackgroundView.addGestureRecognizer(swipeRight)
     }
     
-    // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            switch identifier {
-            case "ShowAddFunds":
-                print("ShowaAddFunds")
-            case "ShowSettings":
-                let settingsViewController = segue.destinationViewController as! PLSettingsViewController
-                settingsViewController.user = profile
-            default:
-                break
-            }
-        }
-    }
 }
 
 extension PLProfileViewController : UICollectionViewDelegate {

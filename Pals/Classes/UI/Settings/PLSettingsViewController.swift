@@ -53,15 +53,11 @@ class PLSettingsViewController: PLViewController {
         Section(type: .Archive, items: [.OrderHistory]),
         Section(type: .Support, items: [.HelpAndFAQ, .TermsOfService, .PrivacyPolicy])
     ]
-    
-    var user: PLUser!
-    
-    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setup Cell
         let nib = UINib(nibName: PLSettingCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLSettingCell.identifier)
     }
@@ -108,7 +104,7 @@ extension PLSettingsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let item = sections[indexPath.section].items[indexPath.row]
-        performSegueWithIdentifier(item.segueIdentifier, sender: indexPath)
+        performSegueWithIdentifier(item.segueIdentifier, sender: self)
     }
     
 }

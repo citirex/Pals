@@ -18,9 +18,7 @@ class PLEditProfileViewController: PLViewController {
     private let imagePicker = UIImagePickerController()
     private var isEditing = false
     
-    var user: PLUser!
-    
-    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +26,10 @@ class PLEditProfileViewController: PLViewController {
         updateUI()
         
         imagePicker.delegate = self
-//        usernameTextField.text = user.name
-//        userProfileImageView.setImageWithURL(user.picture)
+        
+        let user = PLFacade.profile
+        usernameTextField.text = user!.name
+        userProfileImageView.setImageWithURL(user!.picture)
     
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
