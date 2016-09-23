@@ -130,8 +130,8 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             sectionHeader.closingTimeLabel.text = place.closeTime
             sectionHeader.placeAddressLabel.text = place.address
             sectionHeader.phoneNumberLabel.text = phoneNumberFormat(place.phone)
-            sectionHeader.didTappedOrderButton = {
-                self.performSegueWithIdentifier("OrderSegue", sender: self)
+            sectionHeader.didTappedOrderButton = { sender in
+                self.performSegueWithIdentifier("OrderSegue", sender: sender)
             }
             return sectionHeader
         default:

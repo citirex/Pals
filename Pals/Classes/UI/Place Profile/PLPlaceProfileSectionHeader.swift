@@ -14,7 +14,7 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
     static let nibName = "PLPlaceProfileSectionHeader"
     static let identifier = "SectionHeader"
     
-    typealias didTappedOrderButtonDelegate = Void -> Void
+    typealias didTappedOrderButtonDelegate = (sender: UIButton) -> Void
     var didTappedOrderButton: didTappedOrderButtonDelegate?
 
     @IBOutlet weak var topOfView: UIView!
@@ -29,12 +29,25 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        topOfView.round([.TopLeft, .TopRight], radius: 15)
-        orderButton.addTarget(self, action: #selector(orderButtonTapped), forControlEvents: .TouchUpInside)
+        orderButton.addTarget(self, action: #selector(orderButtonTapped(_:)), forControlEvents: .TouchUpInside)
     }
     
-    func orderButtonTapped() {
-        didTappedOrderButton!()
+    override func drawRect(rect: CGRect) {
+        topOfView.round([.TopLeft, .TopRight], radius: 15)
+        
+        let startingPoint = CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMaxY(rect))
+        let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
+        
+        let path = UIBezierPath()
+        path.moveToPoint(startingPoint)
+        path.addLineToPoint(endingPoint)
+        path.lineWidth = 1
+        UIColor.lightGrayColor().setStroke()
+        path.stroke()
+    }
+    
+    func orderButtonTapped(sender: UIButton) {
+        didTappedOrderButton!(sender: sender)
     }
    
 }

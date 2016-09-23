@@ -131,7 +131,6 @@
 		E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BE86831D913A7B0079855C /* PLNotificationCell.xib */; };
 		E8BE868A1D9166620079855C /* PLSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86881D9166620079855C /* PLSettingCell.swift */; };
 		E8BE868B1D9166620079855C /* PLSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BE86891D9166620079855C /* PLSettingCell.xib */; };
-		E8D9D4771D955D76004987A8 /* PLUnfriendPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9D4761D955D76004987A8 /* PLUnfriendPopoverViewController.swift */; };
 		E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B581D881D7C008782E5 /* PLView.swift */; };
 		E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */; };
 		E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7D1D8832E8008782E5 /* TGLExposedLayout.m */; };
@@ -280,7 +279,6 @@
 		E8BE86831D913A7B0079855C /* PLNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLNotificationCell.xib; path = Notifications/PLNotificationCell.xib; sourceTree = "<group>"; };
 		E8BE86881D9166620079855C /* PLSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingCell.swift; sourceTree = "<group>"; };
 		E8BE86891D9166620079855C /* PLSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingCell.xib; sourceTree = "<group>"; };
-		E8D9D4761D955D76004987A8 /* PLUnfriendPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLUnfriendPopoverViewController.swift; path = "Unfriend Popover/PLUnfriendPopoverViewController.swift"; sourceTree = "<group>"; };
 		E8DA8B581D881D7C008782E5 /* PLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
 		E8DA8B7A1D8832E8008782E5 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
 		E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 				2480F8971D813E730095995F /* Basic */,
 				2480F89B1D813E730095995F /* Friends */,
 				E8E4A1301D89E1D600EA0DFE /* Friend Profile */,
-				E8D9D4781D955D7F004987A8 /* Unfriend Popover */,
 				2480F8A21D813E730095995F /* Login */,
 				2480F8A41D813E730095995F /* Order */,
 				2480F8AD1D813E730095995F /* Places */,
@@ -809,14 +806,6 @@
 			name = Notifications;
 			sourceTree = "<group>";
 		};
-		E8D9D4781D955D7F004987A8 /* Unfriend Popover */ = {
-			isa = PBXGroup;
-			children = (
-				E8D9D4761D955D76004987A8 /* PLUnfriendPopoverViewController.swift */,
-			);
-			name = "Unfriend Popover";
-			sourceTree = "<group>";
-		};
 		E8DA8B5C1D882896008782E5 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1125,7 +1114,6 @@
 				E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */,
 				D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */,
 				2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */,
-				E8D9D4771D955D76004987A8 /* PLUnfriendPopoverViewController.swift in Sources */,
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
 				E8DA8B841D8832E8008782E5 /* TGLStackedLayout.m in Sources */,
 				E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */,

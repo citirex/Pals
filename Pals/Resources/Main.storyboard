@@ -459,15 +459,40 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-4Y-hBs" userLabel="Separator">
-                                <rect key="frame" x="30" y="270" width="260" height="1"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2">
+                                <rect key="frame" x="93" y="92" width="134" height="134"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="CCI-eN-gOm"/>
+                                    <constraint firstAttribute="height" constant="134" id="ORm-sT-eGr"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwP-6G-nIw" userLabel="Unfriend Button">
+                                <rect key="frame" x="230" y="60" width="90" height="30"/>
+                                <color key="backgroundColor" red="0.20784313725490197" green="0.24313725490196078" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="LVp-NX-Sdn"/>
+                                    <constraint firstAttribute="width" constant="90" id="tNu-Zk-8Se"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Unfriend">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unfriendButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="d6B-48-RLO"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-4Y-hBs" userLabel="Line">
+                                <rect key="frame" x="28" y="286" width="264" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="fSm-4l-n74"/>
+                                    <constraint firstAttribute="height" constant="1" id="URK-Dt-PvX"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMb-Zw-uOS">
-                                <rect key="frame" x="80" y="301" width="160" height="42"/>
+                                <rect key="frame" x="80" y="325" width="160" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="9Jr-kx-KNG"/>
                                     <constraint firstAttribute="width" constant="160" id="Gj8-Vu-NDP"/>
@@ -481,7 +506,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6s6-7c-3QW">
-                                <rect key="frame" x="80" y="373" width="160" height="42"/>
+                                <rect key="frame" x="80" y="405" width="160" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="TEG-uw-nhn"/>
                                     <constraint firstAttribute="height" constant="42" id="dvK-4m-sul"/>
@@ -494,35 +519,28 @@
                                     <action selector="sendADrinkButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="8l5-pP-ESw"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2">
-                                <rect key="frame" x="80" y="80" width="160" height="160"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="8dg-Pf-2aQ"/>
-                                    <constraint firstAttribute="width" constant="160" id="C2v-eP-fQH"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="WW4-eA-eO5" secondAttribute="trailing" id="1MJ-2l-RGj"/>
                             <constraint firstAttribute="trailing" secondItem="IU0-qZ-LiT" secondAttribute="trailing" id="6n0-uk-Ks2"/>
-                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" constant="30" id="BlL-AM-63s"/>
-                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="30" id="Bqj-ye-69D"/>
-                            <constraint firstItem="6s6-7c-3QW" firstAttribute="top" secondItem="rMb-Zw-uOS" secondAttribute="bottom" constant="30" id="F9e-R9-4wz"/>
+                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="8XZ-Ar-9OL"/>
+                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="DyN-gZ-cuT"/>
+                            <constraint firstItem="6s6-7c-3QW" firstAttribute="top" secondItem="rMb-Zw-uOS" secondAttribute="bottom" constant="38" id="F9e-R9-4wz"/>
                             <constraint firstItem="KuD-LH-J5b" firstAttribute="top" secondItem="WW4-eA-eO5" secondAttribute="bottom" id="FX4-eo-Na1"/>
                             <constraint firstItem="6s6-7c-3QW" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="Ffc-by-QKr"/>
+                            <constraint firstAttribute="trailing" secondItem="QdR-4Y-hBs" secondAttribute="trailing" constant="28" id="GEE-nn-UKv"/>
                             <constraint firstItem="IU0-qZ-LiT" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" id="Oc1-jv-eel"/>
-                            <constraint firstAttribute="trailing" secondItem="QdR-4Y-hBs" secondAttribute="trailing" constant="30" id="eWh-rj-LOe"/>
+                            <constraint firstAttribute="trailing" secondItem="cwP-6G-nIw" secondAttribute="trailing" id="QvG-9y-Wgb"/>
+                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="topMargin" constant="92" id="Ueq-af-OI6"/>
+                            <constraint firstItem="rMb-Zw-uOS" firstAttribute="top" secondItem="QdR-4Y-hBs" secondAttribute="bottom" constant="38" id="foy-Mk-6jU"/>
                             <constraint firstItem="WW4-eA-eO5" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" id="gLw-tL-qhE"/>
+                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="60" id="h7b-xN-t27"/>
                             <constraint firstItem="KuD-LH-J5b" firstAttribute="top" secondItem="IU0-qZ-LiT" secondAttribute="bottom" id="hTN-7B-TY4"/>
-                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerY" secondItem="0b7-o8-tqn" secondAttribute="centerY" constant="-99.5" id="nyc-AQ-pY4"/>
                             <constraint firstItem="WW4-eA-eO5" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" id="qzh-8M-pWU"/>
                             <constraint firstItem="rMb-Zw-uOS" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="vHI-ZV-SD5"/>
-                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="vXm-Z8-d30"/>
-                            <constraint firstItem="rMb-Zw-uOS" firstAttribute="top" secondItem="QdR-4Y-hBs" secondAttribute="bottom" constant="30" id="w7E-iR-kEq"/>
+                            <constraint firstItem="cwP-6G-nIw" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" constant="60" id="vtu-rx-bRF"/>
+                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" constant="28" id="wMo-2Z-f1a"/>
                             <constraint firstItem="IU0-qZ-LiT" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" id="yS7-KI-PwA"/>
                         </constraints>
                     </view>
@@ -531,9 +549,7 @@
                         <barButtonItem key="rightBarButtonItem" image="more_button" id="AKF-lV-M1l" userLabel="More Bar Button Item">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="cV0-7C-qV6" kind="popover" identifier="UnfriendSegue" popoverAnchorBarButtonItem="AKF-lV-M1l" id="eoe-3c-S7P">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="moreBarButtonItemTapped:" destination="BXZ-AW-ugp" id="0y5-fo-59M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -542,56 +558,13 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
+                        <outlet property="unfriendButton" destination="cwP-6G-nIw" id="qeT-wA-06V"/>
                         <segue destination="Cmd-gA-94i" kind="push" identifier="OrderSegue" id="mrq-MK-55o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1829" y="-687"/>
-        </scene>
-        <!--Unfriend Popover-->
-        <scene sceneID="5c6-Xd-ZkV">
-            <objects>
-                <viewController storyboardIdentifier="UnfriendViewController" title="Unfriend Popover" id="cV0-7C-qV6" customClass="PLUnfriendPopoverViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Oml-Kn-CpW"/>
-                        <viewControllerLayoutGuide type="bottom" id="kuX-wh-uf7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gRx-f6-wfh">
-                        <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwP-6G-nIw">
-                                <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
-                                <color key="backgroundColor" red="0.20784313725490197" green="0.24313725490196078" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Unfriend">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="unfriendButtonTapped:" destination="cV0-7C-qV6" eventType="touchUpInside" id="41H-Qw-Whm"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="cwP-6G-nIw" firstAttribute="leading" secondItem="gRx-f6-wfh" secondAttribute="leading" id="Ks3-AZ-oFc"/>
-                            <constraint firstItem="cwP-6G-nIw" firstAttribute="top" secondItem="Oml-Kn-CpW" secondAttribute="bottom" id="gC2-u0-nEh"/>
-                            <constraint firstAttribute="trailing" secondItem="cwP-6G-nIw" secondAttribute="trailing" id="uXs-Rx-8fg"/>
-                            <constraint firstItem="kuX-wh-uf7" firstAttribute="top" secondItem="cwP-6G-nIw" secondAttribute="bottom" id="vg0-r0-qKT"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="vEz-Nr-cVy"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="90" height="30"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="90" height="30"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LOC-Ds-Elk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2140" y="-956"/>
         </scene>
         <!--Profile-->
         <scene sceneID="mNa-5k-She">
@@ -1492,7 +1465,7 @@
         <image name="logo" width="264" height="266"/>
         <image name="more_button" width="5" height="21"/>
         <image name="order-tab" width="23" height="25"/>
-        <image name="order_bg" width="125" height="195"/>
+        <image name="order_bg" width="187" height="293"/>
         <image name="places-tab" width="28" height="26"/>
         <image name="profile-tab" width="20" height="26"/>
         <image name="sign_in_plus" width="260" height="260"/>
@@ -1500,7 +1473,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Ss6-x5-3bZ"/>
         <segue reference="apm-CY-cnT"/>
-        <segue reference="1Zi-Tu-8Fy"/>
+        <segue reference="mrq-MK-55o"/>
         <segue reference="Qau-vR-zQT"/>
     </inferredMetricsTieBreakers>
 </document>

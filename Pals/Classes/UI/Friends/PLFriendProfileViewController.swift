@@ -11,10 +11,10 @@ class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: UIImageView!
+    @IBOutlet weak var unfriendButton: UIButton!
 
     private var sectionOrder: PLCollectionSectionType!
-    
-    
+
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,21 @@ class PLFriendProfileViewController: PLViewController {
     
     // MARK: - Actions
     
+    @IBAction func moreBarButtonItemTapped(sender: UIBarButtonItem) {
+        unfriendButton.rounded = true
+        unfriendButton.enabled = true
+        unfriendButton.hidden = false
+        
+        unfriendButton.alpha = 0
+        UIView.animateWithDuration(0.5) {
+            self.unfriendButton.alpha = 1
+        }
+    }
+    
+    @IBAction func unfriendButtonTapped(sender: UIButton) {
+        print("unfriendButtonTapped")
+    }
+    
     @IBAction func sendCoverButtonTapped(sender: UIButton) {
         sectionOrder = .Covers
         performSegueWithIdentifier("OrderSegue", sender: self)
@@ -54,10 +69,7 @@ class PLFriendProfileViewController: PLViewController {
         sectionOrder = .Drinks
         performSegueWithIdentifier("OrderSegue", sender: self)
     }
-    
-    @IBAction func moreBarButtonItemTapped(sender: UIBarButtonItem) {
-    }
-    
+ 
     
     // MARK: - Navigation
     
@@ -67,10 +79,6 @@ class PLFriendProfileViewController: PLViewController {
         case "OrderSegue":
             let orderViewController = segue.destinationViewController as! PLOrderViewController
             orderViewController.currentTab = sectionOrder
-        case "UnfriendSegue": // TODO: - didn't
-            let unfriendViewController = segue.destinationViewController as! PLUnfriendPopoverViewController
-            unfriendViewController.modalPresentationStyle = .Popover
-            unfriendViewController.popoverPresentationController!.delegate = self
         default:
             break
         }
@@ -80,15 +88,6 @@ class PLFriendProfileViewController: PLViewController {
     
 }
 
-
-
-extension PLFriendProfileViewController: UIPopoverPresentationControllerDelegate {
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .None
-    }
-    
-}
 
 
 
