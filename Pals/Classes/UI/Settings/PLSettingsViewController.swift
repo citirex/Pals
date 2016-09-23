@@ -26,14 +26,14 @@ private enum Item: String {
     
     var segueIdentifier: String {
         switch self {
-        case .Account: return "ShowEditProfile"
-        case .CardInfo: return "ShowCardInfo"
-        case .AddFunds: return "ShowAddFunds"
-        case .Notifications: return "ShowNotifications"
-        case .OrderHistory: return "ShowOrderHistory"
-        case .HelpAndFAQ: return "ShowHelpAndFAQ"
-        case .TermsOfService: return "ShowTermsOfService"
-        case .PrivacyPolicy: return "ShowPrivacyPolicy"
+        case .Account: return "EditProfileSegue"
+        case .CardInfo: return "CardInfoSegue"
+        case .AddFunds: return "AddFundsSegue"
+        case .Notifications: return "NotificationsSegue"
+        case .OrderHistory: return "OrderHistorySegue"
+        case .HelpAndFAQ: return "HelpAndFAQSegue"
+        case .TermsOfService: return "TermsOfServiceSegue"
+        case .PrivacyPolicy: return "PrivacyPolicySegue"
         }
     }
 }

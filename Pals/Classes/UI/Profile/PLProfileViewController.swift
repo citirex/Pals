@@ -112,7 +112,7 @@ class PLProfileViewController: TGLStackedViewController {
     
     //MARK: - Actions
     func addFundsButtonPressed(sender: UIButton) {
-        performSegueWithIdentifier("ShowAddFunds", sender: sender)
+        performSegueWithIdentifier("AddFundsSegue", sender: sender)
     }
     
     func myCoversButtonPressed(sender: AnyObject) {

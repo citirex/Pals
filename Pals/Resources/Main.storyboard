@@ -528,8 +528,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="4NI-ne-4iy">
                         <barButtonItem key="backBarButtonItem" title=" " id="9MO-wJ-53a"/>
-                        <barButtonItem key="rightBarButtonItem" image="more_button" id="AKF-lV-M1l">
+                        <barButtonItem key="rightBarButtonItem" image="more_button" id="AKF-lV-M1l" userLabel="More Bar Button Item">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="cV0-7C-qV6" kind="popover" identifier="UnfriendSegue" popoverAnchorBarButtonItem="AKF-lV-M1l" id="eoe-3c-S7P">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -537,12 +542,56 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
-                        <segue destination="Cmd-gA-94i" kind="push" identifier="ShowOrder" id="mrq-MK-55o"/>
+                        <segue destination="Cmd-gA-94i" kind="push" identifier="OrderSegue" id="mrq-MK-55o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1829" y="-687"/>
+        </scene>
+        <!--Unfriend Popover-->
+        <scene sceneID="5c6-Xd-ZkV">
+            <objects>
+                <viewController storyboardIdentifier="UnfriendViewController" title="Unfriend Popover" id="cV0-7C-qV6" customClass="PLUnfriendPopoverViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Oml-Kn-CpW"/>
+                        <viewControllerLayoutGuide type="bottom" id="kuX-wh-uf7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gRx-f6-wfh">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwP-6G-nIw">
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
+                                <color key="backgroundColor" red="0.20784313725490197" green="0.24313725490196078" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Unfriend">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unfriendButtonTapped:" destination="cV0-7C-qV6" eventType="touchUpInside" id="41H-Qw-Whm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cwP-6G-nIw" firstAttribute="leading" secondItem="gRx-f6-wfh" secondAttribute="leading" id="Ks3-AZ-oFc"/>
+                            <constraint firstItem="cwP-6G-nIw" firstAttribute="top" secondItem="Oml-Kn-CpW" secondAttribute="bottom" id="gC2-u0-nEh"/>
+                            <constraint firstAttribute="trailing" secondItem="cwP-6G-nIw" secondAttribute="trailing" id="uXs-Rx-8fg"/>
+                            <constraint firstItem="kuX-wh-uf7" firstAttribute="top" secondItem="cwP-6G-nIw" secondAttribute="bottom" id="vg0-r0-qKT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vEz-Nr-cVy"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="90" height="30"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="90" height="30"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LOC-Ds-Elk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2140" y="-956"/>
         </scene>
         <!--Profile-->
         <scene sceneID="mNa-5k-She">
@@ -578,13 +627,13 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="pKf-FG-PN8"/>
                         <barButtonItem key="rightBarButtonItem" image="more_button" id="XXS-z7-BSm">
                             <connections>
-                                <segue destination="kGG-tj-ywv" kind="push" identifier="ShowSettings" id="pGy-cO-7A6"/>
+                                <segue destination="kGG-tj-ywv" kind="push" identifier="SettingsSegue" id="pGy-cO-7A6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="xqB-wZ-lQh" id="vTe-9e-k3T"/>
-                        <segue destination="wZt-xG-ynN" kind="push" identifier="ShowAddFunds" id="Qau-vR-zQT"/>
+                        <segue destination="wZt-xG-ynN" kind="push" identifier="AddFundsSegue" id="Qau-vR-zQT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8L-iT-ZrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -626,7 +675,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tableView" destination="oYY-1M-OFp" id="gc0-wN-nl0"/>
-                        <segue destination="0zz-mk-uMT" kind="push" identifier="ShowPlaceProfile" id="Srp-LB-CFK"/>
+                        <segue destination="0zz-mk-uMT" kind="push" identifier="PlaceProfileSegue" id="Srp-LB-CFK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrC-9h-T9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -676,7 +725,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="gQS-aH-ZRx" id="wK7-9W-pTH"/>
-                        <segue destination="Cmd-gA-94i" kind="push" identifier="ShowOrder" id="1Zi-Tu-8Fy"/>
+                        <segue destination="Cmd-gA-94i" kind="push" identifier="OrderSegue" id="1Zi-Tu-8Fy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wf-4F-yEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -812,7 +861,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="lup-pr-rOR" kind="push" identifier="ShowFriendsSearch" id="8mb-vo-Nj3"/>
+                                    <segue destination="lup-pr-rOR" kind="push" identifier="FriendsSearchSegue" id="8mb-vo-Nj3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional email or phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrr-TE-NN3">
@@ -904,17 +953,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="textFieldEditing:" destination="DmR-jl-w2z" eventType="editingDidBegin" id="aL8-mH-ocX"/>
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="CNp-6O-k5L"/>
@@ -929,17 +967,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="yKu-nc-ZwY"/>
                                         </connections>
@@ -953,17 +980,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="rOm-Db-ZaK"/>
                                         </connections>
@@ -977,17 +993,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="ead-Bo-euX"/>
                                         </connections>
@@ -1252,14 +1257,14 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tableView" destination="Bbi-Pj-gDT" id="NQy-oQ-Oya"/>
-                        <segue destination="2zm-V5-MZy" kind="push" identifier="ShowEditProfile" id="VEu-3C-tGk"/>
-                        <segue destination="DmR-jl-w2z" kind="push" identifier="ShowCardInfo" id="hI8-KA-Tkg"/>
-                        <segue destination="wZt-xG-ynN" kind="push" identifier="ShowAddFunds" id="u5L-qT-vQG"/>
-                        <segue destination="nZe-CE-B1W" kind="push" identifier="ShowOrderHistory" id="w9H-LU-6PB"/>
-                        <segue destination="7U6-k9-nlT" kind="push" identifier="ShowNotifications" id="1aQ-v7-etf"/>
-                        <segue destination="3bt-QB-wbc" kind="push" identifier="ShowPrivacyPolicy" id="clz-JR-gtC"/>
-                        <segue destination="s05-6w-Owi" kind="push" identifier="ShowTermsOfService" id="1uY-N7-tZa"/>
-                        <segue destination="X9z-xs-e57" kind="push" identifier="ShowHelpAndFAQ" id="Bz1-h0-1s3"/>
+                        <segue destination="2zm-V5-MZy" kind="push" identifier="EditProfileSegue" id="VEu-3C-tGk"/>
+                        <segue destination="DmR-jl-w2z" kind="push" identifier="CardInfoSegue" id="hI8-KA-Tkg"/>
+                        <segue destination="wZt-xG-ynN" kind="push" identifier="AddFundsSegue" id="u5L-qT-vQG"/>
+                        <segue destination="nZe-CE-B1W" kind="push" identifier="OrderHistorySegue" id="w9H-LU-6PB"/>
+                        <segue destination="7U6-k9-nlT" kind="push" identifier="NotificationsSegue" id="1aQ-v7-etf"/>
+                        <segue destination="3bt-QB-wbc" kind="push" identifier="PrivacyPolicySegue" id="clz-JR-gtC"/>
+                        <segue destination="s05-6w-Owi" kind="push" identifier="TermsOfServiceSegue" id="1uY-N7-tZa"/>
+                        <segue destination="X9z-xs-e57" kind="push" identifier="HelpAndFAQSegue" id="Bz1-h0-1s3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPz-Zt-74a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1338,8 +1343,8 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <segue destination="BXZ-AW-ugp" kind="push" identifier="ShowFriendProfile" id="ovy-Gk-Wh0"/>
-                        <segue destination="lup-pr-rOR" kind="push" identifier="ShowFriendSearch" id="Ss6-x5-3bZ"/>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendProfileSegue" id="ovy-Gk-Wh0"/>
+                        <segue destination="lup-pr-rOR" kind="push" identifier="FriendSearchSegue" id="Ss6-x5-3bZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9B-MX-2Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1355,7 +1360,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0cU-r4-3hA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UXT-YT-Tfh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1363,7 +1368,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="fSH-08-fuO"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="BXZ-AW-ugp" kind="push" identifier="ShowFriendsProfile" id="apm-CY-cnT"/>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendsProfileSegue" id="apm-CY-cnT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1K-dj-Sgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1493,8 +1498,8 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Ss6-x5-3bZ"/>
         <segue reference="apm-CY-cnT"/>
-        <segue reference="8mb-vo-Nj3"/>
         <segue reference="1Zi-Tu-8Fy"/>
         <segue reference="Qau-vR-zQT"/>
     </inferredMetricsTieBreakers>

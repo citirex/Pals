@@ -6,26 +6,22 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-enum SectionOrder {
-    case Cover
-    case Drinks
-}
 
 class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: UIImageView!
 
+    private var sectionOrder: PLCollectionSectionType!
     
-    var friend: PLUser!
-    private var sectionOrder: SectionOrder!
     
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImageView.setImageWithURL(friend.picture)
-        friendProfileImageView.setImageWithURL(friend.picture)
+        let friend = PLFacade.profile?.cellData
+        backgroundImageView.setImageWithURL(friend!.picture)
+        friendProfileImageView.setImageWithURL(friend!.picture)
     }
     
     
@@ -50,24 +46,50 @@ class PLFriendProfileViewController: PLViewController {
     // MARK: - Actions
     
     @IBAction func sendCoverButtonTapped(sender: UIButton) {
-        sectionOrder = .Cover
-        performSegueWithIdentifier("ShowOrder", sender: self)
+        sectionOrder = .Covers
+        performSegueWithIdentifier("OrderSegue", sender: self)
     }
 
     @IBAction func sendADrinkButtonTapped(sender: UIButton) {
         sectionOrder = .Drinks
-        performSegueWithIdentifier("ShowOrder", sender: self)
+        performSegueWithIdentifier("OrderSegue", sender: self)
+    }
+    
+    @IBAction func moreBarButtonItemTapped(sender: UIBarButtonItem) {
     }
     
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard segue.identifier == "ShowOrder" else { return }
-        let orderViewController = segue.destinationViewController as! PLOrderViewController
-        orderViewController.user = friend
-        //        orderViewController.sectionOrder = sectionOrder
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "OrderSegue":
+            let orderViewController = segue.destinationViewController as! PLOrderViewController
+            orderViewController.currentTab = sectionOrder
+        case "UnfriendSegue": // TODO: - didn't
+            let unfriendViewController = segue.destinationViewController as! PLUnfriendPopoverViewController
+            unfriendViewController.modalPresentationStyle = .Popover
+            unfriendViewController.popoverPresentationController!.delegate = self
+        default:
+            break
+        }
+        
     }
 
     
 }
+
+
+
+extension PLFriendProfileViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
+    
+}
+
+
+
+
