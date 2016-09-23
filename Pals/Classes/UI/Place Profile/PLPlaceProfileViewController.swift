@@ -159,12 +159,12 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
 extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 200)
+        return CGSizeMake(view.frame.size.width, 160)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 120)
+        return CGSizeMake(view.frame.size.width, 100)
     }
     
 }

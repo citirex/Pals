@@ -16,7 +16,9 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
 
     private let imagePicker = UIImagePickerController()
-    private var isEditing = false
+    private var isEditing = false {
+        didSet { updateUI() }
+    }
     
  
     
@@ -55,8 +57,17 @@ class PLEditProfileViewController: PLViewController {
 
     @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
         isEditing = !isEditing
-        updateUI()
+        
         if isEditing { usernameTextField.becomeFirstResponder() }
+//        else {
+//            let profile = PLUserData(name: usernameTextField.text!,
+//                                     email: phoneNumberTextField.text!,
+//                                     picture: userProfileImageView.image!) }
+//        
+//        PLFacade.updateProfile(profile) { error in
+//            guard error == nil else { return PLShowAlert("Error", message: error!.localizedDescription) }
+//            SNFacade.profile = profile
+//        }
     }
     
     

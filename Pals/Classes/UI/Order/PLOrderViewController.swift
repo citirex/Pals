@@ -31,21 +31,22 @@ class PLOrderViewController: PLViewController {
         }
     }
     
-    private var orderDrinks = [String: String]() {
+    private var orderDrinks = [UInt64:PLDrinkset]() {
         didSet{
             updateCheckoutButtonState()
         }
     }
     
-    private var orderCovers = [UInt64]() {
+    private var orderCovers = [String]() {
         didSet{
             updateCheckoutButtonState()
         }
     }
-   
+    
+    private var drinksOffset = CGPointZero
+    private var coversOffset = CGPointZero
     
     private var spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-    private var firstLaunch: Bool = true
     private var drinksDatasource = PLDrinksDatasource()
     private var coversDatasource = PLCoversDatasource()
     
@@ -91,23 +92,48 @@ class PLOrderViewController: PLViewController {
     }
         
     //MARK: - Network
-    private func loadPage() {
+    private func loadDrinks() {
         spinner.startAnimating()
         spinner.center = view.center
         drinksDatasource.load {[unowned self] page, error in
             if error == nil {
-                let count = self.drinksDatasource.count
                 let lastLoadedCount = page.count
                 if lastLoadedCount > 0 {
-                    var indexPaths = [NSIndexPath]()
-                    for i in count-lastLoadedCount..<count {
-                        indexPaths.append(NSIndexPath(forItem: i, inSection: 1))
-                    }
-                    
-                    if self.firstLaunch == true {
+                    if self.drinksDatasource.pagesLoaded < 2 {
                         self.collectionView?.reloadData()
-                        self.firstLaunch = false
                     } else {
+                        let count = self.drinksDatasource.count
+                        var indexPaths = [NSIndexPath]()
+                        for i in count-lastLoadedCount..<count {
+                            indexPaths.append(NSIndexPath(forItem: i, inSection: 1))
+                        }
+                        self.collectionView?.performBatchUpdates({
+                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
+                            }, completion: nil)
+                    }
+                }
+            } else {
+                PLShowErrorAlert(error: error!)
+            }
+            self.spinner.stopAnimating()
+        }
+    }
+    //FIXME: make no duplication of code
+    private func loadCovers() {
+        spinner.startAnimating()
+        spinner.center = view.center
+        coversDatasource.load {[unowned self] page, error in
+            if error == nil {
+                let lastLoadedCount = page.count
+                if lastLoadedCount > 0 {
+                    if self.coversDatasource.pagesLoaded < 2 {
+                        self.collectionView?.reloadData()
+                    } else {
+                        let count = self.coversDatasource.count
+                        var indexPaths = [NSIndexPath]()
+                        for i in count-lastLoadedCount..<count {
+                            indexPaths.append(NSIndexPath(forItem: i, inSection: 1))
+                        }
                         self.collectionView?.performBatchUpdates({
                             self.collectionView?.insertItemsAtIndexPaths(indexPaths)
                             }, completion: nil)
@@ -157,8 +183,10 @@ extension PLOrderViewController {
         coversDatasource.placeId = place!.id
         if orderDrinks.count > 0 { orderDrinks.removeAll() }
         if orderCovers.count > 0 {  orderCovers.removeAll() }
-        
-        loadPage()
+        coversOffset = CGPointZero
+        drinksOffset = CGPointZero
+        loadDrinks()
+        loadCovers()
     }
     
     func updateCheckoutButtonState() {
@@ -217,12 +245,18 @@ extension PLOrderViewController {
     }
     
     func calculateTotalAmount() -> String {
-        let keys = orderDrinks.keys
         var amount: Float = 0.0
-        for aDrink in drinksDatasource.collection.objects {
-            if keys.contains("\(aDrink.id)") {
-                if let count = Float(orderDrinks["\(aDrink.id)"]!) {
-                    amount += aDrink.price * count
+
+        if orderDrinks.count > 0 {
+            for drinkSet in orderDrinks.values {
+                amount += Float(drinkSet.quantity) * drinkSet.drink.price
+            }
+        }
+        
+        if orderCovers.count > 0 {
+            for aCover in coversDatasource.collection.objects {
+                if orderCovers.contains(String(aCover.id)) {
+                    amount += aCover.price
                 }
             }
         }
@@ -233,11 +267,14 @@ extension PLOrderViewController {
         let qrCode = String.randomAlphaNumericString(8).uppercaseString
         let accessCode = String.randomAlphaNumericString(8).uppercaseString
         
+        
+        
         order = PLCheckoutOrder(qrCode: qrCode,
                                 accessCode: accessCode,
                                 user: user!,
                                 place: place!,
-                                drinks: orderDrinks,
+                                drinks: Array(orderDrinks.values),
+                                covers: orderCovers,
                                 isVip: isVip,
                                 message: message)
         
@@ -245,6 +282,7 @@ extension PLOrderViewController {
         
         order = nil
         orderDrinks.removeAll()
+        orderCovers.removeAll()
         collectionView.reloadSections(NSIndexSet(index: 1))
         
         tabBarController?.incrementCounterNumberOn(.TabProfile)
@@ -256,26 +294,31 @@ extension PLOrderViewController {
 extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, CheckoutOrderPopupDelegate {
     
     //MARK: Order drinks count
-    func updateOrderWith(drink: UInt64, andCount count: UInt64) {
+    func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
+        let drinq = drinksDatasource[collectionView.indexPathForCell(drinkCell)!.row]
         if count == 0 {
-            orderDrinks.removeValueForKey(String(drink))
+            orderDrinks.removeValueForKey(drinq.id)
         } else {
-            orderDrinks.updateValue(String(count), forKey: String(drink))
+            if let drinkSet = orderDrinks[drinq.id] {
+                drinkSet.quantity = count
+            } else {
+                orderDrinks.updateValue(PLDrinkset(aDrink: drinq, andCount: count)!, forKey: drinq.id)
+            }
         }
     }
     
     //sample fish
     func updateOrderAt(indexPath: NSIndexPath) {
-//        let coverCell = collectionView.cellForItemAtIndexPath(indexPath) as! PLOrderCoverCell
-//        let coverID = covers[indexPath.row].id
-//        
-//        if let index = orderCovers.indexOf(coverID) {
-//            orderCovers.removeAtIndex(index)
-//            coverCell.setDimmed(false, animated: true)
-//        } else {
-//            orderCovers.append(coverID)
-//            coverCell.setDimmed(true, animated: true)
-//        }
+        let coverCell = collectionView.cellForItemAtIndexPath(indexPath) as! PLOrderCoverCell
+        let coverID = coversDatasource.collection.objects[indexPath.row].id
+        
+        if let index = orderCovers.indexOf(String(coverID)) {
+            orderCovers.removeAtIndex(index)
+            coverCell.setDimmed(false, animated: true)
+        } else {
+            orderCovers.append(String(coverID))
+            coverCell.setDimmed(true, animated: true)
+        }
     }
     
     
@@ -307,9 +350,16 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     //MARK: Order change tab
     func orderTabChanged(tab: PLCollectionSectionType) {
+        if currentTab == .Drinks {
+            drinksOffset = collectionView.contentOffset
+        } else {
+            coversOffset = collectionView.contentOffset
+        }
         currentTab = tab
+        
         UIView.animateWithDuration(0, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {
             }) { (complete) in
+                self.collectionView.contentOffset = (self.currentTab == .Drinks) ? self.drinksOffset : self.coversOffset
                 self.collectionView.reloadSections(NSIndexSet(index: 1))
         }
     }
@@ -365,9 +415,9 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         if section == 1 {
             switch currentTab {
             case .Drinks:
-                return drinksDatasource.count ?? 0
+                return drinksDatasource.count
             case .Covers:
-                return 0//covers.count
+                return coversDatasource.count
             }
         }
         return 0
@@ -388,17 +438,17 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             
             cell.delegate = self
             cell.setupWith(drink, isVip: isVip)
-            if let count = orderDrinks[String(drink.drinkId)] {
-                cell.drinkCount = UInt64(count)!
+            if let drinkSet = orderDrinks[drink.drinkId] {
+                cell.drinkCount = drinkSet.quantity
             }
             return cell
         case .Covers:
             let cell = dequeuedCell as! PLOrderCoverCell
-//            let cover = covers[indexPath.row]
-//            cell.coverTitle = cover.name
-//            if (orderCovers.indexOf(covers[indexPath.row].id) != nil) {
-//                cell.setDimmed(true, animated: false)
-//            }
+            let cover = coversDatasource[indexPath.row]
+            cell.coverTitle = cover.name
+            if (orderCovers.contains(String(cover.id))) {
+                cell.setDimmed(true, animated: false)
+            }
             return cell
         }
     }
@@ -454,11 +504,11 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         switch currentTab {
         case .Drinks:
             if indexPath.row == drinksDatasource.count - 1 {
-                loadPage()
+                loadDrinks()
             }
         case .Covers:
             if indexPath.row == coversDatasource.count - 1 {
-                loadPage()
+                loadCovers()
             }
         }
     }

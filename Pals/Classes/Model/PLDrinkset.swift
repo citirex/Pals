@@ -10,7 +10,7 @@ import Foundation
 
 class PLDrinkset : PLUniqueObject, PLCellRepresentable {
     
-    let quantity: UInt64
+    var quantity: UInt64
     let drink: PLDrink
     
     
