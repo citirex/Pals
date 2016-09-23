@@ -31,28 +31,24 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	func searchButton(sender: AnyObject) {
 		sendSearchFriendsRequest()
 		tableView.reloadData()
-		
-		searchController.active = false
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		navigationController?.setNavigationBarTransparent(false)
+//		navigationController?.setNavigationBarTransparent(true)
+//		navigationController?.navigationBar.translucent = false
 		configureSearchController()
-		
-		tableView.frame = UIScreen.mainScreen().bounds
-		tableView.keyboardDismissMode = .OnDrag
-		
-		tableView.delegate = self
-		tableView.dataSource = self
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(PLFriendsSearchViewController.searchButton(_:)))
 		
-		tableView.separatorInset.left = 75
-		
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
+		tableView.keyboardDismissMode = .OnDrag
+		tableView.separatorInset.left = 75
+		
+		tableView.delegate = self
+		tableView.dataSource = self
 		
 		view.addSubview(tableView)
 		view.addSubview(spinner)
@@ -64,7 +60,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		navigationController?.navigationBar.tintColor = UIColor.vividViolet()
+		navigationItem.title = "Friends Search"
         searchController.searchBar.text = seekerText
         navigationController?.navigationBar.barStyle = .Default
 		navigationController?.navigationBar.tintColor = .vividViolet()
@@ -73,15 +69,11 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
     
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		searchController.searchBar.endEditing(true)
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.tintColor = .whiteColor()
-        navigationController?.navigationBar.barTintColor = .affairColor()
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+		searchController.active = false
 	}
 	
 	override func viewDidLayoutSubviews() {
-		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 111)
 		resultsController.tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 49)
 	}
 	
@@ -115,7 +107,6 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		resultsController.tableView.backgroundColor = .miracleColor()
 		resultsController.tableView.tableFooterView = UIView()
-		resultsController.tableView.backgroundView = UIView()
 		resultsController.tableView.rowHeight = 100.0
 		resultsController.tableView.dataSource = self
 		resultsController.tableView.delegate = self
@@ -129,9 +120,10 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		searchController.searchBar.tintColor = .affairColor()
 		searchController.searchResultsUpdater = self
 		searchController.dimsBackgroundDuringPresentation = false
+		tableView.tableHeaderView = searchController.searchBar
+		tableView.tableHeaderView?.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
 		searchController.searchBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
 		searchController.searchBar.delegate = self
-		tableView.tableHeaderView = searchController.searchBar
 		definesPresentationContext = true
 	}
 	
@@ -143,14 +135,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	// MARK: - Table View
 	
-	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let sectionView = UIView()
-		sectionView.addSubview(searchController.searchBar)
-		return sectionView
-	}
-	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		
 		return datasource.count
 	}
 	
@@ -158,9 +143,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
 		
-		
 		cell.accessoryView = cell.addButton
-		
 		
 		let friend = datasource[indexPath.row]
 		cell.friend = friend

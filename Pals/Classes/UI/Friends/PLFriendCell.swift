@@ -32,9 +32,11 @@ class PLFriendCell: UITableViewCell{
 		if let aFriend = friend {
 			let friendCellData = aFriend.cellData
 			if friendCellData.picture.absoluteString == "" {
+				avatarImage.contentMode = .Center
 				avatarImage.backgroundColor = UIColor.affairColor()
 				avatarImage.image = UIImage(named: "user")
 			} else {
+				avatarImage.contentMode = .ScaleAspectFit
 				avatarImage.backgroundColor = UIColor.clearColor()
 				setCorrectImage(friendCellData.picture)
 			}
@@ -48,6 +50,7 @@ class PLFriendCell: UITableViewCell{
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImage.image = nil
+		addButton.imageView?.image = UIImage(named: "contact_add")
     }
 	
 	func setCorrectImage(url: NSURL) {

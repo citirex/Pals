@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-ZY-VP5">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-ZY-VP5">
                         <rect key="frame" x="10" y="-16" width="75" height="76"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="75" id="MfR-yw-7PQ"/>
@@ -47,7 +47,4 @@
             <point key="canvasLocation" x="109" y="95"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="user" width="32" height="36"/>
-    </resources>
 </document>

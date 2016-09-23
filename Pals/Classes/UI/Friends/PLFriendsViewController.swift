@@ -49,11 +49,12 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationItem.title = "Friends"
+		navigationItem.titleView?.tintColor = .vividViolet()
+		navigationController?.navigationBar.tintColor = .vividViolet()
 	}
-	override func viewDidDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		searchController.active = false
-	}
+//	override func viewDidDisappear(animated: Bool) {
+//		super.viewWillDisappear(animated)
+//	}
 	
 	override func viewDidLayoutSubviews() {
 		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
@@ -64,7 +65,6 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 		self.spinner.startAnimating()
         datasource.load {[unowned self] (page, error) in
             if error == nil {
-				self.tableView.hidden = false
 				let count = self.datasource.count
 				let lastLoadedCount = page.count
 				if lastLoadedCount > 0 {
@@ -91,7 +91,6 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		resultsController.tableView.backgroundColor = .miracleColor()
 		resultsController.tableView.tableFooterView = UIView()
-		resultsController.tableView.backgroundView = UIView()
 		resultsController.tableView.rowHeight = 100.0
 		resultsController.tableView.dataSource = self
 		resultsController.tableView.delegate = self

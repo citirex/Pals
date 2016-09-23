@@ -1395,7 +1395,7 @@
                     <tabBarItem key="tabBarItem" title="Friends" image="friends-tab" id="W0H-zb-9Jg"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="back_arrow" backIndicatorTransitionMaskImage="back_arrow" id="BKz-I3-7zW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="back_arrow" backIndicatorTransitionMaskImage="back_arrow" id="BKz-I3-7zW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1429,7 +1429,6 @@
                     <navigationItem key="navigationItem" title="Friends" id="Krx-FH-YjL">
                         <barButtonItem key="backBarButtonItem" title=" " id="my0-Un-4rl"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="XwT-8l-06Q">
-                            <color key="tintColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="searchButton:" destination="EGX-50-gGa" id="25b-dK-lFi"/>
                             </connections>
@@ -1594,8 +1593,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1Zi-Tu-8Fy"/>
-        <segue reference="u5L-qT-vQG"/>
-        <segue reference="8mb-vo-Nj3"/>
+        <segue reference="Ss6-x5-3bZ"/>
         <segue reference="apm-CY-cnT"/>
+        <segue reference="u5L-qT-vQG"/>
     </inferredMetricsTieBreakers>
 </document>
