@@ -53,18 +53,6 @@
                                                             <action selector="loginButtonClicked:" destination="nzO-MP-N4g" eventType="touchUpInside" id="lvL-px-Aji"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
-                                                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <state key="normal" title="Want to be a Pal? Register now!">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="registerButtonClicked:" destination="nzO-MP-N4g" eventType="touchUpInside" id="Fd9-sC-aMA"/>
-                                                            <segue destination="CEl-2k-qJd" kind="modal" id="AQZ-n1-OwN"/>
-                                                        </connections>
-                                                    </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xzj-qM-z68" userLabel="textFieldsContainer">
                                                         <rect key="frame" x="68" y="268" width="185" height="74"/>
                                                         <subviews>
@@ -74,17 +62,6 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                                        <real key="value" value="2"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HEk-oG-qRI" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="30" width="185" height="17"/>
@@ -92,17 +69,6 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                                        <real key="value" value="2"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzL-8u-7vD">
                                                                 <rect key="frame" x="23" y="48" width="129" height="26"/>
@@ -132,17 +98,29 @@
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WXu-2n-otd">
                                                         <rect key="frame" x="143" y="239" width="37" height="37"/>
                                                     </activityIndicatorView>
+                                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
+                                                        <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="Want to be a Pal? Register now!">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="registerButtonClicked:" destination="nzO-MP-N4g" eventType="touchUpInside" id="Fd9-sC-aMA"/>
+                                                            <segue destination="CEl-2k-qJd" kind="modal" id="AQZ-n1-OwN"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="5vX-o6-eMg"/>
-                                                    <constraint firstItem="RdC-BM-16D" firstAttribute="top" secondItem="GFl-8W-xw3" secondAttribute="bottom" multiplier="1.3" constant="-3.8000000000000682" id="E0L-MU-Agf"/>
+                                                    <constraint firstItem="RdC-BM-16D" firstAttribute="top" secondItem="GFl-8W-xw3" secondAttribute="bottom" multiplier="1.3" constant="0.19999999999993179" id="E0L-MU-Agf"/>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="0.46" id="JB2-w3-Cum"/>
                                                     <constraint firstAttribute="trailing" secondItem="RdC-BM-16D" secondAttribute="trailing" id="Jqm-Lx-37M"/>
                                                     <constraint firstItem="WXu-2n-otd" firstAttribute="centerY" secondItem="xXN-Bq-AeA" secondAttribute="centerY" multiplier="0.9" constant="2.4499999999999886" id="SFk-gU-COb"/>
                                                     <constraint firstItem="ymg-DV-zCV" firstAttribute="width" secondItem="xXN-Bq-AeA" secondAttribute="width" multiplier="51:88" id="Y61-hh-g0M"/>
                                                     <constraint firstItem="Xzj-qM-z68" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="afn-Av-KT1"/>
-                                                    <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.07" constant="4.2399999999999949" id="iwQ-b7-KJ7"/>
+                                                    <constraint firstItem="RdC-BM-16D" firstAttribute="height" secondItem="xXN-Bq-AeA" secondAttribute="height" multiplier="0.07" constant="0.23999999999999488" id="iwQ-b7-KJ7"/>
                                                     <constraint firstItem="RdC-BM-16D" firstAttribute="leading" secondItem="xXN-Bq-AeA" secondAttribute="leading" id="olt-uM-QmV"/>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="top" secondItem="Xzj-qM-z68" secondAttribute="bottom" multiplier="1.1" id="rON-0f-dr2"/>
                                                     <constraint firstItem="WXu-2n-otd" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" constant="1" id="sTW-Hn-HHH"/>
@@ -220,10 +198,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8S-kq-QI5" userLabel="Add Image Button">
-                                                <rect key="frame" x="85" y="60" width="150" height="150"/>
+                                                <rect key="frame" x="85" y="77" width="150" height="150"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="iy1-DM-Noq"/>
-                                                    <constraint firstAttribute="width" constant="150" id="pqU-om-3de"/>
+                                                    <constraint firstAttribute="height" constant="150" id="5n1-dp-x2T"/>
+                                                    <constraint firstAttribute="width" constant="150" id="8U6-xD-Kjg"/>
                                                 </constraints>
                                                 <state key="normal" image="sign_in_plus"/>
                                                 <connections>
@@ -231,139 +209,95 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nx8-aL-ctv">
-                                                <rect key="frame" x="85" y="60" width="150" height="150"/>
+                                                <rect key="frame" x="85" y="77" width="150" height="150"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="Yzi-w9-qzX"/>
-                                                    <constraint firstAttribute="height" constant="150" id="ajP-5f-e5e"/>
+                                                    <constraint firstAttribute="width" constant="150" id="ocy-XV-eeH"/>
+                                                    <constraint firstAttribute="height" constant="150" id="w3X-fJ-HFu"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axa-hQ-Mq8" userLabel="Text Fields Container">
-                                                <rect key="frame" x="50" y="220" width="220" height="160"/>
+                                                <rect key="frame" x="57" y="255" width="206" height="140"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcV-Th-GEo" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="220" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="206" height="35"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="uw2-Eq-thU"/>
+                                                            <constraint firstAttribute="height" constant="35" id="Fyn-dv-DZ8"/>
                                                         </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                                <real key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="delegate" destination="CEl-2k-qJd" id="Dad-cs-D31"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s8w-Dt-8QW" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="40" width="220" height="40"/>
+                                                        <rect key="frame" x="0.0" y="35" width="206" height="35"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="edS-PN-mxA"/>
+                                                            <constraint firstAttribute="height" constant="35" id="adz-Ve-a04"/>
                                                         </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                                <real key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="delegate" destination="CEl-2k-qJd" id="QFJ-VN-mUO"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ths-jh-3GP" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="80" width="220" height="40"/>
+                                                        <rect key="frame" x="0.0" y="70" width="206" height="35"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="eLy-l0-Ljv"/>
+                                                            <constraint firstAttribute="height" constant="35" id="ZtB-fJ-CeR"/>
                                                         </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                                <real key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="delegate" destination="CEl-2k-qJd" id="lcM-gX-vtr"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ScN-aW-cOR" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="120" width="220" height="40"/>
+                                                        <rect key="frame" x="0.0" y="105" width="206" height="35"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="Lbi-UD-BE9"/>
+                                                            <constraint firstAttribute="height" constant="35" id="BhF-Yl-wah"/>
                                                         </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                                <real key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="delegate" destination="CEl-2k-qJd" id="M9U-zV-c2Y"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="Ths-jh-3GP" secondAttribute="trailing" id="0L3-SB-qnu"/>
-                                                    <constraint firstAttribute="height" constant="160" id="2xD-SW-CeE"/>
-                                                    <constraint firstAttribute="trailing" secondItem="ScN-aW-cOR" secondAttribute="trailing" id="7ge-wy-f8z"/>
-                                                    <constraint firstItem="Ths-jh-3GP" firstAttribute="top" secondItem="s8w-Dt-8QW" secondAttribute="bottom" id="7s4-Np-3r0"/>
-                                                    <constraint firstItem="Ths-jh-3GP" firstAttribute="leading" secondItem="axa-hQ-Mq8" secondAttribute="leading" id="CcV-mN-htn"/>
-                                                    <constraint firstItem="lcV-Th-GEo" firstAttribute="leading" secondItem="axa-hQ-Mq8" secondAttribute="leading" id="JdX-16-aJh"/>
-                                                    <constraint firstAttribute="bottom" secondItem="ScN-aW-cOR" secondAttribute="bottom" id="JkT-Ro-BU6"/>
-                                                    <constraint firstAttribute="trailing" secondItem="lcV-Th-GEo" secondAttribute="trailing" id="RIv-hC-CVS"/>
-                                                    <constraint firstItem="ScN-aW-cOR" firstAttribute="leading" secondItem="axa-hQ-Mq8" secondAttribute="leading" id="bfw-gi-MFP"/>
-                                                    <constraint firstItem="s8w-Dt-8QW" firstAttribute="top" secondItem="lcV-Th-GEo" secondAttribute="bottom" id="dcJ-xT-wYt"/>
-                                                    <constraint firstItem="lcV-Th-GEo" firstAttribute="top" secondItem="axa-hQ-Mq8" secondAttribute="top" id="hmo-WL-Vbm"/>
-                                                    <constraint firstItem="ScN-aW-cOR" firstAttribute="top" secondItem="Ths-jh-3GP" secondAttribute="bottom" id="mYx-Vf-cQx"/>
-                                                    <constraint firstItem="s8w-Dt-8QW" firstAttribute="leading" secondItem="axa-hQ-Mq8" secondAttribute="leading" id="pfk-Nm-RQK"/>
-                                                    <constraint firstAttribute="trailing" secondItem="s8w-Dt-8QW" secondAttribute="trailing" id="tSw-cT-IpJ"/>
-                                                    <constraint firstAttribute="width" constant="220" id="xg1-2W-fhp"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ScN-aW-cOR" secondAttribute="bottom" id="1hA-01-nUy"/>
+                                                    <constraint firstAttribute="trailing" secondItem="s8w-Dt-8QW" secondAttribute="trailing" id="2FW-ZB-0jd"/>
+                                                    <constraint firstItem="ScN-aW-cOR" firstAttribute="top" secondItem="Ths-jh-3GP" secondAttribute="bottom" id="2v8-ES-NKO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lcV-Th-GEo" secondAttribute="trailing" id="4Mv-Xg-Uga"/>
+                                                    <constraint firstAttribute="height" constant="140" id="A6p-fH-A5t"/>
+                                                    <constraint firstItem="s8w-Dt-8QW" firstAttribute="leading" secondItem="axa-hQ-Mq8" secondAttribute="leading" id="AZ2-Ct-bmP"/>
+                                                    <constraint firstItem="s8w-Dt-8QW" firstAttribute="top" secondItem="lcV-Th-GEo" secondAttribute="bottom" id="CmZ-KS-fYX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ScN-aW-cOR" secondAttribute="trailing" id="EtN-Ns-aAC"/>
+                                                    <constraint firstItem="Ths-jh-3GP" firstAttribute="top" secondItem="s8w-Dt-8QW" secondAttribute="bottom" id="GJE-dJ-h2J"/>
+                                                    <constraint firstItem="lcV-Th-GEo" firstAttribute="leading" secondItem="axa-hQ-Mq8" secondAttribute="leading" id="NDx-ff-XjS"/>
+                                                    <constraint firstAttribute="width" constant="206" id="dFy-xw-NPs"/>
+                                                    <constraint firstItem="Ths-jh-3GP" firstAttribute="leading" secondItem="axa-hQ-Mq8" secondAttribute="leading" id="eQx-21-Kzo"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ths-jh-3GP" secondAttribute="trailing" id="iHJ-4L-ZEI"/>
+                                                    <constraint firstItem="lcV-Th-GEo" firstAttribute="top" secondItem="axa-hQ-Mq8" secondAttribute="top" id="lFT-S8-HVu"/>
+                                                    <constraint firstItem="ScN-aW-cOR" firstAttribute="leading" secondItem="axa-hQ-Mq8" secondAttribute="leading" id="wOU-uX-35t"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7G-lL-5H8">
-                                                <rect key="frame" x="80" y="430" width="160" height="30"/>
+                                                <rect key="frame" x="80" y="443" width="160" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="ABw-MW-1L9"/>
-                                                    <constraint firstAttribute="width" constant="160" id="JFO-Sn-ufi"/>
+                                                    <constraint firstAttribute="height" constant="30" id="FSm-mK-Xoj"/>
+                                                    <constraint firstAttribute="width" constant="160" id="JVw-g1-gZa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Sign Up">
@@ -376,11 +310,14 @@
                                                     <action selector="signUpButtonTapped:" destination="CEl-2k-qJd" eventType="touchUpInside" id="VRX-SI-B0b"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NQE-gn-1vC">
+                                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                            </activityIndicatorView>
                                             <button opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfF-dO-nG7">
-                                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="cPk-xr-ZJr"/>
+                                                    <constraint firstAttribute="height" constant="40" id="cPk-xr-ZJr"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Already a Pal? Sign In!">
@@ -390,26 +327,21 @@
                                                     <segue destination="1Lm-rr-nPs" kind="unwind" unwindAction="unwindToLoginClicked:" id="rjz-73-woY"/>
                                                 </connections>
                                             </button>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NQE-gn-1vC">
-                                                <rect key="frame" x="142" y="265" width="37" height="37"/>
-                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.43529411764705883" green="0.25098039215686274" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="Nx8-aL-ctv" firstAttribute="leading" secondItem="v8S-kq-QI5" secondAttribute="leading" id="134-1t-YLb"/>
-                                            <constraint firstItem="Nx8-aL-ctv" firstAttribute="trailing" secondItem="v8S-kq-QI5" secondAttribute="trailing" id="4oX-Sx-yKt"/>
                                             <constraint firstItem="NQE-gn-1vC" firstAttribute="centerY" secondItem="C48-og-baj" secondAttribute="centerY" id="5f4-GJ-kAq"/>
-                                            <constraint firstItem="axa-hQ-Mq8" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="8wQ-1v-aTE"/>
-                                            <constraint firstItem="Nx8-aL-ctv" firstAttribute="top" secondItem="v8S-kq-QI5" secondAttribute="top" id="BNa-0k-59g"/>
+                                            <constraint firstItem="axa-hQ-Mq8" firstAttribute="top" secondItem="Nx8-aL-ctv" secondAttribute="bottom" constant="28" id="BRp-3I-wdH"/>
                                             <constraint firstAttribute="bottom" secondItem="dfF-dO-nG7" secondAttribute="bottom" id="DTR-rf-4FR"/>
-                                            <constraint firstItem="x7G-lL-5H8" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="FQl-TE-37a"/>
-                                            <constraint firstItem="x7G-lL-5H8" firstAttribute="top" secondItem="axa-hQ-Mq8" secondAttribute="bottom" constant="50" id="QGk-9Q-w1Y"/>
-                                            <constraint firstItem="v8S-kq-QI5" firstAttribute="centerY" secondItem="C48-og-baj" secondAttribute="centerY" constant="-149" id="VX8-LB-Pj6"/>
-                                            <constraint firstItem="Nx8-aL-ctv" firstAttribute="bottom" secondItem="v8S-kq-QI5" secondAttribute="bottom" id="a02-0Z-BgA"/>
-                                            <constraint firstItem="axa-hQ-Mq8" firstAttribute="top" secondItem="Nx8-aL-ctv" secondAttribute="bottom" constant="10" id="gaC-R9-XW0"/>
+                                            <constraint firstItem="x7G-lL-5H8" firstAttribute="top" secondItem="axa-hQ-Mq8" secondAttribute="bottom" constant="48" id="FkI-r4-ddG"/>
+                                            <constraint firstItem="v8S-kq-QI5" firstAttribute="top" secondItem="C48-og-baj" secondAttribute="top" constant="77" id="IMz-3Z-tse"/>
+                                            <constraint firstItem="Nx8-aL-ctv" firstAttribute="top" secondItem="C48-og-baj" secondAttribute="top" constant="77" id="LIs-Xs-ScK"/>
+                                            <constraint firstItem="x7G-lL-5H8" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="TTs-01-ry4"/>
+                                            <constraint firstItem="axa-hQ-Mq8" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="kap-em-fXd"/>
+                                            <constraint firstItem="Nx8-aL-ctv" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="kwp-qO-h4b"/>
+                                            <constraint firstItem="v8S-kq-QI5" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="oKc-CT-6BN"/>
                                             <constraint firstAttribute="trailing" secondItem="dfF-dO-nG7" secondAttribute="trailing" id="u0L-5S-C3k"/>
                                             <constraint firstItem="dfF-dO-nG7" firstAttribute="leading" secondItem="C48-og-baj" secondAttribute="leading" id="v4w-eZ-M0A"/>
-                                            <constraint firstItem="v8S-kq-QI5" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="xC9-Zf-3a8"/>
                                             <constraint firstItem="NQE-gn-1vC" firstAttribute="centerX" secondItem="C48-og-baj" secondAttribute="centerX" id="xMp-sR-pSI"/>
                                         </constraints>
                                     </view>

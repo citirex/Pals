@@ -8,18 +8,22 @@
 
 import UIKit
 
-@IBDesignable
 class PLTextField: UITextField {
     
-    @IBInspectable var separatorWidth: CGFloat = 0
-    @IBInspectable var separatorColor: UIColor = .clearColor()
-    @IBInspectable var placeHolderColor: UIColor? {
-        didSet {
-            attributedPlaceholder =
-                NSAttributedString(string: placeholder != nil ? placeholder! : "",
-                attributes: [NSForegroundColorAttributeName : placeHolderColor!])
-        }
+    let separatorWidth: CGFloat = 2
+    let separatorColor: UIColor = .lightGrayColor()
+    let placeHolderColor: UIColor = .lightGrayColor()
+    var padding: UIEdgeInsets!
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        padding = UIEdgeInsets(top: CGRectGetHeight(frame) / 2, left: 0, bottom: 0, right: 0)
+        attributedPlaceholder = NSAttributedString(string: placeholder != nil ? placeholder! : "",
+                               attributes: [NSForegroundColorAttributeName : placeHolderColor])
     }
+    
     
     override func drawRect(rect: CGRect) {
         let startingPoint = CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMaxY(rect))
@@ -32,6 +36,18 @@ class PLTextField: UITextField {
         separatorColor.setStroke()
         path.stroke()
     }
+    
 
+    override func textRectForBounds(bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
+    }
+    
+    override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
+    }
+    
+    override func editingRectForBounds(bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
+    }
 }
 
