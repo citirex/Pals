@@ -895,7 +895,7 @@
                                     <constraint firstAttribute="height" constant="50" id="v9S-Qn-LbA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="2zm-V5-MZy" id="3vq-cQ-Wx2"/>
                                 </connections>

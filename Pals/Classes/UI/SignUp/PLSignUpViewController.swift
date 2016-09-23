@@ -128,7 +128,6 @@ class PLSignUpViewController: PLViewController {
         
         let signUpData = PLSignUpData(username: username, email: email, password: password, picture: picture)
         
-        // TODO: - Need pass user to profile
         activityIndicator.startAnimating()
         PLFacade.signUp(signUpData) { error in
             self.activityIndicator.stopAnimating()
