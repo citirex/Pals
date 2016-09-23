@@ -710,11 +710,12 @@
                         <viewControllerLayoutGuide type="bottom" id="isy-AG-3wD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bGV-ba-lIV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gQS-aH-ZRx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" red="0.35686275362968445" green="0.16862745583057404" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="s19-SJ-5VK" customClass="CSStickyHeaderFlowLayout">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -735,6 +736,7 @@
                             <constraint firstItem="isy-AG-3wD" firstAttribute="top" secondItem="gQS-aH-ZRx" secondAttribute="bottom" id="wQa-LW-ah9"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="CR0-dh-ffx">
                         <barButtonItem key="backBarButtonItem" title=" " id="0Kc-4V-uMJ"/>
                     </navigationItem>
@@ -771,39 +773,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bPe-FQ-UeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2" y="-2198"/>
-        </scene>
-        <!--Template-->
-        <scene sceneID="Yl5-oi-gDz">
-            <objects>
-                <viewController storyboardIdentifier="Template" title="Template" id="ZLC-J3-4wi" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ECG-Bz-g6y"/>
-                        <viewControllerLayoutGuide type="bottom" id="OMt-aH-VBu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HyC-vN-f2u">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Account Page" translatesAutoresizingMaskIntoConstraints="NO" id="ccy-01-woS">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2B-77-WhO">
-                                <rect key="frame" x="35" y="47" width="240" height="79"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ccy-01-woS" secondAttribute="trailing" id="7DO-eG-t39"/>
-                            <constraint firstItem="ccy-01-woS" firstAttribute="top" secondItem="HyC-vN-f2u" secondAttribute="top" id="O54-Fl-xFJ"/>
-                            <constraint firstItem="ccy-01-woS" firstAttribute="leading" secondItem="HyC-vN-f2u" secondAttribute="leading" id="ta9-AA-g3W"/>
-                            <constraint firstAttribute="bottom" secondItem="ccy-01-woS" secondAttribute="bottom" id="xaQ-2v-VD0"/>
-                        </constraints>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ioj-I8-SCr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3526" y="553"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="6ZS-At-sJb">
@@ -977,7 +946,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHY-ln-VaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3170" y="553"/>
+            <point key="canvasLocation" x="-2986" y="661"/>
         </scene>
         <!--Card Info-->
         <scene sceneID="CcP-Cm-oqJ">
@@ -994,7 +963,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8T-pW-sJU" userLabel="Text Fields Container">
                                 <rect key="frame" x="50" y="60" width="220" height="160"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/DD/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nI2-1i-ZTZ" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nI2-1i-ZTZ" customClass="PLTextField" customModule="Pals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="40" width="220" height="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1128,7 +1097,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRd-Nj-dO5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2727" y="553"/>
+            <point key="canvasLocation" x="-2619" y="661"/>
         </scene>
         <!--Refill Balance-->
         <scene sceneID="fiz-Fs-6gc">
@@ -1172,7 +1141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msw-gU-pec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2286" y="553"/>
+            <point key="canvasLocation" x="-2246" y="661"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="Ms5-44-pwz">
@@ -1212,7 +1181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ip-9m-HYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1874" y="541"/>
+            <point key="canvasLocation" x="-1870" y="649"/>
         </scene>
         <!--Order History-->
         <scene sceneID="ESD-Th-IME">
@@ -1256,7 +1225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tj-H2-9S7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1494" y="545"/>
+            <point key="canvasLocation" x="-1490" y="653"/>
         </scene>
         <!--Help and FAQ-->
         <scene sceneID="HWH-C5-dRY">
@@ -1275,7 +1244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edy-b5-NKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1132" y="541"/>
+            <point key="canvasLocation" x="-1128" y="649"/>
         </scene>
         <!--Terms of Service-->
         <scene sceneID="xHw-Wf-G6A">
@@ -1294,7 +1263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YCS-XK-GLD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-766" y="541"/>
+            <point key="canvasLocation" x="-762" y="649"/>
         </scene>
         <!--Privacy Policy-->
         <scene sceneID="WNf-XE-AbQ">
@@ -1313,7 +1282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVh-bR-rch" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-404" y="541"/>
+            <point key="canvasLocation" x="-400" y="649"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ajY-eh-z6Z">
@@ -1580,7 +1549,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Account Page" width="375" height="667"/>
         <image name="back_arrow" width="20" height="20"/>
         <image name="edit" width="25" height="25"/>
         <image name="friends-tab" width="31" height="29"/>
@@ -1593,9 +1561,9 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Zi-Tu-8Fy"/>
-        <segue reference="u5L-qT-vQG"/>
-        <segue reference="8mb-vo-Nj3"/>
         <segue reference="apm-CY-cnT"/>
+        <segue reference="8mb-vo-Nj3"/>
+        <segue reference="1Zi-Tu-8Fy"/>
+        <segue reference="Qau-vR-zQT"/>
     </inferredMetricsTieBreakers>
 </document>

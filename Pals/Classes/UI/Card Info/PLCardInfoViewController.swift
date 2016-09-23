@@ -104,6 +104,15 @@ extension PLCardInfoViewController: UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange
         range: NSRange, replacementString string: String) -> Bool {
+        
+        switch textField {
+        case creditCardNumberTextField: print()
+        case expirationDateTextField: print()
+        case zipCodeTextField: print()
+        case cvvCodeTextField: print()
+        default:
+            break
+        }
         return true
     }
     
