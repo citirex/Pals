@@ -11,6 +11,13 @@
 		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
 		04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CCD0DB1D81411800651508 /* PLFriendCell.xib */; };
+		2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44C1D997249000BA1F5 /* vip_covers0.json */; };
+		2414F4551D997249000BA1F5 /* vip_covers1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44D1D997249000BA1F5 /* vip_covers1.json */; };
+		2414F4561D997249000BA1F5 /* vip_covers2.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44E1D997249000BA1F5 /* vip_covers2.json */; };
+		2414F4571D997249000BA1F5 /* vip_drinks0.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F4501D997249000BA1F5 /* vip_drinks0.json */; };
+		2414F4581D997249000BA1F5 /* vip_drinks1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F4511D997249000BA1F5 /* vip_drinks1.json */; };
+		2414F4591D997249000BA1F5 /* vip_drinks2.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F4521D997249000BA1F5 /* vip_drinks2.json */; };
+		2414F45A1D997249000BA1F5 /* vip_drinks3.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F4531D997249000BA1F5 /* vip_drinks3.json */; };
 		2480F8D81D813E730095995F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F86F1D813E730095995F /* AppDelegate.swift */; };
 		2480F8D91D813E730095995F /* PLFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8711D813E730095995F /* PLFacade.swift */; };
 		2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8731D813E730095995F /* PLNetworkManager.swift */; };
@@ -152,6 +159,13 @@
 		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
 		04CCD0DB1D81411800651508 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
+		2414F44C1D997249000BA1F5 /* vip_covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers0.json; sourceTree = "<group>"; };
+		2414F44D1D997249000BA1F5 /* vip_covers1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers1.json; sourceTree = "<group>"; };
+		2414F44E1D997249000BA1F5 /* vip_covers2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers2.json; sourceTree = "<group>"; };
+		2414F4501D997249000BA1F5 /* vip_drinks0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_drinks0.json; sourceTree = "<group>"; };
+		2414F4511D997249000BA1F5 /* vip_drinks1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_drinks1.json; sourceTree = "<group>"; };
+		2414F4521D997249000BA1F5 /* vip_drinks2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_drinks2.json; sourceTree = "<group>"; };
+		2414F4531D997249000BA1F5 /* vip_drinks3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_drinks3.json; sourceTree = "<group>"; };
 		2480F86F1D813E730095995F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2480F8711D813E730095995F /* PLFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFacade.swift; sourceTree = "<group>"; };
 		2480F8731D813E730095995F /* PLNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNetworkManager.swift; sourceTree = "<group>"; };
@@ -312,6 +326,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2414F44B1D997249000BA1F5 /* vip_Covers */ = {
+			isa = PBXGroup;
+			children = (
+				2414F44C1D997249000BA1F5 /* vip_covers0.json */,
+				2414F44D1D997249000BA1F5 /* vip_covers1.json */,
+				2414F44E1D997249000BA1F5 /* vip_covers2.json */,
+			);
+			path = vip_Covers;
+			sourceTree = "<group>";
+		};
+		2414F44F1D997249000BA1F5 /* vip_Drinks */ = {
+			isa = PBXGroup;
+			children = (
+				2414F4501D997249000BA1F5 /* vip_drinks0.json */,
+				2414F4511D997249000BA1F5 /* vip_drinks1.json */,
+				2414F4521D997249000BA1F5 /* vip_drinks2.json */,
+				2414F4531D997249000BA1F5 /* vip_drinks3.json */,
+			);
+			path = vip_Drinks;
+			sourceTree = "<group>";
+		};
 		2480F86D1D813E730095995F /* Pals */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,6 +666,8 @@
 			children = (
 				E837C1D81D902CAE0080A074 /* Covers */,
 				E837C1DC1D902CAE0080A074 /* Drinks */,
+				2414F44B1D997249000BA1F5 /* vip_Covers */,
+				2414F44F1D997249000BA1F5 /* vip_Drinks */,
 				E837C1E11D902CAE0080A074 /* Friends */,
 				E837C1E61D902CAE0080A074 /* login.json */,
 				E837C1E71D902CAE0080A074 /* Orders */,
@@ -930,6 +967,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E837C2031D902CAE0080A074 /* order_covers1.json in Resources */,
+				2414F45A1D997249000BA1F5 /* vip_drinks3.json in Resources */,
 				E837C2071D902CAE0080A074 /* order_drinks2.json in Resources */,
 				E829DDD51D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib in Resources */,
 				E837C1F71D902CAE0080A074 /* covers1.json in Resources */,
@@ -947,6 +985,7 @@
 				2480F91A1D813E730095995F /* config.plist in Resources */,
 				E837C1FA1D902CAE0080A074 /* drinks1.json in Resources */,
 				2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */,
+				2414F4581D997249000BA1F5 /* vip_drinks1.json in Resources */,
 				E837C2001D902CAE0080A074 /* friends3.json in Resources */,
 				E837C2081D902CAE0080A074 /* order_drinks3.json in Resources */,
 				E8DA8B931D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
@@ -960,8 +999,10 @@
 				E837C1FE1D902CAE0080A074 /* friends1.json in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
+				2414F4571D997249000BA1F5 /* vip_drinks0.json in Resources */,
 				E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */,
 				24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */,
+				2414F4591D997249000BA1F5 /* vip_drinks2.json in Resources */,
 				E837C2021D902CAE0080A074 /* order_covers0.json in Resources */,
 				2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */,
 				E837C1F91D902CAE0080A074 /* drinks0.json in Resources */,
@@ -970,10 +1011,13 @@
 				E8B53E4E1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib in Resources */,
 				24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */,
 				E837C1FC1D902CAE0080A074 /* drinks3.json in Resources */,
+				2414F4551D997249000BA1F5 /* vip_covers1.json in Resources */,
 				E837C2061D902CAE0080A074 /* order_drinks1.json in Resources */,
 				E837C20D1D902CAE0080A074 /* sendpassword.json in Resources */,
+				2414F4561D997249000BA1F5 /* vip_covers2.json in Resources */,
 				E837C20A1D902CAE0080A074 /* places1.json in Resources */,
 				E837C2051D902CAE0080A074 /* order_drinks0.json in Resources */,
+				2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */,
 				2480F9091D813E730095995F /* PLPlaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

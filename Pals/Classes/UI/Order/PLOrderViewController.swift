@@ -24,6 +24,7 @@ class PLOrderViewController: PLViewController {
     private var coversOffset = CGPointZero
     
     private var spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    
     private var drinksDatasource = PLDrinksDatasource()
     private var coversDatasource = PLCoversDatasource()
     
@@ -129,6 +130,7 @@ class PLOrderViewController: PLViewController {
 //        navigationItem.rightBarButtonItem = nil
         order.isVIP = !order.isVIP
         updateState()
+        updateInfoModel()
         collectionView.reloadSections(NSIndexSet(index: 1))
     }
     
@@ -139,13 +141,18 @@ class PLOrderViewController: PLViewController {
     }
     
     func updateState() {
-        order.clean()
         updateCheckoutButtonState()
         (order.isVIP == true) ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
         UIView.animateWithDuration(0.3) {
             self.bgImageView.image = (self.order.isVIP == true) ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
             self.navigationController?.navigationBar.barTintColor = (self.order.isVIP == true) ? kPalsGoldColor : UIColor.affairColor()
         }
+    }
+    
+    func clean() {
+        order.clean()
+        coversOffset = CGPointZero
+        drinksOffset = CGPointZero
     }
     
     // MARK: - Navigation
@@ -157,20 +164,19 @@ class PLOrderViewController: PLViewController {
 //MARK: - Checkout behavior
 extension PLOrderViewController {
     func updateInfoModel() {
+        clean()
+        if order.isVIP == true {
+            drinksDatasource.isVIP = order.isVIP
+            coversDatasource.isVIP = order.isVIP
+        }
         drinksDatasource.placeId = order.place!.id
         coversDatasource.placeId = order.place!.id
-        coversOffset = CGPointZero
-        drinksOffset = CGPointZero
         loadDrinks()
         loadCovers()
     }
     
     func updateCheckoutButtonState() {
-        if order.drinks.count > 0 || order.covers.count > 0 {
-            showCheckoutButton()
-        } else {
-            hideCheckoutButton()
-        }
+        (order.drinks.count > 0 || order.covers.count > 0) ? showCheckoutButton() : hideCheckoutButton()
     }
     
     private func showCheckoutButton() {
@@ -290,18 +296,18 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     func didSelectNewPlace(selectedPlace: PLPlace) {
         order.place = selectedPlace
-        order.clean()
+        clean()
         updateInfoModel()
         collectionView.reloadData()
     }
     
     //MARK: Order change tab
     func orderTabChanged(tab: PLCollectionSectionType) {
-        if currentTab == .Drinks {
-            drinksOffset = collectionView.contentOffset
-        } else {
-            coversOffset = collectionView.contentOffset
+        switch currentTab {
+        case .Drinks: drinksOffset = collectionView.contentOffset
+        case .Covers: coversOffset = collectionView.contentOffset
         }
+        
         currentTab = tab
         
         UIView.animateWithDuration(0, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {
@@ -314,13 +320,11 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     //MARK: - Checkout Popup 
     func cancelButtonPressed() {
         checkoutPopupViewController.hide()
-        
     }
+    
     func sendButtonPressedWith(message: String) {
         checkoutPopupViewController.hide()
-        
         createNewOrderWithMessage(message)
-        
     }
     
     //MARK: - Setup
@@ -351,7 +355,6 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         self.view.addSubview(checkoutButton)
         checkoutButton.addTarget(self, action: #selector(checkoutButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
-
 }
 
 //MARK: - CollectionView dataSource
@@ -428,7 +431,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let height: CGFloat = (section == 0) ? PLOrderStillHeader.height : PLOrdeStickyHeader.height
+        let height = (section == 0) ? PLOrderStillHeader.height : PLOrdeStickyHeader.height
         return CGSizeMake(collectionView.bounds.size.width, height)
     }
     
@@ -447,14 +450,8 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         switch currentTab {
-        case .Drinks:
-            if indexPath.row == drinksDatasource.count - 1 {
-                loadDrinks()
-            }
-        case .Covers:
-            if indexPath.row == coversDatasource.count - 1 {
-                loadCovers()
-            }
+        case .Drinks: if indexPath.row == drinksDatasource.count - 1 { loadDrinks() }
+        case .Covers: if indexPath.row == coversDatasource.count - 1 {  loadCovers() }
         }
     }
 }

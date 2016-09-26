@@ -1,0 +1,64 @@
+{
+    "covers":[
+              {
+              "id":21,
+              "name":"Package of bottles",
+              "price":12.9
+              },
+              {
+              "id":22,
+              "name":"Beveragarium",
+              "price":9.50
+              },
+              {
+              "id":23,
+              "name":"Free snacks",
+              "price":29.0
+              },
+              {
+              "id":24,
+              "name":"Admission fee",
+              "price":18.22
+              },
+              {
+              "id":25,
+              "name":"All included",
+              "price":40.0
+              },
+              {
+              "id":26,
+              "name":"Cover 1",
+              "price":12.9
+              },
+              {
+              "id":27,
+              "name":"Cover 2",
+              "price":9.50
+              },
+              {
+              "id":28,
+              "name":"Cover 3",
+              "price":29.0
+              },
+              {
+              "id":29,
+              "name":"Cover 4",
+              "price":18.22
+              },
+              {
+              "id":30,
+              "name":"Cover 5",
+              "price":40.0
+              },
+              {
+              "id":31,
+              "name":"Cover 6",
+              "price":12.9
+              },
+              {
+              "id":32,
+              "name":"Cover 7",
+              "price":9.50
+              }
+              ]
+}

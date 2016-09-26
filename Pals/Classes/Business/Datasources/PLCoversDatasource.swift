@@ -10,11 +10,17 @@ class PLCoversDatasource: PLDatasource<PLCover> {
     var placeId: UInt64? {
         didSet {
             if let id = placeId {
-                collection.clean()
-                collection.preset[PLKeys.place_id.string] = String(id)
+                var params = PLURLParams()
+                params[PLKeys.place_id.string] = String(id)
+                if isVIP == true {
+                    params[PLKeys.is_vip.string] = isVIP
+                }
+                collection.preset.params = params
             }
         }
     }
+    
+    var isVIP = false
     
     override init(url: String, params: PLURLParams?, offsetById: Bool) {
         super.init(url: url, params: params, offsetById: offsetById)
@@ -26,6 +32,6 @@ class PLCoversDatasource: PLDatasource<PLCover> {
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLKeys.covers.string
+        return (isVIP == true) ? PLKeys.vip_covers.string : PLKeys.covers.string
     }
 }

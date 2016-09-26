@@ -93,7 +93,7 @@
     self.stackedLayout = (TGLStackedLayout *)self.collectionView.collectionViewLayout;
     
     //custom setup
-    self.stackedLayout.topReveal = 60;
+    self.stackedLayout.topReveal = 52;
 //    self.exposedPinningMode = TGLExposedLayoutPinningModeBelow;
 //    self.exposedTopPinningCount = 5;
 //    self.exposedBottomPinningCount = 1;

@@ -1,0 +1,104 @@
+{
+    "covers":[
+              {
+              "id":1,
+              "name":"Package of bottles",
+              "price":12.9
+              },
+              {
+              "id":2,
+              "name":"Beveragarium",
+              "price":9.50
+              },
+              {
+              "id":3,
+              "name":"Free snacks",
+              "price":29.0
+              },
+              {
+              "id":4,
+              "name":"Admission fee",
+              "price":18.22
+              },
+              {
+              "id":5,
+              "name":"All included",
+              "price":40.0
+              },
+              {
+              "id":6,
+              "name":"Cover 1",
+              "price":12.9
+              },
+              {
+              "id":7,
+              "name":"Cover 2",
+              "price":9.50
+              },
+              {
+              "id":8,
+              "name":"Cover 3",
+              "price":29.0
+              },
+              {
+              "id":9,
+              "name":"Cover 4",
+              "price":18.22
+              },
+              {
+              "id":10,
+              "name":"Cover 5",
+              "price":40.0
+              },
+              {
+              "id":11,
+              "name":"Cover 6",
+              "price":12.9
+              },
+              {
+              "id":12,
+              "name":"Cover 7",
+              "price":9.50
+              },
+              {
+              "id":13,
+              "name":"Cover 8",
+              "price":29.0
+              },
+              {
+              "id":14,
+              "name":"Cover 9",
+              "price":18.22
+              },
+              {
+              "id":15,
+              "name":"Cover 10",
+              "price":40.0
+              },
+              {
+              "id":16,
+              "name":"Cover 11",
+              "price":12.9
+              },
+              {
+              "id":17,
+              "name":"Cover 12",
+              "price":9.50
+              },
+              {
+              "id":18,
+              "name":"Cover 13",
+              "price":29.0
+              },
+              {
+              "id":19,
+              "name":"Cover 14",
+              "price":18.22
+              },
+              {
+              "id":20,
+              "name":"Cover 15",
+              "price":40.0
+              }
+              ]
+}
