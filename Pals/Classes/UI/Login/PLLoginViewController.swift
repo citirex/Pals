@@ -20,7 +20,8 @@ class PLLoginViewController: PLViewController {
 	@IBOutlet var registerButton: UIButton!
     
     @IBOutlet var loginViewBotC: NSLayoutConstraint?
-    @IBOutlet var logoTopC: NSLayoutConstraint?
+	
+	@IBOutlet var logoTopC: NSLayoutConstraint!
 	@IBOutlet var registerBotC: NSLayoutConstraint!
     
     override func prefersStatusBarHidden() -> Bool {
@@ -106,9 +107,10 @@ class PLLoginViewController: PLViewController {
 		view.addGestureRecognizer(dismissTap)
     }
 	
+	
 	func animateSplashToLogin() {
 		logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (logoImage.bounds.height / 2)
-		registerBotC.constant = -registerButton.bounds.height
+		registerBotC.constant = -(registerButton.bounds.height * 2)
 		loginViewBotC!.constant = -loginView.bounds.height
 		view.layoutIfNeeded()
 			
