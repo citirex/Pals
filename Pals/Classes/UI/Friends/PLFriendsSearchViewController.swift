@@ -111,6 +111,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		resultsController.tableView.dataSource = self
 		resultsController.tableView.delegate = self
 		resultsController.tableView.keyboardDismissMode = .OnDrag
+		resultsController.tableView.separatorInset.left = 75
 		
 		searchController = PLSearchController(searchResultsController: resultsController)
 		searchController.searchBar.placeholder = "Find Your Pals"

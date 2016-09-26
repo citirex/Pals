@@ -11,10 +11,8 @@ class PLLoginViewController: PLViewController {
 	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	private var currentTextField: PLTextField!
 
-	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var textFieldsView: UIView!
-	@IBOutlet weak var loginButton: UIButton!
 	@IBOutlet weak var loginView: UIView!
 	@IBOutlet weak var logoImage: UIImageView!
 	@IBOutlet weak var loginTextField: PLTextField!
@@ -23,6 +21,7 @@ class PLLoginViewController: PLViewController {
     
     @IBOutlet var loginViewBotC: NSLayoutConstraint?
     @IBOutlet var logoTopC: NSLayoutConstraint?
+	@IBOutlet var registerBotC: NSLayoutConstraint!
     
     override func prefersStatusBarHidden() -> Bool {
         return false
@@ -33,6 +32,7 @@ class PLLoginViewController: PLViewController {
 	}
 	
 	@IBAction func forgotButtonClicked(sender: AnyObject) {
+		
 		let alert = UIAlertController(title: "We got your back!", message: "Enter below and we'll send your password!", preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
 		alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
@@ -58,10 +58,8 @@ class PLLoginViewController: PLViewController {
 		}))
 		presentViewController(alert, animated: true, completion: nil)
 	}
-	@IBAction func registerButtonClicked(sender: AnyObject) {
-	}
-    
-    // MARK: - Navigation
+
+	// MARK: - Navigation
     
 	@IBAction func unwindToLoginClicked(sender: UIStoryboardSegue) {
 	}
@@ -108,17 +106,19 @@ class PLLoginViewController: PLViewController {
 		view.addGestureRecognizer(dismissTap)
     }
 	
-		func animateSplashToLogin() {
-			self.logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (self.logoImage.bounds.height / 2)
-			self.loginViewBotC!.constant = -(self.loginView.bounds.height * 2)
-			self.view.layoutIfNeeded()
+	func animateSplashToLogin() {
+		logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (logoImage.bounds.height / 2)
+		registerBotC.constant = -registerButton.bounds.height
+		loginViewBotC!.constant = -loginView.bounds.height
+		view.layoutIfNeeded()
 			
-			UIView.animateWithDuration(1, delay: 2.2, options: .CurveEaseOut, animations: {
-				self.loginViewBotC?.constant = 0
+		UIView.animateWithDuration(1, delay: 2.2, options: .CurveEaseOut, animations: {
 				self.logoTopC?.constant = 50
+				self.loginViewBotC?.constant = 0
+				self.registerBotC.constant = 0
 					self.view.layoutIfNeeded()
-            }, completion: nil)
-		}
+		}, completion: nil)
+	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
@@ -167,11 +167,11 @@ class PLLoginViewController: PLViewController {
 			self.registerButton.enabled = keyboardVisible ? false : true
 			self.registerButton.alpha = keyboardVisible ? 0 : 1
 			self.logoImage.alpha = keyboardVisible ? 0 : 1
-			self.view.layoutIfNeeded()
+			self.loginView.layoutIfNeeded()
 			}, completion: nil)
 		
-		var visibleRect = textFieldsView.frame
-		visibleRect.size.height += keyboardSize.height
+		var visibleRect = loginView.frame
+		visibleRect.size.height -= keyboardSize.height
 		
 		let scrollPoint = keyboardVisible ? CGPointMake(0, visibleRect.size.height / 2) : CGPointZero
 		scrollView.setContentOffset(scrollPoint, animated: true)
