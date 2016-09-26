@@ -16,7 +16,7 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 
-    private var selectedFriend: PLFriendCellData!
+    private var selectedFriend: PLUser!
 	
 	
 	@IBAction func searchButton(sender: AnyObject) {
@@ -141,7 +141,7 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        selectedFriend = datasource[indexPath.row].cellData
+        selectedFriend = datasource[indexPath.row]
         performSegueWithIdentifier("FriendProfileSegue", sender: self)
 	}
 	
