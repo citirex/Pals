@@ -18,30 +18,7 @@ class PLOrderViewController: PLViewController {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var bgImageView: UIImageView!
     
-    var order: PLCheckoutOrder? = nil
-    var user: PLUser? = nil 
-    var place: PLPlace? = nil {
-        didSet{
-            if place != nil { updateInfoModel() }
-        }
-    }
-    var isVip = false {
-        didSet{
-            updateState()
-        }
-    }
-    
-    private var orderDrinks = [UInt64:PLDrinkset]() {
-        didSet{
-            updateCheckoutButtonState()
-        }
-    }
-    
-    private var orderCovers = [String]() {
-        didSet{
-            updateCheckoutButtonState()
-        }
-    }
+    let order = PLCheckoutOrder()
     
     private var drinksOffset = CGPointZero
     private var coversOffset = CGPointZero
@@ -81,7 +58,7 @@ class PLOrderViewController: PLViewController {
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.translucent = false
-        navigationController?.navigationBar.barTintColor = (isVip == true) ? kPalsGoldColor : UIColor.affairColor()
+        navigationController?.navigationBar.barTintColor = (order.isVIP == true) ? kPalsGoldColor : UIColor.affairColor()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -150,23 +127,24 @@ class PLOrderViewController: PLViewController {
     //MARK: - Actions
     @objc private func vipButtonPressed(sender: UIBarButtonItem) {
 //        navigationItem.rightBarButtonItem = nil
-        isVip = !isVip
-        (isVip == true) ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
+        order.isVIP = !order.isVIP
+        updateState()
         collectionView.reloadSections(NSIndexSet(index: 1))
-
-//        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(restore), userInfo: nil, repeats: false)
     }
     
     func restore() {
-        isVip = false
+        order.isVIP = false
         navigationItem.rightBarButtonItem = vipButton
         animableVipView.restoreToDefaultState()
     }
     
     func updateState() {
+        order.clean()
+        updateCheckoutButtonState()
+        (order.isVIP == true) ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
         UIView.animateWithDuration(0.3) {
-            self.bgImageView.image = (self.isVip == true) ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
-            self.navigationController?.navigationBar.barTintColor = (self.isVip == true) ? kPalsGoldColor : UIColor.affairColor()
+            self.bgImageView.image = (self.order.isVIP == true) ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
+            self.navigationController?.navigationBar.barTintColor = (self.order.isVIP == true) ? kPalsGoldColor : UIColor.affairColor()
         }
     }
     
@@ -179,10 +157,8 @@ class PLOrderViewController: PLViewController {
 //MARK: - Checkout behavior
 extension PLOrderViewController {
     func updateInfoModel() {
-        drinksDatasource.placeId = place!.id
-        coversDatasource.placeId = place!.id
-        if orderDrinks.count > 0 { orderDrinks.removeAll() }
-        if orderCovers.count > 0 {  orderCovers.removeAll() }
+        drinksDatasource.placeId = order.place!.id
+        coversDatasource.placeId = order.place!.id
         coversOffset = CGPointZero
         drinksOffset = CGPointZero
         loadDrinks()
@@ -190,7 +166,7 @@ extension PLOrderViewController {
     }
     
     func updateCheckoutButtonState() {
-        if orderDrinks.count > 0 || orderCovers.count > 0 {
+        if order.drinks.count > 0 || order.covers.count > 0 {
             showCheckoutButton()
         } else {
             hideCheckoutButton()
@@ -225,19 +201,19 @@ extension PLOrderViewController {
     }
     
     @objc private func checkoutButtonPressed(sender: UIButton) {
-        guard user != nil else {
+        guard let user = order.user else {
             checkoutButton.shake()
             PLShowAlert(title: "Need to chose user")
             return
         }
-        guard place != nil else {
+        guard let place = order.place else {
             checkoutButton.shake()
             PLShowAlert(title: "Need to chose place")
             return
         }
         
-        checkoutPopupViewController.userName = user?.name
-        checkoutPopupViewController.locationName = place?.name
+        checkoutPopupViewController.userName = user.name
+        checkoutPopupViewController.locationName = place.name
         checkoutPopupViewController.orderAmount = calculateTotalAmount()
         tabBarController!.presentViewController(checkoutPopupViewController, animated: false) {
             self.checkoutPopupViewController.show()
@@ -247,15 +223,15 @@ extension PLOrderViewController {
     func calculateTotalAmount() -> String {
         var amount: Float = 0.0
 
-        if orderDrinks.count > 0 {
-            for drinkSet in orderDrinks.values {
+        if order.drinks.count > 0 {
+            for drinkSet in order.drinks.values {
                 amount += Float(drinkSet.quantity) * drinkSet.drink.price
             }
         }
         
-        if orderCovers.count > 0 {
+        if order.covers.count > 0 {
             for aCover in coversDatasource.collection.objects {
-                if orderCovers.contains(String(aCover.id)) {
+                if order.covers.contains(String(aCover.id)) {
                     amount += aCover.price
                 }
             }
@@ -264,27 +240,11 @@ extension PLOrderViewController {
     }
     
     func createNewOrderWithMessage(message: String) {
-        let qrCode = String.randomAlphaNumericString(8).uppercaseString
-        let accessCode = String.randomAlphaNumericString(8).uppercaseString
-        
-        
-        
-        order = PLCheckoutOrder(qrCode: qrCode,
-                                accessCode: accessCode,
-                                user: user!,
-                                place: place!,
-                                drinks: Array(orderDrinks.values),
-                                covers: orderCovers,
-                                isVip: isVip,
-                                message: message)
-        
-        print(order?.serialize())
-        
-        order = nil
-        orderDrinks.removeAll()
-        orderCovers.removeAll()
+        order.message = message
+        order.clean()
+        updateCheckoutButtonState()
+
         collectionView.reloadSections(NSIndexSet(index: 1))
-        
         tabBarController?.incrementCounterNumberOn(.TabProfile)
         tabBarController?.switchTabTo(.TabProfile)
     }
@@ -295,30 +255,15 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     //MARK: Order drinks count
     func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
-        let drinq = drinksDatasource[collectionView.indexPathForCell(drinkCell)!.row]
-        if count == 0 {
-            orderDrinks.removeValueForKey(drinq.id)
-        } else {
-            if let drinkSet = orderDrinks[drinq.id] {
-                drinkSet.quantity = count
-            } else {
-                orderDrinks.updateValue(PLDrinkset(aDrink: drinq, andCount: count)!, forKey: drinq.id)
-            }
-        }
+        order.updateWithDrink(drinksDatasource[collectionView.indexPathForCell(drinkCell)!.row], andCount: count)
+        updateCheckoutButtonState()
     }
-    
-    //sample fish
-    func updateOrderAt(indexPath: NSIndexPath) {
+
+    func updateCoverAt(indexPath: NSIndexPath) {
         let coverCell = collectionView.cellForItemAtIndexPath(indexPath) as! PLOrderCoverCell
         let coverID = coversDatasource.collection.objects[indexPath.row].id
-        
-        if let index = orderCovers.indexOf(String(coverID)) {
-            orderCovers.removeAtIndex(index)
-            coverCell.setDimmed(false, animated: true)
-        } else {
-            orderCovers.append(String(coverID))
-            coverCell.setDimmed(true, animated: true)
-        }
+        order.updateWithCoverID(coverID, inCell: coverCell)
+        updateCheckoutButtonState()
     }
     
     
@@ -331,7 +276,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     }
     
     func didSelectFriend(selectedFriend: PLUser) {
-        user = selectedFriend
+        order.user = selectedFriend
         collectionView.reloadData()
     }
     
@@ -344,7 +289,9 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     }
     
     func didSelectNewPlace(selectedPlace: PLPlace) {
-        place = selectedPlace
+        order.place = selectedPlace
+        order.clean()
+        updateInfoModel()
         collectionView.reloadData()
     }
     
@@ -394,7 +341,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     }
     
     func setupCheckoutButton() {
-        checkoutButton.frame = CGRectMake(0,0,collectionView.bounds.size.width,kCheckoutButtonHeight)
+        checkoutButton.frame = CGRectMake(0,0,view.bounds.size.width,kCheckoutButtonHeight)
         checkoutButton.setTitle("Send", forState: .Normal)
         checkoutButton.backgroundColor = UIColor(red:0.25, green:0.57, blue:0.42, alpha:1.0)
         checkoutButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -437,8 +384,8 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             let drink = drinksDatasource[indexPath.row].cellData
             
             cell.delegate = self
-            cell.setupWith(drink, isVip: isVip)
-            if let drinkSet = orderDrinks[drink.drinkId] {
+            cell.setupWith(drink, isVip: order.isVIP)
+            if let drinkSet = order.drinks[drink.drinkId] {
                 cell.drinkCount = drinkSet.quantity
             }
             return cell
@@ -446,7 +393,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             let cell = dequeuedCell as! PLOrderCoverCell
             let cover = coversDatasource[indexPath.row]
             cell.coverTitle = cover.name
-            if (orderCovers.contains(String(cover.id))) {
+            if (order.covers.contains(String(cover.id))) {
                 cell.setDimmed(true, animated: false)
             }
             return cell
@@ -458,8 +405,8 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLOrderStillHeader
             header.delegate = self
-            header.userName = user?.name ?? placeholderUserName
-            header.placeName = place?.name ?? placeholderPlaceName
+            header.userName = order.user?.name ?? placeholderUserName
+            header.placeName = order.place?.name ?? placeholderPlaceName
             return header
         } else {
             
@@ -469,16 +416,14 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             
             return header
         }
-        
     }
     
     //MARK: Collection delegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         switch currentTab {
-        case .Drinks:
-            break
+        case .Drinks: break
         case .Covers:
-            updateOrderAt(indexPath)
+            updateCoverAt(indexPath)
         }
     }
     

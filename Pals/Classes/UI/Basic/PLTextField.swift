@@ -22,7 +22,7 @@ class PLTextField: UITextField {
         let path = UIBezierPath()
         path.moveToPoint(startingPoint)
         path.addLineToPoint(endingPoint)
-        path.lineWidth = 1
+        path.lineWidth = 2
         UIColor.chatelleColor().setStroke()
         path.stroke()
     }
@@ -38,6 +38,27 @@ class PLTextField: UITextField {
     override func editingRectForBounds(bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        adjustFontToIPhoneSize()
+    }
+    
+    
+    private func adjustFontToIPhoneSize() {
+        switch UIDevice.currentDevice().type {
+        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
+            font = UIFont.systemFontOfSize(15.0)
+        case .iPhone6, .iPhone6S:
+            font = UIFont.systemFontOfSize(17.0)
+        case .iPhone6plus:
+            font = UIFont.systemFontOfSize(19.0)
+        default:
+            break
+        }
+    }
 
+    
 }
 

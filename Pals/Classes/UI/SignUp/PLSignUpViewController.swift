@@ -15,6 +15,7 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var passwordTextField: PLTextField!
     @IBOutlet weak var confirmPasswordTextField: PLTextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var addProfileImageButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -73,7 +74,7 @@ class PLSignUpViewController: PLViewController {
         var visibleRect = view.frame
         visibleRect.size.height -= keyboardSize.height
 
-        let scrollPoint = keyboardVisible ? CGPointMake(0, visibleRect.size.height / 2 + offset) : CGPointZero
+        let scrollPoint = keyboardVisible ? CGPointMake(0, visibleRect.size.height / 3 + offset) : CGPointZero
         scrollView.setContentOffset(scrollPoint, animated: true)
      
         UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: {
@@ -139,9 +140,28 @@ class PLSignUpViewController: PLViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
+        adjustFontToIPhoneSize()
         signUpButton.rounded = true
         userProfileImageView.rounded = true
+    }
+    
+    
+    private func adjustFontToIPhoneSize() {
+        let deviceType = UIDevice.currentDevice().type
+        
+        switch deviceType {
+        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
+            signInButton.titleLabel?.font = UIFont.systemFontOfSize(15.0)
+            signUpButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+        case .iPhone6, .iPhone6S:
+            signInButton.titleLabel?.font = UIFont.systemFontOfSize(17.0)
+            signUpButton.titleLabel?.font = UIFont.systemFontOfSize(18.0)
+        case .iPhone6plus:
+            signInButton.titleLabel?.font = UIFont.systemFontOfSize(18.0)
+            signUpButton.titleLabel?.font = UIFont.systemFontOfSize(19.0)
+        default:
+            break
+        }
     }
 
 }
