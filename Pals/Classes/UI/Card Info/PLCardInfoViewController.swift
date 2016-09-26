@@ -82,9 +82,10 @@ class PLCardInfoViewController: PLViewController {
     private func inputAccessoryView() -> UIView {
         let accessoryView = UIButton(type: .System)
         accessoryView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50)
+        accessoryView.titleLabel?.font = UIFont.systemFontOfSize(17)
         accessoryView.setTitle("Complete", forState: .Normal)
-        accessoryView.backgroundColor = .whiteColor()
         accessoryView.tintColor = .mediumOrchidColor()
+        accessoryView.backgroundColor = .whiteColor()
         accessoryView.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
         accessoryView.addTarget(self, action: #selector(completeButtonTapped(_:)), forControlEvents: .TouchUpInside)
         return accessoryView

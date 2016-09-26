@@ -49,11 +49,7 @@ extension UIColor {
     }
     
     
-    /// Card Info  complete button
     
-    class func mediumOrchidColor() -> UIColor {
-        return UIColor(r: 184.0, g: 9.0, b: 222.0)
-    }
     
  
     /// Friends  search icon
@@ -69,7 +65,7 @@ extension UIColor {
 	}
     
     
-    
+    //////////////////////////////////////////////////
     
     /// Sign Up screen 
     
@@ -88,6 +84,13 @@ extension UIColor {
     // navigation bar tint color for imagePicker
     class func crayonPurple() -> UIColor {
         return UIColor(r: 111.0, g: 64.0, b: 151.0)
+    }
+    
+    /// Card Info
+    
+    // complete button tint color
+    class func mediumOrchidColor() -> UIColor {
+        return UIColor(r: 189.0, g: 16.0, b: 224.0)
     }
     
 }
