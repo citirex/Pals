@@ -15,12 +15,12 @@ class PLFriendProfileViewController: PLViewController {
 
     private var sectionOrder: PLCollectionSectionType!
     
-
+    var friend: PLFriendCellData!
+    
+    
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let friend = PLFacade.profile?.cellData
         
         title = friend?.name
         backgroundImageView.setImageWithURL(friend!.picture)
@@ -103,6 +103,7 @@ class PLFriendProfileViewController: PLViewController {
         case "OrderSegue":
             let orderViewController = segue.destinationViewController as! PLOrderViewController
             orderViewController.currentTab = sectionOrder
+//            orderViewController.friend = friend
         default:
             break
         }
@@ -111,12 +112,10 @@ class PLFriendProfileViewController: PLViewController {
     
     
     override func viewWillLayoutSubviews() {
-        
+        super.viewWillLayoutSubviews()
         
         unfriendButton.rounded = true
         friendProfileImageView.rounded = true
-        
-        super.viewWillLayoutSubviews()
     }
 
 }

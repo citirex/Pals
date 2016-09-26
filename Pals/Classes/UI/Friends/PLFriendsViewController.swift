@@ -16,7 +16,7 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 
-
+    private var selectedFriend: PLFriendCellData!
 	
 	
 	@IBAction func searchButton(sender: AnyObject) {
@@ -141,6 +141,7 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        selectedFriend = datasource[indexPath.row].cellData
         performSegueWithIdentifier("FriendProfileSegue", sender: self)
 	}
 	
@@ -151,11 +152,17 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		
-		if segue.identifier == "FriendSearchSegue" {
-			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
-			friendSearchViewController.seekerText = searchController.searchBar.text
-		}
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "FriendProfileSegue":
+            let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
+            friendProfileViewController.friend = selectedFriend
+        case "FriendSearchSegue":
+            let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
+            friendSearchViewController.seekerText = searchController.searchBar.text
+        default:
+            break
+        }
     }
 }
 
