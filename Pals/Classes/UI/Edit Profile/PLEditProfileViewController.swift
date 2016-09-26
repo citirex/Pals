@@ -43,7 +43,9 @@ class PLEditProfileViewController: PLViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.barStyle = .Black
         navigationController?.setNavigationBarTransparent(true)
+        navigationController?.navigationBar.tintColor = .whiteColor()
     }
     
     
@@ -121,12 +123,36 @@ class PLEditProfileViewController: PLViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+        adjustFontToIPhoneSize()
         descriptionLabel.addTopBorderWithColor(UIColor.darkGray(), width: 0.5)
         descriptionLabel.addBottomBorderWithColor(UIColor.darkGray(), width: 0.5)
-        
         userProfileImageView.rounded = true
         signUpButton.rounded = true
+    }
+    
+    
+    private func adjustFontToIPhoneSize() {
+        let deviceType = UIDevice.currentDevice().type
+        
+        switch deviceType {
+        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
+            signUpButton.titleLabel?.font = .systemFontOfSize(22.0)
+            usernameTextField.font = .systemFontOfSize(15.0)
+            phoneNumberTextField.font = .systemFontOfSize(15.0)
+            descriptionLabel.font = .systemFontOfSize(15.0)
+        case .iPhone6, .iPhone6S:
+            signUpButton.titleLabel?.font = .systemFontOfSize(24.0)
+            usernameTextField.font = .systemFontOfSize(17.0)
+            phoneNumberTextField.font = .systemFontOfSize(17.0)
+            descriptionLabel.font = .systemFontOfSize(17.0)
+        case .iPhone6plus:
+            signUpButton.titleLabel?.font = .systemFontOfSize(25.0)
+            usernameTextField.font = .systemFontOfSize(18.0)
+            phoneNumberTextField.font = .systemFontOfSize(18.0)
+            descriptionLabel.font = .systemFontOfSize(18.0)
+        default:
+            break
+        }
     }
 
 }

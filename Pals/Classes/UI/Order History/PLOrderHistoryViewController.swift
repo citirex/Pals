@@ -75,6 +75,22 @@ class PLOrderHistoryViewController: UIViewController {
         tableView.registerNib(sectionHeaderNib, forCellReuseIdentifier: PLOrderHistorySectionHeader.reuseIdentifier)
     }
     
+    // TODO: - needs?
+    private func adjustSectionHeightToIPhoneSize() -> CGFloat? {
+        let deviceType = UIDevice.currentDevice().type
+        
+        switch deviceType {
+        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
+            return 89
+        case .iPhone6, .iPhone6S:
+            return 97
+        case .iPhone6plus:
+            return 105
+        default:
+            return nil
+        }
+    }
+
 }
 
 

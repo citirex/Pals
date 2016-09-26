@@ -12,6 +12,9 @@ class PLFriendProfileViewController: PLViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: UIImageView!
     @IBOutlet weak var unfriendButton: UIButton!
+    @IBOutlet weak var sendCoverButton: UIButton!
+    @IBOutlet weak var sendADrinkButton: UIButton!
+
 
     private var sectionOrder: PLCollectionSectionType!
     
@@ -110,9 +113,31 @@ class PLFriendProfileViewController: PLViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+        adjustFontToIPhoneSize()
         unfriendButton.rounded = true
         friendProfileImageView.rounded = true
+    }
+
+    
+    private func adjustFontToIPhoneSize() {
+        let deviceType = UIDevice.currentDevice().type
+        
+        switch deviceType {
+        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
+            unfriendButton.titleLabel?.font = .systemFontOfSize(12.0)
+            sendCoverButton.titleLabel?.font = .systemFontOfSize(18.0)
+            sendADrinkButton.titleLabel?.font = .systemFontOfSize(19.0)
+        case .iPhone6, .iPhone6S:
+            unfriendButton.titleLabel?.font = .systemFontOfSize(14.0)
+            sendCoverButton.titleLabel?.font = .systemFontOfSize(20.0)
+            sendADrinkButton.titleLabel?.font = .systemFontOfSize(21.0)
+        case .iPhone6plus:
+            unfriendButton.titleLabel?.font = .systemFontOfSize(15.0)
+            sendCoverButton.titleLabel?.font = .systemFontOfSize(21.0)
+            sendADrinkButton.titleLabel?.font = .systemFontOfSize(22.0)
+        default:
+            break
+        }
     }
 
 }

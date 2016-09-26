@@ -82,7 +82,7 @@ class PLCardInfoViewController: PLViewController {
     private func inputAccessoryView() -> UIView {
         let accessoryView = UIButton(type: .System)
         accessoryView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50)
-        accessoryView.titleLabel?.font = UIFont.systemFontOfSize(17)
+        accessoryView.titleLabel?.font = adjustFontToIPhoneSize()
         accessoryView.setTitle("Complete", forState: .Normal)
         accessoryView.tintColor = .mediumOrchidColor()
         accessoryView.backgroundColor = .whiteColor()
@@ -91,6 +91,20 @@ class PLCardInfoViewController: PLViewController {
         return accessoryView
     }
     
+    private func adjustFontToIPhoneSize() -> UIFont? {
+        let deviceType = UIDevice.currentDevice().type
+        
+        switch deviceType {
+        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
+            return .systemFontOfSize(15.0)
+        case .iPhone6, .iPhone6S:
+            return .systemFontOfSize(17.0)
+        case .iPhone6plus:
+            return .systemFontOfSize(18.0)
+        default:
+            return nil
+        }
+    }
 
 }
 

@@ -61,7 +61,6 @@ class PLSettingsViewController: PLViewController {
         let nib = UINib(nibName: PLSettingCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLSettingCell.identifier)
     }
-    
 
 }
 

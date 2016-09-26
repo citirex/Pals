@@ -151,14 +151,14 @@ class PLSignUpViewController: PLViewController {
         
         switch deviceType {
         case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
-            signInButton.titleLabel?.font = UIFont.systemFontOfSize(15.0)
-            signUpButton.titleLabel?.font = UIFont.systemFontOfSize(16.0)
+            signInButton.titleLabel?.font = .systemFontOfSize(15.0)
+            signUpButton.titleLabel?.font = .systemFontOfSize(16.0)
         case .iPhone6, .iPhone6S:
-            signInButton.titleLabel?.font = UIFont.systemFontOfSize(17.0)
-            signUpButton.titleLabel?.font = UIFont.systemFontOfSize(18.0)
+            signInButton.titleLabel?.font = .systemFontOfSize(17.0)
+            signUpButton.titleLabel?.font = .systemFontOfSize(18.0)
         case .iPhone6plus:
-            signInButton.titleLabel?.font = UIFont.systemFontOfSize(18.0)
-            signUpButton.titleLabel?.font = UIFont.systemFontOfSize(19.0)
+            signInButton.titleLabel?.font = .systemFontOfSize(18.0)
+            signUpButton.titleLabel?.font = .systemFontOfSize(19.0)
         default:
             break
         }
