@@ -16,8 +16,6 @@ class PLFriendProfileViewController: PLViewController {
     private var sectionOrder: PLCollectionSectionType!
     
     var friend: PLUser!
-    
-    
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,11 +101,10 @@ class PLFriendProfileViewController: PLViewController {
         case "OrderSegue":
             let orderViewController = segue.destinationViewController as! PLOrderViewController
             orderViewController.currentTab = sectionOrder
-            orderViewController.user = friend
+            orderViewController.order.user = friend
         default:
             break
         }
-        
     }
     
     

@@ -90,6 +90,7 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     
     @IBAction private func sendButtonPressed(sender: UIButton) {
         let message = (textViewText == placeholderText) ? "" : textViewText
+        textViewText = placeholderText
         delegate?.sendButtonPressedWith(message)
     }
     

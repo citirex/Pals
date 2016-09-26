@@ -88,7 +88,7 @@ class PLPlaceProfileViewController: PLViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowOrder" {
             let orderViewController = segue.destinationViewController as! PLOrderViewController
-            orderViewController.place = place
+            orderViewController.order.place = place
         }
     }
 
