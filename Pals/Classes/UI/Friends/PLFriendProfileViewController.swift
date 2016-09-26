@@ -34,6 +34,7 @@ class PLFriendProfileViewController: PLViewController {
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.setNavigationBarTransparent(true)
 		navigationController?.navigationBar.tintColor = .whiteColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
     
     
@@ -110,10 +111,12 @@ class PLFriendProfileViewController: PLViewController {
     
     
     override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+        
         
         unfriendButton.rounded = true
         friendProfileImageView.rounded = true
+        
+        super.viewWillLayoutSubviews()
     }
 
 }
