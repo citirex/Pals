@@ -19,6 +19,7 @@ class PLLoginViewController: PLViewController {
 	@IBOutlet weak var logoImage: UIImageView!
 	@IBOutlet weak var loginTextField: PLTextField!
 	@IBOutlet weak var passTextField: PLTextField!
+	@IBOutlet var registerButton: UIButton!
     
     @IBOutlet var loginViewBotC: NSLayoutConstraint?
     @IBOutlet var logoTopC: NSLayoutConstraint?
@@ -147,24 +148,34 @@ class PLLoginViewController: PLViewController {
 	// MARK: - Keyboard
 	
 	func keyboardWillShow(notification: NSNotification) {
-		let userInfo = notification.userInfo!
-		let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
-		let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + 20, 0.0)
-		
-		scrollView.contentInset = contentInsets
-		scrollView.scrollIndicatorInsets = contentInsets
-		var visibleRect = view.frame
-		visibleRect.size.height -= keyboardSize.height
-		
-		if CGRectContainsPoint(visibleRect, textFieldsView!.frame.origin) {
-			scrollView.scrollRectToVisible(textFieldsView!.frame, animated: true)
-		}
+		updateViewAnimated(notification)
 	}
 	
 	func keyboardWillHide(notification: NSNotification) {
-		let contentInsets = UIEdgeInsetsZero
-		scrollView.contentInset = contentInsets
-		scrollView.scrollIndicatorInsets = contentInsets
+		updateViewAnimated(notification)
+	}
+	
+	private func updateViewAnimated(notification: NSNotification) {
+		let userInfo = notification.userInfo!
+		let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+		let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
+		let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey]?.unsignedIntegerValue
+		let options = UIViewAnimationOptions(rawValue: curve!<<16)
+		let keyboardVisible = notification.name == UIKeyboardWillShowNotification
+		
+		UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: {
+			self.registerButton.enabled = keyboardVisible ? false : true
+			self.registerButton.alpha = keyboardVisible ? 0 : 1
+			self.logoImage.alpha = keyboardVisible ? 0 : 1
+			self.view.layoutIfNeeded()
+			}, completion: nil)
+		
+		var visibleRect = textFieldsView.frame
+		visibleRect.size.height += keyboardSize.height
+		
+		let scrollPoint = keyboardVisible ? CGPointMake(0, visibleRect.size.height / 2) : CGPointZero
+		scrollView.setContentOffset(scrollPoint, animated: true)
+		
 	}
 	
 }

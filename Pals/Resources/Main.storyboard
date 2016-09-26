@@ -180,6 +180,7 @@
                         <outlet property="logoImage" destination="0mE-fq-ZBU" id="OTJ-hP-bCq"/>
                         <outlet property="logoTopC" destination="yGd-lf-SNf" id="Ko3-ji-C9u"/>
                         <outlet property="passTextField" destination="HEk-oG-qRI" id="MEk-fe-hJO"/>
+                        <outlet property="registerButton" destination="RdC-BM-16D" id="FRf-D7-gFr"/>
                         <outlet property="scrollView" destination="Jb2-Ou-wJv" id="OUW-Uj-aGM"/>
                         <outlet property="spinner" destination="WXu-2n-otd" id="llK-DU-6Kh"/>
                         <outlet property="textFieldsView" destination="Xzj-qM-z68" id="QnC-Gq-zTu"/>
@@ -1324,7 +1325,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0cU-r4-3hA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UXT-YT-Tfh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1462,9 +1463,9 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Qau-vR-zQT"/>
-        <segue reference="8mb-vo-Nj3"/>
-        <segue reference="apm-CY-cnT"/>
+        <segue reference="ovy-Gk-Wh0"/>
         <segue reference="mrq-MK-55o"/>
+        <segue reference="u5L-qT-vQG"/>
+        <segue reference="sXw-Bi-aat"/>
     </inferredMetricsTieBreakers>
 </document>
