@@ -768,7 +768,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRH-wo-TIR" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="206"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQK-yC-e4y" userLabel="Add Image Button">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQK-yC-e4y" userLabel="Add Image Button">
                                         <rect key="frame" x="143" y="56" width="90" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="QQK-yC-e4y" secondAttribute="height" multiplier="1:1" id="Bxf-vL-jMx"/>
@@ -778,7 +778,7 @@
                                             <action selector="loadImageButtonTapped:" destination="1ZL-hY-XMT" eventType="touchUpInside" id="PxR-zN-c77"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ApplesRcool" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STb-ek-YKg">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ApplesRcool" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STb-ek-YKg">
                                         <rect key="frame" x="8" y="154" width="359" height="44"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -825,7 +825,7 @@
                                             <segue destination="lup-pr-rOR" kind="push" identifier="FriendsSearchSegue" id="sXw-Bi-aat"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(123) 123 - 1234" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-NB-07S">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(123) 123 - 1234" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-NB-07S">
                                         <rect key="frame" x="0.0" y="57" width="375" height="57"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hiW-NB-07S" secondAttribute="height" multiplier="125:19" id="KTT-vz-KOs"/>
@@ -863,6 +863,7 @@
                                     <constraint firstItem="h45-7a-nGV" firstAttribute="centerX" secondItem="D0R-xy-hEf" secondAttribute="centerX" id="3kH-by-LO6"/>
                                     <constraint firstItem="h45-7a-nGV" firstAttribute="width" secondItem="D0R-xy-hEf" secondAttribute="height" multiplier="89:206" id="9Se-N5-RMk"/>
                                     <constraint firstItem="h45-7a-nGV" firstAttribute="centerY" secondItem="D0R-xy-hEf" secondAttribute="centerY" constant="133" id="CVD-pb-HJv"/>
+                                    <constraint firstAttribute="bottom" secondItem="h45-7a-nGV" secondAttribute="bottom" constant="50" id="K61-Eo-zUZ"/>
                                     <constraint firstAttribute="trailing" secondItem="MCt-ij-MMU" secondAttribute="trailing" id="SYh-0W-6Xn"/>
                                     <constraint firstItem="phL-NX-4xR" firstAttribute="top" secondItem="hiW-NB-07S" secondAttribute="bottom" id="cgH-Md-FKl"/>
                                     <constraint firstItem="phL-NX-4xR" firstAttribute="leading" secondItem="D0R-xy-hEf" secondAttribute="leading" id="fMD-e1-C5T"/>

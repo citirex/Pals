@@ -16,20 +16,15 @@ class PLNotificationsViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundView = UIView()
-        
-        // Setup Cell
         let nib = UINib(nibName: PLNotificationCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLNotificationCell.identifier)
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         configureNavigationBar()
     }
-    
     
     private func configureNavigationBar() {
         navigationController?.navigationBar.barStyle = .Black

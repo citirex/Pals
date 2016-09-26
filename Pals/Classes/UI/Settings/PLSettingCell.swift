@@ -14,26 +14,10 @@ class PLSettingCell: UITableViewCell {
     static let identifier = "SettingCell"
     
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
-        adjustFontToIPhoneSize()
+        textLabel!.font = .customFontOfSize(17)
     }
-    
-    private func adjustFontToIPhoneSize() {
-        let deviceType = UIDevice.currentDevice().type
-        
-        switch deviceType {
-        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
-            textLabel!.font = .systemFontOfSize(17.0)
-        case .iPhone6, .iPhone6S:
-            textLabel!.font = .systemFontOfSize(20.0)
-        case .iPhone6plus:
-            textLabel!.font = .systemFontOfSize(21.0)
-        default:
-            break
-        }
-    }
-
     
 }

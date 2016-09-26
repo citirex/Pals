@@ -26,14 +26,17 @@ class PLEditProfileViewController: PLViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateUI()
-        
+
         imagePicker.delegate = self
         
         let user = PLFacade.profile
         usernameTextField.text = user!.name
         userProfileImageView.setImageWithURL(user!.picture)
+        
+        signUpButton.titleLabel?.font = .customFontOfSize(22)
+        usernameTextField.font = .customFontOfSize(15)
+        phoneNumberTextField.font = .customFontOfSize(15)
+        descriptionLabel.font = .customFontOfSize(15)
     
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
@@ -123,36 +126,10 @@ class PLEditProfileViewController: PLViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        adjustFontToIPhoneSize()
         descriptionLabel.addTopBorderWithColor(UIColor.darkGray(), width: 0.5)
         descriptionLabel.addBottomBorderWithColor(UIColor.darkGray(), width: 0.5)
         userProfileImageView.rounded = true
         signUpButton.rounded = true
-    }
-    
-    
-    private func adjustFontToIPhoneSize() {
-        let deviceType = UIDevice.currentDevice().type
-        
-        switch deviceType {
-        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
-            signUpButton.titleLabel?.font = .systemFontOfSize(22.0)
-            usernameTextField.font = .systemFontOfSize(15.0)
-            phoneNumberTextField.font = .systemFontOfSize(15.0)
-            descriptionLabel.font = .systemFontOfSize(15.0)
-        case .iPhone6, .iPhone6S:
-            signUpButton.titleLabel?.font = .systemFontOfSize(24.0)
-            usernameTextField.font = .systemFontOfSize(17.0)
-            phoneNumberTextField.font = .systemFontOfSize(17.0)
-            descriptionLabel.font = .systemFontOfSize(17.0)
-        case .iPhone6plus:
-            signUpButton.titleLabel?.font = .systemFontOfSize(25.0)
-            usernameTextField.font = .systemFontOfSize(18.0)
-            phoneNumberTextField.font = .systemFontOfSize(18.0)
-            descriptionLabel.font = .systemFontOfSize(18.0)
-        default:
-            break
-        }
     }
 
 }
@@ -167,12 +144,7 @@ extension PLEditProfileViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return false
     }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange
-        range: NSRange, replacementString string: String) -> Bool {
-        return true
-    }
-    
+
 }
 
 

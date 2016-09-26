@@ -15,10 +15,9 @@ class PLFriendProfileViewController: PLViewController {
     @IBOutlet weak var sendCoverButton: UIButton!
     @IBOutlet weak var sendADrinkButton: UIButton!
 
-
     private var sectionOrder: PLCollectionSectionType!
-    
     var friend: PLUser!
+    
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +25,11 @@ class PLFriendProfileViewController: PLViewController {
         title = friend?.name
         backgroundImageView.setImageWithURL(friend!.picture)
         friendProfileImageView.setImageWithURL(friend!.picture)
+        
+        unfriendButton.titleLabel?.font = .customFontOfSize(12)
+        sendCoverButton.titleLabel?.font = .customFontOfSize(18)
+        sendADrinkButton.titleLabel?.font = .customFontOfSize(19)
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,17 +40,14 @@ class PLFriendProfileViewController: PLViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
     
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         hideUnfriendPopup()
-        
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.setNavigationBarTransparent(false)
     }
 
-    
     
     // MARK: - Actions
     
@@ -110,34 +109,10 @@ class PLFriendProfileViewController: PLViewController {
         }
     }
     
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        adjustFontToIPhoneSize()
         unfriendButton.rounded = true
         friendProfileImageView.rounded = true
-    }
-
-    
-    private func adjustFontToIPhoneSize() {
-        let deviceType = UIDevice.currentDevice().type
-        
-        switch deviceType {
-        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
-            unfriendButton.titleLabel?.font = .systemFontOfSize(12.0)
-            sendCoverButton.titleLabel?.font = .systemFontOfSize(18.0)
-            sendADrinkButton.titleLabel?.font = .systemFontOfSize(19.0)
-        case .iPhone6, .iPhone6S:
-            unfriendButton.titleLabel?.font = .systemFontOfSize(14.0)
-            sendCoverButton.titleLabel?.font = .systemFontOfSize(20.0)
-            sendADrinkButton.titleLabel?.font = .systemFontOfSize(21.0)
-        case .iPhone6plus:
-            unfriendButton.titleLabel?.font = .systemFontOfSize(15.0)
-            sendCoverButton.titleLabel?.font = .systemFontOfSize(21.0)
-            sendADrinkButton.titleLabel?.font = .systemFontOfSize(22.0)
-        default:
-            break
-        }
     }
 
 }

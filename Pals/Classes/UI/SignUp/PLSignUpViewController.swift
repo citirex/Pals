@@ -30,6 +30,8 @@ class PLSignUpViewController: PLViewController {
         super.viewDidLoad()
         
         imagePicker.delegate = self
+        signInButton.titleLabel?.font = .customFontOfSize(15)
+        signUpButton.titleLabel?.font = .customFontOfSize(15)
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
     }
@@ -140,28 +142,8 @@ class PLSignUpViewController: PLViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        adjustFontToIPhoneSize()
         signUpButton.rounded = true
         userProfileImageView.rounded = true
-    }
-    
-    
-    private func adjustFontToIPhoneSize() {
-        let deviceType = UIDevice.currentDevice().type
-        
-        switch deviceType {
-        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
-            signInButton.titleLabel?.font = .systemFontOfSize(15.0)
-            signUpButton.titleLabel?.font = .systemFontOfSize(16.0)
-        case .iPhone6, .iPhone6S:
-            signInButton.titleLabel?.font = .systemFontOfSize(17.0)
-            signUpButton.titleLabel?.font = .systemFontOfSize(18.0)
-        case .iPhone6plus:
-            signInButton.titleLabel?.font = .systemFontOfSize(18.0)
-            signUpButton.titleLabel?.font = .systemFontOfSize(19.0)
-        default:
-            break
-        }
     }
 
 }

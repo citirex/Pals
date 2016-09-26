@@ -74,18 +74,15 @@ extension PLSettingsViewController: UITableViewDataSource {
         return sections.count
     }
     
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].items.count
     }
     
-
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(PLSettingCell.identifier, forIndexPath: indexPath) as! PLSettingCell
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
-    
     
     private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         guard let cell = cell as? PLSettingCell else { return }

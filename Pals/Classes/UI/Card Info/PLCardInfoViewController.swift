@@ -10,10 +10,10 @@ import UIKit
 
 class PLCardInfoViewController: PLViewController {
     
-    @IBOutlet weak var creditCardNumberTextField: UITextField!
-    @IBOutlet weak var expirationDateTextField: UITextField!
-    @IBOutlet weak var zipCodeTextField: UITextField!
-    @IBOutlet weak var cvvCodeTextField: UITextField!
+    @IBOutlet weak var creditCardNumberTextField: PLTextField!
+    @IBOutlet weak var expirationDateTextField: PLTextField!
+    @IBOutlet weak var zipCodeTextField: PLTextField!
+    @IBOutlet weak var cvvCodeTextField: PLTextField!
     
     
     
@@ -24,20 +24,17 @@ class PLCardInfoViewController: PLViewController {
         view.addGestureRecognizer(dismissTap)
     }
     
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarTransparent(true)
     }
     
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.setNavigationBarTransparent(false)
     }
-
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -58,7 +55,6 @@ class PLCardInfoViewController: PLViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    
     @IBAction func textFieldEditing(sender: UITextField) {
         let datePicker  = UIDatePicker()
         datePicker.datePickerMode = .Date
@@ -75,35 +71,18 @@ class PLCardInfoViewController: PLViewController {
         expirationDateTextField.text = dateFormatter.stringFromDate(sender.date)
     }
     
-
-    
     // MARK: - AccessoryView on keyboard
     
     private func inputAccessoryView() -> UIView {
         let accessoryView = UIButton(type: .System)
-        accessoryView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50)
-        accessoryView.titleLabel?.font = adjustFontToIPhoneSize()
+        accessoryView.frame = CGRectMake(0, 0, view.bounds.width, 50)
+        accessoryView.titleLabel?.font = .customFontOfSize(15)
         accessoryView.setTitle("Complete", forState: .Normal)
         accessoryView.tintColor = .mediumOrchidColor()
         accessoryView.backgroundColor = .whiteColor()
         accessoryView.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
         accessoryView.addTarget(self, action: #selector(completeButtonTapped(_:)), forControlEvents: .TouchUpInside)
         return accessoryView
-    }
-    
-    private func adjustFontToIPhoneSize() -> UIFont? {
-        let deviceType = UIDevice.currentDevice().type
-        
-        switch deviceType {
-        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
-            return .systemFontOfSize(15.0)
-        case .iPhone6, .iPhone6S:
-            return .systemFontOfSize(17.0)
-        case .iPhone6plus:
-            return .systemFontOfSize(18.0)
-        default:
-            return nil
-        }
     }
 
 }
@@ -115,20 +94,6 @@ extension PLCardInfoViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.inputAccessoryView = inputAccessoryView()
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange
-        range: NSRange, replacementString string: String) -> Bool {
-        
-        switch textField {
-        case creditCardNumberTextField: print()
-        case expirationDateTextField: print()
-        case zipCodeTextField: print()
-        case cvvCodeTextField: print()
-        default:
-            break
-        }
-        return true
     }
     
 }

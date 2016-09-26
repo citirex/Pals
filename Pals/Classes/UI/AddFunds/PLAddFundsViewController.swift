@@ -85,28 +85,11 @@ class PLAddFundsViewController: PLViewController {
         accessoryView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50)
         accessoryView.tintColor = .whiteColor()
         accessoryView.setTitle("Refill", forState: .Normal)
-        accessoryView.titleLabel?.font = adjustFontToIPhoneSize()
+        accessoryView.titleLabel?.font = .customFontOfSize(15)
         accessoryView.backgroundColor = .caribeanGreenColor()
         accessoryView.addTarget(self, action: #selector(refillButtonPressed(_:)), forControlEvents: .TouchUpInside)
         return accessoryView
     }
-    
-    
-    private func adjustFontToIPhoneSize() -> UIFont? {
-        let deviceType = UIDevice.currentDevice().type
-        
-        switch deviceType {
-        case .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S:
-            return UIFont.systemFontOfSize(15.0)
-        case .iPhone6, .iPhone6S:
-            return UIFont.systemFontOfSize(17.0)
-        case .iPhone6plus:
-            return UIFont.systemFontOfSize(18.0)
-        default:
-            return nil
-        }
-    }
-
     
 }
 

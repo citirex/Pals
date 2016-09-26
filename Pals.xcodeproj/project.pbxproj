@@ -138,6 +138,7 @@
 		E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BE86831D913A7B0079855C /* PLNotificationCell.xib */; };
 		E8BE868A1D9166620079855C /* PLSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86881D9166620079855C /* PLSettingCell.swift */; };
 		E8BE868B1D9166620079855C /* PLSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BE86891D9166620079855C /* PLSettingCell.xib */; };
+		E8CD61F11D998CE80022D51F /* PLFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD61F01D998CE80022D51F /* PLFont.swift */; };
 		E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B581D881D7C008782E5 /* PLView.swift */; };
 		E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */; };
 		E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7D1D8832E8008782E5 /* TGLExposedLayout.m */; };
@@ -293,6 +294,7 @@
 		E8BE86831D913A7B0079855C /* PLNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLNotificationCell.xib; path = Notifications/PLNotificationCell.xib; sourceTree = "<group>"; };
 		E8BE86881D9166620079855C /* PLSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingCell.swift; sourceTree = "<group>"; };
 		E8BE86891D9166620079855C /* PLSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingCell.xib; sourceTree = "<group>"; };
+		E8CD61F01D998CE80022D51F /* PLFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFont.swift; sourceTree = "<group>"; };
 		E8DA8B581D881D7C008782E5 /* PLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
 		E8DA8B7A1D8832E8008782E5 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
 		E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				E829DDDB1D819A6300D8C130 /* PLConstants.swift */,
 				D46D2B861D87583B0058060E /* PLColor.swift */,
 				D46D2B881D875BB10058060E /* PLImage.swift */,
+				E8CD61F01D998CE80022D51F /* PLFont.swift */,
 			);
 			name = Extensions;
 			path = Classes/Extensions;
@@ -1151,6 +1154,7 @@
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
 				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,
 				049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */,
+				E8CD61F11D998CE80022D51F /* PLFont.swift in Sources */,
 				E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */,
 				D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */,
 				E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */,
