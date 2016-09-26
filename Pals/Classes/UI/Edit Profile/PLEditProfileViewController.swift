@@ -12,8 +12,10 @@ class PLEditProfileViewController: PLViewController {
 
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var addProfileImageButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var descriptionLabel: UILabel!
 
     private let imagePicker = UIImagePickerController()
     private var isEditing = false {
@@ -63,7 +65,7 @@ class PLEditProfileViewController: PLViewController {
 //            let profile = PLUserData(name: usernameTextField.text!,
 //                                     email: phoneNumberTextField.text!,
 //                                     picture: userProfileImageView.image!) }
-//        
+//
 //        PLFacade.updateProfile(profile) { error in
 //            guard error == nil else { return PLShowAlert("Error", message: error!.localizedDescription) }
 //            SNFacade.profile = profile
@@ -89,7 +91,7 @@ class PLEditProfileViewController: PLViewController {
     @IBAction func loadImageButtonTapped(sender: UIButton) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
-        imagePicker.navigationBar.tintColor = .affairColor()
+        imagePicker.navigationBar.tintColor = .crayonPurple()
         imagePicker.modalPresentationStyle = .OverCurrentContext
         presentViewController(imagePicker, animated: true, completion: nil)
     }
@@ -114,6 +116,17 @@ class PLEditProfileViewController: PLViewController {
             addProfileImageButton.enabled = false
             addProfileImageButton.hidden = true
         }
+    }
+    
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        descriptionLabel.addTopBorderWithColor(UIColor.darkGray(), width: 0.5)
+        descriptionLabel.addBottomBorderWithColor(UIColor.darkGray(), width: 0.5)
+        
+        userProfileImageView.rounded = true
+        signUpButton.rounded = true
     }
 
 }

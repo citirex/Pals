@@ -9,25 +9,26 @@
 class PLSignUpViewController: PLViewController {
     
     @IBOutlet weak var userProfileImageView: UIImageView!
+    @IBOutlet weak var textFieldsContainer: UIView!
     @IBOutlet weak var usernameTextField: PLTextField!
     @IBOutlet weak var emailTextField: PLTextField!
     @IBOutlet weak var passwordTextField: PLTextField!
     @IBOutlet weak var confirmPasswordTextField: PLTextField!
-    @IBOutlet weak var textFieldsContainer: UIView!
+    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var addProfileImageButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
 
+    
     private let imagePicker = UIImagePickerController()
-    private let margin: CGFloat = 100.0
+    private let offset: CGFloat = 20.0
+  
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imagePicker.delegate = self
-        
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
     }
@@ -38,7 +39,7 @@ class PLSignUpViewController: PLViewController {
         registerKeyboardNotifications()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -52,44 +53,35 @@ class PLSignUpViewController: PLViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
- 
-    
+
     func keyboardWillShow(notification: NSNotification) {
-        let userInfo = notification.userInfo!
-        let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
-        let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + margin, 0.0)
-        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
-        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey]?.unsignedIntegerValue
-        let options = UIViewAnimationOptions(rawValue: curve!<<16)
-        
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-        var visibleRect = view.frame
-        visibleRect.size.height -= keyboardSize.height
-        
-        if CGRectContainsPoint(visibleRect, textFieldsContainer!.frame.origin) {
-            scrollView.scrollRectToVisible(textFieldsContainer!.frame, animated: true)
-            UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: {
-                self.addProfileImageButton.alpha = 0
-                self.userProfileImageView.alpha = 0
-                }, completion: nil)
-        }
+        updateViewAnimated(notification)
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        updateViewAnimated(notification)
+    }
+    
+    private func updateViewAnimated(notification: NSNotification) {
         let userInfo = notification.userInfo!
+        let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
         let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
         let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey]?.unsignedIntegerValue
         let options = UIViewAnimationOptions(rawValue: curve!<<16)
+        let keyboardVisible = notification.name == UIKeyboardWillShowNotification
         
+        var visibleRect = view.frame
+        visibleRect.size.height -= keyboardSize.height
+
+        let scrollPoint = keyboardVisible ? CGPointMake(0, visibleRect.size.height / 2 + offset) : CGPointZero
+        scrollView.setContentOffset(scrollPoint, animated: true)
+     
         UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: {
-            self.addProfileImageButton.alpha = 1
-            self.userProfileImageView.alpha = 1
+            self.addProfileImageButton.enabled = keyboardVisible ? false : true
+            self.addProfileImageButton.alpha = keyboardVisible ? 0 : 1
+            self.userProfileImageView.alpha = keyboardVisible ? 0 : 1
+            self.view.layoutIfNeeded()
             }, completion: nil)
-        
-        let contentInsets = UIEdgeInsetsZero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
     }
 
     
@@ -113,13 +105,14 @@ class PLSignUpViewController: PLViewController {
         signUp()
     }
     
+    
     // MARK: - Private methods
     
     private func signUp() {
         let username = usernameTextField.text!.trim()
         let email = emailTextField.text!.trim()
         let password = passwordTextField.text!.trim()
-        let picture = userProfileImageView.image ?? UIImage()
+        let picture = userProfileImageView.image ?? UIImage() // TODO: - Empty Image
         
         guard !username.isEmpty else { return PLShowAlert("Error", message: "Username must contain at least 1 character") }
         guard email.isValidEmail else { return PLShowAlert("Error", message: "Please enter a valid email address") }
@@ -131,7 +124,7 @@ class PLSignUpViewController: PLViewController {
         activityIndicator.startAnimating()
         PLFacade.signUp(signUpData) { error in
             self.activityIndicator.stopAnimating()
-            guard error == nil else { return PLShowAlert("Error", message: error!.localizedDescription) }
+            guard error == nil else { return PLShowAlert("Error", message: "This Username is Taken!") }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
             let navigationController = tabBarController.viewControllers?.first as! UINavigationController
             _ = navigationController.viewControllers.first as! PLProfileViewController
@@ -141,6 +134,14 @@ class PLSignUpViewController: PLViewController {
     
     private func validatePassword(pass: String) -> Bool {
         return pass == confirmPasswordTextField.text!.trim()
+    }
+    
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        signUpButton.rounded = true
+        userProfileImageView.rounded = true
     }
 
 }
@@ -160,6 +161,7 @@ extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
 }
 
 
@@ -179,4 +181,7 @@ extension PLSignUpViewController: UITextFieldDelegate {
     }
 
 }
+
+
+
 
