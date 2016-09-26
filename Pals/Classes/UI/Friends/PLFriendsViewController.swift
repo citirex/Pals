@@ -51,9 +51,6 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 		navigationItem.titleView?.tintColor = .vividViolet()
 		navigationController?.navigationBar.tintColor = .vividViolet()
 	}
-//	override func viewDidDisappear(animated: Bool) {
-//		super.viewWillDisappear(animated)
-//	}
 	
 	override func viewDidLayoutSubviews() {
 		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
@@ -104,6 +101,10 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 		searchController.searchResultsUpdater = self
 		searchController.dimsBackgroundDuringPresentation = false
 		searchController.searchBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
+		let textFieldInsideSearchBar = searchController.searchBar.valueForKey("searchField") as? UITextField
+		textFieldInsideSearchBar?.layer.borderWidth = 1
+		textFieldInsideSearchBar?.layer.borderColor = UIColor.lightGrayColor().CGColor
+		textFieldInsideSearchBar?.cornerRadius = 14
 		searchController.searchBar.delegate = self
 		tableView.tableHeaderView = searchController.searchBar
 		definesPresentationContext = true

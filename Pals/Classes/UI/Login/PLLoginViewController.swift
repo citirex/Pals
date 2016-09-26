@@ -66,8 +66,10 @@ class PLLoginViewController: PLViewController {
 	}
 	
 	func loginToMainScreen() {
-		let userName = loginTextField.text!
-		let password = passTextField.text!
+		
+		// CHANGE userName and password to normal version!
+		let userName = "ololo"//loginTextField.text!
+		let password = "trololo"//passTextField.text!
 		if userName.isEmpty {
 			PLShowAlert("Login error!", message: "Please enter your login.")
 		} else if password.isEmpty {
@@ -148,6 +150,7 @@ class PLLoginViewController: PLViewController {
 		let userInfo = notification.userInfo!
 		let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
 		let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + 20, 0.0)
+		
 		scrollView.contentInset = contentInsets
 		scrollView.scrollIndicatorInsets = contentInsets
 		var visibleRect = view.frame

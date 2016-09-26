@@ -120,10 +120,13 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		searchController.searchBar.tintColor = .affairColor()
 		searchController.searchResultsUpdater = self
 		searchController.dimsBackgroundDuringPresentation = false
-		tableView.tableHeaderView = searchController.searchBar
-		tableView.tableHeaderView?.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
 		searchController.searchBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
+		let textFieldInsideSearchBar = searchController.searchBar.valueForKey("searchField") as? UITextField
+		textFieldInsideSearchBar?.layer.borderWidth = 1
+		textFieldInsideSearchBar?.layer.borderColor = UIColor.lightGrayColor().CGColor
+		textFieldInsideSearchBar?.cornerRadius = 14
 		searchController.searchBar.delegate = self
+		tableView.tableHeaderView = searchController.searchBar
 		definesPresentationContext = true
 	}
 	
