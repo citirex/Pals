@@ -459,15 +459,40 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-4Y-hBs" userLabel="Separator">
-                                <rect key="frame" x="30" y="270" width="260" height="1"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2">
+                                <rect key="frame" x="93" y="92" width="134" height="134"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="CCI-eN-gOm"/>
+                                    <constraint firstAttribute="height" constant="134" id="ORm-sT-eGr"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwP-6G-nIw" userLabel="Unfriend Button">
+                                <rect key="frame" x="230" y="60" width="90" height="30"/>
+                                <color key="backgroundColor" red="0.20784313725490197" green="0.24313725490196078" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="LVp-NX-Sdn"/>
+                                    <constraint firstAttribute="width" constant="90" id="tNu-Zk-8Se"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Unfriend">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unfriendButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="d6B-48-RLO"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-4Y-hBs" userLabel="Line">
+                                <rect key="frame" x="28" y="286" width="264" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="fSm-4l-n74"/>
+                                    <constraint firstAttribute="height" constant="1" id="URK-Dt-PvX"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMb-Zw-uOS">
-                                <rect key="frame" x="80" y="301" width="160" height="42"/>
+                                <rect key="frame" x="80" y="325" width="160" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="9Jr-kx-KNG"/>
                                     <constraint firstAttribute="width" constant="160" id="Gj8-Vu-NDP"/>
@@ -481,7 +506,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6s6-7c-3QW">
-                                <rect key="frame" x="80" y="373" width="160" height="42"/>
+                                <rect key="frame" x="80" y="405" width="160" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="TEG-uw-nhn"/>
                                     <constraint firstAttribute="height" constant="42" id="dvK-4m-sul"/>
@@ -494,42 +519,38 @@
                                     <action selector="sendADrinkButtonTapped:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="8l5-pP-ESw"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2">
-                                <rect key="frame" x="80" y="80" width="160" height="160"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="8dg-Pf-2aQ"/>
-                                    <constraint firstAttribute="width" constant="160" id="C2v-eP-fQH"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="WW4-eA-eO5" secondAttribute="trailing" id="1MJ-2l-RGj"/>
                             <constraint firstAttribute="trailing" secondItem="IU0-qZ-LiT" secondAttribute="trailing" id="6n0-uk-Ks2"/>
-                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" constant="30" id="BlL-AM-63s"/>
-                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="30" id="Bqj-ye-69D"/>
-                            <constraint firstItem="6s6-7c-3QW" firstAttribute="top" secondItem="rMb-Zw-uOS" secondAttribute="bottom" constant="30" id="F9e-R9-4wz"/>
+                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="8XZ-Ar-9OL"/>
+                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="DyN-gZ-cuT"/>
+                            <constraint firstItem="6s6-7c-3QW" firstAttribute="top" secondItem="rMb-Zw-uOS" secondAttribute="bottom" constant="38" id="F9e-R9-4wz"/>
                             <constraint firstItem="KuD-LH-J5b" firstAttribute="top" secondItem="WW4-eA-eO5" secondAttribute="bottom" id="FX4-eo-Na1"/>
                             <constraint firstItem="6s6-7c-3QW" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="Ffc-by-QKr"/>
+                            <constraint firstAttribute="trailing" secondItem="QdR-4Y-hBs" secondAttribute="trailing" constant="28" id="GEE-nn-UKv"/>
                             <constraint firstItem="IU0-qZ-LiT" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" id="Oc1-jv-eel"/>
-                            <constraint firstAttribute="trailing" secondItem="QdR-4Y-hBs" secondAttribute="trailing" constant="30" id="eWh-rj-LOe"/>
+                            <constraint firstAttribute="trailing" secondItem="cwP-6G-nIw" secondAttribute="trailing" id="QvG-9y-Wgb"/>
+                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="topMargin" constant="92" id="Ueq-af-OI6"/>
+                            <constraint firstItem="rMb-Zw-uOS" firstAttribute="top" secondItem="QdR-4Y-hBs" secondAttribute="bottom" constant="38" id="foy-Mk-6jU"/>
                             <constraint firstItem="WW4-eA-eO5" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" id="gLw-tL-qhE"/>
+                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="60" id="h7b-xN-t27"/>
                             <constraint firstItem="KuD-LH-J5b" firstAttribute="top" secondItem="IU0-qZ-LiT" secondAttribute="bottom" id="hTN-7B-TY4"/>
-                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerY" secondItem="0b7-o8-tqn" secondAttribute="centerY" constant="-99.5" id="nyc-AQ-pY4"/>
                             <constraint firstItem="WW4-eA-eO5" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" id="qzh-8M-pWU"/>
                             <constraint firstItem="rMb-Zw-uOS" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="vHI-ZV-SD5"/>
-                            <constraint firstItem="FiR-Kx-BL2" firstAttribute="centerX" secondItem="0b7-o8-tqn" secondAttribute="centerX" id="vXm-Z8-d30"/>
-                            <constraint firstItem="rMb-Zw-uOS" firstAttribute="top" secondItem="QdR-4Y-hBs" secondAttribute="bottom" constant="30" id="w7E-iR-kEq"/>
+                            <constraint firstItem="cwP-6G-nIw" firstAttribute="top" secondItem="0b7-o8-tqn" secondAttribute="top" constant="60" id="vtu-rx-bRF"/>
+                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" constant="28" id="wMo-2Z-f1a"/>
                             <constraint firstItem="IU0-qZ-LiT" firstAttribute="leading" secondItem="0b7-o8-tqn" secondAttribute="leading" id="yS7-KI-PwA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4NI-ne-4iy">
                         <barButtonItem key="backBarButtonItem" title=" " id="9MO-wJ-53a"/>
-                        <barButtonItem key="rightBarButtonItem" image="more_button" id="AKF-lV-M1l">
+                        <barButtonItem key="rightBarButtonItem" image="more_button" id="AKF-lV-M1l" userLabel="More Bar Button Item">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="moreBarButtonItemTapped:" destination="BXZ-AW-ugp" id="0y5-fo-59M"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -537,7 +558,8 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
-                        <segue destination="Cmd-gA-94i" kind="push" identifier="ShowOrder" id="mrq-MK-55o"/>
+                        <outlet property="unfriendButton" destination="cwP-6G-nIw" id="qeT-wA-06V"/>
+                        <segue destination="Cmd-gA-94i" kind="push" identifier="OrderSegue" id="mrq-MK-55o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -578,13 +600,13 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="pKf-FG-PN8"/>
                         <barButtonItem key="rightBarButtonItem" image="more_button" id="XXS-z7-BSm">
                             <connections>
-                                <segue destination="kGG-tj-ywv" kind="push" identifier="ShowSettings" id="pGy-cO-7A6"/>
+                                <segue destination="kGG-tj-ywv" kind="push" identifier="SettingsSegue" id="pGy-cO-7A6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="xqB-wZ-lQh" id="vTe-9e-k3T"/>
-                        <segue destination="wZt-xG-ynN" kind="push" identifier="ShowAddFunds" id="Qau-vR-zQT"/>
+                        <segue destination="wZt-xG-ynN" kind="push" identifier="AddFundsSegue" id="Qau-vR-zQT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8L-iT-ZrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -626,7 +648,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tableView" destination="oYY-1M-OFp" id="gc0-wN-nl0"/>
-                        <segue destination="0zz-mk-uMT" kind="push" identifier="ShowPlaceProfile" id="Srp-LB-CFK"/>
+                        <segue destination="0zz-mk-uMT" kind="push" identifier="PlaceProfileSegue" id="Srp-LB-CFK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrC-9h-T9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -676,7 +698,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="gQS-aH-ZRx" id="wK7-9W-pTH"/>
-                        <segue destination="Cmd-gA-94i" kind="push" identifier="ShowOrder" id="1Zi-Tu-8Fy"/>
+                        <segue destination="Cmd-gA-94i" kind="push" identifier="OrderSegue" id="1Zi-Tu-8Fy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wf-4F-yEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -812,7 +834,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="lup-pr-rOR" kind="push" identifier="ShowFriendsSearch" id="8mb-vo-Nj3"/>
+                                    <segue destination="lup-pr-rOR" kind="push" identifier="FriendsSearchSegue" id="8mb-vo-Nj3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional email or phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrr-TE-NN3">
@@ -904,17 +926,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="textFieldEditing:" destination="DmR-jl-w2z" eventType="editingDidBegin" id="aL8-mH-ocX"/>
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="CNp-6O-k5L"/>
@@ -929,17 +940,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="yKu-nc-ZwY"/>
                                         </connections>
@@ -953,17 +953,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="rOm-Db-ZaK"/>
                                         </connections>
@@ -977,17 +966,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="separatorWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="ead-Bo-euX"/>
                                         </connections>
@@ -1252,14 +1230,14 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tableView" destination="Bbi-Pj-gDT" id="NQy-oQ-Oya"/>
-                        <segue destination="2zm-V5-MZy" kind="push" identifier="ShowEditProfile" id="VEu-3C-tGk"/>
-                        <segue destination="DmR-jl-w2z" kind="push" identifier="ShowCardInfo" id="hI8-KA-Tkg"/>
-                        <segue destination="wZt-xG-ynN" kind="push" identifier="ShowAddFunds" id="u5L-qT-vQG"/>
-                        <segue destination="nZe-CE-B1W" kind="push" identifier="ShowOrderHistory" id="w9H-LU-6PB"/>
-                        <segue destination="7U6-k9-nlT" kind="push" identifier="ShowNotifications" id="1aQ-v7-etf"/>
-                        <segue destination="3bt-QB-wbc" kind="push" identifier="ShowPrivacyPolicy" id="clz-JR-gtC"/>
-                        <segue destination="s05-6w-Owi" kind="push" identifier="ShowTermsOfService" id="1uY-N7-tZa"/>
-                        <segue destination="X9z-xs-e57" kind="push" identifier="ShowHelpAndFAQ" id="Bz1-h0-1s3"/>
+                        <segue destination="2zm-V5-MZy" kind="push" identifier="EditProfileSegue" id="VEu-3C-tGk"/>
+                        <segue destination="DmR-jl-w2z" kind="push" identifier="CardInfoSegue" id="hI8-KA-Tkg"/>
+                        <segue destination="wZt-xG-ynN" kind="push" identifier="AddFundsSegue" id="u5L-qT-vQG"/>
+                        <segue destination="nZe-CE-B1W" kind="push" identifier="OrderHistorySegue" id="w9H-LU-6PB"/>
+                        <segue destination="7U6-k9-nlT" kind="push" identifier="NotificationsSegue" id="1aQ-v7-etf"/>
+                        <segue destination="3bt-QB-wbc" kind="push" identifier="PrivacyPolicySegue" id="clz-JR-gtC"/>
+                        <segue destination="s05-6w-Owi" kind="push" identifier="TermsOfServiceSegue" id="1uY-N7-tZa"/>
+                        <segue destination="X9z-xs-e57" kind="push" identifier="HelpAndFAQSegue" id="Bz1-h0-1s3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPz-Zt-74a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1337,8 +1315,8 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <segue destination="BXZ-AW-ugp" kind="push" identifier="ShowFriendProfile" id="ovy-Gk-Wh0"/>
-                        <segue destination="lup-pr-rOR" kind="push" identifier="ShowFriendSearch" id="Ss6-x5-3bZ"/>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendProfileSegue" id="ovy-Gk-Wh0"/>
+                        <segue destination="lup-pr-rOR" kind="push" identifier="FriendSearchSegue" id="Ss6-x5-3bZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9B-MX-2Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1354,7 +1332,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0cU-r4-3hA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UXT-YT-Tfh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1362,7 +1340,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="fSH-08-fuO"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="BXZ-AW-ugp" kind="push" identifier="ShowFriendsProfile" id="apm-CY-cnT"/>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendsProfileSegue" id="apm-CY-cnT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1K-dj-Sgm" userLabel="First Responder" sceneMemberID="firstResponder"/>

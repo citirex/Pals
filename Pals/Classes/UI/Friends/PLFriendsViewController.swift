@@ -16,12 +16,11 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 
-	
-    private var selectedFriend: PLUser!
+
 	
 	
 	@IBAction func searchButton(sender: AnyObject) {
-		performSegueWithIdentifier("ShowFriendSearch", sender: self)
+		performSegueWithIdentifier("FriendSearchSegue", sender: self)
 	}
 	
 	override func viewDidLoad() {
@@ -111,7 +110,7 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		performSegueWithIdentifier("ShowFriendSearch", sender: self)
+		performSegueWithIdentifier("FriendSearchSegue", sender: self)
 	}
 	
 	
@@ -141,8 +140,7 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-		selectedFriend = datasource[indexPath.row]
-        performSegueWithIdentifier("ShowFriendProfile", sender: self)
+        performSegueWithIdentifier("FriendProfileSegue", sender: self)
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -153,16 +151,11 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		
-		if segue.identifier == "ShowFriendSearch" {
+		if segue.identifier == "FriendSearchSegue" {
 			let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
 			friendSearchViewController.seekerText = searchController.searchBar.text
 		}
-		
-        guard segue.identifier == "ShowFriendProfile" else { return }
-        let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
-        friendProfileViewController.friend = selectedFriend
     }
-	
 }
 
 // MARK: - UISearchControllerDelegate

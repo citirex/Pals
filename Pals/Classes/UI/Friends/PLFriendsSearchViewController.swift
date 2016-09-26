@@ -22,7 +22,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 	var seekerText: String?
 	
-	private var selectedFriend: PLUser!
+
 	
 	var collectionUsers: [PLUser] {
 		return datasource.collection.objects ?? []
@@ -157,8 +157,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-		selectedFriend = datasource[indexPath.row]
-		performSegueWithIdentifier("ShowFriendsProfile", sender: self)
+		performSegueWithIdentifier("FriendsProfileSegue", sender: self)
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -178,14 +177,9 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		
 		return filtered
 	}
-	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		
-		guard segue.identifier == "ShowFriendsProfile" else { return }
-		let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
-		friendProfileViewController.friend = selectedFriend
-	}
+
 }
+
 
 // MARK: - UISearchControllerDelegate
 

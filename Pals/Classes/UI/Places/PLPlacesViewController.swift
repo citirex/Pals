@@ -105,7 +105,7 @@ class PLPlacesViewController: PLViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowPlaceProfile" {
+        if segue.identifier == "PlaceProfileSegue" {
             let placeProfileViewController = segue.destinationViewController as! PLPlaceProfileViewController
             placeProfileViewController.place = selectedPlace
         }
@@ -138,7 +138,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         selectedPlace = places[indexPath.row]
-        performSegueWithIdentifier("ShowPlaceProfile", sender: self)
+        performSegueWithIdentifier("PlaceProfileSegue", sender: self)
     }
 
 }
@@ -183,9 +183,8 @@ extension PLPlacesViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         places.searching = searchController.active
         let filter = searchController.searchBar.text!
-        if filter.isEmpty {
-            places.searching = false
-        } else {
+        if filter.isEmpty { places.searching = false }
+        else {
             activityIndicator.startAnimating()
             places.filter(filter, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()

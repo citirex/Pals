@@ -6,26 +6,22 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-enum SectionOrder {
-    case Cover
-    case Drinks
-}
 
 class PLFriendProfileViewController: PLViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: UIImageView!
+    @IBOutlet weak var unfriendButton: UIButton!
 
-    
-    var friend: PLUser!
-    private var sectionOrder: SectionOrder!
-    
+    private var sectionOrder: PLCollectionSectionType!
+
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImageView.setImageWithURL(friend.picture)
-        friendProfileImageView.setImageWithURL(friend.picture)
+        let friend = PLFacade.profile?.cellData
+        backgroundImageView.setImageWithURL(friend!.picture)
+        friendProfileImageView.setImageWithURL(friend!.picture)
     }
     
     
@@ -49,25 +45,50 @@ class PLFriendProfileViewController: PLViewController {
     
     // MARK: - Actions
     
+    @IBAction func moreBarButtonItemTapped(sender: UIBarButtonItem) {
+        unfriendButton.rounded = true
+        unfriendButton.enabled = true
+        unfriendButton.hidden = false
+        
+        unfriendButton.alpha = 0
+        UIView.animateWithDuration(0.5) {
+            self.unfriendButton.alpha = 1
+        }
+    }
+    
+    @IBAction func unfriendButtonTapped(sender: UIButton) {
+        print("unfriendButtonTapped")
+    }
+    
     @IBAction func sendCoverButtonTapped(sender: UIButton) {
-        sectionOrder = .Cover
-        performSegueWithIdentifier("ShowOrder", sender: self)
+        sectionOrder = .Covers
+        performSegueWithIdentifier("OrderSegue", sender: self)
     }
 
     @IBAction func sendADrinkButtonTapped(sender: UIButton) {
         sectionOrder = .Drinks
-        performSegueWithIdentifier("ShowOrder", sender: self)
+        performSegueWithIdentifier("OrderSegue", sender: self)
     }
-    
+ 
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard segue.identifier == "ShowOrder" else { return }
-        let orderViewController = segue.destinationViewController as! PLOrderViewController
-        orderViewController.user = friend
-        //        orderViewController.sectionOrder = sectionOrder
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "OrderSegue":
+            let orderViewController = segue.destinationViewController as! PLOrderViewController
+            orderViewController.currentTab = sectionOrder
+        default:
+            break
+        }
+        
     }
 
     
 }
+
+
+
+
+
