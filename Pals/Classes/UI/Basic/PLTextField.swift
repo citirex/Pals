@@ -10,18 +10,8 @@ import UIKit
 
 class PLTextField: UITextField {
     
-    let separatorWidth: CGFloat = 2
-    let separatorColor: UIColor = .lightGrayColor()
-    let placeHolderColor: UIColor = .lightGrayColor()
-    var padding: UIEdgeInsets!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        padding = UIEdgeInsets(top: CGRectGetHeight(frame) / 2, left: 0, bottom: 0, right: 0)
-        attributedPlaceholder = NSAttributedString(string: placeholder != nil ? placeholder! : "",
-                               attributes: [NSForegroundColorAttributeName : placeHolderColor])
+    private var padding: UIEdgeInsets {
+        return UIEdgeInsets(top: CGRectGetHeight(frame) / 3, left: 0, bottom: 0, right: 0)
     }
     
     
@@ -32,12 +22,11 @@ class PLTextField: UITextField {
         let path = UIBezierPath()
         path.moveToPoint(startingPoint)
         path.addLineToPoint(endingPoint)
-        path.lineWidth = separatorWidth
-        separatorColor.setStroke()
+        path.lineWidth = 1
+        UIColor.chatelleColor().setStroke()
         path.stroke()
     }
     
-
     override func textRectForBounds(bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
@@ -49,5 +38,6 @@ class PLTextField: UITextField {
     override func editingRectForBounds(bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
+
 }
 

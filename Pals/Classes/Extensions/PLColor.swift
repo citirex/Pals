@@ -68,4 +68,26 @@ extension UIColor {
 		return UIColor(r: 251.0, g: 251.0, b: 251.0)
 	}
     
+    
+    
+    
+    /// Sign Up screen 
+    
+    // TextField placeholder color
+    class func chatelleColor() -> UIColor {
+        return UIColor(r: 189.0, g: 177.0, b: 200.0)
+    }
+    
+    /// Edit Profile
+    
+    // Line border for label
+    class func darkGray() -> UIColor {
+        return UIColor(r: 151, g: 151.0, b: 151.0)
+    }
+    
+    // navigation bar tint color for imagePicker
+    class func crayonPurple() -> UIColor {
+        return UIColor(r: 111.0, g: 64.0, b: 151.0)
+    }
+    
 }

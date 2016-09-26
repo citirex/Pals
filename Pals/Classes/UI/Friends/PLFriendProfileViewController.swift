@@ -14,12 +14,15 @@ class PLFriendProfileViewController: PLViewController {
     @IBOutlet weak var unfriendButton: UIButton!
 
     private var sectionOrder: PLCollectionSectionType!
+    
 
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let friend = PLFacade.profile?.cellData
+        
+        title = friend?.name
         backgroundImageView.setImageWithURL(friend!.picture)
         friendProfileImageView.setImageWithURL(friend!.picture)
     }
@@ -37,6 +40,8 @@ class PLFriendProfileViewController: PLViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        hideUnfriendPopup()
+        
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.setNavigationBarTransparent(false)
     }
@@ -46,14 +51,7 @@ class PLFriendProfileViewController: PLViewController {
     // MARK: - Actions
     
     @IBAction func moreBarButtonItemTapped(sender: UIBarButtonItem) {
-        unfriendButton.rounded = true
-        unfriendButton.enabled = true
-        unfriendButton.hidden = false
-        
-        unfriendButton.alpha = 0
-        UIView.animateWithDuration(0.5) {
-            self.unfriendButton.alpha = 1
-        }
+         showUnfriendPopup()
     }
     
     @IBAction func unfriendButtonTapped(sender: UIButton) {
@@ -71,6 +69,31 @@ class PLFriendProfileViewController: PLViewController {
     }
  
     
+    // MARK: - Unfriend popup
+    
+    func showUnfriendPopup() {
+        unfriendButton.enabled = true
+        unfriendButton.hidden = false
+        
+        unfriendButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        unfriendButton.alpha = 0.0
+        UIView.animateWithDuration(0.25, animations: {
+            self.unfriendButton.alpha = 1.0
+            self.unfriendButton.transform = CGAffineTransformMakeScale(1.0, 1.0)
+        })
+    }
+    
+    func hideUnfriendPopup() {
+        unfriendButton.enabled = false
+        unfriendButton.hidden = true
+        
+        UIView.animateWithDuration(0.25, animations: {
+            self.unfriendButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
+            self.unfriendButton.alpha = 0.0
+        })
+    }
+
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -84,8 +107,15 @@ class PLFriendProfileViewController: PLViewController {
         }
         
     }
-
     
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        unfriendButton.rounded = true
+        friendProfileImageView.rounded = true
+    }
+
 }
 
 
