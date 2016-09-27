@@ -22,6 +22,14 @@ class PLEditProfileViewController: PLViewController {
         didSet { updateUI() }
     }
     
+    
+    override func loadView() {
+        super.loadView()
+        
+        descriptionLabel.addBorder(.Top, color: .darkGray(), width: 0.5)
+        descriptionLabel.addBorder(.Bottom, color: .darkGray(), width: 0.5)
+        descriptionLabel.layoutSubviews()
+    }
  
     
     override func viewDidLoad() {
@@ -125,10 +133,7 @@ class PLEditProfileViewController: PLViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        descriptionLabel.addBorder(.Top, color: .darkGray(), width: 0.5)
-        descriptionLabel.addBorder(.Bottom, color: .darkGray(), width: 0.5)
-        
+
         userProfileImageView.rounded = true
         signUpButton.rounded = true
     }
