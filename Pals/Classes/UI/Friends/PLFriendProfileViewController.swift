@@ -44,8 +44,10 @@ class PLFriendProfileViewController: PLViewController {
         super.viewWillDisappear(animated)
         
         hideUnfriendPopup()
+		navigationController?.navigationBar.tintColor = .affairColor()
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.setNavigationBarTransparent(false)
+		navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.affairColor()]
     }
 
     

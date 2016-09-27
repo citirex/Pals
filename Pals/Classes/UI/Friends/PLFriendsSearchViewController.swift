@@ -22,7 +22,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 	var seekerText: String?
 	
-
+	private var selectedFriend: PLUser!
 	
 	var collectionUsers: [PLUser] {
 		return datasource.collection.objects ?? []
@@ -35,10 +35,10 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-//		navigationController?.setNavigationBarTransparent(true)
-//		navigationController?.navigationBar.translucent = false
+	
 		configureSearchController()
+//		self.definesPresentationContext = true
+		self.extendedLayoutIncludesOpaqueBars = true
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(PLFriendsSearchViewController.searchButton(_:)))
 		
@@ -61,19 +61,23 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationItem.title = "Friends Search"
-        searchController.searchBar.text = seekerText
         navigationController?.navigationBar.barStyle = .Default
 		navigationController?.navigationBar.tintColor = .vividViolet()
-        navigationController?.navigationBar.barTintColor = .miracleColor()
+		if seekerText != "" {
+			searchController.searchBar.text = seekerText
+		}
+	}
+	
+	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+		seekerText = searchBar.text
 	}
     
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		searchController.active = false
 	}
 	
 	override func viewDidLayoutSubviews() {
-		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 111)
+		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
 		resultsController.tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 49)
 	}
 	
@@ -161,6 +165,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		selectedFriend = datasource[indexPath.row]
 		performSegueWithIdentifier("FriendsProfileSegue", sender: self)
 	}
 	
@@ -181,6 +186,13 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		
 		return filtered
 	}
+	
+	// MARK: - Navigation
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
+		friendProfileViewController.friend = selectedFriend
+	}
 
 }
 
@@ -189,6 +201,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 
 extension PLFriendsSearchViewController : UISearchControllerDelegate {
 	func willDismissSearchController(searchController: UISearchController) {
+		self.navigationController?.navigationBar.translucent = false
 		let offset = tableView.contentOffset.y + tableView.contentInset.top
 		if offset >= searchController.searchBar.frame.height {
 			UIView.animateWithDuration(0.25) {
@@ -203,6 +216,10 @@ extension PLFriendsSearchViewController : UISearchControllerDelegate {
 				searchController.searchBar.alpha = 1
 			}
 		}
+	}
+	
+	func willPresentSearchController(searchController: UISearchController) {
+		self.navigationController?.navigationBar.translucent = true
 	}
 }
 
