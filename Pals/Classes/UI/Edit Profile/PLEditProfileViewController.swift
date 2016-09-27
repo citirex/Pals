@@ -11,13 +11,16 @@ import UIKit
 class PLEditProfileViewController: PLViewController {
 
     @IBOutlet weak var userProfileImageView: UIImageView!
-    @IBOutlet weak var addProfileImageButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var addProfileImageButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
 
     private let imagePicker = UIImagePickerController()
     private var isEditing = false { didSet { updateUI() } }
+    
+    var userData: PLUserData!
+    
     
     
     override func viewDidLoad() {
@@ -25,13 +28,12 @@ class PLEditProfileViewController: PLViewController {
 
         imagePicker.delegate = self
         
-        let user = PLFacade.profile
-        usernameTextField.text = user!.name
-        userProfileImageView.setImageWithURL(user!.picture)
+        userData = PLFacade.profile?.userData
+        usernameTextField.text = userData.name
+        phoneNumberTextField.text = userData.phone
+        userProfileImageView.setImageWithURL(userData.picture)
         
-        signUpButton.titleLabel?.font = .customFontOfSize(22)
-        usernameTextField.font = .customFontOfSize(15)
-        phoneNumberTextField.font = .customFontOfSize(15)
+        adjustFontSize()
     
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
@@ -53,22 +55,22 @@ class PLEditProfileViewController: PLViewController {
         navigationController?.setNavigationBarTransparent(false)
     }
     
+    
+    // MARK: - Update User Data
+    
+    private func updateUserData() {
+        userData.name = usernameTextField.text!
+        userData.email = phoneNumberTextField.text!
+        userData.phone = phoneNumberTextField.text!
+        //userData.picture = userProfileImageView.image
+    }
 
     // MARK: - Actions
 
     @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
         isEditing = !isEditing
-        
         if isEditing { usernameTextField.becomeFirstResponder() }
-//        else {
-//            let profile = PLUserData(name: usernameTextField.text!,
-//                                     email: phoneNumberTextField.text!,
-//                                     picture: userProfileImageView.image!) }
-//
-//        PLFacade.updateProfile(profile) { error in
-//            guard error == nil else { return PLShowAlert("Error", message: error!.localizedDescription) }
-//            SNFacade.profile = profile
-//        }
+        else { updateUserData() }
     }
     
     
@@ -116,6 +118,13 @@ class PLEditProfileViewController: PLViewController {
             addProfileImageButton.hidden = true
         }
     }
+    
+    private func adjustFontSize() {
+        signUpButton.titleLabel?.font = .customFontOfSize(22)
+        usernameTextField.font = .customFontOfSize(15)
+        phoneNumberTextField.font = .customFontOfSize(15)
+    }
+    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

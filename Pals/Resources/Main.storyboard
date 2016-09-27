@@ -827,6 +827,7 @@
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(123) 123 - 1234" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-NB-07S">
                                         <rect key="frame" x="0.0" y="57" width="375" height="57"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hiW-NB-07S" secondAttribute="height" multiplier="125:19" id="KTT-vz-KOs"/>
                                         </constraints>

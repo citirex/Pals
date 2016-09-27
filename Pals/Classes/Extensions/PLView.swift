@@ -74,8 +74,7 @@ extension UIView {
     enum UIBorderSide {
         case Top, Bottom, Left, Right
     }
-    
-    
+
     func addBorder(side: UIBorderSide, color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.CGColor
@@ -83,9 +82,7 @@ extension UIView {
         switch side {
         case .Top:
             border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: width)
-            print("top")
         case .Bottom:
-            print("bottom")
             border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
         case .Left:
             border.frame = CGRect(x: 0, y: 0, width: width, height: frame.size.height)
@@ -93,8 +90,6 @@ extension UIView {
             border.frame = CGRect(x: frame.size.width - width, y: 0, width: width, height: frame.size.height)
         }
         layer.addSublayer(border)
-        layer.masksToBounds = false
-        layer.shouldRasterize = true
     }
 
 }
