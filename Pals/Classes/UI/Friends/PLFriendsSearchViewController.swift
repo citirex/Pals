@@ -32,6 +32,7 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		navigationController?.navigationBar.addBorder(.Bottom, color: .clearColor(), width: 0.5)
 		navigationItem.title = "Friends Search"
         navigationController?.navigationBar.barStyle = .Default
 		navigationController?.navigationBar.tintColor = .vividViolet()
@@ -40,15 +41,19 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 		}
 	}
 	
+	override func viewWillDisappear(animated: Bool) {
+		navigationController?.navigationBar.addBorder(.Bottom, color: .clearColor(), width: 0.5)
+	}
+	
 	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
 		seekerText = searchBar.text
 	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView.contentOffset.y < -20 {
-		navigationController?.navigationBar.addBottomBorderWithColor(.miracleColor(), width: 0.5)
+		navigationController?.navigationBar.addBorder(.Bottom, color: .miracleColor(), width: 0.5)
 		} else {
-		navigationController?.navigationBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
+		navigationController?.navigationBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
 		}
 	}
 	

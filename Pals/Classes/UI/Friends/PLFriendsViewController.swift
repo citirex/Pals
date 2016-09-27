@@ -25,6 +25,10 @@ class PLFriendsViewController: PLFriendBaseViewController {
 		navigationController?.navigationBar.tintColor = .vividViolet()
 	}
 	
+	override func viewWillDisappear(animated: Bool) {
+		navigationController?.navigationBar.addBorder(.Bottom, color: .clearColor(), width: 0.5)
+	}
+	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView.contentOffset.y < -20 {
             navigationController?.navigationBar.addBorder(.Bottom, color: .miracleColor(), width: 0.5)
