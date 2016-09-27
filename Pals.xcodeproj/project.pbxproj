@@ -10,6 +10,7 @@
 		049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F61D83083800C2E32D /* PLFriendCell.swift */; };
 		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
+		04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */; };
 		04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CCD0DB1D81411800651508 /* PLFriendCell.xib */; };
 		2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44C1D997249000BA1F5 /* vip_covers0.json */; };
 		2414F4551D997249000BA1F5 /* vip_covers1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44D1D997249000BA1F5 /* vip_covers1.json */; };
@@ -159,6 +160,7 @@
 		049BA9F61D83083800C2E32D /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
+		04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendBaseViewController.swift; sourceTree = "<group>"; };
 		04CCD0DB1D81411800651508 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
 		2414F44C1D997249000BA1F5 /* vip_covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers0.json; sourceTree = "<group>"; };
 		2414F44D1D997249000BA1F5 /* vip_covers1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers1.json; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				049BA9F61D83083800C2E32D /* PLFriendCell.swift */,
 				049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */,
 				049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */,
+				04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -1118,6 +1121,7 @@
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				E8DA8B921D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
+				04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */,
 				2480F8E21D813E730095995F /* PLStoryboard.swift in Sources */,
 				E8042B3A1D8C54D900755EF3 /* PLTabBarController.swift in Sources */,
 				2480F8DC1D813E730095995F /* PLPageCollection.swift in Sources */,
