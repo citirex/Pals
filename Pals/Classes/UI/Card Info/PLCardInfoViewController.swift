@@ -80,7 +80,7 @@ class PLCardInfoViewController: PLViewController {
         accessoryView.setTitle("Complete", forState: .Normal)
         accessoryView.tintColor = .mediumOrchidColor()
         accessoryView.backgroundColor = .whiteColor()
-        accessoryView.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
+        accessoryView.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
         accessoryView.addTarget(self, action: #selector(completeButtonTapped(_:)), forControlEvents: .TouchUpInside)
         return accessoryView
     }

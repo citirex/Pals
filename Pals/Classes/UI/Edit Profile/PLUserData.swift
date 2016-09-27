@@ -8,6 +8,14 @@
 
 struct PLUserData {
     var name: String
-    var email: String // email or phone?
-    var picture: UIImage
+    var email: String
+    var phone: String
+    var picture: NSURL
+    
+    init(user: PLUser) {
+        name = user.name
+        email = user.email
+        phone = ""
+        picture = user.picture
+    }
 }

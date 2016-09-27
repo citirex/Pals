@@ -40,7 +40,6 @@ extension UIView {
         }
     }
 
-    
     func round(corners: UIRectCorner, radius: CGFloat) -> CAShapeLayer {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
@@ -49,9 +48,6 @@ extension UIView {
         return mask
     }
     
-    
-    
-
     func shake() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -75,32 +71,30 @@ extension UIView {
     
     // Borders
     
-    func addTopBorderWithColor(color: UIColor, width: CGFloat) {
-        let border = CALayer()
-        border.backgroundColor = color.CGColor
-        border.frame = CGRectMake(0, 0, frame.size.width, width)
-        layer.addSublayer(border)
+    enum UIBorderSide {
+        case Top, Bottom, Left, Right
     }
     
-    func addRightBorderWithColor(color: UIColor, width: CGFloat) {
-        let border = CALayer()
-        border.backgroundColor = color.CGColor
-        border.frame = CGRectMake(frame.size.width - width, 0, width, frame.size.height)
-        layer.addSublayer(border)
-    }
     
-    func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
+    func addBorder(side: UIBorderSide, color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.CGColor
-        border.frame = CGRectMake(0, frame.size.height - width, frame.size.width, width)
+        
+        switch side {
+        case .Top:
+            border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: width)
+            print("top")
+        case .Bottom:
+            print("bottom")
+            border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
+        case .Left:
+            border.frame = CGRect(x: 0, y: 0, width: width, height: frame.size.height)
+        case .Right:
+            border.frame = CGRect(x: frame.size.width - width, y: 0, width: width, height: frame.size.height)
+        }
         layer.addSublayer(border)
-    }
-    
-    func addLeftBorderWithColor(color: UIColor, width: CGFloat) {
-        let border = CALayer()
-        border.backgroundColor = color.CGColor
-        border.frame = CGRectMake(0, 0, width, frame.size.height)
-        layer.addSublayer(border)
+        layer.masksToBounds = false
+        layer.shouldRasterize = true
     }
 
 }

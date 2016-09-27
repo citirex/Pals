@@ -24,6 +24,7 @@ class PLOrderHistorySectionHeader: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        dateLabel.font = UIFont.customFontOfSize(17, weight: UIFontWeightMedium)
         placeNameLabel.font = .customFontOfSize(17)
     }
     

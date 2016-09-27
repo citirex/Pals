@@ -113,8 +113,8 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 		searchController.searchBar.tintColor = .affairColor()
 		searchController.searchResultsUpdater = self
 		searchController.dimsBackgroundDuringPresentation = false
-		searchController.searchBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
-		let textFieldInsideSearchBar = searchController.searchBar.valueForKey("searchField") as? UITextField
+		searchController.searchBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
+        let textFieldInsideSearchBar = searchController.searchBar.valueForKey("searchField") as? UITextField
 		textFieldInsideSearchBar?.layer.borderWidth = 1
 		textFieldInsideSearchBar?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		textFieldInsideSearchBar?.cornerRadius = 14
