@@ -27,9 +27,9 @@ class PLFriendsViewController: PLFriendBaseViewController {
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView.contentOffset.y < -20 {
-		navigationController?.navigationBar.addBottomBorderWithColor(.miracleColor(), width: 0.5)
+            navigationController?.navigationBar.addBorder(.Bottom, color: .miracleColor(), width: 0.5)
 		} else {
-		navigationController?.navigationBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
+		navigationController?.navigationBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
 		}
 	}
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {

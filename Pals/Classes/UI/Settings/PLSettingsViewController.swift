@@ -9,9 +9,7 @@
 import UIKit
 
 private enum SectionType {
-    case General
-    case Archive
-    case Support
+    case General, Archive, Support
 }
 
 private enum Item: String {

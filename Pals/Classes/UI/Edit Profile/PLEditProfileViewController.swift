@@ -15,14 +15,10 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
-    @IBOutlet weak var descriptionLabel: UILabel!
 
     private let imagePicker = UIImagePickerController()
-    private var isEditing = false {
-        didSet { updateUI() }
-    }
+    private var isEditing = false { didSet { updateUI() } }
     
- 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +32,6 @@ class PLEditProfileViewController: PLViewController {
         signUpButton.titleLabel?.font = .customFontOfSize(22)
         usernameTextField.font = .customFontOfSize(15)
         phoneNumberTextField.font = .customFontOfSize(15)
-        descriptionLabel.font = .customFontOfSize(15)
     
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
         view.addGestureRecognizer(dismissTap)
@@ -59,7 +54,6 @@ class PLEditProfileViewController: PLViewController {
     }
     
 
-    
     // MARK: - Actions
 
     @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
@@ -123,17 +117,14 @@ class PLEditProfileViewController: PLViewController {
         }
     }
     
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        descriptionLabel.addTopBorderWithColor(UIColor.darkGray(), width: 0.5)
-        descriptionLabel.addBottomBorderWithColor(UIColor.darkGray(), width: 0.5)
+
         userProfileImageView.rounded = true
         signUpButton.rounded = true
     }
 
 }
-
 
 
 // MARK: - UITextFieldDelegate

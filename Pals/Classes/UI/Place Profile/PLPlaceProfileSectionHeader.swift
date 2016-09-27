@@ -39,9 +39,9 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
         let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
         
         let path = UIBezierPath()
+        path.lineWidth = 1
         path.moveToPoint(startingPoint)
         path.addLineToPoint(endingPoint)
-        path.lineWidth = 1
         UIColor.lightGrayColor().setStroke()
         path.stroke()
     }

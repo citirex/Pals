@@ -538,6 +538,22 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbE-3V-vT6">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Irw-M9-M3g" userLabel="Add Image Button">
+                                        <rect key="frame" x="101" y="94" width="173" height="173"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Irw-M9-M3g" secondAttribute="height" multiplier="1:1" id="Z9o-lf-9fs"/>
+                                        </constraints>
+                                        <state key="normal" image="sign_in_plus"/>
+                                        <connections>
+                                            <action selector="loadImageButtonTapped:" destination="xEW-Sh-buD" eventType="touchUpInside" id="xtN-32-vhG"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gd0-AA-yGc">
+                                        <rect key="frame" x="101" y="94" width="173" height="173"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="gd0-AA-yGc" secondAttribute="height" multiplier="1:1" id="afm-9M-jQm"/>
+                                        </constraints>
+                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nD5-d3-ldV" userLabel="Text Fields Container">
                                         <rect key="frame" x="71" y="313" width="233" height="144"/>
                                         <subviews>
@@ -546,7 +562,7 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="0.74117647058823533" green="0.69411764705882351" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
@@ -561,7 +577,7 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="0.74117647058823533" green="0.69411764705882351" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
@@ -645,22 +661,6 @@
                                             <action selector="signUpButtonTapped:" destination="xEW-Sh-buD" eventType="touchUpInside" id="usk-tv-5O6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Irw-M9-M3g" userLabel="Add Image Button">
-                                        <rect key="frame" x="101" y="94" width="173" height="173"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Irw-M9-M3g" secondAttribute="height" multiplier="1:1" id="Z9o-lf-9fs"/>
-                                        </constraints>
-                                        <state key="normal" image="sign_in_plus"/>
-                                        <connections>
-                                            <action selector="loadImageButtonTapped:" destination="xEW-Sh-buD" eventType="touchUpInside" id="xtN-32-vhG"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gd0-AA-yGc">
-                                        <rect key="frame" x="101" y="94" width="173" height="173"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="gd0-AA-yGc" secondAttribute="height" multiplier="1:1" id="afm-9M-jQm"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="nD5-d3-ldV" firstAttribute="top" secondItem="Irw-M9-M3g" secondAttribute="bottom" constant="46" id="3cF-yj-Yh2"/>
@@ -768,12 +768,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRH-wo-TIR" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="206"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Dm-ok-mIm">
+                                        <rect key="frame" x="143" y="56" width="90" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="6Dm-ok-mIm" secondAttribute="height" multiplier="1:1" id="iMo-AL-sT3"/>
+                                        </constraints>
+                                    </imageView>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQK-yC-e4y" userLabel="Add Image Button">
                                         <rect key="frame" x="143" y="56" width="90" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="QQK-yC-e4y" secondAttribute="height" multiplier="1:1" id="Bxf-vL-jMx"/>
                                         </constraints>
-                                        <state key="normal" image="sign_in_plus"/>
+                                        <state key="normal" image="plus"/>
                                         <connections>
                                             <action selector="loadImageButtonTapped:" destination="1ZL-hY-XMT" eventType="touchUpInside" id="PxR-zN-c77"/>
                                         </connections>
@@ -783,14 +789,8 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Dm-ok-mIm">
-                                        <rect key="frame" x="143" y="56" width="90" height="90"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="6Dm-ok-mIm" secondAttribute="height" multiplier="1:1" id="iMo-AL-sT3"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.43529411764705883" green="0.25098039215686274" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -831,15 +831,15 @@
                                             <constraint firstAttribute="width" secondItem="hiW-NB-07S" secondAttribute="height" multiplier="125:19" id="KTT-vz-KOs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional email or phone" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="phL-NX-4xR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional email or phone" textAlignment="center" lineBreakMode="wordWrap" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="phL-NX-4xR" customClass="PLEditLabel" customModule="Pals">
                                         <rect key="frame" x="0.0" y="114" width="375" height="57"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="phL-NX-4xR" secondAttribute="height" multiplier="125:19" id="fJb-Dc-lhH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.36078431372549019" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.36078432202339172" green="0.36078432202339172" blue="0.36078432202339172" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h45-7a-nGV">
@@ -862,7 +862,6 @@
                                     <constraint firstAttribute="trailing" secondItem="phL-NX-4xR" secondAttribute="trailing" id="3Gr-Gy-SWW"/>
                                     <constraint firstItem="h45-7a-nGV" firstAttribute="centerX" secondItem="D0R-xy-hEf" secondAttribute="centerX" id="3kH-by-LO6"/>
                                     <constraint firstItem="h45-7a-nGV" firstAttribute="width" secondItem="D0R-xy-hEf" secondAttribute="height" multiplier="89:206" id="9Se-N5-RMk"/>
-                                    <constraint firstItem="h45-7a-nGV" firstAttribute="centerY" secondItem="D0R-xy-hEf" secondAttribute="centerY" constant="133" id="CVD-pb-HJv"/>
                                     <constraint firstAttribute="bottom" secondItem="h45-7a-nGV" secondAttribute="bottom" constant="50" id="K61-Eo-zUZ"/>
                                     <constraint firstAttribute="trailing" secondItem="MCt-ij-MMU" secondAttribute="trailing" id="SYh-0W-6Xn"/>
                                     <constraint firstItem="phL-NX-4xR" firstAttribute="top" secondItem="hiW-NB-07S" secondAttribute="bottom" id="cgH-Md-FKl"/>
@@ -900,7 +899,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addProfileImageButton" destination="QQK-yC-e4y" id="Hkb-Lu-znQ"/>
-                        <outlet property="descriptionLabel" destination="phL-NX-4xR" id="xoW-Q8-Unx"/>
                         <outlet property="phoneNumberTextField" destination="hiW-NB-07S" id="S1N-p1-Xk4"/>
                         <outlet property="signUpButton" destination="h45-7a-nGV" id="WMb-Pd-zf0"/>
                         <outlet property="userProfileImageView" destination="6Dm-ok-mIm" id="TXV-sX-ARb"/>
@@ -1500,6 +1498,7 @@
         <image name="order-tab" width="23" height="25"/>
         <image name="order_bg" width="187" height="293"/>
         <image name="places-tab" width="28" height="26"/>
+        <image name="plus" width="22" height="22"/>
         <image name="profile-tab" width="20" height="26"/>
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
