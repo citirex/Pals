@@ -86,6 +86,11 @@ extension UIColor {
         return UIColor(r: 111.0, g: 64.0, b: 151.0)
     }
     
+    // description label text color
+    class func doveGray() -> UIColor {
+        return UIColor(r: 92.0, g: 92.0, b: 92.0)
+    }
+    
     /// Card Info
     
     // complete button tint color
