@@ -16,6 +16,7 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	
 	private var resultsController: UITableViewController!
 	private var searchController: PLSearchController!
+	var containerView = UIView()
 	
 	var tableView = UITableView()
 	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
@@ -37,7 +38,6 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		super.viewDidLoad()
 	
 		configureSearchController()
-//		self.definesPresentationContext = true
 		self.extendedLayoutIncludesOpaqueBars = true
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(PLFriendsSearchViewController.searchButton(_:)))
@@ -49,12 +49,15 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 		
 		tableView.delegate = self
 		tableView.dataSource = self
+		containerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: view.bounds.height))
+		containerView.backgroundColor = .whiteColor()
+		tableView.backgroundView = containerView
 		
 		view.addSubview(tableView)
 		view.addSubview(spinner)
 		
 		spinner.center = view.center
-		spinner.transform = CGAffineTransformMakeScale(2, 2)
+		spinner.color = .grayColor()
 		loadDatasource()
 	}
 	
@@ -79,6 +82,14 @@ class PLFriendsSearchViewController: PLViewController, UITableViewDelegate, UITa
 	override func viewDidLayoutSubviews() {
 		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
 		resultsController.tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 49)
+	}
+	
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		if scrollView.contentOffset.y < -20 {
+			navigationController?.navigationBar.addBottomBorderWithColor(.miracleColor(), width: 0.5)
+		} else {
+			navigationController?.navigationBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
+		}
 	}
 	
 	func loadDatasource() {

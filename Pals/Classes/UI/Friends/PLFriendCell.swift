@@ -47,6 +47,10 @@ class PLFriendCell: UITableViewCell{
 		}
 	}
 	
+	override func awakeFromNib() {
+		selectionStyle = UITableViewCellSelectionStyle.None
+	}
+	
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImage.image = nil

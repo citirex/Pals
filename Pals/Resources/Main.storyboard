@@ -121,7 +121,7 @@
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-fq-ZBU">
-                                                <rect key="frame" x="103" y="50" width="169" height="169"/>
+                                                <rect key="frame" x="104" y="50" width="167" height="167"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="0mE-fq-ZBU" secondAttribute="height" multiplier="1:1" id="Bq9-kv-qjF"/>
                                                 </constraints>
@@ -129,11 +129,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="width" secondItem="lxr-Px-fkn" secondAttribute="width" multiplier="0.45" id="2i4-QZ-9Di"/>
                                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="centerX" secondItem="0mE-fq-ZBU" secondAttribute="centerX" id="UfU-fz-yyh"/>
                                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="top" secondItem="lxr-Px-fkn" secondAttribute="top" id="W6X-Fc-WcM"/>
                                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="leading" secondItem="lxr-Px-fkn" secondAttribute="leading" id="YCP-Xg-lew"/>
                                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="top" secondItem="lxr-Px-fkn" secondAttribute="top" constant="50" id="YCW-fc-CHs"/>
+                                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="height" secondItem="lxr-Px-fkn" secondAttribute="height" multiplier="0.25" id="cBI-4x-4NM"/>
                                             <constraint firstAttribute="trailing" secondItem="xXN-Bq-AeA" secondAttribute="trailing" id="iYj-qm-MHU"/>
                                             <constraint firstAttribute="bottom" secondItem="xXN-Bq-AeA" secondAttribute="bottom" id="pXg-FW-Aft"/>
                                         </constraints>

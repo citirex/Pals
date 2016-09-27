@@ -10,10 +10,11 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 	
 	private var resultsController: UITableViewController!
 	private var searchController: PLSearchController!
+	var containerView = UIView()
 	
 
 	var tableView = UITableView()
-	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     let datasource = PLFriendsDatasource(userId: PLFacade.profile!.id)
 
     private var selectedFriend: PLUser!
@@ -36,12 +37,15 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 		
 		tableView.delegate = self
 		tableView.dataSource = self
+		containerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: view.bounds.height))
+		containerView.backgroundColor = .whiteColor()
+		tableView.backgroundView = containerView
 		
 		view.addSubview(tableView)
 		view.addSubview(spinner)
 
 		spinner.center = view.center
-		spinner.transform = CGAffineTransformMakeScale(2, 2)
+		spinner.color = .grayColor()
         loadDatasource()
 	}
 	
@@ -56,7 +60,15 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 		tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
 		resultsController.tableView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 49)
 	}
-    
+	
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		if scrollView.contentOffset.y < -20 {
+		navigationController?.navigationBar.addBottomBorderWithColor(.miracleColor(), width: 0.5)
+		} else {
+		navigationController?.navigationBar.addBottomBorderWithColor(.lightGrayColor(), width: 0.5)
+		}
+	}
+	
     func loadDatasource() {
 		self.spinner.startAnimating()
         datasource.load {[unowned self] (page, error) in
@@ -133,7 +145,6 @@ class PLFriendsViewController: PLViewController, UITableViewDataSource, UISearch
 		cell.accessoryType = .DisclosureIndicator
 		
 		return cell
-		
 	}
 	
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
