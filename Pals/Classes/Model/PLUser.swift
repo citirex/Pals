@@ -47,7 +47,7 @@ class PLUser: PLUniqueObject, PLCellRepresentable {
     }
     
     var userData: PLUserData {
-        return PLUserData(id: id, name: name, email: email, phone: "", picture: picture)
+        return PLUserData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture)
     }
     
 }

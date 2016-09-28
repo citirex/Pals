@@ -21,29 +21,25 @@ class PLPlaceProfileViewController: PLViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         reloadLayout()
         setupCollectionView()
         setupBackBarButtonItem()
     }
 
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.setNavigationBarTransparent(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         navigationController?.navigationBar.barStyle = .Default
         navigationController?.setNavigationBarTransparent(false)
     }
     
     
-    func setupBackBarButtonItem() {
+    private func setupBackBarButtonItem() {
         let backBarButtonItem = PLBackBarButtonItem()
         backBarButtonItem.didTappedBackButton = { self.navigationController?.popViewControllerAnimated(true) }
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
@@ -86,7 +82,7 @@ class PLPlaceProfileViewController: PLViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowOrder" {
+        if segue.identifier == "OrderSegue" {
             let orderViewController = segue.destinationViewController as! PLOrderViewController
             orderViewController.order.place = place
         }

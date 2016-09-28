@@ -8,7 +8,7 @@
 
 struct PLUserData {
     
-    var id: UInt64 
+    var id: UInt64
     var name: String
     var email: String
     var phone: String

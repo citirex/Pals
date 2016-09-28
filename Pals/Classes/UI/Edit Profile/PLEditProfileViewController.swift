@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Photos
+import MobileCoreServices
 
 class PLEditProfileViewController: PLViewController {
 
@@ -16,45 +18,62 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var addProfileImageButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
 
-    private let imagePicker = UIImagePickerController()
-    private var isEditing = false { didSet { updateUI() } }
+    private lazy var imagePicker: UIImagePickerController! = {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        return imagePicker
+    }()
     
-    var userData: PLUserData!
+    private var userData: PLUserData!
+    private var isEditing = false {
+        didSet { updateUI() }
+    }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        imagePicker.delegate = self
-        
-        userData = PLFacade.profile?.userData
-        usernameTextField.text = userData.name
-        phoneNumberTextField.text = userData.phone
-        userProfileImageView.setImageWithURL(userData.picture)
-        
-        adjustFontSize()
-    
-        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
-        view.addGestureRecognizer(dismissTap)
+        setup()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:))))
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.navigationBar.barStyle = .Black
         navigationController?.setNavigationBarTransparent(true)
         navigationController?.navigationBar.tintColor = .whiteColor()
     }
     
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         navigationController?.setNavigationBarTransparent(false)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        userProfileImageView.rounded = true
+        signUpButton.rounded = true
+    }
+    
+    func dismissKeyboard(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setup() {
+        userData = PLFacade.profile?.userData
+        usernameTextField.text = userData!.name
+        phoneNumberTextField.text = userData!.phone
+        userProfileImageView.setImageWithURL(userData!.picture)
+        adjustFontSize()
+    }
+    
+    private func adjustFontSize() {
+        signUpButton.titleLabel?.font = .customFontOfSize(22)
+        usernameTextField.font = .customFontOfSize(15)
+        phoneNumberTextField.font = .customFontOfSize(15)
+    }
     
     // MARK: - Update User Data
     
@@ -62,48 +81,11 @@ class PLEditProfileViewController: PLViewController {
         userData.name = usernameTextField.text!
         userData.email = phoneNumberTextField.text!
         userData.phone = phoneNumberTextField.text!
-        //userData.picture = userProfileImageView.image
-    }
-
-    // MARK: - Actions
-
-    @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
-        isEditing = !isEditing
-        if isEditing { usernameTextField.becomeFirstResponder() }
-        else { updateUserData() }
+//        userData.picture = userProfileImageView.image
+//        PLFacade.updateUserData(userData) { error in }
     }
     
-    
-    @IBAction func signOutButtonTapped(sender: UIButton) {
-        let alertController = UIAlertController(title: "You're signing out!", message: "Are you sure?", preferredStyle: .Alert)
-        
-        let cancelAction = UIAlertAction(title: "No", style: .Cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        let OKAction = UIAlertAction(title: "Yes", style: .Default) { action in
-            let loginViewController = UIStoryboard.loginViewController()
-            self.presentViewController(loginViewController!, animated: true, completion: nil)
-        }
-        alertController.addAction(OKAction)
-        presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func loadImageButtonTapped(sender: UIButton) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
-        imagePicker.navigationBar.tintColor = .crayonPurple()
-        imagePicker.modalPresentationStyle = .OverCurrentContext
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
-
-    func dismissKeyboard(sender: AnyObject) {
-        view.endEditing(true)
-    }
-    
-    
-    // MARK: - update UI
+    // MARK: - Update UI
     
     private func updateUI() {
         if isEditing {
@@ -119,18 +101,103 @@ class PLEditProfileViewController: PLViewController {
         }
     }
     
-    private func adjustFontSize() {
-        signUpButton.titleLabel?.font = .customFontOfSize(22)
-        usernameTextField.font = .customFontOfSize(15)
-        phoneNumberTextField.font = .customFontOfSize(15)
+    private func showSettingsAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Settings", style: .Default, handler: { action in
+            UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        present(alert, animated: true)
     }
     
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    private func photoFromSourceType(sourceType: UIImagePickerControllerSourceType) {
+        guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
+        imagePicker.sourceType = sourceType
+        imagePicker.allowsEditing = false
+        
+        switch sourceType {
+        case .PhotoLibrary:
+            imagePicker.navigationBar.tintColor = .crayonPurple()
+            imagePicker.modalPresentationStyle = .OverCurrentContext
+        case .Camera:
+            imagePicker.cameraDevice = .Front
+            imagePicker.cameraCaptureMode = .Photo
+            imagePicker.modalPresentationStyle = .FullScreen
+        default:
+            break
+        }
+        present(imagePicker, animated: true)
+    }
 
-        userProfileImageView.rounded = true
-        signUpButton.rounded = true
+    // MARK: - Actions
+
+    @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
+        isEditing = !isEditing
+        guard isEditing else { return updateUserData() }
+        usernameTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func showSignOutAlert(sender: UIButton) {
+        let alert = UIAlertController(title: "You're signing out!", message: "Are you sure?", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .Default) { action in
+            let loginViewController = UIStoryboard.loginViewController()
+            self.present(loginViewController!, animated: true)
+            })
+        present(alert, animated: true)
+    }
+    
+    @IBAction func showActionSheet(sender: UIButton) {
+        dismissKeyboard(sender)
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
+        optionMenu.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { alert in
+            self.photoLibraryPermission()
+        }))
+        optionMenu.addAction(UIAlertAction(title: "Take a photo", style: .Default, handler: { alert in
+            self.cameraPermission()
+        }))
+        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        present(optionMenu, animated: true)
+    }
+
+    // MARK: - Photo library permission
+    
+    func photoLibraryPermission() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+        case .Authorized: fallthrough
+        case .Denied, .Restricted: fallthrough
+        case .NotDetermined:
+            PHPhotoLibrary.requestAuthorization() { status in
+                switch status {
+                case .Authorized:
+                    dispatch_async(dispatch_get_main_queue(), { self.photoFromSourceType(.PhotoLibrary) })
+                case .Denied, .Restricted:
+                    dispatch_async(dispatch_get_main_queue(), { self.showSettingsAlert("Access has been denied.",
+                        message: "Using Photo Library is disabled for this app. Enable it in Settings->Privacy") })
+                case .NotDetermined: break
+                }
+            }
+        }
+    }
+ 
+    // MARK: - Camera permission
+
+    func cameraPermission() {
+        let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        switch status {
+        case .Authorized: fallthrough
+        case .Denied, .Restricted: fallthrough
+        case .NotDetermined:
+            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { success in
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), { self.photoFromSourceType(.Camera) })
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), { self.showSettingsAlert("Access has been denied.",
+                        message: "Using Camera is disabled for this app. Enable it in Settings->Privacy") })
+                }
+            })
+        }
     }
 
 }
@@ -147,20 +214,18 @@ extension PLEditProfileViewController: UITextFieldDelegate {
 
 }
 
-
 // MARK: - UIImagePickerControllerDelegate Methods
 
 extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            userProfileImageView.image = imagePicked
-        }
-        dismissViewControllerAnimated(true, completion: nil)
+        guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        userProfileImageView.image = imagePicked
+        dismiss(true)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(true)
     }
     
 }
