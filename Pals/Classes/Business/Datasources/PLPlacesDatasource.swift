@@ -34,14 +34,6 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
         }
     }
     
-    func filter(text: String, completion: () -> ()) {
-        let criteria = { (place: PLPlace) -> Bool in
-            let nameMatch = place.name.lowercaseString.containsString(text.lowercaseString)
-            return nameMatch
-        }
-        super.filter(criteria, completion: completion)
-    }
-    
     override init(url: String, params: PLURLParams?, offsetById: Bool) {
         super.init(url: url, params: params, offsetById: offsetById)
     }

@@ -12,7 +12,7 @@ enum DrinkType: Int {
     case Strong
 }
 
-class PLDrink : PLUniqueObject, PLCellRepresentable {
+class PLDrink : PLUniqueObject, PLCellRepresentable, PLFilterable {
     
     var name: String
     var price: Float
@@ -41,6 +41,8 @@ class PLDrink : PLUniqueObject, PLCellRepresentable {
         dic.append(super.serialize())
         return dic
     }
+    
+    static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
     var cellData: PLDrinkCellData {
         return PLDrinkCellData(drinkId: id, name: name, price: price, type: type)

@@ -20,4 +20,5 @@ class PLInvitableUser: PLUser {
         self.invited = invited
         super.init(jsonDic: jsonDic)
     }
+
 }

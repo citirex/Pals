@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-class PLPlace : PLUniqueObject, PLCellRepresentable {
+class PLPlace : PLUniqueObject, PLCellRepresentable, PLFilterable {
     let name: String
     let picture: NSURL
     var musicGengres = ""
@@ -45,6 +45,13 @@ class PLPlace : PLUniqueObject, PLCellRepresentable {
             self.closeTime = closeTime.convertTimeTo12HoursFormat()
         }
         super.init(jsonDic: jsonDic)
+    }
+    
+    static func filter(objc: AnyObject, text: String) -> Bool {
+        if let place = objc as? PLPlace {
+            return place.name.lowercaseString.containsString(text.lowercaseString)
+        }
+        return false
     }
     
     var cellData: PLPlaceCellData {

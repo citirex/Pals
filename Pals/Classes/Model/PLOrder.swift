@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLOrder: PLUniqueObject, PLCellRepresentable {
+class PLOrder: PLUniqueObject, PLCellRepresentable, PLFilterable {
     let QRcode: String
     let accessCode: String
     let user: PLUser
@@ -73,6 +73,8 @@ class PLOrder: PLUniqueObject, PLCellRepresentable {
     override func serialize() -> [String : AnyObject] {
         return [:]
     }
+    
+    static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
     var cellData: PLOrderCellData {
         return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, QRcode: QRcode, accessCode: accessCode)

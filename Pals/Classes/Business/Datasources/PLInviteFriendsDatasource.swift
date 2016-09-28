@@ -22,5 +22,6 @@ class PLInviteFriendsDatasource : PLDatasource<PLInvitableUser> {
     override func fakeFeedFilenameKey() -> String {
         return PLKeys.invitefriends.string
     }
+    
 }
 

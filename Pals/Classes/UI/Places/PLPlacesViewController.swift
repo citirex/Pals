@@ -182,19 +182,14 @@ extension PLPlacesViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         places.searching = searchController.active
-        let filter = searchController.searchBar.text!
-        if filter.isEmpty { places.searching = false }
+        let text = searchController.searchBar.text!
+        if text.isEmpty { places.searching = false }
         else {
             activityIndicator.startAnimating()
-            places.filter(filter, completion: { [unowned self] in
+            places.filter(text, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
             })
         }
     }
 }
-
-
-
-
-

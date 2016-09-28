@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLUser: PLUniqueObject, PLCellRepresentable {
+class PLUser: PLUniqueObject, PLCellRepresentable, PLFilterable {
     var name: String
     var email: String
     var picture: NSURL
@@ -37,6 +37,13 @@ class PLUser: PLUniqueObject, PLCellRepresentable {
         dic[PLKeys.balance.string] = String(balance)
         dic.append(super.serialize())
         return dic
+    }
+    
+    static func filter(objc: AnyObject, text: String) -> Bool {
+        if let user = objc as? PLUser {
+            return user.name.lowercaseString.containsString(text.lowercaseString)
+        }
+        return false
     }
     
     var cellData: PLFriendCellData {

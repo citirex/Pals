@@ -118,21 +118,15 @@ extension PLFriendsSearchViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         datasource.searching = searchController.active
-        let filter = searchController.searchBar.text!
-        if filter.isEmpty {
+        let text = searchController.searchBar.text!
+        if text.isEmpty {
             datasource.searching = false
         } else {
             spinner.startAnimating()
-            
-            datasource.filter({ (user) -> Bool in
-                let tmp: NSString = user.name
-                let range = tmp.rangeOfString(filter, options: NSStringCompareOptions.CaseInsensitiveSearch)
-                return range.location != NSNotFound
-            }) { [unowned self] in
+            datasource.filter(text, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()
                 self.spinner.stopAnimating()
-            }
-            
+            })
         }
     }
 }

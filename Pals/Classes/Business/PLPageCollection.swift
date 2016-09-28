@@ -84,7 +84,7 @@ struct PLPageCollectionPreset {
     
 }
 
-class PLPageCollection<T:PLUniqueObject> {
+class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
     weak var delegate: PLPageCollectionDelegate?
     var preset: PLPageCollectionPreset
     private var _objects = [T]()
@@ -135,14 +135,15 @@ class PLPageCollection<T:PLUniqueObject> {
         return false
     }
     
-    func filter(criteria: (object: T) -> Bool, completion: ()->()) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { 
+    func filter(text: String, completion: ()->()) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             self.filtered.removeAll()
             let newFiltered = self._objects.filter { (object) -> Bool in
-                return criteria(object: object)
+                let result = T.filter(object, text: text)
+                return result
             }
             self.filtered.appendContentsOf(newFiltered)
-            dispatch_async(dispatch_get_main_queue(), { 
+            dispatch_async(dispatch_get_main_queue(), {
                 completion()
             })
         }
@@ -247,7 +248,7 @@ class PLPageCollection<T:PLUniqueObject> {
     }
 }
 
-class PLPalsPageCollection<T: PLUniqueObject>: PLPageCollection<T> {
+class PLPalsPageCollection<T: PLUniqueObject where T : PLFilterable> : PLPageCollection<T> {
     convenience init(url: String) {
         self.init(url: url, offsetById: true)
     }

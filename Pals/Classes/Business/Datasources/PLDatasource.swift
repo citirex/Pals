@@ -9,7 +9,7 @@
 typealias PLDatasourceLoadCompletion = (objects: [AnyObject], error: NSError?) -> ()
 typealias PLDatasourceIndicesChangeCompletion = (indices: [NSIndexPath], error: NSError?) -> ()
 
-class PLDatasource<T: PLUniqueObject> {
+class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
     let collection: PLPalsPageCollection<T>
     var completion: PLDatasourceLoadCompletion?
     var indicesCompletion: PLDatasourceIndicesChangeCompletion?
@@ -40,8 +40,8 @@ class PLDatasource<T: PLUniqueObject> {
         collection.load()
     }
     
-    func filter(criteria: (object: T) -> Bool, completion: ()->()) {
-        collection.filter(criteria, completion: completion)
+    func filter(text: String, completion: ()->()) {
+        collection.filter(text, completion: completion)
     }
     
     func shouldLoadNextPage(indexPath: NSIndexPath) -> Bool {

@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLCover: PLUniqueObject, PLCellRepresentable {
+class PLCover: PLUniqueObject, PLCellRepresentable, PLFilterable {
     
     var name: String = ""
     var price: Float = 0
@@ -30,6 +30,8 @@ class PLCover: PLUniqueObject, PLCellRepresentable {
         dic.append(super.serialize())
         return dic
     }
+    
+    static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
     var cellData: PLCoverCellData {
         return PLCoverCellData(coverID: id, name: name, price: price)

@@ -23,6 +23,10 @@ class PLUniqueObject: PLSerializable {
     }
 }
 
+protocol PLFilterable {
+    static func filter(objc: AnyObject, text: String) -> Bool
+}
+
 protocol PLSerializable {
     init?(jsonDic: [String:AnyObject])
     func serialize() -> [String : AnyObject]
