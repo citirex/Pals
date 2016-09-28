@@ -16,8 +16,8 @@ class PLFriendsViewController: PLFriendBaseViewController {
     
     override func loadData() {
         self.spinner.startAnimating()
-        datasource.load {[unowned self] (page, error) in
-            self.didLoadPage(page, error: error, count: self.datasource.count)
+        datasource.loadPage {[unowned self] (indices, error) in
+            self.didLoadPage(indices, error: error)
             self.spinner.stopAnimating()
         }
     }

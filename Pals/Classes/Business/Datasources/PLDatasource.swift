@@ -7,10 +7,12 @@
 //
 
 typealias PLDatasourceLoadCompletion = (objects: [AnyObject], error: NSError?) -> ()
+typealias PLDatasourceIndicesChangeCompletion = (indices: [NSIndexPath], error: NSError?) -> ()
 
 class PLDatasource<T: PLUniqueObject> {
     let collection: PLPalsPageCollection<T>
     var completion: PLDatasourceLoadCompletion?
+    var indicesCompletion: PLDatasourceIndicesChangeCompletion?
     
     convenience init(url: String, offsetById: Bool) {
         self.init(url: url, params: nil, offsetById: offsetById)
@@ -30,6 +32,11 @@ class PLDatasource<T: PLUniqueObject> {
     //MARK: Interface
     func load(completion: PLDatasourceLoadCompletion) {
         self.completion = completion
+        collection.load()
+    }
+    
+    func loadPage(completion: PLDatasourceIndicesChangeCompletion) {
+        self.indicesCompletion = completion
         collection.load()
     }
     
@@ -65,6 +72,10 @@ extension PLDatasource : PLPageCollectionDelegate {
         completion?(objects: objects, error: nil)
     }
     
+    func pageCollectionDidChange(indexPaths: [NSIndexPath]) {
+        indicesCompletion?(indices: indexPaths, error: nil)
+    }
+    
     func pageCollectionDidFail(error: NSError) {
         if PLFacade.instance.settingsManager.useFakeFeeds {
             let fakeFeedName = fakeFeedNameOnError(error)
@@ -78,14 +89,18 @@ extension PLDatasource : PLPageCollectionDelegate {
                 }
                 let response = self.collection.deserialize(dic)
                 if response.1 == nil {
-                    self.collection.onPageLoad(response.0)
-                    self.completion!(objects:response.0, error: nil)
+                    let objects = response.0
+                    self.collection.onPageLoad(objects)
+                    self.completion?(objects:response.0, error: nil)
+                    self.indicesCompletion?(indices: self.collection.findLastIndices(objects.count), error: nil)
                 } else {
-                    self.completion!(objects: [T](), error: error)
+                    self.completion?(objects: [T](), error: error)
+                    self.indicesCompletion?(indices: [NSIndexPath](), error: error)
                 }
             }
         } else {
             completion?(objects: [AnyObject](), error: error)
+            indicesCompletion?(indices: [NSIndexPath](), error: error)
         }
     }
 }

@@ -10,6 +10,7 @@ import AFNetworking
 
 protocol PLPageCollectionDelegate : class {
     func pageCollectionDidLoadPage(objects: [AnyObject])
+    func pageCollectionDidChange(indexPaths: [NSIndexPath])
     func pageCollectionDidFail(error: NSError)
 }
 
@@ -154,9 +155,21 @@ class PLPageCollection<T:PLUniqueObject> {
                     self.delegate?.pageCollectionDidFail(error!)
                 } else {
                     self.delegate?.pageCollectionDidLoadPage(objects)
+                    let indices = self.findLastIndices(objects.count)
+                    self.delegate?.pageCollectionDidChange(indices)
                 }
             })
         }
+    }
+    
+    func findLastIndices(lastCount: Int) -> [NSIndexPath] {
+        var indexPaths = [NSIndexPath]()
+        if lastCount > 0 {
+            for i in count - lastCount..<count {
+                indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+            }
+        }
+        return indexPaths
     }
     
     func deserialize(page: AnyObject) -> ([T],NSError?) {

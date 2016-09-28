@@ -44,18 +44,11 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 	
     func loadData() {}
     
-    func didLoadPage(friends: [AnyObject], error: NSError?, count: Int) {
+    func didLoadPage(indices: [NSIndexPath], error: NSError?) {
         if error == nil {
-            let lastLoadedCount = friends.count
-            if lastLoadedCount > 0 {
-                var indexPaths = [NSIndexPath]()
-                for i in count - lastLoadedCount..<count {
-                    indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
-                }
-                self.tableView.beginUpdates()
-                self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
-                self.tableView.endUpdates()
-            }
+            self.tableView.beginUpdates()
+            self.tableView.insertRowsAtIndexPaths(indices, withRowAnimation: .Bottom)
+            self.tableView.endUpdates()
         } else {
             PLShowAlert("Error!", message: "Cannot download your friends.")
         }
