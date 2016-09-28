@@ -40,6 +40,15 @@ class PLPlacesViewController: PLViewController {
     
  
     private func loadPlaces() {
+//        activityIndicator.startAnimating()
+//        places.loadPage { indices, error in
+//            self.activityIndicator.stopAnimating()
+//            guard error == nil else { return PLShowErrorAlert(error: error!) }
+//            self.tableView?.beginUpdates()
+//            self.tableView?.insertRowsAtIndexPaths(indices, withRowAnimation: .Bottom)
+//            self.tableView?.endUpdates()
+//        }
+        
         activityIndicator.startAnimating()
         places.load { places, error in
             if error == nil {
@@ -47,8 +56,8 @@ class PLPlacesViewController: PLViewController {
                 let lastLoadedCount = places.count
                 if lastLoadedCount > 0 {
                     var indexPaths = [NSIndexPath]()
-                    for i in count - lastLoadedCount..<count {
-                        indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+                    for row in count - lastLoadedCount..<count {
+                        indexPaths.append(NSIndexPath(forRow: row, inSection: 0))
                     }
                     self.tableView?.beginUpdates()
                     self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)

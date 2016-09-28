@@ -163,13 +163,13 @@ class PLEditProfileViewController: PLViewController {
     // MARK: - Photo library permission
     
     func photoLibraryPermission() {
-        PHPhotoLibrary.requestAuthorization { [weak self] status in
+        PHPhotoLibrary.requestAuthorization { [unowned self] status in
             dispatch_async(dispatch_get_main_queue(), { 
                 switch status {
                 case .Authorized:
-                    self!.photoFromSourceType(.PhotoLibrary)
+                    self.photoFromSourceType(.PhotoLibrary)
                 default:
-                    self!.showSettingsAlert("",
+                    self.showSettingsAlert("",
                         message: "Using Photo Library is disabled for this app. Enable it in Settings->Privacy")
                 }
             })
@@ -179,12 +179,12 @@ class PLEditProfileViewController: PLViewController {
     // MARK: - Camera permission
 
     func cameraPermission() {
-        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { [weak self] granted in
+        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { [unowned self] granted in
             dispatch_async(dispatch_get_main_queue(), {
                 if granted {
-                    self!.photoFromSourceType(.Camera)
+                    self.photoFromSourceType(.Camera)
                 } else {
-                    self!.showSettingsAlert("",
+                    self.showSettingsAlert("",
                         message: "Using Camera is disabled for this app. Enable it in Settings->Privacy")
                 }
             })

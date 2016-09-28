@@ -17,6 +17,7 @@ enum PLKeys : String {
     case balance
     case user
     case user_id
+    case info
     case response
     case friends
     case invited
@@ -30,6 +31,7 @@ enum PLKeys : String {
     case genres
     case address
     case phone
+    case date
     case location
     case close_time
     case events

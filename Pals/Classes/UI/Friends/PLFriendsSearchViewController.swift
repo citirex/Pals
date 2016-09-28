@@ -22,7 +22,7 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.extendedLayoutIncludesOpaqueBars = true
+	self.extendedLayoutIncludesOpaqueBars = true
         searchController.searchResultsUpdater = self
         tableView.dataSource = self
         resultsController.tableView.dataSource = self

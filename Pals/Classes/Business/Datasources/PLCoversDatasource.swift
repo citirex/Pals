@@ -9,6 +9,7 @@
 class PLCoversDatasource: PLDatasource<PLCover> {
     var placeId: UInt64? {
         didSet {
+            collection.clean()
             if let id = placeId {
                 var params = PLURLParams()
                 params[PLKeys.place_id.string] = String(id)

@@ -36,6 +36,7 @@ class PLOrderHistoryViewController: UIViewController {
     private func loadOrders() {
         activityIndicator.startAnimating()
         orders.load { objects, error in
+            self.activityIndicator.stopAnimating()
             guard error == nil else { return }
             let orders = objects as! [PLOrder]
             var indexPaths = [NSIndexPath]()
@@ -51,7 +52,6 @@ class PLOrderHistoryViewController: UIViewController {
             self.tableView?.endUpdates()
 
             self.tableView.reloadData()
-            self.activityIndicator.stopAnimating()
         }
     }
     

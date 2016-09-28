@@ -18,12 +18,14 @@ class PLOrderViewController: PLViewController {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var bgImageView: UIImageView!
     
-    let order = PLCheckoutOrder()
+    lazy var order: PLCheckoutOrder = {
+        let ord = PLCheckoutOrder()
+        ord.delegate = self
+       return ord
+    }()
     
     private var drinksOffset = CGPointZero
     private var coversOffset = CGPointZero
-    
-    private var spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     
     private var drinksDatasource = PLDrinksDatasource()
     private var coversDatasource = PLCoversDatasource()
@@ -73,22 +75,13 @@ class PLOrderViewController: PLViewController {
     private func loadDrinks() {
         spinner.startAnimating()
         spinner.center = view.center
-        drinksDatasource.load {[unowned self] page, error in
+        drinksDatasource.loadPage { (indices, error) in
             if error == nil {
-                let lastLoadedCount = page.count
-                if lastLoadedCount > 0 {
-                    if self.drinksDatasource.pagesLoaded < 2 {
-                        self.collectionView?.reloadData()
-                    } else {
-                        let count = self.drinksDatasource.count
-                        var indexPaths = [NSIndexPath]()
-                        for i in count-lastLoadedCount..<count {
-                            indexPaths.append(NSIndexPath(forItem: i, inSection: 1))
-                        }
-                        self.collectionView?.performBatchUpdates({
-                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
-                            }, completion: nil)
-                    }
+                if self.currentTab == .Drinks {
+                    let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
+                    self.collectionView?.performBatchUpdates({
+                        self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
+                        }, completion: nil)
                 }
             } else {
                 PLShowErrorAlert(error: error!)
@@ -100,22 +93,14 @@ class PLOrderViewController: PLViewController {
     private func loadCovers() {
         spinner.startAnimating()
         spinner.center = view.center
-        coversDatasource.load {[unowned self] page, error in
+        
+        coversDatasource.loadPage { (indices, error) in
             if error == nil {
-                let lastLoadedCount = page.count
-                if lastLoadedCount > 0 {
-                    if self.coversDatasource.pagesLoaded < 2 {
-                        self.collectionView?.reloadData()
-                    } else {
-                        let count = self.coversDatasource.count
-                        var indexPaths = [NSIndexPath]()
-                        for i in count-lastLoadedCount..<count {
-                            indexPaths.append(NSIndexPath(forItem: i, inSection: 1))
-                        }
-                        self.collectionView?.performBatchUpdates({
-                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
-                            }, completion: nil)
-                    }
+                if self.currentTab == .Covers {
+                    let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
+                    self.collectionView?.performBatchUpdates({
+                        self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
+                        }, completion: nil)
                 }
             } else {
                 PLShowErrorAlert(error: error!)
@@ -129,9 +114,7 @@ class PLOrderViewController: PLViewController {
     @objc private func vipButtonPressed(sender: UIBarButtonItem) {
 //        navigationItem.rightBarButtonItem = nil
         order.isVIP = !order.isVIP
-        updateState()
-        updateInfoModel()
-        collectionView.reloadSections(NSIndexSet(index: 1))
+        performTransitionToVipState(order.isVIP)
     }
     
     func restore() {
@@ -140,12 +123,22 @@ class PLOrderViewController: PLViewController {
         animableVipView.restoreToDefaultState()
     }
     
-    func updateState() {
-        updateCheckoutButtonState()
-        (order.isVIP == true) ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
+    func performTransitionToVipState(vip: Bool) {
+        (vip == true) ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
         UIView.animateWithDuration(0.3) {
-            self.bgImageView.image = (self.order.isVIP == true) ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
-            self.navigationController?.navigationBar.barTintColor = (self.order.isVIP == true) ? kPalsGoldColor : UIColor.affairColor()
+            self.bgImageView.image = (vip == true) ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
+            self.navigationController?.navigationBar.barTintColor = (vip == true) ? kPalsGoldColor : UIColor.affairColor()
+        }
+        drinksDatasource.isVIP = order.isVIP
+        coversDatasource.isVIP = order.isVIP
+        if order.place != nil {
+            clean()
+            drinksDatasource.collection.clean()
+            coversDatasource.collection.clean()
+            updateCheckoutButtonState()
+            collectionView.reloadSections(NSIndexSet(index: 1))
+            loadDrinks()
+            loadCovers()
         }
     }
     
@@ -163,18 +156,6 @@ class PLOrderViewController: PLViewController {
 
 //MARK: - Checkout behavior
 extension PLOrderViewController {
-    func updateInfoModel() {
-        clean()
-        if order.isVIP == true {
-            drinksDatasource.isVIP = order.isVIP
-            coversDatasource.isVIP = order.isVIP
-        }
-        drinksDatasource.placeId = order.place!.id
-        coversDatasource.placeId = order.place!.id
-        loadDrinks()
-        loadCovers()
-    }
-    
     func updateCheckoutButtonState() {
         (order.drinks.count > 0 || order.covers.count > 0) ? showCheckoutButton() : hideCheckoutButton()
     }
@@ -257,7 +238,12 @@ extension PLOrderViewController {
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, CheckoutOrderPopupDelegate {
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, CheckoutOrderPopupDelegate, PLCheckoutDelegate {
+    
+    //MARK: Checkout delegate
+    func newPlaceWasSet() {
+        updateDataForSelectedPlace()
+    }
     
     //MARK: Order drinks count
     func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
@@ -296,9 +282,15 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     func didSelectNewPlace(selectedPlace: PLPlace) {
         order.place = selectedPlace
+    }
+    
+    func updateDataForSelectedPlace() {
         clean()
-        updateInfoModel()
-        collectionView.reloadData()
+        if collectionView != nil { collectionView.reloadData() }
+        drinksDatasource.placeId = order.place!.id
+        coversDatasource.placeId = order.place!.id
+        loadDrinks()
+        loadCovers()
     }
     
     //MARK: Order change tab

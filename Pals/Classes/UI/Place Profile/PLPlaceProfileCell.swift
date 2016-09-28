@@ -13,17 +13,23 @@ class PLPlaceProfileCell: UICollectionViewCell {
     static let nibName = "PLPlaceProfileCell"
     static let identifier = "EventCell"
     
-    @IBOutlet weak var eventImageView: UIImageView!
-    @IBOutlet weak var eventDateLabel: UILabel!
-    @IBOutlet weak var eventDescriptionLabel: UILabel!
+    @IBOutlet private var eventImageView: UIImageView!
+    @IBOutlet private var eventDateLabel: UILabel!
+    @IBOutlet private var eventDescriptionLabel: UILabel!
     
     private let offset: CGFloat = 60
+    
+    func setupWithEventInfo(event: PLEventCellData,andDateFormatter dateFormatter: NSDateFormatter) {
+        eventImageView.setImageWithURL(event.picture)
+        eventDateLabel.text =  dateFormatter.stringFromDate(event.date)
+        eventDescriptionLabel.text = event.info
+    }
     
    
     override func drawRect(rect: CGRect) {
         let startingPoint = CGPoint(x: CGRectGetMinX(rect) + offset, y: CGRectGetMaxY(rect))
         let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
-        
+   
         let path = UIBezierPath()
         path.lineWidth = 2
         path.moveToPoint(startingPoint)
@@ -31,5 +37,4 @@ class PLPlaceProfileCell: UICollectionViewCell {
         UIColor.lightGrayColor().setStroke()
         path.stroke()
     }
-
 }

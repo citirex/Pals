@@ -29,7 +29,7 @@ extension UIFont {
     
     
     class func customFontOfSize(size: CGFloat, weight: CGFloat) -> UIFont {
-        return UIFont.customFontOfSize(customFontOfSize(size).pointSize, weight: weight)
+        return systemFontOfSize(customFontOfSize(size).pointSize, weight: weight)
     }
     
 }

@@ -38,7 +38,10 @@ class PLAlertController: UIAlertController {
         alertWindow.windowLevel = mainWindow.windowLevel + 1.0
         alertWindow.makeKeyAndVisible()
         //FIXME: fix warning "Attempting to load the view of a view controller while it is deallocating is not allowed and may result in undefined behavior"
-        alertVC.presentViewController(alert, animated: true, completion: nil)
+        //fix from maks. it works?
+        dispatch_async(dispatch_get_main_queue()) {
+            alertVC.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {

@@ -18,6 +18,7 @@ import AFNetworking
 // https://api.pals.com/covers?place_id=123&page=0&per_page=20
 // https://api.pals.com/drinks?place_id=123&page=0&per_page=20&vip=true
 // https://api.pals.com/covers?place_id=123&page=0&per_page=20&vip=true
+// https://api.pals.com/events?place_id=123&page=0&per_page=20
 
 enum PLAPIService : String {
     case Login
@@ -29,6 +30,7 @@ enum PLAPIService : String {
     case Places
     case Orders
     case Drinks
+    case Events
     case Covers
     var string: String {return rawValue.lowercaseString}
 }

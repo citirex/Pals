@@ -7,6 +7,13 @@
 //
 
 class PLViewController: UIViewController {
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spnr = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        self.view.addSubview(spnr)
+        return spnr
+    }()
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
