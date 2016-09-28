@@ -7,15 +7,10 @@
 //
 
 struct PLUserData {
+    
+    var id: UInt64
     var name: String
     var email: String
     var phone: String
     var picture: NSURL
-    
-    init(user: PLUser) {
-        name = user.name
-        email = user.email
-        phone = ""
-        picture = user.picture
-    }
 }

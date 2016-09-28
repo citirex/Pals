@@ -781,7 +781,7 @@
                                         </constraints>
                                         <state key="normal" image="plus"/>
                                         <connections>
-                                            <action selector="loadImageButtonTapped:" destination="1ZL-hY-XMT" eventType="touchUpInside" id="PxR-zN-c77"/>
+                                            <action selector="showActionSheet:" destination="1ZL-hY-XMT" eventType="touchUpInside" id="zIu-6t-91i"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ApplesRcool" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STb-ek-YKg">
@@ -827,6 +827,7 @@
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(123) 123 - 1234" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-NB-07S">
                                         <rect key="frame" x="0.0" y="57" width="375" height="57"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hiW-NB-07S" secondAttribute="height" multiplier="125:19" id="KTT-vz-KOs"/>
                                         </constraints>
@@ -853,7 +854,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="signOutButtonTapped:" destination="1ZL-hY-XMT" eventType="touchUpInside" id="1GT-bE-dCw"/>
+                                            <action selector="showSignOutAlert:" destination="1ZL-hY-XMT" eventType="touchUpInside" id="B8k-hv-nmM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1503,9 +1504,9 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1Zi-Tu-8Fy"/>
+        <segue reference="ovy-Gk-Wh0"/>
         <segue reference="u5L-qT-vQG"/>
         <segue reference="sXw-Bi-aat"/>
-        <segue reference="ovy-Gk-Wh0"/>
-        <segue reference="mrq-MK-55o"/>
     </inferredMetricsTieBreakers>
 </document>

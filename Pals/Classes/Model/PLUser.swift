@@ -43,4 +43,9 @@ class PLUser: PLUniqueObject, PLCellRepresentable {
         let data = PLFriendCellData(id: id, picture: picture, name: name)
         return data
     }
+    
+    var userData: PLUserData {
+        return PLUserData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture)
+    }
+    
 }

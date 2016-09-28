@@ -23,9 +23,7 @@ class PLPlaceTableViewCell: UITableViewCell {
     @IBOutlet weak var arrowRightImageView: UIImageView!
     
     var currentUrl = ""
-    var placeCellData: PLPlaceCellData? {
-        didSet { setup() }
-    }
+    var placeCellData: PLPlaceCellData? { didSet { setup() } }
     
     
     

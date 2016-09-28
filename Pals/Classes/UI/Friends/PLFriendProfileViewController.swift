@@ -22,13 +22,7 @@ class PLFriendProfileViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = friend?.name
-        backgroundImageView.setImageWithURL(friend!.picture)
-        friendProfileImageView.setImageWithURL(friend!.picture)
-        
-        unfriendButton.titleLabel?.font = .customFontOfSize(12)
-        sendCoverButton.titleLabel?.font = .customFontOfSize(18)
-        sendADrinkButton.titleLabel?.font = .customFontOfSize(19)
+        setup()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,6 +44,15 @@ class PLFriendProfileViewController: PLViewController {
 		navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.affairColor()]
     }
 
+    private func setup() {
+        title = friend?.name
+        backgroundImageView.setImageWithURL(friend!.picture)
+        friendProfileImageView.setImageWithURL(friend!.picture)
+        
+        unfriendButton.titleLabel?.font = .customFontOfSize(12)
+        sendCoverButton.titleLabel?.font = .customFontOfSize(18)
+        sendADrinkButton.titleLabel?.font = .customFontOfSize(19)
+    }
     
     // MARK: - Actions
     
@@ -63,12 +66,12 @@ class PLFriendProfileViewController: PLViewController {
     
     @IBAction func sendCoverButtonTapped(sender: UIButton) {
         sectionOrder = .Covers
-        performSegueWithIdentifier("OrderSegue", sender: self)
+        performSegueWithIdentifier("OrderSegue", sender: sender)
     }
 
     @IBAction func sendADrinkButtonTapped(sender: UIButton) {
         sectionOrder = .Drinks
-        performSegueWithIdentifier("OrderSegue", sender: self)
+        performSegueWithIdentifier("OrderSegue", sender: sender)
     }
  
     

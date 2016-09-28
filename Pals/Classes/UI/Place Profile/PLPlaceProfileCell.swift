@@ -25,9 +25,9 @@ class PLPlaceProfileCell: UICollectionViewCell {
         let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
         
         let path = UIBezierPath()
+        path.lineWidth = 2
         path.moveToPoint(startingPoint)
         path.addLineToPoint(endingPoint)
-        path.lineWidth = 2
         UIColor.lightGrayColor().setStroke()
         path.stroke()
     }

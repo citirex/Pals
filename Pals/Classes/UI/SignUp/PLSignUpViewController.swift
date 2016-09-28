@@ -21,35 +21,45 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     
-    private let imagePicker = UIImagePickerController()
+    private lazy var imagePicker: UIImagePickerController! = {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        return imagePicker
+    }()
+    
     private let offset: CGFloat = 20.0
   
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        imagePicker.delegate = self
-        signInButton.titleLabel?.font = .customFontOfSize(15)
-        signUpButton.titleLabel?.font = .customFontOfSize(15)
-        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
-        view.addGestureRecognizer(dismissTap)
+        setup()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:))))
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         registerKeyboardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        signUpButton.rounded = true
+        userProfileImageView.rounded = true
+    }
     
-    
+    private func setup() {
+        signInButton.titleLabel?.font = .customFontOfSize(15)
+        signUpButton.titleLabel?.font = .customFontOfSize(15)
+    }
+
     // MARK: - Notifications
     
     private func registerKeyboardNotifications() {
@@ -98,9 +108,7 @@ class PLSignUpViewController: PLViewController {
     // MARK: - Actions
     
     @IBAction func loadImageButtonTapped(sender: UIButton) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true)
     }
     
     @IBAction func signUpButtonTapped(sender: UIButton) {
@@ -131,19 +139,12 @@ class PLSignUpViewController: PLViewController {
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
             let navigationController = tabBarController.viewControllers?.first as! UINavigationController
             _ = navigationController.viewControllers.first as! PLProfileViewController
-            self.presentViewController(tabBarController, animated: true, completion: nil)
+            self.present(tabBarController, animated: true)
         }
     }
     
     private func validatePassword(pass: String) -> Bool {
         return pass == confirmPasswordTextField.text!.trim()
-    }
-    
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        signUpButton.rounded = true
-        userProfileImageView.rounded = true
     }
 
 }
@@ -154,14 +155,13 @@ class PLSignUpViewController: PLViewController {
 extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            userProfileImageView.image = imagePicked
-        }
-        dismissViewControllerAnimated(true, completion: nil)
+        guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        userProfileImageView.image = imagePicked
+        dismiss(true)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(true)
     }
     
 }
