@@ -11,24 +11,22 @@ enum PLAddFriendStatus : Int {
 	case Friend
 }
 
-
-class PLFriendsSearchViewController: PLFriendBaseViewController {
+class PLFriendsSearchViewController: PLFriendBaseViewController{
 	
 	var seekerText: String?
+    var datasource = PLDatasourceHelper.createFriendsInviteDatasource()
 	
-	var collectionUsers: [PLUser] {
-		return datasource.collection.objects ?? []
-	}
-	
-	func searchButton(sender: AnyObject) {
-		sendSearchFriendsRequest()
-		tableView.reloadData()
-	}
+//	var collectionUsers: [PLUser] {
+//		return datasource!.collection.objects ?? []
+//	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.extendedLayoutIncludesOpaqueBars = true
-	}
+        searchController.searchResultsUpdater = self
+        tableView.dataSource = self
+        resultsController.tableView.dataSource = self
+    }
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
@@ -58,46 +56,83 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		sendSearchFriendsRequest()
+//		sendSearchFriendsRequest()
 		tableView.reloadData()
 		searchBar.endEditing(true)
 	}
+    
+    func searchButton(sender: AnyObject) {
+//        sendSearchFriendsRequest()
+        tableView.reloadData()
+    }
 	
-	func sendSearchFriendsRequest() -> [PLUser] {
+//	func sendSearchFriendsRequest() -> [PLUser] {
 		
-		let filtered = collectionUsers.filter({ (user) -> Bool in
-			let tmp: NSString = user.name
-			let range = tmp.rangeOfString(searchController.searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
-			return range.location != NSNotFound
-		})
-		
-		print("req with word: \(searchController.searchBar.text!)")
-		
-		return filtered
-	}
+//		let filtered = collectionUsers.filter({ (user) -> Bool in
+//			let tmp: NSString = user.name
+//			let range = tmp.rangeOfString(searchController.searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
+//			return range.location != NSNotFound
+//		})
+//		
+//		print("req with word: \(searchController.searchBar.text!)")
+//		
+//		return filtered
+//	}
 	
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
-		
-		let friend = datasource[indexPath.row]
-		
-		cell.friend = friend
-		cell.accessoryView = cell.addButton
-		
-		return cell
-	}
-	
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-		selectedFriend = datasource[indexPath.row]
-		performSegueWithIdentifier("FriendsProfileSegue", sender: self)
+        let friend = datasource[indexPath.row]
+		performSegueWithIdentifier("FriendsProfileSegue", sender: friend)
 	}
 	
 	// MARK: - Navigation
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
-		friendProfileViewController.friend = selectedFriend
+        if let friend = sender as? PLUser {
+            friendProfileViewController.friend = friend
+        }
 	}
 
+}
+
+// MARK: - UITableViewDataSource
+
+extension PLFriendsSearchViewController : UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return datasource.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
+        let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
+        let friend = datasource[indexPath.row]
+        cell.friend = friend
+        cell.accessoryView = cell.addButton
+        return cell
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension PLFriendsSearchViewController: UISearchResultsUpdating {
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        datasource.searching = searchController.active
+        let filter = searchController.searchBar.text!
+        if filter.isEmpty {
+            datasource.searching = false
+        } else {
+            spinner.startAnimating()
+            
+            datasource.filter({ (user) -> Bool in
+                let tmp: NSString = user.name
+                let range = tmp.rangeOfString(filter, options: NSStringCompareOptions.CaseInsensitiveSearch)
+                return range.location != NSNotFound
+            }) { [unowned self] in
+                self.resultsController.tableView.reloadData()
+                self.spinner.stopAnimating()
+            }
+            
+        }
+    }
 }

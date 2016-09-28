@@ -19,6 +19,8 @@ enum PLKeys : String {
     case user_id
     case response
     case friends
+    case invited
+    case invitefriends
     case places
     case orders
     case order_drinks

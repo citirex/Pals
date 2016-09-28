@@ -16,6 +16,10 @@ class PLDatasource<T: PLUniqueObject> {
         self.init(url: url, params: nil, offsetById: offsetById)
     }
     
+    convenience init(service: PLAPIService, params: PLURLParams) {
+        self.init(url: service.string, params: params, offsetById: false)
+    }
+    
     init(url: String, params: PLURLParams?, offsetById: Bool) {
         collection = PLPalsPageCollection(url: url, offsetById: offsetById)
         collection.preset.params = params

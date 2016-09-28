@@ -1,0 +1,25 @@
+{
+    "friends" : [
+                 {
+                 "id" : 21,
+                 "name" : "Daria Gungtsoung",
+                 "picture" : "https://robohash.org/dariagungtsoung",
+                 "email" : "dariagungtsoung@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 22,
+                 "name" : "Xanthippe Dhudud",
+                 "picture" : "https://robohash.org/xanthippedhudud",
+                 "email" : "xanthippedhudud@gmail.com",
+                 "invited" : 1
+                 },
+                 {
+                 "id" : 23,
+                 "name" : "Juliana Ebaurii",
+                 "picture" : "https://robohash.org/julianaebaurii",
+                 "email" : "julianaebaurii@gmail.com",
+                 "invited" : 0
+                 }
+                 ]
+}

@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
-
 class PLUser: PLUniqueObject, PLCellRepresentable {
     var name: String
     var email: String

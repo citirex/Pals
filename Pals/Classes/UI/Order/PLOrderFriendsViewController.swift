@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
 protocol OrderFriendsDelegate: class {
     func didSelectFriend(selectedFriend: PLUser)
 }

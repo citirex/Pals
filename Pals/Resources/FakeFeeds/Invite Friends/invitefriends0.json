@@ -1,0 +1,144 @@
+{
+    "friends" : [
+                 {
+                 "id" : 1,
+                 "name" : "Adalheidis Qaaxo",
+                 "picture" : "https://robohash.org/adalheidisqaaxo",
+                 "email" : "adalheidisqaaxo@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 2,
+                 "name" : "Tryphaina Gaatsagh",
+                 "picture" : "",
+                 "email" : "tryphainagaatsagh@gmail.com",
+                 "invited" : 1
+                 },
+                 {
+                 "id" : 3,
+                 "name" : "Tacita Isa",
+                 "picture" : "https://robohash.org/tacitaisa",
+                 "email" : "tacitaisa@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 4,
+                 "name" : "Decima Uxzopchu",
+                 "picture" : "https://robohash.org/decimauxzopchu",
+                 "email" : "decimauxzopchu@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 5,
+                 "name" : "Afra Toochoss",
+                 "picture" : "https://robohash.org/afratoochoss",
+                 "email" : "afratoochoss@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 6,
+                 "name" : "Lysandra Eabbeche",
+                 "picture" : "https://robohash.org/lysandraeabbeche",
+                 "email" : "lysandraeabbeche@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 7,
+                 "name" : "Tryphaina Wai",
+                 "picture" : "https://robohash.org/tryphainawai",
+                 "email" : "tryphainawai@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 8,
+                 "name" : "Amanda Bi",
+                 "picture" : "https://robohash.org/amandabi",
+                 "email" : "amandabi@gmail.com",
+                 "invited" : 1
+                 },
+                 {
+                 "id" : 9,
+                 "name" : "Zenais Banglan",
+                 "picture" : "https://robohash.org/zenaisbanglan",
+                 "email" : "zenaisbanglan@gmail.com",
+                 "invited" : 1
+                 },
+                 {
+                 "id" : 10,
+                 "name" : "Violante Yagaah",
+                 "picture" : "https://robohash.org/violanteyagaah",
+                 "email" : "violanteyagaah@gmail.com",
+                 "invited" : 1
+                 },
+                 {
+                 "id" : 11,
+                 "name" : "Quintina Oothoonx",
+                 "picture" : "https://robohash.org/quintinaoothoonx",
+                 "email" : "quintinaoothoonx@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 12,
+                 "name" : "Fabia Tlaz",
+                 "picture" : "https://robohash.org/fabiatlaz",
+                 "email" : "fabiatlaz@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 13,
+                 "name" : "Drusa Ghupbhis",
+                 "picture" : "https://robohash.org/drusaghupbhis",
+                 "email" : "drusaghupbhis@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 14,
+                 "name" : "Irene Zouhu",
+                 "picture" : "https://robohash.org/irenezouhu",
+                 "email" : "irenezouhu@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 15,
+                 "name" : "Guðleif Assah",
+                 "picture" : "https://robohash.org/guleifassah",
+                 "email" : "guðleifassah@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 16,
+                 "name" : "Cleopatra Uqaa",
+                 "picture" : "",
+                 "email" : "cleopatrauqaa@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 17,
+                 "name" : "Viviana Eck",
+                 "picture" : "https://robohash.org/vivianaeck",
+                 "email" : "vivianaeck@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 18,
+                 "name" : "Lutgardis Uptii",
+                 "picture" : "https://robohash.org/lutgardisuptii",
+                 "email" : "lutgardisuptii@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 19,
+                 "name" : "Edda Pongockoy",
+                 "picture" : "https://robohash.org/eddapongockoy",
+                 "email" : "eddapongockoy@gmail.com",
+                 "invited" : 0
+                 },
+                 {
+                 "id" : 20,
+                 "name" : "Rhode Saghayan",
+                 "picture" : "https://robohash.org/rhodesaghayan",
+                 "email" : "rhodesaghayan@gmail.com",
+                 "invited" : 0
+                 }
+                 ]
+}
