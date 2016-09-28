@@ -163,41 +163,32 @@ class PLEditProfileViewController: PLViewController {
     // MARK: - Photo library permission
     
     func photoLibraryPermission() {
-        let status = PHPhotoLibrary.authorizationStatus()
-        switch status {
-        case .Authorized: fallthrough
-        case .Denied, .Restricted: fallthrough
-        case .NotDetermined:
-            PHPhotoLibrary.requestAuthorization() { status in
+        PHPhotoLibrary.requestAuthorization { [weak self] status in
+            dispatch_async(dispatch_get_main_queue(), { 
                 switch status {
                 case .Authorized:
-                    dispatch_async(dispatch_get_main_queue(), { self.photoFromSourceType(.PhotoLibrary) })
-                case .Denied, .Restricted:
-                    dispatch_async(dispatch_get_main_queue(), { self.showSettingsAlert("Access has been denied.",
-                        message: "Using Photo Library is disabled for this app. Enable it in Settings->Privacy") })
-                case .NotDetermined: break
+                    self!.photoFromSourceType(.PhotoLibrary)
+                default:
+                    self!.showSettingsAlert("",
+                        message: "Using Photo Library is disabled for this app. Enable it in Settings->Privacy")
                 }
-            }
+            })
         }
     }
  
     // MARK: - Camera permission
 
     func cameraPermission() {
-        let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
-        switch status {
-        case .Authorized: fallthrough
-        case .Denied, .Restricted: fallthrough
-        case .NotDetermined:
-            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { success in
-                if success {
-                    dispatch_async(dispatch_get_main_queue(), { self.photoFromSourceType(.Camera) })
+        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { [weak self] granted in
+            dispatch_async(dispatch_get_main_queue(), {
+                if granted {
+                    self!.photoFromSourceType(.Camera)
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), { self.showSettingsAlert("Access has been denied.",
-                        message: "Using Camera is disabled for this app. Enable it in Settings->Privacy") })
+                    self!.showSettingsAlert("",
+                        message: "Using Camera is disabled for this app. Enable it in Settings->Privacy")
                 }
             })
-        }
+        })
     }
 
 }
