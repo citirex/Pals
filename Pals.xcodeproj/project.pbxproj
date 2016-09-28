@@ -71,6 +71,12 @@
 		24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */; };
 		24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */; };
 		24DA61171D8BF642007F4973 /* PLCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DA61161D8BF642007F4973 /* PLCover.swift */; };
+		24DDA9311D9A658800FCDBCA /* events0.json in Resources */ = {isa = PBXBuildFile; fileRef = 24DDA92D1D9A658800FCDBCA /* events0.json */; };
+		24DDA9321D9A658800FCDBCA /* events1.json in Resources */ = {isa = PBXBuildFile; fileRef = 24DDA92E1D9A658800FCDBCA /* events1.json */; };
+		24DDA9331D9A658800FCDBCA /* events2.json in Resources */ = {isa = PBXBuildFile; fileRef = 24DDA92F1D9A658800FCDBCA /* events2.json */; };
+		24DDA9341D9A658800FCDBCA /* events3.json in Resources */ = {isa = PBXBuildFile; fileRef = 24DDA9301D9A658800FCDBCA /* events3.json */; };
+		24DDA9361D9A663500FCDBCA /* PLEventsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDA9351D9A663500FCDBCA /* PLEventsDatasource.swift */; };
+		24DDA9381D9AABE600FCDBCA /* PLActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDA9371D9AABE600FCDBCA /* PLActivity.swift */; };
 		24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */; };
 		24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */; };
 		D410F71D1D9A7DA6000E8E06 /* invitefriends0.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71A1D9A7DA6000E8E06 /* invitefriends0.json */; };
@@ -232,6 +238,12 @@
 		24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCoverCell.swift; sourceTree = "<group>"; };
 		24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCoverCell.xib; sourceTree = "<group>"; };
 		24DA61161D8BF642007F4973 /* PLCover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCover.swift; sourceTree = "<group>"; };
+		24DDA92D1D9A658800FCDBCA /* events0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events0.json; sourceTree = "<group>"; };
+		24DDA92E1D9A658800FCDBCA /* events1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events1.json; sourceTree = "<group>"; };
+		24DDA92F1D9A658800FCDBCA /* events2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events2.json; sourceTree = "<group>"; };
+		24DDA9301D9A658800FCDBCA /* events3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events3.json; sourceTree = "<group>"; };
+		24DDA9351D9A663500FCDBCA /* PLEventsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEventsDatasource.swift; sourceTree = "<group>"; };
+		24DDA9371D9AABE600FCDBCA /* PLActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLActivity.swift; sourceTree = "<group>"; };
 		24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderAnimableVipView.swift; sourceTree = "<group>"; };
 		24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderAnimableVipView.xib; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -421,6 +433,7 @@
 				D46D2B861D87583B0058060E /* PLColor.swift */,
 				D46D2B881D875BB10058060E /* PLImage.swift */,
 				E8CD61F01D998CE80022D51F /* PLFont.swift */,
+				24DDA9371D9AABE600FCDBCA /* PLActivity.swift */,
 			);
 			name = Extensions;
 			path = Classes/Extensions;
@@ -599,6 +612,17 @@
 			path = QTCollectionParallaxLayout;
 			sourceTree = "<group>";
 		};
+		24DDA92C1D9A658800FCDBCA /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				24DDA92D1D9A658800FCDBCA /* events0.json */,
+				24DDA92E1D9A658800FCDBCA /* events1.json */,
+				24DDA92F1D9A658800FCDBCA /* events2.json */,
+				24DDA9301D9A658800FCDBCA /* events3.json */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		3031C286B9CA11146B8E1FA5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,6 +696,7 @@
 				D410F7221D9AA4F4000E8E06 /* PLInviteFriendsDatasource.swift */,
 				D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */,
 				D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */,
+				24DDA9351D9A663500FCDBCA /* PLEventsDatasource.swift */,
 				24C20C551D8820C00040F2F5 /* PLDrinksDatasource.swift */,
 				D47B454E1D8FED1B0042EB9A /* PLCoversDatasource.swift */,
 			);
@@ -700,6 +725,7 @@
 		E837C1D71D902CAD0080A074 /* FakeFeeds */ = {
 			isa = PBXGroup;
 			children = (
+				24DDA92C1D9A658800FCDBCA /* Events */,
 				E837C1D81D902CAE0080A074 /* Covers */,
 				E837C1DC1D902CAE0080A074 /* Drinks */,
 				2414F44B1D997249000BA1F5 /* vip_Covers */,
@@ -1032,6 +1058,7 @@
 				2480F91A1D813E730095995F /* config.plist in Resources */,
 				E837C1FA1D902CAE0080A074 /* drinks1.json in Resources */,
 				2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */,
+				24DDA9331D9A658800FCDBCA /* events2.json in Resources */,
 				2414F4581D997249000BA1F5 /* vip_drinks1.json in Resources */,
 				E837C2001D902CAE0080A074 /* friends3.json in Resources */,
 				E837C2081D902CAE0080A074 /* order_drinks3.json in Resources */,
@@ -1053,7 +1080,9 @@
 				2414F4591D997249000BA1F5 /* vip_drinks2.json in Resources */,
 				E837C2021D902CAE0080A074 /* order_covers0.json in Resources */,
 				2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */,
+				24DDA9341D9A658800FCDBCA /* events3.json in Resources */,
 				E837C1F91D902CAE0080A074 /* drinks0.json in Resources */,
+				24DDA9321D9A658800FCDBCA /* events1.json in Resources */,
 				24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */,
 				2480F9001D813E730095995F /* PLOrderDrinkCell.xib in Resources */,
 				E8B53E4E1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib in Resources */,
@@ -1064,6 +1093,7 @@
 				E837C2061D902CAE0080A074 /* order_drinks1.json in Resources */,
 				E837C20D1D902CAE0080A074 /* sendpassword.json in Resources */,
 				2414F4561D997249000BA1F5 /* vip_covers2.json in Resources */,
+				24DDA9311D9A658800FCDBCA /* events0.json in Resources */,
 				E837C20A1D902CAE0080A074 /* places1.json in Resources */,
 				E837C2051D902CAE0080A074 /* order_drinks0.json in Resources */,
 				2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */,
@@ -1163,6 +1193,7 @@
 				D47B45661D903DF80042EB9A /* PLProfileDatasourceContainer.swift in Sources */,
 				E8DA8B8F1D88334F008782E5 /* PLCollectionParalaxLayout.swift in Sources */,
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
+				24DDA9361D9A663500FCDBCA /* PLEventsDatasource.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				E8DA8B921D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
 				04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */,
@@ -1216,6 +1247,7 @@
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
 				E8DA8B841D8832E8008782E5 /* TGLStackedLayout.m in Sources */,
 				E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */,
+				24DDA9381D9AABE600FCDBCA /* PLActivity.swift in Sources */,
 				D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */,
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,

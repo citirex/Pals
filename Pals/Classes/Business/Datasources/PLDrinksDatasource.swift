@@ -10,15 +10,14 @@ class PLDrinksDatasource: PLDatasource<PLDrink> {
     
     var placeId: UInt64? {
         didSet {
+            collection.clean()
             if let id = placeId {
-                collection.clean()
                 var params = PLURLParams()
                 params[PLKeys.place_id.string] = String(id)
                 if isVIP == true {
                     params[PLKeys.is_vip.string] = isVIP
                 }
                 collection.preset.params = params
-
             }
         }
     }

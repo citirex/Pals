@@ -8,14 +8,22 @@
 
 import Foundation
 
+protocol PLCheckoutDelegate: class {
+    func newPlaceWasSet()
+}
+
 class PLCheckoutOrder {
+    
+    weak var delegate: PLCheckoutDelegate?
     
     var QRcode = ""
     var accessCode = ""
     var user: PLUser? = nil
     var place: PLPlace? = nil {
         didSet{
-            clean()
+            if place != nil {
+                delegate?.newPlaceWasSet()
+            }
         }
     }
     var drinks = [UInt64:PLDrinkset]()

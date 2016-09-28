@@ -24,6 +24,9 @@ class PLFriendsViewController: PLFriendBaseViewController {
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+        spinner.activityIndicatorViewStyle = .Gray
+
 		navigationController?.setNavigationBarTransparent(false)
         searchController.searchResultsUpdater = self
         tableView.dataSource = self

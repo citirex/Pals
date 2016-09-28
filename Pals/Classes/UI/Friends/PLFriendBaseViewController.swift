@@ -14,7 +14,6 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 	var selectedFriend: PLUser!
 	
     lazy var tableView = UITableView()
-	lazy var spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
 
     override func viewDidLoad() {
         super.viewDidLoad()

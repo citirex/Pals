@@ -7,6 +7,7 @@
 //
 
 import CSStickyHeaderFlowLayout
+import EventKit
 
 class PLPlaceProfileViewController: PLViewController {
 
@@ -16,7 +17,23 @@ class PLPlaceProfileViewController: PLViewController {
         return collectionView?.collectionViewLayout as? CSStickyHeaderFlowLayout
     }
     
-    var place: PLPlace!
+    private let eventsDatasource = PLEventsDatasource()
+    var place: PLPlace! {
+        didSet {
+            if let newPlace = place {
+                eventsDatasource.placeId = newPlace.id
+                spinner.activityIndicatorViewStyle = .Gray
+                load()
+            }
+        }
+    }
+    
+    lazy var eventDateFormatter: NSDateFormatter = {
+        let dateFormat = NSDateFormatter()
+        dateFormat.timeZone =  NSTimeZone.localTimeZone()
+        dateFormat.dateFormat = "MMMM dd, yyyy"
+       return dateFormat
+    }()
   
 
     override func viewDidLoad() {
@@ -45,6 +62,33 @@ class PLPlaceProfileViewController: PLViewController {
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         negativeSpacer.width = -20
         navigationItem.setLeftBarButtonItems([negativeSpacer, backBarButtonItem], animated: false)
+    }
+    
+    private func load() {
+        spinner.startAnimating()
+        spinner.center = view.center
+        eventsDatasource.load {[unowned self] page, error in
+            if error == nil {
+                let lastLoadedCount = page.count
+                if lastLoadedCount > 0 {
+                    if self.eventsDatasource.pagesLoaded < 2 {
+                        self.collectionView?.reloadData()
+                    } else {
+                        let count = self.eventsDatasource.count
+                        var indexPaths = [NSIndexPath]()
+                        for i in count-lastLoadedCount..<count {
+                            indexPaths.append(NSIndexPath(forItem: i, inSection: 0))
+                        }
+                        self.collectionView?.performBatchUpdates({
+                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
+                            }, completion: nil)
+                    }
+                }
+            } else {
+                PLShowErrorAlert(error: error!)
+            }
+            self.spinner.stopAnimating()
+        }
     }
     
     
@@ -87,7 +131,6 @@ class PLPlaceProfileViewController: PLViewController {
             orderViewController.order.place = place
         }
     }
-
 }
 
 
@@ -96,13 +139,15 @@ class PLPlaceProfileViewController: PLViewController {
 extension PLPlaceProfileViewController: UICollectionViewDataSource {
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return eventsDatasource.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PLPlaceProfileCell.identifier, forIndexPath: indexPath)
             as! PLPlaceProfileCell
-        cell.eventImageView.setImageWithURL(place.picture)
+        let event = eventsDatasource[indexPath.row].cellData
+        cell.setupWithEventInfo(event, andDateFormatter:eventDateFormatter)
+        
         return cell
     }
 }
@@ -136,6 +181,71 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
         }
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let event = eventsDatasource[indexPath.row].cellData
+        let objectsToShare = ["\(place.name) \(eventDateFormatter.stringFromDate(event.date)),\n\(event.info))"]
+        let calendarActivity = PLActivity(title: "To calendar", imageName: "icon_calendar") {
+            
+            let alertView = UIAlertController(title: "Add event to calendar?", message: nil, preferredStyle: .Alert)
+            
+            let buttonYes = UIAlertAction(title: "Yes", style: .Default, handler: { (action) in
+                self.addEventToCalendar(title: self.place.name, description: event.info, startDate: event.date, endDate: event.date.dateByAddingTimeInterval(3600)) { (success, error) in
+                    //load slow need fix maybe
+                    if error == nil && success == true {
+                        self.showAlertWithText("Success", message: "Event added to calendar")
+                    } else {
+                        print(error?.localizedDescription)
+                        self.showAlertWithText("Oops!", message: "Something went wrong")
+                    }
+                }
+            })
+            alertView.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+            alertView.addAction(buttonYes)
+            self.tabBarController?.presentViewController(alertView, animated: true, completion: nil)
+        }
+        
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: [calendarActivity])
+        
+        tabBarController?.presentViewController(activityVC, animated: true, completion: nil)
+    }
+    
+    func showAlertWithText(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tabBarController?.presentViewController(alert, animated: true, completion: {
+                self.performSelector(#selector(self.dismissAlert(_:)), withObject: alert, afterDelay: 0.7)
+            })
+        }
+    }
+    
+    func dismissAlert(alert: UIAlertController) {
+        alert.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func addEventToCalendar(title title: String, description: String?, startDate: NSDate, endDate: NSDate, completion: ((success: Bool, error: NSError?) -> Void)? = nil) {
+        let eventStore = EKEventStore()
+        
+        eventStore.requestAccessToEntityType(.Event, completion: { (granted, error) in
+            if (granted) && (error == nil) {
+                let event = EKEvent(eventStore: eventStore)
+                event.title = title
+                event.startDate = startDate
+                event.endDate = endDate
+                event.notes = description
+                event.calendar = eventStore.defaultCalendarForNewEvents
+                do {
+                    try eventStore.saveEvent(event, span: .ThisEvent)
+                } catch let e as NSError {
+                    completion?(success: false, error: e)
+                    return
+                }
+                completion?(success: true, error: nil)
+            } else {
+                completion?(success: false, error: error)
+            }
+        })
+    }
+    
 
     //TODO: - need make string extension
     
@@ -146,7 +256,12 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             phoneNumber.substringWithRange(phoneNumber.startIndex.advancedBy(7) ... phoneNumber.startIndex.advancedBy(11))
         )
     }
-
+    
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == eventsDatasource.count - 1 {
+            load()
+        }
+    }
 }
 
 

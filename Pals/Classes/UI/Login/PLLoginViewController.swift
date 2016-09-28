@@ -8,7 +8,7 @@
 
 class PLLoginViewController: PLViewController {
 	
-	@IBOutlet weak var spinner: UIActivityIndicatorView!
+	@IBOutlet weak var mySpinner: UIActivityIndicatorView!
 	private var currentTextField: PLTextField!
 
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -42,7 +42,7 @@ class PLLoginViewController: PLViewController {
 		alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
 			let textField = alert.textFields![0] as UITextField
 			if (textField.text?.trim().isValidEmail)! {
-				self.spinner!.startAnimating()
+				self.mySpinner!.startAnimating()
 				PLFacade.sendPassword(textField.text!, completion: { (error) in
 					var message = ""
 					if error == nil {
@@ -51,7 +51,7 @@ class PLLoginViewController: PLViewController {
 						message = (error?.localizedDescription)!
 					}
                     PLShowAlert(message: message)
-					self.spinner?.stopAnimating()
+					self.mySpinner?.stopAnimating()
 				})
 			} else {
                 PLShowAlert(message: "This Email doesn't exist!")
@@ -76,15 +76,15 @@ class PLLoginViewController: PLViewController {
 			PLShowAlert("Login error!", message: "Please enter your password.")
 		} else {
 			self.view.userInteractionEnabled = false
-			spinner!.startAnimating()
+			mySpinner!.startAnimating()
 			PLFacade.login(userName, password: password, completion: { (error) in
 				if error != nil {
 					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
-					self.spinner?.stopAnimating()
+					self.mySpinner?.stopAnimating()
 				} else {
 					self.showMainScreen()
 					self.view.userInteractionEnabled = false
-					self.spinner?.stopAnimating()
+					self.mySpinner?.stopAnimating()
 				}
 			})
 		}
