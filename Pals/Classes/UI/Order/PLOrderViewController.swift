@@ -228,12 +228,24 @@ extension PLOrderViewController {
     
     func createNewOrderWithMessage(message: String) {
         order.message = message
-        order.clean()
-        updateCheckoutButtonState()
+        
+        spinner.center = view.center
+        spinner.startAnimating()
+        
+        PLFacade.checkout(order) {[unowned self] (error) in
+            if error == nil {
+                self.order.clean()
+                self.updateCheckoutButtonState()
+                
+                self.collectionView.reloadSections(NSIndexSet(index: 1))
+                self.tabBarController?.incrementCounterNumberOn(.TabProfile)
+                self.tabBarController?.switchTabTo(.TabProfile)
 
-        collectionView.reloadSections(NSIndexSet(index: 1))
-        tabBarController?.incrementCounterNumberOn(.TabProfile)
-        tabBarController?.switchTabTo(.TabProfile)
+            } else {
+                PLShowErrorAlert(error: error!)
+            }
+            self.spinner.stopAnimating()
+        }
     }
 }
 

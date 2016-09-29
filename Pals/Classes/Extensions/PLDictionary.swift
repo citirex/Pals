@@ -39,3 +39,16 @@ extension Dictionary {
     }
     
 }
+
+extension CollectionType {
+    func toDictionary<K, V>(transform:(element: Self.Generator.Element) -> [K: V]) -> [K: V] {
+        var dictionary = [K: V]()
+        self.forEach { e in
+            let dict = transform(element: e)
+            for (key, value) in dict {
+                dictionary[key] = value
+            }
+        }
+        return dictionary
+    }
+}

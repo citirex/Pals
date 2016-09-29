@@ -149,28 +149,37 @@ class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
         }
     }
     
-    func load() {
+    func load(asSections: Bool) {
         if !loading {
             loadNext({ (objects, error) in
                 if error != nil {
                     self.delegate?.pageCollectionDidFail(error!)
                 } else {
                     self.delegate?.pageCollectionDidLoadPage(objects)
-                    let indices = self.findLastIndices(objects.count)
+                    let indices = self.findLastIndices(objects.count, asSections: asSections)
                     self.delegate?.pageCollectionDidChange(indices)
                 }
             })
         }
     }
     
-    func findLastIndices(lastCount: Int) -> [NSIndexPath] {
+    func load() {
+        load(false)
+    }
+    
+    func findLastIndices(lastCount: Int, asSections: Bool) -> [NSIndexPath] {
         var indexPaths = [NSIndexPath]()
         if lastCount > 0 {
             for i in count - lastCount..<count {
-                indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+                let idx = asSections ? (0,i) : (i,0)
+                indexPaths.append(NSIndexPath(forRow: idx.0, inSection: idx.1))
             }
         }
         return indexPaths
+    }
+    
+    func findLastIndices(lastCount: Int) -> [NSIndexPath] {
+        return findLastIndices(lastCount, asSections: false)
     }
     
     func deserialize(page: AnyObject) -> ([T],NSError?) {

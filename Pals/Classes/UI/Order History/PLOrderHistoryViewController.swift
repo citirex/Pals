@@ -13,7 +13,7 @@ class PLOrderHistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var activityIndicator: UIActivityIndicatorView!
-    private let dates = ["Yesterday", "Last Week", "2 Weeks Ago"]
+    private var dates = [String]()
     private lazy var orders: PLOrderDatasource = {
         let orderDatasource = PLOrderDatasource(orderType: .Drinks)
         return orderDatasource
@@ -27,6 +27,9 @@ class PLOrderHistoryViewController: UIViewController {
         setupTableView()
         configureActivityIndicator()
         
+        let customDates = getDates()
+        customDates.forEach { dates.append($0.timeAgoSinceDate()) }
+        
         loadOrders()
     }
     
@@ -35,24 +38,33 @@ class PLOrderHistoryViewController: UIViewController {
     
     private func loadOrders() {
         activityIndicator.startAnimating()
-        orders.load { objects, error in
+        orders.loadPage(true) {[unowned self] (indices, error) in
             self.activityIndicator.stopAnimating()
-            guard error == nil else { return }
-            let orders = objects as! [PLOrder]
-            var indexPaths = [NSIndexPath]()
-            let filterOrders = orders.filter { $0.drinkSets.count > 0 }
-            
-            for section in 0..<filterOrders.count {
-                for row in 0..<filterOrders[section].drinkSets.count {
-                    indexPaths.append(NSIndexPath(forRow: row, inSection: section))
-                }
-            }
             self.tableView?.beginUpdates()
-            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+            
+            let set = NSIndexSet(indexesInRange: NSMakeRange(0, 20))
+            self.tableView.insertSections(set, withRowAnimation: .Bottom)
+//            self.tableView?.insertRowsAtIndexPaths(indices, withRowAnimation: .Bottom)
             self.tableView?.endUpdates()
-
-            self.tableView.reloadData()
         }
+//        orders.load { objects, error in
+//            self.activityIndicator.stopAnimating()
+//            guard error == nil else { return }
+//            let orders = objects as! [PLOrder]
+//            var indexPaths = [NSIndexPath]()
+//            let filterOrders = orders.filter { $0.drinkSets.count > 0 }
+//            
+//            for section in 0..<filterOrders.count {
+//                for row in 0..<filterOrders[section].drinkSets.count {
+//                    indexPaths.append(NSIndexPath(forRow: row, inSection: section))
+//                }
+//            }
+//            self.tableView?.beginUpdates()
+//            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+//            self.tableView?.endUpdates()
+//
+//            self.tableView.reloadData()
+//        }
     }
     
     
@@ -74,6 +86,8 @@ class PLOrderHistoryViewController: UIViewController {
         let sectionHeaderNib = UINib(nibName: PLOrderHistorySectionHeader.nibName, bundle: nil)
         tableView.registerNib(sectionHeaderNib, forCellReuseIdentifier: PLOrderHistorySectionHeader.reuseIdentifier)
     }
+    
+    
     
     // TODO: - needs?
     private func adjustSectionHeightToIPhoneSize() -> CGFloat? {
@@ -99,7 +113,7 @@ class PLOrderHistoryViewController: UIViewController {
 extension PLOrderHistoryViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return dates.count
+        return orders.count
     }
     
     
@@ -132,10 +146,19 @@ extension PLOrderHistoryViewController: UITableViewDelegate {
         let sectionHeader = tableView.dequeueReusableCellWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as! PLOrderHistorySectionHeader
         
         guard orders.count > 0 else { return UIView() }
-        sectionHeader.dateLabel.text = dates[section]
+//        sectionHeader.dateLabel.text = dates[section]
         sectionHeader.orderCellData = orders[section].cellData
         return sectionHeader
     }
     
+}
+
+
+func getDates() -> [NSDate] {
+    return [
+        NSDate(dateString: "2016-09-28"),
+        NSDate(dateString: "2016-09-18"),
+        NSDate(dateString: "2015-07-15")
+    ]
 }
 

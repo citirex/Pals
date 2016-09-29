@@ -32,27 +32,27 @@
               },
               {
               "id":6,
-              "name":"Rogan Svitle 4.5%",
-              "price":12.9,
-              "type":1
+              "name":"Bushmills whiskey",
+              "price":20,
+              "type":2
               },
               {
               "id":7,
-              "name":"Chernigivske 5%",
-              "price":9.50,
-              "type":1
+              "name":"Tyrconnell whiskey",
+              "price":25.3,
+              "type":2
               },
               {
               "id":8,
-              "name":"Vodka Pshenichna 40%",
-              "price":29.0,
+              "name":"Old Monk Rum 42.8%",
+              "price":31.25,
               "type":2
               },
               {
               "id":9,
-              "name":"Portwine 777 12%",
-              "price":18.22,
-              "type":1
+              "name":"Inner Circle Rum",
+              "price":45.7,
+              "type":2
               },
               {
               "id":10,

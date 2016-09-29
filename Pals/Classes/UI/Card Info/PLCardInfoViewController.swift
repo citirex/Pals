@@ -15,36 +15,25 @@ class PLCardInfoViewController: PLViewController {
     @IBOutlet weak var zipCodeTextField: PLTextField!
     @IBOutlet weak var cvvCodeTextField: PLTextField!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
-        view.addGestureRecognizer(dismissTap)
+        hideKeyboardWhenTapped()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarTransparent(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         navigationController?.setNavigationBarTransparent(false)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         creditCardNumberTextField.becomeFirstResponder()
-    }
-
-    
-    func dismissKeyboard(sender: AnyObject) {
-        view.endEditing(true)
     }
     
     

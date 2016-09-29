@@ -25,10 +25,12 @@ enum PLAPIService : String {
     case Logout
     case SignUp
     case SendPassword
+    case Profile
     case Friends
     case InviteFriends
     case Places
     case Orders
+    case Checkout
     case Drinks
     case Events
     case Covers
@@ -51,7 +53,13 @@ protocol PLNetworkManagerInterface {
 
 class PLNetworkSession: AFHTTPSessionManager {
     static let baseUrl = "https://api.pals.com"
-    static let shared = PLNetworkSession.init(baseURL: NSURL(string: baseUrl)!)
+    static let shared = PLNetworkSession(baseURL: NSURL(string: baseUrl)!, sessionConfiguration:
+        { ()-> NSURLSessionConfiguration in
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            config.timeoutIntervalForRequest = 5
+            return config
+        }()
+    )
 }
 
 class PLNetworkManager: PLNetworkManagerInterface {
@@ -77,6 +85,15 @@ class PLNetworkManager: PLNetworkManagerInterface {
     class func get(service: PLAPIService, parameters: [String:AnyObject], completion: PLNetworkRequestCompletion) {
         PLNetworkSession.shared.GET(service.string, parameters: parameters, progress: nil, success: { (task, response) in
             self.handleSuccessCompletion(response, completion: completion)
+        }) { (task, error) in
+            self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
+        }
+    }
+    
+    class func post(service: PLAPIService, parameters: [String : AnyObject], completion: PLNetworkRequestCompletion) {
+        PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
+            }, progress: nil, success: { (task, response) in
+                self.handleSuccessCompletion(response, completion: completion)
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }

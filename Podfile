@@ -9,5 +9,6 @@ pod 'AFNetworking'
 pod 'CSStickyHeaderFlowLayout'
 pod 'SwiftQRCode'
 pod 'GPUImage'
+pod 'Permission'
 
 end
