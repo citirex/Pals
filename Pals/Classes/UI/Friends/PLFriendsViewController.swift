@@ -24,45 +24,45 @@ class PLFriendsViewController: PLFriendBaseViewController {
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-        spinner.activityIndicatorViewStyle = .Gray
-
-		navigationController?.setNavigationBarTransparent(false)
-        searchController.searchResultsUpdater = self
-        tableView.dataSource = self
+        searchController.searchResultsUpdater  = self
+        tableView.dataSource				   = self
         resultsController.tableView.dataSource = self
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		navigationItem.title = "Friends"
-		navigationItem.titleView?.tintColor = .vividViolet()
+		navigationController?.setNavigationBarTransparent(false)
+		navigationItem.title						  = "Friends"
+		navigationItem.titleView?.tintColor			  = .vividViolet()
 		navigationController?.navigationBar.tintColor = .vividViolet()
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
-		navigationController?.navigationBar.addBorder(.Bottom, color: .clearColor(), width: 0.5)
+		super.viewWillDisappear(animated)
+		navigationController?.setNavigationBarTransparent(true)
 	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView.contentOffset.y < -20 {
+			print(scrollView.contentOffset.y)
             navigationController?.navigationBar.addBorder(.Bottom, color: .miracleColor(), width: 0.5)
 		} else {
+			print(scrollView.contentOffset.y)
 		navigationController?.navigationBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
 		}
 	}
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-		performSegueWithIdentifier("FriendSearchSegue", sender: self)
+		searchController.searchBar.endEditing(true)
 	}
 	
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let identifier = segue.identifier else { return }
         switch identifier {
         case "FriendProfileSegue":
-            let friendProfileViewController = segue.destinationViewController as! PLFriendProfileViewController
-            friendProfileViewController.friend = selectedFriend
+            let friendProfileViewController		  = segue.destinationViewController as! PLFriendProfileViewController
+            friendProfileViewController.friend	  = selectedFriend
         case "FriendSearchSegue":
-            let friendSearchViewController = segue.destinationViewController as! PLFriendsSearchViewController
+            let friendSearchViewController		  = segue.destinationViewController as! PLFriendsSearchViewController
             friendSearchViewController.seekerText = searchController.searchBar.text
         default:
             break
@@ -89,8 +89,8 @@ extension PLFriendsViewController : UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
-        let friend = datasource[indexPath.row]
-        cell.friend = friend
+        let friend		   = datasource[indexPath.row]
+        cell.friend		   = friend
         cell.accessoryType = .DisclosureIndicator
         return cell
     }
