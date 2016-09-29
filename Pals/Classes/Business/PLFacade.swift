@@ -31,6 +31,10 @@ class PLFacade : PLFacadeInterface {
         PLFacade.instance._signUp(data, completion: completion)
     }
     
+    class func checkout(order: PLCheckoutOrder, completion: PLErrorCompletion) {
+        PLFacade.instance._checkout(order, completion: completion)
+    }
+    
     class func sendPassword(email: String, completion: PLErrorCompletion) {
         PLFacade.instance._sendPassword(email, completion: completion)
     }
@@ -86,6 +90,26 @@ extension PLFacade._PLFacade {
             })
         })
     }
+    
+    func _checkout(order: PLCheckoutOrder, completion: PLErrorCompletion) {
+        let params = order.serialize()
+        PLNetworkManager.post(PLAPIService.Checkout, parameters: params) { (dic, error) in
+            self.handleUserLogin(error, dic: dic, completion: completion)
+        }
+    }
+    
+//    func _editProfile(profile: PLUser, completion: PLErrorCompletion) {
+//        let params = profile.serialize()
+//        let imageData = UIImagePNGRepresentation(profile.picture)!
+//        let attachment = PLUploadAttachment(name: "profileImage", mimeType: "image/png", data: imageData)
+//        
+////        let imageData = UIImagePNGRepresentation(profile.picture)!
+////        let attachment = PLUploadAttachment(name: "profileImage", mimeType: "image/png", data: imageData)
+////        PLNetworkManager.post(PLAPIService.SignUp, parameters: params, attachment: nil) { (dic, error) in
+////            self.handleUserLogin(error, dic: dic, completion: completion)
+////        }
+//        PLNetworkManager.post(PLAPIService.Profile, parameters: <#T##[String : AnyObject]#>, attachment: <#T##PLUploadAttachment#>, completion: <#T##PLNetworkRequestCompletion##PLNetworkRequestCompletion##(dic: [String : AnyObject], error: NSError?) -> ()#>)
+//    }
     
     func handleErrorCompletion(error: NSError?, errorCompletion: PLErrorCompletion, completion: () -> NSError? ) {
         if error != nil {

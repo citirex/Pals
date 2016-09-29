@@ -54,5 +54,13 @@ class PLUser: PLUniqueObject, PLCellRepresentable, PLFilterable {
     var userData: PLUserData {
         return PLUserData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture)
     }
+}
+
+struct PLUserData {
     
+    var id: UInt64
+    var name: String
+    var email: String
+    var phone: String
+    var picture: NSURL
 }
