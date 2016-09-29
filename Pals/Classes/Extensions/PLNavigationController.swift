@@ -23,15 +23,3 @@ extension UINavigationController {
 
 }
 
-
-extension UIViewController {
-    
-    func present(viewController: UIViewController, animated: Bool) {
-        presentViewController(viewController, animated: animated, completion: nil)
-    }
-    
-    func dismiss(animated: Bool) {
-        dismissViewControllerAnimated(animated, completion: nil)
-    }
-    
-}

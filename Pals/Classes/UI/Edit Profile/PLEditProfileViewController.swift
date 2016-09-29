@@ -61,7 +61,7 @@ class PLEditProfileViewController: PLViewController {
     @IBAction func showSignOutAlert(sender: UIButton) {
         let alert = UIAlertController(title: "You're signing out!", message: "Are you sure?", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .Default) { action in
+        alert.addAction(UIAlertAction(title: "Yes", style: .Default) { [unowned self] action in
             let loginViewController = UIStoryboard.loginViewController()
             self.present(loginViewController!, animated: true)
             })
@@ -72,10 +72,10 @@ class PLEditProfileViewController: PLViewController {
         dismissKeyboard(sender)
         
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
-        optionMenu.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { alert in
+        optionMenu.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { [unowned self] alert in
             self.requestPermission(Permission.Photos)
         }))
-        optionMenu.addAction(UIAlertAction(title: "Take a photo", style: .Default, handler: { alert in
+        optionMenu.addAction(UIAlertAction(title: "Take a photo", style: .Default, handler: { [unowned self] alert in
             self.requestPermission(Permission.Camera)
         }))
         optionMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
@@ -136,7 +136,7 @@ class PLEditProfileViewController: PLViewController {
     }
     
     private func requestPermission(permission: Permission) {
-        permission.request { status in
+        permission.request { [unowned self] status in
             guard status == .Authorized else { return }
             switch permission.type {
             case .Photos: self.showImagePickerForSourceType(.PhotoLibrary)

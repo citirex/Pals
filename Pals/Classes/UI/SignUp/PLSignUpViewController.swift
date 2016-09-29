@@ -9,7 +9,6 @@
 class PLSignUpViewController: PLViewController {
     
     @IBOutlet weak var userProfileImageView: UIImageView!
-    @IBOutlet weak var textFieldsContainer: UIView!
     @IBOutlet weak var usernameTextField: PLTextField!
     @IBOutlet weak var emailTextField: PLTextField!
     @IBOutlet weak var passwordTextField: PLTextField!
@@ -59,8 +58,8 @@ class PLSignUpViewController: PLViewController {
     // MARK: - Notifications
     
     private func registerKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: .keyboardWillShow, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: .keyboardWillHide, name: UIKeyboardWillHideNotification, object: nil)
     }
 
     func keyboardWillShow(notification: NSNotification) {
@@ -85,7 +84,7 @@ class PLSignUpViewController: PLViewController {
         let scrollPoint = keyboardVisible ? CGPointMake(0, visibleRect.size.height / 3 + offset) : CGPointZero
         scrollView.setContentOffset(scrollPoint, animated: true)
      
-        UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: {
+        UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: { [unowned self] _ in
             self.addProfileImageButton.enabled = keyboardVisible ? false : true
             self.addProfileImageButton.alpha = keyboardVisible ? 0 : 1
             self.userProfileImageView.alpha = keyboardVisible ? 0 : 1
@@ -122,7 +121,7 @@ class PLSignUpViewController: PLViewController {
         let signUpData = PLSignUpData(username: username, email: email, password: password, picture: picture)
         
         activityIndicator.startAnimating()
-        PLFacade.signUp(signUpData) { error in
+        PLFacade.signUp(signUpData) { [unowned self] error in
             self.activityIndicator.stopAnimating()
             guard error == nil else { return PLShowAlert("Error", message: "This Username is Taken!") }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController

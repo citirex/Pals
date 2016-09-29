@@ -80,7 +80,7 @@ class PLOrder: PLUniqueObject, PLCellRepresentable, PLFilterable {
     static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
     var cellData: PLOrderCellData {
-        return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, QRcode: QRcode, accessCode: accessCode)
+        return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, QRcode: QRcode, accessCode: accessCode, date: date)
     }
 }
 
@@ -91,5 +91,6 @@ struct PLOrderCellData {
     let message: String
     let QRcode: String
     let accessCode: String
+    let date: NSDate
 }
 

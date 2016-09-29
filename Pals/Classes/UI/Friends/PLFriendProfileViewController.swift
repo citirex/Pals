@@ -6,9 +6,12 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+private enum SegueIdentifier: String {
+    case OrderSegue
+}
 
 class PLFriendProfileViewController: PLViewController {
-
+    
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: UIImageView!
     @IBOutlet weak var unfriendButton: UIButton!
@@ -61,17 +64,17 @@ class PLFriendProfileViewController: PLViewController {
     }
     
     @IBAction func unfriendButtonTapped(sender: UIButton) {
-        print("unfriendButtonTapped")
+        
     }
     
     @IBAction func sendCoverButtonTapped(sender: UIButton) {
         sectionOrder = .Covers
-        performSegueWithIdentifier("OrderSegue", sender: sender)
+        performSegueWithIdentifier(SegueIdentifier.OrderSegue, sender: sender)
     }
 
     @IBAction func sendADrinkButtonTapped(sender: UIButton) {
         sectionOrder = .Drinks
-        performSegueWithIdentifier("OrderSegue", sender: sender)
+        performSegueWithIdentifier(SegueIdentifier.OrderSegue, sender: sender)
     }
  
     
@@ -79,7 +82,7 @@ class PLFriendProfileViewController: PLViewController {
     
     func showUnfriendPopup() {
         unfriendButton.enabled = true
-        unfriendButton.hidden = false
+        unfriendButton.hidden  = false
         
         unfriendButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
         unfriendButton.alpha = 0.0
@@ -91,7 +94,7 @@ class PLFriendProfileViewController: PLViewController {
     
     func hideUnfriendPopup() {
         unfriendButton.enabled = false
-        unfriendButton.hidden = true
+        unfriendButton.hidden  = true
         
         UIView.animateWithDuration(0.25, animations: {
             self.unfriendButton.transform = CGAffineTransformMakeScale(1.3, 1.3)
@@ -103,14 +106,12 @@ class PLFriendProfileViewController: PLViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = segue.identifier else { return }
+        guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
         switch identifier {
-        case "OrderSegue":
+        case .OrderSegue:
             let orderViewController = segue.destinationViewController as! PLOrderViewController
             orderViewController.currentTab = sectionOrder
             orderViewController.order.user = friend
-        default:
-            break
         }
     }
     

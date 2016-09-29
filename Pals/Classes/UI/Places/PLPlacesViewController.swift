@@ -6,6 +6,10 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+private enum SegueIdentifier: String {
+    case PlaceProfileSegue
+}
+
 class PLPlacesViewController: PLViewController {
     
     @IBOutlet var tableView: UITableView!
@@ -114,7 +118,8 @@ class PLPlacesViewController: PLViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "PlaceProfileSegue" {
+        guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
+        if identifier == .PlaceProfileSegue {
             let placeProfileViewController = segue.destinationViewController as! PLPlaceProfileViewController
             placeProfileViewController.place = selectedPlace
         }
@@ -147,7 +152,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         selectedPlace = places[indexPath.row]
-        performSegueWithIdentifier("PlaceProfileSegue", sender: self)
+        performSegueWithIdentifier(SegueIdentifier.PlaceProfileSegue, sender: self)
     }
 
 }

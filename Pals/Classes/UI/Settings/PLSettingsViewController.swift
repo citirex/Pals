@@ -13,25 +13,25 @@ private enum SectionType {
 }
 
 private enum Item: String {
-    case Account = "Account"
-    case CardInfo = "Card Info"
-    case AddFunds = "Add Funds"
-    case Notifications = "Notifications"
-    case OrderHistory = "Order History"
-    case HelpAndFAQ = "Help and FAQ"
+    case Account =        "Account"
+    case CardInfo =       "Card Info"
+    case AddFunds =       "Add Funds"
+    case Notifications =  "Notifications"
+    case OrderHistory =   "Order History"
+    case HelpAndFAQ =     "Help and FAQ"
     case TermsOfService = "Terms of Service"
-    case PrivacyPolicy = "Privacy Policy"
+    case PrivacyPolicy =  "Privacy Policy"
     
     var segueIdentifier: String {
         switch self {
-        case .Account: return "EditProfileSegue"
-        case .CardInfo: return "CardInfoSegue"
-        case .AddFunds: return "AddFundsSegue"
-        case .Notifications: return "NotificationsSegue"
-        case .OrderHistory: return "OrderHistorySegue"
-        case .HelpAndFAQ: return "HelpAndFAQSegue"
+        case .Account:        return "EditProfileSegue"
+        case .CardInfo:       return "CardInfoSegue"
+        case .AddFunds:       return "AddFundsSegue"
+        case .Notifications:  return "NotificationsSegue"
+        case .OrderHistory:   return "OrderHistorySegue"
+        case .HelpAndFAQ:     return "HelpAndFAQSegue"
         case .TermsOfService: return "TermsOfServiceSegue"
-        case .PrivacyPolicy: return "PrivacyPolicySegue"
+        case .PrivacyPolicy:  return "PrivacyPolicySegue"
         }
     }
 }

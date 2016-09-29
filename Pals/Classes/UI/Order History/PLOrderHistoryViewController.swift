@@ -13,7 +13,6 @@ class PLOrderHistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var activityIndicator: UIActivityIndicatorView!
-    private var dates = [String]()
     private lazy var orders: PLOrderDatasource = {
         let orderDatasource = PLOrderDatasource(orderType: .Drinks)
         return orderDatasource
@@ -27,9 +26,6 @@ class PLOrderHistoryViewController: UIViewController {
         setupTableView()
         configureActivityIndicator()
         
-        let customDates = getDates()
-        customDates.forEach { dates.append($0.timeAgoSinceDate()) }
-        
         loadOrders()
     }
     
@@ -38,33 +34,18 @@ class PLOrderHistoryViewController: UIViewController {
     
     private func loadOrders() {
         activityIndicator.startAnimating()
-        orders.loadPage(true) {[unowned self] (indices, error) in
+        orders.loadPage(true) { [unowned self] indexPaths, error in
             self.activityIndicator.stopAnimating()
-            self.tableView?.beginUpdates()
+            guard error == nil else { return }
             
-            let set = NSIndexSet(indexesInRange: NSMakeRange(0, 20))
-            self.tableView.insertSections(set, withRowAnimation: .Bottom)
-//            self.tableView?.insertRowsAtIndexPaths(indices, withRowAnimation: .Bottom)
+            indexPaths.forEach { print("rows: \($0.row), section: \($0.section)") }
+
+            self.tableView?.beginUpdates()
+            let indexSet = NSIndexSet(indexesInRange: NSMakeRange(0, 20))
+            self.tableView.insertSections(indexSet, withRowAnimation: .Bottom)
+//            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
             self.tableView?.endUpdates()
         }
-//        orders.load { objects, error in
-//            self.activityIndicator.stopAnimating()
-//            guard error == nil else { return }
-//            let orders = objects as! [PLOrder]
-//            var indexPaths = [NSIndexPath]()
-//            let filterOrders = orders.filter { $0.drinkSets.count > 0 }
-//            
-//            for section in 0..<filterOrders.count {
-//                for row in 0..<filterOrders[section].drinkSets.count {
-//                    indexPaths.append(NSIndexPath(forRow: row, inSection: section))
-//                }
-//            }
-//            self.tableView?.beginUpdates()
-//            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
-//            self.tableView?.endUpdates()
-//
-//            self.tableView.reloadData()
-//        }
     }
     
     
@@ -116,9 +97,8 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
         return orders.count
     }
     
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders.count > 0 ? orders[section].drinkSets.count : 0
+        return orders[section].drinkSets.count
     }
     
     
@@ -144,21 +124,10 @@ extension PLOrderHistoryViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeader = tableView.dequeueReusableCellWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as! PLOrderHistorySectionHeader
-        
-        guard orders.count > 0 else { return UIView() }
-//        sectionHeader.dateLabel.text = dates[section]
+
         sectionHeader.orderCellData = orders[section].cellData
         return sectionHeader
     }
     
-}
-
-
-func getDates() -> [NSDate] {
-    return [
-        NSDate(dateString: "2016-09-28"),
-        NSDate(dateString: "2016-09-18"),
-        NSDate(dateString: "2015-07-15")
-    ]
 }
 

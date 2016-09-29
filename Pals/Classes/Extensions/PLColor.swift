@@ -28,6 +28,10 @@ extension UIColor {
     }
     
     
+    // TODO: - Needs check with original colors
+    
+   // ****************** Old colors ***********************************
+    
     /// Navigation bar color #6F4097
     
     class func affairColor() -> UIColor {
@@ -47,11 +51,7 @@ extension UIColor {
     class func caribeanGreenColor() -> UIColor {
         return UIColor(r: 56.0, g: 206.0, b: 130.0)
     }
-    
-    
-    
-    
- 
+
     /// Friends  search icon
     
     class func vividViolet() -> UIColor {
@@ -64,8 +64,11 @@ extension UIColor {
 		return UIColor(r: 251.0, g: 251.0, b: 251.0)
 	}
     
+    // *****************************************************
     
-    //////////////////////////////////////////////////
+    
+    
+    //******************* Checked colors *******************
     
     /// Sign Up screen 
     

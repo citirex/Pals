@@ -35,3 +35,21 @@ extension PLViewController {
     }
 }
 
+extension PLViewController {
+    
+    func performSegueWithIdentifier<T: RawRepresentable where T.RawValue == String>(identifier: T, sender: AnyObject?) {
+        performSegueWithIdentifier(identifier.rawValue, sender: sender)
+    }
+}
+
+extension PLViewController {
+    
+    func present(viewController: UIViewController, animated: Bool) {
+        presentViewController(viewController, animated: animated, completion: nil)
+    }
+    
+    func dismiss(animated: Bool) {
+        dismissViewControllerAnimated(animated, completion: nil)
+    }
+    
+}
