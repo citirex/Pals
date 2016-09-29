@@ -103,8 +103,7 @@ class PLLoginViewController: PLViewController {
 		passTextField.delegate = self
 		
 		animateSplashToLogin()
-		let dismissTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
-		view.addGestureRecognizer(dismissTap)
+        hideKeyboardWhenTapped()
     }
 	
 	
@@ -133,13 +132,7 @@ class PLLoginViewController: PLViewController {
 		
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
-	
-	// MARK: - Dismiss Keyboard
-	
-	func dismissKeyboard(sender: UITapGestureRecognizer) {
-		view.endEditing(true)
-	}
-	
+
 	// MARK: - Notifications
 	
 	private func registerKeyboardNotifications() {

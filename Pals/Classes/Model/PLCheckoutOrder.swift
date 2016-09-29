@@ -31,28 +31,15 @@ class PLCheckoutOrder {
     var isVIP = false
     var message = ""
     
-    func checkout() -> Bool {
-        guard
-        let _ = user,
-        let _ = place
-        else {
-            return false
-        }
-        
-        let dict = serialize()
-        print(dict.description)
-        clean()
-        
-        return true
-    }
-    
-    private func serialize() -> [String : AnyObject] {
+    func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
         dic[PLKeys.qr_code.string] = QRcode
         dic[PLKeys.access_code.string] = accessCode
         dic[PLKeys.user_id.string] = String(user!.id)
-        dic[PLKeys.place_id.string] = String(place!.id)        
-        dic[PLKeys.drinks.string] = Array(drinks.values).map({ [String($0.drink.id):String($0.quantity)] })//FIXME: check the result
+        dic[PLKeys.place_id.string] = String(place!.id)
+        let aDrinks = Array(drinks.values).toDictionary { item in ["\(item.drink.id)":"\(item.quantity)"] }
+        
+        dic[PLKeys.drinks.string] = aDrinks
         dic[PLKeys.covers.string] = covers
         dic[PLKeys.is_vip.string] = isVIP.hashValue
         dic[PLKeys.message.string] = message

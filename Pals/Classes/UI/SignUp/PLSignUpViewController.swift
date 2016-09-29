@@ -35,8 +35,8 @@ class PLSignUpViewController: PLViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:))))
+        adjustFontSize()
+        hideKeyboardWhenTapped()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,10 +55,6 @@ class PLSignUpViewController: PLViewController {
         userProfileImageView.rounded = true
     }
     
-    private func setup() {
-        signInButton.titleLabel?.font = .customFontOfSize(15)
-        signUpButton.titleLabel?.font = .customFontOfSize(15)
-    }
 
     // MARK: - Notifications
     
@@ -96,13 +92,6 @@ class PLSignUpViewController: PLViewController {
             self.view.layoutIfNeeded()
             }, completion: nil)
     }
-
-    
-    // MARK: - Dismiss Keyboard
-    
-    func dismissKeyboard(sender: AnyObject) {
-        view.endEditing(true)
-    }
     
     
     // MARK: - Actions
@@ -113,13 +102,13 @@ class PLSignUpViewController: PLViewController {
     
     @IBAction func signUpButtonTapped(sender: UIButton) {
         dismissKeyboard(sender)
-        signUp()
+        userSignUp()
     }
     
     
     // MARK: - Private methods
     
-    private func signUp() {
+    private func userSignUp() {
         let username = usernameTextField.text!.trim()
         let email = emailTextField.text!.trim()
         let password = passwordTextField.text!.trim()
@@ -145,6 +134,11 @@ class PLSignUpViewController: PLViewController {
     
     private func validatePassword(pass: String) -> Bool {
         return pass == confirmPasswordTextField.text!.trim()
+    }
+    
+    private func adjustFontSize() {
+        signInButton.titleLabel?.font = .customFontOfSize(15)
+        signUpButton.titleLabel?.font = .customFontOfSize(15)
     }
 
 }
@@ -176,8 +170,8 @@ extension PLSignUpViewController: UITextFieldDelegate {
         if let nextResponder = textField.superview!.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
-            signUp()
             textField.resignFirstResponder()
+            userSignUp()
         }
         return false
     }

@@ -55,7 +55,7 @@ class PLSettingsViewController: PLViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         let nib = UINib(nibName: PLSettingCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLSettingCell.identifier)
     }
