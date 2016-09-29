@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLOrder: PLUniqueObject, PLCellRepresentable, PLFilterable {
+class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
     let QRcode: String
     let accessCode: String
     let user: PLUser
@@ -15,7 +15,6 @@ class PLOrder: PLUniqueObject, PLCellRepresentable, PLFilterable {
     var covers = [PLCover]()
     let isVIP: Bool
     let message: String
-    let date: NSDate
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
@@ -24,8 +23,7 @@ class PLOrder: PLUniqueObject, PLCellRepresentable, PLFilterable {
             let message = jsonDic[PLKeys.message.string] as? String,
             let isVIP = jsonDic[PLKeys.is_vip.string] as? Bool,
             let accessCode = jsonDic[PLKeys.access_code.string] as? String,
-            let QRcode = jsonDic[PLKeys.qr_code.string] as? String,
-            let timestamp = jsonDic[PLKeys.date.string] as? NSTimeInterval
+            let QRcode = jsonDic[PLKeys.qr_code.string] as? String
         else {
             return nil
         }
@@ -41,8 +39,6 @@ class PLOrder: PLUniqueObject, PLCellRepresentable, PLFilterable {
         self.isVIP = isVIP
         self.accessCode = accessCode
         self.QRcode = QRcode
-        self.date = NSDate(timeIntervalSince1970: timestamp)
-        print(self.date)
         
         if let drinkSetsArray = jsonDic[PLKeys.drinks.string] as? [Dictionary<String,AnyObject>] {
             for drinkSetDic in drinkSetsArray {
@@ -69,7 +65,6 @@ class PLOrder: PLUniqueObject, PLCellRepresentable, PLFilterable {
         self.isVIP = vip
         self.accessCode = accessCode
         self.QRcode = qrCode
-        self.date = NSDate()
         super.init(jsonDic: [:])!
     }
     

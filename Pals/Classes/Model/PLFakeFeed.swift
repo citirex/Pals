@@ -18,7 +18,7 @@ class PLFakeFeed {
             if let path = NSBundle.mainBundle().pathForResource(filename, ofType: "json") {
                 let data = NSData(contentsOfFile: path)!
                 let dict = try! NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! [String : AnyObject]
-                print("Loaded fake feed: \(filename).json")
+                PLLog("Loaded fake feed: \(filename).json", type: .FakeFeed)
                 completion(dict: dict)
             } else {
                 completion(dict: [:])
