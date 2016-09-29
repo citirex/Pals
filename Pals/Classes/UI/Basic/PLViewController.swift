@@ -23,3 +23,15 @@ class PLViewController: UIViewController {
     }
 }
 
+
+extension PLViewController {
+    
+    func hideKeyboardWhenTapped() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: .dismissTap))
+    }
+    
+    func dismissKeyboard(sender: AnyObject) {
+        view.endEditing(true)
+    }
+}
+

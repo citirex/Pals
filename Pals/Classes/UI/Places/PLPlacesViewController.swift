@@ -198,6 +198,7 @@ extension PLPlacesViewController: UISearchResultsUpdating {
             places.filter(text, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
+                self.resultsController.tableView.reloadData()
             })
         }
     }
