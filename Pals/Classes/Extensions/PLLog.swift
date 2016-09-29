@@ -11,10 +11,11 @@ enum PLLogType : Int {
     case Network = 1
     case Initialization = 2
     case FakeFeed = 4
+    case Debug = 8
     var number: Int {return rawValue}
 }
 
-func PLLog(items: Any..., type: PLLogType) {
+func PLLog(items: Any..., type: PLLogType = .Debug) {
     let logger = _PLLogger.shared
     if logger.enabled {
         if logger.level.containsType(type) {

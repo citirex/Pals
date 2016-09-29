@@ -9,6 +9,6 @@
 	<key>LoggingEnabled</key>
 	<true/>
 	<key>LogLevel</key>
-	<integer>7</integer>
+	<integer>15</integer>
 </dict>
 </plist>
