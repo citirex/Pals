@@ -39,7 +39,7 @@ class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
                 cell.cardTitleLabel.text = (order.isVIP) ? "VIP" : order.place.name
                 cell.cardCaptionLabel.text = (order.isVIP) ? order.place.name : order.place.musicGengres
             } else {
-                cell.cardTitleLabel.text = order.place.name
+//                cell.cardTitleLabel.text = order.place.name
                 cell.cardCaptionLabel.text = order.place.musicGengres
             }
             

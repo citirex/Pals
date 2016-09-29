@@ -75,7 +75,7 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
     static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
     var cellData: PLOrderCellData {
-        return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, QRcode: QRcode, accessCode: accessCode, date: date)
+        return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, QRcode: QRcode, accessCode: accessCode, date: date!)
     }
 }
 
