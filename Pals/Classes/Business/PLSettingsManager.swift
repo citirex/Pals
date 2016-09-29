@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
-
 class PLSettingsManager {
     
     var dict = [String:AnyObject]()
@@ -18,6 +16,15 @@ class PLSettingsManager {
     var fakeFeedLoadDelay: NSTimeInterval {
         let delay = dict["FakeFeedLoadDelay"] as! NSTimeInterval
         return delay
+    }
+    var loggingEnabled: Bool {
+        let enabled = dict["LoggingEnabled"] as! Bool
+        return enabled
+    }
+    
+    var logLevel: Int {
+        let level = dict["LogLevel"] as! NSNumber
+        return level.integerValue
     }
     
     init() {

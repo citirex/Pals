@@ -6,5 +6,9 @@
 	<true/>
 	<key>FakeFeedLoadDelay</key>
 	<real>0.5</real>
+	<key>LoggingEnabled</key>
+	<true/>
+	<key>LogLevel</key>
+	<integer>15</integer>
 </dict>
 </plist>

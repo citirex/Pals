@@ -101,6 +101,8 @@
 		D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */; };
 		D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */; };
 		D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */; };
+		D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */; };
+		D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA241D9D5EB800B3CA82 /* PLLog.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
 		E8042B3A1D8C54D900755EF3 /* PLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8042B391D8C54D900755EF3 /* PLTabBarController.swift */; };
 		E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */; };
@@ -273,6 +275,8 @@
 		D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesDatasource.swift; sourceTree = "<group>"; };
+		D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatedObject.swift; sourceTree = "<group>"; };
+		D4FECA241D9D5EB800B3CA82 /* PLLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLog.swift; sourceTree = "<group>"; };
 		E8042B391D8C54D900755EF3 /* PLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTabBarController.swift; sourceTree = "<group>"; };
 		E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileHeader.swift; path = "Place Profile/PLPlaceProfileHeader.swift"; sourceTree = "<group>"; };
 		E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileHeader.xib; path = "Place Profile/PLPlaceProfileHeader.xib"; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 				D46D2B881D875BB10058060E /* PLImage.swift */,
 				E8CD61F01D998CE80022D51F /* PLFont.swift */,
 				24DDA9371D9AABE600FCDBCA /* PLActivity.swift */,
+				D4FECA241D9D5EB800B3CA82 /* PLLog.swift */,
 			);
 			name = Extensions;
 			path = Classes/Extensions;
@@ -455,6 +460,7 @@
 				24C20C6C1D8947560040F2F5 /* PLCheckoutOrder.swift */,
 				2480F8841D813E730095995F /* PLPlace.swift */,
 				2480F8851D813E730095995F /* PLUniqueObject.swift */,
+				D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */,
 				2480F8861D813E730095995F /* PLUser.swift */,
 				D410F7241D9AA564000E8E06 /* PLInvitableUser.swift */,
 			);
@@ -1158,6 +1164,7 @@
 			files = (
 				E8A658681D9CED4E00D8257F /* PLSelector.swift in Sources */,
 				E8BE868A1D9166620079855C /* PLSettingCell.swift in Sources */,
+				D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */,
 				E8E4A1321D89EC0A00EA0DFE /* PLEditProfileViewController.swift in Sources */,
 				2480F8E31D813E730095995F /* PLString.swift in Sources */,
 				2480F8D81D813E730095995F /* AppDelegate.swift in Sources */,
@@ -1203,6 +1210,7 @@
 				D46D2B891D875BB10058060E /* PLImage.swift in Sources */,
 				E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */,
 				E829DDD61D8151BE00D8C130 /* PLPlaceProfileViewController.swift in Sources */,
+				D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */,
 				24DA61171D8BF642007F4973 /* PLCover.swift in Sources */,
 				E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */,
 				E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */,

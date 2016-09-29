@@ -215,7 +215,7 @@ class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
                 completion(objects: [T](), error: self.jsonError)
             }
         }) { (task, error) in
-            print("Failed to load: \((task?.originalRequest?.URL?.absoluteString)!)")
+            PLLog("Failed to load: \((task?.originalRequest?.URL?.absoluteString)!)", type: .Network)
             self.loading = false
             completion(objects:[T]() ,error: error)
         }
