@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLEvent : PLUniqueObject {
+class PLEvent : PLUniqueObject, PLFilterable {
     
     let placeID: UInt64
     let picture: NSURL
@@ -29,6 +29,8 @@ class PLEvent : PLUniqueObject {
         self.info = eInfo
         super.init(jsonDic: jsonDic)
     }
+    
+    static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
     var cellData: PLEventCellData {
         return PLEventCellData(eventID: id, placeID: placeID, picture: picture, date: date, info: info)
