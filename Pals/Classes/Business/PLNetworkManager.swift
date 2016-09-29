@@ -51,7 +51,13 @@ protocol PLNetworkManagerInterface {
 
 class PLNetworkSession: AFHTTPSessionManager {
     static let baseUrl = "https://api.pals.com"
-    static let shared = PLNetworkSession.init(baseURL: NSURL(string: baseUrl)!)
+    static let shared = PLNetworkSession(baseURL: NSURL(string: baseUrl)!, sessionConfiguration:
+        { ()-> NSURLSessionConfiguration in
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            config.timeoutIntervalForRequest = 5
+            return config
+        }()
+    )
 }
 
 class PLNetworkManager: PLNetworkManagerInterface {

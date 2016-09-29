@@ -13,6 +13,7 @@ class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
     let collection: PLPalsPageCollection<T>
     var completion: PLDatasourceLoadCompletion?
     var indicesCompletion: PLDatasourceIndicesChangeCompletion?
+    private var formIndicesAsSections = false
     
     convenience init(url: String, offsetById: Bool) {
         self.init(url: url, params: nil, offsetById: offsetById)
@@ -36,8 +37,13 @@ class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
     }
     
     func loadPage(completion: PLDatasourceIndicesChangeCompletion) {
+        loadPage(false, completion: completion)
+    }
+    
+    func loadPage(asSections:Bool, completion: PLDatasourceIndicesChangeCompletion) {
         self.indicesCompletion = completion
-        collection.load()
+        self.formIndicesAsSections = asSections
+        collection.load(asSections)
     }
     
     func filter(text: String, completion: ()->()) {
@@ -92,7 +98,7 @@ extension PLDatasource : PLPageCollectionDelegate {
                     let objects = response.0
                     self.collection.onPageLoad(objects)
                     self.completion?(objects:response.0, error: nil)
-                    self.indicesCompletion?(indices: self.collection.findLastIndices(objects.count), error: nil)
+                    self.indicesCompletion?(indices: self.collection.findLastIndices(objects.count, asSections: self.formIndicesAsSections), error: nil)
                 } else {
                     self.completion?(objects: [T](), error: error)
                     self.indicesCompletion?(indices: [NSIndexPath](), error: error)
