@@ -70,6 +70,7 @@ class PLEditProfileViewController: PLViewController {
     
     @IBAction func showActionSheet(sender: UIButton) {
         dismissKeyboard(sender)
+        
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
         optionMenu.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { alert in
             self.requestPermission(Permission.Photos)

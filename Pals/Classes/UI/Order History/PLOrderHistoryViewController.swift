@@ -13,7 +13,7 @@ class PLOrderHistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var activityIndicator: UIActivityIndicatorView!
-    private let dates = ["Yesterday", "Last Week", "2 Weeks Ago"]
+    private var dates = [String]()
     private lazy var orders: PLOrderDatasource = {
         let orderDatasource = PLOrderDatasource(orderType: .Drinks)
         return orderDatasource
@@ -26,6 +26,9 @@ class PLOrderHistoryViewController: UIViewController {
         
         setupTableView()
         configureActivityIndicator()
+        
+        let customDates = getDates()
+        customDates.forEach { dates.append($0.timeAgoSinceDate()) }
         
         loadOrders()
     }
@@ -74,6 +77,8 @@ class PLOrderHistoryViewController: UIViewController {
         let sectionHeaderNib = UINib(nibName: PLOrderHistorySectionHeader.nibName, bundle: nil)
         tableView.registerNib(sectionHeaderNib, forCellReuseIdentifier: PLOrderHistorySectionHeader.reuseIdentifier)
     }
+    
+    
     
     // TODO: - needs?
     private func adjustSectionHeightToIPhoneSize() -> CGFloat? {
@@ -137,5 +142,14 @@ extension PLOrderHistoryViewController: UITableViewDelegate {
         return sectionHeader
     }
     
+}
+
+
+func getDates() -> [NSDate] {
+    return [
+        NSDate(dateString: "2016-09-28"),
+        NSDate(dateString: "2016-09-18"),
+        NSDate(dateString: "2015-07-15")
+    ]
 }
 
