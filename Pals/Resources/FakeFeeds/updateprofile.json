@@ -1,0 +1,11 @@
+{
+    "response" : {
+        "user" : {
+            "id" : 777,
+            "name" : "Ivan Gamaz",
+            "picture" : "https://pbs.twimg.com/media/CaM69tlWcAAojNY.png:small",
+            "email" : "gamazKamaz@gmail.com",
+            "balance" : 77002160.05,
+        }
+    }
+}

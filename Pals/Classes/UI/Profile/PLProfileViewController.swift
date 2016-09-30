@@ -6,6 +6,8 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+let kProfileInfoChanged = "ProfileChanged"
+
 class PLProfileViewController: TGLStackedViewController {
 
     private var collectionHelper = PLProfileCollectionHelper()
@@ -45,6 +47,8 @@ class PLProfileViewController: TGLStackedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification(_:)), name:kProfileInfoChanged, object: nil)
 
         currentTab = .Drinks
         view.addSubview(spinner)
@@ -53,7 +57,6 @@ class PLProfileViewController: TGLStackedViewController {
         profile = PLFacade.profile
         loadPage()
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,6 +69,12 @@ class PLProfileViewController: TGLStackedViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.setNavigationBarTransparent(false)
+    }
+    
+    func profileInfoChangedNotification(notification: NSNotification){
+        if notification.name == kProfileInfoChanged {
+            profile = PLFacade.profile
+        }
     }
 
     
