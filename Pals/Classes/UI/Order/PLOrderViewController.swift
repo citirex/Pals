@@ -201,30 +201,10 @@ extension PLOrderViewController {
         
         checkoutPopupViewController.userName = user.name
         checkoutPopupViewController.locationName = place.name
-        checkoutPopupViewController.orderAmount = calculateTotalAmount()
+        checkoutPopupViewController.orderAmount = order.calculateTotalAmount()
         tabBarController!.presentViewController(checkoutPopupViewController, animated: false) {
             self.checkoutPopupViewController.show()
         }
-    }
-    
-    func calculateTotalAmount() -> String {
-//        var amount: Float = 0.0
-//
-//        if order.drinks.count > 0 {
-//            for drinkSet in order.drinks.values {
-//                amount += Float(drinkSet.quantity) * drinkSet.drink.price
-//            }
-//        }
-//        
-//        if order.covers.count > 0 {
-//            for aCover in coversDatasource.collection.objects {
-//                if order.covers.contains(String(aCover.id)) {
-//                    amount += aCover.price
-//                }
-//            }
-//        }
-//        return "$" + String(format: "%.2f", amount)
-        return ""
     }
     
     func createNewOrderWithMessage(message: String) {
@@ -266,8 +246,8 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
 
     func updateCoverAt(indexPath: NSIndexPath) {
         let coverCell = collectionView.cellForItemAtIndexPath(indexPath) as! PLOrderCoverCell
-        let coverID = coversDatasource[indexPath.row].id
-        order.updateWithCoverID(coverID, inCell: coverCell)
+        let cover = coversDatasource[indexPath.row]
+        order.updateWithCoverID(cover, inCell: coverCell)
         updateCheckoutButtonState()
     }
     
@@ -401,7 +381,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             let cell = dequeuedCell as! PLOrderCoverCell
             let cover = coversDatasource[indexPath.row]
             cell.coverTitle = cover.name
-            if (order.covers.contains(String(cover.id))) {
+            if order.covers[cover.id] != nil {
                 cell.setDimmed(true, animated: false)
             }
             return cell

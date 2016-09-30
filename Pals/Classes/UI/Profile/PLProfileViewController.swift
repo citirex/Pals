@@ -81,16 +81,12 @@ class PLProfileViewController: TGLStackedViewController {
     func loadPage() {
         spinner.startAnimating()
         spinner.center = view.center
-        currentDatasource.load {[unowned self] page, error in
-            if error == nil {
-                let count = self.currentDatasource.count
+        
+        currentDatasource.loadPage { (indices, error) in
+            
+            if indices.count > 0 {
                 self.collectionBackgroundView.noItemsLabel.hidden = true
-                let lastLoadedCount = page.count
-                if lastLoadedCount > 0 {
-                    var indexPaths = [NSIndexPath]()
-                    for i in count-lastLoadedCount..<count {
-                        indexPaths.append(NSIndexPath(forItem: i, inSection: 0))
-                    }
+                if error == nil {
                     
                     if self.currentDatasource.pagesLoaded == 1 {
                         self.collectionView?.alpha = 0
@@ -106,15 +102,15 @@ class PLProfileViewController: TGLStackedViewController {
                             options: UIViewAnimationOptions(),
                             animations: {
                                 self.collectionView?.performBatchUpdates({
-                                    self.collectionView?.insertItemsAtIndexPaths(indexPaths)
+                                    self.collectionView?.insertItemsAtIndexPaths(indices)
                                     }, completion: nil)
                             },
                             completion: nil)
                     }
+                } else {
+                    PLShowErrorAlert(error: error!)
                 }
                 self.spinner.stopAnimating()
-            } else {
-                PLShowErrorAlert(error: error!)
             }
         }
     }
