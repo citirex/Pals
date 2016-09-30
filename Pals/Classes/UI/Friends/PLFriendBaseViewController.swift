@@ -15,22 +15,20 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 	var noDataLabel	   = UILabel()
 	
     lazy var tableView = UITableView()
-
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		tableView.separatorInset.left = 75
-		tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 49, right: 0)
 		
 		tableView.delegate = self
-		containerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: view.bounds.height))
 		containerView.backgroundColor = .whiteColor()
 		tableView.backgroundView	  = containerView
 		
-		view.addSubview(spinner)
 		view.addSubview(tableView)
+		view.addSubview(spinner)
 		
 		spinner.center = view.center
 		spinner.activityIndicatorViewStyle = .WhiteLarge
@@ -38,20 +36,19 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		configureSearchController()
 		loadData()
 		
-		noDataLabel.frame = CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.height)
 		noDataLabel.text             = "No Friends yet"
 		noDataLabel.textColor        = .lightGrayColor()
 		noDataLabel.textAlignment    = .Center
     }
 
 	override func viewDidLayoutSubviews() {
-		tableView.frame = CGRectMake(0.0, 0.0, view.bounds.width, view.bounds.height)
-		resultsController.tableView.frame = CGRectMake(0.0, 0.0, view.bounds.width, view.bounds.height)
-		
-		tableView.scrollIndicatorInsets = UIEdgeInsets(top: 64, left: 0, bottom: 49, right: 0)
-		
-		tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 49, right: 0)
-		resultsController.tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 49, right: 0)
+		addConstraints()
+	}
+	
+	private func addConstraints() {
+		tableView.translatesAutoresizingMaskIntoConstraints = false
+		tableView.addConstraintsWithEdgeInsets(UIEdgeInsetsZero)
+		tableView.scrollIndicatorInsets = UIEdgeInsets(top: 62, left: 0, bottom: 49, right: 0)
 	}
 	
     func loadData() {}
@@ -65,6 +62,7 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
         } else {
 			tableView.backgroundView	 = noDataLabel
 			tableView.tableHeaderView	 = nil
+			tableView.separatorStyle	 = .None
             PLShowAlert("Error!", message: "Cannot download your friends.")
         }
     }
@@ -85,7 +83,6 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		searchController.searchBar.barTintColor			  = .miracleColor()
 		searchController.searchBar.backgroundImage		  = UIImage()
 		searchController.searchBar.tintColor			  = .affairColor()
-		searchController.dimsBackgroundDuringPresentation = false
 		searchController.searchBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
 		let textFieldInsideSearchBar = searchController.searchBar.valueForKey("searchField") as? UITextField
 		textFieldInsideSearchBar?.layer.borderWidth = 1
