@@ -11,6 +11,8 @@ typealias PLErrorCompletion = (error: NSError?) -> ()
 protocol PLFacadeInterface {
     static func login(userName:String, password: String, completion: PLErrorCompletion)
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
+    static func checkout(order: PLCheckoutOrder, completion: PLErrorCompletion)
+    static func updateProfile(data: PLEditableUser, completion: PLErrorCompletion)//FIXME: signupdata.
     static func sendPassword(email: String, completion: PLErrorCompletion)
     static func fetchNearRegion(completion: PLLocationRegionCompletion)
     static func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion)
@@ -31,12 +33,16 @@ class PLFacade : PLFacadeInterface {
         PLFacade.instance._signUp(data, completion: completion)
     }
     
-    class func checkout(order: PLCheckoutOrder, completion: PLErrorCompletion) {
-        PLFacade.instance._checkout(order, completion: completion)
-    }
-    
     class func sendPassword(email: String, completion: PLErrorCompletion) {
         PLFacade.instance._sendPassword(email, completion: completion)
+    }
+    
+    class func updateProfile(data: PLEditableUser, completion: PLErrorCompletion) {
+        PLFacade.instance._updateProfile(data, completion: completion)
+    }
+    
+    class func checkout(order: PLCheckoutOrder, completion: PLErrorCompletion) {
+        PLFacade.instance._checkout(order, completion: completion)
     }
     
     class func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
@@ -91,25 +97,28 @@ extension PLFacade._PLFacade {
         })
     }
     
-    func _checkout(order: PLCheckoutOrder, completion: PLErrorCompletion) {
-        let params = order.serialize()
-        PLNetworkManager.post(PLAPIService.Checkout, parameters: params) { (dic, error) in
-            self.handleUserLogin(error, dic: dic, completion: completion)
+    func _updateProfile(data: PLEditableUser, completion: PLErrorCompletion) {
+        let params = data.params()
+        
+        if let image = data.picture {
+            let imageData = UIImagePNGRepresentation(image)!
+            let attachment = PLUploadAttachment(name: "profileImage", mimeType: "image/png", data: imageData)
+            PLNetworkManager.post(PLAPIService.UpdateProfile, parameters: params, attachment: attachment) { (dic, error) in
+                self.handleUserLogin(error, dic: dic, completion: completion)//FIXME: do i need duplicate the code or handle user login to divide responsibility to different methods
+            }
+        } else {
+            PLNetworkManager.post(PLAPIService.UpdateProfile, parameters: params) { (dic, error) in
+                self.handleUserLogin(error, dic: dic, completion: completion)
+            }
         }
     }
     
-//    func _editProfile(profile: PLUser, completion: PLErrorCompletion) {
-//        let params = profile.serialize()
-//        let imageData = UIImagePNGRepresentation(profile.picture)!
-//        let attachment = PLUploadAttachment(name: "profileImage", mimeType: "image/png", data: imageData)
-//        
-////        let imageData = UIImagePNGRepresentation(profile.picture)!
-////        let attachment = PLUploadAttachment(name: "profileImage", mimeType: "image/png", data: imageData)
-////        PLNetworkManager.post(PLAPIService.SignUp, parameters: params, attachment: nil) { (dic, error) in
-////            self.handleUserLogin(error, dic: dic, completion: completion)
-////        }
-//        PLNetworkManager.post(PLAPIService.Profile, parameters: <#T##[String : AnyObject]#>, attachment: <#T##PLUploadAttachment#>, completion: <#T##PLNetworkRequestCompletion##PLNetworkRequestCompletion##(dic: [String : AnyObject], error: NSError?) -> ()#>)
-//    }
+    func _checkout(order: PLCheckoutOrder, completion: PLErrorCompletion) {
+        let params = order.serialize()
+        PLNetworkManager.post(PLAPIService.Checkout, parameters: params) { (dic, error) in
+            self.handleCheckoutOrder(error, dic: dic, completion: completion)
+        }
+    }
     
     func handleErrorCompletion(error: NSError?, errorCompletion: PLErrorCompletion, completion: () -> NSError? ) {
         if error != nil {
@@ -137,6 +146,21 @@ extension PLFacade._PLFacade {
             }
             return NSError(domain: PLErrorDomain.Unknown.string, code: 0, userInfo: nil)
         }
+    }
+    
+    func handleCheckoutOrder(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
+        self.handleErrorCompletion(error, errorCompletion: completion, completion: { () -> NSError? in
+            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
+                if let success = response[PLKeys.success.string] as? Bool {
+                    if success {
+                        completion(error: nil)
+                        return nil
+                    }
+                    return PLError(domain: .User, type: kPLErrorTypeCheckoutFailed)
+                }
+            }
+            return kPLErrorUnknown
+        })
     }
     
     func _fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {

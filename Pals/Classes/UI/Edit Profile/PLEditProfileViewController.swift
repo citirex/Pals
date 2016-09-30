@@ -18,10 +18,10 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     private var userData: PLUserData!
+    private lazy var tempProfile: PLEditableUser = { return PLEditableUser() }()
     private var isEditing = false {
         didSet { updateUI() }
     }
-    
     
     
     override func viewDidLoad() {
@@ -88,7 +88,7 @@ class PLEditProfileViewController: PLViewController {
     private func setupUserData() {
         userData = PLFacade.profile?.userData
         usernameTextField.text = userData!.name
-        phoneNumberTextField.text = userData!.phone
+        phoneNumberTextField.text = userData!.email
         userProfileImageView.setImageWithURL(userData!.picture)
         adjustFontSize()
     }
@@ -102,11 +102,32 @@ class PLEditProfileViewController: PLViewController {
     // MARK: - Update User Data
     
     private func updateUserData() {
-        userData.name = usernameTextField.text!
-        userData.email = phoneNumberTextField.text!
-        userData.phone = phoneNumberTextField.text!
-//        userData.picture = userProfileImageView.image
-//        PLFacade.updateUserData(userData) { error in }
+        //check for dada chenged
+        if let name = usernameTextField.text where name != userData.name {
+            tempProfile.name = name
+        }
+        if let contact = phoneNumberTextField.text where contact != userData.email {
+            tempProfile.contactMain = contact
+        }
+//        if let contactSpare = phoneNumberTextField.text where contactSpare != userData.name {
+//            tempProfile.contactSecondary = contactSpare
+//        }
+        
+        if tempProfile.isChanged == true {
+            spinner.center = view.center
+            spinner.startAnimating()
+            spinner.activityIndicatorViewStyle = .Gray
+            PLFacade.updateProfile(tempProfile) {[unowned self] (error) in
+                if error == nil {
+                    self.tempProfile.clean()
+                    self.setupUserData()
+                    NSNotificationCenter.defaultCenter().postNotificationName(kProfileInfoChanged, object: nil)
+                } else {
+                    PLShowErrorAlert(error: error!)
+                }
+                self.spinner.stopAnimating()
+            }
+        }
     }
     
     // MARK: - Update UI
@@ -148,7 +169,6 @@ class PLEditProfileViewController: PLViewController {
         alert.title = "Using \(permission.type) is disabled for this app"
         alert.message = "Enable it in Settings->Privacy"
     }
-
 }
 
 
@@ -171,6 +191,7 @@ extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         userProfileImageView.image = imagePicked
+        tempProfile.picture = imagePicked
         dismiss(true)
     }
     
@@ -179,10 +200,4 @@ extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINaviga
     }
     
 }
-
-
-
-
-
-
 
