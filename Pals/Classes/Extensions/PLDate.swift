@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum PLDateComponent: Int {
+enum PLDateType: Int {
     case YearsAgo
     case MonthsAgo
     case WeeksAgo
