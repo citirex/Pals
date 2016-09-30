@@ -60,7 +60,7 @@ struct PLPageCollectionPreset {
     let offsetKey: String
     let size: Int
     let offsetById: Bool // if true starts a next page from lastId+1 otherwise uses a last saved offset
-    var params : PLURLParams?
+    var params : PLURLParams = {return PLURLParams()}()
     
     init(url: String, sizeKey: String, offsetKey: String, size: Int, offsetById: Bool) {
         self.url = url
@@ -72,13 +72,10 @@ struct PLPageCollectionPreset {
     
     subscript(key: String) -> AnyObject? {
         set(newValue) {
-            if params == nil {
-                params = PLURLParams()
-            }
-            params![key] = newValue
+            params[key] = newValue
         }
         get {
-            return params?[key]
+            return params[key]
         }
     }
     
@@ -86,21 +83,45 @@ struct PLPageCollectionPreset {
 
 class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
     weak var delegate: PLPageCollectionDelegate?
-    var preset: PLPageCollectionPreset
-    private var _objects = [T]()
-    private var filtered = [T]()
-    var objects: [T] {
-        return searching ? filtered : _objects
-    }
-    
     var searching = false
-    var session: AFHTTPSessionManager?
     
+    private var sectioned = false
+    private var preset: PLPageCollectionPreset
+    private var objects: [T] {
+        return searching ? filtered as! [T] : _objects as! [T]
+    }
+    private var _objects = [AnyObject]()
+    private var filtered = [AnyObject]()
+    private var session: AFHTTPSessionManager?
     private var offset = UInt64(0)
     private var loading = false
     private var deserializer = PLPageCollectionDeserializer<T>()
     
-    init(preset: PLPageCollectionPreset) {
+    convenience init(url: String) {
+        self.init(url: url, offsetById: true, sectioned: false)
+    }
+    
+    convenience init(url: String, sectioned: Bool) {
+        self.init(url: url, offsetById: true, sectioned: sectioned)
+    }
+    
+    convenience init(url: String, offsetById: Bool, sectioned: Bool) {
+        let defaultSize = 20
+        self.init(url: url, size: defaultSize, offsetById: offsetById, sectioned: sectioned)
+    }
+    
+    convenience init(url: String, size: Int, offsetById: Bool, sectioned: Bool) {
+        let offsetKey = offsetById ? PLKeys.since.string : PLKeys.page.string
+        let preset = PLPageCollectionPreset(url: url, sizeKey: PLKeys.per_page.string, offsetKey: offsetKey, size: size, offsetById: offsetById)
+        self.init(preset: preset, sectioned: sectioned)
+    }
+    
+    convenience init(preset: PLPageCollectionPreset) {
+        self.init(preset: preset, sectioned: false)
+    }
+    
+    init(preset: PLPageCollectionPreset, sectioned: Bool) {
+        self.sectioned = sectioned
         self.preset = preset
     }
     
@@ -119,6 +140,10 @@ class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
             pages += 1
         }
         return pages
+    }
+    
+    func appendParams(params: PLURLParams) {
+        preset.params.append(params)
     }
     
     subscript(index: Int) -> T {
@@ -179,7 +204,7 @@ class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
     }
     
     func findLastIndices(lastCount: Int) -> [NSIndexPath] {
-        return findLastIndices(lastCount, asSections: false)
+        return findLastIndices(lastCount, asSections: sectioned)
     }
     
     func deserialize(page: AnyObject) -> ([T],NSError?) {
@@ -223,7 +248,7 @@ class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
     
     func onPageLoad(objects: [T]) {
         if objects.count > 0 {
-            self._objects.appendContentsOf(objects)
+            self._objects.appendContentsOf(objects as [AnyObject])
             if !self.preset.offsetById {
                 self.offset += UInt64(objects.count)
             }
@@ -233,7 +258,7 @@ class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
     private func formParameters(preset: PLPageCollectionPreset, offset: UInt64) -> [String : AnyObject] {
         var anOffset = offset
         if preset.offsetById {
-            let lastId = objects.last?.id
+            let lastId = objects.last!.id
             anOffset = lastId ?? 0
         }
         var params = [String : AnyObject]()
@@ -242,10 +267,8 @@ class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
         if preset.id > 0 {
             params[preset.idKey] = String(preset.id)
         }
-        if let moreParams = preset.params {
-            for (key, value) in moreParams {
-                params[key] = value
-            }
+        for (key, value) in preset.params {
+            params[key] = value
         }
         return params
     }
@@ -255,27 +278,8 @@ class PLPageCollection<T:PLUniqueObject where T : PLFilterable> {
         _objects.removeAll()
         offset = 0
     }
-}
-
-class PLPalsPageCollection<T: PLUniqueObject where T : PLFilterable> : PLPageCollection<T> {
-    convenience init(url: String) {
-        self.init(url: url, offsetById: true)
-    }
     
-    convenience init(url: String, offsetById: Bool) {
-        let defaultSize = 20
-        self.init(url: url, size: defaultSize, offsetById: offsetById)
-    }
-    
-    init(url: String, size: Int, offsetById: Bool) {
-        let offsetKey = offsetById ? PLKeys.since.string : PLKeys.page.string
-        let preset = PLPageCollectionPreset(url: url, sizeKey: PLKeys.per_page.string, offsetKey: offsetKey, size: size, offsetById: offsetById)
-        super.init(preset: preset)
-    }
-}
-
-class PLUserPageCollection: PLPalsPageCollection<PLUser> {
-    override init(url: String, size: Int, offsetById: Bool) {
-        super.init(url: url, size: size, offsetById: offsetById)
+    func setSession(session: AFHTTPSessionManager) {
+        self.session = session
     }
 }

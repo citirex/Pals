@@ -133,8 +133,8 @@ class PLOrderViewController: PLViewController {
         coversDatasource.isVIP = order.isVIP
         if order.place != nil {
             clean()
-            drinksDatasource.collection.clean()
-            coversDatasource.collection.clean()
+            drinksDatasource.clean()
+            coversDatasource.clean()
             updateCheckoutButtonState()
             collectionView.reloadSections(NSIndexSet(index: 1))
             loadDrinks()
@@ -208,22 +208,23 @@ extension PLOrderViewController {
     }
     
     func calculateTotalAmount() -> String {
-        var amount: Float = 0.0
-
-        if order.drinks.count > 0 {
-            for drinkSet in order.drinks.values {
-                amount += Float(drinkSet.quantity) * drinkSet.drink.price
-            }
-        }
-        
-        if order.covers.count > 0 {
-            for aCover in coversDatasource.collection.objects {
-                if order.covers.contains(String(aCover.id)) {
-                    amount += aCover.price
-                }
-            }
-        }
-        return "$" + String(format: "%.2f", amount)
+//        var amount: Float = 0.0
+//
+//        if order.drinks.count > 0 {
+//            for drinkSet in order.drinks.values {
+//                amount += Float(drinkSet.quantity) * drinkSet.drink.price
+//            }
+//        }
+//        
+//        if order.covers.count > 0 {
+//            for aCover in coversDatasource.collection.objects {
+//                if order.covers.contains(String(aCover.id)) {
+//                    amount += aCover.price
+//                }
+//            }
+//        }
+//        return "$" + String(format: "%.2f", amount)
+        return ""
     }
     
     func createNewOrderWithMessage(message: String) {
@@ -265,7 +266,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
 
     func updateCoverAt(indexPath: NSIndexPath) {
         let coverCell = collectionView.cellForItemAtIndexPath(indexPath) as! PLOrderCoverCell
-        let coverID = coversDatasource.collection.objects[indexPath.row].id
+        let coverID = coversDatasource[indexPath.row].id
         order.updateWithCoverID(coverID, inCell: coverCell)
         updateCheckoutButtonState()
     }

@@ -18,16 +18,16 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
     var userId: UInt64? {
         didSet {
             if let id = userId {
-                collection.preset[PLKeys.id.string] = String(id)
+                collection.appendParams([PLKeys.id.string : String(id)])
             }
         }
     }
     
     var orderType: PLOrderType
     
-    override init(url: String, params: PLURLParams?, offsetById: Bool) {
+    override init(url: String, params: PLURLParams?, offsetById: Bool, sectioned: Bool) {
         orderType = .All
-        super.init(url: url, params: params, offsetById: offsetById)
+        super.init(url: url, params: params, offsetById: offsetById, sectioned: sectioned)
     }
     
     convenience init() {
@@ -35,9 +35,13 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
     }
     
     convenience init(orderType: PLOrderType) {
-        self.init(url: PLAPIService.Orders.string, offsetById: false)
+        self.init(orderType: orderType, sectioned: false)
+    }
+    
+    convenience init(orderType: PLOrderType, sectioned: Bool) {
+        self.init(url: PLAPIService.Orders.string, offsetById: false, sectioned: sectioned)
         collection.appendPath([PLKeys.orders.string])
-        collection.preset[PLKeys.type.string] = orderType.number
+        collection.appendParams([PLKeys.type.string : orderType.number])
         self.orderType = orderType
     }
     

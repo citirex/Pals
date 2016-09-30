@@ -18,7 +18,7 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
                 params[PLKeys.long.string] = aRegion.center.longitude
                 params[PLKeys.dlat.string] = aRegion.span.latitudeDelta
                 params[PLKeys.dlong.string] = aRegion.span.longitudeDelta
-                collection.preset.params = params
+                collection.appendParams(params)
             }
         }
     }
@@ -34,8 +34,8 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
         }
     }
     
-    override init(url: String, params: PLURLParams?, offsetById: Bool) {
-        super.init(url: url, params: params, offsetById: offsetById)
+    override init(url: String, params: PLURLParams?, offsetById: Bool, sectioned: Bool) {
+        super.init(url: url, params: params, offsetById: offsetById, sectioned: sectioned)
     }
     
     convenience init() {
