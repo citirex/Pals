@@ -140,10 +140,10 @@
 		E837C20E1D902CAE0080A074 /* signup.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1F51D902CAE0080A074 /* signup.json */; };
 		E83B4E4F1D87364E002E72F6 /* PLBackBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */; };
 		E860916D1D9A996A002C602A /* PLEditLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E860916C1D9A996A002C602A /* PLEditLabel.swift */; };
-		E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */; };
 		E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */; };
 		E8A658681D9CED4E00D8257F /* PLSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A658671D9CED4E00D8257F /* PLSelector.swift */; };
 		E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A658691D9D0B6900D8257F /* PLDate.swift */; };
+		E8A6586E1D9E4B0400D8257F /* PLLocationDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A6586D1D9E4B0400D8257F /* PLLocationDistance.swift */; };
 		E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */; };
 		E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E471D941A4700037A81 /* PLOrderHistoryCell.swift */; };
 		E8B53E4A1D941A4800037A81 /* PLOrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B53E481D941A4700037A81 /* PLOrderHistoryCell.xib */; };
@@ -313,10 +313,10 @@
 		E837C1F51D902CAE0080A074 /* signup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signup.json; sourceTree = "<group>"; };
 		E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLBackBarButtonItem.swift; sourceTree = "<group>"; };
 		E860916C1D9A996A002C602A /* PLEditLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEditLabel.swift; path = "Edit Profile/PLEditLabel.swift"; sourceTree = "<group>"; };
-		E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationDistance.swift; sourceTree = "<group>"; };
 		E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLCardInfoViewController.swift; path = "Card Info/PLCardInfoViewController.swift"; sourceTree = "<group>"; };
 		E8A658671D9CED4E00D8257F /* PLSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSelector.swift; sourceTree = "<group>"; };
 		E8A658691D9D0B6900D8257F /* PLDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDate.swift; sourceTree = "<group>"; };
+		E8A6586D1D9E4B0400D8257F /* PLLocationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocationDistance.swift; sourceTree = "<group>"; };
 		E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistoryViewController.swift; path = "Order History/PLOrderHistoryViewController.swift"; sourceTree = "<group>"; };
 		E8B53E471D941A4700037A81 /* PLOrderHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistoryCell.swift; path = "Order History/PLOrderHistoryCell.swift"; sourceTree = "<group>"; };
 		E8B53E481D941A4700037A81 /* PLOrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistoryCell.xib; path = "Order History/PLOrderHistoryCell.xib"; sourceTree = "<group>"; };
@@ -433,7 +433,7 @@
 				24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */,
 				2480F87C1D813E730095995F /* PLString.swift */,
 				E8DA8B581D881D7C008782E5 /* PLView.swift */,
-				E883DA4D1D8686B1000D6010 /* CLLocationDistance.swift */,
+				E8A6586D1D9E4B0400D8257F /* PLLocationDistance.swift */,
 				E829DDDB1D819A6300D8C130 /* PLConstants.swift */,
 				E8A658691D9D0B6900D8257F /* PLDate.swift */,
 				D46D2B861D87583B0058060E /* PLColor.swift */,
@@ -1183,6 +1183,7 @@
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
+				E8A6586E1D9E4B0400D8257F /* PLLocationDistance.swift in Sources */,
 				E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */,
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
@@ -1213,7 +1214,6 @@
 				D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */,
 				24DA61171D8BF642007F4973 /* PLCover.swift in Sources */,
 				E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */,
-				E883DA4E1D8686B1000D6010 /* CLLocationDistance.swift in Sources */,
 				E8E4A12E1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift in Sources */,
 				2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */,
 				2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */,
