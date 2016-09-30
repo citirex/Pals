@@ -27,7 +27,7 @@ class PLCheckoutOrder {
         }
     }
     var drinks = [UInt64:PLDrinkset]()
-    var covers = [String]()
+    var covers = [UInt64:PLCover]()
     var isVIP = false
     var message = ""
     
@@ -38,9 +38,9 @@ class PLCheckoutOrder {
         dic[PLKeys.user_id.string] = String(user!.id)
         dic[PLKeys.place_id.string] = String(place!.id)
         let aDrinks = Array(drinks.values).toDictionary { item in ["\(item.drink.id)":"\(item.quantity)"] }
-        
         dic[PLKeys.drinks.string] = aDrinks
-        dic[PLKeys.covers.string] = covers
+        let aCovers = Array(covers.values).map({ "\($0.id)" })
+        dic[PLKeys.covers.string] = aCovers
         dic[PLKeys.is_vip.string] = isVIP.hashValue
         dic[PLKeys.message.string] = message
     
@@ -59,14 +59,30 @@ class PLCheckoutOrder {
         }
     }
     
-    func updateWithCoverID(coverID: UInt64, inCell coverCell: PLOrderCoverCell) {
-        if let index = covers.indexOf(String(coverID)) {
-            covers.removeAtIndex(index)
+    func updateWithCoverID(cover: PLCover, inCell coverCell: PLOrderCoverCell) {
+        if covers[cover.id] != nil {
+            covers.removeValueForKey(cover.id)
             coverCell.setDimmed(false, animated: true)
         } else {
-            covers.append(String(coverID))
+            covers.updateValue(cover, forKey: cover.id)
             coverCell.setDimmed(true, animated: true)
         }
+    }
+    
+    func calculateTotalAmount() -> String {
+        var amount: Float = 0.0
+        
+        if drinks.count > 0 {
+            for drinkSet in drinks.values {
+                amount += Float(drinkSet.quantity) * drinkSet.drink.price
+            }
+        }
+        if covers.count > 0 {
+            for aCover in covers.values {
+                amount += aCover.price
+            }
+        }
+        return "$" + String(format: "%.2f", amount)
     }
     
     func clean() {

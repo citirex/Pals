@@ -20,6 +20,7 @@ class PLOrderHistoryViewController: UIViewController {
     
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,11 +37,11 @@ class PLOrderHistoryViewController: UIViewController {
         activityIndicator.startAnimating()
         orders.loadPage(true) { [unowned self] indexPaths, error in
             self.activityIndicator.stopAnimating()
-            guard error == nil else { return }
-            
-            indexPaths.forEach { print("rows: \($0.row), section: \($0.section)") }
-
+            guard error == nil else { return PLShowErrorAlert(error: error!) }
             self.tableView?.beginUpdates()
+            
+            indexPaths.forEach { PLLog("rows: \($0.row), section: \($0.section)") }
+
             let indexSet = NSIndexSet(indexesInRange: NSMakeRange(0, 20))
             self.tableView.insertSections(indexSet, withRowAnimation: .Bottom)
 //            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
@@ -121,6 +122,10 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension PLOrderHistoryViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if orders.shouldLoadNextPage(indexPath) { loadOrders() }
+    }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeader = tableView.dequeueReusableCellWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as! PLOrderHistorySectionHeader

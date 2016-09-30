@@ -1,8 +1,8 @@
 //
-//  CLLocationDistance.swift
+//  PLLocationDistance.swift
 //  Pals
 //
-//  Created by Vitaliy Delidov on 9/12/16.
+//  Created by Vitaliy Delidov on 9/30/16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
@@ -27,3 +27,4 @@ extension CLLocationDistance {
         return String(format: "%.1f", distance) + " " + CLLocationDistance.distanceUnit()
     }
 }
+

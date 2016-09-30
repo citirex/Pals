@@ -11,13 +11,13 @@ class PLEventsDatasource: PLDatasource<PLEvent> {
     var placeId: UInt64? {
         didSet {
             if let id = placeId {
-                collection.preset[PLKeys.place_id.string] = String(id)
+                collection.appendParams([PLKeys.place_id.string : String(id)])
             }
         }
     }
     
-    override init(url: String, params: PLURLParams?, offsetById: Bool) {
-        super.init(url: url, params: params, offsetById: offsetById)
+    override init(url: String, params: PLURLParams?, offsetById: Bool, sectioned: Bool) {
+        super.init(url: url, params: params, offsetById: offsetById, sectioned: sectioned)
     }
     
     convenience init() {

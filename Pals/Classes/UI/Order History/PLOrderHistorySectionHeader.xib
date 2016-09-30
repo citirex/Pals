@@ -65,7 +65,7 @@
                 <outlet property="dateLabel" destination="dDE-Ni-etI" id="0nb-gk-Awp"/>
                 <outlet property="placeNameLabel" destination="B6P-p2-oPe" id="zx0-fx-tLy"/>
             </connections>
-            <point key="canvasLocation" x="-128" y="241"/>
+            <point key="canvasLocation" x="-253" y="205.5"/>
         </tableViewCell>
     </objects>
 </document>

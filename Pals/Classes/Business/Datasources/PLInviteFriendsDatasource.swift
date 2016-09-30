@@ -8,8 +8,8 @@
 
 class PLInviteFriendsDatasource : PLDatasource<PLInvitableUser> {
     
-    override init(url: String, params: PLURLParams?, offsetById: Bool) {
-        super.init(url: url, params: params, offsetById: offsetById)
+    override init(url: String, params: PLURLParams?, offsetById: Bool, sectioned: Bool) {
+        super.init(url: url, params: params, offsetById: offsetById, sectioned: sectioned)
     }
     
     convenience init(userId: UInt64) {

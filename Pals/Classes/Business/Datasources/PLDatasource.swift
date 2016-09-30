@@ -10,24 +10,35 @@ typealias PLDatasourceLoadCompletion = (objects: [AnyObject], error: NSError?) -
 typealias PLDatasourceIndicesChangeCompletion = (indices: [NSIndexPath], error: NSError?) -> ()
 
 class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
-    let collection: PLPalsPageCollection<T>
-    var completion: PLDatasourceLoadCompletion?
-    var indicesCompletion: PLDatasourceIndicesChangeCompletion?
-    private var formIndicesAsSections = false
+    var collection: PLPageCollection<T> {return _collection}
+    
+    private let _collection: PLPageCollection<T>
+    private var completion: PLDatasourceLoadCompletion?
+    private var indicesCompletion: PLDatasourceIndicesChangeCompletion?
     
     convenience init(url: String, offsetById: Bool) {
         self.init(url: url, params: nil, offsetById: offsetById)
+    }
+    
+    convenience init(url: String, offsetById: Bool, sectioned: Bool) {
+        self.init(url: url, params: nil, offsetById: offsetById, sectioned: sectioned)
     }
     
     convenience init(service: PLAPIService, params: PLURLParams) {
         self.init(url: service.string, params: params, offsetById: false)
     }
     
-    init(url: String, params: PLURLParams?, offsetById: Bool) {
-        collection = PLPalsPageCollection(url: url, offsetById: offsetById)
-        collection.preset.params = params
-        collection.session = PLNetworkSession.shared
-        collection.delegate = self
+    convenience init(url: String, params: PLURLParams?, offsetById: Bool) {
+        self.init(url: url, params: params, offsetById: offsetById, sectioned: false)
+    }
+    
+    init(url: String, params: PLURLParams?, offsetById: Bool, sectioned: Bool) {
+        _collection = PLPageCollection(url: url, offsetById: offsetById, sectioned: sectioned)
+        if params != nil {
+            _collection.appendParams(params!)
+        }
+        _collection.setSession(PLNetworkSession.shared)
+        _collection.delegate = self
     }
     
     //MARK: Interface
@@ -42,7 +53,6 @@ class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
     
     func loadPage(asSections:Bool, completion: PLDatasourceIndicesChangeCompletion) {
         self.indicesCompletion = completion
-        self.formIndicesAsSections = asSections
         collection.load(asSections)
     }
     
@@ -52,6 +62,10 @@ class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
     
     func shouldLoadNextPage(indexPath: NSIndexPath) -> Bool {
         return collection.shouldLoadNextPage(indexPath)
+    }
+    
+    func clean() {
+        collection.clean()
     }
     
     //MARK: Adapter getters
@@ -98,7 +112,7 @@ extension PLDatasource : PLPageCollectionDelegate {
                     let objects = response.0
                     self.collection.onPageLoad(objects)
                     self.completion?(objects:response.0, error: nil)
-                    self.indicesCompletion?(indices: self.collection.findLastIndices(objects.count, asSections: self.formIndicesAsSections), error: nil)
+                    self.indicesCompletion?(indices: self.collection.findLastIndices(objects.count), error: nil)
                 } else {
                     self.completion?(objects: [T](), error: error)
                     self.indicesCompletion?(indices: [NSIndexPath](), error: error)

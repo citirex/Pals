@@ -16,15 +16,15 @@ class PLCoversDatasource: PLDatasource<PLCover> {
                 if isVIP == true {
                     params[PLKeys.is_vip.string] = isVIP
                 }
-                collection.preset.params = params
+                collection.appendParams(params)
             }
         }
     }
     
     var isVIP = false
     
-    override init(url: String, params: PLURLParams?, offsetById: Bool) {
-        super.init(url: url, params: params, offsetById: offsetById)
+    override init(url: String, params: PLURLParams?, offsetById: Bool, sectioned: Bool) {
+        super.init(url: url, params: params, offsetById: offsetById, sectioned: sectioned)
     }
     
     convenience init() {

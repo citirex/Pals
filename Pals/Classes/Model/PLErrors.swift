@@ -9,6 +9,7 @@
 enum PLErrorDomain : String {
     case Unknown
     case User
+    case Checkout
     case Location
     var string: String {return rawValue}
 }
@@ -22,6 +23,9 @@ let kPLErrorTypeBadResponse = PLErrorType(code: 1000, reason: "Server returned a
 let kPLErrorTypeWrongEmail = PLErrorType(code: 1001, reason: "This email is not associated with any user account.")
 let kPLErrorTypeLocationNotAvailable = PLErrorType(code: 1000, reason: "Location services are not available. Go to Settings to activate them.")
 let kPLErrorTypeLocationFailed = PLErrorType(code: 1001, reason: "Failed to fetch location data.")
+//FIXME: below, i dont really know what to write in error description
+let kPLErrorTypeCheckoutFailed = PLErrorType(code: 1000, reason: "Failed post data to server")
+
 let kPLErrorUnknown =  NSError(domain: PLErrorDomain.Unknown.string, code: 0, userInfo: nil)
 
 class PLError : NSError {
