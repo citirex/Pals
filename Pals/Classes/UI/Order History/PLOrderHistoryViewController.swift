@@ -38,7 +38,7 @@ class PLOrderHistoryViewController: UIViewController {
             self.activityIndicator.stopAnimating()
             guard error == nil else { return }
             
-            indexPaths.forEach { print("rows: \($0.row), section: \($0.section)") }
+            indexPaths.forEach { PLLog("rows: \($0.row), section: \($0.section)") }
 
             self.tableView?.beginUpdates()
             let indexSet = NSIndexSet(indexesInRange: NSMakeRange(0, 20))

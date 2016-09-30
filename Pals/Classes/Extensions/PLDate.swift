@@ -20,26 +20,6 @@ enum PLDateComponent: Int {
     case Today
 }
 
-extension PLDateComponent {
-    
-    var description: String {
-        switch self {
-        case .YearsAgo:  return ""
-        case .MonthsAgo: return ""
-        case .WeeksAgo:  return ""
-        case .DaysAgo:   return ""
-        case .LastYear:  return ""
-        case .LastMonth: return ""
-        case .LastWeek:  return ""
-        case .Yesterday: return ""
-        case .Today:     return ""
-        }
-    }
-}
-
-
-
-
 
 extension NSDate {
     
@@ -52,50 +32,23 @@ extension NSDate {
     var since: String {
         
         if dateComponents.year > 0 {
-            if dateComponents.year < 2 {
-                return "Last year"
-            } else {
-                return String(format: "%d Years Ago", dateComponents.year)
-            }
+            return dateComponents.year < 2 ? "Last Year" : String(format: "%d Years Ago", dateComponents.year)
         }
         
         if dateComponents.month > 0 {
-            if dateComponents.month < 2 {
-                return "Last month"
-            } else {
-                return String(format: "%d Months Ago", dateComponents.month)
-            }
+            return dateComponents.month < 2 ? "Last Month" : String(format: "%d Months Ago", dateComponents.month)
         }
 
         if dateComponents.day >= 7 {
             let week = dateComponents.day / 7
-            if week < 2 {
-                return "Last week"
-            } else {
-                return String(format: "%d Weeks Ago", week)
-            }
+            return week < 2 ? "Last Week" : String(format: "%d Weeks Ago", week)
         }
             
         if dateComponents.day > 0 {
-            if dateComponents.day < 2 {
-                return "Yesterday"
-            } else  {
-                return String(format: "%d Days Ago", dateComponents.day)
-            }
+            return dateComponents.day < 2 ? "Yesterday" : String(format: "%d Days Ago", dateComponents.day)
         }
 
         return "Today"
     }
 
-
-
-    // NSDate(dateString: "2014-06-06")
-    convenience init(dateString: String, dateFormat: String = "yyyy-MM-dd") {
-        let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = dateFormat
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        let date = dateStringFormatter.dateFromString(dateString)!
-        self.init(timeInterval: 0, sinceDate: date)
-    }
-    
 }
