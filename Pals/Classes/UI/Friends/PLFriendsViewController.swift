@@ -7,7 +7,7 @@
 //
 
 class PLFriendsViewController: PLFriendBaseViewController {
-
+	
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
     
 	@IBAction func searchButton(sender: AnyObject) {
@@ -37,17 +37,15 @@ class PLFriendsViewController: PLFriendBaseViewController {
 		navigationController?.navigationBar.tintColor = .vividViolet()
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		navigationController?.setNavigationBarTransparent(true)
+	override func viewDidDisappear(animated: Bool) {
+		super.viewDidDisappear(animated)
+		navigationController?.navigationBar.barStyle = .Black
 	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView.contentOffset.y < -20 {
-			print(scrollView.contentOffset.y)
             navigationController?.navigationBar.addBorder(.Bottom, color: .miracleColor(), width: 0.5)
 		} else {
-			print(scrollView.contentOffset.y)
 		navigationController?.navigationBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
 		}
 	}
@@ -103,9 +101,8 @@ extension PLFriendsViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         datasource.searching = searchController.active
         let text = searchController.searchBar.text!
-        if text.isEmpty {
-            datasource.searching = false
-        } else {
+        if text.isEmpty { datasource.searching = false}
+		else {
             spinner.startAnimating()
             datasource.filter(text, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()

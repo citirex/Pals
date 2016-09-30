@@ -64,7 +64,6 @@ class PLProfileViewController: TGLStackedViewController {
         navigationController?.setNavigationBarTransparent(true)
     }
     
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -81,13 +80,10 @@ class PLProfileViewController: TGLStackedViewController {
     func loadPage() {
         spinner.startAnimating()
         spinner.center = view.center
-        
         currentDatasource.loadPage { (indices, error) in
-            
             if indices.count > 0 {
                 self.collectionBackgroundView.noItemsLabel.hidden = true
                 if error == nil {
-                    
                     if self.currentDatasource.pagesLoaded == 1 {
                         self.collectionView?.alpha = 0
                         self.collectionView?.reloadData({

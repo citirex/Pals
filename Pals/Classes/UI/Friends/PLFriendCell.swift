@@ -43,7 +43,7 @@ class PLFriendCell: UITableViewCell{
 			nameLabel.text = friendCellData.name
 			
 		} else {
-			print("Friend Cell Data is empty!")
+			PLLog("Friend Cell Data is empty!")
 		}
 	}
 	
@@ -86,12 +86,12 @@ class PLFriendCell: UITableViewCell{
 	func addFriendAction(sender: UIButton){
 		
 		if friendStatus == .NotFriend{
-			print("sendYES")
+			PLLog("sendYES")
 			friendStatus = .Friend
 		addButton.setImage(UIImage(named: "check_mark"), forState: .Normal)
 			
 		} else {
-			print("sendNO")
+			PLLog("sendNO")
 		}
 		
 		
