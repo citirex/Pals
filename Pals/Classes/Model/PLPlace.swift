@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-class PLPlace : PLUniqueObject, PLCellRepresentable, PLFilterable {
+class PLPlace : PLDatedObject, PLCellRepresentable, PLFilterable {
     let name: String
     let picture: NSURL
     var musicGengres = ""

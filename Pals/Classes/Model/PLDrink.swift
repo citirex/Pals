@@ -12,7 +12,7 @@ enum DrinkType: Int {
     case Strong
 }
 
-class PLDrink : PLUniqueObject, PLCellRepresentable, PLFilterable {
+class PLDrink : PLDatedObject, PLCellRepresentable, PLFilterable {
     
     var name: String
     var price: Float

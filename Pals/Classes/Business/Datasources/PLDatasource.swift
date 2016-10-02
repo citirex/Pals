@@ -9,7 +9,7 @@
 typealias PLDatasourceLoadCompletion = (objects: [AnyObject], error: NSError?) -> ()
 typealias PLDatasourceIndicesChangeCompletion = (indices: [NSIndexPath], error: NSError?) -> ()
 
-class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
+class PLDatasource<T: PLDatedObject where T : PLFilterable> {
     var collection: PLPageCollection<T> {return _collection}
     
     private let _collection: PLPageCollection<T>
@@ -48,12 +48,12 @@ class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
     }
     
     func loadPage(completion: PLDatasourceIndicesChangeCompletion) {
-        loadPage(false, completion: completion)
+        self.indicesCompletion = completion
+        collection.load()
     }
     
     func loadPage(asSections:Bool, completion: PLDatasourceIndicesChangeCompletion) {
-        self.indicesCompletion = completion
-        collection.load(asSections)
+
     }
     
     func filter(text: String, completion: ()->()) {
@@ -76,7 +76,8 @@ class PLDatasource<T: PLUniqueObject where T : PLFilterable> {
         get { return collection.searching }
         set { collection.searching = newValue }
     }
-    subscript(index: Int) -> T { return collection[index] }
+    subscript(index: Int) -> T {return collection[index]}
+    subscript(dateType: PLDateType) -> [T]? {return collection[dateType]}
     
     func fakeFeedNameOnError(error: NSError) -> String {
         let name = fakeFeedFilenameKey() + "\(collection.pagesLoaded)"

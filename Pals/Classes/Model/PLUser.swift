@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLUser: PLUniqueObject, PLCellRepresentable, PLFilterable {
+class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     var name: String
     var email: String
     var picture: NSURL

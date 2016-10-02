@@ -49,4 +49,23 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
         return (orderType == .Covers ? PLKeys.order_covers : PLKeys.order_drinks).string
     }
     
+    func drinkCountInSection(section: Int) -> Int {
+        if collection.isSectioned {
+            let ordersInSection = collection.objectsInSection(section)
+            var count = 0
+            for order in ordersInSection {
+                count += order.drinkSets.count
+            }
+            return count
+        }
+        return 0
+    }
+    
+    func ordersCountInSection(section: Int) -> Int {
+        if collection.isSectioned {
+            return collection.objectsInSection(section).count
+        }
+        return 0
+    }
+    
 }

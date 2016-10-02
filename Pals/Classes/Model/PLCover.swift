@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLCover: PLUniqueObject, PLCellRepresentable, PLFilterable {
+class PLCover: PLDatedObject, PLCellRepresentable, PLFilterable {
     
     var name: String = ""
     var price: Float = 0
