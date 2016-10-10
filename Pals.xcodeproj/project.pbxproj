@@ -27,7 +27,6 @@
 		2480F8DE1D813E730095995F /* PLSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8761D813E730095995F /* PLSettingsManager.swift */; };
 		2480F8DF1D813E730095995F /* PLDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8781D813E730095995F /* PLDevice.swift */; };
 		2480F8E01D813E730095995F /* PLDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8791D813E730095995F /* PLDictionary.swift */; };
-		2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F87A1D813E730095995F /* PLNavigationController.swift */; };
 		2480F8E21D813E730095995F /* PLStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F87B1D813E730095995F /* PLStoryboard.swift */; };
 		2480F8E31D813E730095995F /* PLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F87C1D813E730095995F /* PLString.swift */; };
 		2480F8E41D813E730095995F /* PLDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F87E1D813E730095995F /* PLDrink.swift */; };
@@ -40,9 +39,7 @@
 		2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8851D813E730095995F /* PLUniqueObject.swift */; };
 		2480F8EC1D813E730095995F /* PLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8861D813E730095995F /* PLUser.swift */; };
 		2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8961D813E730095995F /* PLAddFundsViewController.swift */; };
-		2480F8F61D813E730095995F /* PLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89A1D813E730095995F /* PLTextField.swift */; };
 		2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89D1D813E730095995F /* PLFriendCellData.swift */; };
-		2480F8F91D813E730095995F /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89E1D813E730095995F /* PLFriendProfileViewController.swift */; };
 		2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A31D813E730095995F /* PLLoginViewController.swift */; };
 		2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A51D813E730095995F /* PLOrderViewController.swift */; };
 		2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */; };
@@ -51,8 +48,6 @@
 		2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8AA1D813E730095995F /* PLOrderStillHeader.xib */; };
 		2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8AB1D813E730095995F /* PLOrdeStickyHeader.swift */; };
 		2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8AC1D813E730095995F /* PLOrdeStickyHeader.xib */; };
-		2480F9081D813E730095995F /* PLPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */; };
-		2480F9091D813E730095995F /* PLPlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */; };
 		2480F9171D813E730095995F /* PLSignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8C31D813E730095995F /* PLSignUpData.swift */; };
 		2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8C41D813E730095995F /* PLSignUpViewController.swift */; };
 		2480F9191D813E730095995F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8C61D813E730095995F /* Assets.xcassets */; };
@@ -107,7 +102,12 @@
 		D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */; };
 		D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA241D9D5EB800B3CA82 /* PLLog.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
+		E8007BD71DA0073700372347 /* PLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8007BD61DA0073700372347 /* PLLocation.swift */; };
 		E8042B3A1D8C54D900755EF3 /* PLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8042B391D8C54D900755EF3 /* PLTabBarController.swift */; };
+		E80692911DA0422200500684 /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80692901DA0422200500684 /* PLFriendProfileViewController.swift */; };
+		E81E32171DA16A7A00E46ABB /* PLNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */; };
+		E8204A261DA82EB600BDBFCE /* PLDescriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8204A251DA82EB500BDBFCE /* PLDescriptionLabel.swift */; };
+		E8204A281DA82F4000BDBFCE /* PLFormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */; };
 		E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */; };
 		E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */; };
 		E829DDD31D8151BE00D8C130 /* PLPlaceProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDCE1D8151BE00D8C130 /* PLPlaceProfileCell.xib */; };
@@ -142,22 +142,17 @@
 		E837C20D1D902CAE0080A074 /* sendpassword.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1F41D902CAE0080A074 /* sendpassword.json */; };
 		E837C20E1D902CAE0080A074 /* signup.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1F51D902CAE0080A074 /* signup.json */; };
 		E83B4E4F1D87364E002E72F6 /* PLBackBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */; };
-		E860916D1D9A996A002C602A /* PLEditLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E860916C1D9A996A002C602A /* PLEditLabel.swift */; };
+		E883A8421DAA6269006DB9CF /* PLPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883A8401DAA6269006DB9CF /* PLPlaceCell.swift */; };
+		E883A8431DAA6269006DB9CF /* PLPlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E883A8411DAA6269006DB9CF /* PLPlaceCell.xib */; };
 		E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */; };
 		E8A658681D9CED4E00D8257F /* PLSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A658671D9CED4E00D8257F /* PLSelector.swift */; };
 		E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A658691D9D0B6900D8257F /* PLDate.swift */; };
-		E8A6586E1D9E4B0400D8257F /* PLLocationDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A6586D1D9E4B0400D8257F /* PLLocationDistance.swift */; };
 		E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */; };
 		E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E471D941A4700037A81 /* PLOrderHistoryCell.swift */; };
-		E8B53E4A1D941A4800037A81 /* PLOrderHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B53E481D941A4700037A81 /* PLOrderHistoryCell.xib */; };
 		E8B53E4D1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E4B1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift */; };
-		E8B53E4E1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B53E4C1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib */; };
 		E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */; };
 		E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */; };
 		E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86821D913A7B0079855C /* PLNotificationCell.swift */; };
-		E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BE86831D913A7B0079855C /* PLNotificationCell.xib */; };
-		E8BE868A1D9166620079855C /* PLSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86881D9166620079855C /* PLSettingCell.swift */; };
-		E8BE868B1D9166620079855C /* PLSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8BE86891D9166620079855C /* PLSettingCell.xib */; };
 		E8CD61F11D998CE80022D51F /* PLFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD61F01D998CE80022D51F /* PLFont.swift */; };
 		E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B581D881D7C008782E5 /* PLView.swift */; };
 		E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */; };
@@ -173,6 +168,7 @@
 		E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */; };
 		E8E4A12E1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E4A12C1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift */; };
 		E8E4A1321D89EC0A00EA0DFE /* PLEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E4A1311D89EC0A00EA0DFE /* PLEditProfileViewController.swift */; };
+		E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC02541DA92B18006C94E7 /* PLPlaceNameCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,7 +192,6 @@
 		2480F8761D813E730095995F /* PLSettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsManager.swift; sourceTree = "<group>"; };
 		2480F8781D813E730095995F /* PLDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDevice.swift; sourceTree = "<group>"; };
 		2480F8791D813E730095995F /* PLDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDictionary.swift; sourceTree = "<group>"; };
-		2480F87A1D813E730095995F /* PLNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNavigationController.swift; sourceTree = "<group>"; };
 		2480F87B1D813E730095995F /* PLStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLStoryboard.swift; sourceTree = "<group>"; };
 		2480F87C1D813E730095995F /* PLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLString.swift; sourceTree = "<group>"; };
 		2480F87E1D813E730095995F /* PLDrink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrink.swift; sourceTree = "<group>"; };
@@ -210,9 +205,7 @@
 		2480F8861D813E730095995F /* PLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUser.swift; sourceTree = "<group>"; };
 		2480F8871D813E730095995F /* Pals-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Pals-Bridging-Header.h"; path = "Classes/Pals-Bridging-Header.h"; sourceTree = "<group>"; };
 		2480F8961D813E730095995F /* PLAddFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddFundsViewController.swift; sourceTree = "<group>"; };
-		2480F89A1D813E730095995F /* PLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTextField.swift; sourceTree = "<group>"; };
 		2480F89D1D813E730095995F /* PLFriendCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCellData.swift; sourceTree = "<group>"; };
-		2480F89E1D813E730095995F /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendProfileViewController.swift; path = Friends/PLFriendProfileViewController.swift; sourceTree = "<group>"; };
 		2480F8A31D813E730095995F /* PLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLoginViewController.swift; sourceTree = "<group>"; };
 		2480F8A51D813E730095995F /* PLOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderViewController.swift; sourceTree = "<group>"; };
 		2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDrinkCell.swift; sourceTree = "<group>"; };
@@ -221,8 +214,6 @@
 		2480F8AA1D813E730095995F /* PLOrderStillHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderStillHeader.xib; sourceTree = "<group>"; };
 		2480F8AB1D813E730095995F /* PLOrdeStickyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrdeStickyHeader.swift; sourceTree = "<group>"; };
 		2480F8AC1D813E730095995F /* PLOrdeStickyHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrdeStickyHeader.xib; sourceTree = "<group>"; };
-		2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceTableViewCell.swift; sourceTree = "<group>"; };
-		2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceTableViewCell.xib; sourceTree = "<group>"; };
 		2480F8C31D813E730095995F /* PLSignUpData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSignUpData.swift; sourceTree = "<group>"; };
 		2480F8C41D813E730095995F /* PLSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSignUpViewController.swift; sourceTree = "<group>"; };
 		2480F8C61D813E730095995F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -283,7 +274,12 @@
 		D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesDatasource.swift; sourceTree = "<group>"; };
 		D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatedObject.swift; sourceTree = "<group>"; };
 		D4FECA241D9D5EB800B3CA82 /* PLLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLog.swift; sourceTree = "<group>"; };
+		E8007BD61DA0073700372347 /* PLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocation.swift; sourceTree = "<group>"; };
 		E8042B391D8C54D900755EF3 /* PLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTabBarController.swift; sourceTree = "<group>"; };
+		E80692901DA0422200500684 /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendProfileViewController.swift; path = "Friend Profile/PLFriendProfileViewController.swift"; sourceTree = "<group>"; };
+		E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNavigationBar.swift; sourceTree = "<group>"; };
+		E8204A251DA82EB500BDBFCE /* PLDescriptionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLDescriptionLabel.swift; path = "Edit Profile/PLDescriptionLabel.swift"; sourceTree = "<group>"; };
+		E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFormTextField.swift; sourceTree = "<group>"; };
 		E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileHeader.swift; path = "Place Profile/PLPlaceProfileHeader.swift"; sourceTree = "<group>"; };
 		E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileHeader.xib; path = "Place Profile/PLPlaceProfileHeader.xib"; sourceTree = "<group>"; };
 		E829DDCE1D8151BE00D8C130 /* PLPlaceProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileCell.xib; path = "Place Profile/PLPlaceProfileCell.xib"; sourceTree = "<group>"; };
@@ -318,22 +314,17 @@
 		E837C1F41D902CAE0080A074 /* sendpassword.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sendpassword.json; sourceTree = "<group>"; };
 		E837C1F51D902CAE0080A074 /* signup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signup.json; sourceTree = "<group>"; };
 		E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLBackBarButtonItem.swift; sourceTree = "<group>"; };
-		E860916C1D9A996A002C602A /* PLEditLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEditLabel.swift; path = "Edit Profile/PLEditLabel.swift"; sourceTree = "<group>"; };
+		E883A8401DAA6269006DB9CF /* PLPlaceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCell.swift; sourceTree = "<group>"; };
+		E883A8411DAA6269006DB9CF /* PLPlaceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceCell.xib; sourceTree = "<group>"; };
 		E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLCardInfoViewController.swift; path = "Card Info/PLCardInfoViewController.swift"; sourceTree = "<group>"; };
 		E8A658671D9CED4E00D8257F /* PLSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSelector.swift; sourceTree = "<group>"; };
 		E8A658691D9D0B6900D8257F /* PLDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDate.swift; sourceTree = "<group>"; };
-		E8A6586D1D9E4B0400D8257F /* PLLocationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocationDistance.swift; sourceTree = "<group>"; };
 		E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistoryViewController.swift; path = "Order History/PLOrderHistoryViewController.swift"; sourceTree = "<group>"; };
 		E8B53E471D941A4700037A81 /* PLOrderHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistoryCell.swift; path = "Order History/PLOrderHistoryCell.swift"; sourceTree = "<group>"; };
-		E8B53E481D941A4700037A81 /* PLOrderHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistoryCell.xib; path = "Order History/PLOrderHistoryCell.xib"; sourceTree = "<group>"; };
 		E8B53E4B1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistorySectionHeader.swift; path = "Order History/PLOrderHistorySectionHeader.swift"; sourceTree = "<group>"; };
-		E8B53E4C1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistorySectionHeader.xib; path = "Order History/PLOrderHistorySectionHeader.xib"; sourceTree = "<group>"; };
 		E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsViewController.swift; sourceTree = "<group>"; };
 		E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationsViewController.swift; path = Notifications/PLNotificationsViewController.swift; sourceTree = "<group>"; };
 		E8BE86821D913A7B0079855C /* PLNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationCell.swift; path = Notifications/PLNotificationCell.swift; sourceTree = "<group>"; };
-		E8BE86831D913A7B0079855C /* PLNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLNotificationCell.xib; path = Notifications/PLNotificationCell.xib; sourceTree = "<group>"; };
-		E8BE86881D9166620079855C /* PLSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingCell.swift; sourceTree = "<group>"; };
-		E8BE86891D9166620079855C /* PLSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingCell.xib; sourceTree = "<group>"; };
 		E8CD61F01D998CE80022D51F /* PLFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFont.swift; sourceTree = "<group>"; };
 		E8DA8B581D881D7C008782E5 /* PLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
 		E8DA8B7A1D8832E8008782E5 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
@@ -353,6 +344,7 @@
 		E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileViewController.swift; sourceTree = "<group>"; };
 		E8E4A12C1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileCell.swift; path = "Place Profile/PLPlaceProfileCell.swift"; sourceTree = "<group>"; };
 		E8E4A1311D89EC0A00EA0DFE /* PLEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEditProfileViewController.swift; path = "Edit Profile/PLEditProfileViewController.swift"; sourceTree = "<group>"; };
+		E8FC02541DA92B18006C94E7 /* PLPlaceNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceNameCell.swift; path = "Order History/PLPlaceNameCell.swift"; sourceTree = "<group>"; };
 		F68B4BF8C8ACD9F362E9AFD7 /* Pods-Pals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -434,12 +426,12 @@
 				2480F8781D813E730095995F /* PLDevice.swift */,
 				2480F8791D813E730095995F /* PLDictionary.swift */,
 				E8A658671D9CED4E00D8257F /* PLSelector.swift */,
-				2480F87A1D813E730095995F /* PLNavigationController.swift */,
+				E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */,
 				2480F87B1D813E730095995F /* PLStoryboard.swift */,
 				24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */,
 				2480F87C1D813E730095995F /* PLString.swift */,
 				E8DA8B581D881D7C008782E5 /* PLView.swift */,
-				E8A6586D1D9E4B0400D8257F /* PLLocationDistance.swift */,
+				E8007BD61DA0073700372347 /* PLLocation.swift */,
 				E829DDDB1D819A6300D8C130 /* PLConstants.swift */,
 				E8A658691D9D0B6900D8257F /* PLDate.swift */,
 				D46D2B861D87583B0058060E /* PLColor.swift */,
@@ -477,21 +469,21 @@
 		2480F8921D813E730095995F /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				E8042B381D8C54D900755EF3 /* Tabbar */,
-				2480F8931D813E730095995F /* AddFunds */,
 				2480F8971D813E730095995F /* Basic */,
+				E8042B381D8C54D900755EF3 /* Tabbar */,
+				2480F8A21D813E730095995F /* Login */,
+				2480F8C11D813E730095995F /* SignUp */,
+				E8DA8B861D88334F008782E5 /* Profile */,
+				2480F8931D813E730095995F /* AddFunds */,
 				2480F89B1D813E730095995F /* Friends */,
 				E8E4A1301D89E1D600EA0DFE /* Friend Profile */,
-				2480F8A21D813E730095995F /* Login */,
 				2480F8A41D813E730095995F /* Order */,
 				2480F8AD1D813E730095995F /* Places */,
 				E829DDC61D81447600D8C130 /* Place Profile */,
-				E8DA8B861D88334F008782E5 /* Profile */,
 				2480F8BF1D813E730095995F /* Settings */,
 				E8BB9A6A1D892D3200DD6987 /* Edit Profile */,
 				E886AFAA1D8A98790014DF4D /* Card Info */,
 				E8B53E421D9419A400037A81 /* Order History */,
-				2480F8C11D813E730095995F /* SignUp */,
 				E8BE86871D913AA20079855C /* Notifications */,
 			);
 			path = UI;
@@ -508,12 +500,12 @@
 		2480F8971D813E730095995F /* Basic */ = {
 			isa = PBXGroup;
 			children = (
-				2480F89A1D813E730095995F /* PLTextField.swift */,
 				D4950A921D82B32700F48F4E /* PLAlert.swift */,
 				D4950A941D82C71100F48F4E /* PLViewController.swift */,
 				D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */,
 				E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */,
 				D46E81621D91370100A781C7 /* PLSearchController.swift */,
+				E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -583,7 +575,6 @@
 			isa = PBXGroup;
 			children = (
 				E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */,
-				E8BB9A771D89332100DD6987 /* Cells */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -591,8 +582,8 @@
 		2480F8C11D813E730095995F /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				2480F8C31D813E730095995F /* PLSignUpData.swift */,
 				2480F8C41D813E730095995F /* PLSignUpViewController.swift */,
+				2480F8C31D813E730095995F /* PLSignUpData.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -844,8 +835,8 @@
 		E83C51051D82FEE50095A3C5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				2480F8B11D813E730095995F /* PLPlaceTableViewCell.swift */,
-				2480F8B21D813E730095995F /* PLPlaceTableViewCell.xib */,
+				E883A8401DAA6269006DB9CF /* PLPlaceCell.swift */,
+				E883A8411DAA6269006DB9CF /* PLPlaceCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -853,7 +844,7 @@
 		E860916E1D9AA1F2002C602A /* Description Label */ = {
 			isa = PBXGroup;
 			children = (
-				E860916C1D9A996A002C602A /* PLEditLabel.swift */,
+				E8204A251DA82EB500BDBFCE /* PLDescriptionLabel.swift */,
 			);
 			name = "Description Label";
 			sourceTree = "<group>";
@@ -879,8 +870,8 @@
 		E8B53E451D941A1A00037A81 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E8FC02541DA92B18006C94E7 /* PLPlaceNameCell.swift */,
 				E8B53E471D941A4700037A81 /* PLOrderHistoryCell.swift */,
-				E8B53E481D941A4700037A81 /* PLOrderHistoryCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -889,7 +880,6 @@
 			isa = PBXGroup;
 			children = (
 				E8B53E4B1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift */,
-				E8B53E4C1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib */,
 			);
 			name = "Section Header";
 			sourceTree = "<group>";
@@ -903,20 +893,10 @@
 			name = "Edit Profile";
 			sourceTree = "<group>";
 		};
-		E8BB9A771D89332100DD6987 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				E8BE86881D9166620079855C /* PLSettingCell.swift */,
-				E8BE86891D9166620079855C /* PLSettingCell.xib */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
 		E8BE86861D913A8A0079855C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				E8BE86821D913A7B0079855C /* PLNotificationCell.swift */,
-				E8BE86831D913A7B0079855C /* PLNotificationCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -981,7 +961,7 @@
 		E8E4A1301D89E1D600EA0DFE /* Friend Profile */ = {
 			isa = PBXGroup;
 			children = (
-				2480F89E1D813E730095995F /* PLFriendProfileViewController.swift */,
+				E80692901DA0422200500684 /* PLFriendProfileViewController.swift */,
 			);
 			name = "Friend Profile";
 			sourceTree = "<group>";
@@ -1066,6 +1046,7 @@
 				E8DA8B951D88334F008782E5 /* PLProfileHeaderView.xib in Resources */,
 				E837C2041D902CAE0080A074 /* order_covers2.json in Resources */,
 				E837C1F61D902CAE0080A074 /* covers0.json in Resources */,
+				E883A8431DAA6269006DB9CF /* PLPlaceCell.xib in Resources */,
 				E837C1FD1D902CAE0080A074 /* friends0.json in Resources */,
 				E829DDD31D8151BE00D8C130 /* PLPlaceProfileCell.xib in Resources */,
 				E837C20E1D902CAE0080A074 /* signup.json in Resources */,
@@ -1081,17 +1062,14 @@
 				E8DA8B931D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
 				E837C1FB1D902CAE0080A074 /* drinks2.json in Resources */,
-				E8B53E4A1D941A4800037A81 /* PLOrderHistoryCell.xib in Resources */,
 				E837C2011D902CAE0080A074 /* login.json in Resources */,
 				04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */,
-				E8BE868B1D9166620079855C /* PLSettingCell.xib in Resources */,
 				E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */,
 				D410F71F1D9A7DA6000E8E06 /* invitefriends2.json in Resources */,
 				E837C1FE1D902CAE0080A074 /* friends1.json in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
 				2414F4571D997249000BA1F5 /* vip_drinks0.json in Resources */,
-				E8BE86851D913A7B0079855C /* PLNotificationCell.xib in Resources */,
 				24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */,
 				24E286E91D9E4A2E00B8D80C /* checkout.json in Resources */,
 				2414F4591D997249000BA1F5 /* vip_drinks2.json in Resources */,
@@ -1102,7 +1080,6 @@
 				24DDA9321D9A658800FCDBCA /* events1.json in Resources */,
 				24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */,
 				2480F9001D813E730095995F /* PLOrderDrinkCell.xib in Resources */,
-				E8B53E4E1D941AFA00037A81 /* PLOrderHistorySectionHeader.xib in Resources */,
 				24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */,
 				E837C1FC1D902CAE0080A074 /* drinks3.json in Resources */,
 				D410F71E1D9A7DA6000E8E06 /* invitefriends1.json in Resources */,
@@ -1114,7 +1091,6 @@
 				E837C20A1D902CAE0080A074 /* places1.json in Resources */,
 				E837C2051D902CAE0080A074 /* order_drinks0.json in Resources */,
 				2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */,
-				2480F9091D813E730095995F /* PLPlaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,12 +1150,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A658681D9CED4E00D8257F /* PLSelector.swift in Sources */,
-				E8BE868A1D9166620079855C /* PLSettingCell.swift in Sources */,
 				D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */,
 				E8E4A1321D89EC0A00EA0DFE /* PLEditProfileViewController.swift in Sources */,
 				2480F8E31D813E730095995F /* PLString.swift in Sources */,
 				2480F8D81D813E730095995F /* AppDelegate.swift in Sources */,
-				2480F8F91D813E730095995F /* PLFriendProfileViewController.swift in Sources */,
 				D46E81631D91370100A781C7 /* PLSearchController.swift in Sources */,
 				2480F8E71D813E730095995F /* PLFakeFeed.swift in Sources */,
 				D410F7211D9AA16F000E8E06 /* PLDatasourceHelper.swift in Sources */,
@@ -1194,13 +1168,11 @@
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
-				E8A6586E1D9E4B0400D8257F /* PLLocationDistance.swift in Sources */,
 				E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */,
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
 				E8DA8B851D8832E8008782E5 /* TGLStackedViewController.m in Sources */,
 				24AE702F1D90162E0064E7B2 /* PLCollectionViewCell.swift in Sources */,
-				2480F8E11D813E730095995F /* PLNavigationController.swift in Sources */,
 				E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */,
 				D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */,
 				D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */,
@@ -1216,6 +1188,7 @@
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				E8DA8B921D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
 				04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */,
+				E80692911DA0422200500684 /* PLFriendProfileViewController.swift in Sources */,
 				2480F8E21D813E730095995F /* PLStoryboard.swift in Sources */,
 				E8042B3A1D8C54D900755EF3 /* PLTabBarController.swift in Sources */,
 				2480F8DC1D813E730095995F /* PLPageCollection.swift in Sources */,
@@ -1233,10 +1206,9 @@
 				24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */,
 				E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */,
 				2480F8E81D813E730095995F /* PLKeys.swift in Sources */,
+				E81E32171DA16A7A00E46ABB /* PLNavigationBar.swift in Sources */,
 				D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */,
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
-				E860916D1D9A996A002C602A /* PLEditLabel.swift in Sources */,
-				2480F9081D813E730095995F /* PLPlaceTableViewCell.swift in Sources */,
 				E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */,
 				24E286EB1D9E566300B8D80C /* PLEditableUser.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,
@@ -1245,6 +1217,7 @@
 				D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */,
 				E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */,
 				2489E7041D82950E003811D5 /* PLOrderPlacesViewController.swift in Sources */,
+				E8007BD71DA0073700372347 /* PLLocation.swift in Sources */,
 				24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */,
 				2480F8DF1D813E730095995F /* PLDevice.swift in Sources */,
 				D46D2B871D87583B0058060E /* PLColor.swift in Sources */,
@@ -1252,18 +1225,22 @@
 				D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */,
 				2480F8E51D813E730095995F /* PLErrors.swift in Sources */,
 				2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */,
+				E883A8421DAA6269006DB9CF /* PLPlaceCell.swift in Sources */,
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
 				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,
 				049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */,
 				E8CD61F11D998CE80022D51F /* PLFont.swift in Sources */,
+				E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */,
 				E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */,
 				E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */,
 				D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */,
 				E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */,
+				E8204A281DA82F4000BDBFCE /* PLFormTextField.swift in Sources */,
 				2480F8E01D813E730095995F /* PLDictionary.swift in Sources */,
 				E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */,
 				D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */,
 				2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */,
+				E8204A261DA82EB600BDBFCE /* PLDescriptionLabel.swift in Sources */,
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
 				E8DA8B841D8832E8008782E5 /* TGLStackedLayout.m in Sources */,
 				E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */,
@@ -1272,7 +1249,6 @@
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,
 				24B5DD181D91564D0021050D /* PLOrderCheckoutPopupViewController.swift in Sources */,
-				2480F8F61D813E730095995F /* PLTextField.swift in Sources */,
 				D410F7251D9AA564000E8E06 /* PLInvitableUser.swift in Sources */,
 				2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */,
 				E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */,

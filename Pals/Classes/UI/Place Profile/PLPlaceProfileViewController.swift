@@ -9,6 +9,7 @@
 import CSStickyHeaderFlowLayout
 import EventKit
 
+
 class PLPlaceProfileViewController: PLViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -36,6 +37,7 @@ class PLPlaceProfileViewController: PLViewController {
     }()
   
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadLayout()
@@ -45,20 +47,16 @@ class PLPlaceProfileViewController: PLViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.setNavigationBarTransparent(true)
+        
+        navigationController?.navigationBar.style = .PlaceProfileStyle
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.barStyle = .Default
-        navigationController?.setNavigationBarTransparent(false)
-    }
-    
+
     
     private func setupBackBarButtonItem() {
         let backBarButtonItem = PLBackBarButtonItem()
-        backBarButtonItem.didTappedBackButton = { self.navigationController?.popViewControllerAnimated(true) }
+        backBarButtonItem.didTappedBackButton = { [unowned self] in
+            self.navigationController?.popViewControllerAnimated(true)
+        }
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         negativeSpacer.width = -20
         navigationItem.setLeftBarButtonItems([negativeSpacer, backBarButtonItem], animated: false)
@@ -116,21 +114,26 @@ class PLPlaceProfileViewController: PLViewController {
     }
     
     private func reloadLayout() {
-        layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 200)
+        layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 278)
         layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 80)
         layout!.parallaxHeaderAlwaysOnTop = true
         layout!.disableStickyHeaders = false
+//        layout!.estimatedItemSize = CGSizeMake(150, 110)
     }
     
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "OrderSegue" {
+        guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
+        switch identifier {
+        case .PlaceProfileSegue:
             let orderViewController = segue.destinationViewController as! PLOrderViewController
             orderViewController.order.place = place
+        default: break
         }
     }
+    
 }
 
 
@@ -146,7 +149,7 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PLPlaceProfileCell.identifier, forIndexPath: indexPath)
             as! PLPlaceProfileCell
         let event = eventsDatasource[indexPath.row].cellData
-        cell.setupWithEventInfo(event, andDateFormatter:eventDateFormatter)
+        cell.setupWithEventInfo(event, andDateFormatter: eventDateFormatter)
         
         return cell
     }
@@ -170,9 +173,9 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             sectionHeader.musicGenresLabel.text = place.musicGengres
             sectionHeader.closingTimeLabel.text = place.closeTime
             sectionHeader.placeAddressLabel.text = place.address
-            sectionHeader.phoneNumberLabel.text = phoneNumberFormat(place.phone)
-            sectionHeader.didTappedOrderButton = { sender in
-                self.performSegueWithIdentifier("OrderSegue", sender: sender)
+            sectionHeader.phoneNumberLabel.text = place.phone
+            sectionHeader.didTappedOrderButton = { [unowned self] sender in
+                self.performSegueWithIdentifier(SegueIdentifier.OrderSegue, sender: sender)
             }
             return sectionHeader
         default:
@@ -201,25 +204,25 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             })
             alertView.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
             alertView.addAction(buttonYes)
-            self.tabBarController?.presentViewController(alertView, animated: true, completion: nil)
+            self.tabBarController?.present(alertView, animated: true)
         }
         
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: [calendarActivity])
         
-        tabBarController?.presentViewController(activityVC, animated: true, completion: nil)
+        tabBarController?.present(activityVC, animated: true)
     }
     
     func showAlertWithText(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         dispatch_async(dispatch_get_main_queue()) {
             self.tabBarController?.presentViewController(alert, animated: true, completion: {
-                self.performSelector(#selector(self.dismissAlert(_:)), withObject: alert, afterDelay: 0.7)
+                self.performSelector(.dismissAlert, withObject: alert, afterDelay: 0.7)
             })
         }
     }
     
     func dismissAlert(alert: UIAlertController) {
-        alert.dismissViewControllerAnimated(true, completion: nil)
+        alert.dismiss(true)
     }
     
     func addEventToCalendar(title title: String, description: String?, startDate: NSDate, endDate: NSDate, completion: ((success: Bool, error: NSError?) -> Void)? = nil) {
@@ -245,22 +248,10 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             }
         })
     }
-    
 
-    //TODO: - need make string extension
-    
-    func phoneNumberFormat(phoneNumber: String) -> String {
-        return String(format: "(%@) %@-%@",
-            phoneNumber.substringWithRange(phoneNumber.startIndex.advancedBy(1) ... phoneNumber.startIndex.advancedBy(3)),
-            phoneNumber.substringWithRange(phoneNumber.startIndex.advancedBy(4) ... phoneNumber.startIndex.advancedBy(7)),
-            phoneNumber.substringWithRange(phoneNumber.startIndex.advancedBy(7) ... phoneNumber.startIndex.advancedBy(11))
-        )
-    }
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == eventsDatasource.count - 1 {
-            load()
-        }
+        if indexPath.row == eventsDatasource.count - 1 { load() }
     }
 }
 
@@ -270,12 +261,12 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
 extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 160)
+        return CGSizeMake(view.frame.size.width, 188)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 100)
+        return CGSizeMake(view.frame.size.width, 115)
     }
     
 }

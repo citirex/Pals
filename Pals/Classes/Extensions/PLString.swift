@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     func trim() -> String {
-        return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return stringByTrimmingCharactersInSet(.whitespaceAndNewlineCharacterSet())
     }
     
     var isValidEmail: Bool {

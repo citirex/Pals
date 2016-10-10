@@ -61,13 +61,7 @@ class PLProfileViewController: TGLStackedViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarTransparent(true)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.setNavigationBarTransparent(false)
+        navigationController?.navigationBar.style = .ProfileStyle
     }
     
     func profileInfoChangedNotification(notification: NSNotification){
@@ -113,7 +107,7 @@ class PLProfileViewController: TGLStackedViewController {
     
     //MARK: - Actions
     func addFundsButtonPressed(sender: UIButton) {
-        performSegueWithIdentifier("AddFundsSegue", sender: sender)
+        performSegueWithIdentifier(SegueIdentifier.AddFundsSegue, sender: sender)
     }
     
     func myCoversButtonPressed(sender: AnyObject) {

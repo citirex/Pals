@@ -9,14 +9,14 @@
 class PLLoginViewController: PLViewController {
 	
 	@IBOutlet weak var mySpinner: UIActivityIndicatorView!
-	private var currentTextField: PLTextField!
+	private var currentTextField: PLFormTextField!
 
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var textFieldsView: UIView!
 	@IBOutlet weak var loginView: UIView!
 	@IBOutlet weak var logoImage: UIImageView!
-	@IBOutlet weak var loginTextField: PLTextField!
-	@IBOutlet weak var passTextField: PLTextField!
+	@IBOutlet weak var loginTextField: PLFormTextField!
+	@IBOutlet weak var passTextField: PLFormTextField!
 	@IBOutlet var registerButton: UIButton!
     
     @IBOutlet var loginViewBotC: NSLayoutConstraint?
@@ -103,7 +103,7 @@ class PLLoginViewController: PLViewController {
 		passTextField.delegate = self
 		
 		animateSplashToLogin()
-        hideKeyboardWhenTapped()
+        hideKeyboardWhenTapped = true
     }
 	
 	
@@ -193,7 +193,7 @@ extension PLLoginViewController: UITextFieldDelegate {
 	}
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
-		currentTextField = textField as! PLTextField
+		currentTextField = textField as! PLFormTextField
 	}
 	
 }

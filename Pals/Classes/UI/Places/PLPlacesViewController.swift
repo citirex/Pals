@@ -6,43 +6,43 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-private enum SegueIdentifier: String {
-    case PlaceProfileSegue
-}
 
 class PLPlacesViewController: PLViewController {
     
     @IBOutlet var tableView: UITableView!
    
+    private let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
     private var activityIndicator: UIActivityIndicatorView!
     private var resultsController: UITableViewController!
     private var searchController: PLSearchController!
-    
-    lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
     private var selectedPlace: PLPlace!
     private var previousFilter = ""
     
+    lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureResultsController()
         configureSearchController()
         configureActivityIndicator()
         
-        let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
-        tableView.backgroundView = UIView()
-        
+        tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
+
         loadPlaces()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        configureNavigationBar()
+        navigationController?.navigationBar.style = .PlacesStyle
     }
     
- 
+    
+    // MARK: - Private Methods
+    
     private func loadPlaces() {
         activityIndicator.startAnimating()
         places.loadPage { [unowned self] indexPaths, error in
@@ -54,7 +54,6 @@ class PLPlacesViewController: PLViewController {
         }
     }
     
-    
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicator.hidesWhenStopped = true
@@ -64,44 +63,44 @@ class PLPlacesViewController: PLViewController {
     }
     
     
-    private func configureNavigationBar() {
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.barTintColor = .affairColor()
-        navigationController?.setNavigationBarTransparent(false)
-    }
-    
-    
-    // MARK: - Initialize search controller
-    
-    private func configureSearchController() {
-        let nib = UINib(nibName: PLPlaceTableViewCell.nibName, bundle: nil)
+    private func configureResultsController() {
         resultsController = UITableViewController(style: .Plain)
-        resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceTableViewCell.identifier)
+        resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
         resultsController.tableView.backgroundColor = .affairColor()
         resultsController.tableView.tableFooterView = UIView()
-        resultsController.tableView.backgroundView = UIView()
-        resultsController.tableView.rowHeight = 110.0
-        resultsController.tableView.dataSource = self
-        resultsController.tableView.delegate = self
-        
-        searchController = PLSearchController(searchResultsController: resultsController)
-        searchController.searchBar.placeholder = "Find a Place"
-        searchController.searchBar.barTintColor = .affairColor()
-        searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.tintColor = .whiteColor()
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
-        tableView.tableHeaderView = searchController.searchBar
-        definesPresentationContext = true
+        resultsController.tableView.backgroundView  = UIView()
+        resultsController.tableView.rowHeight       = 128.0
+        resultsController.tableView.dataSource      = self
+        resultsController.tableView.delegate        = self
     }
+
+    
+
+    // MARK: - Initialize Search Controller
+    
+    private func configureSearchController() {
+        searchController = PLSearchController(searchResultsController: resultsController)
+        searchController.searchBar.placeholder     = "Find a Place"
+        searchController.searchBar.barTintColor    = .affairColor()
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.tintColor       = .whiteColor()
+        searchController.searchResultsUpdater      = self
+        searchController.delegate                  = self
+        tableView.tableHeaderView                  = searchController.searchBar
+        tableView.backgroundView                   = UIView()
+        definesPresentationContext                 = true
+    }
+    
 
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
-        if identifier == .PlaceProfileSegue {
+        switch identifier {
+        case .PlaceProfileSegue:
             let placeProfileViewController = segue.destinationViewController as! PLPlaceProfileViewController
             placeProfileViewController.place = selectedPlace
+        default: break
         }
     }
     
@@ -117,16 +116,15 @@ extension PLPlacesViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(PLPlaceTableViewCell.identifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(PLPlaceCell.identifier, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        guard let cell = cell as? PLPlaceCell else { return }
         let place = places[indexPath.row]
-        if let cell = cell as? PLPlaceTableViewCell {
-            cell.placeCellData = place.cellData
-        }
+        cell.placeCellData = place.cellData
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -137,6 +135,7 @@ extension PLPlacesViewController: UITableViewDataSource {
 
 }
 
+
 // MARK: - Table view delegate
 
 extension PLPlacesViewController: UITableViewDelegate {
@@ -146,6 +145,7 @@ extension PLPlacesViewController: UITableViewDelegate {
     }
     
 }
+
 
 // MARK: - UISearchControllerDelegate
 
@@ -170,6 +170,7 @@ extension PLPlacesViewController: UISearchControllerDelegate {
     
 }
 
+
 // MARK: - UISearchResultsUpdating
 
 extension PLPlacesViewController: UISearchResultsUpdating {
@@ -187,4 +188,5 @@ extension PLPlacesViewController: UISearchResultsUpdating {
             })
         }
     }
+    
 }

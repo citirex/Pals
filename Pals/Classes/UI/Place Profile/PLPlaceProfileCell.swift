@@ -9,7 +9,7 @@
 import UIKit
 
 class PLPlaceProfileCell: UICollectionViewCell {
-
+    
     static let nibName = "PLPlaceProfileCell"
     static let identifier = "EventCell"
     
@@ -17,7 +17,7 @@ class PLPlaceProfileCell: UICollectionViewCell {
     @IBOutlet private var eventDateLabel: UILabel!
     @IBOutlet private var eventDescriptionLabel: UILabel!
     
-    private let offset: CGFloat = 60
+    private let offset: CGFloat = 70
     
     func setupWithEventInfo(event: PLEventCellData,andDateFormatter dateFormatter: NSDateFormatter) {
         eventImageView.setImageWithURL(event.picture)
@@ -28,13 +28,20 @@ class PLPlaceProfileCell: UICollectionViewCell {
    
     override func drawRect(rect: CGRect) {
         let startingPoint = CGPoint(x: CGRectGetMinX(rect) + offset, y: CGRectGetMaxY(rect))
-        let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
+        let endingPoint   = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
    
         let path = UIBezierPath()
-        path.lineWidth = 2
+        path.lineWidth = 1
         path.moveToPoint(startingPoint)
         path.addLineToPoint(endingPoint)
         UIColor.lightGrayColor().setStroke()
         path.stroke()
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        eventImageView.rounded = true
+    }
+    
 }

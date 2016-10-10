@@ -11,24 +11,12 @@ import UIKit
 class PLNotificationsViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let nib = UINib(nibName: PLNotificationCell.nibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLNotificationCell.identifier)
-    }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        configureNavigationBar()
-    }
-    
-    private func configureNavigationBar() {
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.barTintColor = .affairColor()
-        navigationController?.setNavigationBarTransparent(false)
+        
+        navigationController?.navigationBar.style = .NotificationsStyle
     }
 
 }

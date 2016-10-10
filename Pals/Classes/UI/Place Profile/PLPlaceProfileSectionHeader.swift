@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class PLPlaceProfileSectionHeader: UICollectionReusableView {
     
     static let nibName = "PLPlaceProfileSectionHeader"
@@ -23,31 +22,28 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
     @IBOutlet weak var closingTimeLabel: UILabel!
     @IBOutlet weak var placeAddressLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
-    @IBOutlet weak var orderButton: UIButton!
+    @IBOutlet weak var orderButton: UIButton! {
+        didSet {
+            orderButton.addTarget(self, action: .orderButtonTapped, forControlEvents: .TouchUpInside)
+        }
+    }
 
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        orderButton.addTarget(self, action: #selector(orderButtonTapped(_:)), forControlEvents: .TouchUpInside)
-    }
-    
-    override func drawRect(rect: CGRect) {
-        topOfView.round([.TopLeft, .TopRight], radius: 15)
-        
-        let startingPoint = CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMaxY(rect))
-        let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
-        
-        let path = UIBezierPath()
-        path.lineWidth = 1
-        path.moveToPoint(startingPoint)
-        path.addLineToPoint(endingPoint)
-        UIColor.lightGrayColor().setStroke()
-        path.stroke()
-    }
-    
+
+
     func orderButtonTapped(sender: UIButton) {
         didTappedOrderButton!(sender: sender)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        orderButton.rounded = true
+        orderButton.layer.borderWidth = 1.0
+        orderButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        topOfView.round([.TopLeft, .TopRight], radius: 15)
+        
+        addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
     }
    
 }

@@ -8,42 +8,23 @@
 
 import UIKit
 
+@IBDesignable
 class PLOrderHistorySectionHeader: UITableViewCell {
 
-    static let nibName = "PLOrderHistorySectionHeader"
     static let reuseIdentifier = "SectionHeader"
     
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var placeNameLabel: UILabel!
         
     var orderCellData: PLOrderCellData! {
-        didSet { setup() }
+        didSet {
+            dateLabel.text = orderCellData.date.since
+        }
     }
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
-        dateLabel.font = UIFont.customFontOfSize(17, weight: UIFontWeightMedium)
-        placeNameLabel.font = .customFontOfSize(17)
-    }
-    
-    override func drawRect(rect: CGRect) {
-        let startingPoint = CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMinY(rect))
-        let endingPoint = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMinY(rect))
-        
-        let path = UIBezierPath()
-        path.lineWidth = 1
-        path.moveToPoint(startingPoint)
-        path.addLineToPoint(endingPoint)
-        UIColor.lightGrayColor().setStroke()
-        path.stroke()
-    }
-    
-    private func setup() {
-        guard let orderCellData = orderCellData else { return }
-        dateLabel.text = orderCellData.date.since
-        placeNameLabel.text = orderCellData.place.name
+        addBorder(.Top, color: .lightGrayColor(), width: 0.5)
     }
     
 }

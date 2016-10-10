@@ -55,19 +55,7 @@ extension UIView {
         animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
         layer.addAnimation(animation, forKey: "shake")
     }
-    
-    func addShadow(shadowColor: CGColor = UIColor.blackColor().CGColor,
-                   shadowOffset: CGSize = CGSizeMake(0.0, 0.5),
-                   shadowRadius: CGFloat = 1,
-                   shadowOpacity: Float = 1) {
-        layer.shadowColor = shadowColor
-        layer.shadowOffset = shadowOffset
-        layer.shadowRadius = shadowRadius
-        layer.shadowOpacity = shadowOpacity
-        layer.masksToBounds = false
-        layer.shouldRasterize = true
-    }
-    
+
     
     // Borders
     
@@ -90,6 +78,29 @@ extension UIView {
             border.frame = CGRect(x: frame.size.width - width, y: 0, width: width, height: frame.size.height)
         }
         layer.addSublayer(border)
+    }
+
+    
+    var top: CGFloat {
+        get {
+            return frame.origin.y
+        }
+        set {
+            var rect = frame
+            rect.origin.y = newValue
+            frame = rect
+        }
+    }
+    
+    var right: CGFloat {
+        get {
+            return frame.origin.x + frame.size.width
+        }
+        set {
+            var rect = frame
+            rect.origin.x = newValue - frame.size.width
+            frame = rect
+        }
     }
 
 }

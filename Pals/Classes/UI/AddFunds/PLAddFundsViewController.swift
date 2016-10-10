@@ -13,14 +13,13 @@ class PLAddFundsViewController: PLViewController {
 //            return sum
 //    }
     
-    
     @IBOutlet weak var balanceTextField: UITextField!
-    
     
     var user: PLUser!
     
+
     
-    //MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,19 +30,9 @@ class PLAddFundsViewController: PLViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .Default
-        navigationController?.navigationBar.tintColor = .eminenceColor()
-        navigationController?.setNavigationBarTransparent(true)
+        navigationController?.navigationBar.style = .AddFundsStyle
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.tintColor = .whiteColor()
-        navigationController?.setNavigationBarTransparent(false)
-    }
-    
+
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -51,10 +40,11 @@ class PLAddFundsViewController: PLViewController {
         balanceTextField.becomeFirstResponder()
     }
     
+
    
     //MARK: - Actions
     
-    func refillButtonPressed(sender: AnyObject) {
+    func refillPressed(sender: AnyObject) {
         showAlert()
     }
     
@@ -64,9 +54,7 @@ class PLAddFundsViewController: PLViewController {
     private func showAlert() {
         let alertController = UIAlertController(title: "You amount was \(balanceTextField.text!)", message: "Are you sure?", preferredStyle: .Alert)
         
-        let cancelAction = UIAlertAction(title: "No", style: .Destructive) { action in
-            
-        }
+        let cancelAction = UIAlertAction(title: "No", style: .Destructive) { action in }
         alertController.addAction(cancelAction)
         
         let OKAction = UIAlertAction(title: "Yes", style: .Default) { action in
@@ -77,19 +65,28 @@ class PLAddFundsViewController: PLViewController {
         presentViewController(alertController, animated: true, completion: nil)
     }
 
+
+    private lazy var inputContainerView: UIView = {
+        let containerView = UIView()
+        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+        containerView.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
+        containerView.backgroundColor = .chamrockColor()
+        
+        let sendButton = UIButton(type: .System)
+        sendButton.tintColor = .whiteColor()
+        sendButton.setTitle("Refill", forState: .Normal)
+        sendButton.titleLabel?.font = .customFontOfSize(15)
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.addTarget(self, action: .refillPressed, forControlEvents: .TouchUpInside)
+        containerView.addSubview(sendButton)
+        
+        sendButton.addConstraintCentered()
+        
+        return containerView
+    }()
     
-    // MARK: - AccessoryView on keyboard
     
-    private func inputAccessoryView() -> UIView {
-        let accessoryView = UIButton(type: .System)
-        accessoryView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 50)
-        accessoryView.tintColor = .whiteColor()
-        accessoryView.setTitle("Refill", forState: .Normal)
-        accessoryView.titleLabel?.font = .customFontOfSize(15)
-        accessoryView.backgroundColor = .caribeanGreenColor()
-        accessoryView.addTarget(self, action: #selector(refillButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        return accessoryView
-    }
+    override var inputAccessoryView: UIView? { return inputContainerView }
     
 }
 
@@ -97,9 +94,6 @@ class PLAddFundsViewController: PLViewController {
 
 //MARK: - TextField Delegate
 extension PLAddFundsViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(textField: UITextField) {
-        textField.inputAccessoryView = inputAccessoryView()
-    }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if range.location > 0 && range.location < 6  {

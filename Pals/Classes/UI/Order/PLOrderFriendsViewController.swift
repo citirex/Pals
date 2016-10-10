@@ -33,13 +33,13 @@ class PLOrderFriendsViewController: PLFriendsViewController {
         navigationController?.popViewControllerAnimated(true)
     }
 	
-	override func scrollViewDidScroll(scrollView: UIScrollView) {
-		if scrollView.contentOffset.y < 44 {
-			print(scrollView.contentOffset.y)
-			navigationController?.navigationBar.addBorder(.Bottom, color: .miracleColor(), width: 0.5)
-		} else {
-			print(scrollView.contentOffset.y)
-			navigationController?.navigationBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
-		}
-	}
+//	override func scrollViewDidScroll(scrollView: UIScrollView) {
+//		if scrollView.contentOffset.y < 44 {
+//			print(scrollView.contentOffset.y)
+//			navigationController?.navigationBar.addBorder(.Bottom, color: .miracleColor(), width: 0.5)
+//		} else {
+//			print(scrollView.contentOffset.y)
+//			navigationController?.navigationBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
+//		}
+//	}
 }

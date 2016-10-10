@@ -6,138 +6,111 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+import Permission
+
 class PLSignUpViewController: PLViewController {
     
-    @IBOutlet weak var userProfileImageView: UIImageView!
-    @IBOutlet weak var usernameTextField: PLTextField!
-    @IBOutlet weak var emailTextField: PLTextField!
-    @IBOutlet weak var passwordTextField: PLTextField!
-    @IBOutlet weak var confirmPasswordTextField: PLTextField!
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var addProfileImageButton: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var userProfileImageView: UIImageView!
+    @IBOutlet weak var usernameTextField: PLFormTextField!
+    @IBOutlet weak var emailTextField: PLFormTextField!
+    @IBOutlet weak var passwordTextField: PLFormTextField!
+    @IBOutlet weak var confirmPasswordTextField: PLFormTextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
 
-    
-    private lazy var imagePicker: UIImagePickerController! = {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
-        return imagePicker
-    }()
-    
-    private let offset: CGFloat = 20.0
-  
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        adjustFontSize()
-        hideKeyboardWhenTapped()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        registerKeyboardNotifications()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        hideKeyboardWhenTapped = true
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
         signUpButton.rounded = true
         userProfileImageView.rounded = true
     }
     
-
-    // MARK: - Notifications
-    
-    private func registerKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: .keyboardWillShow, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: .keyboardWillHide, name: UIKeyboardWillHideNotification, object: nil)
-    }
-
-    func keyboardWillShow(notification: NSNotification) {
-        updateViewAnimated(notification)
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        updateViewAnimated(notification)
-    }
-    
-    private func updateViewAnimated(notification: NSNotification) {
-        let userInfo = notification.userInfo!
-        let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
-        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
-        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey]?.unsignedIntegerValue
-        let options = UIViewAnimationOptions(rawValue: curve!<<16)
-        let keyboardVisible = notification.name == UIKeyboardWillShowNotification
-        
-        var visibleRect = view.frame
-        visibleRect.size.height -= keyboardSize.height
-
-        let scrollPoint = keyboardVisible ? CGPointMake(0, visibleRect.size.height / 3 + offset) : CGPointZero
-        scrollView.setContentOffset(scrollPoint, animated: true)
-     
-        UIView.animateWithDuration(duration!, delay: 0.0, options: options, animations: { [unowned self] _ in
-            self.addProfileImageButton.enabled = keyboardVisible ? false : true
-            self.addProfileImageButton.alpha = keyboardVisible ? 0 : 1
-            self.userProfileImageView.alpha = keyboardVisible ? 0 : 1
-            self.view.layoutIfNeeded()
-            }, completion: nil)
-    }
-    
     
     // MARK: - Actions
-    
-    @IBAction func loadImageButtonTapped(sender: UIButton) {
-        present(imagePicker, animated: true)
+
+    @IBAction func showActionSheet(sender: UIButton) {
+        dismissKeyboard(sender)
+        
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
+        optionMenu.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { [unowned self] alert in
+            self.requestPermission(Permission.Photos)
+            }))
+        optionMenu.addAction(UIAlertAction(title: "Take a photo", style: .Default, handler: { [unowned self] alert in
+            self.requestPermission(Permission.Camera)
+            }))
+        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        present(optionMenu, animated: true)
     }
     
     @IBAction func signUpButtonTapped(sender: UIButton) {
         dismissKeyboard(sender)
-        userSignUp()
+        checkingUserData()
     }
     
     
     // MARK: - Private methods
     
-    private func userSignUp() {
+    private func checkingUserData() {
         let username = usernameTextField.text!.trim()
-        let email = emailTextField.text!.trim()
+        let email    = emailTextField.text!.trim()
         let password = passwordTextField.text!.trim()
-        let picture = userProfileImageView.image ?? UIImage() // TODO: - Empty Image
+        let picture  = userProfileImageView.image ?? UIImage(named: "default")!
         
-        guard !username.isEmpty else { return PLShowAlert("Error", message: "Username must contain at least 1 character") }
+        guard !username.isEmpty  else { return PLShowAlert("Error", message: "Username must contain at least 1 character") }
         guard email.isValidEmail else { return PLShowAlert("Error", message: "Please enter a valid email address") }
-        guard !password.isEmpty else { return PLShowAlert("Error", message: "Password must contain at least 1 character") }
-        guard validatePassword(password) else { return PLShowAlert("Error", message: "Password mismatch") }
+        guard !password.isEmpty  else { return PLShowAlert("Error", message: "Password must contain at least 1 character") }
+        guard validate(password) else { return PLShowAlert("Error", message: "Password mismatch") }
         
         let signUpData = PLSignUpData(username: username, email: email, password: password, picture: picture)
-        
+        userSignUp(signUpData)
+    }
+    
+    private func validate(password: String) -> Bool {
+        return password == confirmPasswordTextField.text!.trim()
+    }
+    
+    private func userSignUp(signUpData: PLSignUpData) {
         activityIndicator.startAnimating()
         PLFacade.signUp(signUpData) { [unowned self] error in
             self.activityIndicator.stopAnimating()
             guard error == nil else { return PLShowAlert("Error", message: "This Username is Taken!") }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
-            let navigationController = tabBarController.viewControllers?.first as! UINavigationController
-            _ = navigationController.viewControllers.first as! PLProfileViewController
             self.present(tabBarController, animated: true)
         }
     }
     
-    private func validatePassword(pass: String) -> Bool {
-        return pass == confirmPasswordTextField.text!.trim()
+    private func requestPermission(permission: Permission) {
+        permission.request { [unowned self] status in
+            guard status == .Authorized else { return }
+            switch permission.type {
+            case .Photos: self.showImagePickerForSourceType(.PhotoLibrary)
+            case .Camera: self.showImagePickerForSourceType(.Camera)
+            default: break
+            }
+        }
+        let alert     = permission.deniedAlert
+        alert.title   = "Using \(permission.type) is disabled for this app"
+        alert.message = "Enable it in Settings->Privacy"
     }
     
-    private func adjustFontSize() {
-        signInButton.titleLabel?.font = .customFontOfSize(15)
-        signUpButton.titleLabel?.font = .customFontOfSize(15)
+    private func showImagePickerForSourceType(sourceType: UIImagePickerControllerSourceType) {
+        guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        
+        if sourceType == .Camera {
+            imagePicker.cameraDevice      = .Front
+            imagePicker.cameraCaptureMode = .Photo
+        }
+        present(imagePicker, animated: true)
     }
 
 }
@@ -157,24 +130,6 @@ extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationC
         dismiss(true)
     }
     
-}
-
-
-// MARK: - UITextFieldDelegate
-
-extension PLSignUpViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        let nextTag = textField.tag + 1
-        if let nextResponder = textField.superview!.viewWithTag(nextTag) {
-            nextResponder.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-            userSignUp()
-        }
-        return false
-    }
-
 }
 
 

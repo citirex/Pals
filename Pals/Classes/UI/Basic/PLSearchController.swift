@@ -7,9 +7,9 @@
 //
 
 class PLSearchController: UISearchController {
-    
+   
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-    
+
 }

@@ -21,13 +21,19 @@ class PLViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+    
 }
 
 
-extension PLViewController {
-    
-    func hideKeyboardWhenTapped() {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: .dismissTap))
+extension UIViewController {
+
+    var hideKeyboardWhenTapped: Bool {
+        get {
+            return false
+        }
+        set {
+            if newValue { view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: .dismissTap)) }
+        }
     }
     
     func dismissKeyboard(sender: AnyObject) {
@@ -35,14 +41,14 @@ extension PLViewController {
     }
 }
 
-extension PLViewController {
+extension UIViewController {
     
     func performSegueWithIdentifier<T: RawRepresentable where T.RawValue == String>(identifier: T, sender: AnyObject?) {
         performSegueWithIdentifier(identifier.rawValue, sender: sender)
     }
 }
 
-extension PLViewController {
+extension UIViewController {
     
     func present(viewController: UIViewController, animated: Bool) {
         presentViewController(viewController, animated: animated, completion: nil)

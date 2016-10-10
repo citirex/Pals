@@ -32,32 +32,7 @@ extension UIColor {
     
    // ****************** Old colors ***********************************
     
-    /// Navigation bar color #6F4097
-    
-    class func affairColor() -> UIColor {
-        return UIColor(red:0.44, green:0.25, blue:0.59, alpha:1.0)
-    }
-    
-	
-    /// Add Funds  back barButtonItem
-    
-    class func eminenceColor() -> UIColor {
-        return UIColor(r: 104.0, g: 50.0, b: 144.0)
-    }
-    
-    
-    /// Add Funds  refill button
-    
-    class func caribeanGreenColor() -> UIColor {
-        return UIColor(r: 56.0, g: 206.0, b: 130.0)
-    }
 
-    /// Friends  search icon
-    
-    class func vividViolet() -> UIColor {
-        return UIColor(r: 136.0, g: 41.0, b: 152.0)
-    }
-	
 	/// Friends  navigation bar
 	
 	class func miracleColor() -> UIColor {
@@ -69,6 +44,12 @@ extension UIColor {
     
     
     //******************* Checked colors *******************
+    
+    // NavigationBar tintColor
+    class func affairColor() -> UIColor {
+        return UIColor(r: 111.0, g: 64.0, b: 151.0)
+    }
+    
     
     /// Sign Up screen 
     
@@ -100,5 +81,13 @@ extension UIColor {
     class func mediumOrchidColor() -> UIColor {
         return UIColor(r: 189.0, g: 16.0, b: 224.0)
     }
+    
+    /// Add Funds  
+    
+    // refill button background
+    class func chamrockColor() -> UIColor {
+        return UIColor(r: 59.0, g: 204.0, b: 136.0)
+    }
+
     
 }

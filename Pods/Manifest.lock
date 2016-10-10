@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - CSStickyHeaderFlowLayout (0.2.10)
   - GPUImage (0.1.7)
+  - IQKeyboardManager (4.0.5)
   - Permission (1.5)
   - SwiftQRCode (2.0.2)
 
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - AFNetworking
   - CSStickyHeaderFlowLayout
   - GPUImage
+  - IQKeyboardManager
   - Permission
   - SwiftQRCode
 
@@ -30,9 +32,10 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  IQKeyboardManager: 50b62c0603308968256f8208886e206c1dcce607
   Permission: 2d9647f8b994a5faf7e1c5a40d4328fde158c2f2
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
-PODFILE CHECKSUM: cda9b5d4f4915c34bd857cfe2138278925964250
+PODFILE CHECKSUM: 2d9c11c56620094af8f2307c5d069ad5ed4e9bda
 
 COCOAPODS: 1.0.1

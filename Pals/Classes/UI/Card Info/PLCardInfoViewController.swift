@@ -10,69 +10,62 @@ import UIKit
 
 class PLCardInfoViewController: PLViewController {
     
-    @IBOutlet weak var creditCardNumberTextField: PLTextField!
-    @IBOutlet weak var expirationDateTextField: PLTextField!
-    @IBOutlet weak var zipCodeTextField: PLTextField!
-    @IBOutlet weak var cvvCodeTextField: PLTextField!
+    @IBOutlet weak var creditCardNumberTextField: PLFormTextField!
+    @IBOutlet weak var expirationDateTextField: PLFormTextField!
+    @IBOutlet weak var zipCodeTextField: PLFormTextField!
+    @IBOutlet weak var cvvCodeTextField: PLFormTextField!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hideKeyboardWhenTapped()
+        hideKeyboardWhenTapped = true
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarTransparent(true)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarTransparent(false)
+        
+        navigationController?.navigationBar.style = .CardInfoStyle
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         creditCardNumberTextField.becomeFirstResponder()
     }
     
     
     // MARK: - Actions
     
-    func completeButtonTapped(sender: AnyObject) {
+    func completePressed(sender: UIButton) {
         dismissKeyboard(sender)
+        
         navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func textFieldEditing(sender: UITextField) {
-        let datePicker  = UIDatePicker()
-        datePicker.datePickerMode = .Date
-        sender.inputView = datePicker
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged), forControlEvents: .ValueChanged)
-    }
+
+    private lazy var inputContainerView: UIView = {
+        let containerView = UIView()
+        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+        containerView.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
+        containerView.backgroundColor = .whiteColor()
+        
+        let sendButton = UIButton(type: .System)
+        sendButton.tintColor = .mediumOrchidColor()
+        sendButton.setTitle("Complete", forState: .Normal)
+        sendButton.titleLabel?.font = .customFontOfSize(15)
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.addTarget(self, action: .completePressed, forControlEvents: .TouchUpInside)
+        containerView.addSubview(sendButton)
+        
+        sendButton.addConstraintCentered()
+
+        return containerView
+    }()
+
     
-    
-    // MARK: - Date Picker
-    
-    func datePickerValueChanged(sender: UIDatePicker) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .ShortStyle
-        expirationDateTextField.text = dateFormatter.stringFromDate(sender.date)
-    }
-    
-    // MARK: - AccessoryView on keyboard
-    
-    private func inputAccessoryView() -> UIView {
-        let accessoryView = UIButton(type: .System)
-        accessoryView.frame = CGRectMake(0, 0, view.bounds.width, 50)
-        accessoryView.titleLabel?.font = .customFontOfSize(15)
-        accessoryView.setTitle("Complete", forState: .Normal)
-        accessoryView.tintColor = .mediumOrchidColor()
-        accessoryView.backgroundColor = .whiteColor()
-        accessoryView.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
-        accessoryView.addTarget(self, action: .completeButtonTap, forControlEvents: .TouchUpInside)
-        return accessoryView
-    }
+    override var inputAccessoryView: UIView? { return inputContainerView }
 
 }
 
@@ -80,11 +73,7 @@ class PLCardInfoViewController: PLViewController {
 // MARK: - UITextFieldDelegate
 
 extension PLCardInfoViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        textField.inputAccessoryView = inputAccessoryView()
-    }
-    
+
 }
 
 

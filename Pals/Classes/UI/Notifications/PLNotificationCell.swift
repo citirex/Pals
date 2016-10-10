@@ -10,15 +10,16 @@ import UIKit
 
 class PLNotificationCell: UITableViewCell {
     
-    static let nibName = "PLNotificationCell"
     static let identifier = "NotificationCell"
     
-    @IBOutlet weak var notificationName: UILabel!
+    typealias notificationStateDelegate = (sender: PLNotificationCell, enabled: Bool) -> Void
+    var notificationState: notificationStateDelegate?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        notificationName!.font = .customFontOfSize(17)
+    @IBOutlet weak var notificationName: UILabel!
+    
+
+    @IBAction func switchValueChanged(sender: UISwitch) {
+        notificationState!(sender: self, enabled: sender.on ? true : false)
     }
 
 }

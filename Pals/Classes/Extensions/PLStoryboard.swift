@@ -6,7 +6,18 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
+enum SegueIdentifier: String {
+    case OrderSegue
+    case PlaceProfileSegue
+    case AddFundsSegue
+    case EditProfileSegue
+    case CardInfoSegue
+    case NotificationsSegue
+    case OrderHistorySegue
+    case HelpAndFAQSegue
+    case TermsOfServiceSegue
+    case PrivacyPolicySegue
+}
 
 enum PLStoryboardType : String {
     case LoginViewController
@@ -15,6 +26,7 @@ enum PLStoryboardType : String {
     case LocationsViewController
     case OrderLocationsViewController
     case OrderFriendsViewController
+    case UnfriendPopUpViewController
     var string: String {return rawValue}
 }
 

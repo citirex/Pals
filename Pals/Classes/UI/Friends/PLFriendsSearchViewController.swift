@@ -30,10 +30,18 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.style = .FriendsStyle
+        
 		navigationController?.navigationBar.addBorder(.Bottom, color: .clearColor(), width: 0.5)
-		navigationItem.title = "Friends Search"
-        navigationController?.navigationBar.barStyle = .Default
-		navigationController?.navigationBar.tintColor = .vividViolet()
+        
+        
+        // unnecessarry!
+        
+//		navigationItem.title = "Friends Search"
+//        navigationController?.navigationBar.barStyle = .Default
+//		navigationController?.navigationBar.tintColor = .vividViolet()
+        
 		if seekerText != "" {
 			searchController.searchBar.text = seekerText
 		}

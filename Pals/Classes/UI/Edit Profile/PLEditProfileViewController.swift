@@ -15,39 +15,36 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var addProfileImageButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
-    
+    @IBOutlet weak var signOutButton: UIButton!
+
     private var userData: PLUserData!
     private lazy var tempProfile: PLEditableUser = { return PLEditableUser() }()
     private var isEditing = false {
         didSet { updateUI() }
     }
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUserData()
-        hideKeyboardWhenTapped()
+        hideKeyboardWhenTapped = true
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.setNavigationBarTransparent(true)
-        navigationController?.navigationBar.tintColor = .whiteColor()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarTransparent(false)
+        
+        navigationController?.navigationBar.style = .EditProfileStyle
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
         userProfileImageView.rounded = true
-        signUpButton.rounded = true
+        signOutButton.rounded = true
     }
+
     
     
     // MARK: - Actions
@@ -90,14 +87,8 @@ class PLEditProfileViewController: PLViewController {
         usernameTextField.text = userData!.name
         phoneNumberTextField.text = userData!.email
         userProfileImageView.setImageWithURL(userData!.picture)
-        adjustFontSize()
     }
-    
-    private func adjustFontSize() {
-        signUpButton.titleLabel?.font = .customFontOfSize(22)
-        usernameTextField.font = .customFontOfSize(15)
-        phoneNumberTextField.font = .customFontOfSize(15)
-    }
+
     
     // MARK: - Update User Data
     
@@ -169,6 +160,7 @@ class PLEditProfileViewController: PLViewController {
         alert.title = "Using \(permission.type) is disabled for this app"
         alert.message = "Enable it in Settings->Privacy"
     }
+
 }
 
 

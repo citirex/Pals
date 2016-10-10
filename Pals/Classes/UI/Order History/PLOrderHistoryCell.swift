@@ -10,24 +10,13 @@ import UIKit
 
 class PLOrderHistoryCell: UITableViewCell {
 
-    static let nibName = "PLOrderHistoryCell"
     static let reuseIdentifier = "OrderHistoryCell"
     
     var drinkCellData: PLDrinkCellData! {
-        didSet { setup() }
-    }
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        textLabel!.font = .customFontOfSize(17)
-    }
-    
-    private func setup() {
-        guard let drinkCellData = drinkCellData else { return }
-        textLabel?.text = drinkCellData.name
-        detailTextLabel?.text = String(format: "$%0.2f", drinkCellData.price)
+        didSet {
+            textLabel?.text = drinkCellData.name
+            detailTextLabel?.text = String(format: "$%0.2f", drinkCellData.price)
+        }
     }
 
 }
