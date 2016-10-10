@@ -229,6 +229,23 @@ extension PLProfileViewController : UICollectionViewDelegate {
             loadPage()
         }
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if self.exposedItemIndexPath != nil && indexPath.item == self.exposedItemIndexPath?.item {
+            self.exposedItemIndexPath = nil
+            
+            
+//            let items = collectionView.indexPathsForVisibleItems()
+//            collectionView.reloadItemsAtIndexPaths(items)
+            
+            
+        } else {
+            self.exposedItemIndexPath = indexPath
+            
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PLProfileDrinkCollectionViewCell
+            cell.setupImages(currentDatasource[indexPath.row].cellData)
+        }
+    }
 }
 
 extension UICollectionView {

@@ -64,12 +64,12 @@
     
     _exposedLayoutMargin = UIEdgeInsetsMake(60.0, 0.0, 0.0, 0.0);
     _exposedItemSize = CGSizeZero;
-    _exposedTopOverlap = 3;//10.0;
-    _exposedBottomOverlap = 1;//10.0;
+    _exposedTopOverlap = 4;//10.0;
+    _exposedBottomOverlap = 2;//10.0;
     _exposedBottomOverlapCount = 0;
     
     _exposedPinningMode = TGLExposedLayoutPinningModeAll;
-    _exposedTopPinningCount = 3;
+    _exposedTopPinningCount = 4;
     _exposedBottomPinningCount = 0;
     
     _exposedItemsAreCollapsible = YES;
