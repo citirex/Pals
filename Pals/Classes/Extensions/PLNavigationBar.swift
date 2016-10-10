@@ -46,30 +46,30 @@ extension UINavigationBar {
             switch style {
             case .AddFundsStyle:
                 transparent = true
-                barStyle = .Default
-                tintColor = .affairColor()
+                barStyle    = .Default
+                tintColor   = .affairColor()
             case .FriendsStyle:
                 transparent = false
-                barStyle = .Default
-                tintColor = .affairColor()
+                barStyle    = .Default
+                tintColor   = .affairColor()
             case .PlacesStyle:
-                transparent = false
-                barStyle = .Black
+                transparent  = false
+                barStyle     = .Black
                 barTintColor = .affairColor()
             case .SettingsStyle:
-                transparent = false
-                barStyle = .Black
-                tintColor = .whiteColor()
+                transparent  = false
+                barStyle     = .Black
+                tintColor    = .whiteColor()
                 barTintColor = .affairColor()
             case .NotificationsStyle:
-                transparent = false
-                barStyle = .Black
-                tintColor = .whiteColor()
+                transparent  = false
+                barStyle     = .Black
+                tintColor    = .whiteColor()
                 barTintColor = .affairColor()
             default:
                 transparent = true
-                barStyle = .Black
-                tintColor = .whiteColor()
+                barStyle    = .Black
+                tintColor   = .whiteColor()
             }
             titleTextAttributes = attributes(style)
         }

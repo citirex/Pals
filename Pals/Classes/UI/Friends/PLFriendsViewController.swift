@@ -33,25 +33,18 @@ class PLFriendsViewController: PLFriendBaseViewController {
 		super.viewWillAppear(animated)
         
         navigationController?.navigationBar.style = .FriendsStyle
-        
-        // unnecessarry!
-        
-//		navigationController?.transparent = false
-//		navigationItem.title						  = "Friends"
-//		navigationItem.titleView?.tintColor			  = .vividViolet()
-//		navigationController?.navigationBar.tintColor = .vividViolet()
 	}
 	
-//	override func viewDidDisappear(animated: Bool) {
-//		super.viewDidDisappear(animated)
-//		navigationController?.navigationBar.barStyle = .Black
-//	}
+	override func viewDidDisappear(animated: Bool) {
+		super.viewDidDisappear(animated)
+		navigationController?.navigationBar.shadowImage = UIImage()
+	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView.contentOffset.y < -20 {
-            navigationController?.navigationBar.addBorder(.Bottom, color: .miracleColor(), width: 0.5)
+			navigationController?.navigationBar.shadowImage = UIImage()
 		} else {
-		navigationController?.navigationBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
+			navigationController?.navigationBar.shadowImage = nil
 		}
 	}
     

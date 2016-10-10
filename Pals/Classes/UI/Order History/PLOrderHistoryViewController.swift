@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLOrderHistoryViewController: UIViewController {
+class PLOrderHistoryViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -114,7 +114,6 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
         return orders.ordersCountInSection(section) + orders.drinkCountInSection(section)
     }
     
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let reuseIdentifier = indexPath.row  == 0 ? PLPlaceNameCell.reuseIdentifier : PLOrderHistoryCell.reuseIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
@@ -123,17 +122,10 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-//        let drink = orders[indexPath.section].drinkSets[indexPath.row].drink
-//        if let cell = cell as? PLOrderHistoryCell {
-//            cell.drinkCellData = drink.cellData
-//        }
-//        if let cell = cell as? PLPlaceNameCell {
-//            cell.orderCellData = orders[indexPath.section].cellData
-//        }
+        // TODO: figure out
     }
     
 }
-
 
 // MARK: - UITableViewDelegate
 

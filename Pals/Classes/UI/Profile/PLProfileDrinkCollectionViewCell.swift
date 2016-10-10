@@ -38,17 +38,14 @@ class PLProfileDrinkCollectionViewCell: PLCollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         scrollView.contentOffset = CGPointMake(0, 0)
+        if cardQRCodeImageView.image != UIImage(named: "qr_placeholder")  {
+            cardQRCodeImageView.image = UIImage(named: "qr_placeholder")
+        }
+        userPicImageView.image = nil
     }
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//    }
     
     
     func setupWith(order: PLOrderCellData, withOrderType type: PLOrderType, forIndexPath indexPath: NSIndexPath) {
-        
-        setImage(order.user.picture)
         
         //FIXME: надо закинуть в модель тип крепкости пойла для подсветки карточки
         if order.isVIP == true {
@@ -73,13 +70,18 @@ class PLProfileDrinkCollectionViewCell: PLCollectionViewCell {
         }
         
         barPlaceLabel.text = order.place.address
-        if cardQRCodeLabel.text != order.QRcode {
+        
+        if let QR = cardQRCodeLabel.text where QR != order.QRcode {
             cardQRCodeLabel.text = order.QRcode
-            cardQRCodeImageView.image = QRCode.generateImage(order.QRcode, avatarImage: nil)
         }
         
         userNicknameLabel.text = order.user.name
         userMessageLabel.text = order.message
+    }
+    
+    func setupImages(order: PLOrderCellData) {
+        cardQRCodeImageView.image = QRCode.generateImage(order.QRcode, avatarImage: nil)
+        setImage(order.user.picture)
     }
     
     private func setImage(url: NSURL) {

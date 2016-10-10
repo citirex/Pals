@@ -72,7 +72,11 @@ class PLFriendCell: UITableViewCell{
 					return
 				}
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-					self.avatarImage.image = image
+					if self.avatarImage.image == UIImage(named: "user"){
+						return
+					} else {
+						self.avatarImage.image = image
+					}
 					})
 			}) {[unowned self] (request, response, error) in
 				dispatch_async(dispatch_get_main_queue()) {
