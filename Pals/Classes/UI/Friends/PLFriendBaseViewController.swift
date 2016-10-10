@@ -68,6 +68,7 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
     }
 	
 	private func configureSearchController() {
+		let backgroundSearchBarColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		resultsController = UITableViewController(style: .Plain)
 		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
@@ -79,7 +80,7 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		
 		searchController = PLSearchController(searchResultsController: resultsController)
 		searchController.searchBar.placeholder			  = "Find Your Pals"
-		searchController.searchBar.backgroundColor		  = .miracleColor()
+		searchController.searchBar.backgroundColor		  = backgroundSearchBarColor
 		searchController.searchBar.barTintColor			  = .miracleColor()
 		searchController.searchBar.backgroundImage		  = UIImage()
 		searchController.searchBar.tintColor			  = .affairColor()
