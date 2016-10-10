@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PLOrderHistoryViewController: UIViewController {
+class PLOrderHistoryViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
