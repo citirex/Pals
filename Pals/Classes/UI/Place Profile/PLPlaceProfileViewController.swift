@@ -67,10 +67,8 @@ class PLPlaceProfileViewController: PLViewController {
         spinner.center = view.center
         eventsDatasource.loadPage { (indices, error) in
             if error == nil {
-                
-                let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
                 self.collectionView?.performBatchUpdates({
-                    self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
+                    self.collectionView?.insertItemsAtIndexPaths(indices)
                     }, completion: nil)
                 
             } else {
