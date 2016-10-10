@@ -56,10 +56,12 @@ class PLPlacesViewController: PLViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.center = view.center
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
+        
+        activityIndicator.addConstraintCentered()
     }
     
     
@@ -82,8 +84,8 @@ class PLPlacesViewController: PLViewController {
         searchController = PLSearchController(searchResultsController: resultsController)
         searchController.searchBar.placeholder     = "Find a Place"
         searchController.searchBar.barTintColor    = .affairColor()
-        searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.tintColor       = .whiteColor()
+        searchController.searchBar.backgroundImage = UIImage()
         searchController.searchResultsUpdater      = self
         searchController.delegate                  = self
         tableView.tableHeaderView                  = searchController.searchBar
@@ -100,7 +102,8 @@ class PLPlacesViewController: PLViewController {
         case .PlaceProfileSegue:
             let placeProfileViewController = segue.destinationViewController as! PLPlaceProfileViewController
             placeProfileViewController.place = selectedPlace
-        default: break
+        default:
+            break
         }
     }
     

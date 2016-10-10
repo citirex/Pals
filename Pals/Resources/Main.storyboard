@@ -433,117 +433,51 @@
         <!--Places-->
         <scene sceneID="DGm-Lb-BtU">
             <objects>
-                <viewController title="Places" extendedLayoutIncludesOpaqueBars="YES" id="0Ei-uX-tOV" customClass="PLPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lrC-9h-T9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Places" id="0Ei-uX-tOV" customClass="PLPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5lK-XI-0Q4"/>
                         <viewControllerLayoutGuide type="bottom" id="4MT-Ur-fQ2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Baq-ML-shK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oYY-1M-OFp">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.43529412150000002" green="0.25098040700000002" blue="0.59215688710000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="n8Q-WV-GgY" userLabel="Footer View">
-                                    <rect key="frame" x="0.0" y="220" width="375" height="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="S8c-Kz-zlF" userLabel="Footer View">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceCell" id="k4q-7j-gzl">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="128"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k4q-7j-gzl" id="hP4-zk-L1E">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vm2-Dy-5OA" customClass="PLBlurImageView" customModule="Pals" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basement" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tTh-3O-CWR">
-                                                    <rect key="frame" x="44" y="15" width="77" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3242 Edgewood Ave, Orlando Fl. 32815 " lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LmI-KA-0p6">
-                                                    <rect key="frame" x="44" y="44" width="180" height="34"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="180" id="whF-91-MmT"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9Xg-MW-h0j">
-                                                    <rect key="frame" x="44" y="86" width="66" height="29"/>
-                                                    <string key="text">Reggae Bar
-</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".5 Miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuv-gV-YQP">
-                                                    <rect key="frame" x="287" y="21" width="44" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="lHu-cf-1aP">
-                                                    <rect key="frame" x="343" y="59" width="6" height="10"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="9Xg-MW-h0j" firstAttribute="leading" secondItem="LmI-KA-0p6" secondAttribute="leading" id="3MZ-HR-D5k"/>
-                                                <constraint firstItem="Wuv-gV-YQP" firstAttribute="bottom" secondItem="tTh-3O-CWR" secondAttribute="bottom" id="9Uk-S4-UjN"/>
-                                                <constraint firstAttribute="trailing" secondItem="Wuv-gV-YQP" secondAttribute="trailing" constant="44" id="I2t-xr-Juu"/>
-                                                <constraint firstItem="LmI-KA-0p6" firstAttribute="leading" secondItem="tTh-3O-CWR" secondAttribute="leading" id="In4-IM-e46"/>
-                                                <constraint firstItem="Vm2-Dy-5OA" firstAttribute="leading" secondItem="hP4-zk-L1E" secondAttribute="leading" id="JiE-Oh-hSe"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9Xg-MW-h0j" secondAttribute="bottom" constant="8" id="OFT-L9-YyX"/>
-                                                <constraint firstItem="lHu-cf-1aP" firstAttribute="centerY" secondItem="hP4-zk-L1E" secondAttribute="centerY" id="Orr-CP-6J3"/>
-                                                <constraint firstItem="tTh-3O-CWR" firstAttribute="leading" secondItem="hP4-zk-L1E" secondAttribute="leading" constant="44" id="RCf-H5-0sK"/>
-                                                <constraint firstItem="Vm2-Dy-5OA" firstAttribute="top" secondItem="hP4-zk-L1E" secondAttribute="top" id="ROQ-Cj-3dg"/>
-                                                <constraint firstItem="9Xg-MW-h0j" firstAttribute="top" secondItem="LmI-KA-0p6" secondAttribute="bottom" constant="8" id="W5g-UN-vg6"/>
-                                                <constraint firstAttribute="trailing" secondItem="lHu-cf-1aP" secondAttribute="trailing" constant="26" id="Yc9-Fz-dSj"/>
-                                                <constraint firstItem="LmI-KA-0p6" firstAttribute="top" secondItem="tTh-3O-CWR" secondAttribute="bottom" constant="8" id="gSV-pr-1Tz"/>
-                                                <constraint firstItem="tTh-3O-CWR" firstAttribute="top" secondItem="hP4-zk-L1E" secondAttribute="top" constant="15" id="ill-M4-sSx"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9Xg-MW-h0j" secondAttribute="trailing" constant="40" id="qEf-GW-Qun"/>
-                                                <constraint firstAttribute="trailing" secondItem="Vm2-Dy-5OA" secondAttribute="trailing" id="wOE-Za-uoM"/>
-                                                <constraint firstAttribute="bottom" secondItem="Vm2-Dy-5OA" secondAttribute="bottom" id="zBY-ZY-6Os"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.43529412150382996" green="0.25098040699958801" blue="0.59215688705444336" alpha="1" colorSpace="calibratedRGB"/>
-                                        <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="0Ei-uX-tOV" id="RoA-l5-xAG"/>
                                     <outlet property="delegate" destination="0Ei-uX-tOV" id="lmT-wR-NbI"/>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" red="0.43529412150382996" green="0.25098040699958801" blue="0.59215688705444336" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="oYY-1M-OFp" firstAttribute="top" secondItem="Baq-ML-shK" secondAttribute="top" id="A8E-0m-1S7"/>
                             <constraint firstItem="4MT-Ur-fQ2" firstAttribute="top" secondItem="oYY-1M-OFp" secondAttribute="bottom" id="FCK-HK-i9Q"/>
+                            <constraint firstItem="oYY-1M-OFp" firstAttribute="top" secondItem="5lK-XI-0Q4" secondAttribute="bottom" id="Yof-rF-UXa"/>
                             <constraint firstAttribute="trailing" secondItem="oYY-1M-OFp" secondAttribute="trailing" id="e17-cu-CFy"/>
                             <constraint firstItem="oYY-1M-OFp" firstAttribute="leading" secondItem="Baq-ML-shK" secondAttribute="leading" id="s6X-dC-v80"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Locations" id="Ibc-hB-LPH"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableView" destination="oYY-1M-OFp" id="gc0-wN-nl0"/>
-                        <segue destination="0zz-mk-uMT" kind="push" identifier="PlaceProfileSegue" id="Srp-LB-CFK"/>
+                        <segue destination="0zz-mk-uMT" kind="push" identifier="PlaceProfileSegue" id="aZJ-aA-GGf"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lrC-9h-T9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-152.5" y="-1442.5"/>
+            <point key="canvasLocation" x="-170.5" y="-1442.5"/>
         </scene>
         <!--Place Profile-->
         <scene sceneID="Ogc-1T-UGd">
@@ -586,6 +520,7 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="gQS-aH-ZRx" id="wK7-9W-pTH"/>
                         <segue destination="Cmd-gA-94i" kind="push" identifier="OrderSegue" id="1Zi-Tu-8Fy"/>
@@ -1631,7 +1566,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="0Ei-uX-tOV" kind="relationship" relationship="rootViewController" id="KJ7-8Y-4qE"/>
+                        <segue destination="0Ei-uX-tOV" kind="relationship" relationship="rootViewController" id="47E-ko-rn8"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWv-za-XFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1641,7 +1576,6 @@
     </scenes>
     <resources>
         <image name="back_arrow" width="20" height="20"/>
-        <image name="chevron" width="6" height="10"/>
         <image name="edit" width="25" height="25"/>
         <image name="friends-tab" width="31" height="29"/>
         <image name="logo" width="264" height="266"/>
@@ -1654,9 +1588,9 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Zi-Tu-8Fy"/>
+        <segue reference="5Sl-5v-r30"/>
+        <segue reference="ovy-Gk-Wh0"/>
+        <segue reference="Ss6-x5-3bZ"/>
         <segue reference="u5L-qT-vQG"/>
-        <segue reference="sXw-Bi-aat"/>
-        <segue reference="apm-CY-cnT"/>
     </inferredMetricsTieBreakers>
 </document>

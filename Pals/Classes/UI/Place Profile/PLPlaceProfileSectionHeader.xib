@@ -104,7 +104,6 @@
                     <state key="normal" image="shopping_cart"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="AW4-sR-nJa" secondAttribute="trailing" constant="30" id="0Ho-Un-8jt"/>
                 <constraint firstItem="e58-Sn-T3o" firstAttribute="top" secondItem="1di-n4-vqL" secondAttribute="bottom" id="IsR-ou-wq1"/>

@@ -88,6 +88,5 @@ extension UIColor {
     class func chamrockColor() -> UIColor {
         return UIColor(r: 59.0, g: 204.0, b: 136.0)
     }
-
     
 }

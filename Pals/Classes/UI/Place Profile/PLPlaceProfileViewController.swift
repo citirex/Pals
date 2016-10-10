@@ -65,23 +65,12 @@ class PLPlaceProfileViewController: PLViewController {
     private func load() {
         spinner.startAnimating()
         spinner.center = view.center
-        eventsDatasource.load {[unowned self] page, error in
+        eventsDatasource.loadPage { (indices, error) in
             if error == nil {
-                let lastLoadedCount = page.count
-                if lastLoadedCount > 0 {
-                    if self.eventsDatasource.pagesLoaded < 2 {
-                        self.collectionView?.reloadData()
-                    } else {
-                        let count = self.eventsDatasource.count
-                        var indexPaths = [NSIndexPath]()
-                        for i in count-lastLoadedCount..<count {
-                            indexPaths.append(NSIndexPath(forItem: i, inSection: 0))
-                        }
-                        self.collectionView?.performBatchUpdates({
-                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
-                            }, completion: nil)
-                    }
-                }
+                self.collectionView?.performBatchUpdates({
+                    self.collectionView?.insertItemsAtIndexPaths(indices)
+                    }, completion: nil)
+                
             } else {
                 PLShowErrorAlert(error: error!)
             }
@@ -111,14 +100,15 @@ class PLPlaceProfileViewController: PLViewController {
         collectionView!.registerNib(sectionHeaderNib,
                                     forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                     withReuseIdentifier: PLPlaceProfileSectionHeader.identifier)
+        
+//        collectionView.contentInset  = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+//        collectionView.contentOffset = CGPoint(x: 0, y: -50)
     }
     
     private func reloadLayout() {
         layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 278)
-        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 80)
         layout!.parallaxHeaderAlwaysOnTop = true
         layout!.disableStickyHeaders = false
-//        layout!.estimatedItemSize = CGSizeMake(150, 110)
     }
     
     
@@ -169,12 +159,12 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             return headerView
         case UICollectionElementKindSectionHeader:
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileSectionHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
-            sectionHeader.placeNameLabel.text = place.name
-            sectionHeader.musicGenresLabel.text = place.musicGengres
-            sectionHeader.closingTimeLabel.text = place.closeTime
+            sectionHeader.placeNameLabel.text    = place.name
+            sectionHeader.musicGenresLabel.text  = place.musicGengres
+            sectionHeader.closingTimeLabel.text  = place.closeTime
             sectionHeader.placeAddressLabel.text = place.address
-            sectionHeader.phoneNumberLabel.text = place.phone
-            sectionHeader.didTappedOrderButton = { [unowned self] sender in
+            sectionHeader.phoneNumberLabel.text  = place.phone
+            sectionHeader.didTappedOrderButton   = { [unowned self] sender in
                 self.performSegueWithIdentifier(SegueIdentifier.OrderSegue, sender: sender)
             }
             return sectionHeader

@@ -295,14 +295,25 @@
     self.layoutAttributes = layoutAttributes;
 }
 
+-(UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
+    attributes.zIndex = itemIndexPath.row;
+    return  attributes;
+}
+
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
+    attributes.zIndex = itemIndexPath.row;
+    return attributes;
+}
+
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
 
     NSMutableArray *layoutAttributes = [NSMutableArray array];
     
     [self.layoutAttributes enumerateKeysAndObjectsUsingBlock:^(NSIndexPath *indexPath, UICollectionViewLayoutAttributes *attributes, BOOL *stop) {
-        
         if (CGRectIntersectsRect(rect, attributes.frame)) {
-            
+            attributes.zIndex = attributes.indexPath.item + 1;
             [layoutAttributes addObject:attributes];
         }
     }];
@@ -311,7 +322,6 @@
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     return self.layoutAttributes[indexPath];
 }
 

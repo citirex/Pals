@@ -8,13 +8,13 @@
 
 import UIKit
 
-class PLOrderHistoryViewController: UIViewController {
+class PLOrderHistoryViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
     private var activityIndicator: UIActivityIndicatorView!
     private lazy var orders: PLOrderDatasource = {
-        let orderDatasource = PLOrderDatasource(orderType: .Drinks)
+        let orderDatasource = PLOrderDatasource(orderType: .Drinks, sectioned: true)
         return orderDatasource
     }()
     
@@ -32,17 +32,19 @@ class PLOrderHistoryViewController: UIViewController {
     
     private func loadOrders() {
         activityIndicator.startAnimating()
-        orders.loadPage(true) { [unowned self] indexPaths, error in
+        orders.loadPage { [unowned self] indexPaths, error in
             self.activityIndicator.stopAnimating()
             
-            guard error == nil else { return PLShowErrorAlert(error: error!) }
-            
-            self.tableView?.beginUpdates()
-            let indexSet = NSIndexSet(indexesInRange: NSMakeRange(0, 20))
-            self.tableView.insertSections(indexSet, withRowAnimation: .Bottom)
-//            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
-            self.tableView?.endUpdates()
             self.tableView.reloadData()
+            
+//            guard error == nil else { return PLShowErrorAlert(error: error!) }
+//            
+//            self.tableView?.beginUpdates()
+//            let indexSet = NSIndexSet(indexesInRange: NSMakeRange(0, 20))
+//            self.tableView.insertSections(indexSet, withRowAnimation: .Bottom)
+//            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+//            self.tableView?.endUpdates()
+//            self.tableView.reloadData()
         }
     }
     
@@ -69,7 +71,8 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders[section].drinkSets.count ?? 0
+        //orders[section].drinkSets.count ?? 0
+        return orders.ordersCountInSection(section) + orders.drinkCountInSection(section)
     }
     
     
@@ -81,13 +84,24 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let drink = orders[indexPath.section].drinkSets[indexPath.row].drink
-        if let cell = cell as? PLOrderHistoryCell {
-            cell.drinkCellData = drink.cellData
-        }
-        if let cell = cell as? PLPlaceNameCell {
-            cell.orderCellData = orders[indexPath.section].cellData
-        }
+//        let drink = orders[indexPath.section].drinkSets[indexPath.row].drink
+//        if let cell = cell as? PLOrderHistoryCell {
+//            cell.drinkCellData = drink.cellData
+//        }
+//        if let cell = cell as? PLPlaceNameCell {
+//            cell.orderCellData = orders[indexPath.section].cellData
+//        }
+        
+//        if let dateType = PLDateType(rawValue: indexPath.section) {
+//            let ordersInSection = orders[dateType]
+//            print(ordersInSection!.count)
+//        }
+        
+//        let drink = orders[indexPath.section].drinkSets[indexPath.row].drink
+//        if let cell = cell as? PLOrderHistoryCell {
+//            cell.drinkCellData = drink.cellData
+//        }
+
     }
     
 }
