@@ -51,7 +51,7 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
     
     func drinkCountInSection(section: Int) -> Int {
         if collection.isSectioned {
-            let ordersInSection = collection.objectsInSection(section)
+            let ordersInSection = objectsInSection(section)
             var count = 0
             for order in ordersInSection {
                 count += order.drinkSets.count
@@ -63,7 +63,8 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
     
     func ordersCountInSection(section: Int) -> Int {
         if collection.isSectioned {
-            return collection.objectsInSection(section).count
+            let count = objectsInSection(section).count
+            return count
         }
         return 0
     }

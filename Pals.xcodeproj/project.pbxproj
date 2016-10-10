@@ -99,6 +99,7 @@
 		D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */; };
 		D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */; };
 		D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */; };
+		D4DB41DA1DABC1F800B5F313 /* PLPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DB41D91DABC1F800B5F313 /* PLPage.swift */; };
 		D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */; };
 		D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA241D9D5EB800B3CA82 /* PLLog.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
@@ -272,6 +273,7 @@
 		D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesDatasource.swift; sourceTree = "<group>"; };
+		D4DB41D91DABC1F800B5F313 /* PLPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPage.swift; sourceTree = "<group>"; };
 		D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatedObject.swift; sourceTree = "<group>"; };
 		D4FECA241D9D5EB800B3CA82 /* PLLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLog.swift; sourceTree = "<group>"; };
 		E8007BD61DA0073700372347 /* PLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocation.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				2480F8711D813E730095995F /* PLFacade.swift */,
 				2480F8731D813E730095995F /* PLNetworkManager.swift */,
 				2480F8741D813E730095995F /* PLPageCollection.swift */,
+				D4DB41D91DABC1F800B5F313 /* PLPage.swift */,
 				2480F8751D813E730095995F /* PLProfileManager.swift */,
 				2480F8761D813E730095995F /* PLSettingsManager.swift */,
 				D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */,
@@ -1213,6 +1216,7 @@
 				24E286EB1D9E566300B8D80C /* PLEditableUser.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,
 				E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */,
+				D4DB41DA1DABC1F800B5F313 /* PLPage.swift in Sources */,
 				24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */,
 				D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */,
 				E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */,

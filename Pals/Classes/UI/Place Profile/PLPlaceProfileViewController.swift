@@ -65,28 +65,28 @@ class PLPlaceProfileViewController: PLViewController {
     private func load() {
         spinner.startAnimating()
         spinner.center = view.center
-        eventsDatasource.load {[unowned self] page, error in
-            if error == nil {
-                let lastLoadedCount = page.count
-                if lastLoadedCount > 0 {
-                    if self.eventsDatasource.pagesLoaded < 2 {
-                        self.collectionView?.reloadData()
-                    } else {
-                        let count = self.eventsDatasource.count
-                        var indexPaths = [NSIndexPath]()
-                        for i in count-lastLoadedCount..<count {
-                            indexPaths.append(NSIndexPath(forItem: i, inSection: 0))
-                        }
-                        self.collectionView?.performBatchUpdates({
-                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
-                            }, completion: nil)
-                    }
-                }
-            } else {
-                PLShowErrorAlert(error: error!)
-            }
-            self.spinner.stopAnimating()
-        }
+//        eventsDatasource.load {[unowned self] page, error in
+//            if error == nil {
+//                let lastLoadedCount = page.count
+//                if lastLoadedCount > 0 {
+//                    if self.eventsDatasource.pagesLoaded < 2 {
+//                        self.collectionView?.reloadData()
+//                    } else {
+//                        let count = self.eventsDatasource.count
+//                        var indexPaths = [NSIndexPath]()
+//                        for i in count-lastLoadedCount..<count {
+//                            indexPaths.append(NSIndexPath(forItem: i, inSection: 0))
+//                        }
+//                        self.collectionView?.performBatchUpdates({
+//                            self.collectionView?.insertItemsAtIndexPaths(indexPaths)
+//                            }, completion: nil)
+//                    }
+//                }
+//            } else {
+//                PLShowErrorAlert(error: error!)
+//            }
+//            self.spinner.stopAnimating()
+//        }
     }
     
     
