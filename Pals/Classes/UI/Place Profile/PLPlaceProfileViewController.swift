@@ -115,10 +115,7 @@ class PLPlaceProfileViewController: PLViewController {
     
     private func reloadLayout() {
         layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 278)
-        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 80)
-        layout!.parallaxHeaderAlwaysOnTop = true
         layout!.disableStickyHeaders = false
-//        layout!.estimatedItemSize = CGSizeMake(150, 110)
     }
     
     
@@ -169,12 +166,12 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             return headerView
         case UICollectionElementKindSectionHeader:
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileSectionHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
-            sectionHeader.placeNameLabel.text = place.name
-            sectionHeader.musicGenresLabel.text = place.musicGengres
-            sectionHeader.closingTimeLabel.text = place.closeTime
+            sectionHeader.placeNameLabel.text    = place.name
+            sectionHeader.musicGenresLabel.text  = place.musicGengres
+            sectionHeader.closingTimeLabel.text  = place.closeTime
             sectionHeader.placeAddressLabel.text = place.address
-            sectionHeader.phoneNumberLabel.text = place.phone
-            sectionHeader.didTappedOrderButton = { [unowned self] sender in
+            sectionHeader.phoneNumberLabel.text  = place.phone
+            sectionHeader.didTappedOrderButton   = { [unowned self] sender in
                 self.performSegueWithIdentifier(SegueIdentifier.OrderSegue, sender: sender)
             }
             return sectionHeader
