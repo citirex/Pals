@@ -12,5 +12,6 @@ pod 'SwiftQRCode'
 pod 'GPUImage'
 pod 'Permission'
 pod 'PureLayout'
+pod 'DZNEmptyDataSet'
 
 end
