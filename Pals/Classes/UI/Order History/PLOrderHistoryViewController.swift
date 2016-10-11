@@ -6,6 +6,8 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+import DZNEmptyDataSet
+
 class PLOrderHistoryViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -23,10 +25,10 @@ class PLOrderHistoryViewController: PLViewController {
         
         let nib = UINib(nibName: PLOrderHistorySectionHeader.nibName, bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: PLOrderHistorySectionHeader.reuseIdentifier)
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         
-//        loadOrders()
-        
-        setupEmptyBackgroundView()
+        loadOrders()
     }
     
     // MARK: - Private methods
@@ -73,26 +75,15 @@ class PLOrderHistoryViewController: PLViewController {
         
         activityIndicator.addConstraintCentered()
     }
-    
-    func setupEmptyBackgroundView() {
-        let emptyBackgroundView = PLEmptyBackgroundView(top: "Orders History", bottom: "You don't have any orders yet")
-        tableView.backgroundView = emptyBackgroundView
-    }
 
 }
+
 
 // MARK: - UITableViewDataSource
 
 extension PLOrderHistoryViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if orders.count == 0 {
-            tableView.separatorStyle = .None
-            tableView.backgroundView?.hidden = false
-        } else {
-            tableView.separatorStyle = .SingleLine
-            tableView.backgroundView?.hidden = true
-        }
         return orders.count
     }
     
@@ -119,6 +110,7 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
         }
         return cell
     }
+    
 }
 
 
@@ -135,7 +127,9 @@ extension PLOrderHistoryViewController {
         }
         return NSIndexPath(forRow: rows-1, inSection: sections-1)
     }
+    
 }
+
 
 // MARK: - UITableViewDelegate
 
@@ -158,5 +152,38 @@ extension PLOrderHistoryViewController: UITableViewDelegate {
         return sectionHeader
     }
     
+}
+
+
+// MARK: - DZNEmptyDataSetSource
+
+extension PLOrderHistoryViewController: DZNEmptyDataSetSource {
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let string = "Orders History"
+        let attributedString = NSAttributedString(string: string, font: .boldSystemFontOfSize(20), color: .grayColor())
+        return attributedString
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let string = "You don't have any orders yet"
+        let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .lightGrayColor())
+        return attributedString
+    }
+    
+}
+
+
+// MARK: - DZNEmptyDataSetDelegate
+
+extension PLOrderHistoryViewController: DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        return !activityIndicator.isAnimating()
+    }
 }
 

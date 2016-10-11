@@ -114,7 +114,7 @@ class PLPlaceProfileViewController: PLViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
         switch identifier {
-        case .PlaceProfileSegue:
+        case .OrderSegue:
             let orderViewController = segue.destinationViewController as! PLOrderViewController
             orderViewController.order.place = place
         default: break

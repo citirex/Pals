@@ -6,6 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+import DZNEmptyDataSet
 
 class PLPlacesViewController: PLViewController {
     
@@ -17,6 +18,7 @@ class PLPlacesViewController: PLViewController {
     private var searchController: PLSearchController!
     private var selectedPlace: PLPlace!
     private var previousFilter = ""
+    private var searchPlace: String!
     
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
 
@@ -30,7 +32,9 @@ class PLPlacesViewController: PLViewController {
         configureActivityIndicator()
         
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
         loadPlaces()
     }
     
@@ -64,20 +68,20 @@ class PLPlacesViewController: PLViewController {
         activityIndicator.addConstraintCentered()
     }
     
-    
     private func configureResultsController() {
         resultsController = UITableViewController(style: .Plain)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-        resultsController.tableView.backgroundColor = .affairColor()
-        resultsController.tableView.tableFooterView = UIView()
-        resultsController.tableView.backgroundView  = UIView()
-        resultsController.tableView.rowHeight       = 128.0
-        resultsController.tableView.dataSource      = self
-        resultsController.tableView.delegate        = self
+        resultsController.tableView.backgroundColor      = .affairColor()
+        resultsController.tableView.tableFooterView      = UIView()
+//        resultsController.tableView.backgroundView  = UIView()
+        resultsController.tableView.rowHeight            = 128.0
+        resultsController.tableView.dataSource           = self
+        resultsController.tableView.delegate             = self
+        resultsController.tableView.emptyDataSetSource   = self
+        resultsController.tableView.emptyDataSetDelegate = self
     }
 
     
-
     // MARK: - Initialize Search Controller
     
     private func configureSearchController() {
@@ -180,16 +184,50 @@ extension PLPlacesViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         places.searching = searchController.active
-        let text = searchController.searchBar.text!
-        if text.isEmpty { places.searching = false }
+        searchPlace = searchController.searchBar.text!
+        if searchPlace.isEmpty { places.searching = false }
         else {
             activityIndicator.startAnimating()
-            places.filter(text, completion: { [unowned self] in
+            places.filter(searchPlace, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
                 self.resultsController.tableView.reloadData()
             })
         }
+    }
+    
+}
+
+
+// MARK: - DZNEmptyDataSetSource
+
+extension PLPlacesViewController: DZNEmptyDataSetSource {
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let string = scrollView === tableView ? "Places list" : "No results found"
+        let attributedString = NSAttributedString(string: string, font: .boldSystemFontOfSize(20), color: .whiteColor())
+        return attributedString
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let string = scrollView === tableView ? "No data" : "No places were found that match '\(searchPlace)'"
+        let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .whiteColor())
+        return attributedString
+    }
+
+}
+
+
+// MARK: - DZNEmptyDataSetDelegate
+
+extension PLPlacesViewController: DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        return !activityIndicator.isAnimating()
     }
     
 }
