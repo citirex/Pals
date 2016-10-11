@@ -433,7 +433,6 @@
         <!--Places-->
         <scene sceneID="DGm-Lb-BtU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lrC-9h-T9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Places" id="0Ei-uX-tOV" customClass="PLPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5lK-XI-0Q4"/>
@@ -476,6 +475,7 @@
                         <segue destination="0zz-mk-uMT" kind="push" identifier="PlaceProfileSegue" id="aZJ-aA-GGf"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lrC-9h-T9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-170.5" y="-1442.5"/>
         </scene>
@@ -493,7 +493,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gQS-aH-ZRx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <color key="backgroundColor" red="0.35686275362968445" green="0.16862745583057404" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.80000000000000004" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="s19-SJ-5VK" customClass="CSStickyHeaderFlowLayout">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -528,7 +528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wf-4F-yEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-152.5" y="-507.5"/>
+            <point key="canvasLocation" x="-170.5" y="-529.5"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="2FT-fh-LFP">
@@ -1118,7 +1118,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="48" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i7u-E5-AkU">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <color key="backgroundColor" red="0.43529412150000002" green="0.25098040700000002" blue="0.59215688710000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="UbD-Gp-IQ2">
                                     <rect key="frame" x="0.0" y="192" width="375" height="0.0"/>
@@ -1126,7 +1126,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SectionHeader" id="b6a-rW-oKo" customClass="PLOrderHistorySectionHeader" customModule="Pals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SectionHeader" id="b6a-rW-oKo">
                                         <rect key="frame" x="0.0" y="48" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6a-rW-oKo" id="FaC-ky-mfi">
@@ -1134,7 +1134,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-Hp-QFs">
-                                                    <rect key="frame" x="142" y="12" width="92" height="24"/>
+                                                    <rect key="frame" x="141" y="12" width="92" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1588,7 +1588,7 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Sl-5v-r30"/>
+        <segue reference="1Zi-Tu-8Fy"/>
         <segue reference="ovy-Gk-Wh0"/>
         <segue reference="Ss6-x5-3bZ"/>
         <segue reference="u5L-qT-vQG"/>

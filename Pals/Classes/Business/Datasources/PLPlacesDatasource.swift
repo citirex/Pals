@@ -29,7 +29,7 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
                 self.region = region
                 super.load(completion)
             } else {
-                completion(objects: [AnyObject](), error: error)
+                completion(page: PLPage(), error: error)
             }
         }
     }

@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-typealias PLDatasourceLoadCompletion = (objects: [AnyObject], error: NSError?) -> ()
+typealias PLDatasourceLoadCompletion = (page: PLPage, error: NSError?) -> ()
 typealias PLDatasourceIndicesChangeCompletion = (indices: [NSIndexPath], error: NSError?) -> ()
 
 class PLDatasource<T: PLDatedObject where T : PLFilterable> {
@@ -52,8 +52,10 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
         collection.load()
     }
     
-    func loadPage(asSections:Bool, completion: PLDatasourceIndicesChangeCompletion) {
-
+    func cancel() {
+        collection.cancelPageLoad()
+        indicesCompletion = nil
+        completion = nil
     }
     
     func filter(text: String, completion: ()->()) {
@@ -77,20 +79,24 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
         set { collection.searching = newValue }
     }
     subscript(index: Int) -> T {return collection[index]}
-    subscript(dateType: PLDateType) -> [T]? {return collection[dateType]}
     
     func fakeFeedNameOnError(error: NSError) -> String {
         let name = fakeFeedFilenameKey() + "\(collection.pagesLoaded)"
         return name
     }
+    
+    func objectsInSection(idx: Int) -> [T] {
+        return collection.objectsInSection(idx)
+    }
+    
     //MARK: To override
     func fakeFeedFilenameKey() -> String { return "" }
     func mainCollectionKey() -> String { return "" }
 }
 
 extension PLDatasource : PLPageCollectionDelegate {
-    func pageCollectionDidLoadPage(objects: [AnyObject]) {
-        completion?(objects: objects, error: nil)
+    func pageCollectionDidLoadPage(page: PLPage) {
+        completion?(page: page, error: nil)
     }
     
     func pageCollectionDidChange(indexPaths: [NSIndexPath]) {
@@ -105,22 +111,23 @@ extension PLDatasource : PLPageCollectionDelegate {
                 guard
                     !dic.isEmpty
                 else {
-                    self.completion?(objects: [AnyObject](), error: error)
+                    self.completion?(page: PLPage(), error: error)
                     return
                 }
                 let response = self.collection.deserialize(dic)
                 if response.1 == nil {
-                    let objects = response.0
-                    self.collection.onPageLoad(objects)
-                    self.completion?(objects:response.0, error: nil)
-                    self.indicesCompletion?(indices: self.collection.findLastIndices(objects.count), error: nil)
+                    if self.completion != nil || self.indicesCompletion != nil {
+                        let page =  self.collection.onPageLoad(response.0)
+                        self.completion?(page: page, error: nil)
+                        self.indicesCompletion?(indices: self.collection.findLastIndices(page.objects.count), error: nil)
+                    }
                 } else {
-                    self.completion?(objects: [T](), error: error)
+                    self.completion?(page: PLPage(), error: error)
                     self.indicesCompletion?(indices: [NSIndexPath](), error: error)
                 }
             }
         } else {
-            completion?(objects: [AnyObject](), error: error)
+            completion?(page: PLPage(), error: error)
             indicesCompletion?(indices: [NSIndexPath](), error: error)
         }
     }

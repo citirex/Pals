@@ -40,6 +40,7 @@ class PLOrderViewController: PLViewController {
     }()
     private var vipButton: UIBarButtonItem? = nil
     private var checkoutButton = UIButton(frame: CGRectZero)
+    private var checkoutButtonOnScreen = false
     
     private let placeholderUserName = "Chose user"
     private let placeholderPlaceName = "Chose place"
@@ -161,13 +162,16 @@ extension PLOrderViewController {
     }
     
     private func showCheckoutButton() {
-        if checkoutButton.hidden == true {
+        if checkoutButtonOnScreen == false {
+            checkoutButtonOnScreen = true
+            checkoutButton.layer.removeAllAnimations()
             let originYFinish = view.bounds.size.height - kCheckoutButtonHeight + 10
             var frame = checkoutButton.frame
             frame.origin.y = collectionView.bounds.size.height
             checkoutButton.frame = frame
             checkoutButton.hidden = false
             frame.origin.y = originYFinish
+            shiftCollectionView(true)
             
             UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.AllowUserInteraction], animations: {
                 self.checkoutButton.frame = frame
@@ -176,15 +180,31 @@ extension PLOrderViewController {
     }
     
     private func hideCheckoutButton() {
-        if checkoutButton.hidden == false {
+        if checkoutButtonOnScreen == true {
+            checkoutButtonOnScreen = false
             var frame = checkoutButton.frame
             frame.origin.y = collectionView.bounds.size.height
-            UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations: {
+            collectionView.contentInset.bottom = 0
+            shiftCollectionView(false)
+            
+            UIView.animateWithDuration(0.3, delay: 0, options: [.BeginFromCurrentState, .AllowUserInteraction, .CurveLinear], animations: {
                                         self.checkoutButton.frame = frame
                 }, completion: { (completion) in
-                    self.checkoutButton.hidden = true
+                    if completion == true {
+                        self.checkoutButton.hidden = true
+                    }
             })
         }
+    }
+    
+    func shiftCollectionView(shift: Bool) {
+        let newOffsetShift = collectionView.contentOffset.y
+        UIView.animateWithDuration(0.3, delay: 0, options: .BeginFromCurrentState, animations: {
+            self.collectionView.contentOffset.y = shift ? newOffsetShift + kCheckoutButtonHeight : newOffsetShift - kCheckoutButtonHeight
+        }) { (complete) in
+            self.collectionView.contentInset.bottom = shift ? kCheckoutButtonHeight : 0
+        }
+       
     }
     
     @objc private func checkoutButtonPressed(sender: UIButton) {
@@ -294,12 +314,8 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         }
         
         currentTab = tab
-        
-        UIView.animateWithDuration(0, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {
-            }) { (complete) in
-                self.collectionView.contentOffset = (self.currentTab == .Drinks) ? self.drinksOffset : self.coversOffset
-                self.collectionView.reloadSections(NSIndexSet(index: 1))
-        }
+        collectionView.contentOffset = (self.currentTab == .Drinks) ? self.drinksOffset : self.coversOffset
+        collectionView.reloadData()
     }
     
     //MARK: - Checkout Popup 

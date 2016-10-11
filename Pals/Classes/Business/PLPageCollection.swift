@@ -9,7 +9,7 @@
 import AFNetworking
 
 protocol PLPageCollectionDelegate : class {
-    func pageCollectionDidLoadPage(objects: [AnyObject])
+    func pageCollectionDidLoadPage(objects: PLPage)
     func pageCollectionDidChange(indexPaths: [NSIndexPath])
     func pageCollectionDidFail(error: NSError)
 }
@@ -135,8 +135,17 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     }
     
     var pagesLoaded: Int {
-        var pages = abs(count/pageSize)
-        if count%pageSize > 0 {
+        var allObjCount = 0
+        if sectioned {
+            for section in _objects {
+                allObjCount += section.count
+            }
+        } else {
+            allObjCount = count
+        }
+        
+        var pages = abs(allObjCount/pageSize)
+        if allObjCount%pageSize > 0 {
             pages += 1
         }
         return pages
@@ -160,21 +169,6 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             fatalError("cannot return object")
         }
         return objects[index] as! T
-    }
-    
-    subscript(dateType: PLDateType) -> [T]? {
-        if sectioned {
-            for aSection in _objects {
-                if let section = aSection as? [T] {
-                    if section.count>0 {
-                        if section.first!.date!.dateType == dateType {
-                            return section
-                        }
-                    }
-                }
-            }
-        }
-        return nil
     }
     
     func objectsInSection(idx: Int) -> [T] {
@@ -216,12 +210,12 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     
     func load() {
         if !loading {
-            loadNext({ (objects, error) in
+            loadNext({ (page, error) in
                 if error != nil {
                     self.delegate?.pageCollectionDidFail(error!)
                 } else {
-                    self.delegate?.pageCollectionDidLoadPage(objects)
-                    let indices = self.findLastIndices(objects.count)
+                    self.delegate?.pageCollectionDidLoadPage(page)
+                    let indices = self.findLastIndices(page.objects.count)
                     self.delegate?.pageCollectionDidChange(indices)
                 }
             })
@@ -230,10 +224,12 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     
     func findLastIndices(lastCount: Int, asSections: Bool) -> [NSIndexPath] {
         var indexPaths = [NSIndexPath]()
-        if lastCount > 0 {
-            for i in count - lastCount..<count {
-                let idx = asSections ? (0,i) : (i,0)
-                indexPaths.append(NSIndexPath(forRow: idx.0, inSection: idx.1))
+        if !sectioned {
+            if lastCount > 0 {
+                for i in count - lastCount..<count {
+                    let idx = asSections ? (0,i) : (i,0)
+                    indexPaths.append(NSIndexPath(forRow: idx.0, inSection: idx.1))
+                }
             }
         }
         return indexPaths
@@ -251,7 +247,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         deserializer.appendPath(path)
     }
     
-    typealias PageLoadCompletion = (objects: [T], error: NSError?) -> ()
+    typealias PageLoadCompletion = (page: PLPage, error: NSError?) -> ()
     let jsonError = NSError(domain: "PageCollection", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Failed to parse JSON"])
     
     private func loadNext(completion: PageLoadCompletion) {
@@ -265,34 +261,42 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             guard
                 let page = response
             else {
-                completion(objects:[T](), error: self.jsonError)
+                completion(page: PLPage(), error: self.jsonError)
                 return
             }
             let response = self.deserializer.deserialize(page)
             if response.1 == nil {
-                self.onPageLoad(response.0)
-                completion(objects: response.0, error: nil)
+                let page = self.onPageLoad(response.0)
+                completion(page: page , error: nil)
             } else {
-                completion(objects: [T](), error: self.jsonError)
+                completion(page: PLPage(), error: self.jsonError)
             }
         }) { (task, error) in
             PLLog("Failed to load: \((task?.originalRequest?.URL?.absoluteString)!)", type: .Network)
             self.loading = false
-            completion(objects:[T]() ,error: error)
+            completion(page: PLPage() ,error: error)
         }
     }
     
-    func onPageLoad(objects: [T]) {
+    func cancelPageLoad() {
+        session?.invalidateSessionCancelingTasks(true)
+        loading = false
+    }
+    
+    func onPageLoad(objects: [T]) -> PLPage {
+        var page = PLPage()
         if objects.count > 0 {
             if sectioned {
-                appendObjectsToSections(objects)
+                page = appendObjectsToSections(objects)
             } else {
-                _objects.addObjectsFromArray(objects as [AnyObject])
+                _objects.addObjectsFromArray(objects)
+                page.objects.addObjectsFromArray(objects)
             }
             if !self.preset.offsetById {
                 self.offset += UInt64(objects.count)
             }
         }
+        return page
     }
     
     private func sectionOfObject(object: T) -> NSMutableArray? {
@@ -310,24 +314,61 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         return nil
     }
     
-    private func appendObjectsToSections(objects: [T]) {
-        var pageObjects = objects
-        var last = lastObject
-        var section : NSMutableArray?
-        while pageObjects.count>0 {
-            let obj = pageObjects.first!
-            if last != nil && last!.hasSameDateType(obj) {
-                if section == nil {
-                    section = sectionOfObject(last!)
-                }
-            } else {
-                section = NSMutableArray()
-                _objects.addObject(section!)
-            }
-            section!.addObject(obj)
-            pageObjects.removeFirst()
-            last = obj
+    private func appendObjectsToSections(objects: [T]) -> PLPage {
+        var page = PLPage()
+        if objects.count == 0 {
+            return page
         }
+        var currentSection = NSMutableArray()
+        for i in 0..<objects.count-1 {
+            let obj1 = objects[i]
+            let obj2 = objects[i+1]
+            let sameType = obj1.hasSameDateType(obj2)
+            currentSection.addObject(obj1)
+            if !sameType {
+                page.objects.addObject(currentSection)
+                currentSection = NSMutableArray()
+            }
+            if i == objects.count-2 {
+                currentSection.addObject(obj2)
+            }
+            PLLog("\(i):\(i+1) same type:\(sameType)")
+        }
+        page.objects.addObject(currentSection)
+        
+        if let lastObj = lastObject {
+            let firstObj = objects.first!
+            if lastObj.hasSameDateType(firstObj) {
+                let lastSection = sectionOfObject(lastObj)!
+                lastSection.addObjectsFromArray(page.objects.firstObject as! [AnyObject])
+                page.mergedWithPreviousSection = true
+            }
+        }
+        
+        for i in 0..<page.objects.count {
+            let section = page.objects.objectAtIndex(i)
+            if page.mergedWithPreviousSection && i==0 {
+                continue
+            }
+            _objects.addObject(section)
+        }
+        
+        var sectionStr = ""
+        for i in 0..<page.objects.count {
+            let section = page.objects.objectAtIndex(i) as! NSMutableArray
+            sectionStr += "\(section.count)"
+            sectionStr += i != page.objects.count-1 ? " " : ""
+        }
+        PLLog("new sections: \(page.objects.count) (\(sectionStr))")
+        
+        sectionStr = ""
+        for i in 0..<_objects.count {
+            let section = _objects.objectAtIndex(i) as! NSMutableArray
+            sectionStr += "\(section.count)"
+            sectionStr += i != _objects.count-1 ? " " : ""
+        }
+        PLLog("all sections: \(_objects.count) (\(sectionStr))")
+        return page
     }
     
     private func formParameters(preset: PLPageCollectionPreset, offset: UInt64) -> [String : AnyObject] {

@@ -59,7 +59,7 @@ class PLCardInfoViewController: PLViewController {
         sendButton.addTarget(self, action: .completePressed, forControlEvents: .TouchUpInside)
         containerView.addSubview(sendButton)
         
-        sendButton.addConstraintCentered()
+        sendButton.addConstraintsWithEdgeInsets(UIEdgeInsetsZero)
 
         return containerView
     }()

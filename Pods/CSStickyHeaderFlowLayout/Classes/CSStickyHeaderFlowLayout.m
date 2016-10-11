@@ -32,10 +32,7 @@ static const NSInteger kHeaderZIndex = 1024;
 
     if ([elementKind isEqualToString:CSStickyHeaderParallaxHeader]) {
         // sticky header do not need to offset
-//        return nil;
-        CGRect frame = attributes.frame;
-        frame.origin.y += self.parallaxHeaderReferenceSize.height + 50;
-        attributes.frame = frame;
+        return nil;
     } else {
         // offset others
 
@@ -249,7 +246,7 @@ static const NSInteger kHeaderZIndex = 1024;
 
     CGRect frame = currentAttribute.frame;
     frame.size.width = self.parallaxHeaderReferenceSize.width;
-    frame.size.height = self.parallaxHeaderReferenceSize.height;
+    frame.size.height = self.parallaxHeaderReferenceSize.height + 40;
 
     CGRect bounds = self.collectionView.bounds;
     CGFloat maxY = CGRectGetMaxY(frame);
@@ -257,7 +254,6 @@ static const NSInteger kHeaderZIndex = 1024;
     // make sure the frame won't be negative values
     CGFloat y = MIN(maxY - self.parallaxHeaderMinimumReferenceSize.height, bounds.origin.y + self.collectionView.contentInset.top);
     CGFloat height = MAX(0, -y + maxY);
-
 
     CGFloat maxHeight = self.parallaxHeaderReferenceSize.height;
     CGFloat minHeight = self.parallaxHeaderMinimumReferenceSize.height;
