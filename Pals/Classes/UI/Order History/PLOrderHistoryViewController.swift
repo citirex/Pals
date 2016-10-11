@@ -25,46 +25,6 @@ class PLOrderHistoryViewController: PLViewController {
     
     // MARK: - Private methods
     
-    private func indexPathsFromObjects(objects: [AnyObject], lastIdxPath: NSIndexPath?, mergedSection: Bool) -> [NSIndexPath] {
-        var paths = [NSIndexPath]()
-        var sectionIdx = 0
-        var rowIdx = 0
-        if lastIdxPath != nil {
-            sectionIdx = mergedSection ? lastIdxPath!.section : lastIdxPath!.section+1
-            if mergedSection {
-                rowIdx = lastIdxPath!.row+1
-            }
-        }
-        for i in 0..<objects.count {
-            if let section = objects[i] as? [PLOrder] {
-                var rowsInSection = 0
-                for order in section {
-                    // +1 row for a place name
-                    let rowsForOrder = order.drinkSets.count+1
-                    rowsInSection += rowsForOrder
-                }
-                for i in 0..<rowsInSection {
-                    paths.append(NSIndexPath(forRow: rowIdx+i, inSection: sectionIdx))
-                }
-                rowIdx = 0
-            }
-            sectionIdx += 1
-        }
-        return paths
-    }
-    
-    private func findLastIdxPath() -> NSIndexPath? {
-        let sections = tableView.numberOfSections
-        if sections == 0 {
-            return nil
-        }
-        let rows = tableView.numberOfRowsInSection(sections-1)
-        if rows == 0 {
-            return nil
-        }
-        return NSIndexPath(forRow: rows-1, inSection: sections-1)
-    }
-    
     private func loadOrders() {
         activityIndicator.startAnimating()
         orders.load {[unowned self] (page, error) in
@@ -72,7 +32,7 @@ class PLOrderHistoryViewController: PLViewController {
 
             let objects = page.objects
             let lastIdxPath = self.findLastIdxPath()
-            let indexPaths = self.indexPathsFromObjects(objects as [AnyObject], lastIdxPath: lastIdxPath, mergedSection: page.mergedWithPreviousSection)
+            let indexPaths = self.orders.indexPathsFromObjects(objects as [AnyObject], lastIdxPath: lastIdxPath, mergedSection: page.mergedWithPreviousSection)
             PLLog("===== Loaded orders with index paths:")
             for idxPath in indexPaths {
                 PLLog("\(idxPath.section) : \(idxPath.row)")
@@ -88,7 +48,6 @@ class PLOrderHistoryViewController: PLViewController {
             self.tableView?.endUpdates()
         }
     }
-    
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -111,11 +70,12 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders.ordersCountInSection(section) + orders.drinkCountInSection(section)
+        return orders.cellCountInSection(section)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let reuseIdentifier = indexPath.row  == 0 ? PLPlaceNameCell.reuseIdentifier : PLOrderHistoryCell.reuseIdentifier
+        let cellType = orders.orderTypeFromIdxPath(indexPath)
+        let reuseIdentifier = cellType == .Place ? PLPlaceNameCell.reuseIdentifier : PLOrderHistoryCell.reuseIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
@@ -125,6 +85,21 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
         // TODO: figure out
     }
     
+}
+
+extension PLOrderHistoryViewController {
+
+    private func findLastIdxPath() -> NSIndexPath? {
+        let sections = tableView.numberOfSections
+        if sections == 0 {
+            return nil
+        }
+        let rows = tableView.numberOfRowsInSection(sections-1)
+        if rows == 0 {
+            return nil
+        }
+        return NSIndexPath(forRow: rows-1, inSection: sections-1)
+    }
 }
 
 // MARK: - UITableViewDelegate

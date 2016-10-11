@@ -49,7 +49,55 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
         return (orderType == .Covers ? PLKeys.order_covers : PLKeys.order_drinks).string
     }
     
-    func drinkCountInSection(section: Int) -> Int {
+}
+
+// MARK: Order History extension
+
+enum PLOrderHistoryCellType {
+    case Place
+    case Drink
+}
+
+extension PLOrderDatasource {
+    func indexPathsFromObjects(objects: [AnyObject], lastIdxPath: NSIndexPath?, mergedSection: Bool) -> [NSIndexPath] {
+        var paths = [NSIndexPath]()
+        var sectionIdx = 0
+        var rowIdx = 0
+        if lastIdxPath != nil {
+            sectionIdx = mergedSection ? lastIdxPath!.section : lastIdxPath!.section+1
+            if mergedSection {
+                rowIdx = lastIdxPath!.row+1
+            }
+        }
+        for i in 0..<objects.count {
+            if let section = objects[i] as? [PLOrder] {
+                var rowsInSection = 0
+                for order in section {
+                    // +1 row for a place name
+                    let rowsForOrder = order.drinkSets.count+1
+                    rowsInSection += rowsForOrder
+                }
+                for i in 0..<rowsInSection {
+                    paths.append(NSIndexPath(forRow: rowIdx+i, inSection: sectionIdx))
+                }
+                rowIdx = 0
+            }
+            sectionIdx += 1
+        }
+        return paths
+    }
+    
+    func cellCountInSection(section: Int) -> Int {
+        return drinkCountInSection(section) + ordersCountInSection(section)
+    }
+    
+    func orderTypeFromIdxPath(idxPath: NSIndexPath) -> PLOrderHistoryCellType {
+        let drinksets = drinksetsRepesentationInSection(idxPath.section)
+        let object = drinksets[idxPath.row]
+        return object is NSNull ? .Place : .Drink
+    }
+    
+    private func drinkCountInSection(section: Int) -> Int {
         if collection.isSectioned {
             let ordersInSection = objectsInSection(section)
             var count = 0
@@ -61,7 +109,7 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
         return 0
     }
     
-    func ordersCountInSection(section: Int) -> Int {
+    private func ordersCountInSection(section: Int) -> Int {
         if collection.isSectioned {
             let count = objectsInSection(section).count
             return count
@@ -69,4 +117,13 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
         return 0
     }
     
+    private func drinksetsRepesentationInSection(section: Int) -> [AnyObject] {
+        var drinksets = [AnyObject]()
+        let orders = objectsInSection(section)
+        for order in orders {
+            drinksets.append(NSNull())
+            drinksets.appendContentsOf(order.drinkSets as [AnyObject])
+        }
+        return drinksets
+    }
 }
