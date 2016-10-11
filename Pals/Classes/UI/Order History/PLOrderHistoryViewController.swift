@@ -33,20 +33,29 @@ class PLOrderHistoryViewController: PLViewController {
             let objects = page.objects
             let lastIdxPath = self.findLastIdxPath()
             let indexPaths = self.orders.indexPathsFromObjects(objects as [AnyObject], lastIdxPath: lastIdxPath, mergedSection: page.mergedWithPreviousSection)
-            PLLog("===== Loaded orders with index paths:")
-            for idxPath in indexPaths {
-                PLLog("\(idxPath.section) : \(idxPath.row)")
-            }
-            PLLog("==========")
+            self.logInsertingCellPaths(indexPaths)
+            
             self.activityIndicator.stopAnimating()
             self.tableView?.beginUpdates()
-            let adding = page.mergedWithPreviousSection ? 1 : 0
-            let range = NSMakeRange(self.orders.count - page.objects.count + adding, page.objects.count - adding)
-            let idxSet = NSIndexSet(indexesInRange: range)
-            self.tableView.insertSections(idxSet, withRowAnimation: .Bottom)
+            let newSectionIdxSet = self.makeIndexSetForInsertingSections(page, datasource: self.orders)
+            self.tableView.insertSections(newSectionIdxSet, withRowAnimation: .Bottom)
             self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
             self.tableView?.endUpdates()
         }
+    }
+    
+    private func makeIndexSetForInsertingSections(page: PLPage, datasource: PLOrderDatasource) -> NSIndexSet {
+        let adding = page.mergedWithPreviousSection ? 1 : 0
+        let range = NSMakeRange(datasource.count - page.objects.count + adding, page.objects.count - adding)
+        return NSIndexSet(indexesInRange: range)
+    }
+    
+    private func logInsertingCellPaths(paths: [NSIndexPath]) {
+        PLLog("===== Loaded orders with index paths:")
+        for idxPath in paths {
+            PLLog("\(idxPath.section) : \(idxPath.row)")
+        }
+        PLLog("==========")
     }
     
     private func configureActivityIndicator() {
@@ -74,15 +83,19 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellType = orders.orderTypeFromIdxPath(indexPath)
+        let historyObject = orders.historyObjectForIndPath(indexPath)
+        let cellType = orders.orderCellTypeFromHistoryObject(historyObject)
         let reuseIdentifier = cellType == .Place ? PLPlaceNameCell.reuseIdentifier : PLOrderHistoryCell.reuseIdentifier
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
-        configureCell(cell, atIndexPath: indexPath)
+        switch cellType {
+        case .Place:
+            let place = historyObject as! PLPlace
+            // TODO: configure cell for place
+        case .Drink:
+            let drinkset = historyObject as! PLDrinkset
+            // TODO: configure cell for drinkset
+        }
         return cell
-    }
-    
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        // TODO: figure out
     }
     
 }

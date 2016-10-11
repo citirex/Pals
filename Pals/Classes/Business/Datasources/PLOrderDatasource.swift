@@ -91,10 +91,14 @@ extension PLOrderDatasource {
         return drinkCountInSection(section) + ordersCountInSection(section)
     }
     
-    func orderTypeFromIdxPath(idxPath: NSIndexPath) -> PLOrderHistoryCellType {
+    func orderCellTypeFromHistoryObject(object: AnyObject) -> PLOrderHistoryCellType {
+        return object is PLPlace ? .Place : .Drink
+    }
+    
+    func historyObjectForIndPath(idxPath: NSIndexPath) -> AnyObject {
         let drinksets = drinksetsRepesentationInSection(idxPath.section)
         let object = drinksets[idxPath.row]
-        return object is NSNull ? .Place : .Drink
+        return object
     }
     
     private func drinkCountInSection(section: Int) -> Int {
@@ -121,7 +125,7 @@ extension PLOrderDatasource {
         var drinksets = [AnyObject]()
         let orders = objectsInSection(section)
         for order in orders {
-            drinksets.append(NSNull())
+            drinksets.append(order.place)
             drinksets.appendContentsOf(order.drinkSets as [AnyObject])
         }
         return drinksets
