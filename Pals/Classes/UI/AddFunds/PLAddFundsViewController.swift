@@ -80,7 +80,7 @@ class PLAddFundsViewController: PLViewController {
         sendButton.addTarget(self, action: .refillPressed, forControlEvents: .TouchUpInside)
         containerView.addSubview(sendButton)
         
-        sendButton.addConstraintCentered()
+        sendButton.addConstraintsWithEdgeInsets(UIEdgeInsetsZero)
         
         return containerView
     }()

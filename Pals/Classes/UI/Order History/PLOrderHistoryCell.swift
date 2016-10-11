@@ -12,10 +12,10 @@ class PLOrderHistoryCell: UITableViewCell {
 
     static let reuseIdentifier = "OrderHistoryCell"
     
-    var drinkCellData: PLDrinkCellData! {
+    var drink: PLDrink! {
         didSet {
-            textLabel?.text = drinkCellData.name
-            detailTextLabel?.text = String(format: "$%0.2f", drinkCellData.price)
+            textLabel?.text = drink.name
+            detailTextLabel?.text = String(format: "$%0.2f", drink.price)
         }
     }
 

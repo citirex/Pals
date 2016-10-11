@@ -20,7 +20,13 @@ class PLOrderHistoryViewController: PLViewController {
         super.viewDidLoad()
         
         configureActivityIndicator()
-        loadOrders()
+        
+        let nib = UINib(nibName: PLOrderHistorySectionHeader.nibName, bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: PLOrderHistorySectionHeader.reuseIdentifier)
+        
+//        loadOrders()
+        
+        setupEmptyBackgroundView()
     }
     
     // MARK: - Private methods
@@ -67,6 +73,11 @@ class PLOrderHistoryViewController: PLViewController {
         
         activityIndicator.addConstraintCentered()
     }
+    
+    func setupEmptyBackgroundView() {
+        let emptyBackgroundView = PLEmptyBackgroundView(top: "Orders History", bottom: "You don't have any orders yet")
+        tableView.backgroundView = emptyBackgroundView
+    }
 
 }
 
@@ -75,6 +86,13 @@ class PLOrderHistoryViewController: PLViewController {
 extension PLOrderHistoryViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if orders.count == 0 {
+            tableView.separatorStyle = .None
+            tableView.backgroundView?.hidden = false
+        } else {
+            tableView.separatorStyle = .SingleLine
+            tableView.backgroundView?.hidden = true
+        }
         return orders.count
     }
     
@@ -89,16 +107,20 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
         switch cellType {
         case .Place:
-            let place = historyObject as! PLPlace
-            // TODO: configure cell for place
+            if let cell = cell as? PLPlaceNameCell {
+                let place = historyObject as! PLPlace
+                cell.place = place
+            }
         case .Drink:
-            let drinkset = historyObject as! PLDrinkset
-            // TODO: configure cell for drinkset
+            if let cell = cell as? PLOrderHistoryCell {
+                let drink = (historyObject as! PLDrinkset).drink
+                cell.drink = drink
+            }
         }
         return cell
     }
-    
 }
+
 
 extension PLOrderHistoryViewController {
 
@@ -128,8 +150,8 @@ extension PLOrderHistoryViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionHeader = tableView.dequeueReusableCellWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as!
-        PLOrderHistorySectionHeader
+        let sectionHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as! PLOrderHistorySectionHeader
+        
         if let firstOrder = orders.objectsInSection(section).first {
             sectionHeader.orderCellData = firstOrder.cellData
         }

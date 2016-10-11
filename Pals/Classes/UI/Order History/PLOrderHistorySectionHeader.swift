@@ -9,11 +9,12 @@
 import UIKit
 
 @IBDesignable
-class PLOrderHistorySectionHeader: UITableViewCell {
+class PLOrderHistorySectionHeader: UITableViewHeaderFooterView {
 
+    static let nibName = "PLOrderHistorySectionHeader"
     static let reuseIdentifier = "SectionHeader"
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel! 
         
     var orderCellData: PLOrderCellData! {
         didSet {

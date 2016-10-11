@@ -60,26 +60,31 @@ extension NSDate {
         return dateComponent.0
     }
     
-    var since: String {
-        
-//        if dateComponents.year > 0 {
-//            return dateComponents.year < 2 ? "Last Year" : String(format: "%d Years Ago", dateComponents.year)
-//        }
-//        
-//        if dateComponents.month > 0 {
-//            return dateComponents.month < 2 ? "Last Month" : String(format: "%d Months Ago", dateComponents.month)
-//        }
-//
-//        if dateComponents.day >= 7 {
-//            let week = dateComponents.day / 7
-//            return week < 2 ? "Last Week" : String(format: "%d Weeks Ago", week)
-//        }
-//            
-//        if dateComponents.day > 0 {
-//            return dateComponents.day < 2 ? "Yesterday" : String(format: "%d Days Ago", dateComponents.day)
-//        }
 
+    
+    var since: String {
+        if dateComponents.year > 0 {
+            return dateComponents.year < 2 ? "Last Year" : String(format: "%d Years Ago", dateComponents.year)
+        }
+        
+        if dateComponents.month > 0 {
+            return dateComponents.month < 2 ? "Last Month" : String(format: "%d Months Ago", dateComponents.month)
+        }
+
+        if dateComponents.day >= 7 {
+            let week = dateComponents.day / 7
+            return week < 2 ? "Last Week" : String(format: "%d Weeks Ago", week)
+        }
+            
+        if dateComponents.day > 0 {
+            return dateComponents.day < 2 ? "Yesterday" : String(format: "%d Days Ago", dateComponents.day)
+        }
         return "Today"
+    }
+    
+    private var dateComponents: NSDateComponents {
+        let calander = NSCalendar.currentCalendar()
+        return calander.components([.Day, .WeekOfMonth, .Month, .Year], fromDate: self, toDate: NSDate(), options: [])
     }
 
 }
