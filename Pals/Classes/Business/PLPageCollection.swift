@@ -278,6 +278,11 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         }
     }
     
+    func cancelPageLoad() {
+        session?.invalidateSessionCancelingTasks(true)
+        loading = false
+    }
+    
     func onPageLoad(objects: [T]) -> PLPage {
         var page = PLPage()
         if objects.count > 0 {

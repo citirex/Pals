@@ -52,6 +52,12 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
         collection.load()
     }
     
+    func cancel() {
+        collection.cancelPageLoad()
+        indicesCompletion = nil
+        completion = nil
+    }
+    
     func filter(text: String, completion: ()->()) {
         collection.filter(text, completion: completion)
     }
@@ -110,9 +116,11 @@ extension PLDatasource : PLPageCollectionDelegate {
                 }
                 let response = self.collection.deserialize(dic)
                 if response.1 == nil {
-                    let page =  self.collection.onPageLoad(response.0)
-                    self.completion?(page: page, error: nil)
-                    self.indicesCompletion?(indices: self.collection.findLastIndices(page.objects.count), error: nil)
+                    if self.completion != nil || self.indicesCompletion != nil {
+                        let page =  self.collection.onPageLoad(response.0)
+                        self.completion?(page: page, error: nil)
+                        self.indicesCompletion?(indices: self.collection.findLastIndices(page.objects.count), error: nil)
+                    }
                 } else {
                     self.completion?(page: PLPage(), error: error)
                     self.indicesCompletion?(indices: [NSIndexPath](), error: error)
