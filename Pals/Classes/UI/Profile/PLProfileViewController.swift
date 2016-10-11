@@ -100,8 +100,10 @@ class PLProfileViewController: TGLStackedViewController {
                 } else {
                     PLShowErrorAlert(error: error!)
                 }
+            } else {
+                self.spinner.stopAnimating()
+                self.collectionBackgroundView.noItemsLabel.hidden = false
             }
-            self.spinner.stopAnimating()
         }
     }
     
