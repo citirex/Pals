@@ -20,12 +20,6 @@ class PLProfileHeaderView: UIView {
     @IBOutlet var myDrinksConstraint: NSLayoutConstraint!
     
     @IBOutlet var noItemsLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        userPicImageView.layer.cornerRadius = 50
-    }
     
     
     func applyBlurEffect(image: UIImage){
@@ -41,7 +35,9 @@ class PLProfileHeaderView: UIView {
             self.backgroundImageView.transform = CGAffineTransformIdentity
 
         }
-
     }
-
+    
+    func roundUserPicCorners() {
+        userPicImageView.layer.cornerRadius = userPicImageView.bounds.size.width / 2
+    }
 }
