@@ -8,12 +8,17 @@
 
 import UIKit
 
+enum PLAddFriendStatus : Int {
+	case NotFriend
+	case Friend
+}
+
 class PLFriendCell: UITableViewCell{
 	
 	@IBOutlet weak var avatarImage: UIImageView!
 	@IBOutlet weak var nameLabel: UILabel!
 	
-	var friendStatus: PLAddFriendStatus = .NotFriend
+	var friendStatus: PLAddFriendStatus?
 	
 	lazy var addButton: UIButton = {
 		let button = UIButton(frame: CGRect(x: 0, y: 0, width: 33, height: 33))
@@ -41,7 +46,7 @@ class PLFriendCell: UITableViewCell{
 				setCorrectImage(friendCellData.picture)
 			}
 			nameLabel.text = friendCellData.name
-			
+//			friendStatus = friendCellData.
 		} else {
 			PLLog("Friend Cell Data is empty!")
 		}

@@ -41,7 +41,7 @@ class PLFriendsViewController: PLFriendBaseViewController {
 	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
-		if scrollView.contentOffset.y < -20 {
+		if scrollView.contentOffset.y < navigationController!.navigationBar.frame.height  {
 			navigationController?.navigationBar.shadowImage = UIImage()
 		} else {
 			navigationController?.navigationBar.shadowImage = nil
