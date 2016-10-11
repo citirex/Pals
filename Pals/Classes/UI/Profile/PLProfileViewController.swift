@@ -100,8 +100,8 @@ class PLProfileViewController: TGLStackedViewController {
                 } else {
                     PLShowErrorAlert(error: error!)
                 }
-                self.spinner.stopAnimating()
             }
+            self.spinner.stopAnimating()
         }
     }
     
@@ -197,6 +197,7 @@ class PLProfileViewController: TGLStackedViewController {
     
     func setupCollectionView() {
         setupCollectionBackgroundView(collectionBackgroundView)
+        collectionBackgroundView.roundUserPicCorners()
         
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         
@@ -207,7 +208,9 @@ class PLProfileViewController: TGLStackedViewController {
         let expoItemSize = CGSizeMake(collectionView!.bounds.size.width, exposedCardHeight)
         self.exposedItemSize = expoItemSize
         self.stackedLayout!.itemSize = self.exposedItemSize;
-        self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(282.0, 0.0, self.tabBarController!.tabBar.frame.height, 0.0);
+        
+        let layoutTopMargin = collectionView!.frame.size.height / 2 + 1
+        self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(layoutTopMargin, 0.0, tabBarHeight, 0.0);
         
         collectionHelper.datasource = currentDatasource
         self.collectionView?.dataSource = collectionHelper
