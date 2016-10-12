@@ -47,8 +47,8 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 	
 	private func addConstraints() {
 		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.addConstraintsWithEdgeInsets(UIEdgeInsetsZero)
-		tableView.scrollIndicatorInsets = UIEdgeInsets(top: 62, left: 0, bottom: 49, right: 0)
+		tableView.addConstraintsWithEdgeInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+		tableView.scrollIndicatorInsets = UIEdgeInsetsZero
 	}
 	
     func loadData() {}
@@ -63,7 +63,7 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 			tableView.backgroundView	 = noDataLabel
 			tableView.tableHeaderView	 = nil
 			tableView.separatorStyle	 = .None
-            PLShowAlert("Error!", message: "Cannot download your friends.")
+            PLShowAlert("Error!", message: error?.localizedDescription)
         }
     }
 	
@@ -90,6 +90,8 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		textFieldInsideSearchBar?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		textFieldInsideSearchBar?.cornerRadius		= 14
 		searchController.searchBar.delegate			= self
+		
+		edgesForExtendedLayout = .None
 		tableView.tableHeaderView					= searchController.searchBar
 		definesPresentationContext					= true
 	}

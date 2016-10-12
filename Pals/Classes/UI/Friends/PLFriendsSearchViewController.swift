@@ -6,10 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-enum PLAddFriendStatus : Int {
-	case NotFriend
-	case Friend
-}
 
 class PLFriendsSearchViewController: PLFriendBaseViewController{
 	
@@ -17,12 +13,20 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
     var datasource = PLDatasourceHelper.createFriendsInviteDatasource()
 	
 //	var collectionUsers: [PLUser] {
-//		return datasource!.collection.objects ?? []
+//		return datasource.collection.objectsInSection(99) ?? []
 //	}
+	
+	override func loadData() {
+		self.spinner.startAnimating()
+		datasource.loadPage {[unowned self] (indices, error) in
+			self.didLoadPage(indices, error: error)
+			self.spinner.stopAnimating()
+		}
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-	self.extendedLayoutIncludesOpaqueBars = true
+
         searchController.searchResultsUpdater = self
         tableView.dataSource = self
         resultsController.tableView.dataSource = self
@@ -58,11 +62,6 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 		tableView.reloadData()
 		searchBar.endEditing(true)
 	}
-    
-    func searchButton(sender: AnyObject) {
-//        sendSearchFriendsRequest()
-        tableView.reloadData()
-    }
 	
 //	func sendSearchFriendsRequest() -> [PLUser] {
 		
@@ -81,6 +80,10 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let friend = datasource[indexPath.row]
 		performSegueWithIdentifier("FriendsProfileSegue", sender: friend)
+	}
+	
+	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+		if datasource.shouldLoadNextPage(indexPath) { loadData() }
 	}
 	
 	// MARK: - Navigation

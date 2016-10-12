@@ -6,6 +6,8 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+import DZNEmptyDataSet
+
 class PLOrderHistoryViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -20,6 +22,12 @@ class PLOrderHistoryViewController: PLViewController {
         super.viewDidLoad()
         
         configureActivityIndicator()
+        
+        let nib = UINib(nibName: PLOrderHistorySectionHeader.nibName, bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: PLOrderHistorySectionHeader.reuseIdentifier)
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        
         loadOrders()
     }
     
@@ -70,6 +78,7 @@ class PLOrderHistoryViewController: PLViewController {
 
 }
 
+
 // MARK: - UITableViewDataSource
 
 extension PLOrderHistoryViewController: UITableViewDataSource {
@@ -89,16 +98,21 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
         switch cellType {
         case .Place:
-            let place = historyObject as! PLPlace
-            // TODO: configure cell for place
+            if let cell = cell as? PLPlaceNameCell {
+                let place = historyObject as! PLPlace
+                cell.place = place
+            }
         case .Drink:
-            let drinkset = historyObject as! PLDrinkset
-            // TODO: configure cell for drinkset
+            if let cell = cell as? PLOrderHistoryCell {
+                let drink = (historyObject as! PLDrinkset).drink
+                cell.drink = drink
+            }
         }
         return cell
     }
     
 }
+
 
 extension PLOrderHistoryViewController {
 
@@ -113,7 +127,9 @@ extension PLOrderHistoryViewController {
         }
         return NSIndexPath(forRow: rows-1, inSection: sections-1)
     }
+    
 }
+
 
 // MARK: - UITableViewDelegate
 
@@ -128,13 +144,46 @@ extension PLOrderHistoryViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionHeader = tableView.dequeueReusableCellWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as!
-        PLOrderHistorySectionHeader
+        let sectionHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as! PLOrderHistorySectionHeader
+        
         if let firstOrder = orders.objectsInSection(section).first {
             sectionHeader.orderCellData = firstOrder.cellData
         }
         return sectionHeader
     }
     
+}
+
+
+// MARK: - DZNEmptyDataSetSource
+
+extension PLOrderHistoryViewController: DZNEmptyDataSetSource {
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let string = "Orders History"
+        let attributedString = NSAttributedString(string: string, font: .boldSystemFontOfSize(20), color: .grayColor())
+        return attributedString
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let string = "You don't have any orders yet"
+        let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .lightGrayColor())
+        return attributedString
+    }
+    
+}
+
+
+// MARK: - DZNEmptyDataSetDelegate
+
+extension PLOrderHistoryViewController: DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        return !activityIndicator.isAnimating()
+    }
 }
 

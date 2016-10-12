@@ -99,13 +99,11 @@ class PLPlaceProfileViewController: PLViewController {
         collectionView!.registerNib(sectionHeaderNib,
                                     forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                     withReuseIdentifier: PLPlaceProfileSectionHeader.identifier)
-        
-//        collectionView.contentInset  = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-//        collectionView.contentOffset = CGPoint(x: 0, y: -50)
     }
     
     private func reloadLayout() {
-        layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 278)
+        layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 278.0)
+        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 80.0)
         layout!.parallaxHeaderAlwaysOnTop = true
         layout!.disableStickyHeaders = false
     }
@@ -116,7 +114,7 @@ class PLPlaceProfileViewController: PLViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
         switch identifier {
-        case .PlaceProfileSegue:
+        case .OrderSegue:
             let orderViewController = segue.destinationViewController as! PLOrderViewController
             orderViewController.order.place = place
         default: break

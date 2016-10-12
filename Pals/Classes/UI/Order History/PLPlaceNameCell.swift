@@ -14,9 +14,9 @@ class PLPlaceNameCell: UITableViewCell {
     
     @IBOutlet weak var placeNameLabel: UILabel!
 
-    var orderCellData: PLOrderCellData! {
+    var place: PLPlace! {
         didSet {
-            placeNameLabel.text = orderCellData.place.name
+            placeNameLabel.text = place.name
         }
     }
 

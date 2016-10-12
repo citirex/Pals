@@ -86,16 +86,20 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GPUImage/GPUImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Permission/Permission.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PureLayout/PureLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftQRCode/SwiftQRCode.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GPUImage/GPUImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Permission/Permission.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PureLayout/PureLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftQRCode/SwiftQRCode.framework"
 fi
