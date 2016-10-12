@@ -108,24 +108,24 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 
 // MARK: - UISearchControllerDelegate
 
-extension PLFriendBaseViewController : UISearchControllerDelegate {
-	func willDismissSearchController(searchController: UISearchController) {
-		let offset = tableView.contentOffset.y + tableView.contentInset.top
-		if offset >= searchController.searchBar.frame.height {
-			UIView.animateWithDuration(0.25) {
-				searchController.searchBar.alpha = 0
-			}
-		}
-	}
-	
-	func didDismissSearchController(searchController: UISearchController) {
-		if searchController.searchBar.alpha == 0 {
-			UIView.animateWithDuration(0.25) {
-				searchController.searchBar.alpha = 1
-			}
-		}
-	}
-}
+//extension PLFriendBaseViewController : UISearchControllerDelegate {
+//	func willDismissSearchController(searchController: UISearchController) {
+//		let offset = tableView.contentOffset.y + tableView.contentInset.top
+//		if offset >= searchController.searchBar.frame.height {
+//			UIView.animateWithDuration(0.25) {
+//				searchController.searchBar.alpha = 0
+//			}
+//		}
+//	}
+//	
+//	func didDismissSearchController(searchController: UISearchController) {
+//		if searchController.searchBar.alpha == 0 {
+//			UIView.animateWithDuration(0.25) {
+//				searchController.searchBar.alpha = 1
+//			}
+//		}
+//	}
+//}
 
 // MARK: - DZNEmptyDataSetSource
 

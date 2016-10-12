@@ -30,7 +30,7 @@ class PLFriendsViewController: PLFriendBaseViewController {
         tableView.dataSource				   = self
         resultsController.tableView.dataSource = self
 
-		searchController.delegate = self
+//		searchController.delegate = self
 		
 		resultsController.tableView.emptyDataSetSource   = self
 		resultsController.tableView.emptyDataSetDelegate = self

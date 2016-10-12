@@ -1413,13 +1413,13 @@
         <!--Friends View Controller-->
         <scene sceneID="kTI-9s-VJB">
             <objects>
-                <viewController title="Friends" extendedLayoutIncludesOpaqueBars="YES" id="EGX-50-gGa" userLabel="Friends View Controller" customClass="PLFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Friends" id="EGX-50-gGa" userLabel="Friends View Controller" customClass="PLFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HvD-Gm-hRE"/>
                         <viewControllerLayoutGuide type="bottom" id="OP0-7G-RkV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NkY-DW-CI1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1588,9 +1588,9 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rjy-8t-3el"/>
         <segue reference="1Zi-Tu-8Fy"/>
+        <segue reference="ovy-Gk-Wh0"/>
+        <segue reference="Rjy-8t-3el"/>
         <segue reference="u5L-qT-vQG"/>
-        <segue reference="apm-CY-cnT"/>
     </inferredMetricsTieBreakers>
 </document>
