@@ -5,10 +5,12 @@
 //  Created by Карпенко Михайло on 05.09.16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
+import DZNEmptyDataSet
 
 class PLFriendsViewController: PLFriendBaseViewController {
 	
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
+	var searchText: String!
     
 	@IBAction func searchButton(sender: AnyObject) {
 		performSegueWithIdentifier("FriendSearchSegue", sender: self)
@@ -27,6 +29,11 @@ class PLFriendsViewController: PLFriendBaseViewController {
         searchController.searchResultsUpdater  = self
         tableView.dataSource				   = self
         resultsController.tableView.dataSource = self
+
+		searchController.delegate = self
+		
+		resultsController.tableView.emptyDataSetSource   = self
+		resultsController.tableView.emptyDataSetDelegate = self
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -100,11 +107,14 @@ extension PLFriendsViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         datasource.searching = searchController.active
-        let text = searchController.searchBar.text!
-        if text.isEmpty { datasource.searching = false}
+        searchText = searchController.searchBar.text!
+        if searchText.isEmpty { datasource.searching = false}
 		else {
             spinner.startAnimating()
-            datasource.filter(text, completion: { [unowned self] in
+            datasource.filter(searchText, completion: { [unowned self] in
+//				if self.datasource.empty {
+//					
+//				}
                 self.resultsController.tableView.reloadData()
                 self.spinner.stopAnimating()
             })
