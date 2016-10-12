@@ -1425,14 +1425,13 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="my0-Un-4rl"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="XwT-8l-06Q">
                             <connections>
-                                <action selector="searchButton:" destination="EGX-50-gGa" id="25b-dK-lFi"/>
+                                <segue destination="lup-pr-rOR" kind="push" id="Rjy-8t-3el"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendProfileSegue" id="ovy-Gk-Wh0"/>
-                        <segue destination="lup-pr-rOR" kind="push" identifier="FriendSearchSegue" id="Ss6-x5-3bZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9B-MX-2Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1452,7 +1451,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ehC-fs-qip">
+                    <navigationItem key="navigationItem" title="Friends" id="ehC-fs-qip">
                         <barButtonItem key="backBarButtonItem" title=" " id="fSH-08-fuO"/>
                     </navigationItem>
                     <connections>
@@ -1588,9 +1587,9 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Rjy-8t-3el"/>
         <segue reference="1Zi-Tu-8Fy"/>
-        <segue reference="ovy-Gk-Wh0"/>
-        <segue reference="Ss6-x5-3bZ"/>
         <segue reference="u5L-qT-vQG"/>
+        <segue reference="apm-CY-cnT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,10 +12,10 @@ class PLFriendsViewController: PLFriendBaseViewController {
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
 	var searchText: String!
     
-	@IBAction func searchButton(sender: AnyObject) {
-		performSegueWithIdentifier("FriendSearchSegue", sender: self)
-	}
-    
+//	@IBAction func searchButton(sender: AnyObject) {
+//		performSegueWithIdentifier("FriendSearchSegue", sender: self)
+//	}
+	
     override func loadData() {
         self.spinner.startAnimating()
         datasource.loadPage {[unowned self] (indices, error) in
@@ -66,9 +66,6 @@ class PLFriendsViewController: PLFriendBaseViewController {
         case "FriendProfileSegue":
             let friendProfileViewController		  = segue.destinationViewController as! PLFriendProfileViewController
             friendProfileViewController.friend	  = selectedFriend
-        case "FriendSearchSegue":
-            let friendSearchViewController		  = segue.destinationViewController as! PLFriendsSearchViewController
-            friendSearchViewController.seekerText = searchController.searchBar.text
         default:
             break
         }
