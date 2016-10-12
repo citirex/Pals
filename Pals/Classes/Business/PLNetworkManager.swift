@@ -53,14 +53,43 @@ protocol PLNetworkManagerInterface {
 }
 
 class PLNetworkSession: AFHTTPSessionManager {
-    static let baseUrl = "https://api.pals.com"
-    static let shared = PLNetworkSession(baseURL: NSURL(string: baseUrl)!, sessionConfiguration:
+    static let baseUrl: NSURL = {
+//        let base = "https://api.pals.com"
+        let base = "http://192.168.1.217:8181"
+//        let base = "http://yegor.pythonanywhere.com"
+        let url = NSURL(string: base)!
+        return url
+    }()
+    static let shared = PLNetworkSession(baseURL: baseUrl, sessionConfiguration:
         { ()-> NSURLSessionConfiguration in
             let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-            config.timeoutIntervalForRequest = 5
+            config.timeoutIntervalForRequest = 25
             return config
         }()
     )
+    
+    override init(baseURL url: NSURL?, sessionConfiguration configuration: NSURLSessionConfiguration?) {
+        super.init(baseURL: url, sessionConfiguration: configuration)
+        PLFacade.instance.settingsManager.addObserver(self, forKeyPath: PLKeys.token.string, options: .Initial, context: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        PLFacade.instance.settingsManager.removeObserver(self, forKeyPath: PLKeys.token.string)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == PLKeys.token.string {
+            if let settings = object as? PLSettingsManager {
+                let token = settings.token
+                requestSerializer.setValue(token, forHTTPHeaderField: PLKeys.token.string)
+                PLLog("Set up requests headers:\n \(requestSerializer.HTTPRequestHeaders)")
+            }
+        }
+    }
 }
 
 class PLNetworkManager: PLNetworkManagerInterface {
@@ -70,6 +99,9 @@ class PLNetworkManager: PLNetworkManagerInterface {
         completion(dic: dic, error: nil)
     }
     class func handleErrorCompletion(error: NSError, fakeFeedFilename: String, completion: PLNetworkRequestCompletion) {
+        if let failedURL = error.userInfo[NSURLErrorFailingURLErrorKey] as? NSURL {
+            PLLog("Failed to load: \(failedURL.absoluteString)", type: .Network)
+        }
         if PLFacade.instance.settingsManager.useFakeFeeds {
             PLFakeFeed.load(fakeFeedFilename, completion: { (dict) in
                 if dict.isEmpty {

@@ -14,8 +14,10 @@ enum PLKeys : String {
     case type
     case picture
     case email
+    case email_unique
     case balance
     case user
+    case username
     case user_id
     case info
     case response
@@ -45,7 +47,7 @@ enum PLKeys : String {
     case per_page
     case since
     case quantity
-    case page
+    case offset
     case lat
     case long
     case dlat // delta latitude
@@ -55,6 +57,7 @@ enum PLKeys : String {
     case is_vip
     case access_code
     case qr_code
+    case token
     var string : String {
         return rawValue
     }

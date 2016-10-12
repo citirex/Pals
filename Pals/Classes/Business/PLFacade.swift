@@ -64,7 +64,7 @@ extension PLFacade._PLFacade {
     func _signUp(data: PLSignUpData, completion: PLErrorCompletion) {
         let params = data.params
         let imageData = UIImagePNGRepresentation(data.picture)!
-        let attachment = PLUploadAttachment(name: "profileImage", mimeType: "image/png", data: imageData)
+        let attachment = PLUploadAttachment(name: PLKeys.picture.string, mimeType: "image/png", data: imageData)
         PLNetworkManager.post(PLAPIService.SignUp, parameters: params, attachment: attachment) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
@@ -136,6 +136,9 @@ extension PLFacade._PLFacade {
     func handleUserLogin(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
         handleErrorCompletion(error, errorCompletion: completion) { () -> NSError? in
             if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
+                if let token = dic[PLKeys.token.string] as? String {
+                    PLFacade.instance.settingsManager.token = token
+                }
                 if let userDic = response[PLKeys.user.string] as? [String : AnyObject] {
                     if let user = PLUser(jsonDic: userDic) {
                         self.profileManager.profile = user
