@@ -11,20 +11,25 @@ import PureLayout
 
 class PLEmptyBackgroundView: UIView {
     
-    private var topSpace: UIView!
-    private var bottomSpace: UIView!
-    private var imageView: UIImageView!
     private var topLabel: UILabel!
-    private var bottomLabel: UILabel!
+    private var bottomLabel: UILabel?
     
-    private let topColor    = UIColor.grayColor()
-    private let topFont     = UIFont.boldSystemFontOfSize(22)
-    private let bottomColor = UIColor.lightGrayColor()
-    private let bottomFont  = UIFont.systemFontOfSize(18)
+    private let topTextColor    = UIColor.grayColor()
+    private let topTextFont     = UIFont.boldSystemFontOfSize(22)
+    private let bottomTextColor = UIColor.lightGrayColor()
+    private let bottomTextFont  = UIFont.systemFontOfSize(18)
     
-    private let spacing: CGFloat          = 10
-    private let imageViewHeight: CGFloat  = 100
-    private let bottomLabelWidth: CGFloat = 300
+    var textLabelsSpacing: CGFloat {
+        set{
+            textLabelsSpacingConstraint?.constant = newValue
+            layoutIfNeeded()
+        }
+        get{
+           return textLabelsSpacingConstraint?.constant ?? 10
+        }
+    }
+    
+    private var textLabelsSpacingConstraint: NSLayoutConstraint?
     
     var didSetupConstraints = false
     
@@ -38,72 +43,73 @@ class PLEmptyBackgroundView: UIView {
         setupViews()
     }
     
-    init(image: UIImage, top: String, bottom: String) {
+    init(topText: String, bottomText: String?) {
         super.init(frame: CGRectZero)
         setupViews()
-        setupImageView(image)
-        setupLabels(top, bottom: bottom)
+        setupTextLabels(topText, bottomText: bottomText)
+    }
+
+    private func setupViews() {
+        topLabel = UILabel.newAutoLayoutView()
+        topLabel.textColor = topTextColor
+        topLabel.font      = topTextFont
+        addSubview(topLabel!)
     }
     
-    init(top: String, bottom: String) {
-        super.init(frame: CGRectZero)
-        setupViews()
-        setupLabels(top, bottom: bottom)
+    func applyShadowWithColor(color: UIColor, andRadius radius: CGFloat) {
+        topLabel.shadowColor = color
+        topLabel.shadowOffset = CGSizeZero
+        topLabel.layer.shadowRadius = radius
+        
+        bottomLabel?.shadowColor = color
+        bottomLabel?.shadowOffset = CGSizeZero
+        bottomLabel?.layer.shadowRadius = radius
     }
 
     
-    func setupViews() {
-        topSpace    = UIView.newAutoLayoutView()
-        bottomSpace = UIView.newAutoLayoutView()
-        imageView   = UIImageView.newAutoLayoutView()
-        topLabel    = UILabel.newAutoLayoutView()
-        bottomLabel = UILabel.newAutoLayoutView()
+    func setupTextLabels(topText: String, bottomText: String?) {
+        topLabel.text = topText
         
-        addSubview(topSpace)
-        addSubview(bottomSpace)
-        addSubview(imageView!)
-        addSubview(topLabel!)
-        addSubview(bottomLabel!)
+        if let bottom = bottomText {
+            guard bottomLabel != nil else {
+                bottomLabel = UILabel.newAutoLayoutView()
+                addSubview(bottomLabel!)
+                bottomLabel?.textColor     = bottomTextColor
+                bottomLabel?.font          = bottomTextFont
+                bottomLabel?.numberOfLines = 0
+                bottomLabel?.textAlignment = .Center
+                return
+            }
+            bottomLabel?.text = bottom
+        }
     }
     
-    func setupImageView(image: UIImage) {
-        imageView.image     = image
-        imageView.tintColor = topColor
+    
+    func setTopTextColor(color: UIColor) {
+        topLabel.textColor = color
     }
     
-    func setupLabels(top: String, bottom: String) {
-        topLabel.text      = top
-        topLabel.textColor = topColor
-        topLabel.font      = topFont
-        
-        bottomLabel.text          = bottom
-        bottomLabel.textColor     = bottomColor
-        bottomLabel.font          = bottomFont
-        bottomLabel.numberOfLines = 0
-        bottomLabel.textAlignment = .Center
+    func setTopTextFont(font: UIFont) {
+        topLabel.font = font
     }
+    
+    func setBottomTextColor(color: UIColor) {
+        bottomLabel?.textColor = color
+    }
+    
+    func setBottomTextFont(font: UIFont) {
+        bottomLabel?.font = font
+    }
+    
     
     override func updateConstraints() {
         if !didSetupConstraints {
-            topSpace.autoAlignAxisToSuperviewAxis(.Vertical)
-            topSpace.autoPinEdgeToSuperviewEdge(.Top)
-            bottomSpace.autoAlignAxisToSuperviewAxis(.Vertical)
-            bottomSpace.autoPinEdgeToSuperviewEdge(.Bottom)
-            topSpace.autoSetDimension(.Height, toSize: spacing, relation: .GreaterThanOrEqual)
-            topSpace.autoMatchDimension(.Height, toDimension: .Height, ofView: bottomSpace)
-            
-            imageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: topSpace)
-            imageView.autoAlignAxisToSuperviewAxis(.Vertical)
-            imageView.autoSetDimension(.Height, toSize: imageViewHeight, relation: .LessThanOrEqual)
-            
             topLabel.autoAlignAxisToSuperviewAxis(.Vertical)
-            topLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageView, withOffset: spacing)
+            topLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: self, withOffset: -20)
             
-            bottomLabel.autoAlignAxisToSuperviewAxis(.Vertical)
-            bottomLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: topLabel, withOffset: spacing)
-            bottomLabel.autoPinEdge(.Bottom, toEdge: .Top, ofView: bottomSpace)
-            bottomLabel.autoSetDimension(.Width, toSize: bottomLabelWidth)
-            
+            bottomLabel?.autoAlignAxisToSuperviewAxis(.Vertical)
+           textLabelsSpacingConstraint = bottomLabel?.autoPinEdge(.Top, toEdge: .Bottom, ofView: topLabel, withOffset: textLabelsSpacing)
+
             didSetupConstraints = true
         }
         

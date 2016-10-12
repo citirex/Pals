@@ -278,7 +278,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     }
     
     func cancelPageLoad() {
-        session?.invalidateSessionCancelingTasks(true)
+//FIXME:      session?.invalidateSessionCancelingTasks(true)
         loading = false
     }
     

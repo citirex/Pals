@@ -74,7 +74,7 @@ class PLProfileViewController: TGLStackedViewController {
     func loadPage() {
         spinner.startAnimating()
         spinner.center = view.center
-        currentDatasource.loadPage { (indices, error) in
+        currentDatasource.loadPage {[unowned self] (indices, error) in
             if indices.count > 0 {
                 self.collectionBackgroundView.noItemsLabel.hidden = true
                 if error == nil {
@@ -101,9 +101,9 @@ class PLProfileViewController: TGLStackedViewController {
                     PLShowErrorAlert(error: error!)
                 }
             } else {
-                self.spinner.stopAnimating()
                 self.collectionBackgroundView.noItemsLabel.hidden = false
             }
+            self.spinner.stopAnimating()
         }
     }
     
@@ -125,9 +125,9 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func setupCollectionForState(state: PLCollectionSectionType) {
+        currentDatasource.cancel()
         currentTab = state
         updateListIndicator()
-        
     }
     
     func updateListIndicator() {
