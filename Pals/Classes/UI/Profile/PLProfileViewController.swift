@@ -200,14 +200,16 @@ class PLProfileViewController: TGLStackedViewController {
     func setupCollectionView() {
         setupCollectionBackgroundView(collectionBackgroundView)
         collectionBackgroundView.roundUserPicCorners()
+        let collectionSize = collectionView!.bounds.size
+        collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(collectionSize.height / 2, 0, 0, 0)
         
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         
         
         let tabBarHeight = self.tabBarController!.tabBar.frame.height
-        let exposedCardHeight = collectionView!.bounds.size.height - tabBarHeight - 60
+        let exposedCardHeight = collectionSize.height - tabBarHeight - 60
         
-        let expoItemSize = CGSizeMake(collectionView!.bounds.size.width, exposedCardHeight)
+        let expoItemSize = CGSizeMake(collectionSize.width, exposedCardHeight)
         self.exposedItemSize = expoItemSize
         self.stackedLayout!.itemSize = self.exposedItemSize;
         
