@@ -72,7 +72,7 @@ static const NSInteger kHeaderZIndex = 1024;
     if (self.collectionView.dataSource != nil) {
         // The rect should compensate the header size
         CGRect adjustedRect = rect;
-        adjustedRect.origin.y -= self.parallaxHeaderReferenceSize.height;
+        adjustedRect.origin.y -= self.parallaxHeaderReferenceSize.height - 200;
         
         NSMutableArray *allItems = [NSMutableArray array];
         NSArray *originalAttributes = [super layoutAttributesForElementsInRect:adjustedRect];

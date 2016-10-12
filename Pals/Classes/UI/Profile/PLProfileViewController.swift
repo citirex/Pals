@@ -74,7 +74,7 @@ class PLProfileViewController: TGLStackedViewController {
     func loadPage() {
         spinner.startAnimating()
         spinner.center = view.center
-        currentDatasource.loadPage { (indices, error) in
+        currentDatasource.loadPage {[unowned self] (indices, error) in
             if indices.count > 0 {
                 self.collectionBackgroundView.noItemsLabel.hidden = true
                 if error == nil {
@@ -101,9 +101,9 @@ class PLProfileViewController: TGLStackedViewController {
                     PLShowErrorAlert(error: error!)
                 }
             } else {
-                self.spinner.stopAnimating()
                 self.collectionBackgroundView.noItemsLabel.hidden = false
             }
+            self.spinner.stopAnimating()
         }
     }
     
@@ -125,9 +125,9 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func setupCollectionForState(state: PLCollectionSectionType) {
+        currentDatasource.cancel()
         currentTab = state
         updateListIndicator()
-        
     }
     
     func updateListIndicator() {
@@ -200,14 +200,16 @@ class PLProfileViewController: TGLStackedViewController {
     func setupCollectionView() {
         setupCollectionBackgroundView(collectionBackgroundView)
         collectionBackgroundView.roundUserPicCorners()
+        let collectionSize = collectionView!.bounds.size
+        collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(collectionSize.height / 2, 0, 0, 0)
         
         self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
         
         
         let tabBarHeight = self.tabBarController!.tabBar.frame.height
-        let exposedCardHeight = collectionView!.bounds.size.height - tabBarHeight - 60
+        let exposedCardHeight = collectionSize.height - tabBarHeight - 60
         
-        let expoItemSize = CGSizeMake(collectionView!.bounds.size.width, exposedCardHeight)
+        let expoItemSize = CGSizeMake(collectionSize.width, exposedCardHeight)
         self.exposedItemSize = expoItemSize
         self.stackedLayout!.itemSize = self.exposedItemSize;
         

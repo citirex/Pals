@@ -13,7 +13,6 @@ class PLPlacesViewController: PLViewController {
     @IBOutlet var tableView: UITableView!
    
     private let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
-    private var activityIndicator: UIActivityIndicatorView!
     private var resultsController: UITableViewController!
     private var searchController: PLSearchController!
     private var selectedPlace: PLPlace!
@@ -29,12 +28,9 @@ class PLPlacesViewController: PLViewController {
         
         configureResultsController()
         configureSearchController()
-        configureActivityIndicator()
         
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        
+
         loadPlaces()
     }
     
@@ -48,9 +44,9 @@ class PLPlacesViewController: PLViewController {
     // MARK: - Private Methods
     
     private func loadPlaces() {
-        activityIndicator.startAnimating()
+        startActivityIndicator(.WhiteLarge)
         places.loadPage { [unowned self] indexPaths, error in
-            self.activityIndicator.stopAnimating()
+            self.stopActivityIndicator()
             guard error == nil else { return PLShowErrorAlert(error: error!) }
             self.tableView?.beginUpdates()
             self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
@@ -58,27 +54,16 @@ class PLPlacesViewController: PLViewController {
         }
     }
     
-    private func configureActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.addConstraintCentered()
-    }
-    
     private func configureResultsController() {
         resultsController = UITableViewController(style: .Plain)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-        resultsController.tableView.backgroundColor      = .affairColor()
-        resultsController.tableView.tableFooterView      = UIView()
-//        resultsController.tableView.backgroundView  = UIView()
-        resultsController.tableView.rowHeight            = 128.0
-        resultsController.tableView.dataSource           = self
-        resultsController.tableView.delegate             = self
-        resultsController.tableView.emptyDataSetSource   = self
-        resultsController.tableView.emptyDataSetDelegate = self
+        resultsController.tableView.backgroundColor        = .affairColor()
+        resultsController.tableView.tableFooterView        = UIView()
+        resultsController.tableView.rowHeight              = 128.0
+        resultsController.tableView.dataSource             = self
+        resultsController.tableView.delegate               = self
+        resultsController.tableView.emptyDataSetSource     = self
+        resultsController.tableView.emptyDataSetDelegate   = self
     }
 
     
@@ -87,14 +72,16 @@ class PLPlacesViewController: PLViewController {
     private func configureSearchController() {
         searchController = PLSearchController(searchResultsController: resultsController)
         searchController.searchBar.placeholder     = "Find a Place"
-        searchController.searchBar.barTintColor    = .affairColor()
-        searchController.searchBar.tintColor       = .whiteColor()
         searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.tintColor       = .whiteColor()
+        searchController.searchBar.barTintColor    = .affairColor()
         searchController.searchResultsUpdater      = self
         searchController.delegate                  = self
+        
         tableView.tableHeaderView                  = searchController.searchBar
         tableView.backgroundView                   = UIView()
-        definesPresentationContext                 = true
+        
+        definesPresentationContext = true
     }
     
 
@@ -110,12 +97,12 @@ class PLPlacesViewController: PLViewController {
             break
         }
     }
-    
+
 }
 
 
 // MARK: - Table view data source
-
+    
 extension PLPlacesViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,22 +145,22 @@ extension PLPlacesViewController: UITableViewDelegate {
 
 extension PLPlacesViewController: UISearchControllerDelegate {
     
-    func willDismissSearchController(searchController: UISearchController) {
-        let offset = tableView.contentOffset.y + tableView.contentInset.top
-        if offset >= searchController.searchBar.frame.height {
-            UIView.animateWithDuration(0.25) {
-                searchController.searchBar.alpha = 0
-            }
-        }
-    }
-    
-    func didDismissSearchController(searchController: UISearchController) {
-        if searchController.searchBar.alpha == 0 {
-            UIView.animateWithDuration(0.25) {
-                searchController.searchBar.alpha = 1
-            }
-        }
-    }
+//    func willDismissSearchController(searchController: UISearchController) {
+//        let offset = tableView.contentOffset.y + tableView.contentInset.top
+//        if offset >= searchController.searchBar.frame.height {
+//            UIView.animateWithDuration(0.25) {
+//                searchController.searchBar.alpha = 0
+//            }
+//        }
+//    }
+//    
+//    func didDismissSearchController(searchController: UISearchController) {
+//        if searchController.searchBar.alpha == 0 {
+//            UIView.animateWithDuration(0.25) {
+//                searchController.searchBar.alpha = 1
+//            }
+//        }
+//    }
     
 }
 
@@ -187,10 +174,10 @@ extension PLPlacesViewController: UISearchResultsUpdating {
         searchPlace = searchController.searchBar.text!
         if searchPlace.isEmpty { places.searching = false }
         else {
-            activityIndicator.startAnimating()
+            startActivityIndicator(.WhiteLarge)
             places.filter(searchPlace, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()
-                self.activityIndicator.stopAnimating()
+                self.stopActivityIndicator()
                 self.resultsController.tableView.reloadData()
             })
         }
@@ -226,8 +213,8 @@ extension PLPlacesViewController: DZNEmptyDataSetDelegate {
         return true
     }
     
-    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-        return !activityIndicator.isAnimating()
-    }
+//    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+//        return !activityIndicator!.isAnimating()
+//    }
     
 }

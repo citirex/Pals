@@ -114,7 +114,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     }
     
     convenience init(url: String, size: Int, offsetById: Bool, sectioned: Bool) {
-        let offsetKey = offsetById ? PLKeys.since.string : PLKeys.page.string
+        let offsetKey = offsetById ? PLKeys.since.string : PLKeys.offset.string
         let preset = PLPageCollectionPreset(url: url, sizeKey: PLKeys.per_page.string, offsetKey: offsetKey, size: size, offsetById: offsetById)
         self.init(preset: preset, sectioned: sectioned)
     }
@@ -272,14 +272,13 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
                 completion(page: PLPage(), error: self.jsonError)
             }
         }) { (task, error) in
-            PLLog("Failed to load: \((task?.originalRequest?.URL?.absoluteString)!)", type: .Network)
             self.loading = false
             completion(page: PLPage() ,error: error)
         }
     }
     
     func cancelPageLoad() {
-        session?.invalidateSessionCancelingTasks(true)
+//FIXME:      session?.invalidateSessionCancelingTasks(true)
         loading = false
     }
     

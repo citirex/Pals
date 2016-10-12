@@ -59,3 +59,35 @@ extension UIViewController {
     }
     
 }
+
+
+extension UIViewController {
+ 
+    var activityIndicatorTag: Int { return 999999 }
+    
+    func startActivityIndicator(style: UIActivityIndicatorViewStyle, color: UIColor? = nil) {
+        dispatch_async(dispatch_get_main_queue(), {
+            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            activityIndicator.tag = self.activityIndicatorTag
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.color = color
+            activityIndicator.startAnimating()
+            
+            self.view.addSubview(activityIndicator)
+            
+            activityIndicator.autoCenterInSuperview()
+        })
+    }
+    
+    func stopActivityIndicator() {
+        dispatch_async(dispatch_get_main_queue(), {
+            if let activityIndicator = self.view.subviews.filter({
+                $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+            }
+        })
+    }
+}

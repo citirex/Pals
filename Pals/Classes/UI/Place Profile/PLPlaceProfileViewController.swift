@@ -35,6 +35,18 @@ class PLPlaceProfileViewController: PLViewController {
         dateFormat.dateFormat = "MMMM dd, yyyy"
        return dateFormat
     }()
+    
+    lazy var noEventsView: PLEmptyBackgroundView = {
+        let emptyView = PLEmptyBackgroundView(topText: "No events yet", bottomText: nil)
+        emptyView.setTopTextColor(.whiteColor())
+        self.collectionView.addSubview(emptyView)
+        emptyView.applyShadowWithColor(.blackColor(), andRadius: 3)
+        emptyView.autoPinEdgeToSuperviewEdge(.Top, withInset: 120)
+        emptyView.autoAlignAxisToSuperviewAxis(.Vertical)
+        emptyView.hidden = true
+        
+        return emptyView
+    }()
   
 
     
@@ -65,11 +77,16 @@ class PLPlaceProfileViewController: PLViewController {
     private func load() {
         spinner.startAnimating()
         spinner.center = view.center
-        eventsDatasource.loadPage { (indices, error) in
+        eventsDatasource.loadPage {[unowned self] (indices, error) in
             if error == nil {
-                self.collectionView?.performBatchUpdates({
-                    self.collectionView?.insertItemsAtIndexPaths(indices)
-                    }, completion: nil)
+                if indices.count > 0 {
+                    self.noEventsView.hidden = true
+                    self.collectionView?.performBatchUpdates({
+                        self.collectionView?.insertItemsAtIndexPaths(indices)
+                        }, completion: nil)
+                } else if self.eventsDatasource.pagesLoaded == 0 {
+                    self.noEventsView.hidden = false
+                }
                 
             } else {
                 PLShowErrorAlert(error: error!)
@@ -83,6 +100,8 @@ class PLPlaceProfileViewController: PLViewController {
     private func setupCollectionView() {
         collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
         automaticallyAdjustsScrollViewInsets = false
+        
+        collectionView.backgroundColor = .whiteColor()
         
         // Setup Cell
         let nib = UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil)
