@@ -98,11 +98,6 @@ class PLPlaceProfileViewController: PLViewController {
     // MARK: - Configure collectionView
     
     private func setupCollectionView() {
-        collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
-        automaticallyAdjustsScrollViewInsets = false
-        
-        collectionView.backgroundColor = .whiteColor()
-        
         // Setup Cell
         let nib = UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil)
         collectionView?.registerNib(nib, forCellWithReuseIdentifier: PLPlaceProfileCell.identifier)
@@ -122,7 +117,6 @@ class PLPlaceProfileViewController: PLViewController {
     
     private func reloadLayout() {
         layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 278.0)
-        layout!.parallaxHeaderMinimumReferenceSize = CGSizeMake(view.frame.size.width, 80.0)
         layout!.parallaxHeaderAlwaysOnTop = true
         layout!.disableStickyHeaders = false
     }
@@ -171,7 +165,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
         switch kind {
         case CSStickyHeaderParallaxHeader:
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileHeader
-            headerView.headerImageView.setImageWithURL(place.picture)
+            headerView.headerImageView.setImageWithURL(place.picture, placeholderImage: UIImage(named: "no_image_available"))
             return headerView
         case UICollectionElementKindSectionHeader:
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileSectionHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader

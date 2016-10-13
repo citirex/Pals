@@ -41,6 +41,8 @@ class PLEditProfileViewController: PLViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        userProfileImageView.borderColor = .whiteColor()
+        userProfileImageView.layer.borderWidth = 1.0
         userProfileImageView.rounded = true
         signOutButton.rounded = true
     }
@@ -88,7 +90,7 @@ class PLEditProfileViewController: PLViewController {
         userData = PLFacade.profile?.userData
         usernameTextField.text = userData!.name
         phoneNumberTextField.text = userData!.email
-        userProfileImageView.setImageWithURL(userData!.picture)
+        userProfileImageView.setImageWithURL(userData!.picture, placeholderImage: UIImage(named: "no_image_available"))
     }
 
     
@@ -159,7 +161,7 @@ class PLEditProfileViewController: PLViewController {
             }
         }
         let alert = permission.deniedAlert
-        alert.title = "Using \(permission.type) is disabled for this app"
+        alert.title   = "Using \(permission.type) is disabled for this app"
         alert.message = "Enable it in Settings->Privacy"
     }
 

@@ -21,9 +21,9 @@
 		<key>ActiveServer</key>
 		<dict>
 			<key>http://yegor.pythonanywhere.com</key>
-			<false/>
-			<key>http://192.168.1.217:8181</key>
 			<true/>
+			<key>http://192.168.1.217:8181</key>
+			<false/>
 			<key>https://api.pals.com</key>
 			<false/>
 		</dict>
@@ -33,9 +33,9 @@
 		<key>Enabled</key>
 		<true/>
 		<key>Login</key>
-		<string>username</string>
+		<string>user1</string>
 		<key>Password</key>
-		<string>password</string>
+		<string>password1</string>
 	</dict>
 </dict>
 </plist>

@@ -41,7 +41,7 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
         orderButton.layer.borderWidth = 1.0
         orderButton.layer.borderColor = UIColor.whiteColor().CGColor
         
-        topOfView.round([.TopLeft, .TopRight], radius: 15)
+        round([.TopLeft, .TopRight], radius: 15)
         
         addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
     }

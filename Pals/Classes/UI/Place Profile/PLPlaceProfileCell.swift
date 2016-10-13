@@ -19,13 +19,13 @@ class PLPlaceProfileCell: UICollectionViewCell {
     
     private let offset: CGFloat = 70
     
+    
     func setupWithEventInfo(event: PLEventCellData,andDateFormatter dateFormatter: NSDateFormatter) {
-        eventImageView.setImageWithURL(event.picture)
+        eventImageView.setImageWithURL(event.picture, placeholderImage: UIImage(named: "no_image_available"))
         eventDateLabel.text =  dateFormatter.stringFromDate(event.date)
         eventDescriptionLabel.text = event.info
     }
     
-   
     override func drawRect(rect: CGRect) {
         let startingPoint = CGPoint(x: CGRectGetMinX(rect) + offset, y: CGRectGetMaxY(rect))
         let endingPoint   = CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
@@ -41,6 +41,7 @@ class PLPlaceProfileCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        round([.TopLeft, .TopRight], radius: 15)
         eventImageView.rounded = true
     }
     
