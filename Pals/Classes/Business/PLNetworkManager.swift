@@ -48,7 +48,7 @@ struct PLUploadAttachment {
 typealias PLNetworkRequestCompletion = (dic: [String:AnyObject], error: NSError?) -> ()
 
 protocol PLNetworkManagerInterface {
-    static func get(service: PLAPIService, parameters: [String:AnyObject], completion: PLNetworkRequestCompletion)
+    static func get(service: PLAPIService, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion)
     static func post(service: PLAPIService, parameters: [String:AnyObject], attachment:PLUploadAttachment?, completion: PLNetworkRequestCompletion)
 }
 
@@ -82,8 +82,8 @@ class PLNetworkSession: AFHTTPSessionManager {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == PLKeys.token.string {
             if let manager = object as? PLProfileManager {
-                let token = manager.token
-                requestSerializer.setValue(token, forHTTPHeaderField: PLKeys.token.string)
+                let tokenValue: String? = (manager.token != nil) ? "Token \(manager.token!)" : nil
+                requestSerializer.setValue(tokenValue, forHTTPHeaderField: "Authorization")
                 PLLog("Set up requests headers:\n \(requestSerializer.HTTPRequestHeaders)")
             }
         }
@@ -117,7 +117,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
         }
     }
     
-    class func get(service: PLAPIService, parameters: [String:AnyObject], completion: PLNetworkRequestCompletion) {
+    class func get(service: PLAPIService, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion) {
         PLNetworkSession.shared.GET(service.string, parameters: parameters, progress: nil, success: { (task, response) in
             self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
         }) { (task, error) in

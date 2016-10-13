@@ -44,6 +44,7 @@ enum PLKeys : String {
     case vip_covers
     case rect
     case success
+    case dinosaur
     case per_page
     case since
     case quantity

@@ -10,6 +10,7 @@ typealias PLErrorCompletion = (error: NSError?) -> ()
 
 protocol PLFacadeInterface {
     static func login(userName:String, password: String, completion: PLErrorCompletion)
+    static func logout(completion: PLErrorCompletion)
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
     static func sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion)
     static func updateProfile(data: PLEditableUser, completion: PLErrorCompletion)//FIXME: signupdata.
@@ -35,6 +36,10 @@ class PLFacade : PLFacadeInterface {
     
     class func login(userName:String, password: String, completion: PLErrorCompletion) {
         instance._login(userName, password: password, completion: completion)
+    }
+    
+    class func logout(completion: PLErrorCompletion) {
+        instance._logout(completion)
     }
     
     class func signUp(data: PLSignUpData, completion: PLErrorCompletion) {
@@ -96,6 +101,20 @@ extension PLFacade._PLFacade {
         }
     }
     
+    func _logout(completion: PLErrorCompletion) {
+        PLNetworkManager.get(PLAPIService.Logout, parameters: nil) { (dic, error) in
+            print(dic)
+            if let success = dic[PLKeys.dinosaur.string] as? Bool {
+                if success {
+                    self.profileManager.resetProfileAndToken()
+                    completion(error: nil)
+                    return
+                }
+            }
+            completion(error: error)
+        }
+    }
+    
     func _sendPassword(email: String, completion: PLErrorCompletion) {
         let passService = PLAPIService.SendPassword
         let params = [PLKeys.email.string : email]
@@ -119,7 +138,7 @@ extension PLFacade._PLFacade {
         let params = data.params()
         let attachment = createAttachment(data.picture)
         PLNetworkManager.post(PLAPIService.UpdateProfile, parameters: params, attachment: attachment) { (dic, error) in
-            self.handleUserLogin(error, dic: dic, completion: completion)
+//            self.handleUserLogin(error, dic: dic, completion: completion)
         }
     }
     

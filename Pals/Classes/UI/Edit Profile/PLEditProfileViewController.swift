@@ -59,9 +59,11 @@ class PLEditProfileViewController: PLViewController {
         let alert = UIAlertController(title: "You're signing out!", message: "Are you sure?", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .Default) { [unowned self] action in
-            let loginViewController = UIStoryboard.loginViewController()
-            self.present(loginViewController!, animated: true)
+            PLFacade.logout({ (error) in
+                let loginViewController = UIStoryboard.loginViewController()
+                self.present(loginViewController!, animated: true)
             })
+        })
         present(alert, animated: true)
     }
     

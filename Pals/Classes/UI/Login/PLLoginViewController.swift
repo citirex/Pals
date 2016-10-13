@@ -68,9 +68,11 @@ class PLLoginViewController: PLViewController {
 	func loginToMainScreen() {
         var userName = ""
         var password = ""
-        if let defaultUser = PLFacade.instance.settingsManager.defaultUser {
-            userName = defaultUser.login
-            password = defaultUser.password
+        if loginTextField.text!.isEmpty && passTextField.text!.isEmpty {
+            if let defaultUser = PLFacade.instance.settingsManager.defaultUser {
+                userName = defaultUser.login
+                password = defaultUser.password
+            }
         } else {
             userName = loginTextField.text!
             password = passTextField.text!

@@ -42,7 +42,8 @@ extension PLProfileManager : PLAuthStorage {
         return false
     }
     
-    private func resetProfileAndToken() {
+    func resetProfileAndToken() {
+        token = nil
         ud.setObject(nil, forKey: PLKeys.auth_data.string)
         ud.setObject(nil, forKey: PLKeys.user.string)
         ud.synchronize()
