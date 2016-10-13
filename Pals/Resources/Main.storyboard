@@ -508,6 +508,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gQS-aH-ZRx" secondAttribute="trailing" id="3zy-3a-HkR"/>
                             <constraint firstItem="gQS-aH-ZRx" firstAttribute="leading" secondItem="bGV-ba-lIV" secondAttribute="leading" id="cLp-mj-xzK"/>
@@ -1589,9 +1590,9 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Zi-Tu-8Fy"/>
         <segue reference="ovy-Gk-Wh0"/>
-        <segue reference="Rjy-8t-3el"/>
         <segue reference="u5L-qT-vQG"/>
+        <segue reference="sXw-Bi-aat"/>
+        <segue reference="1Zi-Tu-8Fy"/>
     </inferredMetricsTieBreakers>
 </document>

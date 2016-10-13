@@ -35,7 +35,6 @@ static const NSInteger kHeaderZIndex = 1024;
         return nil;
     } else {
         // offset others
-
         CGRect frame = attributes.frame;
         frame.origin.y += self.parallaxHeaderReferenceSize.height;
         attributes.frame = frame;
@@ -72,7 +71,7 @@ static const NSInteger kHeaderZIndex = 1024;
     if (self.collectionView.dataSource != nil) {
         // The rect should compensate the header size
         CGRect adjustedRect = rect;
-        adjustedRect.origin.y -= self.parallaxHeaderReferenceSize.height - 200;
+        adjustedRect.origin.y -= self.parallaxHeaderReferenceSize.height;
         
         NSMutableArray *allItems = [NSMutableArray array];
         NSArray *originalAttributes = [super layoutAttributesForElementsInRect:adjustedRect];
@@ -266,8 +265,10 @@ static const NSInteger kHeaderZIndex = 1024;
     // When parallaxHeaderAlwaysOnTop is enabled, we will check when we should update the y position
     if (self.parallaxHeaderAlwaysOnTop && height <= self.parallaxHeaderMinimumReferenceSize.height) {
         CGFloat insetTop = self.collectionView.contentInset.top;
+        
         // Always stick to top but under the nav bar
-        y = self.collectionView.contentOffset.y + insetTop;
+        y = self.collectionView.contentOffset.y - insetTop;
+        
         currentAttribute.zIndex = 2000;
     }
 
@@ -277,7 +278,6 @@ static const NSInteger kHeaderZIndex = 1024;
         frame.size.width,
         height,
     };
-    
 }
 
 @end
