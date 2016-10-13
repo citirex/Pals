@@ -66,10 +66,16 @@ class PLLoginViewController: PLViewController {
 	}
 	
 	func loginToMainScreen() {
-		
-		// CHANGE userName and password to normal version!
-		let userName = "username"//loginTextField.text!
-		let password = "password"//passTextField.text!
+        var userName = ""
+        var password = ""
+        if let defaultUser = PLFacade.instance.settingsManager.defaultUser {
+            userName = defaultUser.login
+            password = defaultUser.password
+        } else {
+            userName = loginTextField.text!
+            password = passTextField.text!
+        }
+
 		if userName.isEmpty {
 			PLShowAlert("Login error!", message: "Please enter your login.")
 		} else if password.isEmpty {

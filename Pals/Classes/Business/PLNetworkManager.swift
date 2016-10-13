@@ -54,9 +54,7 @@ protocol PLNetworkManagerInterface {
 
 class PLNetworkSession: AFHTTPSessionManager {
     static let baseUrl: NSURL = {
-//        let base = "https://api.pals.com"
-        let base = "http://192.168.1.217:8181"
-//        let base = "http://yegor.pythonanywhere.com"
+        let base = PLFacade.instance.settingsManager.server
         let url = NSURL(string: base)!
         return url
     }()

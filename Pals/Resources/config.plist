@@ -2,13 +2,40 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UseFakeFeeds</key>
-	<false/>
-	<key>FakeFeedLoadDelay</key>
-	<real>0.5</real>
-	<key>LoggingEnabled</key>
-	<true/>
-	<key>LogLevel</key>
-	<integer>15</integer>
+	<key>FakeFeeds</key>
+	<dict>
+		<key>Enabled</key>
+		<false/>
+		<key>LoadDelay</key>
+		<real>0.5</real>
+	</dict>
+	<key>Logs</key>
+	<dict>
+		<key>Enabled</key>
+		<true/>
+		<key>Level</key>
+		<integer>15</integer>
+	</dict>
+	<key>Server</key>
+	<dict>
+		<key>ActiveServer</key>
+		<dict>
+			<key>http://yegor.pythonanywhere.com</key>
+			<true/>
+			<key>http://192.168.1.217:8181</key>
+			<false/>
+			<key>https://api.pals.com</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>DefaultUser</key>
+	<dict>
+		<key>Enabled</key>
+		<true/>
+		<key>Login</key>
+		<string>user1</string>
+		<key>Password</key>
+		<string>password1</string>
+	</dict>
 </dict>
 </plist>
