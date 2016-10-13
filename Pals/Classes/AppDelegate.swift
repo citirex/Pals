@@ -6,26 +6,27 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
 import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var isUserLoggedIn = false // for testing, remove
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         IQKeyboardManager.sharedManager().enable = true
 
-        let initialViewController = isUserLoggedIn ? UIStoryboard.tabBarController() : UIStoryboard.loginViewController()
+        var initialViewController: UIViewController?
+        if PLFacade.hasValidToken() {
+            PLFacade.restoreUserProfile()
+            initialViewController = UIStoryboard.tabBarController()
+        } else {
+            initialViewController = UIStoryboard.loginViewController()
+        }
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
-        
-//        application.statusBarStyle = .LightContent
         
         return true 
     }

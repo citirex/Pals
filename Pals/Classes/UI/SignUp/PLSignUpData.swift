@@ -10,7 +10,7 @@ struct PLSignUpData {
     var username: String
     var email: String
     var password: String
-    var picture: UIImage
+    var picture: UIImage?
     
     var params: [String : AnyObject] {
         let params = [PLKeys.username.string : username,

@@ -252,7 +252,7 @@ extension PLOrderViewController {
         spinner.center = view.center
         spinner.startAnimating()
         
-        PLFacade.checkout(order) {[unowned self] (error) in
+        PLFacade.sendOrder(order) {[unowned self] (error) in
             if error == nil {
                 self.order.clean()
                 self.updateCheckoutButtonState()

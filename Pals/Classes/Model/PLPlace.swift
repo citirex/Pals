@@ -42,7 +42,7 @@ class PLPlace : PLDatedObject, PLCellRepresentable, PLFilterable {
             }
         }
         if let closeTime = jsonDic[PLKeys.close_time.string] as? String {
-            self.closeTime = closeTime.convertTimeTo12HoursFormat()
+            self.closeTime = closeTime
         }
         super.init(jsonDic: jsonDic)
     }

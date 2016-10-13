@@ -58,6 +58,8 @@ enum PLKeys : String {
     case access_code
     case qr_code
     case token
+    case expires
+    case auth_data
     var string : String {
         return rawValue
     }

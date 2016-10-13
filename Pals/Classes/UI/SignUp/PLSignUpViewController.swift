@@ -61,7 +61,7 @@ class PLSignUpViewController: PLViewController {
         let username = usernameTextField.text!.trim()
         let email    = emailTextField.text!.trim()
         let password = passwordTextField.text!.trim()
-        let picture  = userProfileImageView.image ?? UIImage(named: "default")!
+        let picture  = userProfileImageView.image
         
         guard !username.isEmpty  else { return PLShowAlert("Error", message: "Username must contain at least 1 character") }
         guard email.isValidEmail else { return PLShowAlert("Error", message: "Please enter a valid email address") }
@@ -131,7 +131,3 @@ extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationC
     }
     
 }
-
-
-
-

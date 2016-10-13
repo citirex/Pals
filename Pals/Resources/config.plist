@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UseFakeFeeds</key>
-	<true/>
+	<false/>
 	<key>FakeFeedLoadDelay</key>
 	<real>0.5</real>
 	<key>LoggingEnabled</key>

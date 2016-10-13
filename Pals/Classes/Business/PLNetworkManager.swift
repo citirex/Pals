@@ -31,7 +31,7 @@ enum PLAPIService : String {
     case InviteFriends
     case Places
     case Orders
-    case Checkout
+    case SendOrder
     case Drinks
     case Events
     case Covers
@@ -49,7 +49,7 @@ typealias PLNetworkRequestCompletion = (dic: [String:AnyObject], error: NSError?
 
 protocol PLNetworkManagerInterface {
     static func get(service: PLAPIService, parameters: [String:AnyObject], completion: PLNetworkRequestCompletion)
-    static func post(service: PLAPIService, parameters: [String:AnyObject], attachment:PLUploadAttachment, completion: PLNetworkRequestCompletion)
+    static func post(service: PLAPIService, parameters: [String:AnyObject], attachment:PLUploadAttachment?, completion: PLNetworkRequestCompletion)
 }
 
 class PLNetworkSession: AFHTTPSessionManager {
@@ -70,7 +70,7 @@ class PLNetworkSession: AFHTTPSessionManager {
     
     override init(baseURL url: NSURL?, sessionConfiguration configuration: NSURLSessionConfiguration?) {
         super.init(baseURL: url, sessionConfiguration: configuration)
-        PLFacade.instance.settingsManager.addObserver(self, forKeyPath: PLKeys.token.string, options: .Initial, context: nil)
+        PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLKeys.token.string, options: [.New,.Initial], context: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -78,13 +78,13 @@ class PLNetworkSession: AFHTTPSessionManager {
     }
     
     deinit {
-        PLFacade.instance.settingsManager.removeObserver(self, forKeyPath: PLKeys.token.string)
+        PLFacade.instance.profileManager.removeObserver(self, forKeyPath: PLKeys.token.string)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == PLKeys.token.string {
-            if let settings = object as? PLSettingsManager {
-                let token = settings.token
+            if let manager = object as? PLProfileManager {
+                let token = manager.token
                 requestSerializer.setValue(token, forHTTPHeaderField: PLKeys.token.string)
                 PLLog("Set up requests headers:\n \(requestSerializer.HTTPRequestHeaders)")
             }
@@ -132,12 +132,11 @@ class PLNetworkManager: PLNetworkManagerInterface {
         }
     }
 
-    class func post(service: PLAPIService, parameters: [String : AnyObject], attachment: PLUploadAttachment, completion: PLNetworkRequestCompletion) {
+    class func post(service: PLAPIService, parameters: [String : AnyObject], attachment: PLUploadAttachment?, completion: PLNetworkRequestCompletion) {
         PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
-            data.appendPartWithFileData(attachment.data,
-                                        name: attachment.name,
-                                        fileName: attachment.filename,
-                                        mimeType: attachment.mimeType)
+            if let attachm = attachment {
+                data.appendPartWithFileData(attachm.data, name:attachm.name, fileName:attachm.filename, mimeType:attachm.mimeType)
+            }
         }, progress: nil, success: { (task, response) in
             self.handleSuccessCompletion(response, completion: completion)
         }) { (task, error) in

@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLSettingsManager : NSObject {
+class PLSettingsManager {
     
     var dict = [String:AnyObject]()
     var useFakeFeeds: Bool {
@@ -31,18 +31,10 @@ class PLSettingsManager : NSObject {
         return NSUserDefaults.standardUserDefaults()
     }
     
-    var token: String? {
-        didSet {
-            ud.setObject(token, forKey: PLKeys.token.string)
-            ud.synchronize()
-        }
-    }
-    
-    override init() {
-        super.init()
+    init() {
         if let path = NSBundle.mainBundle().pathForResource("config", ofType: "plist") {
             dict = NSDictionary(contentsOfFile: path) as! [String : AnyObject]
         }
-        token = ud.stringForKey(PLKeys.token.string)
     }
+    
 }

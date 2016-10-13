@@ -18,7 +18,11 @@ class PLOrderHistorySectionHeader: UITableViewHeaderFooterView {
         
     var orderCellData: PLOrderCellData! {
         didSet {
-            dateLabel.text = orderCellData.date.since
+            if let date = orderCellData.date {
+                dateLabel.text = date.since
+            } else {
+                dateLabel.text = ""
+            }
         }
     }
     
