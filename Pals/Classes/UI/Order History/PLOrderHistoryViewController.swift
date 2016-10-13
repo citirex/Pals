@@ -33,6 +33,7 @@ class PLOrderHistoryViewController: PLViewController {
     private func loadOrders() {
         startActivityIndicator(.WhiteLarge, color: .grayColor())
         orders.load {[unowned self] (page, error) in
+            self.stopActivityIndicator()
             guard error == nil else { return PLShowErrorAlert(error: error!) }
 
             let objects = page.objects
@@ -40,7 +41,6 @@ class PLOrderHistoryViewController: PLViewController {
             let indexPaths = self.orders.indexPathsFromObjects(objects as [AnyObject], lastIdxPath: lastIdxPath, mergedSection: page.mergedWithPreviousSection)
             self.logInsertingCellPaths(indexPaths)
 
-            self.stopActivityIndicator()
             self.tableView?.beginUpdates()
             let newSectionIdxSet = self.makeIndexSetForInsertingSections(page, datasource: self.orders)
             self.tableView.insertSections(newSectionIdxSet, withRowAnimation: .Bottom)
