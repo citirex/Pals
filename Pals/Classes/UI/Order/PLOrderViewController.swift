@@ -218,12 +218,17 @@ extension PLOrderViewController {
     
     func shiftCollectionView(shift: Bool) {
         let newOffsetShift = collectionView.contentOffset.y
+        
         UIView.animateWithDuration(0.3, delay: 0, options: .BeginFromCurrentState, animations: {
-            self.collectionView.contentOffset.y = shift ? newOffsetShift + kCheckoutButtonHeight : newOffsetShift - kCheckoutButtonHeight
+            if newOffsetShift + self.collectionView.bounds.size.height >= self.collectionView.contentSize.height - kCheckoutButtonHeight && shift == false {
+                self.collectionView.contentOffset.y = newOffsetShift
+            } else {
+                self.collectionView.contentOffset.y = shift ? newOffsetShift + kCheckoutButtonHeight : newOffsetShift - kCheckoutButtonHeight
+            }
         }) { (complete) in
             self.collectionView.contentInset.bottom = shift ? kCheckoutButtonHeight : 0
         }
-       
+        
     }
     
     @objc private func checkoutButtonPressed(sender: UIButton) {

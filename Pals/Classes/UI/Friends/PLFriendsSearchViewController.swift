@@ -36,9 +36,6 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 		super.viewWillAppear(animated)
         
         navigationController?.navigationBar.style = .FriendsStyle
-		if seekerText != "" {
-			searchController.searchBar.text = seekerText
-		}
 	}
 	
 	override func viewWillDisappear(animated: Bool) {

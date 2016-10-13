@@ -5,14 +5,14 @@
 //  Created by Карпенко Михайло on 27.09.16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
+import DZNEmptyDataSet
 
 class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITableViewDelegate {
 	
     var resultsController: UITableViewController!
 	var searchController: PLSearchController!
-	var containerView  = UIView()
 	var selectedFriend: PLUser!
-	var noDataLabel	   = UILabel()
+	
 	
     lazy var tableView = UITableView()
 	
@@ -22,10 +22,8 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		tableView.separatorInset.left = 75
-		
+		tableView.tableFooterView = UIView()
 		tableView.delegate = self
-		containerView.backgroundColor = .whiteColor()
-		tableView.backgroundView	  = containerView
 		
 		view.addSubview(tableView)
 		view.addSubview(spinner)
@@ -36,34 +34,33 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		configureSearchController()
 		loadData()
 		
-		noDataLabel.text             = "No Friends yet"
-		noDataLabel.textColor        = .lightGrayColor()
-		noDataLabel.textAlignment    = .Center
+		tableView.emptyDataSetSource = self
+		tableView.emptyDataSetDelegate = self
+		resultsController.tableView.emptyDataSetSource   = self
+		resultsController.tableView.emptyDataSetDelegate = self
     }
 
 	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
 		addConstraints()
 	}
 	
 	private func addConstraints() {
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.addConstraintsWithEdgeInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-		tableView.scrollIndicatorInsets = UIEdgeInsetsZero
+		tableView.autoPinEdgeToSuperviewEdge(.Top)
+		tableView.autoPinEdgeToSuperviewEdge(.Bottom)
+		tableView.autoPinEdgeToSuperviewEdge(.Left)
+		tableView.autoPinEdgeToSuperviewEdge(.Right)
 	}
 	
     func loadData() {}
     
     func didLoadPage(indices: [NSIndexPath], error: NSError?) {
         if error == nil {
-			tableView.backgroundView	 = containerView
-            tableView.beginUpdates()
-            tableView.insertRowsAtIndexPaths(indices, withRowAnimation: .Bottom)
-            tableView.endUpdates()
+			tableView.beginUpdates()
+			tableView.insertRowsAtIndexPaths(indices, withRowAnimation: .Bottom)
+			tableView.endUpdates()
         } else {
-			tableView.backgroundView	 = noDataLabel
-			tableView.tableHeaderView	 = nil
-			tableView.separatorStyle	 = .None
-            PLShowAlert("Error!", message: error?.localizedDescription)
+			PLShowErrorAlert(error: error!)
         }
     }
 	
@@ -89,10 +86,10 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		textFieldInsideSearchBar?.layer.borderWidth = 1
 		textFieldInsideSearchBar?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		textFieldInsideSearchBar?.cornerRadius		= 14
-		searchController.searchBar.delegate			= self
 		
 		edgesForExtendedLayout = .None
 		tableView.tableHeaderView					= searchController.searchBar
+		tableView.backgroundView					= UIView()
 		definesPresentationContext					= true
 	}
 	
@@ -111,21 +108,52 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 
 // MARK: - UISearchControllerDelegate
 
-extension PLFriendBaseViewController : UISearchControllerDelegate {
-	func willDismissSearchController(searchController: UISearchController) {
-		let offset = tableView.contentOffset.y + tableView.contentInset.top
-		if offset >= searchController.searchBar.frame.height {
-			UIView.animateWithDuration(0.25) {
-				searchController.searchBar.alpha = 0
-			}
-		}
+//extension PLFriendBaseViewController : UISearchControllerDelegate {
+//	func willDismissSearchController(searchController: UISearchController) {
+//		let offset = tableView.contentOffset.y + tableView.contentInset.top
+//		if offset >= searchController.searchBar.frame.height {
+//			UIView.animateWithDuration(0.25) {
+//				searchController.searchBar.alpha = 0
+//			}
+//		}
+//	}
+//	
+//	func didDismissSearchController(searchController: UISearchController) {
+//		if searchController.searchBar.alpha == 0 {
+//			UIView.animateWithDuration(0.25) {
+//				searchController.searchBar.alpha = 1
+//			}
+//		}
+//	}
+//}
+
+// MARK: - DZNEmptyDataSetSource
+
+extension PLFriendBaseViewController: DZNEmptyDataSetSource {
+	
+	func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+		let string = scrollView === tableView ? "Friends list" : "No results found"
+		let attributedString = NSAttributedString(string: string, font: .boldSystemFontOfSize(20), color: .grayColor())
+		return attributedString
 	}
 	
-	func didDismissSearchController(searchController: UISearchController) {
-		if searchController.searchBar.alpha == 0 {
-			UIView.animateWithDuration(0.25) {
-				searchController.searchBar.alpha = 1
-			}
-		}
+	func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+		let string = scrollView === tableView ? "No Friends yet" : "No Pals were found that match '\(searchController.searchBar.text!)'"
+		let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .grayColor())
+		return attributedString
+	}
+}
+
+
+// MARK: - DZNEmptyDataSetDelegate
+
+extension PLFriendBaseViewController: DZNEmptyDataSetDelegate {
+	
+	func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+		return true
+	}
+	
+	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+		return !spinner.isAnimating()
 	}
 }

@@ -11,22 +11,19 @@ import DZNEmptyDataSet
 class PLOrderHistoryViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    private var activityIndicator: UIActivityIndicatorView!
+
     private lazy var orders: PLOrderDatasource = {
         let orderDatasource = PLOrderDatasource(orderType: .Drinks, sectioned: true)
         return orderDatasource
     }()
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureActivityIndicator()
-        
         let nib = UINib(nibName: PLOrderHistorySectionHeader.nibName, bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: PLOrderHistorySectionHeader.reuseIdentifier)
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
         
         loadOrders()
     }
@@ -34,7 +31,7 @@ class PLOrderHistoryViewController: PLViewController {
     // MARK: - Private methods
     
     private func loadOrders() {
-        activityIndicator.startAnimating()
+        startActivityIndicator(.WhiteLarge, color: .grayColor())
         orders.load {[unowned self] (page, error) in
             guard error == nil else { return PLShowErrorAlert(error: error!) }
 
@@ -42,8 +39,8 @@ class PLOrderHistoryViewController: PLViewController {
             let lastIdxPath = self.findLastIdxPath()
             let indexPaths = self.orders.indexPathsFromObjects(objects as [AnyObject], lastIdxPath: lastIdxPath, mergedSection: page.mergedWithPreviousSection)
             self.logInsertingCellPaths(indexPaths)
-            
-            self.activityIndicator.stopAnimating()
+
+            self.stopActivityIndicator()
             self.tableView?.beginUpdates()
             let newSectionIdxSet = self.makeIndexSetForInsertingSections(page, datasource: self.orders)
             self.tableView.insertSections(newSectionIdxSet, withRowAnimation: .Bottom)
@@ -64,16 +61,6 @@ class PLOrderHistoryViewController: PLViewController {
             PLLog("\(idxPath.section) : \(idxPath.row)")
         }
         PLLog("==========")
-    }
-    
-    private func configureActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .grayColor()
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.addConstraintCentered()
     }
 
 }
@@ -182,8 +169,8 @@ extension PLOrderHistoryViewController: DZNEmptyDataSetDelegate {
         return true
     }
     
-    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-        return !activityIndicator.isAnimating()
-    }
+//    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+//        return
+//    }
 }
 
