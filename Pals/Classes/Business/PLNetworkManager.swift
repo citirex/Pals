@@ -92,10 +92,14 @@ class PLNetworkSession: AFHTTPSessionManager {
 
 class PLNetworkManager: PLNetworkManagerInterface {
 
-    class func handleSuccessCompletion(object: AnyObject?, completion: PLNetworkRequestCompletion) {
+    class func handleSuccessCompletion(object: AnyObject?, completion: PLNetworkRequestCompletion, request: NSURLRequest?) {
+        if request != nil {
+            PLLog("Loaded using \(request!.HTTPMethod!) method URL: \(request!.URL!)", type: .Network)
+        }
         let dic = object as! [String : AnyObject]
         completion(dic: dic, error: nil)
     }
+    
     class func handleErrorCompletion(error: NSError, fakeFeedFilename: String, completion: PLNetworkRequestCompletion) {
         if let failedURL = error.userInfo[NSURLErrorFailingURLErrorKey] as? NSURL {
             PLLog("Failed to load: \(failedURL.absoluteString)", type: .Network)
@@ -115,7 +119,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
     
     class func get(service: PLAPIService, parameters: [String:AnyObject], completion: PLNetworkRequestCompletion) {
         PLNetworkSession.shared.GET(service.string, parameters: parameters, progress: nil, success: { (task, response) in
-            self.handleSuccessCompletion(response, completion: completion)
+            self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
@@ -124,7 +128,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
     class func post(service: PLAPIService, parameters: [String : AnyObject], completion: PLNetworkRequestCompletion) {
         PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
             }, progress: nil, success: { (task, response) in
-                self.handleSuccessCompletion(response, completion: completion)
+                self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
@@ -136,7 +140,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
                 data.appendPartWithFileData(attachm.data, name:attachm.name, fileName:attachm.filename, mimeType:attachm.mimeType)
             }
         }, progress: nil, success: { (task, response) in
-            self.handleSuccessCompletion(response, completion: completion)
+            self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
