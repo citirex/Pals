@@ -98,10 +98,6 @@ class PLPlaceProfileViewController: PLViewController {
     // MARK: - Configure collectionView
     
     private func setupCollectionView() {
-        collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
-        automaticallyAdjustsScrollViewInsets = false
-
-        
         // Setup Cell
         let nib = UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil)
         collectionView?.registerNib(nib, forCellWithReuseIdentifier: PLPlaceProfileCell.identifier)

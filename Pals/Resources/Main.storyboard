@@ -483,7 +483,7 @@
         <!--Place Profile-->
         <scene sceneID="Ogc-1T-UGd">
             <objects>
-                <viewController title="Place Profile" extendedLayoutIncludesOpaqueBars="YES" id="0zz-mk-uMT" customClass="PLPlaceProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Place Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="0zz-mk-uMT" customClass="PLPlaceProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u9v-Jv-pTT"/>
                         <viewControllerLayoutGuide type="bottom" id="isy-AG-3wD"/>
