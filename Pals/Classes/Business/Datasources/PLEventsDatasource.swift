@@ -21,7 +21,7 @@ class PLEventsDatasource: PLDatasource<PLEvent> {
     }
     
     convenience init() {
-        self.init(url: PLAPIService.Drinks.string, offsetById: false)
+        self.init(url: PLAPIService.Events.string, offsetById: false)
         collection.appendPath([PLKeys.events.string])
     }
     

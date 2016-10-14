@@ -14,4 +14,7 @@ pod 'Permission'
 pod 'PureLayout'
 pod 'DZNEmptyDataSet'
 
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+
 end

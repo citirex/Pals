@@ -6,6 +6,11 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+import FBSDKCoreKit
+import FBSDKLoginKit
+
+typealias PLFacebookLoginCompletion = (result: FBSDKLoginManagerLoginResult!, error: NSError?) -> ()
+
 class PLProfileManager : NSObject {
     var profile: PLUser?
     dynamic var token: String? {
@@ -29,6 +34,7 @@ protocol PLAuthStorage {
     func saveProfile(userDic: [String:AnyObject]) -> Bool
     func restoreProfile()
     func restoreToken()
+    func loginWithFacebook(completion: PLFacebookLoginCompletion)
 }
 
 extension PLProfileManager : PLAuthStorage {
@@ -92,6 +98,46 @@ extension PLProfileManager : PLAuthStorage {
             if let token = authData[PLKeys.token.string] as? String {
                 self.token = token
             }
+        }
+    }
+    
+    //MARK: - FaceBook
+    
+    func loginWithFacebook(completion: PLFacebookLoginCompletion){
+        if (FBSDKAccessToken.currentAccessToken() != nil && FBSDKAccessToken.currentAccessToken().expirationDate.compare(NSDate()) == NSComparisonResult.OrderedDescending) {
+            self.getFBUserInfo(completion)
+        } else {
+            FBSDKLoginManager().logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: nil) {[unowned self] (result: FBSDKLoginManagerLoginResult!, error: NSError!) in
+                if (error != nil || result.isCancelled == true) {
+                    completion(result: result,error: error)
+                } else {
+                    self.getFBUserInfo(completion)
+                }
+            }
+        }
+        
+    }
+    
+    func getFBUserInfo(completion: PLFacebookLoginCompletion) {
+        if (FBSDKAccessToken.currentAccessToken() != nil) {
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, picture.type(large), email"]).startWithCompletionHandler({ (connection, result, error) in
+                if error == nil {
+                    if let user = result as? NSDictionary {
+                        guard
+                            let name = user.valueForKey("name") as? String,
+                            let email = user.valueForKey("email") as? String,
+                            let imageUrl = ((user.valueForKey("picture") as? NSDictionary)?.valueForKey("data") as? NSDictionary)?.valueForKey("url") as? String
+                            else {
+                                return completion(result: nil, error: PLError(domain: PLErrorDomain.User, type: kPLErrorTypeBadResponse))
+                        }
+
+                        let signUpData = PLSignUpData(source: .SourceFacebook(Facebook(username: name, email: email, pictureURLString: imageUrl)))
+                        PLFacade.signUp(signUpData) { error in
+                            error != nil ? completion(result: nil,error: error) : completion(result: nil,error: nil)
+                        }
+                    }
+                }
+            })
         }
     }
 }

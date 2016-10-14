@@ -17,12 +17,14 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var passwordTextField: PLFormTextField!
     @IBOutlet weak var confirmPasswordTextField: PLFormTextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var facebookButton: UIButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hideKeyboardWhenTapped = true
+        facebookButton.layer.cornerRadius = 5
     }
     
     override func viewWillLayoutSubviews() {
@@ -54,6 +56,24 @@ class PLSignUpViewController: PLViewController {
         checkingUserData()
     }
     
+    //FB
+    @IBAction func facebookLoginButtonPressed(sender: UIButton) {
+        activityIndicator.startAnimating()
+        PLFacade.instance.profileManager.loginWithFacebook {[unowned self] (result, error) in
+            self.activityIndicator.stopAnimating()
+            if (error != nil) {
+                PLShowAlert("Facebook signup error!", message: (error?.localizedDescription)!)
+            } else if (result.isCancelled) {
+                print("Cancelled")
+                
+            } else {
+                print("recieved fb token: \(result.token.tokenString)")
+                let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
+                self.present(tabBarController, animated: true)
+            }
+        }
+    }
+    
     
     // MARK: - Private methods
     
@@ -68,7 +88,8 @@ class PLSignUpViewController: PLViewController {
         guard !password.isEmpty  else { return PLShowAlert("Error", message: "Password must contain at least 1 character") }
         guard validate(password) else { return PLShowAlert("Error", message: "Password mismatch") }
         
-        let signUpData = PLSignUpData(username: username, email: email, password: password, picture: picture)
+        let signUpData = PLSignUpData(source: .SourceManual(Manual(username: username, email: email, password: password, picture: picture)))
+
         userSignUp(signUpData)
     }
     
@@ -80,7 +101,10 @@ class PLSignUpViewController: PLViewController {
         activityIndicator.startAnimating()
         PLFacade.signUp(signUpData) { [unowned self] error in
             self.activityIndicator.stopAnimating()
-            guard error == nil else { return PLShowAlert("Error", message: "This Username is Taken!") }
+            guard error == nil else {
+                PLShowAlert("Error", message: "This Username is Taken!")//FIXME: show actual error message
+                return
+            }
             let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
             self.present(tabBarController, animated: true)
         }

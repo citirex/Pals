@@ -13,6 +13,7 @@ enum PLKeys : String {
     case price
     case type
     case picture
+    case picture_url
     case email
     case email_unique
     case balance
@@ -30,6 +31,7 @@ enum PLKeys : String {
     case order_covers
     case login
     case password
+    case facebook
     case genres
     case address
     case phone
