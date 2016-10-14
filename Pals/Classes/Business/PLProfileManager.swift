@@ -10,7 +10,11 @@ class PLProfileManager : NSObject {
     var profile: PLUser?
     dynamic var token: String? {
         didSet {
-            PLLog("Session token has changed to: \(token)")
+            if token != nil {
+                PLLog("Session token has been changed to: \(token!)", type: .Network)
+            } else {
+                PLLog("Session token has been reset ", type: .Network)
+            }
         }
     }
     

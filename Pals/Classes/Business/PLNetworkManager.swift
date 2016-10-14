@@ -84,7 +84,7 @@ class PLNetworkSession: AFHTTPSessionManager {
             if let manager = object as? PLProfileManager {
                 let tokenValue: String? = (manager.token != nil) ? "Token \(manager.token!)" : nil
                 requestSerializer.setValue(tokenValue, forHTTPHeaderField: "Authorization")
-                PLLog("Set up requests headers:\n \(requestSerializer.HTTPRequestHeaders)")
+                PLLog("Set up requests headers:\n\(requestSerializer.HTTPRequestHeaders)", type: .Network)
             }
         }
     }
@@ -94,7 +94,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
 
     class func handleSuccessCompletion(object: AnyObject?, completion: PLNetworkRequestCompletion, request: NSURLRequest?) {
         if request != nil {
-            PLLog("Loaded using \(request!.HTTPMethod!) method URL: \(request!.URL!)", type: .Network)
+            PLLog("----------------------------------------------\nLoaded \(request!.HTTPMethod!) request\n\(request!.URL!)\n----------------------------------------------", type: .Network)
         }
         let dic = object as! [String : AnyObject]
         completion(dic: dic, error: nil)
@@ -118,24 +118,26 @@ class PLNetworkManager: PLNetworkManagerInterface {
     }
     
     class func get(service: PLAPIService, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion) {
-        PLNetworkSession.shared.GET(service.string, parameters: parameters, progress: nil, success: { (task, response) in
+        let task = PLNetworkSession.shared.GET(service.string, parameters: parameters, progress: nil, success: { (task, response) in
             self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
+        logProcessingTask(task)
     }
     
     class func post(service: PLAPIService, parameters: [String : AnyObject], completion: PLNetworkRequestCompletion) {
-        PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
+        let task = PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
             }, progress: nil, success: { (task, response) in
                 self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
+        logProcessingTask(task)
     }
 
     class func post(service: PLAPIService, parameters: [String : AnyObject], attachment: PLUploadAttachment?, completion: PLNetworkRequestCompletion) {
-        PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
+        let task = PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
             if let attachm = attachment {
                 data.appendPartWithFileData(attachm.data, name:attachm.name, fileName:attachm.filename, mimeType:attachm.mimeType)
             }
@@ -144,6 +146,14 @@ class PLNetworkManager: PLNetworkManagerInterface {
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
+        logProcessingTask(task)
     }
     
+    class func logProcessingTask(task: NSURLSessionDataTask?) {
+        if task != nil {
+            if let request = task!.originalRequest {
+                PLLog("----------------------------------------------\nPerforming \(request.HTTPMethod!) request\n\(request.URL!.absoluteString)\nHTTP Headers: \(request.allHTTPHeaderFields!)\n----------------------------------------------", type: .Network)
+            }
+        }
+    }
 }

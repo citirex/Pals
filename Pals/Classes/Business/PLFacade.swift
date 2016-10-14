@@ -103,7 +103,6 @@ extension PLFacade._PLFacade {
     
     func _logout(completion: PLErrorCompletion) {
         PLNetworkManager.get(PLAPIService.Logout, parameters: nil) { (dic, error) in
-            print(dic)
             if let success = dic[PLKeys.dinosaur.string] as? Bool {
                 if success {
                     self.profileManager.resetProfileAndToken()
