@@ -23,6 +23,7 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-vU-nJx">
                         <rect key="frame" x="10" y="24" width="78" height="78"/>
+                        <color key="backgroundColor" red="0.60784316059999999" green="0.60784316059999999" blue="0.60784316059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="kQT-vU-nJx" secondAttribute="height" multiplier="1:1" id="tfj-0L-OzV"/>
                         </constraints>

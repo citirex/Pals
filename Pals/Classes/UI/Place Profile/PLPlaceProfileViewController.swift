@@ -153,6 +153,7 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
         
         return cell
     }
+    
 }
 
 
@@ -165,7 +166,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
         switch kind {
         case CSStickyHeaderParallaxHeader:
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileHeader
-            headerView.headerImageView.setImageWithURL(place.picture, placeholderImage: UIImage(named: "no_image_available"))
+            headerView.headerImageView.setImageWithURL(place.picture, placeholderImage: UIImage(named: "no_place"))
             return headerView
         case UICollectionElementKindSectionHeader:
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileSectionHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
@@ -253,6 +254,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == eventsDatasource.count - 1 { load() }
     }
+    
 }
 
 
