@@ -6,12 +6,49 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+enum SignupDataSource {
+    case SourceFacebook(Facebook)
+    case SourceManual(Manual)
+}
+
 struct PLSignUpData {
+    
+    var source: SignupDataSource
+
+    var params: [String : AnyObject] {
+        switch source {
+            case .SourceManual(let manual): return manual.params
+            case .SourceFacebook(let facebook): return facebook.params
+        }
+    }
+    
+    var picture: UIImage? {
+        switch source {
+            case .SourceManual(let manual): return manual.picture
+            case .SourceFacebook(_): return nil
+        }
+    }
+    
+}
+
+struct Facebook {
+    var username: String
+    var email: String
+    var pictureURLString: String
+    var params: [String : AnyObject] {
+        let params = [PLKeys.username.string : username,
+                      PLKeys.email_unique.string : email,
+                      PLKeys.picture_url.string : pictureURLString,
+                      PLKeys.facebook.string : NSNumber(bool: true)]
+        return params
+    }
+}
+
+struct Manual {
     var username: String
     var email: String
     var password: String
     var picture: UIImage?
-    
     var params: [String : AnyObject] {
         let params = [PLKeys.username.string : username,
                       PLKeys.email.string : email,
@@ -19,3 +56,4 @@ struct PLSignUpData {
         return params
     }
 }
+

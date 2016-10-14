@@ -18,11 +18,15 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var signOutButton: UIButton!
 
     private var userData: PLUserData!
-    private lazy var tempProfile: PLEditableUser = { return PLEditableUser() }()
+    private lazy var tempProfile: PLEditableUser! = { return PLEditableUser() }()
     private var isEditing = false {
         didSet { updateUI() }
     }
     
+    
+    deinit {
+        print("PLEditProfileViewController deinit")
+    }
 
     
     override func viewDidLoad() {
@@ -46,7 +50,6 @@ class PLEditProfileViewController: PLViewController {
         userProfileImageView.rounded = true
         signOutButton.rounded = true
     }
-
     
     
     // MARK: - Actions
@@ -61,9 +64,9 @@ class PLEditProfileViewController: PLViewController {
         let alert = UIAlertController(title: "You're signing out!", message: "Are you sure?", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .Default) { [unowned self] action in
-            PLFacade.logout({ (error) in
-                let loginViewController = UIStoryboard.loginViewController()
-                self.present(loginViewController!, animated: true)
+            PLFacade.logout({ error in
+                guard error == nil else { return PLShowAlert("Error", message: String(error!.localizedDescription)) }
+                self.logOut()
             })
         })
         present(alert, animated: true)
@@ -88,11 +91,19 @@ class PLEditProfileViewController: PLViewController {
     
     private func setupUserData() {
         userData = PLFacade.profile?.userData
-        usernameTextField.text = userData!.name
+        usernameTextField.text    = userData!.name
         phoneNumberTextField.text = userData!.email
         userProfileImageView.setImageWithURL(userData!.picture, placeholderImage: UIImage(named: "no_image_available"))
     }
 
+    private func logOut() {
+        let loginViewController = UIStoryboard.loginViewController()!
+        startActivityIndicator(.WhiteLarge, color: .grayColor())
+        presentViewController(loginViewController, animated: true) {
+            self.navigationController!.viewControllers.removeAll()
+            self.stopActivityIndicator()
+        }
+    }
     
     // MARK: - Update User Data
     
@@ -128,10 +139,10 @@ class PLEditProfileViewController: PLViewController {
     // MARK: - Update UI
     
     private func updateUI() {
-        usernameTextField.enabled = isEditing ? true : false
-        phoneNumberTextField.enabled = isEditing ? true : false
+        usernameTextField.enabled     = isEditing ? true : false
+        phoneNumberTextField.enabled  = isEditing ? true : false
         addProfileImageButton.enabled = isEditing ? true : false
-        addProfileImageButton.hidden = isEditing ? false : true
+        addProfileImageButton.hidden  = isEditing ? false : true
     }
     
     // MARK: - Photos & Camera
@@ -141,11 +152,11 @@ class PLEditProfileViewController: PLViewController {
         
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
-        imagePicker.delegate = self
+        imagePicker.delegate   = self
         imagePicker.modalPresentationStyle = sourceType == .Camera ? .FullScreen : .OverCurrentContext
         
         if sourceType == .Camera {
-            imagePicker.cameraDevice = .Front
+            imagePicker.cameraDevice      = .Front
             imagePicker.cameraCaptureMode = .Photo
         }
         present(imagePicker, animated: true)

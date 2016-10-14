@@ -168,7 +168,7 @@ static const NSInteger kHeaderZIndex = 1024;
         }
         
         // For debugging purpose
-        // [self debugLayoutAttributes:allItems];
+        //     [self debugLayoutAttributes:allItems];
         
         return allItems;
     } else {
@@ -245,7 +245,7 @@ static const NSInteger kHeaderZIndex = 1024;
 
     CGRect frame = currentAttribute.frame;
     frame.size.width = self.parallaxHeaderReferenceSize.width;
-    frame.size.height = self.parallaxHeaderReferenceSize.height + 40;
+    frame.size.height = self.parallaxHeaderReferenceSize.height;
 
     CGRect bounds = self.collectionView.bounds;
     CGFloat maxY = CGRectGetMaxY(frame);
@@ -253,6 +253,7 @@ static const NSInteger kHeaderZIndex = 1024;
     // make sure the frame won't be negative values
     CGFloat y = MIN(maxY - self.parallaxHeaderMinimumReferenceSize.height, bounds.origin.y + self.collectionView.contentInset.top);
     CGFloat height = MAX(0, -y + maxY);
+
 
     CGFloat maxHeight = self.parallaxHeaderReferenceSize.height;
     CGFloat minHeight = self.parallaxHeaderMinimumReferenceSize.height;
@@ -276,7 +277,7 @@ static const NSInteger kHeaderZIndex = 1024;
         frame.origin.x,
         y,
         frame.size.width,
-        height,
+        self.disableStretching && height > maxHeight ? maxHeight : height,
     };
 }
 

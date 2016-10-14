@@ -27,7 +27,7 @@ class PLPageCollectionDeserializer<T:PLDatedObject>: NSObject {
         keyPath.appendContentsOf(path)
     }
     
-    func deserialize(page: AnyObject) -> ([T],NSError?) {
+    func deserialize(page: [String:AnyObject]) -> ([T],NSError?) {
         var objects: AnyObject?
         for key in keyPath {
             objects = page[key]
@@ -239,7 +239,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         return findLastIndices(lastCount, asSections: sectioned)
     }
     
-    func deserialize(page: AnyObject) -> ([T],NSError?) {
+    func deserialize(page: [String:AnyObject]) -> ([T],NSError?) {
         return deserializer.deserialize(page)
     }
     
@@ -248,32 +248,27 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     }
     
     typealias PageLoadCompletion = (page: PLPage, error: NSError?) -> ()
-    let jsonError = NSError(domain: "PageCollection", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Failed to parse JSON"])
-    
+
     private func loadNext(completion: PageLoadCompletion) {
         loading = true
         let params = formParameters(preset, offset: offset)
         if session == nil {
             return
         }
-        session!.GET(preset.url, parameters: params, progress: nil, success: { (task, response) in
+        
+        PLNetworkManager.get(preset.url, parameters: params) { (dic, error) in
             self.loading = false
-            guard
-                let page = response
-            else {
-                completion(page: PLPage(), error: self.jsonError)
-                return
-            }
-            let response = self.deserializer.deserialize(page)
-            if response.1 == nil {
-                let page = self.onPageLoad(response.0)
-                completion(page: page , error: nil)
+            if error == nil {
+                let response = self.deserializer.deserialize(dic)
+                if response.1 == nil {
+                    let page = self.onPageLoad(response.0)
+                    completion(page: page , error: nil)
+                } else {
+                    completion(page: PLPage(), error: kPLErrorJSON)
+                }
             } else {
-                completion(page: PLPage(), error: self.jsonError)
+                completion(page: PLPage() ,error: error)
             }
-        }) { (task, error) in
-            self.loading = false
-            completion(page: PLPage() ,error: error)
         }
     }
     

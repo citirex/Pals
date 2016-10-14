@@ -6,6 +6,9 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+import FBSDKCoreKit
+import FBSDKLoginKit
+
 typealias PLErrorCompletion = (error: NSError?) -> ()
 
 protocol PLFacadeInterface {
@@ -20,7 +23,18 @@ protocol PLFacadeInterface {
     static var profile: PLUser? {get}
 }
 
-class PLFacade : PLFacadeInterface {
+
+protocol PLFacadeRepresentable {
+    static func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool
+    static func application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool
+    static func applicationWillResignActive(application: UIApplication)
+    static func applicationDidBecomeActive(application: UIApplication)
+    static func applicationDidEnterBackground(application: UIApplication)
+}
+
+
+
+class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     static let instance = _PLFacade()
     static var profile: PLUser? {
         return instance.profileManager.profile
@@ -66,11 +80,31 @@ class PLFacade : PLFacadeInterface {
         instance._fetchNearRegion(completion)
     }
     
+    //MARK: AppDelegate
+    class func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        return PLFacade.instance._application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    class func application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool {
+        
+        return PLFacade.instance._application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    class func applicationWillResignActive(application: UIApplication) {
+        PLFacade.instance._applicationWillResignActive(application)
+    }
+    class func applicationDidBecomeActive(application: UIApplication) {
+        PLFacade.instance._applicationDidBecomeActive(application)
+    }
+    class func applicationDidEnterBackground(application: UIApplication) {
+        PLFacade.instance._applicationDidEnterBackground(application)
+    }
+    
     class _PLFacade {
         let settingsManager = PLSettingsManager()
         let locationManager = PLLocationManager()
         let profileManager  = PLProfileManager()
     }
+    
 }
 
 let kMimePng = "image/png"
@@ -88,6 +122,7 @@ extension PLFacade._PLFacade {
     
     func _signUp(data: PLSignUpData, completion: PLErrorCompletion) {
         let params = data.params
+        print(params)
         let attachment = createAttachment(data.picture)
         PLNetworkManager.post(PLAPIService.SignUp, parameters: params, attachment: attachment) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
@@ -103,7 +138,6 @@ extension PLFacade._PLFacade {
     
     func _logout(completion: PLErrorCompletion) {
         PLNetworkManager.get(PLAPIService.Logout, parameters: nil) { (dic, error) in
-            print(dic)
             if let success = dic[PLKeys.dinosaur.string] as? Bool {
                 if success {
                     self.profileManager.resetProfileAndToken()
@@ -199,4 +233,21 @@ extension PLFacade._PLFacade {
     func _fetchNearRegion(completion: PLLocationRegionCompletion) {
         locationManager.fetchNearRegion(completion)
     }
+    
+    func _application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        return false
+    }
+    func _application(application: UIApplication!, openURL url: NSURL!, sourceApplication: String!, annotation: AnyObject!) -> Bool {
+        
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+
+        return handled
+    }
+    func _applicationWillResignActive(application: UIApplication) { }
+    func _applicationDidBecomeActive(application: UIApplication) {
+        FBSDKAppEvents.activateApp()
+    }
+    func _applicationDidEnterBackground(application: UIApplication) { }
 }
