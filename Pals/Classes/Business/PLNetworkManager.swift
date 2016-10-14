@@ -93,17 +93,12 @@ class PLNetworkSession: AFHTTPSessionManager {
 class PLNetworkManager: PLNetworkManagerInterface {
 
     class func handleSuccessCompletion(object: AnyObject?, completion: PLNetworkRequestCompletion, request: NSURLRequest?) {
-        if request != nil {
-            PLLog("----------------------------------------------\nLoaded \(request!.HTTPMethod!) request\n\(request!.URL!)\n----------------------------------------------", type: .Network)
-        }
+        logLoaded(request)
         let dic = object as! [String : AnyObject]
         completion(dic: dic, error: nil)
     }
     
     class func handleErrorCompletion(error: NSError, fakeFeedFilename: String, completion: PLNetworkRequestCompletion) {
-        if let failedURL = error.userInfo[NSURLErrorFailingURLErrorKey] as? NSURL {
-            PLLog("Failed to load: \(failedURL.absoluteString)", type: .Network)
-        }
         if PLFacade.instance.settingsManager.useFakeFeeds {
             PLFakeFeed.load(fakeFeedFilename, completion: { (dict) in
                 if dict.isEmpty {
@@ -117,13 +112,30 @@ class PLNetworkManager: PLNetworkManagerInterface {
         }
     }
     
-    class func get(service: PLAPIService, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion) {
-        let task = PLNetworkSession.shared.GET(service.string, parameters: parameters, progress: nil, success: { (task, response) in
-            self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
+    // Basic get request to trasform response to a dict and log actions
+    class func get(url: String, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion) {
+        let task = PLNetworkSession.shared.GET(url, parameters: parameters, progress: nil, success: { (task, response) in
+            logLoaded(task.originalRequest)
+            if let responseDic = response as? [String:AnyObject] {
+                completion(dic: responseDic, error: nil)
+            } else {
+                completion(dic: [:], error: kPLErrorJSON)
+            }
         }) { (task, error) in
-            self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
+            logFailed(error)
+            completion(dic: [:], error: error)
         }
-        logProcessingTask(task)
+        logPerforming(task?.originalRequest)
+    }
+    
+    class func get(service: PLAPIService, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion) {
+        get(service.string, parameters: parameters) { (dic, error) in
+            if error == nil {
+                completion(dic: dic, error: nil)
+            } else {
+                self.handleErrorCompletion(error!, fakeFeedFilename: service.string, completion: completion)
+            }
+        }
     }
     
     class func post(service: PLAPIService, parameters: [String : AnyObject], completion: PLNetworkRequestCompletion) {
@@ -133,7 +145,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
-        logProcessingTask(task)
+        logPerforming(task?.originalRequest)
     }
 
     class func post(service: PLAPIService, parameters: [String : AnyObject], attachment: PLUploadAttachment?, completion: PLNetworkRequestCompletion) {
@@ -146,14 +158,24 @@ class PLNetworkManager: PLNetworkManagerInterface {
         }) { (task, error) in
             self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
         }
-        logProcessingTask(task)
+        logPerforming(task?.originalRequest)
     }
     
-    class func logProcessingTask(task: NSURLSessionDataTask?) {
-        if task != nil {
-            if let request = task!.originalRequest {
-                PLLog("----------------------------------------------\nPerforming \(request.HTTPMethod!) request\n\(request.URL!.absoluteString)\nHTTP Headers: \(request.allHTTPHeaderFields!)\n----------------------------------------------", type: .Network)
-            }
+    class func logPerforming(request: NSURLRequest?) {
+        if let req = request {
+            PLLog("----------------------------------------------\nPerforming \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\nHTTP Headers: \(req.allHTTPHeaderFields!)\n----------------------------------------------", type: .Network)
+        }
+    }
+    
+    class func logLoaded(request: NSURLRequest?) {
+        if let req = request {
+             PLLog("----------------------------------------------\nLoaded \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\nHTTP Headers: \(req.allHTTPHeaderFields!)\n----------------------------------------------", type: .Network)
+        }
+    }
+    
+    class func logFailed(error: NSError) {
+        if let failedURL = error.userInfo[NSURLErrorFailingURLErrorKey] as? NSURL {
+            PLLog("Failed to load: \(failedURL.absoluteString)", type: .Network)
         }
     }
 }
