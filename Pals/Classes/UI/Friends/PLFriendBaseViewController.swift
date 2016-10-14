@@ -31,7 +31,9 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		spinner.center = view.center
 		spinner.activityIndicatorViewStyle = .WhiteLarge
 		spinner.color = .grayColor()
+		configureResultsController()
 		configureSearchController()
+	
 		loadData()
 		
 		tableView.emptyDataSetSource = self
@@ -66,14 +68,6 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 	
 	private func configureSearchController() {
 		let backgroundSearchBarColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
-		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
-		resultsController = UITableViewController(style: .Plain)
-		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-		resultsController.tableView.backgroundColor		= .miracleColor()
-		resultsController.tableView.tableFooterView		= UIView()
-		resultsController.tableView.rowHeight			= 100.0
-		resultsController.tableView.delegate			= self
-		resultsController.tableView.separatorInset.left = 75
 		
 		searchController = PLSearchController(searchResultsController: resultsController)
 		searchController.searchBar.placeholder			  = "Find Your Pals"
@@ -93,6 +87,17 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		definesPresentationContext					= true
 	}
 	
+	private func configureResultsController() {
+		resultsController = UITableViewController(style: .Plain)
+		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
+		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
+		resultsController.tableView.backgroundColor        = .whiteColor()
+		resultsController.tableView.tableFooterView        = UIView()
+		resultsController.tableView.rowHeight              = 100.0
+		resultsController.tableView.delegate               = self
+		resultsController.tableView.separatorInset.left = 75
+	}
+	
 	
 	// MARK: - tableView
 	
@@ -106,26 +111,6 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 	}
 }
 
-// MARK: - UISearchControllerDelegate
-
-//extension PLFriendBaseViewController : UISearchControllerDelegate {
-//	func willDismissSearchController(searchController: UISearchController) {
-//		let offset = tableView.contentOffset.y + tableView.contentInset.top
-//		if offset >= searchController.searchBar.frame.height {
-//			UIView.animateWithDuration(0.25) {
-//				searchController.searchBar.alpha = 0
-//			}
-//		}
-//	}
-//	
-//	func didDismissSearchController(searchController: UISearchController) {
-//		if searchController.searchBar.alpha == 0 {
-//			UIView.animateWithDuration(0.25) {
-//				searchController.searchBar.alpha = 1
-//			}
-//		}
-//	}
-//}
 
 // MARK: - DZNEmptyDataSetSource
 
@@ -138,7 +123,7 @@ extension PLFriendBaseViewController: DZNEmptyDataSetSource {
 	}
 	
 	func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-		let string = scrollView === tableView ? "No Friends yet" : "No Pals were found that match '\(searchController.searchBar.text!)'"
+		let string = scrollView === tableView ? "No Friends yet" : "Not found Pals for '\(searchController.searchBar.text!)'"
 		let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .grayColor())
 		return attributedString
 	}
@@ -151,9 +136,5 @@ extension PLFriendBaseViewController: DZNEmptyDataSetDelegate {
 	
 	func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
 		return true
-	}
-	
-	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-		return !spinner.isAnimating()
 	}
 }
