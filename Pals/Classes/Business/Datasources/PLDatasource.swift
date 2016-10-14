@@ -54,8 +54,6 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
     
     func cancel() {
         collection.cancelPageLoad()
-        indicesCompletion = nil
-        completion = nil
     }
     
     func filter(text: String, completion: ()->()) {

@@ -21,6 +21,12 @@ func PLShowAlert(title title: String) {
 }
 
 func PLShowErrorAlert(error error:NSError) {
+    // omit showing cancelled url task errors
+    if error.domain == NSURLErrorDomain {
+        if error.code == -999 {
+            return
+        }
+    }
     PLShowAlert(title: error.localizedDescription)
 }
 

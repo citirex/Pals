@@ -75,9 +75,9 @@ class PLProfileViewController: TGLStackedViewController {
         spinner.startAnimating()
         spinner.center = view.center
         currentDatasource.loadPage {[unowned self] (indices, error) in
-            if indices.count > 0 {
-                self.collectionBackgroundView.noItemsLabel.hidden = true
-                if error == nil {
+            if error == nil {
+                if indices.count > 0 {
+                    self.collectionBackgroundView.noItemsLabel.hidden = true
                     if self.currentDatasource.pagesLoaded == 1 {
                         self.collectionView?.alpha = 0
                         self.collectionView?.reloadData({
@@ -98,10 +98,10 @@ class PLProfileViewController: TGLStackedViewController {
                             completion: nil)
                     }
                 } else {
-                    PLShowErrorAlert(error: error!)
+                    self.collectionBackgroundView.noItemsLabel.hidden = false
                 }
             } else {
-                self.collectionBackgroundView.noItemsLabel.hidden = false
+                PLShowErrorAlert(error: error!)
             }
             self.spinner.stopAnimating()
         }

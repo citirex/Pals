@@ -164,6 +164,8 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         }
     }
 
+    private var currentTaskId: Int?
+    
     subscript(index: Int) -> T {
         if sectioned {
             fatalError("cannot return object")
@@ -256,7 +258,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             return
         }
         
-        PLNetworkManager.get(preset.url, parameters: params) { (dic, error) in
+        let task = PLNetworkManager.get(preset.url, parameters: params) { (dic, error) in
             self.loading = false
             if error == nil {
                 let response = self.deserializer.deserialize(dic)
@@ -269,12 +271,21 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             } else {
                 completion(page: PLPage() ,error: error)
             }
+            self.currentTaskId = nil
         }
+        currentTaskId = task?.taskIdentifier
     }
     
     func cancelPageLoad() {
-//FIXME:      session?.invalidateSessionCancelingTasks(true)
-        loading = false
+        if let current = currentTaskId {
+            if let tasks = session?.tasks {
+                for task in tasks {
+                    if current == task.taskIdentifier {
+                        task.cancel()
+                    }
+                }
+            }
+        }
     }
     
     func onPageLoad(objects: [T]) -> PLPage {

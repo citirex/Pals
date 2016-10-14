@@ -113,7 +113,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
     }
     
     // Basic get request to trasform response to a dict and log actions
-    class func get(url: String, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion) {
+    class func get(url: String, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion) -> NSURLSessionDataTask? {
         let task = PLNetworkSession.shared.GET(url, parameters: parameters, progress: nil, success: { (task, response) in
             logLoaded(task.originalRequest)
             if let responseDic = response as? [String:AnyObject] {
@@ -126,6 +126,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
             completion(dic: [:], error: error)
         }
         logPerforming(task?.originalRequest)
+        return task
     }
     
     class func get(service: PLAPIService, parameters: [String:AnyObject]?, completion: PLNetworkRequestCompletion) {
