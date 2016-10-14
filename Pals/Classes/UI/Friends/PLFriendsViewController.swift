@@ -11,10 +11,6 @@ class PLFriendsViewController: PLFriendBaseViewController {
 	
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
 	var searchText: String!
-    
-//	@IBAction func searchButton(sender: AnyObject) {
-//		performSegueWithIdentifier("FriendSearchSegue", sender: self)
-//	}
 	
     override func loadData() {
         self.spinner.startAnimating()
@@ -29,11 +25,6 @@ class PLFriendsViewController: PLFriendBaseViewController {
         searchController.searchResultsUpdater  = self
         tableView.dataSource				   = self
         resultsController.tableView.dataSource = self
-
-//		searchController.delegate = self
-		
-		resultsController.tableView.emptyDataSetSource   = self
-		resultsController.tableView.emptyDataSetDelegate = self
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -109,9 +100,6 @@ extension PLFriendsViewController: UISearchResultsUpdating {
 		else {
             spinner.startAnimating()
             datasource.filter(searchText, completion: { [unowned self] in
-//				if self.datasource.empty {
-//					
-//				}
                 self.resultsController.tableView.reloadData()
                 self.spinner.stopAnimating()
             })
