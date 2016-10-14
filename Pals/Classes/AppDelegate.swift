@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        
+        PLFacade.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         IQKeyboardManager.sharedManager().enable = true
 
         var initialViewController: UIViewController?
@@ -32,11 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        
+        PLFacade.applicationWillResignActive(application)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        
+        PLFacade.applicationDidEnterBackground(application)
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -44,12 +47,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        
+        PLFacade.applicationDidBecomeActive(application)
     }
 
     func applicationWillTerminate(application: UIApplication) {
         
     }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return PLFacade.application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+//    - (BOOL)application:(UIApplication *)app
+//    openURL:(NSURL *)url
+//    options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+//    
+//    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+//    openURL:url
+//    sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+//    annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+//    ];
+//    // Add any custom logic here.
+//    return handled;
+//    }
     
 }
 

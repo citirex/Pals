@@ -14,10 +14,20 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - CSStickyHeaderFlowLayout (0.2.10)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - CSStickyHeaderFlowLayout (0.2.11)
   - DZNEmptyDataSet (1.8.1)
+  - FBSDKCoreKit (4.16.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.16.1):
+    - FBSDKCoreKit
   - GPUImage (0.1.7)
-  - IQKeyboardManager (4.0.5)
+  - IQKeyboardManager (4.0.6)
   - Permission (1.5)
   - PureLayout (3.0.2)
   - SwiftQRCode (2.0.2)
@@ -26,6 +36,8 @@ DEPENDENCIES:
   - AFNetworking
   - CSStickyHeaderFlowLayout
   - DZNEmptyDataSet
+  - FBSDKCoreKit
+  - FBSDKLoginKit
   - GPUImage
   - IQKeyboardManager
   - Permission
@@ -34,14 +46,17 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FBSDKCoreKit: 7a6baaed4a2b2a244ba253346713bdbc74df135b
+  FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
-  IQKeyboardManager: 50b62c0603308968256f8208886e206c1dcce607
+  IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
   Permission: 2d9647f8b994a5faf7e1c5a40d4328fde158c2f2
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
-PODFILE CHECKSUM: a49c753223f3fa0d6732d15892d149f3765f21c9
+PODFILE CHECKSUM: c39a800bb2ad06c8f806c05e85b08f16c53e717c
 
 COCOAPODS: 1.0.1
