@@ -36,12 +36,17 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 	
 		loadData()
 		
-		tableView.emptyDataSetSource = self
-		tableView.emptyDataSetDelegate = self
+		tableView.emptyDataSetSource			= self
+		tableView.emptyDataSetDelegate			= self
 		resultsController.tableView.emptyDataSetSource   = self
 		resultsController.tableView.emptyDataSetDelegate = self
     }
-
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		navigationController?.navigationBar.style = .FriendsStyle
+	}
+	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		addConstraints()
@@ -67,12 +72,8 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
     }
 	
 	private func configureSearchController() {
-		let backgroundSearchBarColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
-		
 		searchController = PLSearchController(searchResultsController: resultsController)
 		searchController.searchBar.placeholder			  = "Find Your Pals"
-		searchController.searchBar.backgroundColor		  = backgroundSearchBarColor
-		searchController.searchBar.barTintColor			  = .miracleColor()
 		searchController.searchBar.backgroundImage		  = UIImage()
 		searchController.searchBar.tintColor			  = .affairColor()
 		searchController.searchBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
@@ -81,10 +82,12 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		textFieldInsideSearchBar?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		textFieldInsideSearchBar?.cornerRadius		= 14
 		
-		edgesForExtendedLayout = .None
 		tableView.tableHeaderView					= searchController.searchBar
 		tableView.backgroundView					= UIView()
+		
+		edgesForExtendedLayout						= .None
 		definesPresentationContext					= true
+//		extendedLayoutIncludesOpaqueBars			= true
 	}
 	
 	private func configureResultsController() {
@@ -93,9 +96,10 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		resultsController.tableView.backgroundColor        = .whiteColor()
 		resultsController.tableView.tableFooterView        = UIView()
-		resultsController.tableView.rowHeight              = 100.0
 		resultsController.tableView.delegate               = self
 		resultsController.tableView.separatorInset.left = 75
+		resultsController.tableView.opaque = false
+		
 	}
 	
 	
@@ -110,7 +114,6 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		friendProfileViewController.friend = selectedFriend
 	}
 }
-
 
 // MARK: - DZNEmptyDataSetSource
 

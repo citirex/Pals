@@ -32,12 +32,6 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
         resultsController.tableView.dataSource = self
     }
 	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.style = .FriendsStyle
-	}
-	
 	override func viewWillDisappear(animated: Bool) {
 		navigationController?.navigationBar.shadowImage = UIImage()
 	}

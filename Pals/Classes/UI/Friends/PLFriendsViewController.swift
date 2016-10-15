@@ -23,14 +23,11 @@ class PLFriendsViewController: PLFriendBaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         searchController.searchResultsUpdater  = self
-        tableView.dataSource				   = self
+		searchController.searchBar.delegate = self
         resultsController.tableView.dataSource = self
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.style = .FriendsStyle
+		tableView.dataSource = self
+		
+		view.backgroundColor = .whiteColor()
 	}
 	
 	override func viewDidDisappear(animated: Bool) {
@@ -45,7 +42,7 @@ class PLFriendsViewController: PLFriendBaseViewController {
 			navigationController?.navigationBar.shadowImage = nil
 		}
 	}
-    
+	
     
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 		searchController.searchBar.endEditing(true)
