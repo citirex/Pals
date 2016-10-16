@@ -75,7 +75,7 @@ class PLAddFundsViewController: PLViewController {
         let sendButton = UIButton(type: .System)
         sendButton.tintColor = .whiteColor()
         sendButton.setTitle("Refill", forState: .Normal)
-        sendButton.titleLabel?.font = .customFontOfSize(15)
+        sendButton.titleLabel?.font = .systemFontOfSize(15)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: .refillPressed, forControlEvents: .TouchUpInside)
         containerView.addSubview(sendButton)

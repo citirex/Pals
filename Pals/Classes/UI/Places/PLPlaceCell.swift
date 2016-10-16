@@ -11,14 +11,14 @@ import GPUImage
 
 class PLPlaceCell: UITableViewCell {
     
-    static let nibName = "PLPlaceCell"
+    static let nibName    = "PLPlaceCell"
     static let identifier = "PlaceCell"
     
-    @IBOutlet weak var blurView: PLBlurImageView!
-    @IBOutlet weak var placeNameLabel: UILabel!
+    @IBOutlet weak var blurView:  PLBlurImageView!
+    @IBOutlet weak var placeNameLabel:    UILabel!
     @IBOutlet weak var placeAddressLabel: UILabel!
-    @IBOutlet weak var musicGenresLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var musicGenresLabel:  UILabel!
+    @IBOutlet weak var distanceLabel:     UILabel!
     
     
     var currentUrl = ""

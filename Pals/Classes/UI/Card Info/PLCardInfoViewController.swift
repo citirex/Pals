@@ -11,9 +11,9 @@ import UIKit
 class PLCardInfoViewController: PLViewController {
     
     @IBOutlet weak var creditCardNumberTextField: PLFormTextField!
-    @IBOutlet weak var expirationDateTextField: PLFormTextField!
-    @IBOutlet weak var zipCodeTextField: PLFormTextField!
-    @IBOutlet weak var cvvCodeTextField: PLFormTextField!
+    @IBOutlet weak var expirationDateTextField:   PLFormTextField!
+    @IBOutlet weak var zipCodeTextField:          PLFormTextField!
+    @IBOutlet weak var cvvCodeTextField:          PLFormTextField!
     
 
     
@@ -54,7 +54,7 @@ class PLCardInfoViewController: PLViewController {
         let sendButton = UIButton(type: .System)
         sendButton.tintColor = .mediumOrchidColor()
         sendButton.setTitle("Complete", forState: .Normal)
-        sendButton.titleLabel?.font = .customFontOfSize(15)
+        sendButton.titleLabel?.font = .systemFontOfSize(15)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: .completePressed, forControlEvents: .TouchUpInside)
         containerView.addSubview(sendButton)

@@ -30,13 +30,23 @@ extension UIView {
         }
     }
     
+    @IBInspectable
     var borderColor: UIColor? {
         get {
-            let color = UIColor.init(CGColor: layer.borderColor!)
-            return color
+            return UIColor.init(CGColor: layer.borderColor!)
         }
         set {
             layer.borderColor = newValue?.CGColor
+        }
+    }
+    
+    @IBInspectable
+    var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
         }
     }
 

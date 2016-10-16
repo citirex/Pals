@@ -7,14 +7,15 @@
 //
 
 import DZNEmptyDataSet
+import SVProgressHUD
 
 class PLOrderHistoryViewController: PLViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
+    
+    private var isLoading = false
     private lazy var orders: PLOrderDatasource = {
-        let orderDatasource = PLOrderDatasource(orderType: .Drinks, sectioned: true)
-        return orderDatasource
+        return PLOrderDatasource(orderType: .Drinks, sectioned: true)
     }()
     
 
@@ -31,11 +32,19 @@ class PLOrderHistoryViewController: PLViewController {
     // MARK: - Private methods
     
     private func loadOrders() {
-        startActivityIndicator(.WhiteLarge, color: .grayColor())
+        isLoading = true
+        SVProgressHUD.show()
+        tableView.reloadEmptyDataSet()
+        
         orders.load {[unowned self] (page, error) in
-            self.stopActivityIndicator()
-            guard error == nil else { return PLShowErrorAlert(error: error!) }
-
+            self.isLoading = false
+            SVProgressHUD.dismiss()
+            
+            guard error == nil else {
+                self.tableView.reloadEmptyDataSet()
+                return PLShowErrorAlert(error: error!)
+            }
+            
             let objects = page.objects
             let lastIdxPath = self.findLastIdxPath()
             let indexPaths = self.orders.indexPathsFromObjects(objects as [AnyObject], lastIdxPath: lastIdxPath, mergedSection: page.mergedWithPreviousSection)
@@ -158,6 +167,10 @@ extension PLOrderHistoryViewController: DZNEmptyDataSetSource {
         return attributedString
     }
     
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "orders_placeholder")!.imageResize(CGSizeMake(60, 60))
+    }
+    
 }
 
 
@@ -169,8 +182,9 @@ extension PLOrderHistoryViewController: DZNEmptyDataSetDelegate {
         return true
     }
     
-//    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-//        return
-//    }
+    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        return !isLoading
+    }
+    
 }
 

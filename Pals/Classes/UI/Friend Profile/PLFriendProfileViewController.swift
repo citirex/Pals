@@ -9,7 +9,7 @@
 class PLFriendProfileViewController: PLViewController {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var friendProfileImageView: UIImageView!
+    @IBOutlet weak var friendProfileImageView: PLCircularImageView!
     @IBOutlet var popUpMenuView: UIView!
     
     var friend: PLUser!
@@ -39,7 +39,6 @@ class PLFriendProfileViewController: PLViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        friendProfileImageView.rounded = true
         popUpMenuView.rounded = true
     }
     
@@ -82,7 +81,7 @@ class PLFriendProfileViewController: PLViewController {
     }
     
     @IBAction func unfriendButtonPressed(sender: UIButton) {
-    
+        print("Unfriend button pressed!")
     }
 
     

@@ -9,6 +9,8 @@
 import UIKit
 import PureLayout
 
+
+// TODO: - needs to delete this class! :)
 class PLEmptyBackgroundView: UIView {
     
     private var topLabel: UILabel!

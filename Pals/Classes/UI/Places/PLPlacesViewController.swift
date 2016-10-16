@@ -7,6 +7,7 @@
 //
 
 import DZNEmptyDataSet
+import SVProgressHUD
 
 class PLPlacesViewController: PLViewController {
     
@@ -18,6 +19,7 @@ class PLPlacesViewController: PLViewController {
     private var selectedPlace: PLPlace!
     private var previousFilter = ""
     private var searchPlace: String!
+    private var isLoading = false
     
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
 
@@ -44,10 +46,18 @@ class PLPlacesViewController: PLViewController {
     // MARK: - Private Methods
     
     private func loadPlaces() {
-        startActivityIndicator(.WhiteLarge)
+        isLoading = true
+        SVProgressHUD.show()
+        tableView.reloadEmptyDataSet()
+        
         places.loadPage { [unowned self] indexPaths, error in
-            self.stopActivityIndicator()
-            guard error == nil else { return PLShowErrorAlert(error: error!) }
+            self.isLoading = false
+            SVProgressHUD.dismiss()
+            
+            guard error == nil else {
+                self.tableView.reloadEmptyDataSet()
+                return PLShowErrorAlert(error: error!)
+            }
             self.tableView?.beginUpdates()
             self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
             self.tableView?.endUpdates()
@@ -76,7 +86,6 @@ class PLPlacesViewController: PLViewController {
         searchController.searchBar.tintColor       = .whiteColor()
         searchController.searchBar.barTintColor    = .affairColor()
         searchController.searchResultsUpdater      = self
-        searchController.delegate                  = self
         
         tableView.tableHeaderView                  = searchController.searchBar
         tableView.backgroundView                   = UIView()
@@ -141,30 +150,6 @@ extension PLPlacesViewController: UITableViewDelegate {
 }
 
 
-// MARK: - UISearchControllerDelegate
-
-extension PLPlacesViewController: UISearchControllerDelegate {
-    
-//    func willDismissSearchController(searchController: UISearchController) {
-//        let offset = tableView.contentOffset.y + tableView.contentInset.top
-//        if offset >= searchController.searchBar.frame.height {
-//            UIView.animateWithDuration(0.25) {
-//                searchController.searchBar.alpha = 0
-//            }
-//        }
-//    }
-//    
-//    func didDismissSearchController(searchController: UISearchController) {
-//        if searchController.searchBar.alpha == 0 {
-//            UIView.animateWithDuration(0.25) {
-//                searchController.searchBar.alpha = 1
-//            }
-//        }
-//    }
-    
-}
-
-
 // MARK: - UISearchResultsUpdating
 
 extension PLPlacesViewController: UISearchResultsUpdating {
@@ -172,12 +157,14 @@ extension PLPlacesViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         places.searching = searchController.active
         searchPlace = searchController.searchBar.text!
-        if searchPlace.isEmpty { places.searching = false }
-        else {
-            startActivityIndicator(.WhiteLarge)
+        
+        if searchPlace.isEmpty {
+            places.searching = false
+        } else {
+            SVProgressHUD.show()
             places.filter(searchPlace, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()
-                self.stopActivityIndicator()
+                SVProgressHUD.dismiss()
                 self.resultsController.tableView.reloadData()
             })
         }
@@ -201,6 +188,11 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
         let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .whiteColor())
         return attributedString
     }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        let named = scrollView === tableView ? "places_placeholder" : "search"
+        return UIImage(named: named)!.imageResize(CGSizeMake(60, 60))
+    }
 
 }
 
@@ -213,8 +205,8 @@ extension PLPlacesViewController: DZNEmptyDataSetDelegate {
         return true
     }
     
-//    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-//        return !activityIndicator!.isAnimating()
-//    }
+    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        return !isLoading
+    }
     
 }

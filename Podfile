@@ -13,6 +13,7 @@ pod 'GPUImage'
 pod 'Permission'
 pod 'PureLayout'
 pod 'DZNEmptyDataSet'
+pod 'SVProgressHUD'
 
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'

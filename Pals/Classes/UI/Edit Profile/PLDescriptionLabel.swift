@@ -13,6 +13,7 @@ class PLDescriptionLabel: UILabel {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         addBorder(.Top, color: .darkGray(), width: 0.5)
         addBorder(.Bottom, color: .darkGray(), width: 0.5)
     }

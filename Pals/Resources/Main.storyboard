@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -151,9 +151,9 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WXu-2n-otd">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                             </activityIndicatorView>
-                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
+                            <button opaque="NO" alpha="0.68000000000000005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdC-BM-16D">
                                 <rect key="frame" x="-4" y="620" width="383" height="47"/>
-                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.68000000000000005" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Want to be a Pal? Register now!">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -272,8 +272,9 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
                                 <rect key="frame" x="112" y="112" width="151" height="151"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FiR-Kx-BL2" secondAttribute="height" multiplier="1:1" id="wsr-3e-P4r"/>
                                 </constraints>
@@ -550,7 +551,7 @@
                                     <action selector="showActionSheet:" destination="xEW-Sh-buD" eventType="touchUpInside" id="fYT-yy-a2E"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gd0-AA-yGc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gd0-AA-yGc" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
                                 <rect key="frame" x="101" y="93" width="173" height="173"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gd0-AA-yGc" secondAttribute="height" multiplier="1:1" id="ANF-fl-ZE6"/>
@@ -639,7 +640,7 @@
                                     <constraint firstAttribute="trailing" secondItem="fkq-JS-Kxw" secondAttribute="trailing" id="zTB-Vi-TWb"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81f-gD-qmB">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81f-gD-qmB" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
                                 <rect key="frame" x="102" y="500" width="171" height="35"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
@@ -650,29 +651,22 @@
                                     <action selector="signUpButtonTapped:" destination="xEW-Sh-buD" eventType="touchUpInside" id="usk-tv-5O6"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tUA-8i-tAr">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                            </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWx-30-hw4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-mg-af0" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
+                                <rect key="frame" x="102" y="547" width="171" height="35"/>
+                                <state key="normal" image="facebook_button_image"/>
+                                <connections>
+                                    <action selector="facebookLoginButtonPressed:" destination="xEW-Sh-buD" eventType="touchUpInside" id="zdb-wa-Fr1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.68000000000000005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWx-30-hw4">
                                 <rect key="frame" x="0.0" y="620" width="375" height="47"/>
-                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.68000000000000005" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Already a Pal? Sign In!">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="2Ze-G6-jmr" kind="unwind" unwindAction="unwindToLoginClicked:" id="uWv-ns-IFY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-mg-af0">
-                                <rect key="frame" x="102" y="547" width="171" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="171" id="Ctp-2H-HzP"/>
-                                    <constraint firstAttribute="height" constant="35" id="Otx-LW-0OB"/>
-                                </constraints>
-                                <state key="normal" image="facebook_button_image"/>
-                                <connections>
-                                    <action selector="facebookLoginButtonPressed:" destination="xEW-Sh-buD" eventType="touchUpInside" id="zdb-wa-Fr1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -687,14 +681,14 @@
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="width" secondItem="D8Y-7R-YJD" secondAttribute="width" multiplier="0.62" id="N2l-Ai-dLV"/>
                             <constraint firstItem="81f-gD-qmB" firstAttribute="centerX" secondItem="Tz9-Se-d65" secondAttribute="centerX" id="OUg-YT-JFe"/>
                             <constraint firstItem="81f-gD-qmB" firstAttribute="top" secondItem="Tz9-Se-d65" secondAttribute="bottom" constant="44" id="RtM-8n-GMW"/>
-                            <constraint firstItem="tUA-8i-tAr" firstAttribute="centerY" secondItem="D8Y-7R-YJD" secondAttribute="centerY" id="SOM-Ah-MMR"/>
-                            <constraint firstItem="tUA-8i-tAr" firstAttribute="centerX" secondItem="D8Y-7R-YJD" secondAttribute="centerX" id="UWa-4e-6ra"/>
                             <constraint firstItem="vNR-mg-af0" firstAttribute="top" secondItem="81f-gD-qmB" secondAttribute="bottom" constant="12" id="Whb-bu-Knw"/>
                             <constraint firstAttribute="trailing" secondItem="GWx-30-hw4" secondAttribute="trailing" id="XNn-Gc-PQV"/>
+                            <constraint firstItem="vNR-mg-af0" firstAttribute="height" secondItem="81f-gD-qmB" secondAttribute="height" id="YjT-Zb-p1j"/>
                             <constraint firstItem="gd0-AA-yGc" firstAttribute="height" secondItem="D8Y-7R-YJD" secondAttribute="height" multiplier="0.26" id="ZiI-t8-HXH"/>
                             <constraint firstItem="Irw-M9-M3g" firstAttribute="centerY" secondItem="gd0-AA-yGc" secondAttribute="centerY" id="bBl-zp-ayP"/>
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="centerY" secondItem="D8Y-7R-YJD" secondAttribute="centerY" multiplier="1.152" id="ecd-ea-7RB"/>
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="height" secondItem="D8Y-7R-YJD" secondAttribute="height" multiplier="0.215" id="egP-Jp-CLh"/>
+                            <constraint firstItem="vNR-mg-af0" firstAttribute="width" secondItem="81f-gD-qmB" secondAttribute="width" id="gU7-kQ-9oZ"/>
                             <constraint firstItem="81f-gD-qmB" firstAttribute="height" secondItem="GWx-30-hw4" secondAttribute="height" multiplier="0.73" id="hGW-h4-cBm"/>
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="top" secondItem="gd0-AA-yGc" secondAttribute="bottom" constant="46" id="hxH-o1-dKo"/>
                             <constraint firstItem="Irw-M9-M3g" firstAttribute="centerX" secondItem="gd0-AA-yGc" secondAttribute="centerX" id="iC0-2z-NRs"/>
@@ -707,12 +701,9 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="tUA-8i-tAr" id="SEG-Iu-bvH"/>
                         <outlet property="confirmPasswordTextField" destination="Swk-ob-MnV" id="Kdg-q5-UIx"/>
                         <outlet property="emailTextField" destination="fkq-JS-Kxw" id="EMS-BP-llO"/>
-                        <outlet property="facebookButton" destination="vNR-mg-af0" id="Ra4-Kf-nLc"/>
                         <outlet property="passwordTextField" destination="6fF-4f-G29" id="Axs-Z9-jvq"/>
-                        <outlet property="signUpButton" destination="81f-gD-qmB" id="YUZ-ND-J5z"/>
                         <outlet property="userProfileImageView" destination="gd0-AA-yGc" id="Djf-mC-jZ8"/>
                         <outlet property="usernameTextField" destination="dkV-6G-Z2j" id="G88-R8-zWi"/>
                     </connections>
@@ -720,7 +711,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fss-Lj-oqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2Ze-G6-jmr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-813.5" y="-2482.5"/>
+            <point key="canvasLocation" x="-928.5" y="-2483.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vej-NY-WUf">
@@ -760,8 +751,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRH-wo-TIR" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="206"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Dm-ok-mIm">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Dm-ok-mIm" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
                                         <rect key="frame" x="142" y="56" width="91" height="91"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6Dm-ok-mIm" secondAttribute="height" multiplier="1:1" id="bE2-Yl-WH1"/>
                                         </constraints>
@@ -819,7 +811,7 @@
                                 <color key="textColor" red="0.36078432202339172" green="0.36078432202339172" blue="0.36078432202339172" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h45-7a-nGV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h45-7a-nGV" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
                                 <rect key="frame" x="94" y="522" width="187" height="48"/>
                                 <color key="backgroundColor" red="0.43529411764705883" green="0.25098039215686274" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -871,7 +863,6 @@
                     <connections>
                         <outlet property="addProfileImageButton" destination="QQK-yC-e4y" id="Hkb-Lu-znQ"/>
                         <outlet property="phoneNumberTextField" destination="hiW-NB-07S" id="S1N-p1-Xk4"/>
-                        <outlet property="signOutButton" destination="h45-7a-nGV" id="xXu-os-jZx"/>
                         <outlet property="userProfileImageView" destination="6Dm-ok-mIm" id="TXV-sX-ARb"/>
                         <outlet property="usernameTextField" destination="STb-ek-YKg" id="vm8-xa-oNQ"/>
                     </connections>
@@ -1026,8 +1017,10 @@
                         <constraints>
                             <constraint firstItem="rg1-yT-dfe" firstAttribute="height" secondItem="oRm-l7-fhG" secondAttribute="height" multiplier="0.272" id="5ta-3l-Urw"/>
                             <constraint firstAttribute="trailing" secondItem="rg1-yT-dfe" secondAttribute="trailing" id="asA-29-S1K"/>
+                            <constraint firstItem="rg1-yT-dfe" firstAttribute="centerY" secondItem="oRm-l7-fhG" secondAttribute="centerY" multiplier="0.71" id="dDL-Ev-D48"/>
+                            <constraint firstItem="rg1-yT-dfe" firstAttribute="leading" secondItem="oRm-l7-fhG" secondAttribute="leading" id="dGu-he-tJt"/>
                             <constraint firstItem="rg1-yT-dfe" firstAttribute="leading" secondItem="oRm-l7-fhG" secondAttribute="leading" id="gTz-On-J6b"/>
-                            <constraint firstItem="rg1-yT-dfe" firstAttribute="centerY" secondItem="oRm-l7-fhG" secondAttribute="centerY" multiplier="0.71" id="mM3-pc-F4l"/>
+                            <constraint firstAttribute="trailing" secondItem="rg1-yT-dfe" secondAttribute="trailing" id="oRj-nJ-GQa"/>
                             <constraint firstItem="rg1-yT-dfe" firstAttribute="width" secondItem="oRm-l7-fhG" secondAttribute="width" id="scG-Di-keU"/>
                         </constraints>
                     </view>
@@ -1173,8 +1166,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U8V-ij-U5p">
-                                                    <rect key="frame" x="163" y="12" width="49" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Drinking Loo" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U8V-ij-U5p">
+                                                    <rect key="frame" x="111" y="12" width="153" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -1606,8 +1599,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ovy-Gk-Wh0"/>
-        <segue reference="u5L-qT-vQG"/>
-        <segue reference="Rjy-8t-3el"/>
         <segue reference="mrq-MK-55o"/>
+        <segue reference="u5L-qT-vQG"/>
+        <segue reference="sXw-Bi-aat"/>
     </inferredMetricsTieBreakers>
 </document>

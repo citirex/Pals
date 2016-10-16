@@ -8,20 +8,19 @@
 
 import UIKit
 import Permission
+import SVProgressHUD
 
 class PLEditProfileViewController: PLViewController {
 
-    @IBOutlet weak var userProfileImageView: UIImageView!
+    @IBOutlet weak var userProfileImageView: PLCircularImageView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var addProfileImageButton: UIButton!
-    @IBOutlet weak var signOutButton: UIButton!
-
+    
     private var userData: PLUserData!
+    private var isEditing = false { didSet { updateUI() }}
     private lazy var tempProfile: PLEditableUser! = { return PLEditableUser() }()
-    private var isEditing = false {
-        didSet { updateUI() }
-    }
+    
     
     
     deinit {
@@ -42,15 +41,7 @@ class PLEditProfileViewController: PLViewController {
         navigationController?.navigationBar.style = .EditProfileStyle
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        userProfileImageView.borderColor = .whiteColor()
-        userProfileImageView.layer.borderWidth = 1.0
-        userProfileImageView.rounded = true
-        signOutButton.rounded = true
-    }
-    
+
     
     // MARK: - Actions
     
@@ -64,8 +55,13 @@ class PLEditProfileViewController: PLViewController {
         let alert = UIAlertController(title: "You're signing out!", message: "Are you sure?", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .Default) { [unowned self] action in
+            SVProgressHUD.show()
             PLFacade.logout({ error in
-                guard error == nil else { return PLShowAlert("Error", message: String(error!.localizedDescription)) }
+                SVProgressHUD.dismiss()
+                
+                sleep(1)
+                
+                guard error == nil else { return PLShowErrorAlert(error: error!) }
                 self.logOut()
             })
         })
@@ -90,18 +86,16 @@ class PLEditProfileViewController: PLViewController {
     // MARK: - Private Methods
     
     private func setupUserData() {
-        userData = PLFacade.profile?.userData
+        userData                  = PLFacade.profile?.userData
         usernameTextField.text    = userData!.name
         phoneNumberTextField.text = userData!.email
-        userProfileImageView.setImageWithURL(userData!.picture, placeholderImage: UIImage(named: "no_image_available"))
+        userProfileImageView.setImageWithURL(userData!.picture, placeholderImage: UIImage(named: "profile_placeholder"))
     }
 
     private func logOut() {
         let loginViewController = UIStoryboard.loginViewController()!
-        startActivityIndicator(.WhiteLarge, color: .grayColor())
         presentViewController(loginViewController, animated: true) {
             self.navigationController!.viewControllers.removeAll()
-            self.stopActivityIndicator()
         }
     }
     
@@ -120,18 +114,13 @@ class PLEditProfileViewController: PLViewController {
 //        }
         
         if tempProfile.isChanged == true {
-            spinner.center = view.center
-            spinner.startAnimating()
-            spinner.activityIndicatorViewStyle = .Gray
+            SVProgressHUD.show()
             PLFacade.updateProfile(tempProfile) {[unowned self] (error) in
-                if error == nil {
-                    self.tempProfile.clean()
-                    self.setupUserData()
-                    NSNotificationCenter.defaultCenter().postNotificationName(kProfileInfoChanged, object: nil)
-                } else {
-                    PLShowErrorAlert(error: error!)
-                }
-                self.spinner.stopAnimating()
+                SVProgressHUD.dismiss()
+                guard error == nil else { return PLShowErrorAlert(error: error!) }
+                self.tempProfile.clean()
+                self.setupUserData()
+                NSNotificationCenter.defaultCenter().postNotificationName(kProfileInfoChanged, object: nil)
             }
         }
     }
@@ -151,8 +140,8 @@ class PLEditProfileViewController: PLViewController {
         guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
         
         let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate   = self
+        imagePicker.sourceType             = sourceType
+        imagePicker.delegate               = self
         imagePicker.modalPresentationStyle = sourceType == .Camera ? .FullScreen : .OverCurrentContext
         
         if sourceType == .Camera {
@@ -198,7 +187,7 @@ extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         userProfileImageView.image = imagePicked
-        tempProfile.picture = imagePicked
+        tempProfile.picture        = imagePicked
         dismiss(true)
     }
     

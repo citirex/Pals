@@ -95,13 +95,21 @@
                         <constraint firstAttribute="trailing" secondItem="kSQ-sM-tVy" secondAttribute="trailing" constant="25" id="wMV-Bf-lHt"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AW4-sR-nJa" userLabel="Order Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AW4-sR-nJa" userLabel="Order Button" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
                     <rect key="frame" x="282" y="72" width="64" height="64"/>
                     <color key="backgroundColor" red="0.21960784310000001" green="0.80784313730000001" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="AW4-sR-nJa" secondAttribute="height" multiplier="1:1" id="2Hw-5i-q3n"/>
                     </constraints>
                     <state key="normal" image="shopping_cart"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
             <constraints>
@@ -125,7 +133,6 @@
                 <outlet property="phoneNumberLabel" destination="vM2-oA-2h6" id="6GT-MJ-PvG"/>
                 <outlet property="placeAddressLabel" destination="bPY-sN-6nv" id="PU1-d4-hb7"/>
                 <outlet property="placeNameLabel" destination="0vA-Ca-YpO" id="gl1-2r-NP7"/>
-                <outlet property="topOfView" destination="1di-n4-vqL" id="afs-UY-Iqo"/>
             </connections>
             <point key="canvasLocation" x="-357" y="-15"/>
         </collectionReusableView>

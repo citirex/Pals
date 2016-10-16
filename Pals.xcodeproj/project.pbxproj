@@ -146,6 +146,8 @@
 		E85083111DACE7770077A81C /* PLOrderHistorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85083101DACE7760077A81C /* PLOrderHistorySectionHeader.xib */; };
 		E85083131DACEC5B0077A81C /* PLEmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */; };
 		E85083151DAD1AEA0077A81C /* PLAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85083141DAD1AEA0077A81C /* PLAttributedString.swift */; };
+		E86E55891DB2ADDA00CE1698 /* PLCircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */; };
+		E86E558B1DB3741D00CE1698 /* PLRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */; };
 		E883A8421DAA6269006DB9CF /* PLPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883A8401DAA6269006DB9CF /* PLPlaceCell.swift */; };
 		E883A8431DAA6269006DB9CF /* PLPlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E883A8411DAA6269006DB9CF /* PLPlaceCell.xib */; };
 		E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */; };
@@ -157,7 +159,6 @@
 		E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */; };
 		E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */; };
 		E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86821D913A7B0079855C /* PLNotificationCell.swift */; };
-		E8CD61F11D998CE80022D51F /* PLFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CD61F01D998CE80022D51F /* PLFont.swift */; };
 		E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B581D881D7C008782E5 /* PLView.swift */; };
 		E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */; };
 		E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7D1D8832E8008782E5 /* TGLExposedLayout.m */; };
@@ -322,6 +323,8 @@
 		E85083101DACE7760077A81C /* PLOrderHistorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistorySectionHeader.xib; path = "Order History/PLOrderHistorySectionHeader.xib"; sourceTree = "<group>"; };
 		E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEmptyBackgroundView.swift; sourceTree = "<group>"; };
 		E85083141DAD1AEA0077A81C /* PLAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAttributedString.swift; sourceTree = "<group>"; };
+		E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCircularImageView.swift; sourceTree = "<group>"; };
+		E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLRoundedButton.swift; sourceTree = "<group>"; };
 		E883A8401DAA6269006DB9CF /* PLPlaceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCell.swift; sourceTree = "<group>"; };
 		E883A8411DAA6269006DB9CF /* PLPlaceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceCell.xib; sourceTree = "<group>"; };
 		E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLCardInfoViewController.swift; path = "Card Info/PLCardInfoViewController.swift"; sourceTree = "<group>"; };
@@ -333,7 +336,6 @@
 		E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsViewController.swift; sourceTree = "<group>"; };
 		E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationsViewController.swift; path = Notifications/PLNotificationsViewController.swift; sourceTree = "<group>"; };
 		E8BE86821D913A7B0079855C /* PLNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationCell.swift; path = Notifications/PLNotificationCell.swift; sourceTree = "<group>"; };
-		E8CD61F01D998CE80022D51F /* PLFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFont.swift; sourceTree = "<group>"; };
 		E8DA8B581D881D7C008782E5 /* PLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
 		E8DA8B7A1D8832E8008782E5 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
 		E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
@@ -445,7 +447,6 @@
 				E8A658691D9D0B6900D8257F /* PLDate.swift */,
 				D46D2B861D87583B0058060E /* PLColor.swift */,
 				D46D2B881D875BB10058060E /* PLImage.swift */,
-				E8CD61F01D998CE80022D51F /* PLFont.swift */,
 				24DDA9371D9AABE600FCDBCA /* PLActivity.swift */,
 				D4FECA241D9D5EB800B3CA82 /* PLLog.swift */,
 				E85083141DAD1AEA0077A81C /* PLAttributedString.swift */,
@@ -515,6 +516,8 @@
 				D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */,
 				E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */,
 				D46E81621D91370100A781C7 /* PLSearchController.swift */,
+				E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */,
+				E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */,
 				E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */,
 				E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */,
 			);
@@ -1175,7 +1178,9 @@
 				E8B53E4D1D941AFA00037A81 /* PLOrderHistorySectionHeader.swift in Sources */,
 				2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */,
 				2480F8DD1D813E730095995F /* PLProfileManager.swift in Sources */,
+				E86E558B1DB3741D00CE1698 /* PLRoundedButton.swift in Sources */,
 				049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */,
+				E86E55891DB2ADDA00CE1698 /* PLCircularImageView.swift in Sources */,
 				E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */,
 				24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
@@ -1245,7 +1250,6 @@
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
 				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,
 				049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */,
-				E8CD61F11D998CE80022D51F /* PLFont.swift in Sources */,
 				E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */,
 				E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */,
 				E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */,
@@ -1365,7 +1369,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pals/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1382,7 +1386,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Pals/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
 				PRODUCT_NAME = "$(TARGET_NAME)";

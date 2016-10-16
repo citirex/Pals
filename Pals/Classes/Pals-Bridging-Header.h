@@ -18,5 +18,6 @@
 #import "QTCollectionViewParallaxLayout.h"
 #import <CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #endif /* Pals_Bridging_Header_h */

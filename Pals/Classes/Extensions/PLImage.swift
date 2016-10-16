@@ -6,7 +6,18 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+
 extension UIImage {
+    
+    func imageResize(sizeChange: CGSize) -> UIImage {
+        let hasAlpha = true
+        let scale: CGFloat = 0.0
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
+    
     func imageByScalingAndCroppingForSize(targetSize: CGSize) -> UIImage? {
         let sourceImage = self
         let newImage: UIImage?

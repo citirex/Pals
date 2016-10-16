@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class PLOrderHistorySectionHeader: UITableViewHeaderFooterView {
 
-    static let nibName = "PLOrderHistorySectionHeader"
+    static let nibName         = "PLOrderHistorySectionHeader"
     static let reuseIdentifier = "SectionHeader"
     
     @IBOutlet weak var dateLabel: UILabel! 
@@ -21,7 +21,7 @@ class PLOrderHistorySectionHeader: UITableViewHeaderFooterView {
             if let date = orderCellData.date {
                 dateLabel.text = date.since
             } else {
-                dateLabel.text = ""
+                dateLabel.text = String()
             }
         }
     }

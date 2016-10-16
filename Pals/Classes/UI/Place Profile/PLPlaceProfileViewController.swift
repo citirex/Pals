@@ -52,6 +52,7 @@ class PLPlaceProfileViewController: PLViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         reloadLayout()
         setupCollectionView()
         setupBackBarButtonItem()

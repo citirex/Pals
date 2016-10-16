@@ -10,7 +10,7 @@ import UIKit
 
 class PLPlaceProfileHeader: UICollectionViewCell {
     
-    static let nibName = "PLPlaceProfileHeader"
+    static let nibName    = "PLPlaceProfileHeader"
     static let identifier = "Header"
 
     @IBOutlet weak var headerImageView: UIImageView!

@@ -19,7 +19,7 @@ class PLNotificationCell: UITableViewCell {
     
 
     @IBAction func switchValueChanged(sender: UISwitch) {
-        notificationState!(sender: self, enabled: sender.on ? true : false)
+//        notificationState!(sender: self, enabled: sender.on ? true : false)
     }
 
 }

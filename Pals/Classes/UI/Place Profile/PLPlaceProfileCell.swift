@@ -10,19 +10,19 @@ import UIKit
 
 class PLPlaceProfileCell: UICollectionViewCell {
     
-    static let nibName = "PLPlaceProfileCell"
+    static let nibName    = "PLPlaceProfileCell"
     static let identifier = "EventCell"
     
-    @IBOutlet private var eventImageView: UIImageView!
-    @IBOutlet private var eventDateLabel: UILabel!
-    @IBOutlet private var eventDescriptionLabel: UILabel!
+    @IBOutlet private var eventImageView: PLCircularImageView!
+    @IBOutlet private var eventDateLabel:             UILabel!
+    @IBOutlet private var eventDescriptionLabel:      UILabel!
     
     private let offset: CGFloat = 70
     
     
-    func setupWithEventInfo(event: PLEventCellData,andDateFormatter dateFormatter: NSDateFormatter) {
-        eventImageView.setImageWithURL(event.picture, placeholderImage: UIImage(named: "no_place"))
-        eventDateLabel.text =  dateFormatter.stringFromDate(event.date)
+    func setupWithEventInfo(event: PLEventCellData, andDateFormatter dateFormatter: NSDateFormatter) {
+        eventImageView.setImageWithURL(event.picture, placeholderImage: UIImage(named: "places_placeholder"))
+        eventDateLabel.text        =  dateFormatter.stringFromDate(event.date)
         eventDescriptionLabel.text = event.info
     }
     
@@ -42,7 +42,6 @@ class PLPlaceProfileCell: UICollectionViewCell {
         super.layoutSubviews()
         
         round([.TopLeft, .TopRight], radius: 15)
-        eventImageView.rounded = true
     }
     
 }
