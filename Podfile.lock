@@ -29,7 +29,6 @@ PODS:
   - IQKeyboardManager (4.0.6)
   - Permission (1.5)
   - PureLayout (3.0.2)
-  - SVProgressHUD (2.0.3)
   - SwiftQRCode (2.0.2)
 
 DEPENDENCIES:
@@ -41,7 +40,6 @@ DEPENDENCIES:
   - IQKeyboardManager
   - Permission
   - PureLayout
-  - SVProgressHUD
   - SwiftQRCode
 
 SPEC CHECKSUMS:
@@ -54,9 +52,8 @@ SPEC CHECKSUMS:
   IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
   Permission: 2d9647f8b994a5faf7e1c5a40d4328fde158c2f2
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
-PODFILE CHECKSUM: 0305d16e12402e01f5781d0be27532aae5dea9ca
+PODFILE CHECKSUM: d64b590e1faed70aa588b43f01190b637684f13b
 
 COCOAPODS: 1.0.1

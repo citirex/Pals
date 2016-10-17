@@ -12,8 +12,9 @@ class PLFriendProfileViewController: PLViewController {
     @IBOutlet weak var friendProfileImageView: PLCircularImageView!
     @IBOutlet var popUpMenuView: UIView!
     
+    private var sectionOrder: PLCollectionSectionType!
     var friend: PLUser!
-    var sectionOrder: PLCollectionSectionType!
+    
     
     
     override func viewDidLoad() {

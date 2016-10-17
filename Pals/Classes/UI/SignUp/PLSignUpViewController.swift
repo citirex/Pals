@@ -7,7 +7,6 @@
 //
 
 import Permission
-import SVProgressHUD
 
 class PLSignUpViewController: PLViewController {
     
@@ -49,9 +48,10 @@ class PLSignUpViewController: PLViewController {
     
     //FB
     @IBAction func facebookLoginButtonPressed(sender: UIButton) {
-        SVProgressHUD.show()
+        startActivityIndicator(.WhiteLarge)
         PLFacade.instance.profileManager.loginWithFacebook { [unowned self] result, error in
-            SVProgressHUD.dismiss()
+            self.stopActivityIndicator()
+            
             if error != nil {
                 PLShowAlert("Facebook signup error!", message: (error?.localizedDescription)!)
             } else if result.isCancelled {
@@ -88,9 +88,9 @@ class PLSignUpViewController: PLViewController {
     }
     
     private func userSignUp(signUpData: PLSignUpData) {
-        SVProgressHUD.show()
+        startActivityIndicator(.WhiteLarge)
         PLFacade.signUp(signUpData) { [unowned self] error in
-            SVProgressHUD.dismiss()
+            self.stopActivityIndicator()
             
             guard error == nil else {
                 print("Error: \(error)")
@@ -155,5 +155,19 @@ extension PLSignUpViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.keyboardDistanceFromTextField = 40.0
     }
-
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        jumpToNext(textField, withTag: nextTag)
+        return false
+    }
+    
+    func jumpToNext(textField: UITextField, withTag tag: Int) {
+        if let nextField = textField.superview?.viewWithTag(tag) {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+    }
+    
 }

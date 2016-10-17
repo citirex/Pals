@@ -65,7 +65,9 @@ class PLPlaceCell: UITableViewCell {
             if urlString != self.currentUrl {
                 return
             }
-            self.blurView.setImageWithURLRequest(request, placeholderImage: nil, success: {[unowned self] (request, response, image) in
+            self.blurView.setImageWithURLRequest(request,
+                                                 placeholderImage: UIImage(named: "place_placeholder"),
+                                                 success: {[unowned self] (request, response, image) in
                 if urlString != self.currentUrl {
                     return
                 }

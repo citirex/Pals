@@ -7,7 +7,6 @@
 //
 
 import DZNEmptyDataSet
-import SVProgressHUD
 
 class PLPlacesViewController: PLViewController {
     
@@ -47,12 +46,12 @@ class PLPlacesViewController: PLViewController {
     
     private func loadPlaces() {
         isLoading = true
-        SVProgressHUD.show()
+        startActivityIndicator(.WhiteLarge)
         tableView.reloadEmptyDataSet()
         
         places.loadPage { [unowned self] indexPaths, error in
             self.isLoading = false
-            SVProgressHUD.dismiss()
+            self.stopActivityIndicator()
             
             guard error == nil else {
                 self.tableView.reloadEmptyDataSet()
@@ -161,10 +160,10 @@ extension PLPlacesViewController: UISearchResultsUpdating {
         if searchPlace.isEmpty {
             places.searching = false
         } else {
-            SVProgressHUD.show()
+            startActivityIndicator(.WhiteLarge)
             places.filter(searchPlace, completion: { [unowned self] in
                 self.resultsController.tableView.reloadData()
-                SVProgressHUD.dismiss()
+                self.stopActivityIndicator()
                 self.resultsController.tableView.reloadData()
             })
         }

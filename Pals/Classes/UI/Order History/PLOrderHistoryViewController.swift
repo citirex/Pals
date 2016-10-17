@@ -7,7 +7,6 @@
 //
 
 import DZNEmptyDataSet
-import SVProgressHUD
 
 class PLOrderHistoryViewController: PLViewController {
 
@@ -33,12 +32,12 @@ class PLOrderHistoryViewController: PLViewController {
     
     private func loadOrders() {
         isLoading = true
-        SVProgressHUD.show()
+        startActivityIndicator(.WhiteLarge, color: .grayColor())
         tableView.reloadEmptyDataSet()
         
         orders.load {[unowned self] (page, error) in
             self.isLoading = false
-            SVProgressHUD.dismiss()
+            self.stopActivityIndicator()
             
             guard error == nil else {
                 self.tableView.reloadEmptyDataSet()

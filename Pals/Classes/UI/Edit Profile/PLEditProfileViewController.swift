@@ -8,7 +8,6 @@
 
 import UIKit
 import Permission
-import SVProgressHUD
 
 class PLEditProfileViewController: PLViewController {
 
@@ -55,9 +54,9 @@ class PLEditProfileViewController: PLViewController {
         let alert = UIAlertController(title: "You're signing out!", message: "Are you sure?", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .Default) { [unowned self] action in
-            SVProgressHUD.show()
+            self.startActivityIndicator(.WhiteLarge, color: .grayColor())
             PLFacade.logout({ error in
-                SVProgressHUD.dismiss()
+                self.stopActivityIndicator()
                 
                 sleep(1)
                 
@@ -114,9 +113,9 @@ class PLEditProfileViewController: PLViewController {
 //        }
         
         if tempProfile.isChanged == true {
-            SVProgressHUD.show()
+            startActivityIndicator(.WhiteLarge, color: .grayColor())
             PLFacade.updateProfile(tempProfile) {[unowned self] (error) in
-                SVProgressHUD.dismiss()
+                self.stopActivityIndicator()
                 guard error == nil else { return PLShowErrorAlert(error: error!) }
                 self.tempProfile.clean()
                 self.setupUserData()
