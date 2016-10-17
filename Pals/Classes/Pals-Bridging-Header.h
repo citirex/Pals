@@ -16,7 +16,6 @@
 #import "View+LayoutConstraints.h"
 
 #import "QTCollectionViewParallaxLayout.h"
-#import <CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 

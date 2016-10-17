@@ -6,7 +6,6 @@ use_frameworks!
 target 'Pals' do
 
 pod 'AFNetworking'
-pod 'CSStickyHeaderFlowLayout'
 pod 'IQKeyboardManager'
 pod 'SwiftQRCode'
 pod 'GPUImage'

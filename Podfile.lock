@@ -20,7 +20,6 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - CSStickyHeaderFlowLayout (0.2.11)
   - DZNEmptyDataSet (1.8.1)
   - FBSDKCoreKit (4.16.0):
     - Bolts (~> 1.7)
@@ -35,7 +34,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - CSStickyHeaderFlowLayout
   - DZNEmptyDataSet
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -49,7 +47,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  CSStickyHeaderFlowLayout: e9bcb1762413f49d7d09e5bd0ae5efd1100116b7
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FBSDKCoreKit: 7a6baaed4a2b2a244ba253346713bdbc74df135b
   FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
@@ -60,6 +57,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
-PODFILE CHECKSUM: 0ddf1ba987be9d8c283f548cb305b092f4fd4dc9
+PODFILE CHECKSUM: 0305d16e12402e01f5781d0be27532aae5dea9ca
 
 COCOAPODS: 1.0.1

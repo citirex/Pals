@@ -6,17 +6,14 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import CSStickyHeaderFlowLayout
 import EventKit
 
+private let kStillHeaderIdentifier = "stillHeader"
+private let kStickyHeaderIdentifier = "stickyHeader"
 
 class PLPlaceProfileViewController: PLViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-
-    private var layout: CSStickyHeaderFlowLayout? {
-        return collectionView?.collectionViewLayout as? CSStickyHeaderFlowLayout
-    }
     
     private let eventsDatasource = PLEventsDatasource()
     var place: PLPlace! {
@@ -52,8 +49,6 @@ class PLPlaceProfileViewController: PLViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        reloadLayout()
         setupCollectionView()
         setupBackBarButtonItem()
     }
@@ -78,13 +73,18 @@ class PLPlaceProfileViewController: PLViewController {
     private func load() {
         spinner.startAnimating()
         spinner.center = view.center
+        collectionView.bounces = false
         eventsDatasource.loadPage {[unowned self] (indices, error) in
             if error == nil {
                 if indices.count > 0 {
                     self.noEventsView.hidden = true
+                    let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
                     self.collectionView?.performBatchUpdates({
-                        self.collectionView?.insertItemsAtIndexPaths(indices)
-                        }, completion: nil)
+                        self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
+                        }, completion: { (complete) in
+                            self.collectionView.bounces = true
+                    })
+                    
                 } else if self.eventsDatasource.pagesLoaded == 0 {
                     self.noEventsView.hidden = false
                 }
@@ -92,6 +92,7 @@ class PLPlaceProfileViewController: PLViewController {
             } else {
                 PLShowErrorAlert(error: error!)
             }
+            self.collectionView.bounces = true
             self.spinner.stopAnimating()
         }
     }
@@ -99,29 +100,13 @@ class PLPlaceProfileViewController: PLViewController {
     // MARK: - Configure collectionView
     
     private func setupCollectionView() {
-        // Setup Cell
-        let nib = UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil)
-        collectionView?.registerNib(nib, forCellWithReuseIdentifier: PLPlaceProfileCell.identifier)
+        collectionView.backgroundColor = .whiteColor()
         
-        // Setup Header
-        let headerNib = UINib(nibName: PLPlaceProfileHeader.nibName, bundle: nil)
-        collectionView!.registerNib(headerNib,
-                                    forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader,
-                                    withReuseIdentifier: PLPlaceProfileHeader.identifier)
+        collectionView.registerNib(UINib(nibName: PLPlaceProfileHeader.nibName, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier)
+        collectionView.registerNib(UINib(nibName: PLPlaceProfileSectionHeader.nibName, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier)
         
-        // Setup Section Header
-        let sectionHeaderNib = UINib(nibName: PLPlaceProfileSectionHeader.nibName, bundle: nil)
-        collectionView!.registerNib(sectionHeaderNib,
-                                    forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                                    withReuseIdentifier: PLPlaceProfileSectionHeader.identifier)
+        collectionView.registerNib(UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil), forCellWithReuseIdentifier: PLPlaceProfileCell.identifier)
     }
-    
-    private func reloadLayout() {
-        layout!.parallaxHeaderReferenceSize = CGSizeMake(view.frame.size.width, 278.0)
-        layout!.parallaxHeaderAlwaysOnTop = true
-        layout!.disableStickyHeaders = false
-    }
-    
     
     // MARK: - Navigation
     
@@ -141,9 +126,13 @@ class PLPlaceProfileViewController: PLViewController {
 // MARK: - UICollectionViewDataSource
 
 extension PLPlaceProfileViewController: UICollectionViewDataSource {
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 2
+    }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return eventsDatasource.count
+        return section == 0 ? 0 : eventsDatasource.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -164,13 +153,14 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
 
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
-        switch kind {
-        case CSStickyHeaderParallaxHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileHeader
-            headerView.headerImageView.setImageWithURL(place.picture, placeholderImage: UIImage(named: "no_place"))
+
+        if indexPath.section == 0 {
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileHeader
+            headerView.headerImageView.setImageWithURL(place.picture)
             return headerView
-        case UICollectionElementKindSectionHeader:
-            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: PLPlaceProfileSectionHeader.identifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
+        } else {
+            
+            let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
             sectionHeader.placeNameLabel.text    = place.name
             sectionHeader.musicGenresLabel.text  = place.musicGengres
             sectionHeader.closingTimeLabel.text  = place.closeTime
@@ -180,9 +170,6 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
                 self.performSegueWithIdentifier(SegueIdentifier.OrderSegue, sender: sender)
             }
             return sectionHeader
-        default:
-            assert(false, "Unsupported supplementary view kind")
-            return UICollectionReusableView()
         }
     }
     
