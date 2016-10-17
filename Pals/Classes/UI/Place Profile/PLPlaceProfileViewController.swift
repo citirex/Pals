@@ -11,6 +11,10 @@ import EventKit
 private let kStillHeaderIdentifier = "stillHeader"
 private let kStickyHeaderIdentifier = "stickyHeader"
 
+private let kCollectionHeaderHeight: CGFloat = 188
+private let kCollectionCellHeight: CGFloat = 115
+
+
 class PLPlaceProfileViewController: PLViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -33,19 +37,7 @@ class PLPlaceProfileViewController: PLViewController {
        return dateFormat
     }()
     
-    lazy var noEventsView: PLEmptyBackgroundView = {
-        let emptyView = PLEmptyBackgroundView(topText: "No events yet", bottomText: nil)
-        emptyView.setTopTextColor(.whiteColor())
-        self.collectionView.addSubview(emptyView)
-        emptyView.applyShadowWithColor(.blackColor(), andRadius: 3)
-        emptyView.autoPinEdgeToSuperviewEdge(.Top, withInset: 120)
-        emptyView.autoAlignAxisToSuperviewAxis(.Vertical)
-        emptyView.hidden = true
-        
-        return emptyView
-    }()
-  
-
+    var noEventsView = PLEmptyBackgroundView(topText: "No events yet", bottomText: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +98,19 @@ class PLPlaceProfileViewController: PLViewController {
         collectionView.registerNib(UINib(nibName: PLPlaceProfileSectionHeader.nibName, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier)
         
         collectionView.registerNib(UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil), forCellWithReuseIdentifier: PLPlaceProfileCell.identifier)
+        
+        noEventsView.setTopTextColor(UIColor(white: 77))
+        self.collectionView.addSubview(noEventsView)
+        let tabBarHeight = self.tabBarController?.tabBar.frame.height ?? 44
+        var bottomOffset = ((collectionView.bounds.size.height - kCollectionHeaderHeight * 2 - tabBarHeight) / 2 - 26) + kCollectionHeaderHeight * 2
+        
+        if UIDevice().type == .iPhone4 || UIDevice().type == .iPhone4S {
+            bottomOffset -= 50
+        }
+        
+        noEventsView.autoPinEdgeToSuperviewEdge(.Top, withInset: bottomOffset)
+        noEventsView.autoAlignAxisToSuperviewAxis(.Vertical)
+        noEventsView.hidden = true
     }
     
     // MARK: - Navigation
@@ -245,18 +250,16 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
     
 }
 
-
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 188)
+        return CGSizeMake(view.frame.size.width, kCollectionHeaderHeight)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(view.frame.size.width, 115)
+        return CGSizeMake(view.frame.size.width, kCollectionCellHeight)
     }
-    
 }
