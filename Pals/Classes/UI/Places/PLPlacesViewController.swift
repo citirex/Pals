@@ -30,8 +30,9 @@ class PLPlacesViewController: PLViewController {
         configureResultsController()
         configureSearchController()
         
+        tableView.hideSearchBar()
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-
+        
         loadPlaces()
     }
     
@@ -55,6 +56,7 @@ class PLPlacesViewController: PLViewController {
             
             guard error == nil else {
                 self.tableView.reloadEmptyDataSet()
+                self.tableView.tableHeaderView = nil
                 return PLShowErrorAlert(error: error!)
             }
             self.tableView?.beginUpdates()
@@ -104,6 +106,10 @@ class PLPlacesViewController: PLViewController {
         default:
             break
         }
+    }
+    
+    func hideSearchBar() {
+        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
     }
 
 }
@@ -178,19 +184,19 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let string = scrollView === tableView ? "Places list" : "No results found"
-        let attributedString = NSAttributedString(string: string, font: .boldSystemFontOfSize(20), color: .whiteColor())
+        let attributedString = NSAttributedString(string: string, font: .boldSystemFontOfSize(20), color: .lightGrayColor())
         return attributedString
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let string = scrollView === tableView ? "No data" : "No places were found that match '\(searchPlace)'"
-        let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .whiteColor())
+        let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .lightGrayColor())
         return attributedString
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        let named = scrollView === tableView ? "places_placeholder" : "search"
-        return UIImage(named: named)!.imageResize(CGSizeMake(60, 60))
+        let named = scrollView === tableView ? "place_placeholder" : "search"
+        return UIImage(named: named)!.imageResize(CGSizeMake(100, 100))
     }
 
 }
@@ -209,3 +215,5 @@ extension PLPlacesViewController: DZNEmptyDataSetDelegate {
     }
     
 }
+
+

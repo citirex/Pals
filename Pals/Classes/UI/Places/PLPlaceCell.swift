@@ -20,9 +20,7 @@ class PLPlaceCell: UITableViewCell {
     @IBOutlet weak var musicGenresLabel:  UILabel!
     @IBOutlet weak var distanceLabel:     UILabel!
     
-    
     var currentUrl = ""
-    
     var placeCellData: PLPlaceCellData! {
         didSet {
             setBlurredImage(placeCellData.picture)
@@ -33,6 +31,8 @@ class PLPlaceCell: UITableViewCell {
             //distanceLabel.text     = placeCellData!.location.distance
         }
     }
+    
+    
     
     override func awakeFromNib() {
         applyShadow(placeNameLabel)
@@ -62,24 +62,25 @@ class PLPlaceCell: UITableViewCell {
         currentUrl = urlString
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            if urlString != self.currentUrl {
-                return
-            }
+            if urlString != self.currentUrl { return }
+            
+            print("request: \(request)")
+            
             self.blurView.setImageWithURLRequest(request,
-                                                 placeholderImage: UIImage(named: "place_placeholder"),
-                                                 success: {[unowned self] (request, response, image) in
-                if urlString != self.currentUrl {
-                    return
-                }
+                                                 placeholderImage: UIImage(named: "place_placeholder")?.imageByScalingAndCroppingForSize(CGSizeMake(80, 80)),
+                                                 success: { [unowned self] request, response, image in
+                                                    
+                if urlString != self.currentUrl { return }
+                                                    
                 dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-                    self.blurView.addBlur(image, completion: { (image) -> Bool in
-                        if urlString != self.currentUrl {
-                            return false
-                        }
+                    
+                    self.blurView.addBlur(image, completion: { image in
+                        
+                        if urlString != self.currentUrl { return false }
                         return true
                     })
-                    })
-            }) {[unowned self] (request, response, error) in
+                })
+            }) { [unowned self] request, response, error in
                 dispatch_async(dispatch_get_main_queue()) {
                     self.blurView.removeBlur()
                 }

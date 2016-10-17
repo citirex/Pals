@@ -167,7 +167,7 @@ extension PLOrderHistoryViewController: DZNEmptyDataSetSource {
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "orders_placeholder")!.imageResize(CGSizeMake(60, 60))
+        return UIImage(named: "orders_placeholder")!.imageResize(CGSizeMake(100, 100))
     }
     
 }
