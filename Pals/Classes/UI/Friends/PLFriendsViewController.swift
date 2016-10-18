@@ -13,8 +13,10 @@ class PLFriendsViewController: PLFriendBaseViewController {
 	var searchText: String!
 	
     override func loadData() {
+		isLoading = true
         self.spinner.startAnimating()
         datasource.loadPage {[unowned self] (indices, error) in
+			self.isLoading = false
             self.didLoadPage(indices, error: error)
             self.spinner.stopAnimating()
         }
@@ -23,24 +25,8 @@ class PLFriendsViewController: PLFriendBaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         searchController.searchResultsUpdater  = self
-		searchController.searchBar.delegate = self
         resultsController.tableView.dataSource = self
 		tableView.dataSource = self
-		
-		view.backgroundColor = .whiteColor()
-	}
-	
-	override func viewDidDisappear(animated: Bool) {
-		super.viewDidDisappear(animated)
-		navigationController?.navigationBar.shadowImage = UIImage()
-	}
-	
-	func scrollViewDidScroll(scrollView: UIScrollView) {
-		if scrollView.contentOffset.y < navigationController!.navigationBar.frame.height  {
-			navigationController?.navigationBar.shadowImage = UIImage()
-		} else {
-			navigationController?.navigationBar.shadowImage = nil
-		}
 	}
 	
     

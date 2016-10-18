@@ -32,15 +32,6 @@ extension UIColor {
     
    // ****************** Old colors ***********************************
     
-
-	/// Friends  navigation bar
-	
-	class func miracleColor() -> UIColor {
-		return UIColor(r: 251.0, g: 251.0, b: 251.0)
-	}
-    
-    // *****************************************************
-    
     
     
     //******************* Checked colors *******************

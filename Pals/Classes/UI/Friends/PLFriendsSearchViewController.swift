@@ -9,7 +9,6 @@
 
 class PLFriendsSearchViewController: PLFriendBaseViewController{
 	
-	var seekerText: String?
     var datasource = PLDatasourceHelper.createFriendsInviteDatasource()
 	
 //	var collectionUsers: [PLUser] {
@@ -17,8 +16,10 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 //	}
 	
 	override func loadData() {
+		isLoading = true
 		self.spinner.startAnimating()
 		datasource.loadPage {[unowned self] (indices, error) in
+			self.isLoading = false
 			self.didLoadPage(indices, error: error)
 			self.spinner.stopAnimating()
 		}
@@ -34,18 +35,6 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 	
 	override func viewWillDisappear(animated: Bool) {
 		navigationController?.navigationBar.shadowImage = UIImage()
-	}
-	
-	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-		seekerText = searchBar.text
-	}
-	
-	func scrollViewDidScroll(scrollView: UIScrollView) {
-		if scrollView.contentOffset.y < -20 {
-			navigationController?.navigationBar.shadowImage = UIImage()
-		} else {
-			navigationController?.navigationBar.shadowImage = nil
-		}
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
