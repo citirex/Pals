@@ -21,6 +21,11 @@ class PLFriendsViewController: PLFriendBaseViewController {
             self.spinner.stopAnimating()
         }
     }
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		datasource.cancel()
+	}
     
 	override func viewDidLoad() {
 		super.viewDidLoad()

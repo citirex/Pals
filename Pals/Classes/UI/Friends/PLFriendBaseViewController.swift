@@ -64,10 +64,14 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
-		if scrollView.contentOffset.y < navigationController!.navigationBar.frame.height  {
-			navigationController?.navigationBar.shadowImage = UIImage()
+		if navigationController == nil {
+			sleep(UInt32(0.01))
 		} else {
+			if scrollView.contentOffset.y < navigationController!.navigationBar.frame.height  {
+			navigationController?.navigationBar.shadowImage = UIImage()
+			} else {
 			navigationController?.navigationBar.shadowImage = nil
+			}
 		}
 	}
 	
@@ -104,6 +108,8 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		
 		edgesForExtendedLayout						= .Top
 		definesPresentationContext					= true
+//		extendedLayoutIncludesOpaqueBars			= true
+//		automaticallyAdjustsScrollViewInsets		= true
 	}
 	
 	private func configureResultsController() {

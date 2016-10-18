@@ -25,6 +25,11 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 		}
 	}
 	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewDidDisappear(animated)
+		datasource.cancel()
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -32,10 +37,6 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
         tableView.dataSource = self
         resultsController.tableView.dataSource = self
     }
-	
-	override func viewWillDisappear(animated: Bool) {
-		navigationController?.navigationBar.shadowImage = UIImage()
-	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 //		sendSearchFriendsRequest()
