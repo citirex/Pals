@@ -42,6 +42,11 @@ class PLPlacesViewController: PLViewController {
         navigationController?.navigationBar.style = .PlacesStyle
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        places.cancel()
+    }
     
     // MARK: - Private Methods
     
@@ -168,9 +173,9 @@ extension PLPlacesViewController: UISearchResultsUpdating {
         } else {
             startActivityIndicator(.WhiteLarge)
             places.filter(searchPlace, completion: { [unowned self] in
-                self.resultsController.tableView.reloadData()
                 self.stopActivityIndicator()
                 self.resultsController.tableView.reloadData()
+                self.resultsController.tableView.reloadEmptyDataSet()
             })
         }
     }
