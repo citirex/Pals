@@ -185,8 +185,8 @@ class PLProfileViewController: TGLStackedViewController {
             collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.myDrinksButton.addTarget(self, action: #selector(myDrinksButtonPressed(_:)), forControlEvents: .TouchUpInside)
             
-            
-            collectionBackgroundView.userPicImageView.setImageWithURLRequest(NSURLRequest(URL: profile.picture),
+            let urlRequest = NSURLRequest(URL: profile.picture, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 60)
+            collectionBackgroundView.userPicImageView.setImageWithURLRequest(urlRequest,
                                                                              placeholderImage: UIImage(named: "avatar_placeholder"),
                                                                              success: { (retuqest, response, image) in
                                                                                 self.collectionBackgroundView.userPicImageView.image = image

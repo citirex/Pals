@@ -21,7 +21,7 @@ class PLPlaceProfileCell: UICollectionViewCell {
     
     
     func setupWithEventInfo(event: PLEventCellData, andDateFormatter dateFormatter: NSDateFormatter) {
-        eventImageView.setImageWithURL(event.picture, placeholderImage: UIImage(named: "places_placeholder"))
+        eventImageView.setImageWithURL(event.picture, placeholderImage: UIImage(named: "location_placeholder"))
         eventDateLabel.text        =  dateFormatter.stringFromDate(event.date)
         eventDescriptionLabel.text = event.info
     }

@@ -48,6 +48,10 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="2d5-Oi-cQU">
                         <rect key="frame" x="343" y="59" width="6" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="6" id="ohP-U3-qlX"/>
+                            <constraint firstAttribute="height" constant="10" id="uTD-6b-r0O"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -70,11 +74,11 @@
                     <constraint firstAttribute="trailing" secondItem="Wir-hk-uYD" secondAttribute="trailing" id="zjX-wM-mn9"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.43529412150382996" green="0.25098040699958801" blue="0.59215688705444336" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.33725491166114807" green="0.24705882370471954" blue="0.41568627953529358" alpha="1" colorSpace="calibratedRGB"/>
             <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="blurView" destination="Wir-hk-uYD" id="Fml-Ew-74x"/>
+                <outlet property="backgroundImageView" destination="Wir-hk-uYD" id="5Nf-Ie-Tp8"/>
                 <outlet property="distanceLabel" destination="7sj-uq-7Aw" id="SpI-8h-roR"/>
                 <outlet property="musicGenresLabel" destination="mkr-bY-8vy" id="Yau-vP-fWQ"/>
                 <outlet property="placeAddressLabel" destination="4ng-d0-Wx2" id="OJX-aP-XuS"/>

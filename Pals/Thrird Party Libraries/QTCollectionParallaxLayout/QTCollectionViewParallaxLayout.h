@@ -11,3 +11,7 @@
 @interface QTCollectionViewParallaxLayout : UICollectionViewFlowLayout
 
 @end
+
+@interface QTCollectionViewPlaceProfileParallaxLayout : UICollectionViewFlowLayout
+
+@end

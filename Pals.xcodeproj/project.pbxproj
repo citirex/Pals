@@ -146,6 +146,7 @@
 		E85083111DACE7770077A81C /* PLOrderHistorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85083101DACE7760077A81C /* PLOrderHistorySectionHeader.xib */; };
 		E85083131DACEC5B0077A81C /* PLEmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */; };
 		E85083151DAD1AEA0077A81C /* PLAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85083141DAD1AEA0077A81C /* PLAttributedString.swift */; };
+		E86C16C31DB4F42B002250E9 /* PLTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86C16C21DB4F42B002250E9 /* PLTableView.swift */; };
 		E86E55891DB2ADDA00CE1698 /* PLCircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */; };
 		E86E558B1DB3741D00CE1698 /* PLRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */; };
 		E883A8421DAA6269006DB9CF /* PLPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883A8401DAA6269006DB9CF /* PLPlaceCell.swift */; };
@@ -323,6 +324,7 @@
 		E85083101DACE7760077A81C /* PLOrderHistorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistorySectionHeader.xib; path = "Order History/PLOrderHistorySectionHeader.xib"; sourceTree = "<group>"; };
 		E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEmptyBackgroundView.swift; sourceTree = "<group>"; };
 		E85083141DAD1AEA0077A81C /* PLAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAttributedString.swift; sourceTree = "<group>"; };
+		E86C16C21DB4F42B002250E9 /* PLTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTableView.swift; sourceTree = "<group>"; };
 		E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCircularImageView.swift; sourceTree = "<group>"; };
 		E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLRoundedButton.swift; sourceTree = "<group>"; };
 		E883A8401DAA6269006DB9CF /* PLPlaceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCell.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */,
 				2480F87B1D813E730095995F /* PLStoryboard.swift */,
 				24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */,
+				E86C16C21DB4F42B002250E9 /* PLTableView.swift */,
 				2480F87C1D813E730095995F /* PLString.swift */,
 				E8DA8B581D881D7C008782E5 /* PLView.swift */,
 				E8007BD61DA0073700372347 /* PLLocation.swift */,
@@ -1236,6 +1239,7 @@
 				D4DB41DA1DABC1F800B5F313 /* PLPage.swift in Sources */,
 				24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */,
 				D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */,
+				E86C16C31DB4F42B002250E9 /* PLTableView.swift in Sources */,
 				E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */,
 				2489E7041D82950E003811D5 /* PLOrderPlacesViewController.swift in Sources */,
 				E8007BD71DA0073700372347 /* PLLocation.swift in Sources */,

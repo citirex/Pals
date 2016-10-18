@@ -7,7 +7,6 @@
 //
 
 import Permission
-import SVProgressHUD
 
 class PLSignUpViewController: PLViewController {
     
@@ -16,8 +15,6 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var emailTextField:           PLFormTextField!
     @IBOutlet weak var passwordTextField:        PLFormTextField!
     @IBOutlet weak var confirmPasswordTextField: PLFormTextField!
-
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,23 +44,6 @@ class PLSignUpViewController: PLViewController {
         checkingUserData()
     }
     
-    //FB
-    @IBAction func facebookLoginButtonPressed(sender: UIButton) {
-        SVProgressHUD.show()
-        PLFacade.instance.profileManager.loginWithFacebook { [unowned self] result, error in
-            SVProgressHUD.dismiss()
-            if error != nil {
-                PLShowAlert("Facebook signup error!", message: (error?.localizedDescription)!)
-            } else if result.isCancelled {
-                print("Cancelled")
-            } else {
-                print("recieved fb token: \(result.token.tokenString)")
-                let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
-                self.present(tabBarController, animated: true)
-            }
-        }
-    }
-    
     
     // MARK: - Private methods
     
@@ -88,9 +68,9 @@ class PLSignUpViewController: PLViewController {
     }
     
     private func userSignUp(signUpData: PLSignUpData) {
-        SVProgressHUD.show()
+        startActivityIndicator(.WhiteLarge)
         PLFacade.signUp(signUpData) { [unowned self] error in
-            SVProgressHUD.dismiss()
+            self.stopActivityIndicator()
             
             guard error == nil else {
                 print("Error: \(error)")
@@ -155,5 +135,19 @@ extension PLSignUpViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.keyboardDistanceFromTextField = 40.0
     }
-
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        jumpToNext(textField, withTag: nextTag)
+        return false
+    }
+    
+    func jumpToNext(textField: UITextField, withTag tag: Int) {
+        if let nextField = textField.superview?.viewWithTag(tag) {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+    }
+    
 }

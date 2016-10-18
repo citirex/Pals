@@ -111,7 +111,7 @@ class PLOrderViewController: PLViewController {
             } else {
                 switch currentTab {
                 case .Drinks:
-                    if drinksDatasource.pagesLoaded == 1 && order.place != nil {
+                    if drinksDatasource.pagesLoaded == 0 && order.place != nil {
                         noItemsView.setupTextLabels("No drinks", bottomText: nil)
                         noItemsView.hidden = false
                     }

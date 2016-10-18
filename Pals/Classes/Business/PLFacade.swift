@@ -15,6 +15,7 @@ protocol PLFacadeInterface {
     static func login(userName:String, password: String, completion: PLErrorCompletion)
     static func logout(completion: PLErrorCompletion)
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
+    static func signUpFB(data: PLSignUpData, completion: PLErrorCompletion)
     static func sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion)
     static func updateProfile(data: PLEditableUser, completion: PLErrorCompletion)//FIXME: signupdata.
     static func sendPassword(email: String, completion: PLErrorCompletion)
@@ -58,6 +59,10 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     
     class func signUp(data: PLSignUpData, completion: PLErrorCompletion) {
         instance._signUp(data, completion: completion)
+    }
+    
+    class func signUpFB(data: PLSignUpData, completion: PLErrorCompletion) {
+        instance._signUpFB(data, completion: completion)
     }
     
     class func sendPassword(email: String, completion: PLErrorCompletion) {
@@ -122,9 +127,15 @@ extension PLFacade._PLFacade {
     
     func _signUp(data: PLSignUpData, completion: PLErrorCompletion) {
         let params = data.params
-        print(params)
         let attachment = createAttachment(data.picture)
         PLNetworkManager.post(PLAPIService.SignUp, parameters: params, attachment: attachment) { (dic, error) in
+            self.handleUserLogin(error, dic: dic, completion: completion)
+        }
+    }
+    
+    func _signUpFB(data: PLSignUpData, completion: PLErrorCompletion) {
+        let params = data.params
+        PLNetworkManager.post(PLAPIService.SignUpFacebook, parameters: params) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
     }
