@@ -122,12 +122,12 @@ class PLEditProfileViewController: PLViewController {
         
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType             = sourceType
+        imagePicker.allowsEditing          = false
         imagePicker.delegate               = self
-        imagePicker.modalPresentationStyle = sourceType == .Camera ? .FullScreen : .OverCurrentContext
         
         if sourceType == .Camera {
-            imagePicker.cameraDevice      = .Front
-            imagePicker.cameraCaptureMode = .Photo
+            imagePicker.cameraDevice           = .Front
+            imagePicker.cameraCaptureMode      = .Photo
         }
         present(imagePicker, animated: true)
     }
