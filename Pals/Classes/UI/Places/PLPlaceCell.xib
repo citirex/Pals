@@ -17,8 +17,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wir-hk-uYD" customClass="PLBlurImageView" customModule="Pals" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basement" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0v2-g7-YEQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basement" lineBreakMode="wordWrap" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0v2-g7-YEQ">
                         <rect key="frame" x="44" y="15" width="77" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="h0l-b1-OH0"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -42,6 +45,9 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".5 Miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sj-uq-7Aw">
                         <rect key="frame" x="287" y="21" width="44" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="ejy-Ib-M7Q"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -64,7 +70,7 @@
                     <constraint firstItem="Wir-hk-uYD" firstAttribute="leading" secondItem="xCc-Sj-iPj" secondAttribute="leading" id="M0M-7o-oxG"/>
                     <constraint firstItem="0v2-g7-YEQ" firstAttribute="top" secondItem="xCc-Sj-iPj" secondAttribute="top" constant="15" id="ONj-Iu-5Iu"/>
                     <constraint firstItem="Wir-hk-uYD" firstAttribute="top" secondItem="xCc-Sj-iPj" secondAttribute="top" id="Rfj-sc-yNO"/>
-                    <constraint firstItem="7sj-uq-7Aw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0v2-g7-YEQ" secondAttribute="trailing" constant="10" id="Wx4-is-dMM"/>
+                    <constraint firstItem="7sj-uq-7Aw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0v2-g7-YEQ" secondAttribute="trailing" constant="20" id="Wc0-ge-bce"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mkr-bY-8vy" secondAttribute="trailing" constant="40" id="b5n-Qj-5X3"/>
                     <constraint firstItem="7sj-uq-7Aw" firstAttribute="bottom" secondItem="0v2-g7-YEQ" secondAttribute="bottom" id="cqM-AI-taJ"/>
                     <constraint firstItem="mkr-bY-8vy" firstAttribute="leading" secondItem="4ng-d0-Wx2" secondAttribute="leading" id="mqZ-U4-IyM"/>

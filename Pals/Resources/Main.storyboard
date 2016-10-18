@@ -741,7 +741,7 @@
         <!--Edit Profile-->
         <scene sceneID="0Fu-Ex-077">
             <objects>
-                <viewController title="Edit Profile" id="1ZL-hY-XMT" customClass="PLEditProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Edit Profile" automaticallyAdjustsScrollViewInsets="NO" id="1ZL-hY-XMT" customClass="PLEditProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CNc-GW-UX5"/>
                         <viewControllerLayoutGuide type="bottom" id="VKM-mX-0Rk"/>
@@ -860,6 +860,7 @@
                             <constraint firstItem="MCt-ij-MMU" firstAttribute="height" secondItem="6sS-wE-Ux6" secondAttribute="height" id="x6S-8H-hTO"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="CMY-m7-oKE">
                         <barButtonItem key="backBarButtonItem" title=" " id="1wI-y9-Fpp"/>
                         <barButtonItem key="rightBarButtonItem" image="edit" id="SW6-ty-ava" userLabel="Edit Bar Button Item">

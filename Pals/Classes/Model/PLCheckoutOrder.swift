@@ -69,7 +69,7 @@ class PLCheckoutOrder {
         }
     }
     
-    func calculateTotalAmount() -> String {
+    func calculateTotalAmount() -> Float {
         var amount: Float = 0.0
         
         if drinks.count > 0 {
@@ -82,7 +82,7 @@ class PLCheckoutOrder {
                 amount += aCover.price
             }
         }
-        return "$" + String(format: "%.2f", amount)
+        return amount
     }
     
     func clean() {
