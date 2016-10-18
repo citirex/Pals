@@ -28,6 +28,7 @@ enum PLAPIService : String {
     case SendPassword
     case Profile
     case UpdateProfile = "update_profile"
+    case Unfriend
     case Friends
     case InviteFriends
     case Places

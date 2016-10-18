@@ -18,6 +18,7 @@ protocol PLFacadeInterface {
     static func signUpFB(data: PLSignUpData, completion: PLErrorCompletion)
     static func sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion)
     static func updateProfile(data: PLEditUserData, completion: PLErrorCompletion)
+    static func unfriend(user: PLUser, completion: PLErrorCompletion)
     static func sendPassword(email: String, completion: PLErrorCompletion)
     static func fetchNearRegion(completion: PLLocationRegionCompletion)
     static func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion)
@@ -71,6 +72,10 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     
     class func updateProfile(data: PLEditUserData, completion: PLErrorCompletion) {
         instance._updateProfile(data, completion: completion)
+    }
+    
+    class func unfriend(user: PLUser, completion: PLErrorCompletion) {
+        instance._unfriend(user, completion: completion)
     }
     
     class func sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion) {
@@ -173,6 +178,18 @@ extension PLFacade._PLFacade {
         let attachment = data.attachment
         PLNetworkManager.post(PLAPIService.UpdateProfile, parameters: params, attachment: attachment) { (dic, error) in
             self.handleUpdateProfile(error, dic: dic, completion: completion)
+        }
+    }
+    
+    func _unfriend(user: PLUser, completion: PLErrorCompletion) {
+        let params = [PLKeys.id.string: NSNumber(unsignedLongLong: PLFacade.profile!.id),
+            PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
+        
+        PLNetworkManager.get(PLAPIService.Unfriend, parameters: params) { (dic, error) in
+            if let success = dic[PLKeys.success.string] as? Bool where success == true{
+                completion(error: nil)
+            }
+            completion(error: error)
         }
     }
     
