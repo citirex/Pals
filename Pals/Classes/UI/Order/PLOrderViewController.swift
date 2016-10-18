@@ -243,13 +243,11 @@ extension PLOrderViewController {
             return
         }
         
-        let orderAmount = order.calculateTotalAmount()
-        
         checkoutPopupViewController.userName     = user.name
         checkoutPopupViewController.locationName = place.name
-        checkoutPopupViewController.orderAmount  = orderAmount
+        checkoutPopupViewController.orderAmount  = order.calculateTotalAmount()
         
-        guard PLFacade.profile?.balance > orderAmount else {
+        guard order.checkingBalance() else {
             return PLShowAlert("Error", message: "You have not enough money to make this purchase")
         }
         

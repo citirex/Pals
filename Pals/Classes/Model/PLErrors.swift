@@ -21,6 +21,7 @@ struct PLErrorType {
 }
 
 let kPLErrorTypeBadResponse = PLErrorType(code: 1000, reason: "Server returned a bad response.")
+let kPLErrorWrongDatastruct = PLErrorType(code: 1003, reason: "Server return unsatisfactory data structure")
 let kPLErrorTypeWrongEmail = PLErrorType(code: 1001, reason: "This email is not associated with any user account.")
 let kPLErrorTypeLocationNotAvailable = PLErrorType(code: 1000, reason: "Location services are not available. Go to Settings to activate them.")
 let kPLErrorTypeLocationFailed = PLErrorType(code: 1001, reason: "Failed to fetch location data.")

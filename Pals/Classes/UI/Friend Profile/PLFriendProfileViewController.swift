@@ -11,11 +11,10 @@ class PLFriendProfileViewController: PLViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: PLCircularImageView!
     @IBOutlet var popUpMenuView: UIView!
+    @IBOutlet var moreButton: UIBarButtonItem!
     
     private var sectionOrder: PLCollectionSectionType!
     var friend: PLUser!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +81,17 @@ class PLFriendProfileViewController: PLViewController {
     }
     
     @IBAction func unfriendButtonPressed(sender: UIButton) {
-        print("Unfriend button pressed!")
+        startActivityIndicator(.WhiteLarge)
+        PLFacade.unfriend(friend) {[unowned self] (error) in
+            self.stopActivityIndicator()
+            if error != nil {
+                PLLog("Error, when trying unfriend", error!.debugDescription, type: .Network)
+            } else {
+                PLShowAlert(title: "Success")
+                self.animateOut()
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }
     }
 
     
