@@ -91,4 +91,9 @@ class PLCheckoutOrder {
         message = ""
     }
     
+    func checkingBalance() -> Bool {
+        let orderAmount = calculateTotalAmount()
+        return PLFacade.profile?.balance > orderAmount
+    }
+    
 }

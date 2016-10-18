@@ -26,6 +26,7 @@ enum PLKeys : String {
     case info
     case response
     case friends
+    case friend_id
     case invited
     case invitefriends
     case places

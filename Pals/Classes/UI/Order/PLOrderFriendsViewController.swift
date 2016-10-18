@@ -16,7 +16,7 @@ class PLOrderFriendsViewController: PLFriendsViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barTintColor = UIColor.miracleColor()
+        navigationController?.navigationBar.barTintColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
         navigationController?.navigationBar.tintColor = UIColor.affairColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.affairColor()]
         navigationController?.navigationBar.barStyle = .Default
