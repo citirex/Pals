@@ -108,8 +108,6 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		
 		edgesForExtendedLayout						= .Top
 		definesPresentationContext					= true
-//		extendedLayoutIncludesOpaqueBars			= true
-//		automaticallyAdjustsScrollViewInsets		= true
 	}
 	
 	private func configureResultsController() {
@@ -122,6 +120,7 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		resultsController.tableView.emptyDataSetSource	   = self
 		resultsController.tableView.emptyDataSetDelegate   = self
 		resultsController.tableView.separatorInset.left	   = 75
+		
 	}
 	
 	
