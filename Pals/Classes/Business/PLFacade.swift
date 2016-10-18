@@ -17,7 +17,7 @@ protocol PLFacadeInterface {
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
     static func signUpFB(data: PLSignUpData, completion: PLErrorCompletion)
     static func sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion)
-    static func updateProfile(data: PLEditableUser, completion: PLErrorCompletion)//FIXME: signupdata.
+    static func updateProfile(data: PLUserEditedData, completion: PLErrorCompletion)//FIXME: signupdata.
     static func sendPassword(email: String, completion: PLErrorCompletion)
     static func fetchNearRegion(completion: PLLocationRegionCompletion)
     static func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion)
@@ -69,7 +69,7 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
         instance._sendPassword(email, completion: completion)
     }
     
-    class func updateProfile(data: PLEditableUser, completion: PLErrorCompletion) {
+    class func updateProfile(data: PLUserEditedData, completion: PLErrorCompletion) {
         instance._updateProfile(data, completion: completion)
     }
     
@@ -179,11 +179,14 @@ extension PLFacade._PLFacade {
         })
     }
     
-    func _updateProfile(data: PLEditableUser, completion: PLErrorCompletion) {
-        let params = data.params()
-        let attachment = createAttachment(data.picture)
+    func _updateProfile(data: PLUserEditedData, completion: PLErrorCompletion) {
+        let params = data.params() //FIXME: если имя и имейл, не поменяны стоит пихать пустой словарь или нил?
+        let attachment = createAttachment(data.image)
+        completion(error: nil) //FIXME: delete me
+        
+        
         PLNetworkManager.post(PLAPIService.UpdateProfile, parameters: params, attachment: attachment) { (dic, error) in
-//            self.handleUserLogin(error, dic: dic, completion: completion)
+            self.handleUserLogin(error, dic: dic, completion: completion)
         }
     }
     

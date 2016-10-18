@@ -16,10 +16,8 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var addProfileImageButton: UIButton!
     
-    private var userData: PLUserData!
     private var isEditing = false { didSet { updateUI() }}
-    private lazy var tempProfile: PLEditableUser! = { return PLEditableUser() }()
-    
+    private var tempUserData: PLUserEditedData!
     
     
     deinit {
@@ -39,7 +37,6 @@ class PLEditProfileViewController: PLViewController {
         
         navigationController?.navigationBar.style = .EditProfileStyle
     }
-    
 
     
     // MARK: - Actions
@@ -85,42 +82,27 @@ class PLEditProfileViewController: PLViewController {
     // MARK: - Private Methods
     
     private func setupUserData() {
-        userData                  = PLFacade.profile?.userData
-        usernameTextField.text    = userData!.name
-        phoneNumberTextField.text = userData!.email
-        userProfileImageView.setImageWithURL(userData!.picture, placeholderImage: UIImage(named: "profile_placeholder"))
+        
+        guard let userData = PLFacade.profile?.userData else {
+            PLShowAlert(title: "Something went wrong, try again later")
+            return
+        }
+        tempUserData = PLUserEditedData(aUserName: userData.name, aUserEmail: userData.email, aUserImage: nil)
+        usernameTextField.text    = userData.name
+        phoneNumberTextField.text = userData.email
+        let imageRequest = NSURLRequest(URL: userData.picture, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 30)
+        userProfileImageView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "profile_placeholder"), success: {[unowned self] (request, response, image) in
+                self.userProfileImageView.image = image
+                self.tempUserData?.userImage.initial = image
+            }) { (request, response, error) in
+                PLLog(request.URL?.absoluteString, response?.allHeaderFields, error.localizedDescription)
+        }
     }
 
     private func logOut() {
         let loginViewController = UIStoryboard.loginViewController()!
         presentViewController(loginViewController, animated: true) {
             self.navigationController!.viewControllers.removeAll()
-        }
-    }
-    
-    // MARK: - Update User Data
-    
-    private func updateUserData() {
-        //check for dada chenged
-        if let name = usernameTextField.text where name != userData.name {
-            tempProfile.name = name
-        }
-        if let contact = phoneNumberTextField.text where contact != userData.email {
-            tempProfile.contactMain = contact
-        }
-//        if let contactSpare = phoneNumberTextField.text where contactSpare != userData.name {
-//            tempProfile.contactSecondary = contactSpare
-//        }
-        
-        if tempProfile.isChanged == true {
-            startActivityIndicator(.WhiteLarge, color: .grayColor())
-            PLFacade.updateProfile(tempProfile) {[unowned self] (error) in
-                self.stopActivityIndicator()
-                guard error == nil else { return PLShowErrorAlert(error: error!) }
-                self.tempProfile.clean()
-                self.setupUserData()
-                NSNotificationCenter.defaultCenter().postNotificationName(kProfileInfoChanged, object: nil)
-            }
         }
     }
     
@@ -161,11 +143,32 @@ class PLEditProfileViewController: PLViewController {
         }
         let alert = permission.deniedAlert
         alert.title   = "Using \(permission.type) is disabled for this app"
-        alert.message = "Enable it in Settings->Privacy"
+        alert.message = "Enable it in Settings -> Privacy"
     }
-
+    
+    // MARK: - Update User Data
+    
+    private func updateUserData() {
+        tempUserData?.userName.final = usernameTextField.text
+        tempUserData?.userEmail.final = phoneNumberTextField.text
+        tempUserData?.userImage.final = userProfileImageView.image
+        
+        if tempUserData?.isChanged == true {
+            print(tempUserData!.params())
+            
+            startActivityIndicator(.WhiteLarge, color: .grayColor())
+            PLFacade.updateProfile(tempUserData) {[unowned self] (error) in
+                self.stopActivityIndicator()
+                guard error == nil else { return PLShowErrorAlert(error: error!) }
+                self.tempUserData.clean()
+                self.setupUserData()
+                NSNotificationCenter.defaultCenter().postNotificationName(kProfileInfoChanged, object: nil)
+            }
+            
+        }
+        
+    }
 }
-
 
 
 // MARK: - UITextFieldDelegate
@@ -186,7 +189,7 @@ extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         userProfileImageView.image = imagePicked
-        tempProfile.picture        = imagePicked
+        tempUserData?.userImage.final = imagePicked
         dismiss(true)
     }
     

@@ -75,7 +75,6 @@
 		24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */; };
 		24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */; };
 		24E286E91D9E4A2E00B8D80C /* checkout.json in Resources */ = {isa = PBXBuildFile; fileRef = 24E286E81D9E4A2E00B8D80C /* checkout.json */; };
-		24E286EB1D9E566300B8D80C /* PLEditableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E286EA1D9E566200B8D80C /* PLEditableUser.swift */; };
 		24E286ED1D9E6C8700B8D80C /* updateprofile.json in Resources */ = {isa = PBXBuildFile; fileRef = 24E286EC1D9E6C8700B8D80C /* updateprofile.json */; };
 		D410F71D1D9A7DA6000E8E06 /* invitefriends0.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71A1D9A7DA6000E8E06 /* invitefriends0.json */; };
 		D410F71E1D9A7DA6000E8E06 /* invitefriends1.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71B1D9A7DA6000E8E06 /* invitefriends1.json */; };
@@ -249,7 +248,6 @@
 		24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderAnimableVipView.swift; sourceTree = "<group>"; };
 		24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderAnimableVipView.xib; sourceTree = "<group>"; };
 		24E286E81D9E4A2E00B8D80C /* checkout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkout.json; sourceTree = "<group>"; };
-		24E286EA1D9E566200B8D80C /* PLEditableUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEditableUser.swift; sourceTree = "<group>"; };
 		24E286EC1D9E6C8700B8D80C /* updateprofile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = updateprofile.json; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
@@ -475,7 +473,6 @@
 				D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */,
 				2480F8861D813E730095995F /* PLUser.swift */,
 				D410F7241D9AA564000E8E06 /* PLInvitableUser.swift */,
-				24E286EA1D9E566200B8D80C /* PLEditableUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1233,7 +1230,6 @@
 				D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */,
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
 				E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */,
-				24E286EB1D9E566300B8D80C /* PLEditableUser.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,
 				E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */,
 				D4DB41DA1DABC1F800B5F313 /* PLPage.swift in Sources */,
