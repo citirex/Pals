@@ -206,10 +206,6 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
 
 extension PLPlacesViewController: DZNEmptyDataSetDelegate {
     
-    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
-        return true
-    }
-    
     func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
         return !isLoading
     }

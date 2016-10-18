@@ -243,9 +243,16 @@ extension PLOrderViewController {
             return
         }
         
-        checkoutPopupViewController.userName = user.name
+        let orderAmount = order.calculateTotalAmount()
+        
+        checkoutPopupViewController.userName     = user.name
         checkoutPopupViewController.locationName = place.name
-        checkoutPopupViewController.orderAmount = order.calculateTotalAmount()
+        checkoutPopupViewController.orderAmount  = orderAmount
+        
+        guard PLFacade.profile?.balance > orderAmount else {
+            return PLShowAlert("Error", message: "You have not enough money to make this purchase")
+        }
+        
         tabBarController!.presentViewController(checkoutPopupViewController, animated: false) {
             self.checkoutPopupViewController.show()
         }
