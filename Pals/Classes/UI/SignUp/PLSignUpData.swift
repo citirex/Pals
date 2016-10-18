@@ -38,9 +38,9 @@ struct Facebook {
     var pictureURLString: String
     var params: [String : AnyObject] {
         let params = [PLKeys.fbid.string : fbid,
-                      PLKeys.username.string : username,
+                      PLKeys.name.string : username,
                       PLKeys.email.string : email,
-                      PLKeys.picture_url.string : pictureURLString]
+                      PLKeys.picture.string : pictureURLString]
         return params
     }
 }

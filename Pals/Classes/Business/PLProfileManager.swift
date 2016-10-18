@@ -9,7 +9,7 @@
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-typealias PLFacebookLoginCompletion = (result: FBSDKLoginManagerLoginResult!, error: NSError?) -> ()
+typealias PLFacebookLoginCompletion = (data: PLSignUpData?, error: NSError?) -> ()
 
 class PLProfileManager : NSObject {
     var profile: PLUser?
@@ -34,7 +34,7 @@ protocol PLAuthStorage {
     func saveProfile(userDic: [String:AnyObject]) -> Bool
     func restoreProfile()
     func restoreToken()
-    func loginWithFacebook(completion: PLFacebookLoginCompletion)
+    func loginFB(completion: PLFacebookLoginCompletion)
 }
 
 extension PLProfileManager : PLAuthStorage {
@@ -102,21 +102,22 @@ extension PLProfileManager : PLAuthStorage {
         }
     }
     
-    //MARK: - FaceBook
+    //MARK: - Facebook
     
-    func loginWithFacebook(completion: PLFacebookLoginCompletion){
+    func loginFB(completion: PLFacebookLoginCompletion) {
         if (FBSDKAccessToken.currentAccessToken() != nil && FBSDKAccessToken.currentAccessToken().expirationDate.compare(NSDate()) == NSComparisonResult.OrderedDescending) {
-            self.getFBUserInfo(completion)
+            getFBUserInfo(completion)
         } else {
             FBSDKLoginManager().logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: nil) {[unowned self] (result: FBSDKLoginManagerLoginResult!, error: NSError!) in
-                if (error != nil || result.isCancelled == true) {
-                    completion(result: result,error: error)
+                if result.isCancelled || error != nil {
+                    PLLog("FB login cancelled by user", type: .Network)
+                    completion(data: nil, error: error)
                 } else {
+                    PLLog("Recieved FB token: \(result.token.tokenString)", type: .Network)
                     self.getFBUserInfo(completion)
                 }
             }
         }
-        
     }
     
     func getFBUserInfo(completion: PLFacebookLoginCompletion) {
@@ -129,18 +130,15 @@ extension PLProfileManager : PLAuthStorage {
                             let name = user.valueForKey(PLKeys.name.string) as? String,
                             let email = user.valueForKey(PLKeys.email.string) as? String,
                             let imageUrl = ((user.valueForKey(PLKeys.picture.string) as? NSDictionary)?.valueForKey(PLKeys.data.string) as? NSDictionary)?.valueForKey(PLKeys.url.string) as? String
-                            else {
-                                return completion(result: nil, error: PLError(domain: PLErrorDomain.User, type: kPLErrorTypeBadResponse))
+                        else {
+                            return completion(data: nil, error: PLError(domain: .User, type: kPLErrorWrongDatastruct))
                         }
-
                         let signUpData = PLSignUpData(source: .SourceFacebook(Facebook(fbid: userID ,username: name, email: email, pictureURLString: imageUrl)))
-                        
-                        PLFacade.signUpFB(signUpData) { error in
-                            error != nil ? completion(result: nil,error: error) : completion(result: nil,error: nil)
+                        completion(data: signUpData, error: nil)
                         }
                     }
                 }
-            })
+            )
         }
     }
 }

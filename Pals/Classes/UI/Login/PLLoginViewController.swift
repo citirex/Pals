@@ -63,16 +63,12 @@ class PLLoginViewController: PLViewController {
     //FB
     @IBAction func facebookLoginButtonPressed(sender: UIButton) {
         startActivityIndicator(.WhiteLarge)
-        PLFacade.instance.profileManager.loginWithFacebook { [unowned self] result, error in
+        PLFacade.loginFB { [unowned self] (error) in
             self.stopActivityIndicator()
-            if error != nil {
-                PLShowAlert("Facebook signup error!", message: "Try later")
-                PLLog("Facebook login error \(error!.debugDescription)")
-            } else if result.isCancelled {
-                PLLog("Facebook login cancelled")
+            if error == nil {
+                self.showMainScreen()
             } else {
-                PLLog("Recieved fb token: \(result.token.tokenString)")
-                 self.showMainScreen()
+                PLShowErrorAlert(error: error!)
             }
         }
     }
