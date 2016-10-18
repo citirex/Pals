@@ -5,7 +5,7 @@
 	<key>FakeFeeds</key>
 	<dict>
 		<key>Enabled</key>
-		<false/>
+		<true/>
 		<key>LoadDelay</key>
 		<real>0.5</real>
 	</dict>

@@ -14,6 +14,7 @@ enum PLKeys : String {
     case type
     case picture
     case picture_url
+    case additional
     case email
     case email_unique
     case balance

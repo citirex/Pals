@@ -11,6 +11,7 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     var email: String
     var picture: NSURL
     var balance = Float(0)
+    var additional: String?
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
@@ -25,6 +26,9 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
         self.picture = NSURL(string: picture)!
         if let balance = jsonDic[PLKeys.balance.string] as? Float {
             self.balance = balance
+        }
+        if let additional = jsonDic[PLKeys.additional.string] as? String {
+            self.additional = additional
         }
         super.init(jsonDic: jsonDic)
     }
@@ -52,7 +56,7 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     }
     
     var userData: PLUserData {
-        return PLUserData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture)
+        return PLUserData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture, additional: additional)
     }
 }
 
@@ -63,4 +67,5 @@ struct PLUserData {
     var email: String
     var phone: String
     var picture: NSURL
+    var additional: String?
 }

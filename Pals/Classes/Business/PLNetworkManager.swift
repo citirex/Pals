@@ -26,7 +26,7 @@ enum PLAPIService : String {
     case SignUp
     case SendPassword
     case Profile
-    case UpdateProfile
+    case UpdateProfile = "update_profile"
     case Friends
     case InviteFriends
     case Places
@@ -39,10 +39,20 @@ enum PLAPIService : String {
 }
 
 struct PLUploadAttachment {
+    static let kMimePng = "image/png"
+    
     let name: String
     let filename = "\(NSDate().timeIntervalSince1970).png"
     let mimeType: String
     let data: NSData
+    
+    static func pngImage(image: UIImage?) -> PLUploadAttachment? {
+        if image == nil {
+            return nil
+        }
+        let data = UIImagePNGRepresentation(image!)!
+        return PLUploadAttachment(name: PLKeys.picture.string, mimeType: kMimePng, data: data)
+    }
 }
 
 typealias PLNetworkRequestCompletion = (dic: [String:AnyObject], error: NSError?) -> ()

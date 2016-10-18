@@ -77,6 +77,7 @@ extension PLProfileManager : PLAuthStorage {
     func saveProfile(userDic: [String : AnyObject]) -> Bool {
         if let user = PLUser(jsonDic: userDic) {
             profile = user
+            NSNotificationCenter.defaultCenter().postNotificationName(kProfileInfoChanged, object: nil)
             ud.setObject(userDic, forKey: PLKeys.user.string)
             ud.synchronize()
             return true
