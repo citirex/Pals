@@ -78,7 +78,7 @@
             <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="blurView" destination="Wir-hk-uYD" id="Fml-Ew-74x"/>
+                <outlet property="backgroundImageView" destination="Wir-hk-uYD" id="5Nf-Ie-Tp8"/>
                 <outlet property="distanceLabel" destination="7sj-uq-7Aw" id="SpI-8h-roR"/>
                 <outlet property="musicGenresLabel" destination="mkr-bY-8vy" id="Yau-vP-fWQ"/>
                 <outlet property="placeAddressLabel" destination="4ng-d0-Wx2" id="OJX-aP-XuS"/>

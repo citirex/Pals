@@ -36,12 +36,12 @@ class PLPlacesViewController: PLViewController {
         loadPlaces()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         navigationController?.navigationBar.style = .PlacesStyle
     }
-    
+
     
     // MARK: - Private Methods
     
@@ -195,7 +195,7 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        let named = scrollView === tableView ? "place_placeholder" : "search"
+        let named = scrollView === tableView ? "place_pin_placeholder" : "search"
         return UIImage(named: named)!.imageResize(CGSizeMake(100, 100))
     }
 

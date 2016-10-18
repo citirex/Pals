@@ -53,10 +53,10 @@ class PLSettingsViewController: PLViewController {
         Section(type: .Archive, items: [.OrderHistory]),
         Section(type: .Support, items: [.HelpAndFAQ, .TermsOfService, .PrivacyPolicy])
     ]
-
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         navigationController?.navigationBar.style = .SettingsStyle
     }
