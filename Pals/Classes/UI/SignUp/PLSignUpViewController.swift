@@ -16,8 +16,6 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var passwordTextField:        PLFormTextField!
     @IBOutlet weak var confirmPasswordTextField: PLFormTextField!
 
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,24 +42,6 @@ class PLSignUpViewController: PLViewController {
     @IBAction func signUpButtonTapped(sender: UIButton) {
         dismissKeyboard(sender)
         checkingUserData()
-    }
-    
-    //FB
-    @IBAction func facebookLoginButtonPressed(sender: UIButton) {
-        startActivityIndicator(.WhiteLarge)
-        PLFacade.instance.profileManager.loginWithFacebook { [unowned self] result, error in
-            self.stopActivityIndicator()
-            
-            if error != nil {
-                PLShowAlert("Facebook signup error!", message: (error?.localizedDescription)!)
-            } else if result.isCancelled {
-                print("Cancelled")
-            } else {
-                print("recieved fb token: \(result.token.tokenString)")
-                let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
-                self.present(tabBarController, animated: true)
-            }
-        }
     }
     
     

@@ -22,6 +22,7 @@ import AFNetworking
 
 enum PLAPIService : String {
     case Login
+    case LoginFB
     case Logout
     case SignUp
     case SendPassword
@@ -78,6 +79,9 @@ class PLNetworkSession: AFHTTPSessionManager {
     
     override init(baseURL url: NSURL?, sessionConfiguration configuration: NSURLSessionConfiguration?) {
         super.init(baseURL: url, sessionConfiguration: configuration)
+        if let jsonDeserializer = responseSerializer as? AFJSONResponseSerializer {
+            jsonDeserializer.removesKeysWithNullValues = true
+        }
         PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLKeys.token.string, options: [.New,.Initial], context: nil)
     }
     

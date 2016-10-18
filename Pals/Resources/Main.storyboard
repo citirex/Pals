@@ -109,13 +109,26 @@
                                                             <action selector="loginButtonClicked:" destination="nzO-MP-N4g" eventType="touchUpInside" id="lvL-px-Aji"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RsC-zg-ad1">
+                                                        <rect key="frame" x="88" y="508" width="200" height="42"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="42" id="c4f-jf-gHv"/>
+                                                            <constraint firstAttribute="width" constant="200" id="fy6-gk-d95"/>
+                                                        </constraints>
+                                                        <state key="normal" image="icon_facebook_login"/>
+                                                        <connections>
+                                                            <action selector="facebookLoginButtonPressed:" destination="nzO-MP-N4g" eventType="touchUpInside" id="YE0-zb-gdM"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="Xzj-qM-z68" firstAttribute="leading" secondItem="xXN-Bq-AeA" secondAttribute="leading" constant="68" id="1lB-lC-zkg"/>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="top" secondItem="Xzj-qM-z68" secondAttribute="bottom" multiplier="1.1" id="Hga-wd-nmn"/>
+                                                    <constraint firstItem="RsC-zg-ad1" firstAttribute="top" secondItem="GFl-8W-xw3" secondAttribute="bottom" constant="14" id="V3H-ez-bQA"/>
                                                     <constraint firstItem="Xzj-qM-z68" firstAttribute="centerX" secondItem="GFl-8W-xw3" secondAttribute="centerX" id="WDy-RN-KrI"/>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="leading" secondItem="xXN-Bq-AeA" secondAttribute="leading" constant="86" id="XWn-fE-ml4"/>
+                                                    <constraint firstItem="RsC-zg-ad1" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="cHb-vS-mCV"/>
                                                     <constraint firstItem="GFl-8W-xw3" firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="gbU-gf-wF4"/>
                                                     <constraint firstAttribute="bottom" secondItem="GFl-8W-xw3" secondAttribute="bottom" multiplier="1.35" id="gfE-zc-1BW"/>
                                                 </constraints>
@@ -641,7 +654,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81f-gD-qmB" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
-                                <rect key="frame" x="102" y="500" width="171" height="35"/>
+                                <rect key="frame" x="102" y="520" width="171" height="35"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Sign Up">
@@ -649,13 +662,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signUpButtonTapped:" destination="xEW-Sh-buD" eventType="touchUpInside" id="usk-tv-5O6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-mg-af0" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
-                                <rect key="frame" x="102" y="547" width="171" height="35"/>
-                                <state key="normal" image="facebook_button_image"/>
-                                <connections>
-                                    <action selector="facebookLoginButtonPressed:" destination="xEW-Sh-buD" eventType="touchUpInside" id="zdb-wa-Fr1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.68000000000000005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWx-30-hw4">
@@ -674,21 +680,17 @@
                         <constraints>
                             <constraint firstItem="GWx-30-hw4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="81f-gD-qmB" secondAttribute="bottom" constant="40" id="1K2-XW-TvM"/>
                             <constraint firstItem="81f-gD-qmB" firstAttribute="width" secondItem="D8Y-7R-YJD" secondAttribute="width" multiplier="0.454" id="32e-kU-3nD"/>
-                            <constraint firstItem="vNR-mg-af0" firstAttribute="centerX" secondItem="D8Y-7R-YJD" secondAttribute="centerX" id="4UY-T2-IgE"/>
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="centerX" secondItem="D8Y-7R-YJD" secondAttribute="centerX" id="4lB-oJ-9l6"/>
                             <constraint firstItem="Irw-M9-M3g" firstAttribute="width" secondItem="gd0-AA-yGc" secondAttribute="width" id="Ibl-2s-JBe"/>
                             <constraint firstItem="gd0-AA-yGc" firstAttribute="centerX" secondItem="Tz9-Se-d65" secondAttribute="centerX" id="MeR-Ao-5Mk"/>
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="width" secondItem="D8Y-7R-YJD" secondAttribute="width" multiplier="0.62" id="N2l-Ai-dLV"/>
                             <constraint firstItem="81f-gD-qmB" firstAttribute="centerX" secondItem="Tz9-Se-d65" secondAttribute="centerX" id="OUg-YT-JFe"/>
-                            <constraint firstItem="81f-gD-qmB" firstAttribute="top" secondItem="Tz9-Se-d65" secondAttribute="bottom" constant="44" id="RtM-8n-GMW"/>
-                            <constraint firstItem="vNR-mg-af0" firstAttribute="top" secondItem="81f-gD-qmB" secondAttribute="bottom" constant="12" id="Whb-bu-Knw"/>
+                            <constraint firstItem="81f-gD-qmB" firstAttribute="top" secondItem="Tz9-Se-d65" secondAttribute="bottom" constant="64" id="RtM-8n-GMW"/>
                             <constraint firstAttribute="trailing" secondItem="GWx-30-hw4" secondAttribute="trailing" id="XNn-Gc-PQV"/>
-                            <constraint firstItem="vNR-mg-af0" firstAttribute="height" secondItem="81f-gD-qmB" secondAttribute="height" id="YjT-Zb-p1j"/>
                             <constraint firstItem="gd0-AA-yGc" firstAttribute="height" secondItem="D8Y-7R-YJD" secondAttribute="height" multiplier="0.26" id="ZiI-t8-HXH"/>
                             <constraint firstItem="Irw-M9-M3g" firstAttribute="centerY" secondItem="gd0-AA-yGc" secondAttribute="centerY" id="bBl-zp-ayP"/>
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="centerY" secondItem="D8Y-7R-YJD" secondAttribute="centerY" multiplier="1.152" id="ecd-ea-7RB"/>
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="height" secondItem="D8Y-7R-YJD" secondAttribute="height" multiplier="0.215" id="egP-Jp-CLh"/>
-                            <constraint firstItem="vNR-mg-af0" firstAttribute="width" secondItem="81f-gD-qmB" secondAttribute="width" id="gU7-kQ-9oZ"/>
                             <constraint firstItem="81f-gD-qmB" firstAttribute="height" secondItem="GWx-30-hw4" secondAttribute="height" multiplier="0.73" id="hGW-h4-cBm"/>
                             <constraint firstItem="Tz9-Se-d65" firstAttribute="top" secondItem="gd0-AA-yGc" secondAttribute="bottom" constant="46" id="hxH-o1-dKo"/>
                             <constraint firstItem="Irw-M9-M3g" firstAttribute="centerX" secondItem="gd0-AA-yGc" secondAttribute="centerX" id="iC0-2z-NRs"/>
@@ -1595,8 +1597,8 @@
     <resources>
         <image name="back_arrow" width="20" height="20"/>
         <image name="edit" width="25" height="25"/>
-        <image name="facebook_button_image" width="171" height="35"/>
         <image name="friends-tab" width="31" height="29"/>
+        <image name="icon_facebook_login" width="200" height="42"/>
         <image name="logo" width="264" height="266"/>
         <image name="more_button" width="5" height="21"/>
         <image name="order-tab" width="23" height="25"/>

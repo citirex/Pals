@@ -32,14 +32,15 @@ struct PLSignUpData {
 }
 
 struct Facebook {
+    var fbid: String
     var username: String
     var email: String
     var pictureURLString: String
     var params: [String : AnyObject] {
-        let params = [PLKeys.username.string : username,
-                      PLKeys.email_unique.string : email,
-                      PLKeys.picture_url.string : pictureURLString,
-                      PLKeys.facebook.string : NSNumber(bool: true)]
+        let params = [PLKeys.fbid.string : fbid,
+                      PLKeys.username.string : username,
+                      PLKeys.email.string : email,
+                      PLKeys.picture_url.string : pictureURLString]
         return params
     }
 }

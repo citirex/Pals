@@ -170,9 +170,8 @@ class PLEditProfileViewController: PLViewController {
         }
         let alert = permission.deniedAlert
         alert.title   = "Using \(permission.type) is disabled for this app"
-        alert.message = "Enable it in Settings->Privacy"
+        alert.message = "Enable it in Settings -> Privacy"
     }
-
 }
 
 // MARK: - UITextFieldDelegate

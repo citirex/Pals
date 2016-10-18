@@ -41,17 +41,17 @@ class PLPlaceProfileViewController: PLViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCollectionView()
         setupBackBarButtonItem()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         navigationController?.navigationBar.style = .PlaceProfileStyle
     }
 
-    
     private func setupBackBarButtonItem() {
         let backBarButtonItem = PLBackBarButtonItem()
         backBarButtonItem.didTappedBackButton = { [unowned self] in

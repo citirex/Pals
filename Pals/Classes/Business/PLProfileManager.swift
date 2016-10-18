@@ -125,15 +125,17 @@ extension PLProfileManager : PLAuthStorage {
                 if error == nil {
                     if let user = result as? NSDictionary {
                         guard
-                            let name = user.valueForKey("name") as? String,
-                            let email = user.valueForKey("email") as? String,
-                            let imageUrl = ((user.valueForKey("picture") as? NSDictionary)?.valueForKey("data") as? NSDictionary)?.valueForKey("url") as? String
+                            let userID = user.valueForKey(PLKeys.id.string) as? String,
+                            let name = user.valueForKey(PLKeys.name.string) as? String,
+                            let email = user.valueForKey(PLKeys.email.string) as? String,
+                            let imageUrl = ((user.valueForKey(PLKeys.picture.string) as? NSDictionary)?.valueForKey(PLKeys.data.string) as? NSDictionary)?.valueForKey(PLKeys.url.string) as? String
                             else {
                                 return completion(result: nil, error: PLError(domain: PLErrorDomain.User, type: kPLErrorTypeBadResponse))
                         }
 
-                        let signUpData = PLSignUpData(source: .SourceFacebook(Facebook(username: name, email: email, pictureURLString: imageUrl)))
-                        PLFacade.signUp(signUpData) { error in
+                        let signUpData = PLSignUpData(source: .SourceFacebook(Facebook(fbid: userID ,username: name, email: email, pictureURLString: imageUrl)))
+                        
+                        PLFacade.signUpFB(signUpData) { error in
                             error != nil ? completion(result: nil,error: error) : completion(result: nil,error: nil)
                         }
                     }
