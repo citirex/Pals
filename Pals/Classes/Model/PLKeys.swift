@@ -9,6 +9,7 @@
 enum PLKeys : String {
     case id
     case place_id
+    case fbid
     case name
     case price
     case type

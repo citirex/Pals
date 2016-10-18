@@ -132,7 +132,7 @@ extension PLProfileManager : PLAuthStorage {
                                 return completion(result: nil, error: PLError(domain: PLErrorDomain.User, type: kPLErrorTypeBadResponse))
                         }
 
-                        let signUpData = PLSignUpData(source: .SourceFacebook(Facebook(id: userID ,username: name, email: email, pictureURLString: imageUrl)))
+                        let signUpData = PLSignUpData(source: .SourceFacebook(Facebook(fbid: userID ,username: name, email: email, pictureURLString: imageUrl)))
                         
                         PLFacade.signUpFB(signUpData) { error in
                             error != nil ? completion(result: nil,error: error) : completion(result: nil,error: nil)

@@ -22,9 +22,9 @@ import AFNetworking
 
 enum PLAPIService : String {
     case Login
+    case LoginFB
     case Logout
     case SignUp
-    case SignUpFacebook
     case SendPassword
     case Profile
     case UpdateProfile

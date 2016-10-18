@@ -135,7 +135,7 @@ extension PLFacade._PLFacade {
     
     func _signUpFB(data: PLSignUpData, completion: PLErrorCompletion) {
         let params = data.params
-        PLNetworkManager.post(PLAPIService.SignUpFacebook, parameters: params) { (dic, error) in
+        PLNetworkManager.post(PLAPIService.LoginFB, parameters: params) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
     }
