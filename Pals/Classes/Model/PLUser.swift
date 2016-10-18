@@ -11,6 +11,7 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     var email: String
     var picture: NSURL
     var balance = Float(0)
+    var additional: String?
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
@@ -25,6 +26,9 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
         self.picture = NSURL(string: picture)!
         if let balance = jsonDic[PLKeys.balance.string] as? Float {
             self.balance = balance
+        }
+        if let additional = jsonDic[PLKeys.additional.string] as? String {
+            self.additional = additional
         }
         super.init(jsonDic: jsonDic)
     }
@@ -52,7 +56,7 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     }
     
     var userData: PLUserData {
-        return PLUserData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture)
+        return PLUserData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture, additional: additional)
     }
 }
 
@@ -63,4 +67,57 @@ struct PLUserData {
     var email: String
     var phone: String
     var picture: NSURL
+    var additional: String?
+}
+
+// Change profile info temporaty information store in struct below
+
+struct PLUserEditedData {
+    
+    var userName: (initial: String,final: String?)
+    var userEmail: (initial: String,final: String?)
+    var userImage: (initial: UIImage?,final: UIImage?)
+    
+    init(aUserName: String, aUserEmail:String, aUserImage:UIImage?) {
+        self.userName = (aUserName, nil)
+        self.userEmail = (aUserEmail, nil)
+        self.userImage = (aUserImage, nil)
+    }
+    
+    
+    //MARK: Getters
+    func params() -> [String : AnyObject] {
+        var dic = [String : AnyObject]()
+        if let name = userName.final where (userName.initial != name && name.isEmpty == false) {
+            dic[PLKeys.name.string] = name
+        }
+        if let email = userEmail.final where (userEmail.initial != email && email.isEmpty == false) {
+            dic[PLKeys.email.string] = email
+        }
+        
+        return dic
+    }
+    
+    var isChanged: Bool {
+        if (userName.final?.isEmpty == false && userName.final != userName.initial) ||
+            (userEmail.final?.isEmpty == false && userEmail.final != userEmail.initial) ||
+            (userImage.final != nil && userImage.final != userImage.initial) {
+            return true
+        }
+        return false
+    }
+    
+    var image: UIImage? {
+        if let anImage = userImage.final where (userImage.initial != anImage) {
+            return anImage
+        }
+        return nil
+    }
+    
+    //MARK: Actions
+    mutating func clean() {
+        userName.final = nil
+        userEmail.final = nil
+        userImage.final = nil
+    }
 }

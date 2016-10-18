@@ -17,7 +17,7 @@ protocol PLFacadeInterface {
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
     static func signUpFB(data: PLSignUpData, completion: PLErrorCompletion)
     static func sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion)
-    static func updateProfile(data: PLEditableUser, completion: PLErrorCompletion)//FIXME: signupdata.
+    static func updateProfile(data: PLEditUserData, completion: PLErrorCompletion)
     static func sendPassword(email: String, completion: PLErrorCompletion)
     static func fetchNearRegion(completion: PLLocationRegionCompletion)
     static func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion)
@@ -69,7 +69,7 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
         instance._sendPassword(email, completion: completion)
     }
     
-    class func updateProfile(data: PLEditableUser, completion: PLErrorCompletion) {
+    class func updateProfile(data: PLEditUserData, completion: PLErrorCompletion) {
         instance._updateProfile(data, completion: completion)
     }
     
@@ -112,22 +112,11 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     
 }
 
-let kMimePng = "image/png"
-
 extension PLFacade._PLFacade {
-    
-    private func createAttachment(image: UIImage?) -> PLUploadAttachment? {
-        var attachment: PLUploadAttachment?
-        if image != nil {
-            let imageData = UIImagePNGRepresentation(image!)!
-            attachment = PLUploadAttachment(name: PLKeys.picture.string, mimeType: kMimePng, data: imageData)
-        }
-        return attachment
-    }
     
     func _signUp(data: PLSignUpData, completion: PLErrorCompletion) {
         let params = data.params
-        let attachment = createAttachment(data.picture)
+        let attachment = PLUploadAttachment.pngImage(data.picture)
         PLNetworkManager.post(PLAPIService.SignUp, parameters: params, attachment: attachment) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
@@ -135,7 +124,7 @@ extension PLFacade._PLFacade {
     
     func _signUpFB(data: PLSignUpData, completion: PLErrorCompletion) {
         let params = data.params
-        PLNetworkManager.post(PLAPIService.SignUpFacebook, parameters: params) { (dic, error) in
+        PLNetworkManager.post(PLAPIService.LoginFB, parameters: params) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
     }
@@ -179,11 +168,11 @@ extension PLFacade._PLFacade {
         })
     }
     
-    func _updateProfile(data: PLEditableUser, completion: PLErrorCompletion) {
-        let params = data.params()
-        let attachment = createAttachment(data.picture)
+    func _updateProfile(data: PLEditUserData, completion: PLErrorCompletion) {
+        let params = data.params
+        let attachment = data.attachment
         PLNetworkManager.post(PLAPIService.UpdateProfile, parameters: params, attachment: attachment) { (dic, error) in
-//            self.handleUserLogin(error, dic: dic, completion: completion)
+            self.handleUpdateProfile(error, dic: dic, completion: completion)
         }
     }
     
@@ -204,6 +193,20 @@ extension PLFacade._PLFacade {
                 }
                 errorCompletion(error: error)
             }
+        }
+    }
+    
+    func handleUpdateProfile(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
+        handleErrorCompletion(error, errorCompletion: completion) { () -> NSError? in
+            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
+                if let userDic = response[PLKeys.user.string] as? [String : AnyObject] {
+                    if self.profileManager.saveProfile(userDic) {
+                        completion(error: nil)
+                        return nil
+                    }
+                }
+            }
+            return NSError(domain: PLErrorDomain.Unknown.string, code: 0, userInfo: nil)
         }
     }
     

@@ -6,48 +6,58 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
 import Permission
+import IQKeyboardManager
 
 class PLEditProfileViewController: PLViewController {
 
     @IBOutlet weak var userProfileImageView: PLCircularImageView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var additionalTextField: UITextField!
     @IBOutlet weak var addProfileImageButton: UIButton!
     
-    private var userData: PLUserData!
-    private var isEditing = false { didSet { updateUI() }}
-    private lazy var tempProfile: PLEditableUser! = { return PLEditableUser() }()
-    
-    
+    private var edit = false {
+        didSet {
+            updateEnabledStatus(edit)
+            guard edit else {
+                if editData != nil {
+                    updateUserProfileIfNeeded(editData!)
+                }
+                return
+            }
+            usernameTextField.becomeFirstResponder()
+        }
+    }
+    private var editData = PLEditUserData(user: PLFacade.profile)
     
     deinit {
         print("PLEditProfileViewController deinit")
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupUserData()
+        updateProfileUI()
         hideKeyboardWhenTapped = true
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.navigationBar.style = .EditProfileStyle
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
     }
     
-
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     // MARK: - Actions
     
     @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
-        isEditing = !isEditing
-        guard isEditing else { return updateUserData() }
-        usernameTextField.becomeFirstResponder()
+        edit = !edit
     }
     
     @IBAction func showSignOutAlert(sender: UIButton) {
@@ -57,9 +67,6 @@ class PLEditProfileViewController: PLViewController {
             self.startActivityIndicator(.WhiteLarge, color: .grayColor())
             PLFacade.logout({ error in
                 self.stopActivityIndicator()
-                
-                sleep(1)
-                
                 guard error == nil else { return PLShowErrorAlert(error: error!) }
                 self.logOut()
             })
@@ -81,14 +88,25 @@ class PLEditProfileViewController: PLViewController {
         present(optionMenu, animated: true)
     }
     
+    private func updateEnabledStatus(status: Bool) {
+        usernameTextField.enabled     = status
+        additionalTextField.enabled  = status
+        addProfileImageButton.enabled = status
+        addProfileImageButton.hidden  = !status
+    }
     
-    // MARK: - Private Methods
-    
-    private func setupUserData() {
-        userData                  = PLFacade.profile?.userData
-        usernameTextField.text    = userData!.name
-        phoneNumberTextField.text = userData!.email
-        userProfileImageView.setImageWithURL(userData!.picture, placeholderImage: UIImage(named: "profile_placeholder"))
+    private func updateProfileUI () {
+        if let data = PLFacade.profile?.userData {
+            usernameTextField.text    = data.name
+            phoneNumberTextField.text = data.email
+            additionalTextField.text = data.additional
+            userProfileImageView.setImageWithURL(data.picture, placeholderImage: UIImage(named: "profile_placeholder"))
+        } else {
+            usernameTextField.text = "<Error name>"
+            phoneNumberTextField.text = "<Error phone>"
+            additionalTextField.text = "<Error additional>"
+            userProfileImageView.image = UIImage(named: "profile_placeholder")
+        }
     }
 
     private func logOut() {
@@ -98,39 +116,30 @@ class PLEditProfileViewController: PLViewController {
         }
     }
     
-    // MARK: - Update User Data
-    
-    private func updateUserData() {
-        //check for dada chenged
-        if let name = usernameTextField.text where name != userData.name {
-            tempProfile.name = name
-        }
-        if let contact = phoneNumberTextField.text where contact != userData.email {
-            tempProfile.contactMain = contact
-        }
-//        if let contactSpare = phoneNumberTextField.text where contactSpare != userData.name {
-//            tempProfile.contactSecondary = contactSpare
-//        }
-        
-        if tempProfile.isChanged == true {
-            startActivityIndicator(.WhiteLarge, color: .grayColor())
-            PLFacade.updateProfile(tempProfile) {[unowned self] (error) in
-                self.stopActivityIndicator()
-                guard error == nil else { return PLShowErrorAlert(error: error!) }
-                self.tempProfile.clean()
-                self.setupUserData()
-                NSNotificationCenter.defaultCenter().postNotificationName(kProfileInfoChanged, object: nil)
-            }
+    private func resetEmptyFields() {
+        // only for those fields that are not allowed to be empty
+        if usernameTextField.text!.isEmpty {
+            usernameTextField.text = editData?.name.old as? String
         }
     }
     
-    // MARK: - Update UI
-    
-    private func updateUI() {
-        usernameTextField.enabled     = isEditing ? true : false
-        phoneNumberTextField.enabled  = isEditing ? true : false
-        addProfileImageButton.enabled = isEditing ? true : false
-        addProfileImageButton.hidden  = isEditing ? false : true
+    private func updateUserProfileIfNeeded(editData: PLEditUserData) {
+        let validator = editData.validate()
+        if validator.1 != nil {
+            let error = validator.1!
+            if error.domain == PLErrorDomain.User.string && error.code == 1002 {
+                resetEmptyFields()
+            }
+        } else {
+            if validator.0 {
+                startActivityIndicator(.WhiteLarge, color: .grayColor())
+                PLFacade.updateProfile(editData) {[unowned self] (error) in
+                    self.stopActivityIndicator()
+                    guard error == nil else { return PLShowErrorAlert(error: error!) }
+                    self.editData = PLEditUserData(user: PLFacade.profile)
+                }
+            }
+        }
     }
     
     // MARK: - Photos & Camera
@@ -140,12 +149,12 @@ class PLEditProfileViewController: PLViewController {
         
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType             = sourceType
+        imagePicker.allowsEditing          = false
         imagePicker.delegate               = self
-        imagePicker.modalPresentationStyle = sourceType == .Camera ? .FullScreen : .OverCurrentContext
         
         if sourceType == .Camera {
-            imagePicker.cameraDevice      = .Front
-            imagePicker.cameraCaptureMode = .Photo
+            imagePicker.cameraDevice           = .Front
+            imagePicker.cameraCaptureMode      = .Photo
         }
         present(imagePicker, animated: true)
     }
@@ -161,12 +170,9 @@ class PLEditProfileViewController: PLViewController {
         }
         let alert = permission.deniedAlert
         alert.title   = "Using \(permission.type) is disabled for this app"
-        alert.message = "Enable it in Settings->Privacy"
+        alert.message = "Enable it in Settings -> Privacy"
     }
-
 }
-
-
 
 // MARK: - UITextFieldDelegate
 
@@ -177,6 +183,17 @@ extension PLEditProfileViewController: UITextFieldDelegate {
         return false
     }
 
+    func textFieldDidChange(notif: NSNotification) {
+        if let textField = notif.object as? UITextField {
+            let text = textField.text
+            if textField === usernameTextField {
+                editData?.changeName(text)
+            } else if textField === additionalTextField {
+                editData?.changeAdditional(text)
+            }
+        }
+    }
+    
 }
 
 // MARK: - UIImagePickerControllerDelegate Methods
@@ -186,7 +203,7 @@ extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         userProfileImageView.image = imagePicked
-        tempProfile.picture        = imagePicked
+        editData?.changePicture(imagePicked)
         dismiss(true)
     }
     
@@ -195,4 +212,3 @@ extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINaviga
     }
     
 }
-

@@ -55,8 +55,8 @@ class PLSettingsViewController: PLViewController {
     ]
     
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         navigationController?.navigationBar.style = .SettingsStyle
     }

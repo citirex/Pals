@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
 @IBDesignable
 class PLDescriptionLabel: UILabel {
 
@@ -18,4 +16,16 @@ class PLDescriptionLabel: UILabel {
         addBorder(.Bottom, color: .darkGray(), width: 0.5)
     }
 
+}
+
+@IBDesignable
+class PLBorderedTextField: UITextField {
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        addBorder(.Top, color: .darkGray(), width: 0.5)
+        addBorder(.Bottom, color: .darkGray(), width: 0.5)
+    }
+    
 }

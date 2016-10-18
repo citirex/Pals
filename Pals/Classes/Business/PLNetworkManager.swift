@@ -22,12 +22,12 @@ import AFNetworking
 
 enum PLAPIService : String {
     case Login
+    case LoginFB
     case Logout
     case SignUp
-    case SignUpFacebook
     case SendPassword
     case Profile
-    case UpdateProfile
+    case UpdateProfile = "update_profile"
     case Friends
     case InviteFriends
     case Places
@@ -40,10 +40,20 @@ enum PLAPIService : String {
 }
 
 struct PLUploadAttachment {
+    static let kMimePng = "image/png"
+    
     let name: String
     let filename = "\(NSDate().timeIntervalSince1970).png"
     let mimeType: String
     let data: NSData
+    
+    static func pngImage(image: UIImage?) -> PLUploadAttachment? {
+        if image == nil {
+            return nil
+        }
+        let data = UIImagePNGRepresentation(image!)!
+        return PLUploadAttachment(name: PLKeys.picture.string, mimeType: kMimePng, data: data)
+    }
 }
 
 typealias PLNetworkRequestCompletion = (dic: [String:AnyObject], error: NSError?) -> ()
@@ -69,6 +79,9 @@ class PLNetworkSession: AFHTTPSessionManager {
     
     override init(baseURL url: NSURL?, sessionConfiguration configuration: NSURLSessionConfiguration?) {
         super.init(baseURL: url, sessionConfiguration: configuration)
+        if let jsonDeserializer = responseSerializer as? AFJSONResponseSerializer {
+            jsonDeserializer.removesKeysWithNullValues = true
+        }
         PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLKeys.token.string, options: [.New,.Initial], context: nil)
     }
     

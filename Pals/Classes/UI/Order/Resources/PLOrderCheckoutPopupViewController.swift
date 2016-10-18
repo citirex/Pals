@@ -25,7 +25,7 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     
     var userName: String? = nil
     var locationName: String? = nil
-    var orderAmount: String? = nil
+    var orderAmount: Float? = nil
     
     lazy private var tapGesture : UITapGestureRecognizer = {
         return UITapGestureRecognizer(target: self, action: #selector(reciveTap(_:)))
@@ -44,7 +44,7 @@ class PLOrderCheckoutPopupViewController: UIViewController {
         super.viewWillAppear(animated)
         userNameLabel.text = userName
         locationLabel.text = locationName
-        amountLabel.text = orderAmount
+        amountLabel.text = String(format: "$%.2f", orderAmount!)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -91,6 +91,7 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     @IBAction private func sendButtonPressed(sender: UIButton) {
         let message = (textViewText == placeholderText) ? "" : textViewText
         textViewText = placeholderText
+        
         delegate?.sendButtonPressedWith(message)
     }
     
