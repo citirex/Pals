@@ -27,6 +27,7 @@ PODS:
     - FBSDKCoreKit
   - GPUImage (0.1.7)
   - IQKeyboardManager (4.0.6)
+  - KMNavigationBarTransition (0.0.10)
   - Permission (1.5)
   - PureLayout (3.0.2)
   - SwiftQRCode (2.0.2)
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - GPUImage
   - IQKeyboardManager
+  - KMNavigationBarTransition
   - Permission
   - PureLayout
   - SwiftQRCode
@@ -50,10 +52,11 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
+  KMNavigationBarTransition: 7a519f915cfe6fe09764b2061ea01043b445f7d2
   Permission: 2d9647f8b994a5faf7e1c5a40d4328fde158c2f2
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
-PODFILE CHECKSUM: d64b590e1faed70aa588b43f01190b637684f13b
+PODFILE CHECKSUM: 48717c74754c926fbf1a86ecb563b21602d7c240
 
 COCOAPODS: 1.0.1

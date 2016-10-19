@@ -53,7 +53,7 @@ class PLSettingsViewController: PLViewController {
         Section(type: .Archive, items: [.OrderHistory]),
         Section(type: .Support, items: [.HelpAndFAQ, .TermsOfService, .PrivacyPolicy])
     ]
-    
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,7 +62,6 @@ class PLSettingsViewController: PLViewController {
     }
 
 }
-
 
 
 // MARK: - UITableViewDataSource

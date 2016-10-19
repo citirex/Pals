@@ -12,6 +12,7 @@ pod 'GPUImage'
 pod 'Permission'
 pod 'PureLayout'
 pod 'DZNEmptyDataSet'
+pod 'KMNavigationBarTransition'
 
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
