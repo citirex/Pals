@@ -96,10 +96,16 @@ class PLFriendBaseViewController: PLViewController, UISearchBarDelegate, UITable
 		searchController.searchBar.tintColor			  = .affairColor()
 		searchController.searchBar.barTintColor			  = UIColor.whiteColor().colorWithAlphaComponent(0.85)
 		searchController.searchBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
-		let textFieldInsideSearchBar = searchController.searchBar.valueForKey("searchField") as? UITextField
-		textFieldInsideSearchBar?.layer.borderWidth = 1
-		textFieldInsideSearchBar?.layer.borderColor = UIColor.lightGrayColor().CGColor
-		textFieldInsideSearchBar?.cornerRadius		= 14
+		for subView in searchController.searchBar.subviews  {
+			for subsubView in subView.subviews  {
+				if let textField = subsubView as? UITextField {
+					textField.layer.borderWidth = 1
+					textField.layer.borderColor = UIColor.lightGrayColor().CGColor
+					textField.cornerRadius		= 14
+				}
+			}
+		}
+		
 		
 		tableView.tableHeaderView					= searchController.searchBar
 		tableView.backgroundView					= UIView()
