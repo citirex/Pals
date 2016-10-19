@@ -1,4 +1,4 @@
- //
+//
 //  PLLoginViewController.swift
 //  Pals
 //
@@ -19,11 +19,11 @@ class PLLoginViewController: PLViewController {
 	@IBOutlet weak var passTextField: PLFormTextField!
 	@IBOutlet var registerButton: UIButton!
     
+	@IBOutlet var logoCenterXC: NSLayoutConstraint!
     @IBOutlet var loginViewBotC: NSLayoutConstraint?
-	
-	@IBOutlet var logoTopC: NSLayoutConstraint!
 	@IBOutlet var registerBotC: NSLayoutConstraint!
-    
+	@IBOutlet var logoBottomC: NSLayoutConstraint!
+	
     override func prefersStatusBarHidden() -> Bool {
         return false
     }
@@ -129,13 +129,16 @@ class PLLoginViewController: PLViewController {
 	
 	
 	func animateSplashToLogin() {
-		logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (logoImage.bounds.height / 2) + (UIApplication.sharedApplication().statusBarFrame.size.height / 2)
+		
+		logoCenterXC.active = true
+		logoBottomC.active = false
 		registerBotC.constant = -(registerButton.bounds.height * 2)
 		loginViewBotC!.constant = -loginView.bounds.height
 		view.layoutIfNeeded()
 			
 		UIView.animateWithDuration(1, delay: 2.2, options: .CurveEaseOut, animations: {
-				self.logoTopC?.constant = 50
+				self.logoCenterXC.active = false
+				self.logoBottomC.active = true
 				self.loginViewBotC?.constant = 0
 				self.registerBotC.constant = 0
 					self.view.layoutIfNeeded()

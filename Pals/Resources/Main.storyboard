@@ -30,7 +30,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-fq-ZBU">
-                                                        <rect key="frame" x="103" y="50" width="169" height="169"/>
+                                                        <rect key="frame" x="103" y="53" width="169" height="169"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="0mE-fq-ZBU" secondAttribute="height" multiplier="1:1" id="Bq9-kv-qjF"/>
                                                         </constraints>
@@ -145,9 +145,10 @@
                                             <constraint firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="UfU-fz-yyh"/>
                                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="top" secondItem="lxr-Px-fkn" secondAttribute="top" id="W6X-Fc-WcM"/>
                                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="leading" secondItem="lxr-Px-fkn" secondAttribute="leading" id="YCP-Xg-lew"/>
-                                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="top" secondItem="lxr-Px-fkn" secondAttribute="top" constant="50" id="YCW-fc-CHs"/>
                                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="width" secondItem="lxr-Px-fkn" secondAttribute="width" multiplier="0.45" id="cBI-4x-4NM"/>
+                                            <constraint firstAttribute="bottom" secondItem="0mE-fq-ZBU" secondAttribute="bottom" multiplier="3" id="dpY-Oc-2wP"/>
                                             <constraint firstAttribute="trailing" secondItem="xXN-Bq-AeA" secondAttribute="trailing" id="iYj-qm-MHU"/>
+                                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="centerY" secondItem="lxr-Px-fkn" secondAttribute="centerY" priority="750" id="oMf-Cj-AoW"/>
                                             <constraint firstAttribute="bottom" secondItem="xXN-Bq-AeA" secondAttribute="bottom" id="pXg-FW-Aft"/>
                                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="centerX" secondItem="lxr-Px-fkn" secondAttribute="centerX" id="uBB-FQ-IyU"/>
                                         </constraints>
@@ -197,8 +198,9 @@
                         <outlet property="loginTextField" destination="ymg-DV-zCV" id="0hM-X0-uIJ"/>
                         <outlet property="loginView" destination="xXN-Bq-AeA" id="8MX-MX-D82"/>
                         <outlet property="loginViewBotC" destination="pXg-FW-Aft" id="dSj-kE-dtu"/>
+                        <outlet property="logoBottomC" destination="dpY-Oc-2wP" id="eTg-7p-eF6"/>
+                        <outlet property="logoCenterXC" destination="UfU-fz-yyh" id="ybE-7o-bIA"/>
                         <outlet property="logoImage" destination="0mE-fq-ZBU" id="OTJ-hP-bCq"/>
-                        <outlet property="logoTopC" destination="YCW-fc-CHs" id="4AJ-3K-XhG"/>
                         <outlet property="mySpinner" destination="WXu-2n-otd" id="QEO-ct-BPX"/>
                         <outlet property="passTextField" destination="HEk-oG-qRI" id="MEk-fe-hJO"/>
                         <outlet property="registerBotC" destination="4tD-lc-jc2" id="3DD-Ed-5Rc"/>
