@@ -99,13 +99,23 @@ extension UIImage {
         return newImage
     }
     
-    static func imageWithSolidColor(color: UIColor, frame: CGRect) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+//    static func imageWithSolidColor(color: UIColor, frame: CGRect) -> UIImage {
+//        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+//        color.setFill()
+//        UIRectFill(frame)
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return image
+//    }
+    
+    convenience init(color: UIColor, size: CGSize = CGSizeMake(1, 1)) {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
         color.setFill()
-        UIRectFill(frame)
+        UIRectFill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        self.init(CGImage: image.CGImage!)
     }
     
 }
