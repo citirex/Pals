@@ -53,10 +53,12 @@ extension UINavigationBar {
                 barStyle     = .Default
                 tintColor    = .affairColor()
             case .PlacesStyle:
+                transparent  = false
                 barStyle     = .Black
                 tintColor    = .whiteColor()
                 setBackgroundImage(UIImage(color: .affairColor()), forBarMetrics: .Default)
             case .SettingsStyle:
+                transparent  = false
                 barStyle     = .Black
                 tintColor    = .whiteColor()
                 setBackgroundImage(UIImage(color: .affairColor()), forBarMetrics: .Default)
