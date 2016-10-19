@@ -70,8 +70,8 @@ extension PLFriendsViewController : UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
-        let friend		   = datasource[indexPath.row]
-        cell.friend		   = friend
+        let friendData = datasource[indexPath.row].cellData
+        cell.setupWith(friendData)
         cell.accessoryType = .DisclosureIndicator
         return cell
     }

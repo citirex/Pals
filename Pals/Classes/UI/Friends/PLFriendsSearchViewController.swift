@@ -11,10 +11,6 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 	
     var datasource = PLDatasourceHelper.createFriendsInviteDatasource()
 	
-//	var collectionUsers: [PLUser] {
-//		return datasource.collection.objectsInSection(99) ?? []
-//	}
-	
 	override func loadData() {
 		isLoading = true
 		self.spinner.startAnimating()
@@ -39,23 +35,9 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
     }
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-//		sendSearchFriendsRequest()
 		tableView.reloadData()
 		searchBar.endEditing(true)
 	}
-	
-//	func sendSearchFriendsRequest() -> [PLUser] {
-		
-//		let filtered = collectionUsers.filter({ (user) -> Bool in
-//			let tmp: NSString = user.name
-//			let range = tmp.rangeOfString(searchController.searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch)
-//			return range.location != NSNotFound
-//		})
-//		
-//		print("req with word: \(searchController.searchBar.text!)")
-//		
-//		return filtered
-//	}
 	
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -80,7 +62,7 @@ class PLFriendsSearchViewController: PLFriendBaseViewController{
 
 // MARK: - UITableViewDataSource
 
-extension PLFriendsSearchViewController : UITableViewDataSource {
+extension PLFriendsSearchViewController : UITableViewDataSource, PLFriendCellDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return datasource.count
     }
@@ -88,9 +70,28 @@ extension PLFriendsSearchViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! PLFriendCell
         let friend = datasource[indexPath.row]
-        cell.friend = friend
-        cell.accessoryView = cell.addButton
+        cell.setupWith(friend.cellData)
+        cell.setupAddButtonFor(friend.invited)
+        cell.delegate = self
         return cell
+    }
+    
+    func addFriendButtonPressed(sender: PLFriendCell) {
+        if let index = tableView.indexPathForCell(sender)?.row {
+            let newFriend = datasource[index]
+            startActivityIndicator(.Gray)
+            PLFacade.addFriend(newFriend, completion: {[weak sender, weak newFriend, weak self] (error) in
+                if error != nil {
+                    PLShowAlert("Failed to add friend", message: "Please try again later")
+                    PLLog(error?.localizedDescription,type: .Network)
+                } else {
+                    newFriend?.invited = true
+                    sender?.setupAddButtonFor(true)
+                }
+                self?.stopActivityIndicator()
+            })
+            
+        }
     }
 }
 
