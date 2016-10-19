@@ -7,7 +7,6 @@
 //
 
 enum SegueIdentifier: String {
-    case OrderSegue
     case PlaceProfileSegue
     case AddFundsSegue
     case EditProfileSegue

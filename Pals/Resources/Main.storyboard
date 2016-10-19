@@ -368,7 +368,6 @@
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
                         <outlet property="moreButton" destination="AKF-lV-M1l" id="As2-vK-rQM"/>
                         <outlet property="popUpMenuView" destination="jz8-ck-L0N" id="5O1-J8-yqh"/>
-                        <segue destination="Cmd-gA-94i" kind="push" identifier="OrderSegue" id="mrq-MK-55o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK6-0Z-0vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -539,7 +538,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="gQS-aH-ZRx" id="wK7-9W-pTH"/>
-                        <segue destination="Cmd-gA-94i" kind="push" identifier="OrderSegue" id="1Zi-Tu-8Fy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wf-4F-yEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1613,9 +1611,8 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u5L-qT-vQG"/>
         <segue reference="ovy-Gk-Wh0"/>
         <segue reference="Rjy-8t-3el"/>
-        <segue reference="mrq-MK-55o"/>
+        <segue reference="u5L-qT-vQG"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -113,18 +113,6 @@ class PLPlaceProfileViewController: PLViewController {
         noEventsView.hidden = true
     }
     
-    // MARK: - Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
-        switch identifier {
-        case .OrderSegue:
-            let orderViewController = segue.destinationViewController as! PLOrderViewController
-            orderViewController.order.place = place
-        default: break
-        }
-    }
-    
 }
 
 
@@ -172,7 +160,10 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             sectionHeader.placeAddressLabel.text = place.address
             sectionHeader.phoneNumberLabel.text  = place.phone
             sectionHeader.didTappedOrderButton   = { [unowned self] sender in
-                self.performSegueWithIdentifier(SegueIdentifier.OrderSegue, sender: sender)
+                
+                let orderViewController = self.tabBarController!.getOrderViewController()
+                orderViewController.order.place = self.place
+                self.tabBarController?.switchTabTo(TabBarControllerTabs.TabOrder)
             }
             return sectionHeader
         }
