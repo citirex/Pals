@@ -10,7 +10,21 @@ import DZNEmptyDataSet
 
 class PLPlacesViewController: PLViewController {
     
-    @IBOutlet var tableView: UITableView!
+    lazy var tableView: UITableView = {
+        let aTableView = UITableView(forAutoLayout: ())
+        self.view.addSubview(aTableView)
+        aTableView.autoPinEdgesToSuperviewEdges()
+        aTableView.delegate = self
+        aTableView.dataSource = self
+        aTableView.emptyDataSetSource = self
+        aTableView.emptyDataSetDelegate = self
+        aTableView.backgroundColor = UIColor.affairColor()
+        aTableView.rowHeight = 128
+        aTableView.sectionHeaderHeight = 28
+        aTableView.sectionFooterHeight = 28
+        aTableView.tableFooterView = UIView(frame: CGRectZero)
+        return aTableView
+    }()
    
     private let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
     private var resultsController: UITableViewController!
@@ -21,12 +35,9 @@ class PLPlacesViewController: PLViewController {
     private var isLoading = false
     
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureResultsController()
         configureSearchController()
         
@@ -64,9 +75,9 @@ class PLPlacesViewController: PLViewController {
                 self.tableView.tableHeaderView = nil
                 return PLShowErrorAlert(error: error!)
             }
-            self.tableView?.beginUpdates()
-            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
-            self.tableView?.endUpdates()
+            self.tableView.beginUpdates()
+            self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+            self.tableView.endUpdates()
         }
     }
     
@@ -87,6 +98,7 @@ class PLPlacesViewController: PLViewController {
     
     private func configureSearchController() {
         searchController = PLSearchController(searchResultsController: resultsController)
+        
         searchController.searchBar.placeholder     = "Find a Place"
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.tintColor       = .whiteColor()
