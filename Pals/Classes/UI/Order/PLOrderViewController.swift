@@ -30,7 +30,7 @@ class PLOrderViewController: PLViewController {
     private var drinksDatasource = PLDrinksDatasource()
     private var coversDatasource = PLCoversDatasource()
     
-    var currentTab = PLCollectionSectionType.Drinks
+    private var currentTab = PLCollectionSectionType.Drinks
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
     private lazy var checkoutPopupViewController : PLOrderCheckoutPopupViewController = {
         let popup = PLOrderCheckoutPopupViewController(nibName: "PLOrderCheckoutPopupViewController", bundle: nil)
@@ -39,7 +39,7 @@ class PLOrderViewController: PLViewController {
        return popup
     }()
     
-    lazy var noItemsView: PLEmptyBackgroundView = {
+    private lazy var noItemsView: PLEmptyBackgroundView = {
         let emptyView = PLEmptyBackgroundView(topText: "No drinks", bottomText: nil)
         self.collectionView.addSubview(emptyView)
         emptyView.autoCenterInSuperview()
@@ -91,7 +91,6 @@ class PLOrderViewController: PLViewController {
         }
     }
     
-    //FIXME: make no duplication of code
     private func loadCovers() {
         spinner.startAnimating()
         spinner.center = view.center
@@ -100,7 +99,7 @@ class PLOrderViewController: PLViewController {
         }
     }
     
-    func collectionViewInsertItems(indices: [NSIndexPath],withError error: NSError?) {
+    private func collectionViewInsertItems(indices: [NSIndexPath],withError error: NSError?) {
         if error == nil {
             if indices.count > 0 {
                 noItemsView.hidden = true
@@ -138,13 +137,13 @@ class PLOrderViewController: PLViewController {
         performTransitionToVipState(order.isVIP)
     }
     
-    func restore() {
+    private func restore() {
         order.isVIP = false
         navigationItem.rightBarButtonItem = vipButton
         animableVipView.restoreToDefaultState()
     }
     
-    func performTransitionToVipState(vip: Bool) {
+    private func performTransitionToVipState(vip: Bool) {
         (vip == true) ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
         UIView.animateWithDuration(0.3) {
             self.bgImageView.image = (vip == true) ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
@@ -162,14 +161,18 @@ class PLOrderViewController: PLViewController {
         }
     }
     
-    func clean() {
+    private func clean() {
         order.clean()
         coversOffset = CGPointZero
         drinksOffset = CGPointZero
     }
     
+    func setSectionType(type: PLCollectionSectionType) {
+        orderTabChanged(type)
+    }
+    
     // MARK: - Navigation
-    @IBAction func backBarButtonItemTapped(sender: UIBarButtonItem) {
+    @IBAction private func backBarButtonItemTapped(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(false, completion: nil)
     }
 }

@@ -13,6 +13,10 @@ enum PLAddFriendStatus : Int {
 	case Friend
 }
 
+protocol PLFriendCellDelegate: class {
+    func addFriendButtonPressed(sender: PLFriendCell)
+}
+
 class PLFriendCell: UITableViewCell{
 	
 	@IBOutlet weak var avatarImage: UIImageView!
@@ -28,30 +32,31 @@ class PLFriendCell: UITableViewCell{
 	}()
 
 	var currentUrl = ""
+    
+    weak var delegate : PLFriendCellDelegate?
 	
-	var friend: PLUser? {
-		didSet { setup() }
+    func setupWith(friendCellData: PLFriendCellData) {
+        if friendCellData.picture.absoluteString == "" {
+            avatarImage.contentMode = .Center
+            avatarImage.backgroundColor = UIColor.affairColor()
+            avatarImage.image = UIImage(named: "user")
+        } else {
+            avatarImage.contentMode = .ScaleAspectFit
+            avatarImage.backgroundColor = UIColor.clearColor()
+            setCorrectImage(friendCellData.picture)
+        }
+        nameLabel.text = friendCellData.name
 	}
 	
-	func setup() {
-		if let aFriend = friend {
-			let friendCellData = aFriend.cellData
-			if friendCellData.picture.absoluteString == "" {
-				avatarImage.contentMode = .Center
-				avatarImage.backgroundColor = UIColor.affairColor()
-				avatarImage.image = UIImage(named: "user")
-			} else {
-				avatarImage.contentMode = .ScaleAspectFit
-				avatarImage.backgroundColor = UIColor.clearColor()
-				setCorrectImage(friendCellData.picture)
-			}
-			nameLabel.text = friendCellData.name
-//			friendStatus = friendCellData.
-		} else {
-			PLLog("Friend Cell Data is empty!")
-		}
-	}
-	
+    func setupAddButtonFor(friend:Bool) {
+        if accessoryView != addButton {
+            accessoryView = addButton
+        }
+        let buttonImage = friend == true ? UIImage(named: "check_mark") : UIImage(named: "contact_add")
+        addButton.userInteractionEnabled = !friend
+        addButton.setImage(buttonImage, forState: .Normal)
+    }
+    
 	override func awakeFromNib() {
 		selectionStyle = UITableViewCellSelectionStyle.None
 	}
@@ -59,7 +64,6 @@ class PLFriendCell: UITableViewCell{
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImage.image = nil
-		addButton.imageView?.image = UIImage(named: "contact_add")
     }
 	
 	func setCorrectImage(url: NSURL) {
@@ -77,7 +81,7 @@ class PLFriendCell: UITableViewCell{
 					return
 				}
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-					if self.avatarImage.image == UIImage(named: "user"){
+					if self.avatarImage.image == UIImage(named: "user") {
 						return
 					} else {
 						self.avatarImage.image = image
@@ -92,17 +96,16 @@ class PLFriendCell: UITableViewCell{
 	}
 	
 	
-	func addFriendAction(sender: UIButton){
+	func addFriendAction(sender: PLFriendCell) {
+		delegate?.addFriendButtonPressed(self)
+        
+//		if friendStatus == .NotFriend{
+//			PLLog("sendYES")
+//			friendStatus = .Friend
 		
-		if friendStatus == .NotFriend{
-			PLLog("sendYES")
-			friendStatus = .Friend
-		addButton.setImage(UIImage(named: "check_mark"), forState: .Normal)
-			
-		} else {
-			PLLog("sendNO")
-		}
-		
-		
+//
+//		} else {
+//			PLLog("sendNO")
+//		}
 	}
 }

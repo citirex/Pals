@@ -45,4 +45,29 @@ extension UITabBarController {
     func resetConterNumberOn(tab: TabBarControllerTabs) {
         tabBar.items![tab.int].badgeValue = nil
     }
+    
+    func getOrderViewController() -> PLOrderViewController {
+        let orderViewController = (viewControllers![TabBarControllerTabs.TabOrder.int] as! UINavigationController).viewControllers.first! as! PLOrderViewController
+        _ = orderViewController.view
+        return orderViewController
+    }
+    
+// *** FIXME: Need help: Make this method to use Generics ***
+//    func getViewControllerForTab(tab: TabBarControllerTabs) -> UIViewController {
+//    }
+}
+
+extension UIViewController
+{
+    class func instantiateFromStoryboard(storyboardName: String, storyboardId: String) -> Self
+    {
+        return instantiateFromStoryboardHelper(storyboardName, storyboardId: storyboardId)
+    }
+    
+    private class func instantiateFromStoryboardHelper<T>(storyboardName: String, storyboardId: String) -> T
+    {
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier(storyboardId) as! T
+        return controller
+    }
 }
