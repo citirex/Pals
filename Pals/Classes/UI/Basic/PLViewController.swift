@@ -21,6 +21,20 @@ class PLViewController: UIViewController {
     
 }
 
+extension PLViewController {
+    
+    func didLoadPage(table:UITableView, indices: [NSIndexPath], error: NSError?) {
+        table.reloadEmptyDataSet()
+        if error == nil {
+            table.beginUpdates()
+            table.insertRowsAtIndexPaths(indices, withRowAnimation: .Bottom)
+            table.endUpdates()
+        } else {
+            PLShowErrorAlert(error: error!)
+        }
+    }
+}
+
 
 extension UIViewController {
 

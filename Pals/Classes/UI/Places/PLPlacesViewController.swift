@@ -8,97 +8,42 @@
 
 import DZNEmptyDataSet
 
-class PLPlacesViewController: PLViewController {
+class PLPlacesViewController: PLSearchableViewController {
     
     @IBOutlet var tableView: UITableView!
-   
-    private let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
-    private var resultsController: UITableViewController!
-    private var searchController: PLSearchController!
-    private var selectedPlace: PLPlace!
-    private var previousFilter = ""
     private var searchPlace: String!
-    private var isLoading = false
-    
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureResultsController()
-        configureSearchController()
-        
+        configureResultsController(PLPlaceCell.nibName, cellIdentifier: PLPlaceCell.identifier, responder: self)
+        configureSearchController("Find a Place", tableView: tableView, responder: self)
         tableView.hideSearchBar()
+        let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-        
-        loadPlaces()
+        loadData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         navigationController?.navigationBar.style = .PlacesStyle
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         places.cancel()
     }
     
     // MARK: - Private Methods
     
-    private func loadPlaces() {
-        isLoading = true
+    func loadData() {
         startActivityIndicator(.WhiteLarge)
-        tableView.reloadEmptyDataSet()
-        
-        places.loadPage { [unowned self] indexPaths, error in
-            self.isLoading = false
+        places.loadPage {[unowned self] (indices, error) in
             self.stopActivityIndicator()
-            
-            guard error == nil else {
-                self.tableView.reloadEmptyDataSet()
-                self.tableView.tableHeaderView = nil
-                return PLShowErrorAlert(error: error!)
-            }
-            self.tableView?.beginUpdates()
-            self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
-            self.tableView?.endUpdates()
+            self.didLoadPage(self.tableView, indices: indices, error: error)
         }
     }
-    
-    private func configureResultsController() {
-        resultsController = UITableViewController(style: .Plain)
-        resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-        resultsController.tableView.backgroundColor        = .affairColor()
-        resultsController.tableView.tableFooterView        = UIView()
-        resultsController.tableView.rowHeight              = 128.0
-        resultsController.tableView.dataSource             = self
-        resultsController.tableView.delegate               = self
-        resultsController.tableView.emptyDataSetSource     = self
-        resultsController.tableView.emptyDataSetDelegate   = self
-    }
-
-    
-    // MARK: - Initialize Search Controller
-    
-    private func configureSearchController() {
-        searchController = PLSearchController(searchResultsController: resultsController)
-        searchController.searchBar.placeholder     = "Find a Place"
-        searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.tintColor       = .whiteColor()
-        searchController.searchBar.barTintColor    = .affairColor()
-        searchController.searchResultsUpdater      = self
-        
-        tableView.tableHeaderView                  = searchController.searchBar
-        tableView.backgroundView                   = UIView()
-        
-        definesPresentationContext = true
-    }
-    
 
     // MARK: - Navigation
     
@@ -106,8 +51,11 @@ class PLPlacesViewController: PLViewController {
         guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
         switch identifier {
         case .PlaceProfileSegue:
-            let placeProfileViewController = segue.destinationViewController as! PLPlaceProfileViewController
-            placeProfileViewController.place = selectedPlace
+            if let placeProfileViewController = segue.destinationViewController as? PLPlaceProfileViewController {
+                if let place = sender as? PLPlace {
+                    placeProfileViewController.place = place
+                }
+            }
         default:
             break
         }
@@ -116,16 +64,30 @@ class PLPlacesViewController: PLViewController {
     func hideSearchBar() {
         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
     }
-
+    
+    override func searchDidChange(text: String, active: Bool) {
+        searchPlace = text
+        places.searching = active
+        if text.isEmpty {
+            places.searching = false
+        } else {
+            startActivityIndicator(.WhiteLarge)
+            places.filter(text, completion: { [unowned self] in
+                self.stopActivityIndicator()
+                self.resultsController.tableView.reloadEmptyDataSet()
+                self.resultsController.tableView.reloadData()
+            })
+        }
+    }
 }
-
 
 // MARK: - Table view data source
     
 extension PLPlacesViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return places.count
+        let count = places.count
+        return count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -139,49 +101,22 @@ extension PLPlacesViewController: UITableViewDataSource {
         let place = places[indexPath.row]
         cell.placeCellData = place.cellData
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        selectedPlace = places[indexPath.row]
-        performSegueWithIdentifier(SegueIdentifier.PlaceProfileSegue, sender: self)
-    }
-
 }
-
 
 // MARK: - Table view delegate
 
 extension PLPlacesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if places.shouldLoadNextPage(indexPath) { loadPlaces() }
+        if places.shouldLoadNextPage(indexPath) { loadData() }
     }
     
-}
-
-
-// MARK: - UISearchResultsUpdating
-
-extension PLPlacesViewController: UISearchResultsUpdating {
-    
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        places.searching = searchController.active
-        searchPlace = searchController.searchBar.text!
-        
-        if searchPlace.isEmpty {
-            places.searching = false
-        } else {
-            startActivityIndicator(.WhiteLarge)
-            places.filter(searchPlace, completion: { [unowned self] in
-                self.stopActivityIndicator()
-                self.resultsController.tableView.reloadData()
-                self.resultsController.tableView.reloadEmptyDataSet()
-            })
-        }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let place = places[indexPath.row]
+        performSegueWithIdentifier(SegueIdentifier.PlaceProfileSegue, sender: place)
     }
-    
 }
-
 
 // MARK: - DZNEmptyDataSetSource
 
@@ -203,18 +138,13 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
         let named = scrollView === tableView ? "place_pin_placeholder" : "search"
         return UIImage(named: named)!.imageResize(CGSizeMake(100, 100))
     }
-
 }
-
 
 // MARK: - DZNEmptyDataSetDelegate
 
 extension PLPlacesViewController: DZNEmptyDataSetDelegate {
     
     func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-        return !isLoading
+        return !places.loading
     }
-    
 }
-
-

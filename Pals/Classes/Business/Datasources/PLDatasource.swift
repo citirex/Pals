@@ -76,6 +76,7 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
         get { return collection.searching }
         set { collection.searching = newValue }
     }
+    var loading: Bool {return collection.isLoading}
     subscript(index: Int) -> T {return collection[index]}
     
     func fakeFeedNameOnError(error: NSError) -> String {

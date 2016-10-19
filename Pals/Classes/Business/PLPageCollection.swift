@@ -98,6 +98,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     private var session: AFHTTPSessionManager?
     private var offset = UInt64(0)
     private var loading = false
+    var isLoading: Bool {return loading}
     private var deserializer = PLPageCollectionDeserializer<T>()
     
     convenience init(url: String) {

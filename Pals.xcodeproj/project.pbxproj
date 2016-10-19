@@ -39,7 +39,6 @@
 		2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8851D813E730095995F /* PLUniqueObject.swift */; };
 		2480F8EC1D813E730095995F /* PLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8861D813E730095995F /* PLUser.swift */; };
 		2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8961D813E730095995F /* PLAddFundsViewController.swift */; };
-		2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F89D1D813E730095995F /* PLFriendCellData.swift */; };
 		2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A31D813E730095995F /* PLLoginViewController.swift */; };
 		2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A51D813E730095995F /* PLOrderViewController.swift */; };
 		2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */; };
@@ -80,12 +79,11 @@
 		D410F71E1D9A7DA6000E8E06 /* invitefriends1.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71B1D9A7DA6000E8E06 /* invitefriends1.json */; };
 		D410F71F1D9A7DA6000E8E06 /* invitefriends2.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71C1D9A7DA6000E8E06 /* invitefriends2.json */; };
 		D410F7211D9AA16F000E8E06 /* PLDatasourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410F7201D9AA16F000E8E06 /* PLDatasourceHelper.swift */; };
-		D410F7231D9AA4F4000E8E06 /* PLInviteFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410F7221D9AA4F4000E8E06 /* PLInviteFriendsDatasource.swift */; };
-		D410F7251D9AA564000E8E06 /* PLInvitableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410F7241D9AA564000E8E06 /* PLInvitableUser.swift */; };
 		D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */; };
 		D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */; };
 		D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */; };
 		D419F0D11DB62E1F0095C5AA /* PLEditUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */; };
+		D448496A1DB7A3EF00737413 /* PLSearchableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
 		D46D2B891D875BB10058060E /* PLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B881D875BB10058060E /* PLImage.swift */; };
 		D46E81631D91370100A781C7 /* PLSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46E81621D91370100A781C7 /* PLSearchController.swift */; };
@@ -211,7 +209,6 @@
 		2480F8861D813E730095995F /* PLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUser.swift; sourceTree = "<group>"; };
 		2480F8871D813E730095995F /* Pals-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Pals-Bridging-Header.h"; path = "Classes/Pals-Bridging-Header.h"; sourceTree = "<group>"; };
 		2480F8961D813E730095995F /* PLAddFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddFundsViewController.swift; sourceTree = "<group>"; };
-		2480F89D1D813E730095995F /* PLFriendCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCellData.swift; sourceTree = "<group>"; };
 		2480F8A31D813E730095995F /* PLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLoginViewController.swift; sourceTree = "<group>"; };
 		2480F8A51D813E730095995F /* PLOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderViewController.swift; sourceTree = "<group>"; };
 		2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDrinkCell.swift; sourceTree = "<group>"; };
@@ -256,8 +253,6 @@
 		D410F71B1D9A7DA6000E8E06 /* invitefriends1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invitefriends1.json; sourceTree = "<group>"; };
 		D410F71C1D9A7DA6000E8E06 /* invitefriends2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invitefriends2.json; sourceTree = "<group>"; };
 		D410F7201D9AA16F000E8E06 /* PLDatasourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatasourceHelper.swift; sourceTree = "<group>"; };
-		D410F7221D9AA4F4000E8E06 /* PLInviteFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLInviteFriendsDatasource.swift; sourceTree = "<group>"; };
-		D410F7241D9AA564000E8E06 /* PLInvitableUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLInvitableUser.swift; sourceTree = "<group>"; };
 		D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLBlurView.swift; sourceTree = "<group>"; };
 		D41194F01D86BB7100AED4D1 /* NSLayoutConstraint+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Additions.h"; sourceTree = "<group>"; };
 		D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Additions.m"; sourceTree = "<group>"; };
@@ -265,6 +260,7 @@
 		D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+LayoutConstraints.m"; sourceTree = "<group>"; };
 		D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEditUserData.swift; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchableViewController.swift; sourceTree = "<group>"; };
 		D46D2B861D87583B0058060E /* PLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLColor.swift; sourceTree = "<group>"; };
 		D46D2B881D875BB10058060E /* PLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImage.swift; sourceTree = "<group>"; };
 		D46E81621D91370100A781C7 /* PLSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchController.swift; sourceTree = "<group>"; };
@@ -474,7 +470,6 @@
 				2480F8851D813E730095995F /* PLUniqueObject.swift */,
 				D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */,
 				2480F8861D813E730095995F /* PLUser.swift */,
-				D410F7241D9AA564000E8E06 /* PLInvitableUser.swift */,
 				D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */,
 			);
 			path = Model;
@@ -516,6 +511,7 @@
 			children = (
 				D4950A921D82B32700F48F4E /* PLAlert.swift */,
 				D4950A941D82C71100F48F4E /* PLViewController.swift */,
+				D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */,
 				D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */,
 				E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */,
 				D46E81621D91370100A781C7 /* PLSearchController.swift */,
@@ -531,7 +527,6 @@
 			isa = PBXGroup;
 			children = (
 				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
-				2480F89D1D813E730095995F /* PLFriendCellData.swift */,
 				049BA9F61D83083800C2E32D /* PLFriendCell.swift */,
 				049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */,
 				049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */,
@@ -715,7 +710,6 @@
 				D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */,
 				D410F7201D9AA16F000E8E06 /* PLDatasourceHelper.swift */,
 				D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */,
-				D410F7221D9AA4F4000E8E06 /* PLInviteFriendsDatasource.swift */,
 				D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */,
 				D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */,
 				24DDA9351D9A663500FCDBCA /* PLEventsDatasource.swift */,
@@ -1224,7 +1218,6 @@
 				E8E4A12E1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift in Sources */,
 				2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */,
 				2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */,
-				D410F7231D9AA4F4000E8E06 /* PLInviteFriendsDatasource.swift in Sources */,
 				D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */,
 				24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */,
 				E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */,
@@ -1249,6 +1242,7 @@
 				2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */,
 				D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */,
 				2480F8E51D813E730095995F /* PLErrors.swift in Sources */,
+				D448496A1DB7A3EF00737413 /* PLSearchableViewController.swift in Sources */,
 				2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */,
 				E883A8421DAA6269006DB9CF /* PLPlaceCell.swift in Sources */,
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
@@ -1273,8 +1267,6 @@
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,
 				24B5DD181D91564D0021050D /* PLOrderCheckoutPopupViewController.swift in Sources */,
-				D410F7251D9AA564000E8E06 /* PLInvitableUser.swift in Sources */,
-				2480F8F81D813E730095995F /* PLFriendCellData.swift in Sources */,
 				E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

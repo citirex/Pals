@@ -96,7 +96,7 @@ class PLEditProfileViewController: PLViewController {
     }
     
     private func updateProfileUI () {
-        if let data = PLFacade.profile?.userData {
+        if let data = PLFacade.profile?.cellData {
             usernameTextField.text    = data.name
             phoneNumberTextField.text = data.email
             additionalTextField.text = data.additional

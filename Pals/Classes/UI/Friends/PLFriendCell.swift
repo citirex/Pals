@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
 enum PLAddFriendStatus : Int {
 	case NotFriend
 	case Friend
@@ -23,7 +21,8 @@ class PLFriendCell: UITableViewCell{
 	@IBOutlet weak var nameLabel: UILabel!
 	
 	var friendStatus: PLAddFriendStatus?
-	
+    var cellData: PLFriendCellData?
+    
 	lazy var addButton: UIButton = {
 		let button = UIButton(frame: CGRect(x: 0, y: 0, width: 33, height: 33))
 		button.addTarget(self, action: #selector(addFriendAction(_:)), forControlEvents: .TouchUpInside)
@@ -35,26 +34,41 @@ class PLFriendCell: UITableViewCell{
     
     weak var delegate : PLFriendCellDelegate?
 	
-    func setupWith(friendCellData: PLFriendCellData) {
-        if friendCellData.picture.absoluteString == "" {
+    func setup(cellData: PLFriendCellData) {
+        self.cellData = cellData
+        _updateUI(cellData)
+	}
+    
+    func updateUI() {
+        if cellData != nil {
+            _updateUI(cellData!)
+        }
+    }
+    
+    private func _updateUI(cellData: PLFriendCellData){
+        if cellData.picture.absoluteString == "" {
             avatarImage.contentMode = .Center
             avatarImage.backgroundColor = UIColor.affairColor()
             avatarImage.image = UIImage(named: "user")
         } else {
             avatarImage.contentMode = .ScaleAspectFit
             avatarImage.backgroundColor = UIColor.clearColor()
-            setCorrectImage(friendCellData.picture)
+            setCorrectImage(cellData.picture)
         }
-        nameLabel.text = friendCellData.name
-	}
+        nameLabel.text = cellData.name
+    }
 	
-    func setupAddButtonFor(friend:Bool) {
-        if accessoryView != addButton {
-            accessoryView = addButton
+    func setupInviteUI() {
+        if let data = cellData {
+            if accessoryView != addButton {
+                accessoryView = addButton
+            }
+            let buttonImage = data.invited  == true ? UIImage(named: "check_mark") : UIImage(named: "contact_add")
+            addButton.userInteractionEnabled = !data.invited
+            if addButton.currentImage != buttonImage {
+                addButton.setImage(buttonImage, forState: .Normal)
+            }
         }
-        let buttonImage = friend == true ? UIImage(named: "check_mark") : UIImage(named: "contact_add")
-        addButton.userInteractionEnabled = !friend
-        addButton.setImage(buttonImage, forState: .Normal)
     }
     
 	override func awakeFromNib() {
@@ -95,17 +109,7 @@ class PLFriendCell: UITableViewCell{
 		}
 	}
 	
-	
 	func addFriendAction(sender: PLFriendCell) {
 		delegate?.addFriendButtonPressed(self)
-        
-//		if friendStatus == .NotFriend{
-//			PLLog("sendYES")
-//			friendStatus = .Friend
-		
-//
-//		} else {
-//			PLLog("sendNO")
-//		}
 	}
 }

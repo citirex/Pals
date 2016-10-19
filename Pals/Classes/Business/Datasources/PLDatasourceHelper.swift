@@ -12,8 +12,8 @@ class PLDatasourceHelper {
         return PLFriendsDatasource(userId: myId)
     }
     
-    static func createFriendsInviteDatasource() -> PLInviteFriendsDatasource {
+    static func createFriendsInviteDatasource() -> PLFriendsDatasource {
         let myId = PLFacade.profile!.id
-        return PLInviteFriendsDatasource(userId: myId)
+        return PLFriendsDatasource(userId: myId, type: .Invitable)
     }
 }

@@ -12,6 +12,8 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     var picture: NSURL
     var balance = Float(0)
     var additional: String?
+    // by default we assume that a given user is a friend of a current one
+    var invited: Bool = true
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
@@ -29,6 +31,9 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
         }
         if let additional = jsonDic[PLKeys.additional.string] as? String {
             self.additional = additional
+        }
+        if let invited = jsonDic[PLKeys.invited.string] as? Bool {
+            self.invited = invited
         }
         super.init(jsonDic: jsonDic)
     }
@@ -51,21 +56,16 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     }
     
     var cellData: PLFriendCellData {
-        let data = PLFriendCellData(id: id, picture: picture, name: name)
-        return data
-    }
-    
-    var userData: PLUserData {
-        return PLUserData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture, additional: additional)
+        return PLFriendCellData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture, additional: additional, invited: invited)
     }
 }
 
-struct PLUserData {
-    
-    var id: UInt64
-    var name: String
-    var email: String
-    var phone: String
-    var picture: NSURL
-    var additional: String?
+struct PLFriendCellData {
+    let id: UInt64
+    let name: String
+    let email: String
+    let phone: String
+    let picture: NSURL
+    let additional: String?
+    let invited: Bool
 }
