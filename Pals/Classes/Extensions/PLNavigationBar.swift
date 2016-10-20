@@ -14,14 +14,21 @@ extension UINavigationBar {
     }
     
     private var transparent: Bool {
-        get {
-            return false
-        }
+        get { return false }
         set {
             let image: UIImage? = newValue ? UIImage() : nil
             setBackgroundImage(image, forBarMetrics: .Default)
             shadowImage = image
             translucent = newValue
+        }
+    }
+    
+    private var hideBottomBorder: Bool {
+        get { return false }
+        set {
+            let image: UIImage? = newValue ? UIImage() : nil
+            setBackgroundImage(image, forBarPosition: .Any, barMetrics: .Default)
+            shadowImage = image
         }
     }
     
@@ -50,18 +57,21 @@ extension UINavigationBar {
                 barStyle     = .Default
                 tintColor    = .affairColor()
             case .FriendsStyle:
+                transparent  = false
                 barStyle     = .Default
                 tintColor    = .affairColor()
+                hideBottomBorder = true
             case .PlacesStyle:
                 transparent  = false
                 barStyle     = .Black
                 tintColor    = .whiteColor()
-                setBackgroundImage(UIImage(color: .affairColor()), forBarMetrics: .Default)
+                barTintColor = .affairColor()
+                hideBottomBorder = true
             case .SettingsStyle:
                 transparent  = false
                 barStyle     = .Black
                 tintColor    = .whiteColor()
-                setBackgroundImage(UIImage(color: .affairColor()), forBarMetrics: .Default)
+                barTintColor = .affairColor()
             case .NotificationsStyle:
                 break
             default:

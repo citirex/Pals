@@ -8,11 +8,13 @@
 
 class PLFriendProfileViewController: PLViewController {
     
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var friendProfileImageView: PLCircularImageView!
-    @IBOutlet var popUpMenuView: UIView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet var moreButton: UIBarButtonItem!
+    @IBOutlet var popUpMenuView: UIView!
+    
     var friend: PLUser!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +48,7 @@ class PLFriendProfileViewController: PLViewController {
         view.addSubview(popUpMenuView)
         
         popUpMenuView.top = navigationController!.navigationBar.height
-        popUpMenuView.right = view.bounds.width + 5
+        popUpMenuView.right = view.bounds.width - 5
         
         popUpMenuView.transform = CGAffineTransformMakeScale(1.3, 1.3)
         popUpMenuView.alpha = 0
