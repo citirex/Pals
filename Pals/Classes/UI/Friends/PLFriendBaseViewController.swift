@@ -36,17 +36,30 @@ class PLFriendBaseViewController: PLSearchableViewController {
         tableView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 0)
         let nib = UINib(nibName: "PLFriendCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-        
+        tableView.separatorInset.left = 75
+		resultsController.tableView.separatorInset.left	   = 75
+		
         interfaceColor = UIColor.whiteColor()
         configureResultsController("PLFriendCell", cellIdentifier: "FriendCell", responder: self)
         configureSearchController("Find a friend", tableView: tableView, responder: self)
-        addBorderToSearchBar()
-        
+		searchController.searchBar.tintColor = UIColor.affairColor()
+		resultsController.tableView.backgroundColor = .whiteColor()
+		resultsController.tableView.addConstraints(constraints, views: views)
+		
+        addBorderToSearchField()
+		spinner.center = view.center
+		spinner.activityIndicatorViewStyle = .WhiteLarge
+		spinner.color = .grayColor()
+        navigationController?.navigationBar.translucent = false
         edgesForExtendedLayout = .Top
         loadData()
     }
 	
-    func addBorderToSearchBar() {
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+	
+    func addBorderToSearchField() {
         for subView in searchController.searchBar.subviews  {
             for subsubView in subView.subviews  {
                 if let textField = subsubView as? UITextField {
@@ -79,6 +92,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if navigationController == nil {
 			sleep(UInt32(0.01))
+//			timerref
 		} else {
 			if scrollView.contentOffset.y < navigationController!.navigationBar.frame.height  {
 			navigationController?.navigationBar.shadowImage = UIImage()
@@ -187,7 +201,7 @@ extension PLFriendBaseViewController: DZNEmptyDataSetDelegate {
 	}
 	
 	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-		return datasource.loading
+		return !datasource.loading
 	}
 }
 
