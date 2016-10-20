@@ -42,22 +42,18 @@ class PLFriendBaseViewController: PLSearchableViewController {
         interfaceColor = UIColor.whiteColor()
         configureResultsController("PLFriendCell", cellIdentifier: "FriendCell", responder: self)
         configureSearchController("Find a friend", tableView: tableView, responder: self)
+		searchController.isFriends = true
+		
 		searchController.searchBar.tintColor = UIColor.affairColor()
 		resultsController.tableView.backgroundColor = .whiteColor()
-		resultsController.tableView.addConstraints(constraints, views: views)
 		
         addBorderToSearchField()
 		spinner.center = view.center
 		spinner.activityIndicatorViewStyle = .WhiteLarge
 		spinner.color = .grayColor()
-        navigationController?.navigationBar.translucent = false
         edgesForExtendedLayout = .Top
         loadData()
     }
-	
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return .LightContent
-	}
 	
     func addBorderToSearchField() {
         for subView in searchController.searchBar.subviews  {
@@ -92,7 +88,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if navigationController == nil {
 			sleep(UInt32(0.01))
-//			timerref
 		} else {
 			if scrollView.contentOffset.y < navigationController!.navigationBar.frame.height  {
 			navigationController?.navigationBar.shadowImage = UIImage()

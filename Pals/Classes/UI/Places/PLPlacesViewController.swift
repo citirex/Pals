@@ -39,9 +39,10 @@ class PLPlacesViewController: PLSearchableViewController {
         tableView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 0)
         let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-        
+		
         configureResultsController(PLPlaceCell.nibName, cellIdentifier: PLPlaceCell.identifier, responder: self)
         configureSearchController("Find a Place", tableView: tableView, responder: self)
+		searchController.isFriends = false
         edgesForExtendedLayout = .Top
         loadData()
     }

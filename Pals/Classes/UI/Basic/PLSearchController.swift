@@ -11,9 +11,15 @@ class PLSearchController: UISearchController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+	
+	var isFriends: Bool = true
+	
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+		if isFriends {
+			return .Default
+		} else {
+			return .LightContent
+		}
     }
 
 }
