@@ -7,6 +7,7 @@
 //
 
 extension UIColor {
+
     convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         let divider = CGFloat(255)
         self.init(red: r/divider, green: g/divider, blue: b/divider, alpha: a/divider)

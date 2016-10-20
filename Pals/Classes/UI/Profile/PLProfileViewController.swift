@@ -47,7 +47,7 @@ class PLProfileViewController: TGLStackedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification(_:)), name:kProfileInfoChanged, object: nil)
 
         currentTab = .Drinks

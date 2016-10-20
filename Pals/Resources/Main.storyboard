@@ -30,7 +30,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-fq-ZBU">
-                                                        <rect key="frame" x="103" y="50" width="169" height="169"/>
+                                                        <rect key="frame" x="103" y="53" width="169" height="169"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="0mE-fq-ZBU" secondAttribute="height" multiplier="1:1" id="Bq9-kv-qjF"/>
                                                         </constraints>
@@ -145,9 +145,10 @@
                                             <constraint firstAttribute="centerX" secondItem="xXN-Bq-AeA" secondAttribute="centerX" id="UfU-fz-yyh"/>
                                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="top" secondItem="lxr-Px-fkn" secondAttribute="top" id="W6X-Fc-WcM"/>
                                             <constraint firstItem="xXN-Bq-AeA" firstAttribute="leading" secondItem="lxr-Px-fkn" secondAttribute="leading" id="YCP-Xg-lew"/>
-                                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="top" secondItem="lxr-Px-fkn" secondAttribute="top" constant="50" id="YCW-fc-CHs"/>
                                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="width" secondItem="lxr-Px-fkn" secondAttribute="width" multiplier="0.45" id="cBI-4x-4NM"/>
+                                            <constraint firstAttribute="bottom" secondItem="0mE-fq-ZBU" secondAttribute="bottom" multiplier="3" id="dpY-Oc-2wP"/>
                                             <constraint firstAttribute="trailing" secondItem="xXN-Bq-AeA" secondAttribute="trailing" id="iYj-qm-MHU"/>
+                                            <constraint firstItem="0mE-fq-ZBU" firstAttribute="centerY" secondItem="lxr-Px-fkn" secondAttribute="centerY" priority="750" id="oMf-Cj-AoW"/>
                                             <constraint firstAttribute="bottom" secondItem="xXN-Bq-AeA" secondAttribute="bottom" id="pXg-FW-Aft"/>
                                             <constraint firstItem="0mE-fq-ZBU" firstAttribute="centerX" secondItem="lxr-Px-fkn" secondAttribute="centerX" id="uBB-FQ-IyU"/>
                                         </constraints>
@@ -197,8 +198,9 @@
                         <outlet property="loginTextField" destination="ymg-DV-zCV" id="0hM-X0-uIJ"/>
                         <outlet property="loginView" destination="xXN-Bq-AeA" id="8MX-MX-D82"/>
                         <outlet property="loginViewBotC" destination="pXg-FW-Aft" id="dSj-kE-dtu"/>
+                        <outlet property="logoBottomC" destination="dpY-Oc-2wP" id="eTg-7p-eF6"/>
+                        <outlet property="logoCenterXC" destination="UfU-fz-yyh" id="ybE-7o-bIA"/>
                         <outlet property="logoImage" destination="0mE-fq-ZBU" id="OTJ-hP-bCq"/>
-                        <outlet property="logoTopC" destination="YCW-fc-CHs" id="4AJ-3K-XhG"/>
                         <outlet property="mySpinner" destination="WXu-2n-otd" id="QEO-ct-BPX"/>
                         <outlet property="passTextField" destination="HEk-oG-qRI" id="MEk-fe-hJO"/>
                         <outlet property="registerBotC" destination="4tD-lc-jc2" id="3DD-Ed-5Rc"/>
@@ -1301,10 +1303,22 @@
                                 <color key="backgroundColor" red="0.33725490196078434" green="0.24705882352941178" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="QUT-Vh-Gfe" userLabel="Footer View">
-                                    <rect key="frame" x="0.0" y="205.5" width="375" height="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="0ra-6G-Obk">
+                                    <rect key="frame" x="0.0" y="186" width="375" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: 0.2.3" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hax-RA-vVx">
+                                            <rect key="frame" x="140" y="0.0" width="94" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.33725491169999999" green="0.24705882370000001" blue="0.41568627949999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="Hax-RA-vVx" firstAttribute="top" secondItem="0ra-6G-Obk" secondAttribute="top" id="Nl1-o1-T19"/>
+                                        <constraint firstItem="Hax-RA-vVx" firstAttribute="centerX" secondItem="0ra-6G-Obk" secondAttribute="centerX" id="laf-S4-1Sd"/>
+                                    </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingNameCell" textLabel="a3y-9l-lpj" style="IBUITableViewCellStyleDefault" id="Dmn-ca-IPY">
@@ -1450,7 +1464,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" title="Friends" id="ehC-fs-qip">
+                    <navigationItem key="navigationItem" title="Invite Friends" id="ehC-fs-qip">
                         <barButtonItem key="backBarButtonItem" title=" " id="fSH-08-fuO"/>
                     </navigationItem>
                     <connections>
@@ -1567,8 +1581,8 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ovy-Gk-Wh0"/>
         <segue reference="Rjy-8t-3el"/>
+        <segue reference="apm-CY-cnT"/>
         <segue reference="u5L-qT-vQG"/>
     </inferredMetricsTieBreakers>
 </document>

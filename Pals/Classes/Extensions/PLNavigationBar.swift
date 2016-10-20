@@ -14,13 +14,21 @@ extension UINavigationBar {
     }
     
     private var transparent: Bool {
-        get {
-            return false
-        }
+        get { return false }
         set {
-            setBackgroundImage(UIImage(), forBarMetrics: .Default)
-            shadowImage = UIImage()
+            let image: UIImage? = newValue ? UIImage() : nil
+            setBackgroundImage(image, forBarMetrics: .Default)
+            shadowImage = image
             translucent = newValue
+        }
+    }
+    
+    private var hideBottomBorder: Bool {
+        get { return false }
+        set {
+            let image: UIImage? = newValue ? UIImage() : nil
+            setBackgroundImage(image, forBarPosition: .Any, barMetrics: .Default)
+            shadowImage = image
         }
     }
     
@@ -45,31 +53,31 @@ extension UINavigationBar {
         set (style) {
             switch style {
             case .AddFundsStyle:
-                transparent = true
-                barStyle    = .Default
-                tintColor   = .affairColor()
+                transparent  = true
+                barStyle     = .Default
+                tintColor    = .affairColor()
             case .FriendsStyle:
-                transparent = false
-                barStyle    = .Default
-                tintColor   = .affairColor()
+                transparent  = false
+                barStyle     = .Default
+                tintColor    = .affairColor()
+                hideBottomBorder = true
             case .PlacesStyle:
                 transparent  = false
                 barStyle     = .Black
+                tintColor    = .whiteColor()
                 barTintColor = .affairColor()
+                hideBottomBorder = true
             case .SettingsStyle:
                 transparent  = false
                 barStyle     = .Black
                 tintColor    = .whiteColor()
                 barTintColor = .affairColor()
             case .NotificationsStyle:
-                transparent  = false
+                break
+            default:
+                transparent  = true
                 barStyle     = .Black
                 tintColor    = .whiteColor()
-                barTintColor = .affairColor()
-            default:
-                transparent = true
-                barStyle    = .Black
-                tintColor   = .whiteColor()
             }
             titleTextAttributes = attributes(style)
         }
@@ -83,7 +91,7 @@ extension UINavigationBar {
         }
         return [NSForegroundColorAttributeName : titleColor]
     }
-    
+
 }
 
 

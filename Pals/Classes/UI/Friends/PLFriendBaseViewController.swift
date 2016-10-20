@@ -61,7 +61,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.navigationBar.style = .FriendsStyle
-		navigationController?.navigationBar.barTintColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
         if datasource.empty {
             loadData()
         }
