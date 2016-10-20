@@ -16,4 +16,5 @@ extension Selector {
     static let refillPressed     = #selector(PLAddFundsViewController.refillPressed(_:))
     static let dismissAlert      = #selector(PLPlaceProfileViewController.dismissAlert(_:))
     static let orderButtonTapped = #selector(PLPlaceProfileSectionHeader.orderButtonTapped(_:))
+    static let hidePopUpMenu     = #selector(PLFriendProfileViewController.hidePopUpMenu)
 }
