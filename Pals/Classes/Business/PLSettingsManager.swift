@@ -18,6 +18,7 @@ enum PLSettingKey: String {
     case Login
     case Password
     case ActiveServer
+    case EnableBalanceCheck
     
     var str: String {return rawValue}
 }
@@ -61,6 +62,14 @@ class PLSettingsManager {
             level = logsDic[PLSettingKey.Level.str] as! NSNumber
         }
         return level.integerValue
+    }
+    
+    var balanceCheckEnabled: Bool {
+        var enabled = false
+        if let dic = self[.DefaultUser] {
+            enabled = dic[PLSettingKey.EnableBalanceCheck.str] as! Bool
+        }
+        return enabled
     }
     
     var server: String {

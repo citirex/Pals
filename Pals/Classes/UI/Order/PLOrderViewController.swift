@@ -18,11 +18,7 @@ class PLOrderViewController: PLViewController {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var bgImageView: UIImageView!
     
-    lazy var order: PLCheckoutOrder = {
-        let ord = PLCheckoutOrder()
-        ord.delegate = self
-       return ord
-    }()
+    var order = PLCheckoutOrder()
     
     private var drinksOffset = CGPointZero
     private var coversOffset = CGPointZero
@@ -32,13 +28,7 @@ class PLOrderViewController: PLViewController {
     
     private var currentTab = PLCollectionSectionType.Drinks
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
-    private lazy var checkoutPopupViewController : PLOrderCheckoutPopupViewController = {
-        let popup = PLOrderCheckoutPopupViewController(nibName: "PLOrderCheckoutPopupViewController", bundle: nil)
-        popup.delegate = self
-        popup.modalPresentationStyle = .OverCurrentContext
-       return popup
-    }()
-    
+ 
     private lazy var noItemsView: PLEmptyBackgroundView = {
         let emptyView = PLEmptyBackgroundView(topText: "No drinks", bottomText: nil)
         self.collectionView.addSubview(emptyView)
@@ -86,6 +76,7 @@ class PLOrderViewController: PLViewController {
     private func loadDrinks() {
         spinner.startAnimating()
         spinner.center = view.center
+        coversDatasource.cancel()
         drinksDatasource.loadPage {[unowned self] (indices, error) in
             self.collectionViewInsertItems(indices, withError: error)
         }
@@ -94,6 +85,7 @@ class PLOrderViewController: PLViewController {
     private func loadCovers() {
         spinner.startAnimating()
         spinner.center = view.center
+        drinksDatasource.cancel()
         coversDatasource.loadPage {[unowned self] (indices, error) in
             self.collectionViewInsertItems(indices, withError: error)
         }
@@ -128,11 +120,8 @@ class PLOrderViewController: PLViewController {
         self.spinner.stopAnimating()
     }
 
-
-
     //MARK: - Actions
     @objc private func vipButtonPressed(sender: UIBarButtonItem) {
-//        navigationItem.rightBarButtonItem = nil
         order.isVIP = !order.isVIP
         performTransitionToVipState(order.isVIP)
     }
@@ -152,7 +141,7 @@ class PLOrderViewController: PLViewController {
         drinksDatasource.isVIP = order.isVIP
         coversDatasource.isVIP = order.isVIP
         if order.place != nil {
-            clean()
+            resetOffsets()
             drinksDatasource.clean()
             coversDatasource.clean()
             updateCheckoutButtonState()
@@ -161,8 +150,7 @@ class PLOrderViewController: PLViewController {
         }
     }
     
-    private func clean() {
-        order.clean()
+    private func resetOffsets() {
         coversOffset = CGPointZero
         drinksOffset = CGPointZero
     }
@@ -231,49 +219,43 @@ extension PLOrderViewController {
         }) { (complete) in
             self.collectionView.contentInset.bottom = shift ? kCheckoutButtonHeight : 0
         }
-        
     }
+    
+    
     
     @objc private func checkoutButtonPressed(sender: UIButton) {
-        guard let user = order.user else {
+        guard order.user != nil else {
             checkoutButton.shake()
-            PLShowAlert(title: "Need to chose user")
-            return
+            return PLShowAlert(title: "Need to chose user")
         }
-        guard let place = order.place else {
+        guard order.place != nil else {
             checkoutButton.shake()
-            PLShowAlert(title: "Need to chose place")
-            return
+            return PLShowAlert(title: "Need to chose place")
         }
-        
-        checkoutPopupViewController.userName     = user.name
-        checkoutPopupViewController.locationName = place.name
-        checkoutPopupViewController.orderAmount  = order.calculateTotalAmount()
-        
-        guard order.checkingBalance() else {
-            return PLShowAlert("Error", message: "You have not enough money to make this purchase")
-        }
-        
-        tabBarController!.presentViewController(checkoutPopupViewController, animated: false) {
-            self.checkoutPopupViewController.show()
+        createAndShowSendPopup(order)
+    }
+    
+    func createAndShowSendPopup(order: PLCheckoutOrder) {
+        let popup = PLOrderCheckoutPopupViewController(nibName: "PLOrderCheckoutPopupViewController", bundle: nil)
+        popup.delegate = self
+        popup.modalPresentationStyle = .OverCurrentContext
+        popup.order = order
+        tabBarController!.presentViewController(popup, animated: false) {
+            popup.show()
         }
     }
     
-    func createNewOrderWithMessage(message: String) {
-        order.message = message
-        
+    func sendCurrentOrder() {
         spinner.center = view.center
         spinner.startAnimating()
         
         PLFacade.sendOrder(order) {[unowned self] (error) in
             if error == nil {
-                self.order.clean()
+                self.order = PLCheckoutOrder()
                 self.updateCheckoutButtonState()
-                
                 self.collectionView.reloadSections(NSIndexSet(index: 1))
                 self.tabBarController?.incrementCounterNumberOn(.TabProfile)
                 self.tabBarController?.switchTabTo(.TabProfile)
-
             } else {
                 PLShowErrorAlert(error: error!)
             }
@@ -283,12 +265,7 @@ extension PLOrderViewController {
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, CheckoutOrderPopupDelegate, PLCheckoutDelegate {
-    
-    //MARK: Checkout delegate
-    func newPlaceWasSet() {
-        updateDataForSelectedPlace()
-    }
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, CheckoutOrderPopupDelegate {
     
     //MARK: Order drinks count
     func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
@@ -327,11 +304,14 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     func didSelectNewPlace(selectedPlace: PLPlace) {
         order.place = selectedPlace
+        updateDataForSelectedPlace()
     }
     
     func updateDataForSelectedPlace() {
-        clean()
-        if collectionView != nil { collectionView.reloadData() }
+        resetOffsets()
+        if collectionView != nil {
+            collectionView.reloadData()
+        }
         drinksDatasource.placeId = order.place!.id
         coversDatasource.placeId = order.place!.id
         currentTab == .Drinks ? loadDrinks() : loadCovers()
@@ -361,14 +341,14 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         collectionView.reloadData()
     }
     
-    //MARK: - Checkout Popup 
-    func cancelButtonPressed() {
-        checkoutPopupViewController.hide()
+    //MARK: - Send Popup
+    func orderPopupCancelClicked(popup: PLOrderCheckoutPopupViewController) {
+        popup.hide()
     }
     
-    func sendButtonPressedWith(message: String) {
-        checkoutPopupViewController.hide()
-        createNewOrderWithMessage(message)
+    func orderPopupSendClicked(popup: PLOrderCheckoutPopupViewController) {
+        popup.hide()
+        sendCurrentOrder()
     }
     
     //MARK: - Setup

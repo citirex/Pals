@@ -6,11 +6,9 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
 protocol CheckoutOrderPopupDelegate: class {
-    func cancelButtonPressed()
-    func sendButtonPressedWith(message: String)
+    func orderPopupCancelClicked(popup: PLOrderCheckoutPopupViewController)
+    func orderPopupSendClicked(popup: PLOrderCheckoutPopupViewController)
 }
 
 class PLOrderCheckoutPopupViewController: UIViewController {
@@ -23,6 +21,19 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     @IBOutlet private var messageTextView: UITextView!
     @IBOutlet private var popupView: UIView!
     
+    var order: PLCheckoutOrder? {
+        didSet {
+            if let ord = order {
+                if let user = ord.user {
+                    userName = user.name
+                }
+                if let place = ord.place {
+                    locationName = place.name
+                }
+                orderAmount = ord.calculateTotalAmount()
+            }
+        }
+    }
     var userName: String? = nil
     var locationName: String? = nil
     var orderAmount: Float? = nil
@@ -85,14 +96,22 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     }
     
     @IBAction private func cancelButtonPressed(sender: UIButton) {
-        delegate?.cancelButtonPressed()
+        delegate?.orderPopupCancelClicked(self)
     }
     
     @IBAction private func sendButtonPressed(sender: UIButton) {
+        if order == nil {
+            PLShowAlert("Error", message: "Order is not selected")
+            return
+        }
+        guard PLFacade.profile!.hasEnoughMoneyToPayFor(order!) else {
+            return PLShowAlert("Error", message: "You have not enough money to make this purchase")
+        }
+        
         let message = (textViewText == placeholderText) ? "" : textViewText
         textViewText = placeholderText
-        
-        delegate?.sendButtonPressedWith(message)
+        order?.message = message
+        delegate?.orderPopupSendClicked(self)
     }
     
     @objc private var textViewText: String {

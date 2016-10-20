@@ -7,12 +7,6 @@
 //
 
 class PLFriendsViewController: PLFriendBaseViewController {
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        cell.accessoryType = .None
-        return cell
-    }
     
     override func cellTapSegueName() -> String {
         return "FriendProfileSegue"
