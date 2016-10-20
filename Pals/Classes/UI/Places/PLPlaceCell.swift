@@ -25,7 +25,8 @@ class PLPlaceCell: UITableViewCell {
         didSet {
             backgroundImageView.setImageWithURLRequest(NSURLRequest(URL: placeCellData.picture),
                                                        placeholderImage: UIImage(named: "place_placeholder")!,
-                                                       success: { request, response, image in
+                                                       success: { [unowned self] request, response, image in
+                                                        
             self.backgroundImageView.addBlur(image, completion: { $0 != image }) }, failure: nil)
             
             placeNameLabel.text    = placeCellData.name

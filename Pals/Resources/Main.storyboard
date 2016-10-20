@@ -369,6 +369,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="IU0-qZ-LiT" id="8Ig-i7-J4J"/>
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
+                        <outlet property="invitatedStatusButton" destination="sDv-QM-fSN" id="XfJ-Ml-Zfp"/>
                         <outlet property="moreButton" destination="AKF-lV-M1l" id="As2-vK-rQM"/>
                         <outlet property="popUpMenuView" destination="jz8-ck-L0N" id="5O1-J8-yqh"/>
                     </connections>
@@ -385,7 +386,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="unfriendButtonPressed:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="HEP-st-TxA"/>
+                                <action selector="invitedStatePressed:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="CGN-po-xxz"/>
                             </connections>
                         </button>
                     </subviews>

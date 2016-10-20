@@ -24,6 +24,7 @@ class PLSearchableViewController: PLViewController {
         <T where T: UISearchResultsUpdating>
         (placeholder: String, tableView: UITableView, responder: T) {
         searchController = PLSearchController(searchResultsController: resultsController)
+		searchController.searchBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
         resultsController.tableView.rowHeight = tableView.rowHeight
         searchController.searchBar.placeholder     = placeholder
         searchController.searchBar.backgroundImage = UIImage()

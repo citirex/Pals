@@ -20,7 +20,9 @@
 	<dict>
 		<key>ActiveServer</key>
 		<dict>
-			<key>http://yegor.pythonanywhere.com</key>
+			<key>http://1yegor.pythonanywhere.com</key>
+			<false/>
+			<key>http://192.168.1.9:8181</key>
 			<false/>
 			<key>http://1192.168.1.14:8000</key>
 			<true/>
