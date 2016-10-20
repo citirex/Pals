@@ -132,7 +132,8 @@ class PLFriendBaseViewController: PLSearchableViewController {
 extension PLFriendBaseViewController : UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return datasource.count
+        let count = datasource.count
+        return count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{

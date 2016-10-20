@@ -12,7 +12,7 @@ import FBSDKLoginKit
 typealias PLFacebookLoginCompletion = (data: PLSignUpData?, error: NSError?) -> ()
 
 class PLProfileManager : NSObject {
-    var profile: PLUser?
+    var profile: PLCurrentUser?
     dynamic var token: String? {
         didSet {
             if token != nil {
@@ -75,7 +75,7 @@ extension PLProfileManager : PLAuthStorage {
     }
     
     func saveProfile(userDic: [String : AnyObject]) -> Bool {
-        if let user = PLUser(jsonDic: userDic) {
+        if let user = PLCurrentUser(jsonDic: userDic) {
             profile = user
             NSNotificationCenter.defaultCenter().postNotificationName(kProfileInfoChanged, object: nil)
             ud.setObject(userDic, forKey: PLKeys.user.string)
@@ -87,7 +87,7 @@ extension PLProfileManager : PLAuthStorage {
     
     func restoreProfile() {
         if let profileDic = ud.dictionaryForKey(PLKeys.user.string) {
-            if let user = PLUser(jsonDic: profileDic) {
+            if let user = PLCurrentUser(jsonDic: profileDic) {
                 profile = user
                 restoreToken()
             }

@@ -6,35 +6,20 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
-
-protocol PLCheckoutDelegate: class {
-    func newPlaceWasSet()
-}
-
 class PLCheckoutOrder {
-    
-    weak var delegate: PLCheckoutDelegate?
-    
-    var QRcode = ""
-    var accessCode = ""
     var user: PLUser? = nil
     var place: PLPlace? = nil {
         didSet{
-            if place != nil {
-                delegate?.newPlaceWasSet()
-            }
+            clean()
         }
     }
     var drinks = [UInt64:PLDrinkset]()
     var covers = [UInt64:PLCover]()
     var isVIP = false
-    var message = ""
+    var message: String?
     
     func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.qr_code.string] = QRcode
-        dic[PLKeys.access_code.string] = accessCode
         dic[PLKeys.user_id.string] = String(user!.id)
         dic[PLKeys.place_id.string] = String(place!.id)
         let aDrinks = Array(drinks.values).toDictionary { item in ["\(item.drink.id)":"\(item.quantity)"] }
@@ -42,8 +27,9 @@ class PLCheckoutOrder {
         let aCovers = Array(covers.values).map({ "\($0.id)" })
         dic[PLKeys.covers.string] = aCovers
         dic[PLKeys.is_vip.string] = isVIP.hashValue
-        dic[PLKeys.message.string] = message
-    
+        if message != nil && !message!.isEmpty {
+            dic[PLKeys.message.string] = message
+        }
         return dic
     }
     
@@ -85,15 +71,9 @@ class PLCheckoutOrder {
         return amount
     }
     
-    func clean() {
+    private func clean() {
         drinks.removeAll()
         covers.removeAll()
-        message = ""
-    }
-    
-    func checkingBalance() -> Bool {
-        let orderAmount = calculateTotalAmount()
-        return PLFacade.profile?.balance > orderAmount
     }
     
 }

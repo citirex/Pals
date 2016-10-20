@@ -23,7 +23,7 @@ protocol PLFacadeInterface {
     static func sendPassword(email: String, completion: PLErrorCompletion)
     static func fetchNearRegion(completion: PLLocationRegionCompletion)
     static func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion)
-    static var profile: PLUser? {get}
+    static var profile: PLCurrentUser? {get}
 }
 
 
@@ -39,7 +39,7 @@ protocol PLFacadeRepresentable {
 
 class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     static let instance = _PLFacade()
-    static var profile: PLUser? {
+    static var profile: PLCurrentUser? {
         return instance.profileManager.profile
     }
     

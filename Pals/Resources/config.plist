@@ -5,7 +5,7 @@
 	<key>FakeFeeds</key>
 	<dict>
 		<key>Enabled</key>
-		<false/>
+		<true/>
 		<key>LoadDelay</key>
 		<real>0.5</real>
 	</dict>
@@ -14,7 +14,7 @@
 		<key>Enabled</key>
 		<true/>
 		<key>Level</key>
-		<integer>15</integer>
+		<integer>13</integer>
 	</dict>
 	<key>Server</key>
 	<dict>
@@ -24,7 +24,7 @@
 			<false/>
 			<key>http://192.168.1.9:8181</key>
 			<false/>
-			<key>http://192.168.1.14:8000</key>
+			<key>http://1192.168.1.14:8000</key>
 			<true/>
 			<key>https://api.pals.com</key>
 			<false/>
@@ -38,6 +38,8 @@
 		<string>user322</string>
 		<key>Password</key>
 		<string>qwe</string>
+		<key>EnableBalanceCheck</key>
+		<false/>
 	</dict>
 </dict>
 </plist>
