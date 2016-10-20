@@ -10,26 +10,47 @@ import DZNEmptyDataSet
 
 class PLPlacesViewController: PLSearchableViewController {
     
-    @IBOutlet var tableView: UITableView!
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundView = UIView()
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        return tableView
+    }()
     private var searchPlace: String!
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(tableView)
+        view.backgroundColor = UIColor.affairColor()
+    
+        tableView.rowHeight = 128
+        let views = ["table" : tableView]
+        let constraints = ["|-0-[table]-0-|"]
+        tableView.addConstraints(constraints, views: views)
+        tableView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
+        tableView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 0)
+        let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
         
         configureResultsController(PLPlaceCell.nibName, cellIdentifier: PLPlaceCell.identifier, responder: self)
         configureSearchController("Find a Place", tableView: tableView, responder: self)
-        tableView.hideSearchBar()
-        let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
+        edgesForExtendedLayout = .Top
         loadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.navigationBar.style = .PlacesStyle
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.hideSearchBar()
     }
-
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         places.cancel()
@@ -59,10 +80,6 @@ class PLPlacesViewController: PLSearchableViewController {
         default:
             break
         }
-    }
-    
-    func hideSearchBar() {
-        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
     }
     
     override func searchDidChange(text: String, active: Bool) {
@@ -100,6 +117,7 @@ extension PLPlacesViewController: UITableViewDataSource {
         guard let cell = cell as? PLPlaceCell else { return }
         let place = places[indexPath.row]
         cell.placeCellData = place.cellData
+        cell.backgroundColor = UIColor.clearColor()
     }
 }
 

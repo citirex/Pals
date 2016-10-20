@@ -8,8 +8,12 @@
 
 class PLSearchController: UISearchController {
    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return .LightContent
     }
 
 }

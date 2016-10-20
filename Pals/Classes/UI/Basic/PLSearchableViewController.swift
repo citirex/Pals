@@ -10,11 +10,12 @@ import DZNEmptyDataSet
 
 class PLSearchableViewController: PLViewController {
     
+    var interfaceColor = UIColor.affairColor()
+    
     lazy var resultsController: UITableViewController! = {
         let rc = UITableViewController(style: .Plain)
-        rc.tableView.backgroundColor        = .affairColor()
+        rc.tableView.backgroundColor        = self.interfaceColor
         rc.tableView.tableFooterView        = UIView()
-        rc.tableView.rowHeight              = 128.0
         return rc
     }()
     var searchController: PLSearchController!
@@ -23,14 +24,14 @@ class PLSearchableViewController: PLViewController {
         <T where T: UISearchResultsUpdating>
         (placeholder: String, tableView: UITableView, responder: T) {
         searchController = PLSearchController(searchResultsController: resultsController)
+        resultsController.tableView.rowHeight = tableView.rowHeight
         searchController.searchBar.placeholder     = placeholder
         searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.backgroundColor = interfaceColor
         searchController.searchBar.tintColor       = .whiteColor()
-        searchController.searchBar.barTintColor    = .affairColor()
+        searchController.searchBar.barTintColor    = interfaceColor
         searchController.searchResultsUpdater      = responder
-
         tableView.tableHeaderView                  = searchController.searchBar
-        tableView.backgroundView                   = UIView()
         definesPresentationContext                 = true
     }
         

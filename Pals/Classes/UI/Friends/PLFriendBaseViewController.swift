@@ -7,46 +7,57 @@
 //
 import DZNEmptyDataSet
 
-class PLFriendBaseViewController: PLViewController {
+class PLFriendBaseViewController: PLSearchableViewController {
 	
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
-    var resultsController: UITableViewController!
-	var searchController: PLSearchController!
-	
-    lazy var tableView = UITableView()
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundView = UIView()
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        return tableView
+    }()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
-		tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-		tableView.separatorInset.left = 75
-		tableView.tableFooterView = UIView()
-		tableView.delegate = self
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-		
-		view.addSubview(tableView)
-        tableView.addSuperviewSizedConstraints()
-		view.addSubview(spinner)
-		view.backgroundColor = .whiteColor()
-		
-		spinner.center = view.center
-		spinner.activityIndicatorViewStyle = .WhiteLarge
-		spinner.color = .grayColor()
+        view.addSubview(tableView)
+        view.backgroundColor = UIColor.whiteColor()
         
-        tableView.hideSearchBar()
-        configureResultsController()
-        configureSearchController()
+        let views = ["table" : tableView]
+        let constraints = ["|-0-[table]-0-|"]
+        tableView.addConstraints(constraints, views: views)
+        tableView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
+        tableView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 0)
+        let nib = UINib(nibName: "PLFriendCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
         
+        interfaceColor = UIColor.whiteColor()
+        configureResultsController("PLFriendCell", cellIdentifier: "FriendCell", responder: self)
+        configureSearchController("Find a friend", tableView: tableView, responder: self)
+        addBorderToSearchBar()
         
-		configureResultsController()
-		configureSearchController()
-        
-        searchController.searchResultsUpdater  = self
-        resultsController.tableView.dataSource = self
+        edgesForExtendedLayout = .Top
+        loadData()
     }
 	
+    func addBorderToSearchBar() {
+        for subView in searchController.searchBar.subviews  {
+            for subsubView in subView.subviews  {
+                if let textField = subsubView as? UITextField {
+                    textField.layer.borderWidth = 1
+                    textField.layer.borderColor = UIColor.lightGrayColor().CGColor
+                    textField.cornerRadius		= 14
+                }
+            }
+        }
+    }
+    
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.navigationBar.style = .FriendsStyle
@@ -85,39 +96,6 @@ class PLFriendBaseViewController: PLViewController {
             self.spinner.stopAnimating()
         }
     }
-	
-	private func configureSearchController() {
-		searchController = PLSearchController(searchResultsController: resultsController)
-		searchController.searchBar.placeholder			  = "Find Your Pals"
-		searchController.searchBar.backgroundImage		  = UIImage()
-		searchController.searchBar.tintColor			  = .affairColor()
-		searchController.searchBar.barTintColor			  = UIColor.whiteColor().colorWithAlphaComponent(0.85)
-		searchController.searchBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
-		let textFieldInsideSearchBar = searchController.searchBar.valueForKey("searchField") as? UITextField
-		textFieldInsideSearchBar?.layer.borderWidth = 1
-		textFieldInsideSearchBar?.layer.borderColor = UIColor.lightGrayColor().CGColor
-		textFieldInsideSearchBar?.cornerRadius		= 14
-		
-		tableView.tableHeaderView					= searchController.searchBar
-		tableView.backgroundView					= UIView()
-		tableView.emptyDataSetSource				= self
-		tableView.emptyDataSetDelegate				= self
-		
-		edgesForExtendedLayout						= .Top
-		definesPresentationContext					= true
-	}
-	
-	private func configureResultsController() {
-		resultsController = UITableViewController(style: .Plain)
-		let nib = UINib(nibName: "PLFriendCell", bundle: nil)
-		resultsController.tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-		resultsController.tableView.backgroundColor        = .whiteColor()
-		resultsController.tableView.tableFooterView        = UIView()
-		resultsController.tableView.delegate               = self
-		resultsController.tableView.emptyDataSetSource	   = self
-		resultsController.tableView.emptyDataSetDelegate   = self
-		resultsController.tableView.separatorInset.left	   = 75
-	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let user = sender as? PLUser {
@@ -126,6 +104,19 @@ class PLFriendBaseViewController: PLViewController {
             }
         }
 	}
+    
+    override func searchDidChange(text: String, active: Bool) {
+        datasource.searching = searchController.active
+        if text.isEmpty {
+            datasource.searching = false
+        } else {
+            spinner.startAnimating()
+            datasource.filter(text, completion: { [unowned self] in
+                self.resultsController.tableView.reloadData()
+                self.spinner.stopAnimating()
+            })
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -207,24 +198,5 @@ extension PLFriendBaseViewController : UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchController.searchBar.endEditing(true)
-    }
-}
-
-// MARK: - UISearchResultsUpdating
-
-extension PLFriendBaseViewController: UISearchResultsUpdating {
-    
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        datasource.searching = searchController.active
-        let text = searchController.searchBar.text!
-        if text.isEmpty {
-            datasource.searching = false
-        } else {
-            spinner.startAnimating()
-            datasource.filter(text, completion: { [unowned self] in
-                self.resultsController.tableView.reloadData()
-                self.spinner.stopAnimating()
-            })
-        }
     }
 }

@@ -12,8 +12,6 @@ class PLFriendProfileViewController: PLViewController {
     @IBOutlet weak var friendProfileImageView: PLCircularImageView!
     @IBOutlet var popUpMenuView: UIView!
     @IBOutlet var moreButton: UIBarButtonItem!
-    
-    private var sectionOrder: PLCollectionSectionType!
     var friend: PLUser!
     
     override func viewDidLoad() {
@@ -76,8 +74,12 @@ class PLFriendProfileViewController: PLViewController {
     }
 
     @IBAction func sendButtonPressed(sender: UIButton) {
-        sectionOrder = sender.tag == 0 ? .Covers : .Drinks
-        performSegueWithIdentifier(SegueIdentifier.OrderSegue, sender: sender)
+        
+        let orderViewController = tabBarController!.getOrderViewController()
+        let type: PLCollectionSectionType = sender.tag == 0 ? .Covers : .Drinks
+        orderViewController.setSectionType(type)
+        orderViewController.order.user = friend
+        tabBarController?.switchTabTo(TabBarControllerTabs.TabOrder)
     }
     
     @IBAction func unfriendButtonPressed(sender: UIButton) {
@@ -85,26 +87,13 @@ class PLFriendProfileViewController: PLViewController {
         PLFacade.unfriend(friend) {[unowned self] (error) in
             self.stopActivityIndicator()
             if error != nil {
+                PLShowAlert("Something went wrong", message: "Plase try again later")
                 PLLog("Error, when trying unfriend", error!.debugDescription, type: .Network)
             } else {
                 PLShowAlert(title: "Success")
                 self.animateOut()
                 self.navigationItem.rightBarButtonItem = nil
             }
-        }
-    }
-
-    
-    // MARK: - Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
-        switch identifier {
-        case .OrderSegue:
-            let orderViewController = segue.destinationViewController as! PLOrderViewController
-            orderViewController.currentTab = sectionOrder
-            orderViewController.order.user = friend
-        default: break
         }
     }
     

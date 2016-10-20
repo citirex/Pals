@@ -129,7 +129,7 @@ class PLLoginViewController: PLViewController {
 	
 	
 	func animateSplashToLogin() {
-		logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (logoImage.bounds.height / 2)
+		logoTopC?.constant = (UIScreen.mainScreen().bounds.height / 2) - (logoImage.bounds.height / 2) + (UIApplication.sharedApplication().statusBarFrame.size.height / 2)
 		registerBotC.constant = -(registerButton.bounds.height * 2)
 		loginViewBotC!.constant = -loginView.bounds.height
 		view.layoutIfNeeded()
