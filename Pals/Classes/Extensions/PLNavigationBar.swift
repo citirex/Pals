@@ -23,15 +23,6 @@ extension UINavigationBar {
         }
     }
     
-//    private var hideBottomBorder: Bool {
-//        get { return false }
-//        set {
-//            let image: UIImage? = newValue ? UIImage() : nil
-//            setBackgroundImage(image, forBarPosition: .Any, barMetrics: .Default)
-//            shadowImage = image
-//        }
-//    }
-    
     enum Style {
         case Default
         case ProfileStyle
@@ -60,19 +51,19 @@ extension UINavigationBar {
                 transparent  = false
                 barStyle     = .Default
                 tintColor    = .affairColor()
-                setBackgroundImage(UIImage(color: .whiteColor()), forBarPosition: .Any, barMetrics: .Default)
-                shadowImage = UIImage()
+                shadowImage  = UIImage()
+                backgroundColor(.whiteColor())
             case .PlacesStyle:
-                translucent  =  false
+                transparent  = false
                 barStyle     = .Black
                 tintColor    = .whiteColor()
                 shadowImage  = UIImage()
-                setBackgroundImage(UIImage(color: .affairColor()), forBarPosition: .Any, barMetrics: .Default)
+                backgroundColor(.affairColor())
             case .SettingsStyle:
-                translucent  = false
+                transparent  = false
                 barStyle     = .Black
                 tintColor    = .whiteColor()
-                setBackgroundImage(UIImage(color: .affairColor()), forBarMetrics: .Default)
+                backgroundColor(.affairColor())
             case .NotificationsStyle:
                 break
             default:
@@ -82,6 +73,10 @@ extension UINavigationBar {
             }
             titleTextAttributes = attributes(style)
         }
+    }
+    
+    private func backgroundColor(color: UIColor) {
+        setBackgroundImage(UIImage(color: color), forBarMetrics: .Default)
     }
     
     private func attributes(style: Style) -> [String : AnyObject]? {
