@@ -51,7 +51,6 @@ class PLOrderViewController: PLViewController {
         super.viewDidLoad()
         
         automaticallyAdjustsScrollViewInsets = false
-        
         setupCheckoutButton()
         setupCollectionView()
     }
@@ -76,8 +75,8 @@ class PLOrderViewController: PLViewController {
         
     //MARK: - Network
     private func loadDrinks() {
-        spinner.startAnimating()
-        spinner.center = view.center
+        startActivityIndicator(.WhiteLarge)
+        collectionView.bounces = false
         coversDatasource.cancel()
         drinksDatasource.loadPage {[unowned self] (indices, error) in
             self.collectionViewInsertItems(indices, withError: error)
@@ -85,8 +84,8 @@ class PLOrderViewController: PLViewController {
     }
     
     private func loadCovers() {
-        spinner.startAnimating()
-        spinner.center = view.center
+        startActivityIndicator(.WhiteLarge)
+        collectionView.bounces = false
         drinksDatasource.cancel()
         coversDatasource.loadPage {[unowned self] (indices, error) in
             self.collectionViewInsertItems(indices, withError: error)
@@ -100,7 +99,9 @@ class PLOrderViewController: PLViewController {
                 let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
                 self.collectionView?.performBatchUpdates({
                     self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
-                    }, completion: nil)
+                    }, completion: { (complete) in
+                        self.collectionView.bounces = true
+                })
             } else {
                 switch currentTab {
                 case .Drinks:
@@ -119,7 +120,8 @@ class PLOrderViewController: PLViewController {
         } else {
             PLShowErrorAlert(error: error!)
         }
-        self.spinner.stopAnimating()
+        self.collectionView.bounces = true
+        self.stopActivityIndicator()
     }
 
     //MARK: - Actions
@@ -242,8 +244,7 @@ extension PLOrderViewController {
     }
     
     func sendCurrentOrder() {
-        spinner.center = view.center
-        spinner.startAnimating()
+        startActivityIndicator(.WhiteLarge)
         
         PLFacade.sendOrder(order) {[unowned self] (error) in
             if error == nil {
@@ -255,7 +256,7 @@ extension PLOrderViewController {
             } else {
                 PLShowErrorAlert(error: error!)
             }
-            self.spinner.stopAnimating()
+            self.stopActivityIndicator()
         }
     }
 }
@@ -316,7 +317,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     //MARK: Order change tab
     func orderTabChanged(tab: PLCollectionSectionType) {
         noItemsView.hidden = true
-        spinner.stopAnimating()
+        self.stopActivityIndicator()
         switch currentTab {
         case .Drinks:
             drinksOffset = collectionView.contentOffset
@@ -349,7 +350,6 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     //MARK: - Setup
     func setupCollectionView() {
-        view.insertSubview(spinner, aboveSubview: collectionView)
         animableVipView.frame = PLOrderAnimableVipView.suggestedFrame
         vipButton = UIBarButtonItem(title: "VIP", style: .Plain, target: self, action: #selector(vipButtonPressed(_:)))
         vipButton?.setTitleTextAttributes([
