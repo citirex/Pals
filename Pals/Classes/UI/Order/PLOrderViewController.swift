@@ -50,6 +50,8 @@ class PLOrderViewController: PLViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        automaticallyAdjustsScrollViewInsets = false
+        
         setupCheckoutButton()
         setupCollectionView()
     }
@@ -194,7 +196,6 @@ extension PLOrderViewController {
             checkoutButtonOnScreen = false
             var frame = checkoutButton.frame
             frame.origin.y = collectionView.bounds.size.height
-            collectionView.contentInset.bottom = 0
             shiftCollectionView(false)
             
             UIView.animateWithDuration(0.3, delay: 0, options: [.BeginFromCurrentState, .AllowUserInteraction, .CurveLinear], animations: {
@@ -208,14 +209,9 @@ extension PLOrderViewController {
     }
     
     func shiftCollectionView(shift: Bool) {
-        let newOffsetShift = collectionView.contentOffset.y
-        
+        let newOffsetShift = collectionView.contentOffset.y        
         UIView.animateWithDuration(0.3, delay: 0, options: .BeginFromCurrentState, animations: {
-            if newOffsetShift + self.collectionView.bounds.size.height >= self.collectionView.contentSize.height - kCheckoutButtonHeight && shift == false {
-                self.collectionView.contentOffset.y = newOffsetShift
-            } else {
-                self.collectionView.contentOffset.y = shift ? newOffsetShift + kCheckoutButtonHeight : newOffsetShift - kCheckoutButtonHeight
-            }
+            self.collectionView.contentOffset.y = shift ? newOffsetShift + kCheckoutButtonHeight : newOffsetShift - kCheckoutButtonHeight
         }) { (complete) in
             self.collectionView.contentInset.bottom = shift ? kCheckoutButtonHeight : 0
         }
