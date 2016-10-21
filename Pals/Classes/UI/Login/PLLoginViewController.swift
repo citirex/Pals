@@ -101,10 +101,11 @@ class PLLoginViewController: PLViewController {
 			PLFacade.login(userName, password: password, completion: { (error) in
 				if error != nil {
 					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
+					self.view.userInteractionEnabled = true
 					self.mySpinner?.stopAnimating()
 				} else {
 					self.showMainScreen()
-					self.view.userInteractionEnabled = false
+					self.view.userInteractionEnabled = true
 					self.mySpinner?.stopAnimating()
 				}
 			})

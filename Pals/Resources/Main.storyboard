@@ -451,7 +451,7 @@
         <!--Places-->
         <scene sceneID="lkV-A7-b6g">
             <objects>
-                <viewController title="Places" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="jVG-XQ-2Vf" customClass="PLPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Places" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="jVG-XQ-2Vf" customClass="PLPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CJJ-KK-xwN"/>
                         <viewControllerLayoutGuide type="bottom" id="o6Z-QN-4zp"/>
@@ -1424,7 +1424,7 @@
         <!--Friends View Controller-->
         <scene sceneID="kTI-9s-VJB">
             <objects>
-                <viewController title="Friends" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="EGX-50-gGa" userLabel="Friends View Controller" customClass="PLFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Friends" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="EGX-50-gGa" userLabel="Friends View Controller" customClass="PLFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HvD-Gm-hRE"/>
                         <viewControllerLayoutGuide type="bottom" id="OP0-7G-RkV"/>
@@ -1454,7 +1454,7 @@
         <!--Friends Search View Controller-->
         <scene sceneID="A86-LJ-Tha">
             <objects>
-                <viewController title="Friends Search" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="lup-pr-rOR" userLabel="Friends Search View Controller" customClass="PLFriendsSearchViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Friends Search" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="lup-pr-rOR" userLabel="Friends Search View Controller" customClass="PLFriendsSearchViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3gh-Dt-TFx"/>
                         <viewControllerLayoutGuide type="bottom" id="0cU-r4-3hA"/>
@@ -1582,8 +1582,8 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="u5L-qT-vQG"/>
         <segue reference="Rjy-8t-3el"/>
         <segue reference="apm-CY-cnT"/>
-        <segue reference="u5L-qT-vQG"/>
     </inferredMetricsTieBreakers>
 </document>
