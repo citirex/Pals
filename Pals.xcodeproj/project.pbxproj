@@ -591,7 +591,7 @@
 				E829DDD71D818EAC00D8C130 /* PLPlacesViewController.swift */,
 				D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */,
 				E83C51051D82FEE50095A3C5 /* Cell */,
-				E8C149131DBA179C002CFD01 /* PLPlaceView.swift */,
+				E80DB0671DBA38C5007DA1BA /* View */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -746,6 +746,14 @@
 				E8042B391D8C54D900755EF3 /* PLTabBarController.swift */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		E80DB0671DBA38C5007DA1BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E8C149131DBA179C002CFD01 /* PLPlaceView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		E829DDC61D81447600D8C130 /* Place Profile */ = {

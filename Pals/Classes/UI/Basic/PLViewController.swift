@@ -13,7 +13,6 @@ class PLViewController: UIViewController {
         self.view.addSubview(spnr)
         return spnr
     }()
-
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent

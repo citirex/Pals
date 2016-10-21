@@ -8,9 +8,6 @@
 
 class PLSearchController: UISearchController {
    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 	
 	var isFriends: Bool = true
 	

@@ -46,7 +46,7 @@ class PLPlacesViewController: PLSearchableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
         
 		searchController.isFriends = false
-                
+        
         tableView.hideSearchBar()
         
         loadData()
@@ -75,7 +75,6 @@ class PLPlacesViewController: PLSearchableViewController {
         super.viewWillDisappear(animated)
         places.cancel()
     }
-
     
     
     // MARK: - Private Methods

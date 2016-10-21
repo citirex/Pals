@@ -16,32 +16,12 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var passwordTextField:        PLFormTextField!
     @IBOutlet weak var confirmPasswordTextField: PLFormTextField!
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hideKeyboardWhenTapped = true
-    }
-    
-    
-    // MARK: - Actions
-
-    @IBAction func showActionSheet(sender: UIButton) {
-        dismissKeyboard(sender)
-        
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
-        optionMenu.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { [unowned self] alert in
-            self.requestPermission(Permission.Photos)
-            }))
-        optionMenu.addAction(UIAlertAction(title: "Take a photo", style: .Default, handler: { [unowned self] alert in
-            self.requestPermission(Permission.Camera)
-            }))
-        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        present(optionMenu, animated: true)
-    }
-    
-    @IBAction func signUpButtonTapped(sender: UIButton) {
-        dismissKeyboard(sender)
-        checkingUserData()
     }
     
     
@@ -106,6 +86,45 @@ class PLSignUpViewController: PLViewController {
             imagePicker.cameraCaptureMode = .Photo
         }
         present(imagePicker, animated: true)
+    }
+    
+    private func removeImageFrom(imageView: UIImageView) {
+        imageView.image = nil
+    }
+
+}
+
+
+// MARK: - Actions
+
+extension PLSignUpViewController {
+
+    @IBAction func showActionSheet(sender: UIButton) {
+        dismissKeyboard(sender)
+        
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
+        
+        if userProfileImageView.image != nil {
+            optionMenu.addAction(UIAlertAction(title: "Remove image", style: .Destructive, handler: { [unowned self] alert in
+                self.removeImageFrom(self.userProfileImageView)
+                }))
+        }
+        
+        optionMenu.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { [unowned self] alert in
+            self.requestPermission(Permission.Photos)
+            }))
+        
+        optionMenu.addAction(UIAlertAction(title: "Take a photo", style: .Default, handler: { [unowned self] alert in
+            self.requestPermission(Permission.Camera)
+            }))
+        
+        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        present(optionMenu, animated: true)
+    }
+    
+    @IBAction func signUpButtonTapped(sender: UIButton) {
+        dismissKeyboard(sender)
+        checkingUserData()
     }
 
 }
