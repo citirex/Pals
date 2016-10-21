@@ -10,52 +10,73 @@ import DZNEmptyDataSet
 
 class PLPlacesViewController: PLSearchableViewController {
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundView = UIView()
-        tableView.backgroundColor = UIColor.clearColor()
+    let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
+    
+    private var placeView: PLPlaceView! { return view as! PLPlaceView }
+    
+    lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
+    
+    private var searchPlace: String!
+    
+    private lazy var tableView: UITableView! = {
+        let tableView = self.placeView.tableView
+        tableView.backgroundColor = .affairColor()
+        tableView.backgroundView  = UIView()
         tableView.tableFooterView = UIView()
-        tableView.delegate = self
+        tableView.rowHeight  = 128
+        tableView.delegate   = self
         tableView.dataSource = self
-        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetSource   = self
         tableView.emptyDataSetDelegate = self
         return tableView
     }()
-    private var searchPlace: String!
-    lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
+    
+    
+    
+    override func loadView() {
+        view = PLPlaceView(frame: UIScreen.mainScreen().bounds)
+        placeView.configure()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(tableView)
-        view.backgroundColor = UIColor.affairColor()
-    
-        tableView.rowHeight = 128
-        let views = ["table" : tableView]
-        let constraints = ["|-0-[table]-0-|"]
-        tableView.addConstraints(constraints, views: views)
-        tableView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
-        tableView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 0)
-        let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
-		
         configureResultsController(PLPlaceCell.nibName, cellIdentifier: PLPlaceCell.identifier, responder: self)
         configureSearchController("Find a Place", tableView: tableView, responder: self)
+        tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
+        
 		searchController.isFriends = false
-        edgesForExtendedLayout = .Top
+                
+        tableView.hideSearchBar()
+        
         loadData()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.hideSearchBar()
+
+        navigationController?.navigationBar.style = .PlacesStyle
     }
+
+    private var didSetupConstraints = false
+    override func updateViewConstraints() {
+        if !didSetupConstraints {
+            tableView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
+            tableView.autoPinEdgeToSuperviewEdge(.Bottom)
+            tableView.autoPinEdgeToSuperviewEdge(.Leading)
+            tableView.autoPinEdgeToSuperviewEdge(.Trailing)
+            didSetupConstraints = true
+        }
+        super.updateViewConstraints()
+    }
+    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         places.cancel()
     }
+
+    
     
     // MARK: - Private Methods
     
@@ -118,7 +139,7 @@ extension PLPlacesViewController: UITableViewDataSource {
         guard let cell = cell as? PLPlaceCell else { return }
         let place = places[indexPath.row]
         cell.placeCellData = place.cellData
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = .clearColor()
     }
 }
 

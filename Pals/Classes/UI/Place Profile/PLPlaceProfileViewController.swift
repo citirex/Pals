@@ -19,31 +19,31 @@ class PLPlaceProfileViewController: PLViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let eventsDatasource = PLEventsDatasource()
-    var place: PLPlace! {
-        didSet {
-            if let newPlace = place {
-                eventsDatasource.placeId = newPlace.id
-                spinner.activityIndicatorViewStyle = .Gray
-                load()
-            }
-        }
-    }
+    var noEventsView = PLEmptyBackgroundView(topText: "No events yet", bottomText: nil)
     
-    lazy var eventDateFormatter: NSDateFormatter = {
+    private lazy var eventDateFormatter: NSDateFormatter = {
         let dateFormat = NSDateFormatter()
         dateFormat.timeZone =  NSTimeZone.localTimeZone()
         dateFormat.dateFormat = "MMMM dd, yyyy"
-       return dateFormat
+        return dateFormat
     }()
     
-    var noEventsView = PLEmptyBackgroundView(topText: "No events yet", bottomText: nil)
+    private lazy var events: PLEventsDatasource = {
+        let eventsDatasource = PLEventsDatasource()
+        eventsDatasource.placeId = self.place.id
+        return eventsDatasource }()
+    
+    var place: PLPlace!
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
         setupBackBarButtonItem()
+        
+        loadEvents()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -62,12 +62,14 @@ class PLPlaceProfileViewController: PLViewController {
         navigationItem.setLeftBarButtonItems([negativeSpacer, backBarButtonItem], animated: false)
     }
     
-    private func load() {
-        spinner.startAnimating()
-        spinner.center = view.center
+    private func loadEvents() {
         collectionView.bounces = false
-        eventsDatasource.loadPage {[unowned self] (indices, error) in
+        
+        startActivityIndicator(.WhiteLarge, color: .grayColor())
+        events.loadPage { [unowned self] (indices, error) in
             if error == nil {
+                self.stopActivityIndicator()
+                
                 if indices.count > 0 {
                     self.noEventsView.hidden = true
                     let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
@@ -77,7 +79,7 @@ class PLPlaceProfileViewController: PLViewController {
                             self.collectionView.bounces = true
                     })
                     
-                } else if self.eventsDatasource.pagesLoaded == 0 {
+                } else if self.events.pagesLoaded == 0 {
                     self.noEventsView.hidden = false
                 }
                 
@@ -85,7 +87,6 @@ class PLPlaceProfileViewController: PLViewController {
                 PLShowErrorAlert(error: error!)
             }
             self.collectionView.bounces = true
-            self.spinner.stopAnimating()
         }
     }
     
@@ -125,13 +126,13 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? 0 : eventsDatasource.count
+        return section == 0 ? 0 : events.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PLPlaceProfileCell.identifier, forIndexPath: indexPath)
             as! PLPlaceProfileCell
-        let event = eventsDatasource[indexPath.row].cellData
+        let event = events[indexPath.row].cellData
         cell.setupWithEventInfo(event, andDateFormatter: eventDateFormatter)
         
         return cell
@@ -154,13 +155,8 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
         } else {
             
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
-            sectionHeader.placeNameLabel.text    = place.name
-            sectionHeader.musicGenresLabel.text  = place.musicGengres
-            sectionHeader.closingTimeLabel.text  = place.closeTime
-            sectionHeader.placeAddressLabel.text = place.address
-            sectionHeader.phoneNumberLabel.text  = place.phone
-            sectionHeader.didTappedOrderButton   = { [unowned self] sender in
-                
+            sectionHeader.place = place
+            sectionHeader.didTappedOrderButton  = { [unowned self] sender in
                 let orderViewController = self.tabBarController!.getOrderViewController()
                 orderViewController.didSelectNewPlace(self.place)
                 self.tabBarController?.switchTabTo(TabBarControllerTabs.TabOrder)
@@ -170,7 +166,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let event = eventsDatasource[indexPath.row].cellData
+        let event = events[indexPath.row].cellData
         let objectsToShare = ["\(place.name) \(eventDateFormatter.stringFromDate(event.date)),\n\(event.info))"]
         let calendarActivity = PLActivity(title: "To calendar", imageName: "icon_calendar") {
             
@@ -236,7 +232,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
 
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == eventsDatasource.count - 1 { load() }
+        if indexPath.row == events.count - 1 { loadEvents() }
     }
     
 }

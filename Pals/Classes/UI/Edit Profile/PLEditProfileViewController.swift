@@ -202,7 +202,7 @@ extension PLEditProfileViewController: UIImagePickerControllerDelegate, UINaviga
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
-        userProfileImageView.image = imagePicked
+        userProfileImageView.image = imagePicked.crop(CGSizeMake(200, 200))
         editData?.changePicture(imagePicked)
         dismiss(true)
     }

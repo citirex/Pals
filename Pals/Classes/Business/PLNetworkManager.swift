@@ -49,7 +49,6 @@ struct PLUploadAttachment {
     let mimeType: String
     let data: NSData
     
-    // TODO: - need add check size image 
     static func pngImage(image: UIImage?) -> PLUploadAttachment? {
         if image == nil {
             return nil

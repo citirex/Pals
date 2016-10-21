@@ -68,7 +68,7 @@ extension UINavigationBar {
                 barTintColor = .affairColor()
                 hideBottomBorder = true
             case .SettingsStyle:
-                transparent  = false
+                translucent  = false
                 barStyle     = .Black
                 tintColor    = .whiteColor()
                 barTintColor = .affairColor()
