@@ -10,7 +10,7 @@ import UIKit
 
 class PLProfileHeaderView: UIView {
     
-    @IBOutlet var userPicImageView: UIImageView!
+    @IBOutlet var userPicImageView: PLCircularImageView!
     @IBOutlet var balanceButton: UIButton!
     @IBOutlet var myCoversButton: UIButton!
     @IBOutlet var myDrinksButton: UIButton!
@@ -35,9 +35,5 @@ class PLProfileHeaderView: UIView {
             self.backgroundImageView.transform = CGAffineTransformIdentity
 
         }
-    }
-    
-    func roundUserPicCorners() {
-        userPicImageView.layer.cornerRadius = userPicImageView.bounds.size.width / 2
     }
 }

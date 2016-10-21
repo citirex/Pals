@@ -20,6 +20,7 @@ class PLOrderFriendsViewController: PLFriendsViewController {
         navigationController?.navigationBar.tintColor = UIColor.affairColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.affairColor()]
         navigationController?.navigationBar.barStyle = .Default
+        navigationItem.rightBarButtonItem = nil
     }
 
 	override func viewDidLayoutSubviews() {

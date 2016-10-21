@@ -24,7 +24,7 @@
                     </view>
                     <blurEffect style="dark"/>
                 </visualEffectView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6gY-hN-GqU">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6gY-hN-GqU" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
                     <rect key="frame" x="109" y="55" width="102" height="102"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="KUc-Ck-YdM"/>

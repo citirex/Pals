@@ -199,7 +199,6 @@ class PLProfileViewController: TGLStackedViewController {
     
     func setupCollectionView() {
         setupCollectionBackgroundView(collectionBackgroundView)
-        collectionBackgroundView.roundUserPicCorners()
         let collectionSize = collectionView!.bounds.size
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(collectionSize.height / 2, 0, 0, 0)
         
