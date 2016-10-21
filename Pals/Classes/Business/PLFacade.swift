@@ -196,23 +196,37 @@ extension PLFacade._PLFacade {
         let params = [PLKeys.id.string: NSNumber(unsignedLongLong: PLFacade.profile!.id),
             PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
         
-        PLNetworkManager.get(PLAPIService.Unfriend, parameters: params) { (dic, error) in
-            if let success = dic[PLKeys.success.string] as? Bool where success == true{
-                completion(error: nil)
+        PLNetworkManager.get(PLAPIService.Unfriend, parameters: params) {[unowned user] (dic, error) in
+            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
+                if let success = response[PLKeys.success.string] as? Bool where success == true {
+                    user.invited = !success
+                    completion(error: nil)
+                }
+            } else if error != nil {
+                completion(error: error)
+            } else {
+                completion(error: kPLErrorJSON)
             }
-            completion(error: error)
         }
     }
     
     func _addFriend(user: PLUser, completion: PLErrorCompletion) {
+        user.inviting = true
         let params = [PLKeys.id.string: NSNumber(unsignedLongLong: PLFacade.profile!.id),
                       PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
         
-        PLNetworkManager.get(PLAPIService.AddFriend, parameters: params) { (dic, error) in
-            if let success = dic[PLKeys.success.string] as? Bool where success == true{
-                completion(error: nil)
+        PLNetworkManager.get(PLAPIService.AddFriend, parameters: params) {[unowned user] (dic, error) in
+            user.inviting = false
+            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
+                if let success = response[PLKeys.success.string] as? Bool where success == true {
+                    user.invited = success
+                    completion(error: nil)
+                }
+            } else if error != nil {
+                completion(error: error)
+            } else {
+                completion(error: kPLErrorJSON)
             }
-            completion(error: error)
         }
     }
     

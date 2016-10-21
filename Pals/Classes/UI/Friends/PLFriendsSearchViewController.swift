@@ -31,18 +31,22 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 extension PLFriendsSearchViewController: PLFriendCellDelegate {
 
     func addFriendButtonPressed(cell: PLFriendCell) {
-        if let index = tableView.indexPathForCell(cell)?.row {
-            let newFriend = datasource[index]
-            startActivityIndicator(.Gray)
-            PLFacade.addFriend(newFriend, completion: {[unowned self] (error) in
+        if let indexPath = tableView.indexPathForCell(cell) {
+            let newFriend = datasource[indexPath.row]
+            
+            PLFacade.addFriend(newFriend, completion: {[unowned cell, unowned newFriend, unowned self] (error) in
                 if error != nil {
                     PLShowAlert("Failed to add friend", message: "Please try again later")
                     PLLog(error?.localizedDescription,type: .Network)
                 } else {
-                   cell.updateUI()
+                    if let visible = self.tableView.indexPathsForVisibleRows?.contains(indexPath) where visible == true {
+                        cell.cellData = newFriend.cellData
+                        cell.setupInviteUI()
+                    }
                 }
-                self.stopActivityIndicator()
             })
+            cell.cellData = newFriend.cellData
+            cell.setupInviteUI()
         }
     }
 }

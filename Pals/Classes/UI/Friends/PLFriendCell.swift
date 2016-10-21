@@ -6,11 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-enum PLAddFriendStatus : Int {
-	case NotFriend
-	case Friend
-}
-
 protocol PLFriendCellDelegate: class {
     func addFriendButtonPressed(sender: PLFriendCell)
 }
@@ -20,7 +15,6 @@ class PLFriendCell: UITableViewCell{
 	@IBOutlet weak var avatarImage: UIImageView!
 	@IBOutlet weak var nameLabel: UILabel!
 	
-	var friendStatus: PLAddFriendStatus?
     var cellData: PLFriendCellData?
     
 	lazy var addButton: UIButton = {
@@ -29,8 +23,13 @@ class PLFriendCell: UITableViewCell{
 		button.setImage(UIImage(named: "contact_add"), forState: .Normal)
 		return button
 	}()
+    
+    lazy var loadingIndicatorView: PLLoadingIndicatorView = {
+        return PLLoadingIndicatorView(frame:CGRectMake(0,0,33,33),indicatorStyle: .Gray)
+    }()
 
 	var currentUrl = ""
+    private var invitedUserID: UInt64 = 0
     
     weak var delegate : PLFriendCellDelegate?
 	
@@ -60,13 +59,20 @@ class PLFriendCell: UITableViewCell{
 	
     func setupInviteUI() {
         if let data = cellData {
-            if accessoryView != addButton {
-                accessoryView = addButton
-            }
-            let buttonImage = data.invited  == true ? UIImage(named: "check_mark") : UIImage(named: "contact_add")
-            addButton.userInteractionEnabled = !data.invited
-            if addButton.currentImage != buttonImage {
-                addButton.setImage(buttonImage, forState: .Normal)
+            if data.inviting == true && data.id == invitedUserID {
+                if accessoryView != loadingIndicatorView {
+                    accessoryView = loadingIndicatorView
+                }
+                loadingIndicatorView.startAnimating()
+            } else {                
+                if accessoryView != addButton {
+                    accessoryView = addButton
+                }
+                let buttonImage = data.invited  == true ? UIImage(named: "check_mark") : UIImage(named: "contact_add")
+                addButton.userInteractionEnabled = !data.invited
+                if addButton.currentImage != buttonImage {
+                    addButton.setImage(buttonImage, forState: .Normal)
+                }
             }
         }
     }
@@ -108,8 +114,9 @@ class PLFriendCell: UITableViewCell{
 			}
 		}
 	}
-	
+
 	func addFriendAction(sender: PLFriendCell) {
+        invitedUserID = cellData!.id
 		delegate?.addFriendButtonPressed(self)
 	}
 }
