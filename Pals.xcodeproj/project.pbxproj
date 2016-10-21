@@ -75,6 +75,9 @@
 		24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */; };
 		24E286E91D9E4A2E00B8D80C /* checkout.json in Resources */ = {isa = PBXBuildFile; fileRef = 24E286E81D9E4A2E00B8D80C /* checkout.json */; };
 		24E286ED1D9E6C8700B8D80C /* updateprofile.json in Resources */ = {isa = PBXBuildFile; fileRef = 24E286EC1D9E6C8700B8D80C /* updateprofile.json */; };
+		24F012B91DBA16510072556F /* add_friend.json in Resources */ = {isa = PBXBuildFile; fileRef = 24F012B71DBA16510072556F /* add_friend.json */; };
+		24F012BA1DBA16510072556F /* unfriend.json in Resources */ = {isa = PBXBuildFile; fileRef = 24F012B81DBA16510072556F /* unfriend.json */; };
+		24F012BD1DBA3B020072556F /* PLLoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F012BC1DBA3B020072556F /* PLLoadingIndicatorView.swift */; };
 		D410F71D1D9A7DA6000E8E06 /* invitefriends0.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71A1D9A7DA6000E8E06 /* invitefriends0.json */; };
 		D410F71E1D9A7DA6000E8E06 /* invitefriends1.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71B1D9A7DA6000E8E06 /* invitefriends1.json */; };
 		D410F71F1D9A7DA6000E8E06 /* invitefriends2.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71C1D9A7DA6000E8E06 /* invitefriends2.json */; };
@@ -249,6 +252,9 @@
 		24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderAnimableVipView.xib; sourceTree = "<group>"; };
 		24E286E81D9E4A2E00B8D80C /* checkout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkout.json; sourceTree = "<group>"; };
 		24E286EC1D9E6C8700B8D80C /* updateprofile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = updateprofile.json; sourceTree = "<group>"; };
+		24F012B71DBA16510072556F /* add_friend.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = add_friend.json; sourceTree = "<group>"; };
+		24F012B81DBA16510072556F /* unfriend.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unfriend.json; sourceTree = "<group>"; };
+		24F012BC1DBA3B020072556F /* PLLoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLoadingIndicatorView.swift; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D410F71A1D9A7DA6000E8E06 /* invitefriends0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invitefriends0.json; sourceTree = "<group>"; };
@@ -536,6 +542,7 @@
 				049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */,
 				049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */,
 				04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */,
+				24F012BB1DBA3AC60072556F /* resources */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -644,6 +651,14 @@
 				24DDA9301D9A658800FCDBCA /* events3.json */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		24F012BB1DBA3AC60072556F /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				24F012BC1DBA3B020072556F /* PLLoadingIndicatorView.swift */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		3031C286B9CA11146B8E1FA5 /* Pods */ = {
@@ -761,6 +776,8 @@
 				E837C1F51D902CAE0080A074 /* signup.json */,
 				24E286EC1D9E6C8700B8D80C /* updateprofile.json */,
 				24E286E81D9E4A2E00B8D80C /* checkout.json */,
+				24F012B71DBA16510072556F /* add_friend.json */,
+				24F012B81DBA16510072556F /* unfriend.json */,
 			);
 			path = FakeFeeds;
 			sourceTree = "<group>";
@@ -1096,6 +1113,7 @@
 				24DDA9341D9A658800FCDBCA /* events3.json in Resources */,
 				E837C1F91D902CAE0080A074 /* drinks0.json in Resources */,
 				24DDA9321D9A658800FCDBCA /* events1.json in Resources */,
+				24F012BA1DBA16510072556F /* unfriend.json in Resources */,
 				24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */,
 				2480F9001D813E730095995F /* PLOrderDrinkCell.xib in Resources */,
 				24C20C731D8A9C700040F2F5 /* PLOrderCoverCell.xib in Resources */,
@@ -1106,6 +1124,7 @@
 				E837C2061D902CAE0080A074 /* order_drinks1.json in Resources */,
 				E837C20D1D902CAE0080A074 /* sendpassword.json in Resources */,
 				2414F4561D997249000BA1F5 /* vip_covers2.json in Resources */,
+				24F012B91DBA16510072556F /* add_friend.json in Resources */,
 				24DDA9311D9A658800FCDBCA /* events0.json in Resources */,
 				E837C20A1D902CAE0080A074 /* places1.json in Resources */,
 				E837C2051D902CAE0080A074 /* order_drinks0.json in Resources */,
@@ -1205,6 +1224,7 @@
 				E85083151DAD1AEA0077A81C /* PLAttributedString.swift in Sources */,
 				D47B45661D903DF80042EB9A /* PLProfileDatasourceContainer.swift in Sources */,
 				E8DA8B8F1D88334F008782E5 /* PLCollectionParalaxLayout.swift in Sources */,
+				24F012BD1DBA3B020072556F /* PLLoadingIndicatorView.swift in Sources */,
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
 				E85083131DACEC5B0077A81C /* PLEmptyBackgroundView.swift in Sources */,
 				24DDA9361D9A663500FCDBCA /* PLEventsDatasource.swift in Sources */,
