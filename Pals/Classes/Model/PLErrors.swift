@@ -29,6 +29,7 @@ let kPLErrorTypeLocationFailed = PLErrorType(code: 1001, reason: "Failed to fetc
 let kPLErrorTypeCheckoutFailed = PLErrorType(code: 1000, reason: "Failed post data to server")
 let kPLErrorTypeParsingFailed = PLErrorType(code: 1001, reason: "Failed to parse JSON")
 let kPLErrorTypeEmptyField = PLErrorType(code: 1002, reason: "Fields should not be empty!")
+let kPLErrorTypeFBLoginCancelledByUser = PLErrorType(code: 1004, reason: "Login with Facebook was cancelled by user!")
 
 let kPLErrorUnknown =  NSError(domain: PLErrorDomain.Unknown.string, code: 0, userInfo: nil)
 let kPLErrorJSON = PLError(domain: .Parsing, type: kPLErrorTypeParsingFailed)

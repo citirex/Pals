@@ -109,9 +109,12 @@ extension PLProfileManager : PLAuthStorage {
             getFBUserInfo(completion)
         } else {
             FBSDKLoginManager().logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: nil) {[unowned self] (result: FBSDKLoginManagerLoginResult!, error: NSError!) in
-                if result.isCancelled || error != nil {
-                    PLLog("FB login cancelled by user", type: .Network)
+                if error != nil {
+                    PLLog("FB login unknown error", error.localizedDescription, type: .Network)
                     completion(data: nil, error: error)
+                } else if result.isCancelled {
+                    PLLog("FB login cancelled by user", type: .Network)
+                    completion(data: nil, error: PLError(domain: .User, type: kPLErrorTypeFBLoginCancelledByUser))
                 } else {
                     PLLog("Recieved FB token: \(result.token.tokenString)", type: .Network)
                     self.getFBUserInfo(completion)
