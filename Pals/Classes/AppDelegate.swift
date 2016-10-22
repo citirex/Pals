@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        
         PLFacade.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         IQKeyboardManager.sharedManager().enable = true

@@ -108,6 +108,7 @@
 		E8007BD71DA0073700372347 /* PLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8007BD61DA0073700372347 /* PLLocation.swift */; };
 		E8042B3A1D8C54D900755EF3 /* PLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8042B391D8C54D900755EF3 /* PLTabBarController.swift */; };
 		E80692911DA0422200500684 /* PLFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80692901DA0422200500684 /* PLFriendProfileViewController.swift */; };
+		E818032A1DBBA42300A57FB8 /* PLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81803291DBBA42300A57FB8 /* PLImagePicker.swift */; };
 		E81E32171DA16A7A00E46ABB /* PLNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */; };
 		E8204A261DA82EB600BDBFCE /* PLDescriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8204A251DA82EB500BDBFCE /* PLDescriptionLabel.swift */; };
 		E8204A281DA82F4000BDBFCE /* PLFormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */; };
@@ -289,6 +290,7 @@
 		E8007BD61DA0073700372347 /* PLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocation.swift; sourceTree = "<group>"; };
 		E8042B391D8C54D900755EF3 /* PLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTabBarController.swift; sourceTree = "<group>"; };
 		E80692901DA0422200500684 /* PLFriendProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLFriendProfileViewController.swift; path = "Friend Profile/PLFriendProfileViewController.swift"; sourceTree = "<group>"; };
+		E81803291DBBA42300A57FB8 /* PLImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImagePicker.swift; sourceTree = "<group>"; };
 		E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNavigationBar.swift; sourceTree = "<group>"; };
 		E8204A251DA82EB500BDBFCE /* PLDescriptionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLDescriptionLabel.swift; path = "Edit Profile/PLDescriptionLabel.swift"; sourceTree = "<group>"; };
 		E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFormTextField.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				D4950A921D82B32700F48F4E /* PLAlert.swift */,
+				E81803291DBBA42300A57FB8 /* PLImagePicker.swift */,
 				D4950A941D82C71100F48F4E /* PLViewController.swift */,
 				D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */,
 				D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */,
@@ -1209,6 +1212,7 @@
 				2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */,
 				2480F8DD1D813E730095995F /* PLProfileManager.swift in Sources */,
 				E86E558B1DB3741D00CE1698 /* PLRoundedButton.swift in Sources */,
+				E818032A1DBBA42300A57FB8 /* PLImagePicker.swift in Sources */,
 				049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */,
 				E86E55891DB2ADDA00CE1698 /* PLCircularImageView.swift in Sources */,
 				E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */,
