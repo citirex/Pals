@@ -65,10 +65,19 @@ class PLPlaceProfileViewController: PLViewController {
     private func loadEvents() {
         collectionView.bounces = false
         
-        startActivityIndicator(.WhiteLarge, color: .grayColor())
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = .grayColor()
+        if events.empty {
+            spinner.addConstraintCenterVerticallyWithMultiplier(1.7)
+        } else {
+            spinner.addConstraintCenterVertically()
+        }
+        spinner.addConstraintCenterHorizontally()
+        
+        spinner.startAnimating()
         events.loadPage { [unowned self] (indices, error) in
             if error == nil {
-                self.stopActivityIndicator()
+                self.spinner.stopAnimating()
                 
                 if indices.count > 0 {
                     self.noEventsView.hidden = true
