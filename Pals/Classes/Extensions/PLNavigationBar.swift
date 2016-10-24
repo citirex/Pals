@@ -51,13 +51,14 @@ extension UINavigationBar {
                 transparent = false
                 barStyle    = .Default
                 tintColor   = .affairColor()
-                shadowImage = UIImage()
+                shadowImage = nil
                 barColor    = .whiteColor()
+                tintColor   = .affairColor()
             case .PlacesStyle:
                 transparent = false
                 barStyle    = .Black
-                tintColor   = .whiteColor()
                 shadowImage = UIImage()
+                tintColor   = .whiteColor()
                 barColor    = .affairColor()
             case .SettingsStyle:
                 transparent = false

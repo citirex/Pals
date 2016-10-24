@@ -40,10 +40,10 @@ class PLSearchableViewController: PLViewController {
         (cellNib: String, cellIdentifier: String, responder: T) {
         let nib = UINib(nibName: cellNib, bundle: nil)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: cellIdentifier)
-        resultsController.tableView.dataSource             = responder
-        resultsController.tableView.delegate               = responder
-        resultsController.tableView.emptyDataSetSource     = responder
-        resultsController.tableView.emptyDataSetDelegate   = responder
+        resultsController.tableView.dataSource           = responder
+        resultsController.tableView.delegate             = responder
+        resultsController.tableView.emptyDataSetSource   = responder
+        resultsController.tableView.emptyDataSetDelegate = responder
     }
 
     func searchDidChange(text: String, active: Bool) {} // to override

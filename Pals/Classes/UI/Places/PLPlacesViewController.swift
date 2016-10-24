@@ -12,11 +12,9 @@ class PLPlacesViewController: PLSearchableViewController {
     
     let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
     
-    private var placeView: PLPlaceView! { return view as! PLPlaceView }
+    private var placeView: PLTableView! { return view as! PLTableView }
     
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
-    
-    private var searchPlace: String!
     
     private lazy var tableView: UITableView! = {
         let tableView = self.placeView.tableView
@@ -34,13 +32,13 @@ class PLPlacesViewController: PLSearchableViewController {
     private lazy var downtimer = PLDowntimer()
     
     override func loadView() {
-        view = PLPlaceView(frame: UIScreen.mainScreen().bounds)
+        view = PLTableView(frame: UIScreen.mainScreen().bounds)
         placeView.configure()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureResultsController(PLPlaceCell.nibName, cellIdentifier: PLPlaceCell.identifier, responder: self)
         configureSearchController("Find a Place", tableView: tableView, responder: self)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
@@ -102,7 +100,6 @@ class PLPlacesViewController: PLSearchableViewController {
     override func searchDidChange(text: String, active: Bool) {
         PLLog("Search active: \(active)")
         PLLog("Search text: \(text)")
-        searchPlace = text
         places.searchFilter = text
         if text.isEmpty {
             places.searchFilter = nil
@@ -111,6 +108,7 @@ class PLPlacesViewController: PLSearchableViewController {
                 PLLog("Searched text: \(text)")
                 self.loadData()
                 self.resultsController.tableView.reloadData()
+                self.resultsController.tableView.reloadEmptyDataSet()
             }
         }
     }
@@ -121,8 +119,7 @@ class PLPlacesViewController: PLSearchableViewController {
 extension PLPlacesViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = places.count
-        return count
+        return places.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -165,7 +162,7 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let string = scrollView === tableView ? "No data" : "No places were found that match '\(searchPlace)'"
+        let string = scrollView === tableView ? "No data" : "No places were found that match '\(searchController.searchBar.text!)'"
         let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .lightGrayColor())
         return attributedString
     }
@@ -181,6 +178,11 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
 extension PLPlacesViewController: DZNEmptyDataSetDelegate {
     
     func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        if !places.loading && places.empty { tableView.contentOffset = CGPointZero }
         return !places.loading
+    }
+    
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }
