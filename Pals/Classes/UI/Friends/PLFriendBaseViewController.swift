@@ -10,12 +10,14 @@ import DZNEmptyDataSet
 class PLFriendBaseViewController: PLSearchableViewController {
 	
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
+	private var friendsView: PLTableView! { return view as! PLTableView }
     lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = self.friendsView.tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundView = UIView()
         tableView.backgroundColor = UIColor.clearColor()
         tableView.tableFooterView = UIView()
+		tableView.separatorInset.left = 75
         tableView.delegate = self
         tableView.dataSource = self
         tableView.emptyDataSetSource = self
@@ -23,20 +25,17 @@ class PLFriendBaseViewController: PLSearchableViewController {
         return tableView
     }()
 	
+	override func loadView() {
+		view = PLTableView(frame: UIScreen.mainScreen().bounds)
+		friendsView.configure()
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-        view.addSubview(tableView)
         view.backgroundColor = UIColor.whiteColor()
-        
-        let views = ["table" : tableView]
-        let constraints = ["|-0-[table]-0-|"]
-        tableView.addConstraints(constraints, views: views)
-        tableView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
-        tableView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 0)
         let nib = UINib(nibName: "PLFriendCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
-        tableView.separatorInset.left = 75
 		resultsController.tableView.separatorInset.left	   = 75
 		
         interfaceColor = UIColor.whiteColor()
@@ -45,15 +44,28 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		searchController.isFriends = true
 		
 		searchController.searchBar.tintColor = UIColor.affairColor()
-		resultsController.tableView.backgroundColor = .whiteColor()
+		resultsController.tableView.backgroundColor = interfaceColor
 		
         addBorderToSearchField()
 		spinner.center = view.center
 		spinner.activityIndicatorViewStyle = .WhiteLarge
 		spinner.color = .grayColor()
-        edgesForExtendedLayout = .Top
-        loadData()
+        edgesForExtendedLayout = .None
+		
+		tableView.hideSearchBar()
     }
+	
+	private var didSetupConstraints = false
+	override func updateViewConstraints() {
+		if !didSetupConstraints {
+			tableView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
+			tableView.autoPinEdgeToSuperviewEdge(.Bottom)
+			tableView.autoPinEdgeToSuperviewEdge(.Leading)
+			tableView.autoPinEdgeToSuperviewEdge(.Trailing)
+			didSetupConstraints = true
+		}
+		super.updateViewConstraints()
+	}
 	
     func addBorderToSearchField() {
         for subView in searchController.searchBar.subviews  {
@@ -69,6 +81,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
     
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		navigationController?.navigationBar.shadowImage = UIImage()
 		navigationController?.navigationBar.style = .FriendsStyle
         if datasource.empty {
             loadData()
@@ -89,10 +102,10 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		if navigationController == nil {
 			sleep(UInt32(0.01))
 		} else {
-			if scrollView.contentOffset.y < navigationController!.navigationBar.frame.height  {
-			navigationController?.navigationBar.shadowImage = UIImage()
-			} else {
+			if scrollView.contentOffset.y > navigationController!.navigationBar.frame.height  {
 			navigationController?.navigationBar.shadowImage = nil
+			} else {
+			navigationController?.navigationBar.shadowImage = UIImage()
 			}
 		}
 	}

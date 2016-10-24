@@ -11,14 +11,4 @@ class PLFriendsViewController: PLFriendBaseViewController {
     override func cellTapSegueName() -> String {
         return "FriendProfileSegue"
     }
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		navigationController?.navigationBar.shadowImage = nil
-		tableView.contentOffset = CGPointMake(0, searchController.searchBar.frame.size.height - 0.5)
-		navigationController?.navigationBar.style = .FriendsStyle
-		if datasource.empty {
-			loadData()
-		}
-	}
 }

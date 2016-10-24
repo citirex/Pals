@@ -51,7 +51,7 @@ extension UINavigationBar {
                 transparent = false
                 barStyle    = .Default
                 tintColor   = .affairColor()
-                shadowImage = UIImage()
+                shadowImage = nil
                 barColor    = .whiteColor()
             case .PlacesStyle:
                 transparent = false
