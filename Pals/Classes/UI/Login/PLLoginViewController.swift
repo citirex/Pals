@@ -35,28 +35,37 @@ class PLLoginViewController: PLViewController {
 	@IBAction func forgotButtonClicked(sender: AnyObject) {
 		
 		let alert = UIAlertController(title: "We got your back!", message: "Enter below and we'll send your password!", preferredStyle: UIAlertControllerStyle.Alert)
+        
 		alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-		alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+        let forgotAction = UIAlertAction(title: "OK", style: .Default, handler: {[unowned self] (action) -> Void in
+            let textField = alert.textFields![0] as UITextField
+            NSNotificationCenter.defaultCenter().removeObserver(textField)
+            
+            if textField.text!.trim().isValidEmail {
+                self.mySpinner!.startAnimating()
+                PLFacade.sendPassword(textField.text!, completion: { (error) in
+                    if error == nil {
+                        PLShowAlert(title:"Sent!")
+                    } else {
+                        PLShowAlert(title:(error!.code == 520) ? "This email doesn't exist!" : (error?.localizedDescription)!)
+                    }
+                    self.mySpinner?.stopAnimating()
+                })
+            } else {
+                PLShowAlert(title: "This email incorrect")
+            }
+        })
+        forgotAction.enabled = false
+        
+		alert.addTextFieldWithConfigurationHandler({ (textField) in
 			textField.placeholder = "Email"
+            textField.keyboardType = .EmailAddress
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                forgotAction.enabled = textField.text != ""
+            }
 		})
-		alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-			let textField = alert.textFields![0] as UITextField
-			if (textField.text?.trim().isValidEmail)! {
-				self.mySpinner!.startAnimating()
-				PLFacade.sendPassword(textField.text!, completion: { (error) in
-					var message = ""
-					if error == nil {
-						message = "Sent!"
-					} else {
-						message = (error?.localizedDescription)!
-					}
-                    PLShowAlert(message: message)
-					self.mySpinner?.stopAnimating()
-				})
-			} else {
-                PLShowAlert(message: "This Email doesn't exist!")
-			}
-		}))
+        
+		alert.addAction(forgotAction)
 		presentViewController(alert, animated: true, completion: nil)
 	}
     
@@ -101,10 +110,11 @@ class PLLoginViewController: PLViewController {
 			PLFacade.login(userName, password: password, completion: { (error) in
 				if error != nil {
 					PLShowAlert("Login error!", message: (error?.localizedDescription)!)
+					self.view.userInteractionEnabled = true
 					self.mySpinner?.stopAnimating()
 				} else {
 					self.showMainScreen()
-					self.view.userInteractionEnabled = false
+					self.view.userInteractionEnabled = true
 					self.mySpinner?.stopAnimating()
 				}
 			})

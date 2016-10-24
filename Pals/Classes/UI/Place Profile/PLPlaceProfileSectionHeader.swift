@@ -27,6 +27,15 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
         }
     }
 
+    var place: PLPlace! {
+        didSet {
+            placeNameLabel.text    = place.name
+            musicGenresLabel.text  = place.musicGengres
+            closingTimeLabel.text  = place.closeTime
+            placeAddressLabel.text = place.address
+            phoneNumberLabel.text  = place.phone
+        }
+    }
 
 
     func orderButtonTapped(sender: UIButton) {

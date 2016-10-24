@@ -16,35 +16,36 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1di-n4-vqL" userLabel="Top View">
                     <rect key="frame" x="0.0" y="0.0" width="376" height="104"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tier Nightclub" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0vA-Ca-YpO">
-                            <rect key="frame" x="25" y="15" width="126" height="24"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hip-Hop/ Reggae/ Salsa" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="X0g-ou-tgV">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hip-Hop/ Reggae/ Salsa" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="X0g-ou-tgV">
                             <rect key="frame" x="25" y="47" width="135" height="15"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open until 2:30 A.M." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MBi-ZT-yQ9">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Open until 2:30 A.M." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MBi-ZT-yQ9">
                             <rect key="frame" x="25" y="70" width="111" height="14"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tier Nightclub" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0vA-Ca-YpO">
+                            <rect key="frame" x="25" y="15" width="126" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.43529412150382996" green="0.25098040699958801" blue="0.59215688705444336" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="MBi-ZT-yQ9" firstAttribute="top" secondItem="X0g-ou-tgV" secondAttribute="bottom" constant="8" id="0mx-pm-1aO"/>
-                        <constraint firstItem="0vA-Ca-YpO" firstAttribute="top" secondItem="1di-n4-vqL" secondAttribute="top" constant="15" id="7wZ-vm-gQb"/>
-                        <constraint firstItem="X0g-ou-tgV" firstAttribute="top" secondItem="0vA-Ca-YpO" secondAttribute="bottom" constant="8" id="8xr-p3-w23"/>
-                        <constraint firstItem="X0g-ou-tgV" firstAttribute="leading" secondItem="0vA-Ca-YpO" secondAttribute="leading" id="IIg-xa-5xW"/>
-                        <constraint firstItem="0vA-Ca-YpO" firstAttribute="leading" secondItem="1di-n4-vqL" secondAttribute="leading" constant="25" id="Mfr-bb-aOg"/>
-                        <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="MBi-ZT-yQ9" secondAttribute="bottom" constant="20" id="OkP-gq-8fi"/>
-                        <constraint firstItem="MBi-ZT-yQ9" firstAttribute="leading" secondItem="X0g-ou-tgV" secondAttribute="leading" id="OzY-lp-yiy"/>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0vA-Ca-YpO" secondAttribute="trailing" constant="25" id="kVd-gb-Bzr"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0vA-Ca-YpO" secondAttribute="trailing" constant="25" id="8Ne-LK-Joo"/>
+                        <constraint firstItem="X0g-ou-tgV" firstAttribute="leading" secondItem="MBi-ZT-yQ9" secondAttribute="leading" id="ADQ-Bp-vcz"/>
+                        <constraint firstItem="0vA-Ca-YpO" firstAttribute="leading" secondItem="X0g-ou-tgV" secondAttribute="leading" id="DYE-Xe-UGn"/>
+                        <constraint firstItem="0vA-Ca-YpO" firstAttribute="top" secondItem="1di-n4-vqL" secondAttribute="top" constant="15" id="EDe-il-lhm"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MBi-ZT-yQ9" secondAttribute="bottom" constant="8" id="Qg2-WT-SxL"/>
+                        <constraint firstItem="X0g-ou-tgV" firstAttribute="top" secondItem="0vA-Ca-YpO" secondAttribute="bottom" constant="8" symbolic="YES" id="aHj-LT-Hqw"/>
+                        <constraint firstItem="MBi-ZT-yQ9" firstAttribute="top" secondItem="X0g-ou-tgV" secondAttribute="bottom" constant="8" symbolic="YES" id="gFM-09-OvI"/>
+                        <constraint firstItem="0vA-Ca-YpO" firstAttribute="leading" secondItem="1di-n4-vqL" secondAttribute="leading" constant="25" id="pKQ-g6-Mvl"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="X0g-ou-tgV" secondAttribute="trailing" constant="25" id="y5h-cU-PFk"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e58-Sn-T3o" userLabel="Bottom View">
@@ -114,8 +115,8 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="AW4-sR-nJa" secondAttribute="trailing" constant="30" id="0Ho-Un-8jt"/>
+                <constraint firstItem="AW4-sR-nJa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MBi-ZT-yQ9" secondAttribute="trailing" constant="15" id="1dQ-BC-Lye"/>
                 <constraint firstItem="e58-Sn-T3o" firstAttribute="top" secondItem="1di-n4-vqL" secondAttribute="bottom" id="IsR-ou-wq1"/>
-                <constraint firstItem="AW4-sR-nJa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="X0g-ou-tgV" secondAttribute="trailing" constant="10" id="LqD-JS-CET"/>
                 <constraint firstItem="AW4-sR-nJa" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" multiplier="1.1" id="M6E-SG-H3Z"/>
                 <constraint firstItem="e58-Sn-T3o" firstAttribute="height" secondItem="1di-n4-vqL" secondAttribute="height" multiplier="0.8" id="R5q-0k-u01"/>
                 <constraint firstAttribute="trailing" secondItem="1di-n4-vqL" secondAttribute="trailing" id="UJi-Qm-BJh"/>

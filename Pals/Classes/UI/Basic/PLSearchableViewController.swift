@@ -33,7 +33,6 @@ class PLSearchableViewController: PLViewController {
         searchController.searchBar.barTintColor    = interfaceColor
         searchController.searchResultsUpdater      = responder
         tableView.tableHeaderView                  = searchController.searchBar
-        definesPresentationContext                 = true
     }
         
     func configureResultsController
@@ -58,3 +57,4 @@ extension PLSearchableViewController: UISearchResultsUpdating {
         }
     }
 }
+

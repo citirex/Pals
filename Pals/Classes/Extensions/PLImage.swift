@@ -9,15 +9,6 @@
 
 extension UIImage {
     
-    func imageResize(sizeChange: CGSize) -> UIImage {
-        let hasAlpha = true
-        let scale: CGFloat = 0.0
-        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
-        drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        return scaledImage
-    }
-    
     func imageByScalingAndCroppingForSize(targetSize: CGSize) -> UIImage? {
         let sourceImage = self
         let newImage: UIImage?
@@ -116,6 +107,76 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         self.init(CGImage: image.CGImage!)
+    }
+
+}
+
+
+extension UIImage {
+    
+    func crop(to: CGSize) -> UIImage {
+        guard let cgimage = CGImage else { return self }
+        
+        let contextImage = UIImage(CGImage: cgimage)
+        
+        let contextSize = contextImage.size
+        
+        //Set to square
+        var posX: CGFloat = 0.0
+        var posY: CGFloat = 0.0
+        let cropAspect: CGFloat = to.width / to.height
+        
+        var cropWidth: CGFloat = to.width
+        var cropHeight: CGFloat = to.height
+        
+        if to.width > to.height { //Landscape
+            cropWidth = contextSize.width
+            cropHeight = contextSize.width / cropAspect
+            posY = (contextSize.height - cropHeight) / 2
+        } else if to.width < to.height { //Portrait
+            cropHeight = contextSize.height
+            cropWidth = contextSize.height * cropAspect
+            posX = (contextSize.width - cropWidth) / 2
+        } else { //Square
+            if contextSize.width >= contextSize.height { //Square on landscape (or square)
+                cropHeight = contextSize.height
+                cropWidth = contextSize.height * cropAspect
+                posX = (contextSize.width - cropWidth) / 2
+            } else { //Square on portrait
+                cropWidth = contextSize.width
+                cropHeight = contextSize.width / cropAspect
+                posY = (contextSize.height - cropHeight) / 2
+            }
+        }
+        
+        let rect = CGRectMake(posX, posY, cropWidth, cropHeight)
+        
+        // Create bitmap image from context using the rect
+        let imageRef = CGImageCreateWithImageInRect(contextImage.CGImage, rect)!
+        
+        // Create a new image based on the imageRef and rotate back to the original orientation
+        let cropped = UIImage(CGImage: imageRef, scale: scale, orientation: imageOrientation)
+        
+        UIGraphicsBeginImageContextWithOptions(to, true, scale)
+        cropped.drawInRect(CGRectMake(0, 0, to.width, to.height))
+        let resized = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return resized
+    }
+    
+}
+
+
+extension UIImage {
+
+    func imageResize(sizeChange: CGSize) -> UIImage {
+        let hasAlpha = true
+        let scale: CGFloat = 0.0
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
     }
     
 }
