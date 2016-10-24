@@ -77,7 +77,7 @@ class PLPlacesViewController: PLSearchableViewController {
     
     // MARK: - Private Methods
     
-    func loadData() {
+    private func loadData() {
         places.cancel()
         startActivityIndicator(.WhiteLarge)
         places.loadPage { [unowned self] indices, error in
