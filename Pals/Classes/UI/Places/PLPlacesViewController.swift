@@ -12,7 +12,7 @@ class PLPlacesViewController: PLSearchableViewController {
     
     let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
     
-    private var placeView: PLPlaceView! { return view as! PLPlaceView }
+    private var placeView: PLTableView! { return view as! PLTableView }
     
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
     
@@ -34,13 +34,15 @@ class PLPlacesViewController: PLSearchableViewController {
     private lazy var downtimer = PLDowntimer()
     
     override func loadView() {
-        view = PLPlaceView(frame: UIScreen.mainScreen().bounds)
+        view = PLTableView(frame: UIScreen.mainScreen().bounds)
         placeView.configure()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        view.backgroundColor = .affairColor()
+        
         configureResultsController(PLPlaceCell.nibName, cellIdentifier: PLPlaceCell.identifier, responder: self)
         configureSearchController("Find a Place", tableView: tableView, responder: self)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
@@ -49,7 +51,7 @@ class PLPlacesViewController: PLSearchableViewController {
         
         tableView.hideSearchBar()
         
-        loadData()
+//        loadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -188,6 +190,11 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
 extension PLPlacesViewController: DZNEmptyDataSetDelegate {
     
     func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        if !places.loading { tableView.contentOffset = CGPointZero }
         return !places.loading
+    }
+    
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }

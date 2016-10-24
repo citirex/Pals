@@ -2,11 +2,23 @@
 //  PLTableView.swift
 //  Pals
 //
-//  Created by Vitaliy Delidov on 10/17/16.
+//  Created by Vitaliy Delidov on 10/24/16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class PLTableView: UIView {
+
+    let tableView = UITableView()
+    
+    func configure() {
+        tableView.frame = bounds
+        addSubview(tableView)
+    }
+
+}
+
 
 extension UITableView {
     
