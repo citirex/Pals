@@ -33,6 +33,7 @@ class PLPlacesViewController: PLSearchableViewController {
     
     override func loadView() {
         view = PLTableView(frame: UIScreen.mainScreen().bounds)
+        view.backgroundColor = .affairColor()
         placeView.configure()
     }
     
