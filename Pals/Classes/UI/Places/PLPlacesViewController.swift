@@ -46,7 +46,7 @@ class PLPlacesViewController: PLSearchableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
         
 		searchController.isFriends = false
-                
+        
         tableView.hideSearchBar()
         
         loadData()
@@ -75,7 +75,6 @@ class PLPlacesViewController: PLSearchableViewController {
         super.viewWillDisappear(animated)
         places.cancel()
     }
-
     
     
     // MARK: - Private Methods
@@ -175,7 +174,7 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        let named = scrollView === tableView ? "place_pin_placeholder" : "search"
+        let named = scrollView === tableView ? "location_placeholder" : "search"
         return UIImage(named: named)!.imageResize(CGSizeMake(100, 100))
     }
 }

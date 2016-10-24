@@ -6,7 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import Permission
 
 class PLSignUpViewController: PLViewController {
     
@@ -16,32 +15,12 @@ class PLSignUpViewController: PLViewController {
     @IBOutlet weak var passwordTextField:        PLFormTextField!
     @IBOutlet weak var confirmPasswordTextField: PLFormTextField!
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hideKeyboardWhenTapped = true
-    }
-    
-    
-    // MARK: - Actions
-
-    @IBAction func showActionSheet(sender: UIButton) {
-        dismissKeyboard(sender)
-        
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
-        optionMenu.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { [unowned self] alert in
-            self.requestPermission(Permission.Photos)
-            }))
-        optionMenu.addAction(UIAlertAction(title: "Take a photo", style: .Default, handler: { [unowned self] alert in
-            self.requestPermission(Permission.Camera)
-            }))
-        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        present(optionMenu, animated: true)
-    }
-    
-    @IBAction func signUpButtonTapped(sender: UIButton) {
-        dismissKeyboard(sender)
-        checkingUserData()
     }
     
     
@@ -80,32 +59,25 @@ class PLSignUpViewController: PLViewController {
             self.present(tabBarController, animated: true)
         }
     }
-    
-    private func requestPermission(permission: Permission) {
-        permission.request { [unowned self] status in
-            guard status == .Authorized else { return }
-            switch permission.type {
-            case .Photos: self.showImagePickerForSourceType(.PhotoLibrary)
-            case .Camera: self.showImagePickerForSourceType(.Camera)
-            default: break
-            }
+
+}
+
+
+// MARK: - Actions
+
+extension PLSignUpViewController {
+
+    @IBAction func showActionSheet(sender: UIButton) {
+        dismissKeyboard(sender)
+        
+        PLImagePicker.pickImage(self, imageView: userProfileImageView) { image in
+            self.userProfileImageView.image = image
         }
-        let alert     = permission.deniedAlert
-        alert.title   = "Using \(permission.type) is disabled for this app"
-        alert.message = "Enable it in Settings->Privacy"
     }
     
-    private func showImagePickerForSourceType(sourceType: UIImagePickerControllerSourceType) {
-        guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate   = self
-        
-        if sourceType == .Camera {
-            imagePicker.cameraDevice      = .Front
-            imagePicker.cameraCaptureMode = .Photo
-        }
-        present(imagePicker, animated: true)
+    @IBAction func signUpButtonTapped(sender: UIButton) {
+        dismissKeyboard(sender)
+        checkingUserData()
     }
 
 }

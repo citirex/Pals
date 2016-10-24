@@ -1551,11 +1551,9 @@
                     <tabBarItem key="tabBarItem" title="Locations" image="places-tab" selectedImage="places-tab" id="dhE-9C-Dgv"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Ben-N6-fwn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ben-N6-fwn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.43529412150000002" green="0.25098040700000002" blue="0.59215688710000003" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

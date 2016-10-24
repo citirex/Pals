@@ -14,21 +14,12 @@ extension UINavigationBar {
     }
     
     private var transparent: Bool {
-        get { return false }
+        get { return translucent }
         set {
             let image: UIImage? = newValue ? UIImage() : nil
             setBackgroundImage(image, forBarMetrics: .Default)
             shadowImage = image
             translucent = newValue
-        }
-    }
-    
-    private var hideBottomBorder: Bool {
-        get { return false }
-        set {
-            let image: UIImage? = newValue ? UIImage() : nil
-            setBackgroundImage(image, forBarPosition: .Any, barMetrics: .Default)
-            shadowImage = image
         }
     }
     
@@ -53,41 +44,51 @@ extension UINavigationBar {
         set (style) {
             switch style {
             case .AddFundsStyle:
-                transparent  = true
-                barStyle     = .Default
-                tintColor    = .affairColor()
+                transparent = true
+                barStyle    = .Default
+                tintColor   = .affairColor()
             case .FriendsStyle:
-                transparent  = false
-                barStyle     = .Default
-                tintColor    = .affairColor()
-                hideBottomBorder = true
+                transparent = false
+                barStyle    = .Default
+                tintColor   = .affairColor()
+                shadowImage = UIImage()
+                barColor    = .whiteColor()
             case .PlacesStyle:
-                transparent  = false
-                barStyle     = .Black
-                tintColor    = .whiteColor()
-                barTintColor = .affairColor()
-                hideBottomBorder = true
+                transparent = false
+                barStyle    = .Black
+                tintColor   = .whiteColor()
+                shadowImage = UIImage()
+                barColor    = .affairColor()
             case .SettingsStyle:
-                translucent  = false
-                barStyle     = .Black
-                tintColor    = .whiteColor()
-                barTintColor = .affairColor()
+                transparent = false
+                barStyle    = .Black
+                tintColor   = .whiteColor()
+                barColor    = .affairColor()
             case .NotificationsStyle:
                 break
             default:
-                transparent  = true
-                barStyle     = .Black
-                tintColor    = .whiteColor()
+                transparent = true
+                barStyle    = .Black
+                tintColor   = .whiteColor()
             }
             titleTextAttributes = attributes(style)
+        }
+    }
+    
+    private var barColor: UIColor? {
+        get { return barTintColor! }
+        set {
+            setBackgroundImage(UIImage(color: newValue!), forBarMetrics: .Default)
         }
     }
     
     private func attributes(style: Style) -> [String : AnyObject]? {
         var titleColor = UIColor()
         switch style {
-        case .FriendsStyle: titleColor = .affairColor()
-        default: titleColor = .whiteColor()
+        case .FriendsStyle:
+            titleColor = .affairColor()
+        default:
+            titleColor = .whiteColor()
         }
         return [NSForegroundColorAttributeName : titleColor]
     }
