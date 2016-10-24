@@ -10,7 +10,7 @@ import CoreLocation.CLLocation
 
 struct PLPlaceCellData {
     let name: String
-    let picture: NSURL
+    let picture: NSURL?
     let musicGengres: String
     let address: String
     let location: CLLocationCoordinate2D

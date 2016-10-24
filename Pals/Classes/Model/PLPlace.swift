@@ -10,29 +10,33 @@ import CoreLocation
 
 class PLPlace : PLDatedObject, PLCellRepresentable, PLFilterable {
     let name: String
-    let picture: NSURL
+    var picture: NSURL?
     var musicGengres = ""
-    let address: String
-    let phone: String
+    var address = ""
+    var phone = ""
     var location = CLLocationCoordinate2D()
     var closeTime = ""
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let name = jsonDic[PLKeys.name.string] as? String,
-            let picture = jsonDic[PLKeys.picture.string] as? String,
-            let address = jsonDic[PLKeys.address.string] as? String,
-            let phone = jsonDic[PLKeys.phone.string] as? String
+            let name = jsonDic[PLKeys.name.string] as? String
         else {
             return nil
         }
         self.name = name
-        self.picture = NSURL(string: picture)!
+
+        if let picture = jsonDic[PLKeys.picture.string] as? String {
+            self.picture = NSURL(string: picture)!
+        }
+        if let address = jsonDic[PLKeys.address.string] as? String {
+            self.address = address
+        }
+        if let phone = jsonDic[PLKeys.phone.string] as? String {
+            self.phone = phone
+        }
         if let musicGengres = jsonDic[PLKeys.genres.string] as? String {
             self.musicGengres = musicGengres
         }
-        self.address = address
-        self.phone = phone
         if let locationStr = jsonDic[PLKeys.location.string] as? String {
             let coords = locationStr.componentsSeparatedByString(":")
             if coords.count == 2,

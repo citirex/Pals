@@ -76,6 +76,16 @@ extension UIViewController {
 
     var activityIndicatorTag: Int { return 999999 }
     
+    var targetView: UIView {
+        var targetView: UIView?
+        if let navVC = self.navigationController {
+            targetView = navVC.view
+        } else {
+            targetView = self.view
+        }
+        return targetView!
+    }
+    
     func startActivityIndicator(style: UIActivityIndicatorViewStyle, color: UIColor? = nil) {
         dispatch_async(dispatch_get_main_queue(), {
             let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
@@ -85,19 +95,17 @@ extension UIViewController {
             activityIndicator.hidesWhenStopped = true
             activityIndicator.color = color
             activityIndicator.startAnimating()
-            
-            self.view.addSubview(activityIndicator)
-            
+            self.targetView.addSubview(activityIndicator)
+            self.targetView.bringSubviewToFront(activityIndicator)
             activityIndicator.autoCenterInSuperview()
         })
     }
     
     func stopActivityIndicator() {
         dispatch_async(dispatch_get_main_queue(), {
-            if let activityIndicator = self.view.subviews.filter({
-                $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
+            if let spinner = self.targetView.viewWithTag(self.activityIndicatorTag) as? UIActivityIndicatorView {
+                spinner.stopAnimating()
+                spinner.removeFromSuperview()
             }
         })
     }

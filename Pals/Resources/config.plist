@@ -5,7 +5,7 @@
 	<key>FakeFeeds</key>
 	<dict>
 		<key>Enabled</key>
-		<true/>
+		<false/>
 		<key>LoadDelay</key>
 		<real>0.5</real>
 	</dict>
@@ -20,12 +20,10 @@
 	<dict>
 		<key>ActiveServer</key>
 		<dict>
-			<key>http://1yegor.pythonanywhere.com</key>
-			<false/>
-			<key>http://192.168.1.9:8181</key>
-			<false/>
-			<key>http://1192.168.1.14:8000</key>
+			<key>http://yegor.pythonanywhere.com</key>
 			<true/>
+			<key>http://192.168.1.14:8000</key>
+			<false/>
 			<key>https://api.pals.com</key>
 			<false/>
 		</dict>

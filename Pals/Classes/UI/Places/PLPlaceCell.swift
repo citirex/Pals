@@ -23,12 +23,15 @@ class PLPlaceCell: UITableViewCell {
     var currentUrl = ""
     var placeCellData: PLPlaceCellData! {
         didSet {
-            backgroundImageView.setImageWithURLRequest(NSURLRequest(URL: placeCellData.picture),
-                                                       placeholderImage: UIImage(named: "place_placeholder")!,
-                                                       success: { [unowned self] request, response, image in
-                                                        
-            self.backgroundImageView.addBlur(image, completion: { $0 != image }) }, failure: nil)
-            
+            if let picture = placeCellData.picture {
+                backgroundImageView.setImageWithURLRequest(NSURLRequest(URL: picture),
+                                                           placeholderImage: UIImage(named: "place_placeholder")!,
+                                                           success: { [unowned self] request, response, image in
+                                                            
+                                                            self.backgroundImageView.addBlur(image, completion: { $0 != image }) }, failure: nil)
+            } else {
+                backgroundImageView.image = UIImage(named: "place_placeholder")
+            }
             placeNameLabel.text    = placeCellData.name
             placeAddressLabel.text = placeCellData.address
             musicGenresLabel.text  = placeCellData.musicGengres

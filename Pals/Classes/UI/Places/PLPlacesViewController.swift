@@ -24,7 +24,8 @@ class PLPlacesViewController: PLSearchableViewController {
     }()
     private var searchPlace: String!
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
-
+    private lazy var downtimer = PLDowntimer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,10 +61,13 @@ class PLPlacesViewController: PLSearchableViewController {
     // MARK: - Private Methods
     
     func loadData() {
+        places.cancel()
         startActivityIndicator(.WhiteLarge)
         places.loadPage {[unowned self] (indices, error) in
             self.stopActivityIndicator()
-            self.didLoadPage(self.tableView, indices: indices, error: error)
+            let searching = self.places.searching
+            let table: UITableView = searching ? self.resultsController.tableView : self.tableView
+            self.didLoadPage(table, indices: indices, error: error)
         }
     }
 
@@ -84,17 +88,18 @@ class PLPlacesViewController: PLSearchableViewController {
     }
     
     override func searchDidChange(text: String, active: Bool) {
+        PLLog("Search active: \(active)")
+        PLLog("Search text: \(text)")
         searchPlace = text
-        places.searching = active
+        places.searchFilter = text
         if text.isEmpty {
-            places.searching = false
+            places.searchFilter = nil
         } else {
-            startActivityIndicator(.WhiteLarge)
-            places.filter(text, completion: { [unowned self] in
-                self.stopActivityIndicator()
-                self.resultsController.tableView.reloadEmptyDataSet()
+            downtimer.wait { [unowned self] in
+                PLLog("Searched text: \(text)")
+                self.loadData()
                 self.resultsController.tableView.reloadData()
-            })
+            }
         }
     }
 }

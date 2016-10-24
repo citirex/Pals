@@ -20,83 +20,37 @@ extension PLPageCollectionDelegate {
 
 typealias PLURLParams = [String:AnyObject]
 
-class PLPageCollectionDeserializer<T:PLDatedObject>: NSObject {
-    private var keyPath = [String]()
-
-    func appendPath(path: [String]) {
-        keyPath.appendContentsOf(path)
-    }
-    
-    func deserialize(page: [String:AnyObject]) -> ([T],NSError?) {
-        var objects: AnyObject?
-        for key in keyPath {
-            objects = page[key]
-            if objects == nil {
-                let error = NSError(domain: "PageCollection", code: 1001, userInfo: [NSLocalizedDescriptionKey : "Failed to parse JSON"])
-                return ([T](), error)
-            }
-        }
-        let pageDics = objects as! [Dictionary<String,AnyObject>]
-        let deserializedObjects = deserializeResponseDic(pageDics)
-        return (deserializedObjects, nil)
-    }
-    
-    private func deserializeResponseDic(dic: [Dictionary<String,AnyObject>]) -> [T] {
-        var pageObjects = [T]()
-        for jsonObject in dic {
-            if let object = T(jsonDic: jsonObject) {
-                pageObjects.append(object)
-            }
-        }
-        return pageObjects
-    }
-}
-
-struct PLPageCollectionPreset {
-    var id = UInt64(0) // for specific user identifier
-    var idKey = "" // for specific user identifier
-    let url: String
-    let sizeKey: String
-    let offsetKey: String
-    let size: Int
-    let offsetById: Bool // if true starts a next page from lastId+1 otherwise uses a last saved offset
-    var params : PLURLParams = {return PLURLParams()}()
-    
-    init(url: String, sizeKey: String, offsetKey: String, size: Int, offsetById: Bool) {
-        self.url = url
-        self.sizeKey = sizeKey
-        self.offsetKey = offsetKey
-        self.size = size
-        self.offsetById = offsetById
-    }
-    
-    subscript(key: String) -> AnyObject? {
-        set(newValue) {
-            params[key] = newValue
-        }
-        get {
-            return params[key]
-        }
-    }
-    
-}
-
 class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     weak var delegate: PLPageCollectionDelegate?
-    var searching = false
+    var searching: Bool {
+        set { storage.searching = newValue }
+        get { return storage.searching }
+    }
+    var searchFilter: String? {
+        get {
+            return preset.params[PLKeys.filter.string] as? String
+        }
+        set {
+            preset.params[PLKeys.filter.string] = newValue?.lowercaseString
+            if newValue == nil {
+                searching = false
+            } else {
+                searching = true
+                storage.cleanCurrentSet()
+            }
+        }
+    }
     
     private var sectioned = false
     var isSectioned: Bool {
         return sectioned
     }
+    private var storage = PLPageCollectionStorage()
     private var preset: PLPageCollectionPreset
     private var objects: NSMutableArray {
-        return searching ? _filtered : _objects
+        return storage.currentSet.objects
     }
-    private var _objects = NSMutableArray()
-    private var _filtered = NSMutableArray()
     private var session: AFHTTPSessionManager?
-    private var offset = UInt64(0)
     private var loading = false
     var isLoading: Bool {return loading}
     private var deserializer = PLPageCollectionDeserializer<T>()
@@ -138,7 +92,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     var pagesLoaded: Int {
         var allObjCount = 0
         if sectioned {
-            for section in _objects {
+            for section in objects {
                 allObjCount += section.count
             }
         } else {
@@ -158,10 +112,10 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     
     private var lastObject: T? {
         if sectioned {
-            let lastSection = _objects.lastObject as? NSMutableArray
+            let lastSection = objects.lastObject as? NSMutableArray
             return lastSection?.lastObject as? T
         } else {
-            return _objects.lastObject as? T
+            return objects.lastObject as? T
         }
     }
 
@@ -184,32 +138,35 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     }
     
     func shouldLoadNextPage(indexPath: NSIndexPath) -> Bool {
-        if searching {
+        let loaded = storage.currentSet.loaded
+        if loaded {
             return false
         }
-        if indexPath.row == objects.count - 1 {
+        let size = pageSize
+        let count = objects.count
+        if count >= size && indexPath.row == count - 1 {
             return true
         }
         return false
     }
     
-    func filter(text: String, completion: ()->()) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self._filtered.removeAllObjects()
-            let newFiltered = self._objects.filter { (object) -> Bool in
-                let result = T.filter(object, text: text)
-                return result
-            }
-            if self.sectioned {
-                fatalError("no filtered sections")
-            } else {
-                self._filtered.addObjectsFromArray(newFiltered)
-            }
-            dispatch_async(dispatch_get_main_queue(), {
-                completion()
-            })
-        }
-    }
+//    func filter(text: String, completion: ()->()) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+//            self._filtered.removeAllObjects()
+//            let newFiltered = self._objects.filter { (object) -> Bool in
+//                let result = T.filter(object, text: text)
+//                return result
+//            }
+//            if self.sectioned {
+//                fatalError("no filtered sections")
+//            } else {
+//                self._filtered.addObjectsFromArray(newFiltered)
+//            }
+//            dispatch_async(dispatch_get_main_queue(), {
+//                completion()
+//            })
+//        }
+//    }
     
     func load() {
         if !loading {
@@ -254,6 +211,8 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
 
     private func loadNext(completion: PageLoadCompletion) {
         loading = true
+        let current = storage.currentSet
+        let offset = current.offset
         let params = formParameters(preset, offset: offset)
         if session == nil {
             return
@@ -291,22 +250,26 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     
     func onPageLoad(objects: [T]) -> PLPage {
         var page = PLPage()
-        if objects.count > 0 {
+        let count = objects.count
+        if count > 0 {
             if sectioned {
                 page = appendObjectsToSections(objects)
             } else {
-                _objects.addObjectsFromArray(objects)
+                self.objects.addObjectsFromArray(objects)
                 page.objects.addObjectsFromArray(objects)
             }
             if !self.preset.offsetById {
-                self.offset += UInt64(objects.count)
+                storage.currentSet.offset += UInt64(objects.count)
             }
+        }
+        if count < preset.size {
+            storage.currentSet.loaded = true
         }
         return page
     }
     
     private func sectionOfObject(object: T) -> NSMutableArray? {
-        for aSection in _objects {
+        for aSection in objects {
             if let section = aSection as? NSMutableArray {
                 if section.count>0 {
                     for anObj in section {
@@ -356,7 +319,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             if page.mergedWithPreviousSection && i==0 {
                 continue
             }
-            _objects.addObject(section)
+            self.objects.addObject(section)
         }
         
         var sectionStr = ""
@@ -368,12 +331,12 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         PLLog("new sections: \(page.objects.count) (\(sectionStr))")
         
         sectionStr = ""
-        for i in 0..<_objects.count {
-            let section = _objects.objectAtIndex(i) as! NSMutableArray
+        for i in 0..<self.objects.count {
+            let section = self.objects.objectAtIndex(i) as! NSMutableArray
             sectionStr += "\(section.count)"
-            sectionStr += i != _objects.count-1 ? " " : ""
+            sectionStr += i != self.objects.count-1 ? " " : ""
         }
-        PLLog("all sections: \(_objects.count) (\(sectionStr))")
+        PLLog("all sections: \(self.objects.count) (\(sectionStr))")
         return page
     }
     
@@ -393,17 +356,18 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             params[preset.idKey] = String(preset.id)
         }
         for (key, value) in preset.params {
+            if value is String {
+                if (value as! String).isEmpty {
+                    continue
+                }
+            }
             params[key] = value
         }
         return params
     }
     
-
-    
     func clean() {
-        _filtered.removeAllObjects()
-        _objects.removeAllObjects()
-        offset = 0
+        storage.cleanCurrentSet()
     }
     
     func setSession(session: AFHTTPSessionManager) {

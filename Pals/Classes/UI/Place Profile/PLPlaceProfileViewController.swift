@@ -149,7 +149,9 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
 
         if indexPath.section == 0 {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileHeader
-            headerView.headerImageView.setImageWithURL(place.picture, placeholderImage: UIImage(named: "place_placeholder"))
+            if let picture = place.picture {
+                headerView.headerImageView.setImageWithURL(picture, placeholderImage: UIImage(named: "place_placeholder"))
+            }
             return headerView
         } else {
             

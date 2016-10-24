@@ -114,16 +114,16 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	}
     
     override func searchDidChange(text: String, active: Bool) {
-        datasource.searching = searchController.active
-        if text.isEmpty {
-            datasource.searching = false
-        } else {
-            spinner.startAnimating()
-            datasource.filter(text, completion: { [unowned self] in
-                self.resultsController.tableView.reloadData()
-                self.spinner.stopAnimating()
-            })
-        }
+//        datasource.searching = searchController.active
+//        if text.isEmpty {
+//            datasource.searching = false
+//        } else {
+//            spinner.startAnimating()
+//            datasource.filter(text, completion: { [unowned self] in
+//                self.resultsController.tableView.reloadData()
+//                self.spinner.stopAnimating()
+//            })
+//        }
     }
 }
 
