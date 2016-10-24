@@ -28,8 +28,8 @@ enum PLAPIService : String {
     case SendPassword
     case Profile
     case UpdateProfile = "update_profile"
-    case Unfriend
-    case AddFriend = "add_friend"
+    case Unfriend = "removefriend"
+    case AddFriend = "addfriend"
     case Friends
     case InviteFriends
     case Places
@@ -84,6 +84,7 @@ class PLNetworkSession: AFHTTPSessionManager {
         if let jsonDeserializer = responseSerializer as? AFJSONResponseSerializer {
             jsonDeserializer.removesKeysWithNullValues = true
         }
+        requestSerializer.HTTPMethodsEncodingParametersInURI = ["GET", "POST"]
         PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLKeys.token.string, options: [.New,.Initial], context: nil)
     }
     
@@ -153,6 +154,15 @@ class PLNetworkManager: PLNetworkManagerInterface {
                 self.handleErrorCompletion(error!, fakeFeedFilename: service.string, completion: completion)
             }
         }
+    }
+    
+    class func postWithAttributes(service: PLAPIService, attributes: [String : AnyObject], completion: PLNetworkRequestCompletion) {
+        let task = PLNetworkSession.shared.POST(service.string, parameters: attributes, progress: nil, success: { (task, response) in
+            self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
+        }) { (task, error) in
+            self.handleErrorCompletion(error, fakeFeedFilename: service.string, completion: completion)
+        }
+        logPerforming(task?.originalRequest)
     }
     
     class func post(service: PLAPIService, parameters: [String : AnyObject], completion: PLNetworkRequestCompletion) {

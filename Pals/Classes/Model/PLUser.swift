@@ -12,10 +12,9 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     var picture: NSURL
     var balance = Float(0)
     var additional: String?
-    // by default we assume that a given user is a friend of a current one
-    var invited: Bool = true
+    // by default we assume that a given user is not a friend of a current one
+    var invited: Bool = false
     var inviting: Bool = false
-    
     
     required init?(jsonDic: [String : AnyObject]) {
         guard

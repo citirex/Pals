@@ -212,10 +212,8 @@ extension PLFacade._PLFacade {
     
     func _addFriend(user: PLUser, completion: PLErrorCompletion) {
         user.inviting = true
-        let params = [PLKeys.id.string: NSNumber(unsignedLongLong: PLFacade.profile!.id),
-                      PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
-        
-        PLNetworkManager.get(PLAPIService.AddFriend, parameters: params) {[unowned user] (dic, error) in
+        let params = [PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
+        PLNetworkManager.postWithAttributes(PLAPIService.AddFriend, attributes: params) { (dic, error) in
             user.inviting = false
             if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
                 if let success = response[PLKeys.success.string] as? Bool where success == true {

@@ -8,6 +8,8 @@
 
 class PLFriendsSearchViewController: PLFriendBaseViewController {
 		
+    var downtimer = PLDowntimer()
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
         datasource = PLDatasourceHelper.createFriendsInviteDatasource()
@@ -25,6 +27,27 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
     
     override func cellTapSegueName() -> String {
         return "FriendsProfileSegue"
+    }
+    
+    override func loadData() {
+        loadData(datasource) {[unowned self] () -> UITableView in
+            return self.datasource.searching ? self.resultsController.tableView : self.tableView
+        }
+    }
+    
+    override func searchDidChange(text: String, active: Bool) {
+        PLLog("Search active: \(active)")
+        PLLog("Search text: \(text)")
+        datasource.searchFilter = text
+        if text.isEmpty {
+            datasource.searchFilter = nil
+        } else {
+            downtimer.wait { [unowned self] in
+                PLLog("Searched text: \(text)")
+                self.loadData()
+                self.resultsController.tableView.reloadData()
+            }
+        }
     }
 }
 
