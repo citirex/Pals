@@ -81,7 +81,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
     
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		navigationController?.navigationBar.shadowImage = UIImage()
 		navigationController?.navigationBar.style = .FriendsStyle
         if datasource.empty {
             loadData()
