@@ -57,18 +57,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return PLFacade.application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
-//    - (BOOL)application:(UIApplication *)app
-//    openURL:(NSURL *)url
-//    options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-//    
-//    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-//    openURL:url
-//    sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-//    annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-//    ];
-//    // Add any custom logic here.
-//    return handled;
-//    }
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        PLFacade.didRegisterPushSettings(application, settings: notificationSettings)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        PLFacade.didFailToRegisterPushSettings(error)
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        PLFacade.didReceiveDeviceToken(deviceToken)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PLFacade.didReceiveRemoteNotification(userInfo)
+    }
     
 }
 
