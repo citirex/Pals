@@ -56,7 +56,7 @@ class PLEditProfileViewController: PLViewController {
     
     private func updateEnabledStatus(status: Bool) {
         usernameTextField.enabled     = status
-        additionalTextField.enabled  = status
+        additionalTextField.enabled   = status
         addProfileImageButton.enabled = status
         addProfileImageButton.hidden  = !status
     }
@@ -65,12 +65,12 @@ class PLEditProfileViewController: PLViewController {
         if let data = PLFacade.profile?.cellData {
             usernameTextField.text    = data.name
             phoneNumberTextField.text = data.email
-            additionalTextField.text = data.additional
+            additionalTextField.text  = data.additional
             userProfileImageView.setImageWithURL(data.picture, placeholderImage: UIImage(named: "profile_placeholder"))
         } else {
-            usernameTextField.text = "<Error name>"
-            phoneNumberTextField.text = "<Error phone>"
-            additionalTextField.text = "<Error additional>"
+            usernameTextField.text     = "<Error name>"
+            phoneNumberTextField.text  = "<Error phone>"
+            additionalTextField.text   = "<Error additional>"
             userProfileImageView.image = UIImage(named: "profile_placeholder")
         }
     }
