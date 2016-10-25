@@ -145,9 +145,9 @@ class PLOrderViewController: PLViewController {
         drinksDatasource.isVIP = order.isVIP
         coversDatasource.isVIP = order.isVIP
         if order.place != nil {
+            order.clean()
             resetOffsets()
-            drinksDatasource.clean()
-            coversDatasource.clean()
+            resetDataSources()
             updateCheckoutButtonState()
             collectionView.reloadSections(NSIndexSet(index: 1))
             currentTab == .Drinks ? loadDrinks() : loadCovers()
@@ -157,6 +157,11 @@ class PLOrderViewController: PLViewController {
     private func resetOffsets() {
         coversOffset = CGPointZero
         drinksOffset = CGPointZero
+    }
+    
+    private func resetDataSources() {
+        drinksDatasource.clean()
+        coversDatasource.clean()
     }
     
     func setSectionType(type: PLCollectionSectionType) {
@@ -246,13 +251,25 @@ extension PLOrderViewController {
     func sendCurrentOrder() {
         startActivityIndicator(.WhiteLarge)
         
-        PLFacade.sendOrder(order) {[unowned self] (error) in
-            if error == nil {
+        PLFacade.sendOrder(order) {[unowned self] (order,error) in
+            if let newOrder = order {
+                
                 self.order = PLCheckoutOrder()
+                self.resetOffsets()
+                self.restore()
+                self.resetDataSources()
                 self.updateCheckoutButtonState()
-                self.collectionView.reloadSections(NSIndexSet(index: 1))
-                self.tabBarController?.incrementCounterNumberOn(.TabProfile)
-                self.tabBarController?.switchTabTo(.TabProfile)
+                self.collectionView.reloadData()
+                
+                if PLFacade.profile!.id == order?.user.id {
+                    let profileViewController = self.tabBarController!.getProfileViewController()
+                    profileViewController.newOrder = newOrder
+                    self.tabBarController?.incrementCounterNumberOn(.TabProfile)
+                    self.tabBarController?.switchTabTo(.TabProfile)
+                } else {
+                    PLShowAlert(title: "Success")
+                }
+                
             } else {
                 PLShowErrorAlert(error: error!)
             }

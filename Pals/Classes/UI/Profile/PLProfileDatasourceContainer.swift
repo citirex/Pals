@@ -51,4 +51,13 @@ class PLProfileDatasourceSwitcher {
         }
     }
     
+    func resetOffset(forType type:PLCollectionSectionType) {
+        switch type {
+        case .Drinks:
+            drinks.offset = CGPointZero
+        case .Covers:
+            covers.offset = CGPointZero
+        }
+    }
+    
 }

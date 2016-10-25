@@ -71,7 +71,7 @@ class PLCheckoutOrder {
         return amount
     }
     
-    private func clean() {
+    func clean() {
         drinks.removeAll()
         covers.removeAll()
     }
