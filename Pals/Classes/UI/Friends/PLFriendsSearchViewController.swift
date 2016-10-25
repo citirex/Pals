@@ -14,7 +14,15 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 		super.viewDidLoad()
         datasource = PLDatasourceHelper.createFriendsInviteDatasource()
     }
-    
+	
+	override func viewWillAppear(animated: Bool) {
+		navigationController?.navigationBar.style = .FriendsStyle
+		navigationController?.navigationBar.shadowImage = UIImage()
+		if datasource.empty {
+			loadData()
+		}
+	}
+	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
         if let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath) as? PLFriendCell {
             cell.delegate = self
@@ -49,6 +57,10 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
             }
         }
     }
+	
+	override func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+		return true
+	}
 }
 
 extension PLFriendsSearchViewController: PLFriendCellDelegate {

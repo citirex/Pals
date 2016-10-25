@@ -50,6 +50,7 @@ class PLFriendCell: UITableViewCell{
             avatarImage.backgroundColor = UIColor.affairColor()
             avatarImage.image = UIImage(named: "user")
         } else {
+			avatarImage.contentMode = .ScaleAspectFill
             avatarImage.backgroundColor = UIColor.clearColor()
             setCorrectImage(cellData.picture)
         }
