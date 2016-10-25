@@ -481,8 +481,8 @@
 			isa = PBXGroup;
 			children = (
 				2480F87E1D813E730095995F /* PLDrink.swift */,
-				24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */,
 				24DA61161D8BF642007F4973 /* PLCover.swift */,
+				24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */,
 				2480F87F1D813E730095995F /* PLErrors.swift */,
 				2480F8801D813E730095995F /* PLEvent.swift */,
 				2480F8811D813E730095995F /* PLFakeFeed.swift */,
