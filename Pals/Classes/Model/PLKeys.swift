@@ -49,6 +49,7 @@ enum PLKeys : String {
     case drinks
     case vip_drinks
     case covers
+    case cover
     case vip_covers
     case rect
     case success

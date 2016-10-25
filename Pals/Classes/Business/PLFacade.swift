@@ -232,7 +232,7 @@ extension PLFacade._PLFacade {
     
     func _sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion) {
         let params = order.serialize()
-        PLNetworkManager.post(PLAPIService.SendOrder, parameters: params) { (dic, error) in
+        PLNetworkManager.postWithAttributes(PLAPIService.Orders, attributes: params) { (dic, error) in
             self.handleCheckoutOrder(error, dic: dic, completion: completion)
         }
     }

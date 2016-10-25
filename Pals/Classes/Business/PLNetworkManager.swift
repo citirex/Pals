@@ -34,7 +34,6 @@ enum PLAPIService : String {
     case InviteFriends
     case Places
     case Orders
-    case SendOrder = "create_order"
     case Drinks
     case Events
     case Covers
@@ -84,6 +83,7 @@ class PLNetworkSession: AFHTTPSessionManager {
         if let jsonDeserializer = responseSerializer as? AFJSONResponseSerializer {
             jsonDeserializer.removesKeysWithNullValues = true
         }
+        requestSerializer = AFJSONRequestSerializer()
         PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLKeys.token.string, options: [.New,.Initial], context: nil)
     }
     
@@ -247,7 +247,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
     
     class func logFailed(error: NSError) {
         if let failedURL = error.userInfo[NSURLErrorFailingURLErrorKey] as? NSURL {
-            PLLog("Failed to load: \(failedURL.absoluteString)", type: .Network)
+            PLLog("Failed to load: \(failedURL.absoluteString), statusCode: \(error.code)", type: .Network)
         }
     }
 }

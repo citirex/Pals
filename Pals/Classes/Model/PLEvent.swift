@@ -17,7 +17,7 @@ class PLEvent : PLDatedObject, PLFilterable {
             else {
                 return nil
         }
-        
+
         self.picture = NSURL(string: ePicture)!
         self.info = eInfo
         super.init(jsonDic: jsonDic)

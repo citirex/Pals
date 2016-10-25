@@ -40,6 +40,12 @@ class PLCover: PLPricedItem, PLCellRepresentable, PLFilterable {
     var cellData: PLCoverCellData {
         return PLCoverCellData(coverID: id, name: name, price: price)
     }
+    
+    override func serialize() -> [String : AnyObject] {
+        var dic = [String : AnyObject]()
+        dic[PLKeys.cover.string] = String(id)
+        return dic
+    }
 }
 
 struct PLCoverCellData {

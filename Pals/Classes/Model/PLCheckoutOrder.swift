@@ -22,11 +22,26 @@ class PLCheckoutOrder {
         var dic = [String : AnyObject]()
         dic[PLKeys.user_id.string] = String(user!.id)
         dic[PLKeys.place_id.string] = String(place!.id)
-        let aDrinks = Array(drinks.values).toDictionary { item in ["\(item.drink.id)":"\(item.quantity)"] }
-        dic[PLKeys.drinks.string] = aDrinks
-        let aCovers = Array(covers.values).map({ "\($0.id)" })
-        dic[PLKeys.covers.string] = aCovers
-        dic[PLKeys.is_vip.string] = isVIP.hashValue
+        
+        var drinks = [[String : AnyObject]]()
+        for (_, drinkset) in self.drinks {
+            let drinkDic = drinkset.serialize()
+            drinks.append(drinkDic)
+        }
+        if drinks.count > 0 {
+            dic[PLKeys.drinks.string] = drinks
+        }
+        
+        var covers = [[String : AnyObject]]()
+        for (_, cover) in self.covers {
+            let coverDic = cover.serialize()
+            covers.append(coverDic)
+        }
+        
+        if covers.count > 0 {
+            dic[PLKeys.covers.string] = covers
+        }
+        dic[PLKeys.is_vip.string] = String(isVIP)
         if message != nil && !message!.isEmpty {
             dic[PLKeys.message.string] = message
         }
