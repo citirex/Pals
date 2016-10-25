@@ -13,8 +13,8 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
     static let nibName    = "PLPlaceProfileSectionHeader"
     static let identifier = "SectionHeader"
     
-    typealias didTappedOrderButtonDelegate = (sender: UIButton) -> Void
-    var didTappedOrderButton: didTappedOrderButtonDelegate?
+    typealias didTapOrderButtonDelegate = (sender: UIButton) -> Void
+    var didTapOrderButton: didTapOrderButtonDelegate?
 
     @IBOutlet weak var placeNameLabel     : UILabel!
     @IBOutlet weak var musicGenresLabel   : UILabel!
@@ -39,7 +39,7 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
 
 
     func orderButtonTapped(sender: UIButton) {
-        didTappedOrderButton!(sender: sender)
+        didTapOrderButton!(sender: sender)
     }
     
     override func layoutSubviews() {

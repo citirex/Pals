@@ -386,7 +386,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="invitedStatePressed:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="CGN-po-xxz"/>
+                                <action selector="inviteStatePressed:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="jqO-0v-nTo"/>
                             </connections>
                         </button>
                     </subviews>

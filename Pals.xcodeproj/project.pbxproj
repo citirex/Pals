@@ -1063,7 +1063,6 @@
 				TargetAttributes = {
 					D42F53C41D76B497005DEA34 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = ZVHW8QUG2S;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -1433,7 +1432,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0f3b6f58-3987-4c27-9968-5b90cce3ae3b";
+				PROVISIONING_PROFILE = "de5f0ce2-2b43-473b-acf1-ebd2d9ee525e";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pals/Classes/Pals-Bridging-Header.h";
 			};
 			name = Debug;
@@ -1450,7 +1449,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0f3b6f58-3987-4c27-9968-5b90cce3ae3b";
+				PROVISIONING_PROFILE = "de5f0ce2-2b43-473b-acf1-ebd2d9ee525e";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pals/Classes/Pals-Bridging-Header.h";
 			};
 			name = Release;
