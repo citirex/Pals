@@ -15,7 +15,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
         let tableView = self.friendsView.tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundView = UIView()
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = .whiteColor()
         tableView.tableFooterView = UIView()
 		tableView.separatorInset.left = 75
         tableView.delegate = self
@@ -33,7 +33,10 @@ class PLFriendBaseViewController: PLSearchableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-        view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = .whiteColor()
+		
+		updateViewConstraints()
+		
         let nib = UINib(nibName: "PLFriendCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		resultsController.tableView.separatorInset.left	   = 75
@@ -50,7 +53,9 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		spinner.center = view.center
 		spinner.activityIndicatorViewStyle = .WhiteLarge
 		spinner.color = .grayColor()
-        edgesForExtendedLayout = .None
+        edgesForExtendedLayout = .Top
+		
+		loadData()
 		
 		tableView.hideSearchBar()
     }
@@ -82,9 +87,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.navigationBar.style = .FriendsStyle
-        if datasource.empty {
-            loadData()
-        }
 	}
 	
     override func viewWillDisappear(animated: Bool) {
@@ -169,7 +171,7 @@ extension PLFriendBaseViewController : UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
+        return 128
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
