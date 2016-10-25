@@ -13,8 +13,8 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     var balance = Float(0)
     var additional: String?
     // by default we assume that a given user is not a friend of a current one
-    var invited: Bool = false
-    var inviting: Bool = false
+    dynamic var invited: Bool = false
+    dynamic var inviting: Bool = false
     
     required init?(jsonDic: [String : AnyObject]) {
         guard

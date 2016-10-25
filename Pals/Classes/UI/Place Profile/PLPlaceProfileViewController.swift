@@ -54,7 +54,7 @@ class PLPlaceProfileViewController: PLViewController {
 
     private func setupBackBarButtonItem() {
         let backBarButtonItem = PLBackBarButtonItem()
-        backBarButtonItem.didTappedBackButton = { [unowned self] in
+        backBarButtonItem.didTapBackButton = { [unowned self] in
             self.navigationController?.popViewControllerAnimated(true)
         }
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
@@ -64,40 +64,47 @@ class PLPlaceProfileViewController: PLViewController {
     
     private func loadEvents() {
         collectionView.bounces = false
+    
+        startActivityIndicator(.WhiteLarge, color: .grayColor())
+        setActivityIndicatorPosition()
         
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.color = .grayColor()
-        if events.empty {
-            spinner.addConstraintCenterVerticallyWithMultiplier(1.7)
-        } else {
-            spinner.addConstraintCenterVertically()
-        }
-        spinner.addConstraintCenterHorizontally()
-        
-        spinner.startAnimating()
-        events.loadPage { [unowned self] (indices, error) in
+        events.loadPage { [unowned self] indices, error in
+            self.stopActivityIndicator()
+            
             if error == nil {
-                self.spinner.stopAnimating()
-                
                 if indices.count > 0 {
                     self.noEventsView.hidden = true
                     let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
                     self.collectionView?.performBatchUpdates({
                         self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
-                        }, completion: { (complete) in
+                        }, completion: { complete in
                             self.collectionView.bounces = true
                     })
-                    
                 } else if self.events.pagesLoaded == 0 {
                     self.noEventsView.hidden = false
                 }
-                
             } else {
                 PLShowErrorAlert(error: error!)
             }
             self.collectionView.bounces = true
         }
     }
+    
+    
+    private func setActivityIndicatorPosition() {
+        dispatch_async(dispatch_get_main_queue(), {
+            if let activityIndicator = self.targetView.viewWithTag(self.activityIndicatorTag) as? UIActivityIndicatorView {
+                activityIndicator.removeConstraints()
+                if self.events.empty {
+                    activityIndicator.autoAlignAxis(.Horizontal, toSameAxisOfView: self.view, withMultiplier: 1.65)
+                } else {
+                    activityIndicator.autoAlignAxisToSuperviewAxis(.Horizontal)
+                }
+                activityIndicator.autoAlignAxisToSuperviewAxis(.Vertical)
+            }
+        })
+    }
+
     
     // MARK: - Configure collectionView
     
@@ -167,7 +174,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
             sectionHeader.place = place
-            sectionHeader.didTappedOrderButton  = { [unowned self] sender in
+            sectionHeader.didTapOrderButton  = { [unowned self] sender in
                 let orderViewController = self.tabBarController!.getOrderViewController()
                 orderViewController.didSelectNewPlace(self.place)
                 self.tabBarController?.switchTabTo(TabBarControllerTabs.TabOrder)
@@ -261,3 +268,8 @@ extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
         return CGSizeMake(view.frame.size.width, kCollectionCellHeight)
     }
 }
+
+
+extension UIView {
+    
+    }

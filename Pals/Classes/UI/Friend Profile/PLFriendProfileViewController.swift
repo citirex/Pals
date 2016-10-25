@@ -130,7 +130,7 @@ extension PLFriendProfileViewController {
         tabBarController?.switchTabTo(TabBarControllerTabs.TabOrder)
     }
     
-    @IBAction func invitedStatePressed(sender: UIButton) {
+    @IBAction func inviteStatePressed(sender: UIButton) {
         sender.setTitle(status, forState: .Normal)
         
         if friend.invited {

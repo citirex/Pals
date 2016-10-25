@@ -122,10 +122,15 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     private var currentTaskId: Int?
     
     subscript(index: Int) -> T {
-        if sectioned {
-            fatalError("cannot return object")
+        get {
+            if sectioned {
+                fatalError("cannot return object")
+            }
+            return objects[index] as! T
         }
-        return objects[index] as! T
+        set {
+            storage.currentSet.objects.insertObject(newValue, atIndex: 0)
+        }
     }
     
     func objectsInSection(idx: Int) -> [T] {

@@ -9,7 +9,7 @@
 typealias PLDatasourceLoadCompletion = (page: PLPage, error: NSError?) -> ()
 typealias PLDatasourceIndicesChangeCompletion = (indices: [NSIndexPath], error: NSError?) -> ()
 
-class PLDatasource<T: PLDatedObject where T : PLFilterable> {
+class PLDatasource<T: PLDatedObject where T : PLFilterable> : PLPageCollectionDelegate {
     var collection: PLPageCollection<T> {return _collection}
     
     private let _collection: PLPageCollection<T>
@@ -73,7 +73,10 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
     var pagesLoaded: Int { return collection.pagesLoaded }
     var empty: Bool { return collection.empty }
     var loading: Bool {return collection.isLoading}
-    subscript(index: Int) -> T {return collection[index]}
+    subscript(index: Int) -> T {
+        get { return collection[index] }
+        set { collection[index] = newValue }
+    }
     var searching: Bool {
         get { return collection.searching }
         set { collection.searching = newValue }
@@ -96,9 +99,9 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
     //MARK: To override
     func fakeFeedFilenameKey() -> String { return "" }
     func mainCollectionKey() -> String { return "" }
-}
 
-extension PLDatasource : PLPageCollectionDelegate {
+    //MARK: PLPageCollectionDelegate
+    
     func pageCollectionDidLoadPage(page: PLPage) {
         completion?(page: page, error: nil)
     }

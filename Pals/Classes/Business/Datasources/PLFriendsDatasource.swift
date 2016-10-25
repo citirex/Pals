@@ -50,4 +50,13 @@ class PLFriendsDatasource: PLDatasource<PLUser> {
     override func fakeFeedFilenameKey() -> String {
         return type.fakeFeedName
     }
+    
+    override func pageCollectionDidLoadPage(page: PLPage) {
+        for object in page.objects {
+            if let user = object as? PLUser {
+                user.invited = type == .Friends
+            }
+        }
+        super.pageCollectionDidLoadPage(page)
+    }
 }

@@ -25,7 +25,7 @@ enum PLAPIService : String {
     case LoginFB
     case Logout
     case SignUp
-    case SendPassword
+    case SendPassword = "passnew"
     case Profile
     case UpdateProfile = "update_profile"
     case Unfriend = "removefriend"
@@ -84,7 +84,6 @@ class PLNetworkSession: AFHTTPSessionManager {
         if let jsonDeserializer = responseSerializer as? AFJSONResponseSerializer {
             jsonDeserializer.removesKeysWithNullValues = true
         }
-        requestSerializer.HTTPMethodsEncodingParametersInURI = ["GET", "POST"]
         PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLKeys.token.string, options: [.New,.Initial], context: nil)
     }
     
@@ -109,6 +108,45 @@ class PLNetworkSession: AFHTTPSessionManager {
 
 class PLNetworkManager: PLNetworkManagerInterface {
 
+    class func handleFullResponse(response: [String : AnyObject], error: NSError?, completion: PLErrorCompletion) {
+        if !handleErrorResponse(error, completion: completion) {
+            handleSuccessResponse(response, completion: completion)
+        }
+    }
+    
+    class func handleSuccessResponse(response: [String : AnyObject], completion: (error: NSError?) -> ()) {
+        handleResponseKey(response) { (dic, error) in
+            if let aDic = dic as? [String : AnyObject] {
+                if let success = aDic[PLKeys.success.string] as? Bool {
+                    if success {
+                        completion(error: nil)
+                    } else {
+                        completion(error: PLError(domain: .User, type: kPLErrorTypeWrongEmail))
+                    }
+                    return
+                }
+            }
+            let anError = error ?? PLError(domain: .User, type: kPLErrorTypeBadResponse)
+            completion(error: anError)
+        }
+    }
+    
+    class func handleErrorResponse(error: NSError?, completion: PLErrorCompletion) -> Bool {
+        if error != nil {
+            completion(error: error)
+            return true
+        }
+        return false
+    }
+    
+    class func handleResponseKey(response: [String : AnyObject], completion: (dic: AnyObject?, error: NSError?) -> ()) {
+        if let dic = response[PLKeys.response.string] {
+            completion(dic: dic, error: nil)
+        } else {
+            completion(dic: nil, error: PLError(domain: .User, type: kPLErrorTypeBadResponse))
+        }
+    }
+    
     class func handleSuccessCompletion(object: AnyObject?, completion: PLNetworkRequestCompletion, request: NSURLRequest?) {
         logLoaded(request)
         let dic = object as! [String : AnyObject]
@@ -125,6 +163,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
                 }
             })
         } else {
+            logFailed(error)
             completion(dic: [:], error: error)
         }
     }
@@ -166,7 +205,6 @@ class PLNetworkManager: PLNetworkManagerInterface {
     }
     
     class func post(service: PLAPIService, parameters: [String : AnyObject], completion: PLNetworkRequestCompletion) {
-        // TODO: convert to JSON serialization
         let task = PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
             }, progress: nil, success: { (task, response) in
                 self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
@@ -191,13 +229,19 @@ class PLNetworkManager: PLNetworkManagerInterface {
     
     class func logPerforming(request: NSURLRequest?) {
         if let req = request {
-            PLLog("----------------------------------------------\nPerforming \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\nHTTP Headers: \(req.allHTTPHeaderFields!)\n----------------------------------------------", type: .Network)
+            PLLog("----------------------------------------------\nPerforming \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\nHTTP Headers: \(req.allHTTPHeaderFields!)", type: .Network)
+            if let body = req.HTTPBody {
+                if let bodyString = NSString(data: body, encoding: NSUTF8StringEncoding) {
+                    PLLog("HTTP Body: \(bodyString)", type: .Network)
+                }
+            }
+            PLLog("----------------------------------------------", type: .Network)
         }
     }
     
     class func logLoaded(request: NSURLRequest?) {
         if let req = request {
-             PLLog("----------------------------------------------\nLoaded \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\nHTTP Headers: \(req.allHTTPHeaderFields!)\n----------------------------------------------", type: .Network)
+             PLLog("----------------------------------------------\nLoaded \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\n----------------------------------------------", type: .Network)
         }
     }
     

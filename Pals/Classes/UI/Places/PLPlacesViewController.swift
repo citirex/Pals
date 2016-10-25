@@ -113,6 +113,7 @@ class PLPlacesViewController: PLSearchableViewController {
             }
         }
     }
+    
 }
 
 // MARK: - Table view data source

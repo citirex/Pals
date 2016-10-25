@@ -45,14 +45,14 @@ class PLLoginViewController: PLViewController {
                 self.mySpinner!.startAnimating()
                 PLFacade.sendPassword(textField.text!, completion: { (error) in
                     if error == nil {
-                        PLShowAlert(title:"Sent!")
+                        PLShowAlert(title:"A new generated password has been sent to your email.")
                     } else {
-                        PLShowAlert(title:(error!.code == 520) ? "This email doesn't exist!" : (error?.localizedDescription)!)
+                        PLShowErrorAlert(error: error!)
                     }
                     self.mySpinner?.stopAnimating()
                 })
             } else {
-                PLShowAlert(title: "This email incorrect")
+                PLShowAlert(title: "Please, enter a valid user email.")
             }
         })
         forgotAction.enabled = false

@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLUniqueObject: PLSerializable {
+class PLUniqueObject: NSObject, PLSerializable {
     
     var id: UInt64 = 0
     

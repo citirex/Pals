@@ -12,31 +12,24 @@ enum DrinkType: Int {
     case Strong
 }
 
-class PLDrink : PLDatedObject, PLCellRepresentable, PLFilterable {
+class PLDrink : PLPricedItem, PLCellRepresentable, PLFilterable {
     
-    var name: String
-    var price: Float
-    var type: DrinkType
+    var type: DrinkType = .Undefined
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let drinkName = jsonDic[PLKeys.name.string] as? String,
-            let drinkPrice = jsonDic[PLKeys.price.string] as? Float,
             let drinkType = jsonDic[PLKeys.type.string] as? Int
-            else {
-                return nil
+        else {
+            return nil
         }
-        
-        self.name = drinkName
-        self.price = drinkPrice
-        self.type = DrinkType(rawValue: drinkType)!
+        if let type = DrinkType(rawValue: drinkType) {
+            self.type = type
+        }
         super.init(jsonDic: jsonDic)
     }
     
     override func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.name.string] = name
-        dic[PLKeys.price.string] = price
         dic[PLKeys.type.string] = type.rawValue
         dic.append(super.serialize())
         return dic
