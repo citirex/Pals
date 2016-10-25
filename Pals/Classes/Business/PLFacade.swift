@@ -217,38 +217,28 @@ extension PLFacade._PLFacade {
     }
     
     func _unfriend(user: PLUser, completion: PLErrorCompletion) {
-        let params = [PLKeys.id.string: NSNumber(unsignedLongLong: PLFacade.profile!.id),
-            PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
-        
-        PLNetworkManager.get(PLAPIService.Unfriend, parameters: params) {[unowned user] (dic, error) in
-            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
-                if let success = response[PLKeys.success.string] as? Bool where success == true {
-                    user.invited = !success
-                    completion(error: nil)
+        let params = [PLKeys.friend_id.string : NSNumber(unsignedLongLong: user.id)]
+        PLNetworkManager.postWithAttributes(PLAPIService.Unfriend, attributes: params) { (dic, error) in
+            PLNetworkManager.handleSuccessResponse(dic, completion: { (error) in
+                if error == nil {
+                    user.invited = false
                 }
-            } else if error != nil {
                 completion(error: error)
-            } else {
-                completion(error: kPLErrorJSON)
-            }
+            })
         }
     }
     
     func _addFriend(user: PLUser, completion: PLErrorCompletion) {
         user.inviting = true
-        let params = [PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
+        let params = [PLKeys.friend_id.string : NSNumber(unsignedLongLong: user.id)]
         PLNetworkManager.postWithAttributes(PLAPIService.AddFriend, attributes: params) { (dic, error) in
             user.inviting = false
-            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
-                if let success = response[PLKeys.success.string] as? Bool where success == true {
-                    user.invited = success
-                    completion(error: nil)
+            PLNetworkManager.handleSuccessResponse(dic, completion: { (error) in
+                if error == nil {
+                    user.invited = true
                 }
-            } else if error != nil {
                 completion(error: error)
-            } else {
-                completion(error: kPLErrorJSON)
-            }
+            })
         }
     }
     

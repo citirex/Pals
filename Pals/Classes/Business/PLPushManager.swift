@@ -72,6 +72,7 @@ class PLPushManager {
     
     func didReceiveRemoteNotification(info: [NSObject : AnyObject]) {
         PLLog("Received remote notification: \n\(info)", type: .Pushes)
+        PLShowAlert("Received remote notification", message: info.description)
         if let aps = info["aps"] as? [String : AnyObject]{
             if let pushData = aps[PLKeys.info.string] as? [String : AnyObject] {
                 let push = PLPush(data: pushData)

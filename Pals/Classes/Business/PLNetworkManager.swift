@@ -84,7 +84,6 @@ class PLNetworkSession: AFHTTPSessionManager {
         if let jsonDeserializer = responseSerializer as? AFJSONResponseSerializer {
             jsonDeserializer.removesKeysWithNullValues = true
         }
-        requestSerializer.HTTPMethodsEncodingParametersInURI = ["GET", "POST"]
         PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLKeys.token.string, options: [.New,.Initial], context: nil)
     }
     
@@ -109,6 +108,29 @@ class PLNetworkSession: AFHTTPSessionManager {
 
 class PLNetworkManager: PLNetworkManagerInterface {
 
+    class func handleResponse(response: [String : AnyObject], completion: (dic: AnyObject?, error: NSError?) -> ()) {
+        if let dic = response[PLKeys.response.string] {
+            completion(dic: dic, error: nil)
+        } else {
+            completion(dic: nil, error: PLError(domain: .User, type: kPLErrorTypeBadResponse))
+        }
+    }
+    
+    class func handleSuccessResponse(response: [String : AnyObject], completion: (error: NSError?) -> ()) {
+        handleResponse(response) { (dic, error) in
+            if let aDic = dic as? [String : AnyObject] {
+                if let success = aDic[PLKeys.success.string] as? Bool {
+                    if success {
+                        completion(error: nil)
+                        return
+                    }
+                }
+            }
+            let anError = error ?? PLError(domain: .User, type: kPLErrorTypeBadResponse)
+            completion(error: anError)
+        }
+    }
+    
     class func handleSuccessCompletion(object: AnyObject?, completion: PLNetworkRequestCompletion, request: NSURLRequest?) {
         logLoaded(request)
         let dic = object as! [String : AnyObject]
@@ -191,13 +213,19 @@ class PLNetworkManager: PLNetworkManagerInterface {
     
     class func logPerforming(request: NSURLRequest?) {
         if let req = request {
-            PLLog("----------------------------------------------\nPerforming \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\nHTTP Headers: \(req.allHTTPHeaderFields!)\n----------------------------------------------", type: .Network)
+            PLLog("----------------------------------------------\nPerforming \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\nHTTP Headers: \(req.allHTTPHeaderFields!)", type: .Network)
+            if let body = req.HTTPBody {
+                if let bodyString = NSString(data: body, encoding: NSUTF8StringEncoding) {
+                    PLLog("HTTP Body: \(bodyString)", type: .Network)
+                }
+            }
+            PLLog("----------------------------------------------", type: .Network)
         }
     }
     
     class func logLoaded(request: NSURLRequest?) {
         if let req = request {
-             PLLog("----------------------------------------------\nLoaded \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\nHTTP Headers: \(req.allHTTPHeaderFields!)\n----------------------------------------------", type: .Network)
+             PLLog("----------------------------------------------\nLoaded \(req.HTTPMethod!) request\n\(req.URL!.absoluteString)\n----------------------------------------------", type: .Network)
         }
     }
     
