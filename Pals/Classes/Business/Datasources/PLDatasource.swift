@@ -82,6 +82,7 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
         get { return collection.searchFilter }
         set { collection.searchFilter = newValue }
     }
+    var filtering = false
     
     func fakeFeedNameOnError(error: NSError) -> String {
         let name = fakeFeedFilenameKey() + "\(collection.pagesLoaded)"

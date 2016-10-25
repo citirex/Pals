@@ -22,6 +22,17 @@ class PLViewController: UIViewController {
 
 extension PLViewController {
     
+    func loadData<T : PLDatedObject where T : PLFilterable>
+        (datasource: PLDatasource<T>, onLoad: () -> UITableView ) {
+        datasource.cancel()
+        startActivityIndicator(.WhiteLarge)
+        datasource.loadPage {[unowned self] (indices, error) in
+            self.stopActivityIndicator()
+            let table: UITableView = onLoad()
+            self.didLoadPage(table, indices: indices, error: error)
+        }
+    }
+    
     func didLoadPage(table:UITableView, indices: [NSIndexPath], error: NSError?) {
         table.reloadEmptyDataSet()
         if error == nil {

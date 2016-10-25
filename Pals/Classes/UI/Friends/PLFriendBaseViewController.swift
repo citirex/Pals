@@ -88,7 +88,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		super.viewWillAppear(animated)
 		navigationController?.navigationBar.style = .FriendsStyle
 	}
-	
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         datasource.cancel()
@@ -112,10 +112,8 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	}
 	
     func loadData() {
-        self.spinner.startAnimating()
-        datasource.loadPage {[unowned self] (indices, error) in
-            self.didLoadPage(self.tableView, indices: indices, error: error)
-            self.spinner.stopAnimating()
+        loadData(datasource) {[unowned self] () -> UITableView in
+            return self.datasource.filtering ? self.resultsController.tableView : self.tableView
         }
     }
 
@@ -126,19 +124,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
             }
         }
 	}
-    
-    override func searchDidChange(text: String, active: Bool) {
-//        datasource.searching = searchController.active
-//        if text.isEmpty {
-//            datasource.searching = false
-//        } else {
-//            spinner.startAnimating()
-//            datasource.filter(text, completion: { [unowned self] in
-//                self.resultsController.tableView.reloadData()
-//                self.spinner.stopAnimating()
-//            })
-//        }
-    }
 }
 
 // MARK: - UITableViewDataSource

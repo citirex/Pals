@@ -33,6 +33,7 @@ class PLPlacesViewController: PLSearchableViewController {
     
     override func loadView() {
         view = PLTableView(frame: UIScreen.mainScreen().bounds)
+        view.backgroundColor = .affairColor()
         placeView.configure()
     }
     
@@ -68,24 +69,16 @@ class PLPlacesViewController: PLSearchableViewController {
         super.updateViewConstraints()
     }
     
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         places.cancel()
     }
     
-    
     // MARK: - Private Methods
     
     func loadData() {
-        places.cancel()
-        startActivityIndicator(.WhiteLarge)
-        places.loadPage { [unowned self] indices, error in
-            self.stopActivityIndicator()
-
-            let searching = self.places.searching
-            let table: UITableView = searching ? self.resultsController.tableView : self.tableView
-            self.didLoadPage(table, indices: indices, error: error)
+        loadData(places) {[unowned self] () -> UITableView in
+            return self.places.searching ? self.resultsController.tableView : self.tableView
         }
     }
 

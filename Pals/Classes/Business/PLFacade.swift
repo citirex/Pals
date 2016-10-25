@@ -26,6 +26,13 @@ protocol PLFacadeInterface {
     static var profile: PLCurrentUser? {get}
 }
 
+protocol PLFacadePushes {
+    static func didRegisterPushSettings(application: UIApplication, settings: UIUserNotificationSettings)
+    static func didFailToRegisterPushSettings(error: NSError)
+    static func didReceiveDeviceToken(token: NSData)
+    static func didReceiveRemoteNotification(info: [NSObject : AnyObject])
+}
+
 
 protocol PLFacadeRepresentable {
     static func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool
@@ -97,6 +104,7 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     
     //MARK: AppDelegate
     class func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        PLFacade.instance.pushManager.registerPushNotifications(application)
         return PLFacade.instance._application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
@@ -118,8 +126,24 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
         let settingsManager = PLSettingsManager()
         let locationManager = PLLocationManager()
         let profileManager  = PLProfileManager()
+        let pushManager = PLPushManager()
     }
     
+}
+
+extension PLFacade: PLFacadePushes {
+    class func didRegisterPushSettings(application: UIApplication, settings: UIUserNotificationSettings) {
+        PLFacade.instance.pushManager.didRegisterPushSettings(application, settings: settings)
+    }
+    class func didFailToRegisterPushSettings(error: NSError) {
+        PLFacade.instance.pushManager.didFailToRegisterPushSettings(error)
+    }
+    class func didReceiveDeviceToken(token: NSData) {
+        PLFacade.instance.pushManager.didReceiveDeviceToken(token)
+    }
+    class func didReceiveRemoteNotification(info: [NSObject : AnyObject]) {
+        PLFacade.instance.pushManager.didReceiveRemoteNotification(info)
+    }
 }
 
 extension PLFacade._PLFacade {
@@ -212,10 +236,8 @@ extension PLFacade._PLFacade {
     
     func _addFriend(user: PLUser, completion: PLErrorCompletion) {
         user.inviting = true
-        let params = [PLKeys.id.string: NSNumber(unsignedLongLong: PLFacade.profile!.id),
-                      PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
-        
-        PLNetworkManager.get(PLAPIService.AddFriend, parameters: params) {[unowned user] (dic, error) in
+        let params = [PLKeys.friend_id.string: NSNumber(unsignedLongLong: user.id)]
+        PLNetworkManager.postWithAttributes(PLAPIService.AddFriend, attributes: params) { (dic, error) in
             user.inviting = false
             if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
                 if let success = response[PLKeys.success.string] as? Bool where success == true {

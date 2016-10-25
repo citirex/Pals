@@ -12,6 +12,7 @@ enum PLLogType : Int {
     case Initialization = 2
     case FakeFeed = 4
     case Debug = 8
+    case Pushes = 16
     var number: Int {return rawValue}
 }
 
