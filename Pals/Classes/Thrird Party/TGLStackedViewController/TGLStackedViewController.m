@@ -26,6 +26,8 @@
 #import "TGLStackedViewController.h"
 #import "TGLBackgroundProxyView.h"
 
+static CGFloat kCellHeaderOffset = 52;
+
 @interface TGLStackedViewController () <UICollectionViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) TGLStackedLayout *stackedLayout;
@@ -93,7 +95,7 @@
     self.stackedLayout = (TGLStackedLayout *)self.collectionView.collectionViewLayout;
     
     //custom setup
-    self.stackedLayout.topReveal = 52;
+    self.stackedLayout.topReveal = kCellHeaderOffset;
 //    self.exposedPinningMode = TGLExposedLayoutPinningModeBelow;
 //    self.exposedTopPinningCount = 5;
 //    self.exposedBottomPinningCount = 1;

@@ -72,7 +72,7 @@
 		24DDA9381D9AABE600FCDBCA /* PLActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDA9371D9AABE600FCDBCA /* PLActivity.swift */; };
 		24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */; };
 		24DEF15A1D818D3C00E40869 /* PLOrderAnimableVipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */; };
-		24E286E91D9E4A2E00B8D80C /* checkout.json in Resources */ = {isa = PBXBuildFile; fileRef = 24E286E81D9E4A2E00B8D80C /* checkout.json */; };
+		24E286E91D9E4A2E00B8D80C /* create_order.json in Resources */ = {isa = PBXBuildFile; fileRef = 24E286E81D9E4A2E00B8D80C /* create_order.json */; };
 		24E286ED1D9E6C8700B8D80C /* updateprofile.json in Resources */ = {isa = PBXBuildFile; fileRef = 24E286EC1D9E6C8700B8D80C /* updateprofile.json */; };
 		24F012B91DBA16510072556F /* add_friend.json in Resources */ = {isa = PBXBuildFile; fileRef = 24F012B71DBA16510072556F /* add_friend.json */; };
 		24F012BA1DBA16510072556F /* unfriend.json in Resources */ = {isa = PBXBuildFile; fileRef = 24F012B81DBA16510072556F /* unfriend.json */; };
@@ -255,7 +255,7 @@
 		24DDA9371D9AABE600FCDBCA /* PLActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLActivity.swift; sourceTree = "<group>"; };
 		24DEF1571D818D2800E40869 /* PLOrderAnimableVipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderAnimableVipView.swift; sourceTree = "<group>"; };
 		24DEF1591D818D3C00E40869 /* PLOrderAnimableVipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderAnimableVipView.xib; sourceTree = "<group>"; };
-		24E286E81D9E4A2E00B8D80C /* checkout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkout.json; sourceTree = "<group>"; };
+		24E286E81D9E4A2E00B8D80C /* create_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = create_order.json; sourceTree = "<group>"; };
 		24E286EC1D9E6C8700B8D80C /* updateprofile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = updateprofile.json; sourceTree = "<group>"; };
 		24F012B71DBA16510072556F /* add_friend.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = add_friend.json; sourceTree = "<group>"; };
 		24F012B81DBA16510072556F /* unfriend.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unfriend.json; sourceTree = "<group>"; };
@@ -801,7 +801,7 @@
 				E837C1F41D902CAE0080A074 /* sendpassword.json */,
 				E837C1F51D902CAE0080A074 /* signup.json */,
 				24E286EC1D9E6C8700B8D80C /* updateprofile.json */,
-				24E286E81D9E4A2E00B8D80C /* checkout.json */,
+				24E286E81D9E4A2E00B8D80C /* create_order.json */,
 				24F012B71DBA16510072556F /* add_friend.json */,
 				24F012B81DBA16510072556F /* unfriend.json */,
 			);
@@ -1135,7 +1135,7 @@
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
 				2414F4571D997249000BA1F5 /* vip_drinks0.json in Resources */,
 				24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */,
-				24E286E91D9E4A2E00B8D80C /* checkout.json in Resources */,
+				24E286E91D9E4A2E00B8D80C /* create_order.json in Resources */,
 				2414F4591D997249000BA1F5 /* vip_drinks2.json in Resources */,
 				E837C2021D902CAE0080A074 /* order_covers0.json in Resources */,
 				2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */,
