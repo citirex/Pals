@@ -73,7 +73,10 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> : PLPageCollectionDe
     var pagesLoaded: Int { return collection.pagesLoaded }
     var empty: Bool { return collection.empty }
     var loading: Bool {return collection.isLoading}
-    subscript(index: Int) -> T {return collection[index]}
+    subscript(index: Int) -> T {
+        get { return collection[index] }
+        set { collection[index] = newValue }
+    }
     var searching: Bool {
         get { return collection.searching }
         set { collection.searching = newValue }
