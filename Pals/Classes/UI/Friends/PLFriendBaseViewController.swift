@@ -50,13 +50,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		resultsController.tableView.backgroundColor = interfaceColor
 		
         addBorderToSearchField()
-		spinner.center = view.center
-		spinner.activityIndicatorViewStyle = .WhiteLarge
-		spinner.color = .grayColor()
         edgesForExtendedLayout = .Top
-		
-		loadData()
-		
 		tableView.hideSearchBar()
     }
 	
@@ -87,6 +81,9 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.navigationBar.style = .FriendsStyle
+        if datasource.empty {
+            loadData()
+        }
 	}
     
     override func viewWillDisappear(animated: Bool) {

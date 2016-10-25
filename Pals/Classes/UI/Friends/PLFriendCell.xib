@@ -9,25 +9,22 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="h6j-Oo-ZWw" customClass="PLFriendCell" customModule="Pals" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="h6j-Oo-ZWw" customClass="PLFriendCell" customModule="Pals" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h6j-Oo-ZWw" id="2Tn-dW-eIA">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-ZY-VP5">
-                        <rect key="frame" x="10" y="-16" width="75" height="76"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-ZY-VP5" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                        <rect key="frame" x="10" y="5" width="75" height="75"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="75" id="MfR-yw-7PQ"/>
                             <constraint firstAttribute="width" constant="75" id="XaX-7E-Sdj"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDg-L8-s0E">
-                        <rect key="frame" x="113" y="11" width="42" height="21"/>
+                        <rect key="frame" x="113" y="32" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -45,7 +42,7 @@
                 <outlet property="avatarImage" destination="hRP-ZY-VP5" id="ylt-u9-uk8"/>
                 <outlet property="nameLabel" destination="wDg-L8-s0E" id="4gA-C5-ZgV"/>
             </connections>
-            <point key="canvasLocation" x="109" y="95"/>
+            <point key="canvasLocation" x="109" y="115.5"/>
         </tableViewCell>
     </objects>
 </document>
