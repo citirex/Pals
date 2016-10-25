@@ -50,8 +50,6 @@ extension UINavigationBar {
             case .FriendsStyle:
                 transparent = false
                 barStyle    = .Default
-                tintColor   = .affairColor()
-                shadowImage = nil
                 barColor    = .whiteColor()
                 tintColor   = .affairColor()
             case .PlacesStyle:
