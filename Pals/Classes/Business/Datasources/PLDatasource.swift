@@ -9,7 +9,7 @@
 typealias PLDatasourceLoadCompletion = (page: PLPage, error: NSError?) -> ()
 typealias PLDatasourceIndicesChangeCompletion = (indices: [NSIndexPath], error: NSError?) -> ()
 
-class PLDatasource<T: PLDatedObject where T : PLFilterable> {
+class PLDatasource<T: PLDatedObject where T : PLFilterable> : PLPageCollectionDelegate {
     var collection: PLPageCollection<T> {return _collection}
     
     private let _collection: PLPageCollection<T>
@@ -96,9 +96,9 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> {
     //MARK: To override
     func fakeFeedFilenameKey() -> String { return "" }
     func mainCollectionKey() -> String { return "" }
-}
 
-extension PLDatasource : PLPageCollectionDelegate {
+    //MARK: PLPageCollectionDelegate
+    
     func pageCollectionDidLoadPage(page: PLPage) {
         completion?(page: page, error: nil)
     }
