@@ -190,22 +190,10 @@ extension PLFacade._PLFacade {
     }
     
     func _sendPassword(email: String, completion: PLErrorCompletion) {
-        let passService = PLAPIService.SendPassword
         let params = [PLKeys.email.string : email]
-        PLNetworkManager.get(passService, parameters: params, completion: { (dic, error) in
-            self.handleErrorCompletion(error, errorCompletion: completion, completion: { () -> NSError? in
-                if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
-                    if let success = response[PLKeys.success.string] as? Bool {
-                        if success {
-                            completion(error: nil)
-                            return nil
-                        }
-                        return PLError(domain: .User, type: kPLErrorTypeWrongEmail)
-                    }
-                }
-                return kPLErrorUnknown
-            })
-        })
+        PLNetworkManager.postWithAttributes(.SendPassword, attributes: params) { (dic, error) in
+            PLNetworkManager.handleFullResponse(dic, error: error, completion: completion)
+        }
     }
     
     func _updateProfile(data: PLEditUserData, completion: PLErrorCompletion) {

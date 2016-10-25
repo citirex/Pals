@@ -25,7 +25,7 @@ enum PLAPIService : String {
     case LoginFB
     case Logout
     case SignUp
-    case SendPassword
+    case SendPassword = "passnew"
     case Profile
     case UpdateProfile = "update_profile"
     case Unfriend = "removefriend"
@@ -108,26 +108,42 @@ class PLNetworkSession: AFHTTPSessionManager {
 
 class PLNetworkManager: PLNetworkManagerInterface {
 
-    class func handleResponse(response: [String : AnyObject], completion: (dic: AnyObject?, error: NSError?) -> ()) {
-        if let dic = response[PLKeys.response.string] {
-            completion(dic: dic, error: nil)
-        } else {
-            completion(dic: nil, error: PLError(domain: .User, type: kPLErrorTypeBadResponse))
+    class func handleFullResponse(response: [String : AnyObject], error: NSError?, completion: PLErrorCompletion) {
+        if !handleErrorResponse(error, completion: completion) {
+            handleSuccessResponse(response, completion: completion)
         }
     }
     
     class func handleSuccessResponse(response: [String : AnyObject], completion: (error: NSError?) -> ()) {
-        handleResponse(response) { (dic, error) in
+        handleResponseKey(response) { (dic, error) in
             if let aDic = dic as? [String : AnyObject] {
                 if let success = aDic[PLKeys.success.string] as? Bool {
                     if success {
                         completion(error: nil)
-                        return
+                    } else {
+                        completion(error: PLError(domain: .User, type: kPLErrorTypeWrongEmail))
                     }
+                    return
                 }
             }
             let anError = error ?? PLError(domain: .User, type: kPLErrorTypeBadResponse)
             completion(error: anError)
+        }
+    }
+    
+    class func handleErrorResponse(error: NSError?, completion: PLErrorCompletion) -> Bool {
+        if error != nil {
+            completion(error: error)
+            return true
+        }
+        return false
+    }
+    
+    class func handleResponseKey(response: [String : AnyObject], completion: (dic: AnyObject?, error: NSError?) -> ()) {
+        if let dic = response[PLKeys.response.string] {
+            completion(dic: dic, error: nil)
+        } else {
+            completion(dic: nil, error: PLError(domain: .User, type: kPLErrorTypeBadResponse))
         }
     }
     
@@ -147,6 +163,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
                 }
             })
         } else {
+            logFailed(error)
             completion(dic: [:], error: error)
         }
     }
@@ -188,7 +205,6 @@ class PLNetworkManager: PLNetworkManagerInterface {
     }
     
     class func post(service: PLAPIService, parameters: [String : AnyObject], completion: PLNetworkRequestCompletion) {
-        // TODO: convert to JSON serialization
         let task = PLNetworkSession.shared.POST(service.string, parameters: parameters, constructingBodyWithBlock: { (data) in
             }, progress: nil, success: { (task, response) in
                 self.handleSuccessCompletion(response, completion: completion, request: task.originalRequest)
