@@ -52,8 +52,14 @@ extension UITabBarController {
         return orderViewController
     }
     
+    func getProfileViewController() -> PLProfileViewController {
+        let profileViewController = (viewControllers![TabBarControllerTabs.TabProfile.int] as! UINavigationController).viewControllers.first! as! PLProfileViewController
+        _ = profileViewController.view
+        return profileViewController
+    }
+    
 // *** FIXME: Need help: Make this method to use Generics ***
-//    func getViewControllerForTab(tab: TabBarControllerTabs) -> UIViewController {
+//    func getViewControllerForTab<T>(tab: TabBarControllerTabs) -> T {
 //    }
 }
 

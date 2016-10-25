@@ -10,13 +10,14 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 typealias PLErrorCompletion = (error: NSError?) -> ()
+typealias PLCheckoutOrderCompletion = (order: PLOrder?, error: NSError?) -> ()
 
 protocol PLFacadeInterface {
     static func login(userName:String, password: String, completion: PLErrorCompletion)
     static func loginFB(completion: PLErrorCompletion)
     static func logout(completion: PLErrorCompletion)
     static func signUp(data: PLSignUpData, completion: PLErrorCompletion)
-    static func sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion)
+    static func sendOrder(order: PLCheckoutOrder, completion: PLCheckoutOrderCompletion)
     static func updateProfile(data: PLEditUserData, completion: PLErrorCompletion)
     static func unfriend(user: PLUser, completion: PLErrorCompletion)
     static func addFriend(user: PLUser, completion: PLErrorCompletion)
@@ -90,7 +91,7 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
         instance._addFriend(user, completion: completion)
     }
     
-    class func sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion) {
+    class func sendOrder(order: PLCheckoutOrder, completion: PLCheckoutOrderCompletion) {
         instance._sendOrder(order, completion: completion)
     }
     
@@ -230,7 +231,7 @@ extension PLFacade._PLFacade {
         }
     }
     
-    func _sendOrder(order: PLCheckoutOrder, completion: PLErrorCompletion) {
+    func _sendOrder(order: PLCheckoutOrder, completion: PLCheckoutOrderCompletion) {
         let params = order.serialize()
         PLNetworkManager.postWithAttributes(PLAPIService.Orders, attributes: params) { (dic, error) in
             self.handleCheckoutOrder(error, dic: dic, completion: completion)
@@ -280,19 +281,20 @@ extension PLFacade._PLFacade {
         }
     }
     
-    func handleCheckoutOrder(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
-        self.handleErrorCompletion(error, errorCompletion: completion, completion: { () -> NSError? in
+    func handleCheckoutOrder(error: NSError?, dic: [String:AnyObject], completion: PLCheckoutOrderCompletion) {
+        if error != nil {
+            completion(order: nil, error: error!)
+        } else {
             if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
-                if let success = response[PLKeys.success.string] as? Bool {
-                    if success {
-                        completion(error: nil)
-                        return nil
-                    }
-                    return PLError(domain: .User, type: kPLErrorTypeCheckoutFailed)
+                if let order = PLOrder(jsonDic: response) {
+                    completion(order: order, error: nil)
+                } else {
+                    completion(order: nil, error: PLError(domain: .User, type: kPLErrorTypeCheckoutFailed))
                 }
+            } else {
+                completion(order: nil, error: kPLErrorUnknown)
             }
-            return kPLErrorUnknown
-        })
+        }
     }
     
     func _fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {

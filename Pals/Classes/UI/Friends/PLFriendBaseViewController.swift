@@ -51,7 +51,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		
         addBorderToSearchField()
         edgesForExtendedLayout = .Top
-		tableView.hideSearchBar()
     }
 	
 	private var didSetupConstraints = false
@@ -84,23 +83,19 @@ class PLFriendBaseViewController: PLSearchableViewController {
         if datasource.empty {
             loadData()
         }
+		tableView.hideSearchBar()
 	}
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         datasource.cancel()
     }
-    
-	override func viewDidDisappear(animated: Bool) {
-		super.viewDidDisappear(animated)
-		navigationController?.navigationBar.shadowImage = UIImage()
-	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if navigationController == nil {
 			sleep(UInt32(0.01))
 		} else {
-			if scrollView.contentOffset.y > navigationController!.navigationBar.frame.height  {
+			if scrollView.contentOffset.y >= navigationController!.navigationBar.frame.height  {
 			navigationController?.navigationBar.shadowImage = nil
 			} else {
 			navigationController?.navigationBar.shadowImage = UIImage()
@@ -189,7 +184,8 @@ extension PLFriendBaseViewController: DZNEmptyDataSetSource {
 extension PLFriendBaseViewController: DZNEmptyDataSetDelegate {
 	
 	func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
-		return true
+		navigationController?.navigationBar.shadowImage = nil
+		return false
 	}
 	
 	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {

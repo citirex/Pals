@@ -114,3 +114,27 @@ extension UIView {
     }
     
 }
+
+
+// Removes all constrains
+
+extension UIView {
+
+    func removeConstraints() {
+        var list = [NSLayoutConstraint]()
+        if let constraints = superview?.constraints {
+            for c in constraints {
+                if c.firstItem as? UIView == self || c.secondItem as? UIView == self {
+                    list.append(c)
+                }
+            }
+        }
+        
+        superview?.removeConstraints(list)
+        removeConstraints(constraints)
+    }
+}
+
+
+
+

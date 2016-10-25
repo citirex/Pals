@@ -48,25 +48,28 @@ class PLProfileDrinkCollectionViewCell: PLCollectionViewCell {
     func setupWith(order: PLOrderCellData, withOrderType type: PLOrderType, forIndexPath indexPath: NSIndexPath) {
         
         //FIXME: надо закинуть в модель тип крепкости пойла для подсветки карточки
-        if order.isVIP == true {
-            headerView.backgroundColor = kPalsOrderCardVIPColor
-        } else if (indexPath.row % 4 == 1) { //FIXME: myself order
-            headerView.backgroundColor = kPalsOrderCardMyselfColor
-        } else if (indexPath.row % 4 == 2) {
-            headerView.backgroundColor = kPalsOrderCardDrinkStrongColor
-        } else if (indexPath.row % 4 == 3) {
-            headerView.backgroundColor = kPalsOrderCardDrinkLightColor
-        } else if (indexPath.row % 4 == 0) {
-            headerView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
-        }
-        //FIXME:
         
-        if type == .Covers {
+        switch type {
+        case .Covers:
             cardTitleLabel.text = (order.isVIP) ? "VIP" : order.place.name
             cardCaptionLabel.text = (order.isVIP) ? order.place.name : order.place.musicGengres
-        } else {
+            headerView.backgroundColor = .affairColor()
+        case .Drinks:
+            if let drinkType = order.drinkSets?.first?.drink.type where drinkType != .Undefined {
+                headerView.backgroundColor = (drinkType == .Light) ? kPalsOrderCardDrinkLightColor : kPalsOrderCardDrinkStrongColor
+            } else {
+                headerView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
+            }
+             fallthrough
+        case .All:
             cardTitleLabel.text = order.place.name
             cardCaptionLabel.text = order.place.musicGengres
+        }
+        
+        if order.isVIP == true {
+            headerView.backgroundColor = kPalsOrderCardVIPColor
+        } else if (order.user.id == PLFacade.profile!.id) {
+            headerView.backgroundColor = kPalsOrderCardMyselfColor
         }
         
         barPlaceLabel.text = order.place.address

@@ -7,12 +7,31 @@
 //
 
 let kProfileInfoChanged = "ProfileChanged"
+private let kCellHeaderOffset: CGFloat = 54
 
 class PLProfileViewController: TGLStackedViewController {
 
     private var collectionHelper = PLProfileCollectionHelper()
     private var datasourceSwitcher = PLProfileDatasourceSwitcher()
     private var currentDatasource: PLOrderDatasource { return datasourceSwitcher.currentDatasource }
+    
+    var newOrder: PLOrder? {
+        didSet{
+            if let order = newOrder {
+                if order.covers.count == 0 && currentTab == .Covers {
+                    datasourceSwitcher.switchDatasource(.Drinks)
+                    currentDatasource[0] = order
+                    datasourceSwitcher.switchDatasource(.Covers)
+                } else if order.drinkSets.count == 0 && currentTab == .Drinks{
+                    datasourceSwitcher.switchDatasource(.Covers)
+                    currentDatasource[0] = order
+                    datasourceSwitcher.switchDatasource(.Drinks)
+                } else {
+                    currentDatasource[0] = order
+                }
+            }
+        }
+    }
     
     lazy var spinner: UIActivityIndicatorView = {
         return UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -60,8 +79,74 @@ class PLProfileViewController: TGLStackedViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.navigationBar.style = .ProfileStyle
+        if newOrder != nil {
+            showNewOrder()
+        }
+    }
+    
+    func showNewOrder() {
+        if let order = newOrder {
+            
+            if order.covers.count == 0 && currentTab == .Covers {
+                datasourceSwitcher.resetOffset(forType: .Drinks)
+                myDrinksButtonPressed(nil)
+            } else if order.drinkSets.count == 0 && currentTab == .Drinks{
+                datasourceSwitcher.resetOffset(forType: .Covers)
+                myCoversButtonPressed(nil)
+            } else {
+                
+                if currentDatasource.count > 1 {
+                    collectionView?.reloadData({
+                        self.collectionView?.layoutIfNeeded()
+                        if let cellToShow = self.collectionView?.cellForItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) {
+                            var visibleCells = self.collectionView?.visibleCells()
+                            var i = 0
+                            var indexOfCellToDelete: Int?
+                            for cell in visibleCells! {
+                                if cell != cellToShow {
+                                    cell.transform = CGAffineTransformMakeTranslation(0, -kCellHeaderOffset)
+                                } else {
+                                    indexOfCellToDelete = i
+                                }
+                                i += 1
+                            }
+                            if let index = indexOfCellToDelete {
+                                visibleCells?.removeAtIndex(index)
+                            }
+                            cellToShow.transform = CGAffineTransformMakeTranslation(0, self.collectionView!.bounds.size.height)
+                            
+                            UIView.animateWithDuration(0.5, animations: {
+                                for cell in visibleCells! {
+                                    cell.transform = CGAffineTransformIdentity
+                                }
+                                }, completion: { (complete) in
+                                    UIView.animateWithDuration(1,
+                                        delay: 0.0,
+                                        usingSpringWithDamping: 0.77,
+                                        initialSpringVelocity: 0.0,
+                                        options: UIViewAnimationOptions.CurveLinear,
+                                        animations: {
+                                            cellToShow.transform = CGAffineTransformIdentity
+                                        },
+                                        completion: nil)
+                            })
+                        } else {
+                            self.collectionView?.reloadData()
+                        }
+                    })
+                } else {
+                    collectionView?.performBatchUpdates({
+                        self.collectionView?.insertItemsAtIndexPaths([NSIndexPath(forItem: 0, inSection: 0)])
+                        }, completion: { (complete) in
+                            
+                    })
+                }
+            }
+            
+            tabBarController?.resetConterNumberOn(.TabProfile)
+            newOrder = nil
+        }
     }
     
     func profileInfoChangedNotification(notification: NSNotification){
@@ -112,13 +197,13 @@ class PLProfileViewController: TGLStackedViewController {
         performSegueWithIdentifier(SegueIdentifier.AddFundsSegue, sender: sender)
     }
     
-    func myCoversButtonPressed(sender: AnyObject) {
+    func myCoversButtonPressed(sender: AnyObject?) {
         if currentTab != .Covers {
             setupCollectionForState(.Covers)
         }
     }
     
-    func myDrinksButtonPressed(sender: AnyObject) {
+    func myDrinksButtonPressed(sender: AnyObject?) {
         if currentTab != .Drinks {
             setupCollectionForState(.Drinks)
         }
@@ -239,12 +324,6 @@ extension PLProfileViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if self.exposedItemIndexPath != nil && indexPath.item == self.exposedItemIndexPath?.item {
             self.exposedItemIndexPath = nil
-            
-            
-//            let items = collectionView.indexPathsForVisibleItems()
-//            collectionView.reloadItemsAtIndexPaths(items)
-            
-            
         } else {
             self.exposedItemIndexPath = indexPath
             

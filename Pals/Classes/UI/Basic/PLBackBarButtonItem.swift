@@ -10,8 +10,8 @@ import UIKit
 
 class PLBackBarButtonItem: UIBarButtonItem {
     
-    typealias didTappedBackButtonDelegate = Void -> Void
-    var didTappedBackButton: didTappedBackButtonDelegate?
+    typealias didTapBackButtonDelegate = Void -> Void
+    var didTapBackButton: didTapBackButtonDelegate?
     
     
     override init() {
@@ -38,7 +38,7 @@ class PLBackBarButtonItem: UIBarButtonItem {
     
     
     func backButtonTapped(sender: UIBarButtonItem) {
-        didTappedBackButton!()
+        didTapBackButton!()
     }
     
 }
