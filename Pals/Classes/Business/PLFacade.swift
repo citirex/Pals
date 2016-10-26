@@ -106,6 +106,7 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     //MARK: AppDelegate
     class func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         PLFacade.instance.pushManager.registerPushNotifications(application)
+        PLFacade.instance.pushManager.processLauchOptions(launchOptions)
         return PLFacade.instance._application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
