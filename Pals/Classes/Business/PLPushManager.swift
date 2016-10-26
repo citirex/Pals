@@ -42,9 +42,9 @@ enum PLPushType : Int {
     }
 }
 
-class PLPushManager {
+class PLPushManager: NSObject {
 
-    var deviceToken: String?
+    dynamic var deviceToken: String?
     
     func registerPushNotifications(application: UIApplication) {
         let types: UIUserNotificationType = [.Badge, .Sound, .Alert]

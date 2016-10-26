@@ -37,6 +37,7 @@ enum PLAPIService : String {
     case Drinks
     case Events
     case Covers
+    case AddDeviceToken = "add_device_token"
     var string: String {return rawValue.lowercaseString}
 }
 
@@ -84,7 +85,7 @@ class PLNetworkSession: AFHTTPSessionManager {
             jsonDeserializer.removesKeysWithNullValues = true
         }
         requestSerializer = AFJSONRequestSerializer()
-        PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLKeys.token.string, options: [.New,.Initial], context: nil)
+        PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLTokenType.UserToken.keyPath, options: [.New,.Initial], context: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,13 +93,13 @@ class PLNetworkSession: AFHTTPSessionManager {
     }
     
     deinit {
-        PLFacade.instance.profileManager.removeObserver(self, forKeyPath: PLKeys.token.string)
+        PLFacade.instance.profileManager.removeObserver(self, forKeyPath: PLTokenType.UserToken.keyPath)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == PLKeys.token.string {
+        if keyPath == PLTokenType.UserToken.keyPath {
             if let manager = object as? PLProfileManager {
-                let tokenValue: String? = (manager.token != nil) ? "Token \(manager.token!)" : nil
+                let tokenValue: String? = (manager.userToken != nil) ? "Token \(manager.userToken!)" : nil
                 requestSerializer.setValue(tokenValue, forHTTPHeaderField: "Authorization")
                 PLLog("Set up requests headers:\n\(requestSerializer.HTTPRequestHeaders)", type: .Network)
             }

@@ -126,8 +126,15 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     class _PLFacade {
         let settingsManager = PLSettingsManager()
         let locationManager = PLLocationManager()
-        let profileManager  = PLProfileManager()
-        let pushManager = PLPushManager()
+        let tokenListen = PLTokenListener()
+        var profileManager = PLProfileManager()
+        var pushManager = PLPushManager()
+        
+        init() {
+            tokenListen.listen(profileManager, tokenType: .UserToken)
+            tokenListen.listen(pushManager, tokenType: .DeviceToken)
+        }
+        
     }
     
 }
