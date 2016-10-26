@@ -260,7 +260,6 @@ extension PLOrderViewController {
                 self.performTransitionToVipState(false)
                 self.resetDataSources()
                 self.updateCheckoutButtonState()
-                
                 self.collectionView.reloadData()
                 
                 
@@ -401,7 +400,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
 extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        self.collectionView.collectionViewLayout.invalidateLayout()
         if section == 1 {
             switch currentTab {
             case .Drinks:
