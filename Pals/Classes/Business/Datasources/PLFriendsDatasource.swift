@@ -72,7 +72,7 @@ class PLFriendsDatasource: PLDatasource<PLUser> {
         }
         
         if let currentUser = PLFacade.profile {
-            if !(self.collection[0] is PLCurrentUser) {
+            if empty || !(self.collection[0] is PLCurrentUser) {
                 users.insertObject(currentUser, atIndex: 0)
                 self.collection.insert(currentUser, atIndex: 0)
                 currentUserInserted = true

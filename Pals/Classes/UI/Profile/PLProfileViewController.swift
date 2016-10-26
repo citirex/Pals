@@ -48,9 +48,7 @@ class PLProfileViewController: TGLStackedViewController {
             collectionHelper.datasource = currentDatasource
             collectionView?.reloadData()
             collectionView?.contentOffset = datasourceSwitcher.currentOffset
-            if currentDatasource.empty {
-                loadPage()
-            }
+            loadPageIfEmpty()
         }
     }
     
@@ -68,13 +66,10 @@ class PLProfileViewController: TGLStackedViewController {
         super.viewDidLoad()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification(_:)), name:kProfileInfoChanged, object: nil)
-
+        profile = PLFacade.profile
         currentTab = .Drinks
         view.addSubview(spinner)
         setupCollectionView()
-        
-        profile = PLFacade.profile
-        loadPage()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -155,6 +150,11 @@ class PLProfileViewController: TGLStackedViewController {
         }
     }
 
+    func loadPageIfEmpty() {
+        if currentDatasource.empty {
+            loadPage()
+        }
+    }
     
     func loadPage() {
         spinner.startAnimating()

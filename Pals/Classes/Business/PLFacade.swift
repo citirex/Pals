@@ -168,7 +168,7 @@ extension PLFacade._PLFacade {
         profileManager.loginFB { (data, error) in
             if data != nil {
                 let params = data!.params
-                PLNetworkManager.post(.LoginFB, parameters: params) { (dic, error) in
+                PLNetworkManager.postWithAttributes(.LoginFB, attributes: params) { (dic, error) in
                     self.handleUserLogin(error, dic: dic, completion: completion)
                 }
             } else {
