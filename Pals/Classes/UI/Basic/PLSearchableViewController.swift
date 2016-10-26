@@ -12,25 +12,27 @@ class PLSearchableViewController: PLViewController {
     
     var interfaceColor = UIColor.affairColor()
     
+    var searchController: PLSearchController!
+    
     lazy var resultsController: UITableViewController! = {
         let rc = UITableViewController(style: .Plain)
-        rc.tableView.backgroundColor        = self.interfaceColor
-        rc.tableView.tableFooterView        = UIView()
+        rc.tableView.backgroundColor = self.interfaceColor
+        rc.tableView.tableFooterView = UIView()
         return rc
     }()
-    var searchController: PLSearchController!
+
     
     func configureSearchController
         <T where T: UISearchResultsUpdating>
         (placeholder: String, tableView: UITableView, responder: T) {
         searchController = PLSearchController(searchResultsController: resultsController)
 		searchController.searchBar.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
-        resultsController.tableView.rowHeight = tableView.rowHeight
-        searchController.searchBar.placeholder     = placeholder
+        resultsController.tableView.rowHeight      = tableView.rowHeight
+        searchController.searchBar.tintColor       = .whiteColor()
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.backgroundColor = interfaceColor
-        searchController.searchBar.tintColor       = .whiteColor()
         searchController.searchBar.barTintColor    = interfaceColor
+        searchController.searchBar.placeholder     = placeholder
         searchController.searchResultsUpdater      = responder
         tableView.tableHeaderView                  = searchController.searchBar
     }
