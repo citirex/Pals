@@ -132,6 +132,7 @@ class PLOrderViewController: PLViewController {
     
     private func restore() {
         order.isVIP = false
+        self.bgImageView.image = UIImage(named: "order_bg")
         navigationItem.rightBarButtonItem = vipButton
         animableVipView.restoreToDefaultState()
     }
@@ -252,18 +253,16 @@ extension PLOrderViewController {
     
     func sendCurrentOrder() {
         startActivityIndicator(.WhiteLarge)
-        /// FIXME
-//        order.user = PLFacade.profile
-        
         PLFacade.sendOrder(order) {[unowned self] (order,error) in
             if let newOrder = order {
-                
                 self.order = PLCheckoutOrder()
                 self.resetOffsets()
-                self.restore()
+                self.performTransitionToVipState(false)
                 self.resetDataSources()
                 self.updateCheckoutButtonState()
+                
                 self.collectionView.reloadData()
+                
                 
                 if PLFacade.profile!.id == order?.user.id {
                     let profileViewController = self.tabBarController!.getProfileViewController()

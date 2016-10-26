@@ -55,7 +55,6 @@
 		2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */; };
 		2489E7041D82950E003811D5 /* PLOrderPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */; };
 		2489E7061D82AC81003811D5 /* PLOrderFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */; };
-		24AE702F1D90162E0064E7B2 /* PLCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */; };
 		24B5DD181D91564D0021050D /* PLOrderCheckoutPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B5DD161D91564D0021050D /* PLOrderCheckoutPopupViewController.swift */; };
 		24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B5DD171D91564D0021050D /* PLOrderCheckoutPopupViewController.xib */; };
 		24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C20C551D8820C00040F2F5 /* PLDrinksDatasource.swift */; };
@@ -239,7 +238,6 @@
 		2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTCollectionViewParallaxLayout.m; sourceTree = "<group>"; };
 		2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderPlacesViewController.swift; sourceTree = "<group>"; };
 		2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderFriendsViewController.swift; sourceTree = "<group>"; };
-		24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCollectionViewCell.swift; sourceTree = "<group>"; };
 		24B5DD161D91564D0021050D /* PLOrderCheckoutPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCheckoutPopupViewController.swift; sourceTree = "<group>"; };
 		24B5DD171D91564D0021050D /* PLOrderCheckoutPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCheckoutPopupViewController.xib; sourceTree = "<group>"; };
 		24C20C551D8820C00040F2F5 /* PLDrinksDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinksDatasource.swift; sourceTree = "<group>"; };
@@ -463,7 +461,6 @@
 				E8A658671D9CED4E00D8257F /* PLSelector.swift */,
 				E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */,
 				2480F87B1D813E730095995F /* PLStoryboard.swift */,
-				24AE702E1D90162E0064E7B2 /* PLCollectionViewCell.swift */,
 				2480F87C1D813E730095995F /* PLString.swift */,
 				E8DA8B581D881D7C008782E5 /* PLView.swift */,
 				E8007BD61DA0073700372347 /* PLLocation.swift */,
@@ -1247,7 +1244,6 @@
 				D47DC1ED1DBDF57F00420958 /* PLPageCollectionDeserializer.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
 				E8DA8B851D8832E8008782E5 /* TGLStackedViewController.m in Sources */,
-				24AE702F1D90162E0064E7B2 /* PLCollectionViewCell.swift in Sources */,
 				E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */,
 				D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */,
 				D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */,

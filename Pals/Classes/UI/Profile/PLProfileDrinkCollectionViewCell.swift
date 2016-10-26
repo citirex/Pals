@@ -10,8 +10,11 @@
 
 import SwiftQRCode
 
-class PLProfileDrinkCollectionViewCell: PLCollectionViewCell {
+class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
 
+    
+    @IBOutlet var containerView: UIView!
+    
     @IBOutlet var headerView: UIView!
     @IBOutlet var cardTitleLabel: UILabel!
     @IBOutlet var cardCaptionLabel: UILabel!
@@ -29,10 +32,23 @@ class PLProfileDrinkCollectionViewCell: PLCollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = UIColor.whiteColor()
         userView.layer.cornerRadius = 10
-        setRoundedCorners([.TopLeft,.TopRight], withRadius: 20)
+        contentView.layer.cornerRadius = 20
+        
         userPicImageView.layer.cornerRadius = userPicImageView.bounds.width / 2
+        contentView.layer.masksToBounds = false
+        contentView.layer.shadowColor = UIColor.blackColor().CGColor
+        contentView.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        contentView.layer.shadowOpacity = 0.9
+        contentView.layer.shadowRadius = 7
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        containerView.round([.TopLeft,.TopRight], radius: 20)
+        
+        contentView.layer.shadowPath = UIBezierPath(rect: bounds).CGPath
     }
     
     override func prepareForReuse() {
@@ -46,9 +62,6 @@ class PLProfileDrinkCollectionViewCell: PLCollectionViewCell {
     
     
     func setupWith(order: PLOrderCellData, withOrderType type: PLOrderType, forIndexPath indexPath: NSIndexPath) {
-        
-        //FIXME: надо закинуть в модель тип крепкости пойла для подсветки карточки
-        
         switch type {
         case .Covers:
             cardTitleLabel.text = (order.isVIP) ? "VIP" : order.place.name

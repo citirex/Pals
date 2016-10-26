@@ -82,7 +82,7 @@ class PLProfileViewController: TGLStackedViewController {
             
         } else {
             currentDatasource[0] = order
-            if view.window != nil { // on screen?
+            if view.window != nil { // Needs to test when you recive order when you on profile screen
                 showNewOrder()
             }
         }
@@ -244,6 +244,7 @@ class PLProfileViewController: TGLStackedViewController {
             
             collectionView?.alpha = 1
             var counter = 0.0
+            
             for cell in visibleCells {
                 UIView.animateWithDuration(1,
                                            delay: diff*counter,
@@ -252,17 +253,7 @@ class PLProfileViewController: TGLStackedViewController {
                                            options: .CurveLinear,
                                            animations: {
                                             cell.transform = CGAffineTransformMakeTranslation(0, 0)
-                    }, completion: { (complete) in
-                        if self.needsToShowNewOrder == true && Int(counter) == visibleCells.count {
-                            print("aaaaaaaaaaaaaaaaaaaaa")
-                            //FIXME
-                        }
-                })
-                
-                
-              
-                
-                
+                    }, completion: nil)
                 counter += 1
             }
         }
