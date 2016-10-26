@@ -14,12 +14,11 @@ class PLFriendProfileViewController: PLViewController {
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var popUpMenuView: UIView!
 
-    private var status: String {
+    private var status: String! {
         return friend.invited ? "Unfriend" : "Add friend"
     }
-       
-    var friend: PLUser!
     
+    var friend: PLUser!
 
     
     override func viewDidLoad() {
@@ -88,6 +87,7 @@ class PLFriendProfileViewController: PLViewController {
                 PLShowAlert("Something went wrong", message: "Please try again later")
                 PLLog("Error, when trying unfriend", error!.debugDescription, type: .Network)
             } else {
+                self.invitatedStatusButton.setTitle(self.status, forState: .Normal)
                 PLShowAlert(title: "Success")
             }
         }
@@ -101,6 +101,7 @@ class PLFriendProfileViewController: PLViewController {
                 PLShowAlert("Something went wrong", message: "Please try again later")
                 PLLog("Error, when trying add friend", error!.debugDescription, type: .Network)
             } else {
+                self.invitatedStatusButton.setTitle(self.status, forState: .Normal)
                 PLShowAlert(title: "Success")
             }
         }
@@ -131,8 +132,6 @@ extension PLFriendProfileViewController {
     }
     
     @IBAction func inviteStatePressed(sender: UIButton) {
-        sender.setTitle(status, forState: .Normal)
-        
         if friend.invited {
             unfriend()
         } else {
