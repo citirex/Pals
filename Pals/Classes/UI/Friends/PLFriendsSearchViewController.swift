@@ -73,14 +73,25 @@ extension PLFriendsSearchViewController: PLFriendCellDelegate {
                 if error != nil {
                     PLShowAlert("Failed to add friend", message: "Please try again later")
                     PLLog(error?.localizedDescription,type: .Network)
+                    self.setupInviteUI(forCell: cell, withFriend: newFriend, needsToVisibleCheck: true, atIndexPath: indexPath)
                 } else {
-                    if let visible = self.tableView.indexPathsForVisibleRows?.contains(indexPath) where visible == true {
-                        cell.cellData = newFriend.cellData
-                        cell.setupInviteUI()
-                    }
+                    self.setupInviteUI(forCell: cell, withFriend: newFriend, needsToVisibleCheck: true, atIndexPath: indexPath)
                 }
             })
-            cell.cellData = newFriend.cellData
+            self.setupInviteUI(forCell: cell, withFriend: newFriend, needsToVisibleCheck: false, atIndexPath: nil)
+        }
+    }
+    
+    func setupInviteUI(forCell cell: PLFriendCell, withFriend friend: PLUser, needsToVisibleCheck check: Bool, atIndexPath indexPath: NSIndexPath?) {
+        switch check {
+        case true:
+            if let path = indexPath {
+                if let visible = self.tableView.indexPathsForVisibleRows?.contains(path) where visible == true {
+                    fallthrough
+                }
+            }
+        case false:
+            cell.cellData = friend.cellData
             cell.setupInviteUI()
         }
     }

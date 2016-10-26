@@ -250,6 +250,8 @@ extension PLOrderViewController {
     
     func sendCurrentOrder() {
         startActivityIndicator(.WhiteLarge)
+        /// FIXME
+//        order.user = PLFacade.profile
         
         PLFacade.sendOrder(order) {[unowned self] (order,error) in
             if let newOrder = order {
@@ -263,13 +265,13 @@ extension PLOrderViewController {
                 
                 if PLFacade.profile!.id == order?.user.id {
                     let profileViewController = self.tabBarController!.getProfileViewController()
-                    profileViewController.newOrder = newOrder
+                    profileViewController.addNewOrder(newOrder)
                     self.tabBarController?.incrementCounterNumberOn(.TabProfile)
                     self.tabBarController?.switchTabTo(.TabProfile)
                 } else {
                     PLShowAlert(title: "Success")
                 }
-                
+            
             } else {
                 PLShowErrorAlert(error: error!)
             }
