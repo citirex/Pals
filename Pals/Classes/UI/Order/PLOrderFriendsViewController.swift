@@ -14,6 +14,11 @@ class PLOrderFriendsViewController: PLFriendsViewController {
 
     weak var delegate: OrderFriendsDelegate?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        datasource.shouldInsertCurrentUser = true
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
