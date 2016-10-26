@@ -168,7 +168,7 @@ extension PLFacade._PLFacade {
         profileManager.loginFB { (data, error) in
             if data != nil {
                 let params = data!.params
-                PLNetworkManager.post(.LoginFB, parameters: params) { (dic, error) in
+                PLNetworkManager.postWithAttributes(.LoginFB, attributes: params) { (dic, error) in
                     self.handleUserLogin(error, dic: dic, completion: completion)
                 }
             } else {
@@ -233,6 +233,8 @@ extension PLFacade._PLFacade {
     
     func _sendOrder(order: PLCheckoutOrder, completion: PLCheckoutOrderCompletion) {
         let params = order.serialize()
+        
+
         PLNetworkManager.postWithAttributes(PLAPIService.Orders, attributes: params) { (dic, error) in
             self.handleCheckoutOrder(error, dic: dic, completion: completion)
         }
@@ -285,14 +287,10 @@ extension PLFacade._PLFacade {
         if error != nil {
             completion(order: nil, error: error!)
         } else {
-            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
-                if let order = PLOrder(jsonDic: response) {
-                    completion(order: order, error: nil)
-                } else {
-                    completion(order: nil, error: PLError(domain: .User, type: kPLErrorTypeCheckoutFailed))
-                }
+            if let order = PLOrder(jsonDic: dic) {
+                completion(order: order, error: nil)
             } else {
-                completion(order: nil, error: kPLErrorUnknown)
+                completion(order: nil, error: PLError(domain: .User, type: kPLErrorTypeCheckoutFailed))
             }
         }
     }

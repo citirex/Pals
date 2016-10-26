@@ -247,7 +247,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
     
     class func logFailed(error: NSError) {
         if let failedURL = error.userInfo[NSURLErrorFailingURLErrorKey] as? NSURL {
-            PLLog("Failed to load: \(failedURL.absoluteString), statusCode: \(error.code)", type: .Network)
+            PLLog("Failed to load: \(failedURL.absoluteString) \nError desc:\(error.localizedDescription)", type: .Network)
         }
     }
 }

@@ -53,7 +53,7 @@ class PLPlacesViewController: PLSearchableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         navigationController?.navigationBar.style = .PlacesStyle
     }
 
@@ -77,7 +77,7 @@ class PLPlacesViewController: PLSearchableViewController {
     // MARK: - Private Methods
     
     func loadData() {
-        loadData(places) {[unowned self] () -> UITableView in
+        loadData(places) { [unowned self] Void -> UITableView in
             return self.places.searching ? self.resultsController.tableView : self.tableView
         }
     }
@@ -116,6 +116,7 @@ class PLPlacesViewController: PLSearchableViewController {
     
 }
 
+
 // MARK: - Table view data source
     
 extension PLPlacesViewController: UITableViewDataSource {
@@ -136,7 +137,9 @@ extension PLPlacesViewController: UITableViewDataSource {
         cell.placeCellData = place.cellData
         cell.backgroundColor = .clearColor()
     }
+    
 }
+
 
 // MARK: - Table view delegate
 
@@ -151,7 +154,9 @@ extension PLPlacesViewController: UITableViewDelegate {
         let place = places[indexPath.row]
         performSegueWithIdentifier(SegueIdentifier.PlaceProfileSegue, sender: place)
     }
+    
 }
+
 
 // MARK: - DZNEmptyDataSetSource
 
@@ -173,7 +178,9 @@ extension PLPlacesViewController: DZNEmptyDataSetSource {
         let named = scrollView === tableView ? "location_placeholder" : "search"
         return UIImage(named: named)!.imageResize(CGSizeMake(100, 100))
     }
+    
 }
+
 
 // MARK: - DZNEmptyDataSetDelegate
 
@@ -187,4 +194,5 @@ extension PLPlacesViewController: DZNEmptyDataSetDelegate {
     func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
         return true
     }
+    
 }

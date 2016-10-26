@@ -253,6 +253,10 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         }
     }
     
+    func insert(obj: T, atIndex idx: Int) {
+        objects.insertObject(obj, atIndex: idx)
+    }
+    
     func onPageLoad(objects: [T]) -> PLPage {
         var page = PLPage()
         let count = objects.count
