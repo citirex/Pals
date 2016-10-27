@@ -73,10 +73,23 @@ class PLOrderViewController: PLViewController {
         }
     }
         
+    
+    //Publiq methods
+    func setSectionType(type: PLCollectionSectionType) {
+        orderTabChanged(type)
+    }
+    
+    func setNewPlace(place: PLPlace) {
+        order.place = place
+        updateDataForSelectedPlace()
+    }
+}
+
+//MARK: - Checkout behavior
+extension PLOrderViewController {
     //MARK: - Network
     private func loadDrinks() {
         startActivityIndicator(.WhiteLarge)
-        collectionView.bounces = false
         coversDatasource.cancel()
         drinksDatasource.loadPage {[unowned self] (indices, error) in
             self.collectionViewInsertItems(indices, withError: error)
@@ -85,7 +98,6 @@ class PLOrderViewController: PLViewController {
     
     private func loadCovers() {
         startActivityIndicator(.WhiteLarge)
-        collectionView.bounces = false
         drinksDatasource.cancel()
         coversDatasource.loadPage {[unowned self] (indices, error) in
             self.collectionViewInsertItems(indices, withError: error)
@@ -100,7 +112,6 @@ class PLOrderViewController: PLViewController {
                 self.collectionView?.performBatchUpdates({
                     self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
                     }, completion: { (complete) in
-                        self.collectionView.bounces = true
                 })
             } else {
                 switch currentTab {
@@ -120,10 +131,9 @@ class PLOrderViewController: PLViewController {
         } else {
             PLShowErrorAlert(error: error!)
         }
-        self.collectionView.bounces = true
         self.stopActivityIndicator()
     }
-
+    
     //MARK: - Actions
     @objc private func vipButtonPressed(sender: UIBarButtonItem) {
         order.isVIP = !order.isVIP
@@ -165,18 +175,12 @@ class PLOrderViewController: PLViewController {
         coversDatasource.clean()
     }
     
-    func setSectionType(type: PLCollectionSectionType) {
-        orderTabChanged(type)
-    }
-    
     // MARK: - Navigation
     @IBAction private func backBarButtonItemTapped(sender: UIBarButtonItem) {
         dismiss(false)
     }
-}
-
-//MARK: - Checkout behavior
-extension PLOrderViewController {
+    
+    
     func updateCheckoutButtonState() {
         (order.drinks.count > 0 || order.covers.count > 0) ? showCheckoutButton() : hideCheckoutButton()
     }
@@ -511,8 +515,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
 extension PLOrderViewController: PLOrderPlacesSelectionDelegate {
     
     func didSelectPlace(controller: PLOrderPlacesViewController, place: PLPlace) {
-        order.place = place
-        updateDataForSelectedPlace()
+        setNewPlace(place)
         controller.navigationController?.popViewControllerAnimated(true)
     }
 }

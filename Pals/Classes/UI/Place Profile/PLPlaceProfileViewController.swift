@@ -165,8 +165,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             sectionHeader.place = place
             sectionHeader.didTapOrderButton  = { [unowned self] sender in
                 let orderViewController = self.tabBarController!.getOrderViewController()
-                orderViewController.order.place = self.place
-                orderViewController.updateDataForSelectedPlace()
+                orderViewController.setNewPlace(self.place)
                 self.tabBarController?.switchTabTo(TabBarControllerTabs.TabOrder)
             }
             return sectionHeader
