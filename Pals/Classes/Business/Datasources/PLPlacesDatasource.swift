@@ -8,28 +8,46 @@
 
 import MapKit.MKGeometry
 
+extension MKCoordinateRegion {
+    var params: PLURLParams {
+        var params = PLURLParams()
+        params[PLKeys.lat.string] = center.latitude
+        params[PLKeys.long.string] = center.longitude
+        params[PLKeys.dlat.string] = span.latitudeDelta
+        params[PLKeys.dlong.string] = span.longitudeDelta
+        return params
+    }
+}
+
 class PLPlacesDatasource: PLDatasource<PLPlace> {
     
     var region : MKCoordinateRegion? {
         didSet {
-            if let aRegion = region {
-                var params = PLURLParams()
-                params[PLKeys.lat.string] = aRegion.center.latitude
-                params[PLKeys.long.string] = aRegion.center.longitude
-                params[PLKeys.dlat.string] = aRegion.span.latitudeDelta
-                params[PLKeys.dlong.string] = aRegion.span.longitudeDelta
-                collection.appendParams(params)
-            }
+            appendRegionParams(region)
         }
     }
     
-    override func load(completion: PLDatasourceLoadCompletion) {
+    func appendRegionParams(region: MKCoordinateRegion?) {
+        collection.appendParams(region?.params)
+    }
+    
+    func removeRegionParams(region: MKCoordinateRegion?) {
+        collection.removeParams(region?.params)
+    }
+    
+    override func loadPage(completion: PLDatasourceIndicesChangeCompletion) {
         PLFacade.fetchNearRegion { (region, error) in
             if region != nil {
                 self.region = region
-                super.load(completion)
+                if self.searching {
+                    self.removeRegionParams(region)
+                }
+                super.loadPage(completion)
+                if self.searching {
+                    self.appendRegionParams(region)
+                }
             } else {
-                completion(page: PLPage(), error: error)
+                completion(indices: [NSIndexPath](), error: error)
             }
         }
     }

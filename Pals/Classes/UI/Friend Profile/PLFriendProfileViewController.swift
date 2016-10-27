@@ -124,11 +124,11 @@ extension PLFriendProfileViewController {
     @IBAction func sendButtonPressed(sender: UIButton) {
         hidePopUpMenu()
         
-        let orderViewController = tabBarController!.getOrderViewController()
+        let orderViewController = tabBarController!.orderViewController
         let type: PLCollectionSectionType = sender.tag == 0 ? .Covers : .Drinks
         orderViewController.setSectionType(type)
         orderViewController.order.user = friend
-        tabBarController?.switchTabTo(TabBarControllerTabs.TabOrder)
+        tabBarController?.switchTabTo(.Order)
     }
     
     @IBAction func inviteStatePressed(sender: UIButton) {

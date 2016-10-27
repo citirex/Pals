@@ -11,11 +11,11 @@ enum PLCollectionSectionType {
     case Drinks
 }
 
-enum TabBarControllerTabs: Int {
-    case TabProfile = 0
-    case TabLocation
-    case TabOrder
-    case TabFriends
+enum PLTabType: Int {
+    case Profile = 0
+    case Places
+    case Order
+    case Friends
     var int: Int {return rawValue}
 }
 

@@ -38,7 +38,7 @@ class PLPlaceCell: UITableViewCell {
             placeNameLabel.text    = placeCellData.name
             placeAddressLabel.text = placeCellData.address
             musicGenresLabel.text  = placeCellData.musicGengres
-//            distanceLabel.text     = placeCellData!.location.distance
+            distanceLabel.text     = placeCellData!.location.distance
         }
     }
     

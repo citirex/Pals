@@ -142,8 +142,12 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         return section as! [T]
     }
     
-    func appendParams(params: PLURLParams) {
+    func appendParams(params: PLURLParams?) {
         preset.params.append(params)
+    }
+    
+    func removeParams(params: PLURLParams?) {
+        preset.params.remove(params)
     }
     
     func shouldLoadNextPage(indexPath: NSIndexPath) -> Bool {

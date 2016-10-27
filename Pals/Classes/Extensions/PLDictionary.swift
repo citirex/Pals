@@ -7,9 +7,20 @@
 //
 
 extension Dictionary {
-    mutating func append(other:Dictionary) {
-        for (key,value) in other {
+    mutating func append(other:Dictionary?) {
+        if other == nil {
+            return
+        }
+        for (key,value) in other! {
             updateValue(value, forKey:key)
+        }
+    }
+    mutating func remove(other:Dictionary?) {
+        if other == nil {
+            return
+        }
+        for (key,_) in other! {
+            removeValueForKey(key)
         }
     }
 }

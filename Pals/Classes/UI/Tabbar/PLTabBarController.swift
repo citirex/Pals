@@ -24,43 +24,44 @@ class PLTabBarController: UITabBarController {
 
 extension UITabBarController {
     
-    func switchTabTo(tab: TabBarControllerTabs) {
-        selectedIndex = tab.int
-    }
-    
-    func setCounterNumber(number:Int, onTab tab:TabBarControllerTabs) {
+    func setCounterNumber(number:Int, onTab tab:PLTabType) {
         let tabItem = tabBar.items![tab.int]
         tabItem.badgeValue = String(number)
     }
     
-    func incrementCounterNumberOn(tab: TabBarControllerTabs) {
+    func incrementCounterNumberOn(tab: PLTabType) {
         let tabItem = tabBar.items![tab.int]
-        if let badgeValue = tabItem.badgeValue, nextValue = Int(badgeValue)?.successor() {
-            tabItem.badgeValue = String(nextValue)
+        if let badgeValue = tabItem.badgeValue {
+            if let count = Int(badgeValue) {
+                tabItem.badgeValue = String(count+1)
+            } else {
+                tabItem.badgeValue = nil
+            }
         } else {
             tabItem.badgeValue = "1"
         }
     }
     
-    func resetConterNumberOn(tab: TabBarControllerTabs) {
+    func resetConterNumberOn(tab: PLTabType) {
         tabBar.items![tab.int].badgeValue = nil
     }
     
-    func getOrderViewController() -> PLOrderViewController {
-        let orderViewController = (viewControllers![TabBarControllerTabs.TabOrder.int] as! UINavigationController).viewControllers.first! as! PLOrderViewController
-        _ = orderViewController.view
-        return orderViewController
+    func switchTabTo(tab: PLTabType) {
+        selectedIndex = tab.int
     }
     
-    func getProfileViewController() -> PLProfileViewController {
-        let profileViewController = (viewControllers![TabBarControllerTabs.TabProfile.int] as! UINavigationController).viewControllers.first! as! PLProfileViewController
-        _ = profileViewController.view
-        return profileViewController
+    var orderViewController: PLOrderViewController {
+        return viewControllerForTab(.Order) as! PLOrderViewController
     }
     
-// *** FIXME: Need help: Make this method to use Generics ***
-//    func getViewControllerForTab<T>(tab: TabBarControllerTabs) -> T {
-//    }
+    var profileViewController: PLProfileViewController {
+        return viewControllerForTab(.Profile) as! PLProfileViewController
+    }
+    
+    func viewControllerForTab(type: PLTabType) -> UIViewController? {
+        let vc = (viewControllers![type.int] as! UINavigationController).viewControllers.first
+        return vc
+    }
 }
 
 extension UIViewController

@@ -138,7 +138,7 @@ class PLProfileViewController: TGLStackedViewController {
                         
                 })
             }
-            tabBarController?.resetConterNumberOn(.TabProfile)
+            tabBarController?.resetConterNumberOn(.Profile)
         }
     }
     
