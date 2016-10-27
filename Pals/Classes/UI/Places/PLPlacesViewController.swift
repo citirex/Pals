@@ -54,6 +54,7 @@ class PLPlacesViewController: PLSearchableViewController {
     override func updateViewConstraints() {
         if !didSetupConstraints {
             tableView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
+            tableView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 0)
             tableView.autoPinEdgeToSuperviewEdge(.Leading)
             tableView.autoPinEdgeToSuperviewEdge(.Trailing)
             didSetupConstraints = true

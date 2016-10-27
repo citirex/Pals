@@ -404,7 +404,10 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
 extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.collectionView.collectionViewLayout.invalidateLayout()
+        if UIDevice.SYSTEM_VERSION_LESS_THAN("9.0") {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+        
         if section == 1 {
             switch currentTab {
             case .Drinks:

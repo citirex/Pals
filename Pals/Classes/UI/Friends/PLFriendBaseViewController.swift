@@ -8,6 +8,8 @@
 import DZNEmptyDataSet
 
 class PLFriendBaseViewController: PLSearchableViewController {
+    
+    let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 	
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
 	private var friendsView: PLTableView! { return view as! PLTableView }
@@ -41,8 +43,11 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		resultsController.tableView.separatorInset.left	   = 75
 		
         interfaceColor = UIColor.whiteColor()
-        configureResultsController("PLFriendCell", cellIdentifier: "FriendCell", responder: self)
+        
+        configureResultsController(PLFriendCell.nibName, cellIdentifier: PLFriendCell.identifier, responder: self)
         configureSearchController("Find a friend", tableView: tableView, responder: self)
+        tableView.registerNib(nib, forCellReuseIdentifier: PLFriendCell.identifier)
+        
 		searchController.isFriends = true
 		
 		searchController.searchBar.tintColor = UIColor.affairColor()
@@ -118,6 +123,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	}
 }
 
+
 // MARK: - UITableViewDataSource
 
 extension PLFriendBaseViewController : UITableViewDataSource {
@@ -128,9 +134,19 @@ extension PLFriendBaseViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier(PLFriendCell.identifier, forIndexPath: indexPath)
+        configureCell(cell, atIndexPath: indexPath)
+        return cell
     }
+    
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        guard let cell = cell as? PLFriendCell else { return }
+        let friendData = datasource[indexPath.row].cellData
+        cell.setup(friendData)
+    }
+    
 }
+
 
 // MARK: - UITableViewDelegate
 
@@ -170,6 +186,7 @@ extension PLFriendBaseViewController: DZNEmptyDataSetSource {
 		let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .grayColor())
 		return attributedString
 	}
+    
 }
 
 
@@ -185,7 +202,9 @@ extension PLFriendBaseViewController: DZNEmptyDataSetDelegate {
 	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
 		return !datasource.loading
 	}
+    
 }
+
 
 // MARK: - UISearchBarDelegate
 
@@ -194,4 +213,5 @@ extension PLFriendBaseViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchController.searchBar.endEditing(true)
     }
+    
 }

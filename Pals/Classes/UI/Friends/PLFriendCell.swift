@@ -11,6 +11,9 @@ protocol PLFriendCellDelegate: class {
 }
 
 class PLFriendCell: UITableViewCell{
+    
+    static let nibName    = "PLFriendCell"
+    static let identifier = "FriendCell"
 	
 	@IBOutlet weak var avatarImage: UIImageView!
 	@IBOutlet weak var nameLabel: UILabel!

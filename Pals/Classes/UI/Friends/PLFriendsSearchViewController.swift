@@ -22,27 +22,24 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 			loadData()
 		}
 	}
-	
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
-		let friendNib = UINib(nibName: "PLFriendCell", bundle: nil)
-		tableView.registerNib(friendNib, forCellReuseIdentifier: "FriendCell")
-        if let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as? PLFriendCell {
-			let friendData = datasource[indexPath.row].cellData
-			cell.setup(friendData)
-            cell.delegate = self
-            cell.accessoryType = .DisclosureIndicator
-            cell.setupInviteUI()
-            return cell
-        }
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier(PLFriendCell.identifier, forIndexPath: indexPath)
+        configureCell(cell, atIndexPath: indexPath)
+        return cell
     }
     
-//    override func cellTapSegueName() -> String {
-//        return "FriendsProfileSegue"
-//    }
-    
+    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        guard let cell = cell as? PLFriendCell else { return }
+        let friendData = datasource[indexPath.row].cellData
+        cell.accessoryType = .DisclosureIndicator
+        cell.setup(friendData)
+        cell.setupInviteUI()
+        cell.delegate = self
+    }
+
     override func loadData() {
-        loadData(datasource) {[unowned self] () -> UITableView in
+        loadData(datasource) { [unowned self] Void -> UITableView in
             return self.datasource.searching ? self.resultsController.tableView : self.tableView
         }
     }
@@ -65,7 +62,10 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 	override func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
 		return true
 	}
+    
 }
+
+// MARK: - PLFriendCellDelegate
 
 extension PLFriendsSearchViewController: PLFriendCellDelegate {
 
@@ -99,4 +99,5 @@ extension PLFriendsSearchViewController: PLFriendCellDelegate {
             cell.setupInviteUI()
         }
     }
+    
 }
