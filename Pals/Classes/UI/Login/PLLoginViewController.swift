@@ -40,8 +40,10 @@ class PLLoginViewController: PLViewController {
         else if password.isEmpty { PLShowAlert("Login error!", message: "Please enter your password.") }
         else {
             startActivityIndicator(.WhiteLarge)
+            view.userInteractionEnabled = false
 			PLFacade.login(userName, password: password, completion: { error in
                 self.stopActivityIndicator()
+                self.view.userInteractionEnabled = true
                 
                 guard error == nil else { return PLShowAlert("Login error!", message: (error?.localizedDescription)!) }
                 self.showMainScreen()
@@ -112,14 +114,19 @@ extension PLLoginViewController {
                 PLShowAlert(title: "Please, enter a valid user email.")
             }
         })
+        forgotAction.enabled = false
         
         alert.addAction(forgotAction)
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addTextFieldWithConfigurationHandler { textField in
             textField.keyboardType = .EmailAddress
             textField.placeholder  = "Email"
+            
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification,
+            object: textField, queue: .mainQueue()) { notification in
+                forgotAction.enabled = !textField.text!.isEmpty
+            }
         }
-        
         present(alert, animated: true)
     }
     
