@@ -47,7 +47,33 @@ public enum Model : String {
     unrecognized   = "?unrecognized?"
 }
 
+
+
 public extension UIDevice {
+    
+    
+    static func SYSTEM_VERSION_EQUAL_TO(v: String) -> Bool {
+        return UIDevice.currentDevice().systemVersion.compare(v, options: NSStringCompareOptions.NumericSearch) == NSComparisonResult.OrderedSame
+    }
+    
+    static func SYSTEM_VERSION_GREATER_THAN(v: String) -> Bool {
+        return UIDevice.currentDevice().systemVersion.compare(v, options: NSStringCompareOptions.NumericSearch) == NSComparisonResult.OrderedDescending
+    }
+    
+    static func SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v: String) -> Bool {
+        return UIDevice.currentDevice().systemVersion.compare(v, options: NSStringCompareOptions.NumericSearch) != NSComparisonResult.OrderedAscending
+    }
+    
+    static func SYSTEM_VERSION_LESS_THAN(v: String) -> Bool {
+        return UIDevice.currentDevice().systemVersion.compare(v, options: NSStringCompareOptions.NumericSearch) == NSComparisonResult.OrderedAscending
+    }
+    
+    static func SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v: String) -> Bool {
+        return UIDevice.currentDevice().systemVersion.compare(v, options: NSStringCompareOptions.NumericSearch) != NSComparisonResult.OrderedDescending
+    }
+    
+    
+    
     public var type: Model {
         var systemInfo = utsname()
         uname(&systemInfo)

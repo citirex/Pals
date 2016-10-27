@@ -12,7 +12,6 @@ import SwiftQRCode
 
 class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
 
-    
     @IBOutlet var containerView: UIView!
     
     @IBOutlet var headerView: UIView!
@@ -33,20 +32,13 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         userView.layer.cornerRadius = 10
-        contentView.layer.cornerRadius = 20
-        
         userPicImageView.layer.cornerRadius = userPicImageView.bounds.width / 2
-        contentView.layer.masksToBounds = false
-        contentView.layer.shadowColor = UIColor.blackColor().CGColor
-        contentView.layer.shadowOffset = CGSizeMake(0.0, 5.0)
-        contentView.layer.shadowOpacity = 0.9
-        contentView.layer.shadowRadius = 7
+        
+        setupCellCornersAndShadow()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        containerView.round([.TopLeft,.TopRight], radius: 20)
         
         contentView.layer.shadowPath = UIBezierPath(rect: bounds).CGPath
     }
@@ -123,4 +115,19 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func setupCellCornersAndShadow() {
+        contentView.layer.cornerRadius = 20
+        contentView.layer.masksToBounds = false
+        contentView.layer.shadowColor = UIColor.blackColor().CGColor
+        contentView.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        contentView.layer.shadowOpacity = 0.9
+        contentView.layer.shadowRadius = 7
+        
+        var myBounds = bounds
+        myBounds.size.width = UIScreen.mainScreen().bounds.size.width
+        let path = UIBezierPath(roundedRect: myBounds, byRoundingCorners: [.TopLeft,.TopRight], cornerRadii: CGSize(width: 20, height: 20))
+        let mask = CAShapeLayer()
+        mask.path = path.CGPath
+        containerView.layer.mask = mask
+    }
 }
