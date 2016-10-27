@@ -55,7 +55,6 @@
 		2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8D21D813E730095995F /* LaunchScreen.storyboard */; };
 		2480F9241D813E730095995F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480F8D31D813E730095995F /* Main.storyboard */; };
 		2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */; };
-		2489E7041D82950E003811D5 /* PLOrderPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */; };
 		2489E7061D82AC81003811D5 /* PLOrderFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */; };
 		24B5DD181D91564D0021050D /* PLOrderCheckoutPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B5DD161D91564D0021050D /* PLOrderCheckoutPopupViewController.swift */; };
 		24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B5DD171D91564D0021050D /* PLOrderCheckoutPopupViewController.xib */; };
@@ -240,7 +239,6 @@
 		2480F8D31D813E730095995F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Resources/Main.storyboard; sourceTree = "<group>"; };
 		2480F8D61D813E730095995F /* QTCollectionViewParallaxLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTCollectionViewParallaxLayout.h; sourceTree = "<group>"; };
 		2480F8D71D813E730095995F /* QTCollectionViewParallaxLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTCollectionViewParallaxLayout.m; sourceTree = "<group>"; };
-		2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderPlacesViewController.swift; sourceTree = "<group>"; };
 		2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderFriendsViewController.swift; sourceTree = "<group>"; };
 		24B5DD161D91564D0021050D /* PLOrderCheckoutPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCheckoutPopupViewController.swift; sourceTree = "<group>"; };
 		24B5DD171D91564D0021050D /* PLOrderCheckoutPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCheckoutPopupViewController.xib; sourceTree = "<group>"; };
@@ -580,7 +578,6 @@
 			isa = PBXGroup;
 			children = (
 				2480F8A51D813E730095995F /* PLOrderViewController.swift */,
-				2489E7031D82950E003811D5 /* PLOrderPlacesViewController.swift */,
 				2489E7051D82AC81003811D5 /* PLOrderFriendsViewController.swift */,
 				2480F8A61D813E730095995F /* Resources */,
 			);
@@ -1301,7 +1298,6 @@
 				24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */,
 				D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */,
 				E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */,
-				2489E7041D82950E003811D5 /* PLOrderPlacesViewController.swift in Sources */,
 				E8007BD71DA0073700372347 /* PLLocation.swift in Sources */,
 				24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */,
 				2480F8DF1D813E730095995F /* PLDevice.swift in Sources */,

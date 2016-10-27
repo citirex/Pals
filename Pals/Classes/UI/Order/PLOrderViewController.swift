@@ -171,7 +171,7 @@ class PLOrderViewController: PLViewController {
     
     // MARK: - Navigation
     @IBAction private func backBarButtonItemTapped(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(false, completion: nil)
+        dismiss(false)
     }
 }
 
@@ -281,7 +281,7 @@ extension PLOrderViewController {
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate,OrderPlacesDelegate, OrderFriendsDelegate, CheckoutOrderPopupDelegate {
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate {
     
     //MARK: Order drinks count
     func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
@@ -299,29 +299,26 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     //MARK: Cnange user
     func userNamePressed(sender: AnyObject) {
-        if let viewController = UIStoryboard.viewControllerWithType(.OrderFriendsViewController) as? PLOrderFriendsViewController {
-            viewController.delegate = self
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+//        if let viewController = UIStoryboard.viewControllerWithType(.OrderFriendsViewController) as? PLOrderFriendsViewController {
+//            viewController.delegate = self
+//            navigationController?.pushViewController(viewController, animated: true)
+//        }
     }
-    
-    func didSelectFriend(selectedFriend: PLUser) {
-        order.user = selectedFriend
-        collectionView.reloadData()
-    }
-    
+//
+//    func didSelectFriend(selectedFriend: PLUser) {
+//        order.user = selectedFriend
+//        collectionView.reloadData()
+//    }
+//    
     //MARK: Cnange place
     func placeNamePressed(sender: AnyObject) {
-        if let viewController = UIStoryboard.viewControllerWithType(.OrderLocationsViewController) as? PLOrderPlacesViewController {
-            viewController.delegate = self
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        performSegueWithIdentifier(SegueIdentifier.PlacesSegue, sender: sender)
     }
     
-    func didSelectNewPlace(selectedPlace: PLPlace) {
-        order.place = selectedPlace
-        updateDataForSelectedPlace()
-    }
+//    func didSelectPlace(selectedPlace: PLPlace) {
+//        order.place = selectedPlace
+//        updateDataForSelectedPlace()
+//    }
     
     func updateDataForSelectedPlace() {
         resetOffsets()
@@ -394,6 +391,22 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         self.view.addSubview(checkoutButton)
         checkoutButton.addTarget(self, action: #selector(checkoutButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
+        switch identifier {
+        case .PlacesSegue:
+            if let placesViewController = segue.destinationViewController as? PLPlacesViewController {
+               placesViewController.delegate = self
+            }
+        default:
+            break
+        }
+    }
+
 }
 
 //MARK: - CollectionView dataSource
@@ -490,8 +503,21 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         switch currentTab {
         case .Drinks: if indexPath.row == drinksDatasource.count - 1 { loadDrinks() }
-        case .Covers: if indexPath.row == coversDatasource.count - 1 {  loadCovers() }
+        case .Covers: if indexPath.row == coversDatasource.count - 1 { loadCovers() }
         }
     }
+}
+
+
+// MARK: - PLPlacesSelectionDelegate
+
+extension PLOrderViewController: PLPlacesSelectionDelegate {
+    
+    func didSelectPlace(controller: PLPlacesViewController, place: PLPlace) {
+        order.place = place
+        updateDataForSelectedPlace()
+        controller.navigationController?.popViewControllerAnimated(true)
+    }
+    
 }
 
