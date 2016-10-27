@@ -309,6 +309,8 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
 
     func updateDataForSelectedPlace() {
         resetOffsets()
+        order.clean()
+        updateCheckoutButtonState()
         if collectionView != nil {
             collectionView.reloadData()
         }
@@ -521,7 +523,7 @@ extension PLOrderViewController: PLOrderFriendsSelectionDelegate {
     
     func didSelectFriend(controller: PLOrderFriendsViewController, friend: PLUser) {
         order.user = friend
-        collectionView.reloadData()
+        collectionView.reloadSections(NSIndexSet(index: 0))
         controller.navigationController?.popViewControllerAnimated(true)
     }
 }
