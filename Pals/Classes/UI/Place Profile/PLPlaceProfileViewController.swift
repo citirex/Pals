@@ -161,12 +161,11 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             }
             return headerView
         } else {
-            
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
             sectionHeader.place = place
             sectionHeader.didTapOrderButton  = { [unowned self] sender in
                 let orderViewController = self.tabBarController!.getOrderViewController()
-                orderViewController.didSelectNewPlace(self.place)
+                orderViewController.order.place = self.place
                 self.tabBarController?.switchTabTo(TabBarControllerTabs.TabOrder)
             }
             return sectionHeader

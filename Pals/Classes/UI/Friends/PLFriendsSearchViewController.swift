@@ -24,7 +24,11 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 	}
 	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
-        if let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath) as? PLFriendCell {
+		let friendNib = UINib(nibName: "PLFriendCell", bundle: nil)
+		tableView.registerNib(friendNib, forCellReuseIdentifier: "FriendCell")
+        if let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as? PLFriendCell {
+			let friendData = datasource[indexPath.row].cellData
+			cell.setup(friendData)
             cell.delegate = self
             cell.accessoryType = .DisclosureIndicator
             cell.setupInviteUI()

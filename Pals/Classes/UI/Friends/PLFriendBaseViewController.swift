@@ -34,11 +34,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
         super.viewDidLoad()
 		
 		view.backgroundColor = .whiteColor()
-		
 		updateViewConstraints()
-		
-        let nib = UINib(nibName: "PLFriendCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "FriendCell")
 		resultsController.tableView.separatorInset.left	   = 75
 		
         interfaceColor = UIColor.whiteColor()
@@ -128,11 +124,6 @@ extension PLFriendBaseViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
-        if let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as? PLFriendCell {
-            let friendData = datasource[indexPath.row].cellData
-            cell.setup(friendData)
-            return cell
-        }
         return UITableViewCell()
     }
 }

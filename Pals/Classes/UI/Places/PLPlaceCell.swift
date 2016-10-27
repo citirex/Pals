@@ -19,6 +19,7 @@ class PLPlaceCell: UITableViewCell {
     @IBOutlet weak var placeAddressLabel: UILabel!
     @IBOutlet weak var musicGenresLabel:  UILabel!
     @IBOutlet weak var distanceLabel:     UILabel!
+    @IBOutlet weak var chevron:       UIImageView!
     
     var currentUrl = ""
     var placeCellData: PLPlaceCellData! {
