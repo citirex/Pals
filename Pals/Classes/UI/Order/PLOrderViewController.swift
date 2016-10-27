@@ -218,7 +218,7 @@ extension PLOrderViewController {
     
     func shiftCollectionView(shift: Bool) {
         let newOffsetShift = collectionView.contentOffset.y
-		if collectionView.contentSize.height >= (UIScreen.mainScreen().bounds.height - navigationController!.navigationBar.frame.size.height - tabBarController!.tabBar.frame.size.height - 158) {
+		if (UIScreen.mainScreen().bounds.height - navigationController!.navigationBar.frame.size.height - tabBarController!.tabBar.frame.size.height - collectionView.contentSize.height) <= kCheckoutButtonHeight {
 				UIView.animateWithDuration(0.3, delay: 0, options: .BeginFromCurrentState, animations: {
 				self.collectionView.contentOffset.y = shift ? newOffsetShift + kCheckoutButtonHeight : newOffsetShift - kCheckoutButtonHeight
 				}) { (complete) in
