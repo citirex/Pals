@@ -8,7 +8,9 @@
 
 enum SegueIdentifier: String {
     case PlacesSegue
+    case FriendsSegue
     case PlaceProfileSegue
+    case FriendProfileSegue
     case AddFundsSegue
     case EditProfileSegue
     case CardInfoSegue

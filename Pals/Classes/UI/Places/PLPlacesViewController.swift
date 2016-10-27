@@ -8,7 +8,7 @@
 
 import DZNEmptyDataSet
 
-protocol PLPlacesSelectionDelegate {
+protocol PLPlacesSelectionDelegate: class {
     func didSelectPlace(controller: PLPlacesViewController, place: PLPlace)
 }
 
@@ -16,7 +16,7 @@ class PLPlacesViewController: PLSearchableViewController {
     
     private let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
     
-    var delegate: PLPlacesSelectionDelegate! = nil
+    weak var delegate: PLPlacesSelectionDelegate?
 
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
     private lazy var downtimer = PLDowntimer()
@@ -82,7 +82,7 @@ class PLPlacesViewController: PLSearchableViewController {
         }
     }
     
-    private func isPlaceViewController() -> Bool {
+    private func isPlacesViewController() -> Bool {
         return navigationController?.viewControllers.first is PLPlacesViewController
     }
 
@@ -140,7 +140,7 @@ extension PLPlacesViewController: UITableViewDataSource {
         let place = places[indexPath.row]
         cell.placeCellData = place.cellData
         cell.backgroundColor = .clearColor()
-        cell.chevron.hidden = !isPlaceViewController()
+        cell.chevron.hidden = !isPlacesViewController()
     }
     
 }
@@ -158,10 +158,10 @@ extension PLPlacesViewController: UITableViewDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let place = places[indexPath.row]
         
-        if isPlaceViewController() {
+        if isPlacesViewController() {
             performSegueWithIdentifier(SegueIdentifier.PlaceProfileSegue, sender: place)
         } else {
-            delegate.didSelectPlace(self, place: place)
+            delegate!.didSelectPlace(self, place: place)
         }
     }
     

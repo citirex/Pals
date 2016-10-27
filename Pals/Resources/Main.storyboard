@@ -199,6 +199,7 @@
                         <outlet property="bgImageView" destination="DOw-vk-ubg" id="wHM-Uu-I2k"/>
                         <outlet property="collectionView" destination="Vez-d2-tfK" id="UFt-Jh-3Cd"/>
                         <segue destination="jVG-XQ-2Vf" kind="push" identifier="PlacesSegue" id="aR9-7p-gAa"/>
+                        <segue destination="EGX-50-gGa" kind="push" identifier="FriendsSegue" id="WfP-0o-uDD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLJ-aX-0ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1409,7 +1410,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="fSH-08-fuO"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendsProfileSegue" id="apm-CY-cnT"/>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendProfileSegue" id="apm-CY-cnT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1K-dj-Sgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1473,9 +1474,10 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="WfP-0o-uDD"/>
+        <segue reference="aR9-7p-gAa"/>
         <segue reference="Rjy-8t-3el"/>
         <segue reference="apm-CY-cnT"/>
-        <segue reference="aR9-7p-gAa"/>
         <segue reference="u5L-qT-vQG"/>
     </inferredMetricsTieBreakers>
 </document>

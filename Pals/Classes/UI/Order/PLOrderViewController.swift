@@ -299,27 +299,14 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     //MARK: Cnange user
     func userNamePressed(sender: AnyObject) {
-//        if let viewController = UIStoryboard.viewControllerWithType(.OrderFriendsViewController) as? PLOrderFriendsViewController {
-//            viewController.delegate = self
-//            navigationController?.pushViewController(viewController, animated: true)
-//        }
+        performSegueWithIdentifier(SegueIdentifier.FriendsSegue, sender: sender)
     }
-//
-//    func didSelectFriend(selectedFriend: PLUser) {
-//        order.user = selectedFriend
-//        collectionView.reloadData()
-//    }
-//    
+
     //MARK: Cnange place
     func placeNamePressed(sender: AnyObject) {
         performSegueWithIdentifier(SegueIdentifier.PlacesSegue, sender: sender)
     }
-    
-//    func didSelectPlace(selectedPlace: PLPlace) {
-//        order.place = selectedPlace
-//        updateDataForSelectedPlace()
-//    }
-    
+
     func updateDataForSelectedPlace() {
         resetOffsets()
         if collectionView != nil {
@@ -401,6 +388,10 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         case .PlacesSegue:
             if let placesViewController = segue.destinationViewController as? PLPlacesViewController {
                placesViewController.delegate = self
+            }
+        case .FriendsSegue:
+            if let friendsViewController = segue.destinationViewController as? PLFriendsViewController {
+                friendsViewController.delegate = self
             }
         default:
             break
@@ -519,5 +510,16 @@ extension PLOrderViewController: PLPlacesSelectionDelegate {
         controller.navigationController?.popViewControllerAnimated(true)
     }
     
+}
+
+// MARK: - PLFriendsSelectionDelegate
+
+extension PLOrderViewController: PLFriendsSelectionDelegate {
+    
+    func didSelectFriend(controller: PLFriendBaseViewController, friend: PLUser) {
+        order.user = friend
+        collectionView.reloadData()
+        controller.navigationController?.popViewControllerAnimated(true)
+    }
 }
 

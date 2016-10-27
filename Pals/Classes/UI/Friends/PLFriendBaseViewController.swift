@@ -7,7 +7,13 @@
 //
 import DZNEmptyDataSet
 
+protocol PLFriendsSelectionDelegate: class {
+    func didSelectFriend(controller: PLFriendBaseViewController, friend: PLUser)
+}
+
 class PLFriendBaseViewController: PLSearchableViewController {
+    
+    weak var delegate: PLFriendsSelectionDelegate?
 	
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
 	private var friendsView: PLTableView! { return view as! PLTableView }
@@ -24,6 +30,9 @@ class PLFriendBaseViewController: PLSearchableViewController {
         tableView.emptyDataSetDelegate = self
         return tableView
     }()
+    
+    
+    
 	
 	override func loadView() {
 		view = PLTableView(frame: UIScreen.mainScreen().bounds)
@@ -61,6 +70,11 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		super.updateViewConstraints()
 	}
 	
+    private func isFriendsViewController() -> Bool {
+        print(navigationController?.viewControllers)
+        return navigationController?.viewControllers.first is PLFriendBaseViewController
+    }
+    
     func addBorderToSearchField() {
         for subView in searchController.searchBar.subviews  {
             for subsubView in subView.subviews  {
@@ -145,12 +159,14 @@ extension PLFriendBaseViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let friend = datasource[indexPath.row]
-        performSegueWithIdentifier(cellTapSegueName(), sender: friend)
+        
+        if isFriendsViewController() {
+            performSegueWithIdentifier(SegueIdentifier.FriendProfileSegue, sender: friend)
+        } else {
+            delegate!.didSelectFriend(self, friend: friend)
+        }
     }
     
-    func cellTapSegueName() -> String {
-        return ""
-    }
 }
 
 	// MARK: - DZNEmptyDataSetSource
