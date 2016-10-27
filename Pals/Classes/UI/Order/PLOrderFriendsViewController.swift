@@ -24,6 +24,8 @@ class PLOrderFriendsViewController: PLFriendsViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let friend = datasource[indexPath.row]
+        print(friend.cellData.me)
+        
         
         delegate!.didSelectFriend(self, friend: friend)
     }

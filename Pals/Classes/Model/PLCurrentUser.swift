@@ -14,4 +14,10 @@ class PLCurrentUser: PLUser {
         let totalAmount = order.calculateTotalAmount()
         return balance >= totalAmount
     }
+    
+    override var cellData: PLFriendCellData {
+        var data = super.cellData
+        data.me = true
+        return data
+    }
 }

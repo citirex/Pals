@@ -57,7 +57,7 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     }
     
     var cellData: PLFriendCellData {
-        return PLFriendCellData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture, additional: additional, invited: invited, inviting: inviting)
+        return PLFriendCellData(id: id, name: name, email: email, phone: "(123) 123 1234", picture: picture, additional: additional, invited: invited, inviting: inviting, me: false)
     }
 }
 
@@ -70,4 +70,5 @@ struct PLFriendCellData {
     let additional: String?
     let invited: Bool
     let inviting: Bool
+    var me: Bool
 }
