@@ -298,19 +298,19 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             return page
         }
         var currentSection = NSMutableArray()
-        for i in 0..<objects.count-1 {
+        let count = objects.count
+        for i in 0..<count {
             let obj1 = objects[i]
-            let obj2 = objects[i+1]
-            let sameType = obj1.hasSameDateType(obj2)
+            let obj2: T? = i > 0 ? objects[i-1] : nil
+            if obj2 != nil {
+                PLLog("Date:\(obj2!.date)), type: \(obj2!.date!.dateType.string)", type: .Initialization)
+                PLLog("Date:\(obj1.date)), type: \(obj1.date!.dateType.string)", type: .Initialization)
+                if !obj1.hasSameDateType(obj2!) {
+                    page.objects.addObject(currentSection)
+                    currentSection = NSMutableArray()
+                }
+            }
             currentSection.addObject(obj1)
-            if !sameType {
-                page.objects.addObject(currentSection)
-                currentSection = NSMutableArray()
-            }
-            if i == objects.count-2 {
-                currentSection.addObject(obj2)
-            }
-            PLLog("\(i):\(i+1) same type:\(sameType)")
         }
         page.objects.addObject(currentSection)
         
@@ -337,7 +337,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             sectionStr += "\(section.count)"
             sectionStr += i != page.objects.count-1 ? " " : ""
         }
-        PLLog("new sections: \(page.objects.count) (\(sectionStr))")
+        PLLog("new sections: \(page.objects.count) (\(sectionStr))", type: .Initialization)
         
         sectionStr = ""
         for i in 0..<self.objects.count {
@@ -345,7 +345,7 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
             sectionStr += "\(section.count)"
             sectionStr += i != self.objects.count-1 ? " " : ""
         }
-        PLLog("all sections: \(self.objects.count) (\(sectionStr))")
+        PLLog("all sections: \(self.objects.count) (\(sectionStr))", type: .Initialization)
         return page
     }
     
