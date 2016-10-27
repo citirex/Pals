@@ -8,9 +8,10 @@
 
 class PLFriendsViewController: PLFriendBaseViewController {
     
-    override func cellTapSegueName() -> String {
-        return "FriendProfileSegue"
-    }
+//    override func cellTapSegueName() -> String {
+//        return "FriendProfileSegue"
+//    }
+    
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
 //		if indexPath.row == 0 {

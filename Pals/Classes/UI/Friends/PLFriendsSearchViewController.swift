@@ -37,9 +37,9 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
         return UITableViewCell()
     }
     
-    override func cellTapSegueName() -> String {
-        return "FriendsProfileSegue"
-    }
+//    override func cellTapSegueName() -> String {
+//        return "FriendsProfileSegue"
+//    }
     
     override func loadData() {
         loadData(datasource) {[unowned self] () -> UITableView in

@@ -8,16 +8,21 @@
 
 import DZNEmptyDataSet
 
+protocol PLPlacesSelectionDelegate: class {
+    func didSelectPlace(controller: PLPlacesViewController, place: PLPlace)
+}
+
 class PLPlacesViewController: PLSearchableViewController {
     
-    let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
+    private let nib = UINib(nibName: PLPlaceCell.nibName, bundle: nil)
     
-    private var placeView: PLTableView! { return view as! PLTableView }
-    
+    weak var delegate: PLPlacesSelectionDelegate?
+
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
+    private lazy var downtimer = PLDowntimer()
     
     private lazy var tableView: UITableView! = {
-        let tableView = self.placeView.tableView
+        let tableView = UITableView()
         tableView.backgroundColor = .affairColor()
         tableView.backgroundView  = UIView()
         tableView.tableFooterView = UIView()
@@ -29,24 +34,18 @@ class PLPlacesViewController: PLSearchableViewController {
         return tableView
     }()
     
-    private lazy var downtimer = PLDowntimer()
     
-    override func loadView() {
-        view = PLTableView(frame: UIScreen.mainScreen().bounds)
-        view.backgroundColor = .affairColor()
-        placeView.configure()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(tableView)
         
         configureResultsController(PLPlaceCell.nibName, cellIdentifier: PLPlaceCell.identifier, responder: self)
         configureSearchController("Find a Place", tableView: tableView, responder: self)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
         
 		searchController.isFriends = false
-
-        tableView.hideSearchBar()
 
         loadData()
     }
@@ -77,10 +76,14 @@ class PLPlacesViewController: PLSearchableViewController {
     
     // MARK: - Private Methods
     
-    func loadData() {
+    private func loadData() {
         loadData(places) { [unowned self] Void -> UITableView in
             return self.places.searching ? self.resultsController.tableView : self.tableView
         }
+    }
+    
+    private func isPlacesViewController() -> Bool {
+        return navigationController?.viewControllers.first is PLPlacesViewController
     }
 
     // MARK: - Navigation
@@ -137,6 +140,7 @@ extension PLPlacesViewController: UITableViewDataSource {
         let place = places[indexPath.row]
         cell.placeCellData = place.cellData
         cell.backgroundColor = .clearColor()
+        cell.chevron.hidden = !isPlacesViewController()
     }
     
 }
@@ -153,7 +157,12 @@ extension PLPlacesViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let place = places[indexPath.row]
-        performSegueWithIdentifier(SegueIdentifier.PlaceProfileSegue, sender: place)
+        
+        if isPlacesViewController() {
+            performSegueWithIdentifier(SegueIdentifier.PlaceProfileSegue, sender: place)
+        } else {
+            delegate!.didSelectPlace(self, place: place)
+        }
     }
     
 }

@@ -14,7 +14,11 @@ class PLOrderHistoryViewController: PLViewController {
     
     private var isLoading = false
     private lazy var orders: PLOrderDatasource = {
-        return PLOrderDatasource(orderType: .Drinks, sectioned: true)
+        let orders = PLOrderDatasource(orderType: .Drinks, sectioned: true)
+        if let user = PLFacade.profile {
+            orders.userId = user.id
+        }
+        return orders
     }()
     
 
@@ -64,11 +68,11 @@ class PLOrderHistoryViewController: PLViewController {
     }
     
     private func logInsertingCellPaths(paths: [NSIndexPath]) {
-        PLLog("===== Loaded orders with index paths:")
+        PLLog("===== Loaded orders with index paths:", type: .Initialization)
         for idxPath in paths {
-            PLLog("\(idxPath.section) : \(idxPath.row)")
+            PLLog("\(idxPath.section) : \(idxPath.row)", type: .Initialization)
         }
-        PLLog("==========")
+        PLLog("==========", type: .Initialization)
     }
 
 }
@@ -79,11 +83,14 @@ class PLOrderHistoryViewController: PLViewController {
 extension PLOrderHistoryViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return orders.count
+        let count = orders.count
+        return count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders.cellCountInSection(section)
+        let count = orders.cellCountInSection(section)
+        return count
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

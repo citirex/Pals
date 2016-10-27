@@ -156,7 +156,7 @@
         <!--Order-->
         <scene sceneID="BwI-Fv-Me0">
             <objects>
-                <viewController title="Order" id="Cmd-gA-94i" customClass="PLOrderViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Order" automaticallyAdjustsScrollViewInsets="NO" id="Cmd-gA-94i" customClass="PLOrderViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tdv-ny-gZG"/>
                         <viewControllerLayoutGuide type="bottom" id="5ch-p3-Kg1"/>
@@ -191,7 +191,6 @@
                             <constraint firstItem="DOw-vk-ubg" firstAttribute="leading" secondItem="Vez-d2-tfK" secondAttribute="leading" id="wxb-DD-9vz"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Order" id="cjc-f8-sKN">
                         <barButtonItem key="backBarButtonItem" title=" " id="J1E-iO-HWL"/>
                     </navigationItem>
@@ -199,11 +198,13 @@
                     <connections>
                         <outlet property="bgImageView" destination="DOw-vk-ubg" id="wHM-Uu-I2k"/>
                         <outlet property="collectionView" destination="Vez-d2-tfK" id="UFt-Jh-3Cd"/>
+                        <segue destination="jVG-XQ-2Vf" kind="push" identifier="PlacesSegue" id="aR9-7p-gAa"/>
+                        <segue destination="EGX-50-gGa" kind="push" identifier="FriendsSegue" id="WfP-0o-uDD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLJ-aX-0ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1417.5" y="-1426.5"/>
+            <point key="canvasLocation" x="1387.5" y="-1442.5"/>
         </scene>
         <!--Friend Profile-->
         <scene sceneID="pBT-w8-B4P">
@@ -1424,59 +1425,12 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="fSH-08-fuO"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendsProfileSegue" id="apm-CY-cnT"/>
+                        <segue destination="BXZ-AW-ugp" kind="push" identifier="FriendProfileSegue" id="apm-CY-cnT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1K-dj-Sgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2357.5" y="-2292.5"/>
-        </scene>
-        <!--Places-->
-        <scene sceneID="KFk-MJ-Tbl">
-            <objects>
-                <viewController storyboardIdentifier="OrderLocationsViewController" title="Places" id="BiK-Df-CVZ" customClass="PLOrderPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Jgx-Jp-foC"/>
-                        <viewControllerLayoutGuide type="bottom" id="eM8-7w-0jP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6hk-pR-i7u">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.43529411764705883" green="0.25098039215686274" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Locations" id="Yr0-fr-OQF"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tzM-ti-C30" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1413" y="-2533"/>
-        </scene>
-        <!--Friends View Controller-->
-        <scene sceneID="bO1-JD-FG4">
-            <objects>
-                <viewController storyboardIdentifier="OrderFriendsViewController" id="jAy-sW-H4G" userLabel="Friends View Controller" customClass="PLOrderFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oby-dQ-LYd"/>
-                        <viewControllerLayoutGuide type="bottom" id="0yM-XL-Gko"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lET-Bo-jEM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Friends" id="Zih-ll-z1X">
-                        <barButtonItem key="backBarButtonItem" title=" " id="JgM-0l-Rka"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="kNC-mN-f2t">
-                            <color key="tintColor" red="0.38823529410000002" green="0.20392156859999999" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="searchButton:" destination="jAy-sW-H4G" id="OWa-N5-3PI"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="COd-BJ-6yM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="977" y="-2527"/>
         </scene>
         <!--Order-->
         <scene sceneID="L93-yX-hok">
@@ -1535,6 +1489,8 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="WfP-0o-uDD"/>
+        <segue reference="aR9-7p-gAa"/>
         <segue reference="Rjy-8t-3el"/>
         <segue reference="apm-CY-cnT"/>
         <segue reference="u5L-qT-vQG"/>

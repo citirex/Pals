@@ -13,14 +13,12 @@ class PLPricedItem: PLDatedObject {
     required init?(jsonDic: [String : AnyObject]) {
         guard
             let name = jsonDic[PLKeys.name.string] as? String,
-            let priceStr = jsonDic[PLKeys.price.string] as? String
-            else {
-                return nil
+            let price = jsonDic[PLKeys.price.string] as? Float
+        else {
+            return nil
         }
         self.name = name
-        if let price = Float(priceStr) {
-            self.price = price
-        }
+        self.price = price
         super.init(jsonDic: jsonDic)
     }
     

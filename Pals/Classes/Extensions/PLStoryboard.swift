@@ -7,7 +7,10 @@
 //
 
 enum SegueIdentifier: String {
+    case PlacesSegue
+    case FriendsSegue
     case PlaceProfileSegue
+    case FriendProfileSegue
     case AddFundsSegue
     case EditProfileSegue
     case CardInfoSegue
@@ -18,14 +21,11 @@ enum SegueIdentifier: String {
     case PrivacyPolicySegue
 }
 
-enum PLStoryboardType : String {
+enum PLStoryboardType: String {
     case LoginViewController
     case TabBarController
     case FriendsViewController
-    case LocationsViewController
-    case OrderLocationsViewController
     case OrderFriendsViewController
-    case UnfriendPopUpViewController
     var string: String {return rawValue}
 }
 
