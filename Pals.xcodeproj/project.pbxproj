@@ -10,8 +10,6 @@
 		049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F61D83083800C2E32D /* PLFriendCell.swift */; };
 		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
-		04A31EAC1DC0C69B003937ED /* PLMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A31EAB1DC0C69B003937ED /* PLMeCell.xib */; };
-		04A31EAE1DC0C7DF003937ED /* PLMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A31EAD1DC0C7DF003937ED /* PLMeCell.swift */; };
 		04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */; };
 		04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CCD0DB1D81411800651508 /* PLFriendCell.xib */; };
 		2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44C1D997249000BA1F5 /* vip_covers0.json */; };
@@ -192,8 +190,6 @@
 		049BA9F61D83083800C2E32D /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
-		04A31EAB1DC0C69B003937ED /* PLMeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLMeCell.xib; sourceTree = "<group>"; };
-		04A31EAD1DC0C7DF003937ED /* PLMeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLMeCell.swift; sourceTree = "<group>"; };
 		04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendBaseViewController.swift; sourceTree = "<group>"; };
 		04CCD0DB1D81411800651508 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
 		2414F44C1D997249000BA1F5 /* vip_covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers0.json; sourceTree = "<group>"; };
@@ -556,14 +552,11 @@
 		2480F89B1D813E730095995F /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
-				049BA9F61D83083800C2E32D /* PLFriendCell.swift */,
+				E8C89F811DC237B7006D17FE /* Cell */,
 				049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */,
 				049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */,
 				04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */,
 				24F012BB1DBA3AC60072556F /* resources */,
-				04A31EAB1DC0C69B003937ED /* PLMeCell.xib */,
-				04A31EAD1DC0C7DF003937ED /* PLMeCell.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -977,6 +970,15 @@
 			name = Notifications;
 			sourceTree = "<group>";
 		};
+		E8C89F811DC237B7006D17FE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
+				049BA9F61D83083800C2E32D /* PLFriendCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		E8DA8B5C1D882896008782E5 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1163,7 +1165,6 @@
 				24DDA9311D9A658800FCDBCA /* events0.json in Resources */,
 				E837C20A1D902CAE0080A074 /* places1.json in Resources */,
 				E837C2051D902CAE0080A074 /* order_drinks0.json in Resources */,
-				04A31EAC1DC0C69B003937ED /* PLMeCell.xib in Resources */,
 				2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1247,7 +1248,6 @@
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
-				04A31EAE1DC0C7DF003937ED /* PLMeCell.swift in Sources */,
 				E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */,
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				D47DC1ED1DBDF57F00420958 /* PLPageCollectionDeserializer.swift in Sources */,

@@ -16,11 +16,13 @@ class PLOrderFriendsViewController: PLFriendsViewController {
 
     weak var delegate: PLOrderFriendsSelectionDelegate?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         datasource.shouldInsertCurrentUser = true
     }
-    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
         let cell = tableView.dequeueReusableCellWithIdentifier(PLFriendCell.identifier, forIndexPath: indexPath)
@@ -31,15 +33,17 @@ class PLOrderFriendsViewController: PLFriendsViewController {
     override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         guard let cell = cell as? PLFriendCell else { return }
         let friendData = datasource[indexPath.row].cellData
+        
+        cell.backgroundColor     = friendData.me ? .affairColor() : .whiteColor()
+        cell.nameLabel.textColor = friendData.me ? .whiteColor()  : .affairColor()
+        cell.accessoryType = .None
         cell.setup(friendData)
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let friend = datasource[indexPath.row]
-        print(friend.cellData.me)
-        
-        
+
         delegate!.didSelectFriend(self, friend: friend)
     }
     
