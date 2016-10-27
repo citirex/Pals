@@ -56,9 +56,9 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> : PLPageCollectionDe
         collection.cancelPageLoad()
     }
     
-//    func filter(text: String, completion: ()->()) {
-//        collection.filter(text, completion: completion)
-//    }
+    func filter(text: String, completion: ()->()) {
+        collection.filter(text, completion: completion)
+    }
     
     func shouldLoadNextPage(indexPath: NSIndexPath) -> Bool {
         return collection.shouldLoadNextPage(indexPath)
@@ -85,7 +85,10 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> : PLPageCollectionDe
         get { return collection.searchFilter }
         set { collection.searchFilter = newValue }
     }
-    var filtering = false
+    var filtering: Bool {
+        get { return collection.filtering }
+        set { collection.filtering = newValue }
+    }
     
     func fakeFeedNameOnError(error: NSError) -> String {
         let name = fakeFeedFilenameKey() + "\(collection.pagesLoaded)"

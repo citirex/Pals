@@ -50,7 +50,10 @@ class PLSearchableViewController: PLViewController {
         resultsController.tableView.emptyDataSetDelegate = responder
     }
 
-    func searchDidChange(text: String, active: Bool) {} // to override
+    func searchDidChange(text: String, active: Bool) {
+        PLLog("Search active: \(active)")
+        PLLog("Search text: \(text)")
+    } // to override
 }
 
 extension PLSearchableViewController: UISearchResultsUpdating {

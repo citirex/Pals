@@ -34,6 +34,10 @@ class PLPageCollectionStorage {
         return sets[state]!
     }
     
+    func setForState(state: PLPageCollectionStorageState) -> PLPageCollectionSet {
+        return sets[state]!
+    }
+    
     func cleanCurrentSet() {
         currentSet.clean()
     }

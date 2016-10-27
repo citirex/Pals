@@ -45,8 +45,7 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
     }
     
     override func searchDidChange(text: String, active: Bool) {
-        PLLog("Search active: \(active)")
-        PLLog("Search text: \(text)")
+        super.searchDidChange(text, active: active)
         datasource.searchFilter = text
         if text.isEmpty {
             datasource.searchFilter = nil

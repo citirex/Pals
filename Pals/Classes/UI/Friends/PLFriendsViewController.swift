@@ -34,4 +34,16 @@ class PLFriendsViewController: PLFriendBaseViewController {
 //		}
 //		return UITableViewCell()
 //	}
+    
+    override func searchDidChange(text: String, active: Bool) {
+        super.searchDidChange(text, active: active)
+        datasource.filtering = active
+        if text.isEmpty {
+            datasource.filtering = false
+        } else {
+            datasource.filter(text, completion: { [unowned self] in
+                self.resultsController.tableView.reloadData()
+            })
+        }
+    }
 }

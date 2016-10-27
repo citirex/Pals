@@ -26,6 +26,10 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         set { storage.searching = newValue }
         get { return storage.searching }
     }
+    var filtering: Bool {
+        set { storage.filtering = newValue }
+        get { return storage.filtering }
+    }
     var searchFilter: String? {
         get {
             return preset.params[PLKeys.filter.string] as? String
@@ -155,23 +159,25 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         return false
     }
     
-//    func filter(text: String, completion: ()->()) {
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-//            self._filtered.removeAllObjects()
-//            let newFiltered = self._objects.filter { (object) -> Bool in
-//                let result = T.filter(object, text: text)
-//                return result
-//            }
-//            if self.sectioned {
-//                fatalError("no filtered sections")
-//            } else {
-//                self._filtered.addObjectsFromArray(newFiltered)
-//            }
-//            dispatch_async(dispatch_get_main_queue(), {
-//                completion()
-//            })
-//        }
-//    }
+    func filter(text: String, completion: ()->()) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let filteringSet = self.storage.setForState(.Filtering)
+            filteringSet.objects.removeAllObjects()
+            let allObjects = self.storage.setForState(.Normal).objects
+            let newFiltered = allObjects.filter { (object) -> Bool in
+                let result = T.filter(object, text: text)
+                return result
+            }
+            if self.sectioned {
+                fatalError("no filtered sections")
+            } else {
+                filteringSet.objects.addObjectsFromArray(newFiltered)
+            }
+            dispatch_async(dispatch_get_main_queue(), {
+                completion()
+            })
+        }
+    }
     
     func load() {
         if !loading {
