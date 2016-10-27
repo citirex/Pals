@@ -45,9 +45,9 @@ class PLPlacesViewController: PLSearchableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
         
 		searchController.isFriends = false
-        
+
         tableView.hideSearchBar()
-        
+
         loadData()
     }
     
@@ -61,7 +61,7 @@ class PLPlacesViewController: PLSearchableViewController {
     override func updateViewConstraints() {
         if !didSetupConstraints {
             tableView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
-            tableView.autoPinEdgeToSuperviewEdge(.Bottom)
+            tableView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 0)
             tableView.autoPinEdgeToSuperviewEdge(.Leading)
             tableView.autoPinEdgeToSuperviewEdge(.Trailing)
             didSetupConstraints = true
@@ -73,6 +73,7 @@ class PLPlacesViewController: PLSearchableViewController {
         super.viewWillDisappear(animated)
         places.cancel()
     }
+    
     
     // MARK: - Private Methods
     

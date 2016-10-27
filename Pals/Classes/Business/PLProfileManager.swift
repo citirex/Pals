@@ -13,10 +13,10 @@ typealias PLFacebookLoginCompletion = (data: PLSignUpData?, error: NSError?) -> 
 
 class PLProfileManager : NSObject {
     var profile: PLCurrentUser?
-    dynamic var token: String? {
+    dynamic var userToken: String? {
         didSet {
-            if token != nil {
-                PLLog("Session token has been changed to: \(token!)", type: .Network)
+            if userToken != nil {
+                PLLog("Session token has been changed to: \(userToken!)", type: .Network)
             } else {
                 PLLog("Session token has been reset ", type: .Network)
             }
@@ -53,7 +53,7 @@ extension PLProfileManager : PLAuthStorage {
     }
     
     func resetProfileAndToken() {
-        token = nil
+        userToken = nil
         ud.setObject(nil, forKey: PLKeys.auth_data.string)
         ud.setObject(nil, forKey: PLKeys.user.string)
         ud.synchronize()
@@ -64,7 +64,7 @@ extension PLProfileManager : PLAuthStorage {
         var expires: NSTimeInterval?
         if let tokenD = tokenData {
             token = tokenD[PLKeys.token.string] as? String
-            self.token = token
+            self.userToken = token
             expires = tokenD[PLKeys.expires.string] as? NSTimeInterval
         }
         if token != nil && expires != nil {
@@ -97,7 +97,7 @@ extension PLProfileManager : PLAuthStorage {
     func restoreToken() {
         if let authData = ud.dictionaryForKey(PLKeys.auth_data.string) {
             if let token = authData[PLKeys.token.string] as? String {
-                self.token = token
+                self.userToken = token
             }
         }
     }

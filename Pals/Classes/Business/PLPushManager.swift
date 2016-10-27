@@ -9,7 +9,11 @@
 struct PLPush {
     var type: PLPushType?
     var id: UInt64?
-    init(data: [String : AnyObject]) {
+    var count = 0
+    var launchedByTap = false
+    
+    init(data: [String : AnyObject], launchedByTap: Bool) {
+        self.launchedByTap = launchedByTap
         if let type = data[PLKeys.type.string] as? String {
             if let pushType = PLPushType(rawValue: Int(type)!) {
                 self.type = pushType
@@ -17,6 +21,11 @@ struct PLPush {
         }
         if let id = data[PLKeys.id.string] as? String {
             self.id = UInt64(id)
+        }
+        if let countStr = data[PLKeys.count.string] as? String {
+            if let count = Int(countStr) {
+                self.count = count
+            }
         }
     }
 }
@@ -32,19 +41,13 @@ enum PLPushType : Int {
             return "Friend"
         }
     }
-    var notificationName: String {
-        switch self {
-        case .Order:
-            return "PLPushNotificationOrder"
-        case .Friend:
-            return "PLPushNotificationFriend"
-        }
-    }
 }
 
-class PLPushManager {
+let kPLPushManagerDidReceivePush = "kPLPushManagerDidReceivePush"
 
-    var deviceToken: String?
+class PLPushManager: NSObject {
+
+    dynamic var deviceToken: String?
     
     func registerPushNotifications(application: UIApplication) {
         let types: UIUserNotificationType = [.Badge, .Sound, .Alert]
@@ -57,7 +60,6 @@ class PLPushManager {
             application.registerForRemoteNotifications()
         } else {
             PLLog("User disallowed Pushes", type: .Pushes)
-            //TODO: show alert to go to Settings to activate pushes
         }
     }
     
@@ -71,17 +73,29 @@ class PLPushManager {
     }
     
     func didReceiveRemoteNotification(info: [NSObject : AnyObject]) {
-        PLLog("Received remote notification: \n\(info)", type: .Pushes)
-        PLShowAlert("Received remote notification", message: info.description)
-        if let aps = info["aps"] as? [String : AnyObject]{
-            if let pushData = aps[PLKeys.info.string] as? [String : AnyObject] {
-                let push = PLPush(data: pushData)
-                if let type = push.type {
-                    PLLog("Push notification type: \(type.description)", type: .Pushes)
-                    NSNotificationCenter.defaultCenter().postNotificationName(type.notificationName, object: push as? AnyObject, userInfo: nil)
-                }
-            }
-            
+        if let anInfo = info as? [String:AnyObject] {
+            processPushInfo(anInfo, launchedByTap: false)
         }
     }
+    
+    func processLauchOptions(options: [NSObject : AnyObject]?) {
+        if options != nil {
+            if let aps = options![UIApplicationLaunchOptionsRemoteNotificationKey] as? [String:AnyObject] {
+                processPushInfo(aps, launchedByTap: true)
+            }
+        }
+    }
+    
+    func processPushInfo(aps: [String:AnyObject], launchedByTap: Bool) {
+        PLLog("Received remote notification: \n\(aps)", type: .Pushes)
+        PLShowAlert("Received remote notification", message: aps.description)
+        if let pushData = aps[PLKeys.info.string] as? [String : AnyObject] {
+            let push = PLPush(data: pushData, launchedByTap: launchedByTap)
+            if let type = push.type {
+                PLLog("Push notification type: \(type.description)", type: .Pushes)
+                NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: push as? AnyObject, userInfo: nil)
+            }
+        }
+    }
+    
 }

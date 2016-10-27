@@ -43,13 +43,15 @@ enum PLKeys : String {
     case date
     case data
     case location
-    case close_time
     case events
+    case device_token = "registration_id"
     case drink
     case drinks
     case vip_drinks
+    case close_time
     case covers
     case cover
+    case count
     case vip_covers
     case rect
     case success

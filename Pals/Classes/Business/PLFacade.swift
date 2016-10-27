@@ -106,6 +106,7 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     //MARK: AppDelegate
     class func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         PLFacade.instance.pushManager.registerPushNotifications(application)
+        PLFacade.instance.pushManager.processLauchOptions(launchOptions)
         return PLFacade.instance._application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
@@ -126,8 +127,15 @@ class PLFacade : PLFacadeInterface,PLFacadeRepresentable {
     class _PLFacade {
         let settingsManager = PLSettingsManager()
         let locationManager = PLLocationManager()
-        let profileManager  = PLProfileManager()
-        let pushManager = PLPushManager()
+        let tokenListen = PLTokenListener()
+        var profileManager = PLProfileManager()
+        var pushManager = PLPushManager()
+        
+        init() {
+            tokenListen.listen(profileManager, tokenType: .UserToken)
+            tokenListen.listen(pushManager, tokenType: .DeviceToken)
+        }
+        
     }
     
 }

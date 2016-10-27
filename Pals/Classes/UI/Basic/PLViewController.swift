@@ -83,6 +83,11 @@ extension UIViewController {
 
 
 extension UIViewController {
+    
+    enum PLPosition {
+        case Center
+        case Bottom
+    }
 
     var activityIndicatorTag: Int { return 999999 }
     
@@ -96,7 +101,7 @@ extension UIViewController {
         return targetView!
     }
     
-    func startActivityIndicator(style: UIActivityIndicatorViewStyle, color: UIColor? = nil) {
+    func startActivityIndicator(style: UIActivityIndicatorViewStyle, color: UIColor? = nil, position: PLPosition = .Center) {
         dispatch_async(dispatch_get_main_queue(), {
             let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
             activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -107,7 +112,8 @@ extension UIViewController {
             activityIndicator.startAnimating()
             self.targetView.addSubview(activityIndicator)
             self.targetView.bringSubviewToFront(activityIndicator)
-            activityIndicator.autoCenterInSuperview()
+            
+            self.addConstraints(activityIndicator, position: position)
         })
     }
     
@@ -118,6 +124,16 @@ extension UIViewController {
                 spinner.removeFromSuperview()
             }
         })
+    }
+    
+    private func addConstraints(activityIndicator: UIActivityIndicatorView, position: PLPosition) {
+        switch position {
+        case .Center:
+            activityIndicator.autoCenterInSuperview()
+        case .Bottom:
+            activityIndicator.autoAlignAxis(.Horizontal, toSameAxisOfView: self.view, withMultiplier: 1.65)
+            activityIndicator.autoAlignAxisToSuperviewAxis(.Vertical)
+        }
     }
 
 }

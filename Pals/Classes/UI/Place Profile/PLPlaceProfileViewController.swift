@@ -64,9 +64,12 @@ class PLPlaceProfileViewController: PLViewController {
     
     private func loadEvents() {
         collectionView.bounces = false
-    
-        startActivityIndicator(.WhiteLarge, color: .grayColor())
-        setActivityIndicatorPosition()
+        
+        if collectionView.contentOffset == CGPointZero {
+            startActivityIndicator(.WhiteLarge, color: .grayColor(), position: .Bottom)
+        } else {
+            startActivityIndicator(.WhiteLarge, color: .grayColor())
+        }
         
         events.loadPage { [unowned self] indices, error in
             self.stopActivityIndicator()
@@ -74,7 +77,7 @@ class PLPlaceProfileViewController: PLViewController {
             if error == nil {
                 if indices.count > 0 {
                     self.noEventsView.hidden = true
-                    let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
+                    let newIndexPaths = indices.map { NSIndexPath(forItem: $0.row, inSection: 1) }
                     self.collectionView?.performBatchUpdates({
                         self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
                         }, completion: { complete in
@@ -88,21 +91,6 @@ class PLPlaceProfileViewController: PLViewController {
             }
             self.collectionView.bounces = true
         }
-    }
-    
-    
-    private func setActivityIndicatorPosition() {
-        dispatch_async(dispatch_get_main_queue(), {
-            if let activityIndicator = self.targetView.viewWithTag(self.activityIndicatorTag) as? UIActivityIndicatorView {
-                activityIndicator.removeConstraints()
-                if self.events.empty {
-                    activityIndicator.autoAlignAxis(.Horizontal, toSameAxisOfView: self.view, withMultiplier: 1.65)
-                } else {
-                    activityIndicator.autoAlignAxisToSuperviewAxis(.Horizontal)
-                }
-                activityIndicator.autoAlignAxisToSuperviewAxis(.Vertical)
-            }
-        })
     }
 
     
@@ -163,11 +151,13 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
 
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
-
         if indexPath.section == 0 {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileHeader
+            let placeholderImage = UIImage(named: "place_placeholder")
             if let picture = place.picture {
-                headerView.headerImageView.setImageWithURL(picture, placeholderImage: UIImage(named: "place_placeholder"))
+                headerView.headerImageView.setImageWithURL(picture, placeholderImage: placeholderImage)
+            } else {
+                headerView.headerImageView.image = placeholderImage
             }
             return headerView
         } else {
