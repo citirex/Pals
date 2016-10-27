@@ -153,6 +153,50 @@
             </objects>
             <point key="canvasLocation" x="-1449.5" y="-2483.5"/>
         </scene>
+        <!--Locations-->
+        <scene sceneID="whK-vt-KJO">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="9tl-gQ-1vF" customClass="PLOrderPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Art-rv-YbA"/>
+                        <viewControllerLayoutGuide type="bottom" id="qL6-cO-B75"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FVA-N9-5tf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.43529412150000002" green="0.25098040700000002" blue="0.59215688710000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" title="Locations" id="pJm-gg-Bzg"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D8j-4G-jzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1203" y="-2312"/>
+        </scene>
+        <!--Friends-->
+        <scene sceneID="ERz-7x-rQN">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Z6Q-Mk-C7E" customClass="PLOrderFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NfB-Mc-y6F"/>
+                        <viewControllerLayoutGuide type="bottom" id="v53-5J-J2O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WSI-UX-fcW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" title="Friends" id="D2S-pi-Vif"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ka7-cK-WM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1731.5" y="-2312.5"/>
+        </scene>
         <!--Order-->
         <scene sceneID="BwI-Fv-Me0">
             <objects>
@@ -198,8 +242,8 @@
                     <connections>
                         <outlet property="bgImageView" destination="DOw-vk-ubg" id="wHM-Uu-I2k"/>
                         <outlet property="collectionView" destination="Vez-d2-tfK" id="UFt-Jh-3Cd"/>
-                        <segue destination="jVG-XQ-2Vf" kind="push" identifier="PlacesSegue" id="aR9-7p-gAa"/>
-                        <segue destination="EGX-50-gGa" kind="push" identifier="FriendsSegue" id="WfP-0o-uDD"/>
+                        <segue destination="9tl-gQ-1vF" kind="push" identifier="OrderPlacesSegue" id="GEb-CK-TOO"/>
+                        <segue destination="Z6Q-Mk-C7E" kind="push" identifier="OrderFriendsSegue" id="P7j-9Q-wor"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLJ-aX-0ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1489,10 +1533,8 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WfP-0o-uDD"/>
-        <segue reference="aR9-7p-gAa"/>
-        <segue reference="Rjy-8t-3el"/>
-        <segue reference="apm-CY-cnT"/>
         <segue reference="u5L-qT-vQG"/>
+        <segue reference="ovy-Gk-Wh0"/>
+        <segue reference="Rjy-8t-3el"/>
     </inferredMetricsTieBreakers>
 </document>

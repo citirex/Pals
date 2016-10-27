@@ -7,13 +7,7 @@
 //
 import DZNEmptyDataSet
 
-protocol PLFriendsSelectionDelegate: class {
-    func didSelectFriend(controller: PLFriendBaseViewController, friend: PLUser)
-}
-
 class PLFriendBaseViewController: PLSearchableViewController {
-    
-    weak var delegate: PLFriendsSelectionDelegate?
 	
     var datasource = PLDatasourceHelper.createMyFriendsDatasource()
 	private var friendsView: PLTableView! { return view as! PLTableView }
@@ -70,10 +64,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		super.updateViewConstraints()
 	}
 	
-    private func isFriendsViewController() -> Bool {
-        print(navigationController?.viewControllers)
-        return navigationController?.viewControllers.first is PLFriendBaseViewController
-    }
     
     func addBorderToSearchField() {
         for subView in searchController.searchBar.subviews  {
@@ -160,11 +150,7 @@ extension PLFriendBaseViewController : UITableViewDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let friend = datasource[indexPath.row]
         
-        if isFriendsViewController() {
-            performSegueWithIdentifier(SegueIdentifier.FriendProfileSegue, sender: friend)
-        } else {
-            delegate!.didSelectFriend(self, friend: friend)
-        }
+        performSegueWithIdentifier(SegueIdentifier.FriendProfileSegue, sender: friend)
     }
     
 }
@@ -185,6 +171,7 @@ extension PLFriendBaseViewController: DZNEmptyDataSetSource {
 		return attributedString
 	}
 }
+
 
 // MARK: - DZNEmptyDataSetDelegate
 

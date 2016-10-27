@@ -299,12 +299,12 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     
     //MARK: Cnange user
     func userNamePressed(sender: AnyObject) {
-        performSegueWithIdentifier(SegueIdentifier.FriendsSegue, sender: sender)
+        performSegueWithIdentifier(SegueIdentifier.OrderFriendsSegue, sender: sender)
     }
 
     //MARK: Cnange place
     func placeNamePressed(sender: AnyObject) {
-        performSegueWithIdentifier(SegueIdentifier.PlacesSegue, sender: sender)
+        performSegueWithIdentifier(SegueIdentifier.OrderPlacesSegue, sender: sender)
     }
 
     func updateDataForSelectedPlace() {
@@ -385,13 +385,13 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
         switch identifier {
-        case .PlacesSegue:
-            if let placesViewController = segue.destinationViewController as? PLPlacesViewController {
-               placesViewController.delegate = self
+        case .OrderPlacesSegue:
+            if let orderPlacesViewController = segue.destinationViewController as? PLOrderPlacesViewController {
+                orderPlacesViewController.delegate = self
             }
-        case .FriendsSegue:
-            if let friendsViewController = segue.destinationViewController as? PLFriendsViewController {
-                friendsViewController.delegate = self
+        case .OrderFriendsSegue:
+            if let orderFriendsViewController = segue.destinationViewController as? PLOrderFriendsViewController {
+                orderFriendsViewController.delegate = self
             }
         default:
             break
@@ -497,29 +497,28 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         case .Covers: if indexPath.row == coversDatasource.count - 1 { loadCovers() }
         }
     }
+    
 }
 
 
 // MARK: - PLPlacesSelectionDelegate
 
-extension PLOrderViewController: PLPlacesSelectionDelegate {
+extension PLOrderViewController: PLOrderPlacesSelectionDelegate {
     
-    func didSelectPlace(controller: PLPlacesViewController, place: PLPlace) {
+    func didSelectPlace(controller: PLOrderPlacesViewController, place: PLPlace) {
         order.place = place
         updateDataForSelectedPlace()
         controller.navigationController?.popViewControllerAnimated(true)
     }
-    
 }
 
 // MARK: - PLFriendsSelectionDelegate
 
-extension PLOrderViewController: PLFriendsSelectionDelegate {
+extension PLOrderViewController: PLOrderFriendsSelectionDelegate {
     
-    func didSelectFriend(controller: PLFriendBaseViewController, friend: PLUser) {
+    func didSelectFriend(controller: PLOrderFriendsViewController, friend: PLUser) {
         order.user = friend
         collectionView.reloadData()
         controller.navigationController?.popViewControllerAnimated(true)
     }
 }
-

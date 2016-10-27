@@ -35,6 +35,8 @@ class PLSearchableViewController: PLViewController {
         searchController.searchBar.placeholder     = placeholder
         searchController.searchResultsUpdater      = responder
         tableView.tableHeaderView                  = searchController.searchBar
+        
+        definesPresentationContext = true
     }
         
     func configureResultsController

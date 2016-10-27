@@ -168,6 +168,8 @@
 		E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */; };
 		E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */; };
 		E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86821D913A7B0079855C /* PLNotificationCell.swift */; };
+		E8C89F7E1DC2085D006D17FE /* PLOrderFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C89F7D1DC2085D006D17FE /* PLOrderFriendsViewController.swift */; };
+		E8C89F801DC20879006D17FE /* PLOrderPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C89F7F1DC20879006D17FE /* PLOrderPlacesViewController.swift */; };
 		E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B581D881D7C008782E5 /* PLView.swift */; };
 		E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */; };
 		E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7D1D8832E8008782E5 /* TGLExposedLayout.m */; };
@@ -355,6 +357,8 @@
 		E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsViewController.swift; sourceTree = "<group>"; };
 		E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationsViewController.swift; path = Notifications/PLNotificationsViewController.swift; sourceTree = "<group>"; };
 		E8BE86821D913A7B0079855C /* PLNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationCell.swift; path = Notifications/PLNotificationCell.swift; sourceTree = "<group>"; };
+		E8C89F7D1DC2085D006D17FE /* PLOrderFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderFriendsViewController.swift; sourceTree = "<group>"; };
+		E8C89F7F1DC20879006D17FE /* PLOrderPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderPlacesViewController.swift; sourceTree = "<group>"; };
 		E8DA8B581D881D7C008782E5 /* PLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
 		E8DA8B7A1D8832E8008782E5 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
 		E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
@@ -576,6 +580,8 @@
 			isa = PBXGroup;
 			children = (
 				2480F8A51D813E730095995F /* PLOrderViewController.swift */,
+				E8C89F7D1DC2085D006D17FE /* PLOrderFriendsViewController.swift */,
+				E8C89F7F1DC20879006D17FE /* PLOrderPlacesViewController.swift */,
 				2480F8A61D813E730095995F /* Resources */,
 			);
 			path = Order;
@@ -1237,6 +1243,7 @@
 				E86E55891DB2ADDA00CE1698 /* PLCircularImageView.swift in Sources */,
 				E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */,
 				24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */,
+				E8C89F7E1DC2085D006D17FE /* PLOrderFriendsViewController.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
@@ -1321,6 +1328,7 @@
 				2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */,
 				E8204A261DA82EB600BDBFCE /* PLDescriptionLabel.swift in Sources */,
 				D47DC1EF1DBDF67C00420958 /* PLPageCollectionStorage.swift in Sources */,
+				E8C89F801DC20879006D17FE /* PLOrderPlacesViewController.swift in Sources */,
 				D47DC1E91DBDF55000420958 /* PLPageCollection.swift in Sources */,
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
 				E8DA8B841D8832E8008782E5 /* TGLStackedLayout.m in Sources */,
