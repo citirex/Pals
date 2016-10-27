@@ -10,6 +10,8 @@
 		049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F61D83083800C2E32D /* PLFriendCell.swift */; };
 		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
+		04A31EAC1DC0C69B003937ED /* PLMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A31EAB1DC0C69B003937ED /* PLMeCell.xib */; };
+		04A31EAE1DC0C7DF003937ED /* PLMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A31EAD1DC0C7DF003937ED /* PLMeCell.swift */; };
 		04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */; };
 		04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CCD0DB1D81411800651508 /* PLFriendCell.xib */; };
 		2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44C1D997249000BA1F5 /* vip_covers0.json */; };
@@ -190,6 +192,8 @@
 		049BA9F61D83083800C2E32D /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
+		04A31EAB1DC0C69B003937ED /* PLMeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLMeCell.xib; sourceTree = "<group>"; };
+		04A31EAD1DC0C7DF003937ED /* PLMeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLMeCell.swift; sourceTree = "<group>"; };
 		04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendBaseViewController.swift; sourceTree = "<group>"; };
 		04CCD0DB1D81411800651508 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
 		2414F44C1D997249000BA1F5 /* vip_covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers0.json; sourceTree = "<group>"; };
@@ -558,6 +562,8 @@
 				049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */,
 				04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */,
 				24F012BB1DBA3AC60072556F /* resources */,
+				04A31EAB1DC0C69B003937ED /* PLMeCell.xib */,
+				04A31EAD1DC0C7DF003937ED /* PLMeCell.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -1157,6 +1163,7 @@
 				24DDA9311D9A658800FCDBCA /* events0.json in Resources */,
 				E837C20A1D902CAE0080A074 /* places1.json in Resources */,
 				E837C2051D902CAE0080A074 /* order_drinks0.json in Resources */,
+				04A31EAC1DC0C69B003937ED /* PLMeCell.xib in Resources */,
 				2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1239,6 +1246,7 @@
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
+				04A31EAE1DC0C7DF003937ED /* PLMeCell.swift in Sources */,
 				E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */,
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				D47DC1ED1DBDF57F00420958 /* PLPageCollectionDeserializer.swift in Sources */,
@@ -1432,7 +1440,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "de5f0ce2-2b43-473b-acf1-ebd2d9ee525e";
+				PROVISIONING_PROFILE = "0f3b6f58-3987-4c27-9968-5b90cce3ae3b";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pals/Classes/Pals-Bridging-Header.h";
 			};
 			name = Debug;
@@ -1449,7 +1457,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "de5f0ce2-2b43-473b-acf1-ebd2d9ee525e";
+				PROVISIONING_PROFILE = "0f3b6f58-3987-4c27-9968-5b90cce3ae3b";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pals/Classes/Pals-Bridging-Header.h";
 			};
 			name = Release;
