@@ -41,9 +41,8 @@ class PLImagePicker: NSObject {
             self.requestPermission(Permission.Camera)
             }))
         
-        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { alert in
-            controller.dismiss(true)
-        }))
+        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+
         controller.present(optionMenu, animated: true)
     }
 

@@ -33,9 +33,6 @@ class PLOrderFriendsViewController: PLFriendsViewController {
     override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         guard let cell = cell as? PLFriendCell else { return }
         let friendData = datasource[indexPath.row].cellData
-        
-        cell.backgroundColor     = friendData.me ? .affairColor() : .whiteColor()
-        cell.nameLabel.textColor = friendData.me ? .whiteColor()  : .affairColor()
         cell.accessoryType = .None
         cell.setup(friendData)
     }

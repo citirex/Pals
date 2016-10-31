@@ -12,7 +12,7 @@ extension CLLocationCoordinate2D {
     
     var distance: String {
         guard let currentLocation = PLFacade.instance.locationManager.currentLocation else { return "" }
-        let placeLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        let placeLocation = CLLocation(latitude: latitude, longitude: longitude)
         let distance = currentLocation.distanceFromLocation(placeLocation)
         return distance.withUnit
     }

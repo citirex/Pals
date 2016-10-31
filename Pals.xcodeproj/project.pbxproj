@@ -552,10 +552,10 @@
 		2480F89B1D813E730095995F /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				E8C89F811DC237B7006D17FE /* Cell */,
 				049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */,
 				049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */,
 				04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */,
+				E8C89F811DC237B7006D17FE /* Cell */,
 				24F012BB1DBA3AC60072556F /* resources */,
 			);
 			path = Friends;
@@ -973,8 +973,8 @@
 		E8C89F811DC237B7006D17FE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
 				049BA9F61D83083800C2E32D /* PLFriendCell.swift */,
+				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
