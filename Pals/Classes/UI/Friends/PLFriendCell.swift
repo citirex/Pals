@@ -50,14 +50,21 @@ class PLFriendCell: UITableViewCell{
     private func _updateUI(cellData: PLFriendCellData){
         if cellData.picture.absoluteString == "" {
             avatarImage.contentMode = .Center
-            avatarImage.backgroundColor = UIColor.affairColor()
+            avatarImage.backgroundColor = .affairColor()
             avatarImage.image = UIImage(named: "user")
         } else {
 			avatarImage.contentMode = .ScaleAspectFill
-            avatarImage.backgroundColor = UIColor.clearColor()
+            avatarImage.backgroundColor = .clearColor()
             setCorrectImage(cellData.picture)
         }
-        nameLabel.text = cellData.name
+        
+        if cellData.me {
+            nameLabel.text      = "Me"
+            nameLabel.textColor = .whiteColor()
+            backgroundColor     = .affairColor()
+        } else {
+            nameLabel.text = cellData.name
+        }
     }
 	
     func setupInviteUI() {

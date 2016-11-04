@@ -39,8 +39,14 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         contentView.layer.shadowPath = UIBezierPath(rect: bounds).CGPath
+        
+        var myBounds = bounds
+        myBounds.size.width = UIScreen.mainScreen().bounds.size.width
+        let path = UIBezierPath(roundedRect: myBounds, byRoundingCorners: [.TopLeft,.TopRight], cornerRadii: CGSize(width: 20, height: 20))
+        let mask = CAShapeLayer()
+        mask.path = path.CGPath
+        containerView.layer.mask = mask  
     }
     
     override func prepareForReuse() {
@@ -122,12 +128,5 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOffset = CGSizeMake(0.0, 5.0)
         contentView.layer.shadowOpacity = 0.9
         contentView.layer.shadowRadius = 7
-        
-        var myBounds = bounds
-        myBounds.size.width = UIScreen.mainScreen().bounds.size.width
-        let path = UIBezierPath(roundedRect: myBounds, byRoundingCorners: [.TopLeft,.TopRight], cornerRadii: CGSize(width: 20, height: 20))
-        let mask = CAShapeLayer()
-        mask.path = path.CGPath
-        containerView.layer.mask = mask
     }
 }

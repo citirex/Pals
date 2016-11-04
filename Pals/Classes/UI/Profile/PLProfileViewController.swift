@@ -256,6 +256,7 @@ class PLProfileViewController: TGLStackedViewController {
                     }, completion: nil)
                 counter += 1
             }
+            needsToShowNewOrder = false
         }
     }
     
