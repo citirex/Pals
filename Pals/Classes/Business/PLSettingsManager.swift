@@ -19,6 +19,8 @@ enum PLSettingKey: String {
     case Password
     case ActiveServer
     case EnableBalanceCheck
+    case PushSimulation
+    case Interval
     
     var str: String {return rawValue}
 }
@@ -26,6 +28,11 @@ enum PLSettingKey: String {
 struct PLDefaultUser {
     var login: String
     var password: String
+}
+
+struct PLPushSettings {
+    let simulationEnabled: Bool
+    let simulationInterval: NSTimeInterval
 }
 
 class PLSettingsManager {
@@ -99,6 +106,20 @@ class PLSettingsManager {
             }
         }
         return nil
+    }
+    
+    var pushSettings: PLPushSettings {
+        var enabled = false
+        var interval: NSTimeInterval = 0
+        if let settings = self[.PushSimulation] {
+            if let en = settings[PLSettingKey.Enabled.str] as? Bool {
+                enabled = en
+            }
+            if let inv = settings[PLSettingKey.Interval.str] as? NSNumber {
+                interval = inv.doubleValue
+            }
+        }
+        return PLPushSettings(simulationEnabled: enabled, simulationInterval: interval)
     }
     
     subscript(key: PLSettingKey) -> [String : AnyObject]? {

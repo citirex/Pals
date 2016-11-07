@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>PushSimulation</key>
+	<dict>
+		<key>Enabled</key>
+		<true/>
+		<key>Interval</key>
+		<integer>10</integer>
+	</dict>
 	<key>FakeFeeds</key>
 	<dict>
 		<key>Enabled</key>
