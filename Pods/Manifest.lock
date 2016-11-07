@@ -30,6 +30,7 @@ PODS:
   - KMNavigationBarTransition (0.0.10)
   - Permission (1.5)
   - PureLayout (3.0.2)
+  - Stripe (9.1.0)
   - SwiftQRCode (2.0.2)
 
 DEPENDENCIES:
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - KMNavigationBarTransition
   - Permission
   - PureLayout
+  - Stripe
   - SwiftQRCode
 
 SPEC CHECKSUMS:
@@ -55,8 +57,9 @@ SPEC CHECKSUMS:
   KMNavigationBarTransition: 7a519f915cfe6fe09764b2061ea01043b445f7d2
   Permission: 2d9647f8b994a5faf7e1c5a40d4328fde158c2f2
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  Stripe: f9acdd48bd3e4f1b4a91ed260317982db7a2ed65
   SwiftQRCode: 68e920781686e376d70646b90c8ad87fd6523309
 
-PODFILE CHECKSUM: a70ce6c09752e6102725d82d3ecc951b46b0f583
+PODFILE CHECKSUM: 4615414cfa132869f47e7d2cd52f00c5c3089d03
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.1

@@ -17,6 +17,7 @@ pod 'KMNavigationBarTransition'
 
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
+pod 'Stripe'
 
 end
 

@@ -98,6 +98,7 @@
 		D47DC1EF1DBDF67C00420958 /* PLPageCollectionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DC1EE1DBDF67C00420958 /* PLPageCollectionStorage.swift */; };
 		D47DC1F41DBEA9D800420958 /* PLPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DC1F31DBEA9D800420958 /* PLPushManager.swift */; };
 		D47DC1F61DBEAF2000420958 /* PLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DC1F51DBEAF2000420958 /* PLData.swift */; };
+		D4949F5F1DCD085700FEF0C8 /* PLPaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4949F5E1DCD085700FEF0C8 /* PLPaymentManager.swift */; };
 		D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */; };
 		D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A921D82B32700F48F4E /* PLAlert.swift */; };
 		D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A941D82C71100F48F4E /* PLViewController.swift */; };
@@ -286,6 +287,7 @@
 		D47DC1EE1DBDF67C00420958 /* PLPageCollectionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPageCollectionStorage.swift; sourceTree = "<group>"; };
 		D47DC1F31DBEA9D800420958 /* PLPushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPushManager.swift; sourceTree = "<group>"; };
 		D47DC1F51DBEAF2000420958 /* PLData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLData.swift; sourceTree = "<group>"; };
+		D4949F5E1DCD085700FEF0C8 /* PLPaymentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPaymentManager.swift; sourceTree = "<group>"; };
 		D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCellData.swift; sourceTree = "<group>"; };
 		D4950A921D82B32700F48F4E /* PLAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAlert.swift; sourceTree = "<group>"; };
 		D4950A941D82C71100F48F4E /* PLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				D47DC1E51DBDF55000420958 /* PageCollection */,
 				2480F8711D813E730095995F /* PLFacade.swift */,
 				D47DC1F31DBEA9D800420958 /* PLPushManager.swift */,
+				D4949F5E1DCD085700FEF0C8 /* PLPaymentManager.swift */,
 				D4753AC11DC0B62B0006231C /* PLDeviceTokenListener.swift */,
 				2480F8731D813E730095995F /* PLNetworkManager.swift */,
 				2480F8751D813E730095995F /* PLProfileManager.swift */,
@@ -1214,7 +1217,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1270,6 +1273,7 @@
 				24DDA9361D9A663500FCDBCA /* PLEventsDatasource.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				E8DA8B921D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
+				D4949F5F1DCD085700FEF0C8 /* PLPaymentManager.swift in Sources */,
 				04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */,
 				E80692911DA0422200500684 /* PLFriendProfileViewController.swift in Sources */,
 				D47DC1EB1DBDF56000420958 /* PLPageCollectionPreset.swift in Sources */,
