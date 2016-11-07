@@ -17,18 +17,12 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wir-hk-uYD" customClass="PLBlurImageView" customModule="Pals" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+                        <color key="backgroundColor" red="0.43529412150000002" green="0.25098040700000002" blue="0.59215688710000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="0v2-g7-YEQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Basement" lineBreakMode="tailTruncation" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="0v2-g7-YEQ">
                         <rect key="frame" x="44" y="15" width="77" height="20"/>
-                        <attributedString key="attributedText">
-                            <fragment content="Basement">
-                                <attributes>
-                                    <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3242 Edgewood Ave, Orlando Fl. 32815 " lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="4ng-d0-Wx2">
@@ -47,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".5 Miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sj-uq-7Aw">
-                        <rect key="frame" x="287" y="20" width="44" height="15"/>
+                        <rect key="frame" x="287" y="18" width="44" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="97Q-Wi-IuB"/>
                         </constraints>
@@ -64,7 +58,6 @@
                     <constraint firstAttribute="trailing" secondItem="7sj-uq-7Aw" secondAttribute="trailing" constant="44" id="2K7-QS-z6q"/>
                     <constraint firstItem="Wir-hk-uYD" firstAttribute="top" secondItem="xCc-Sj-iPj" secondAttribute="top" id="9T2-Eh-gID"/>
                     <constraint firstItem="4ng-d0-Wx2" firstAttribute="top" secondItem="0v2-g7-YEQ" secondAttribute="bottom" constant="8" symbolic="YES" id="A6Q-LA-lq0"/>
-                    <constraint firstItem="7sj-uq-7Aw" firstAttribute="top" secondItem="xCc-Sj-iPj" secondAttribute="top" constant="20" id="B8H-5D-fjr"/>
                     <constraint firstItem="Wir-hk-uYD" firstAttribute="centerY" secondItem="2d5-Oi-cQU" secondAttribute="centerY" id="Ebh-SF-aEE"/>
                     <constraint firstAttribute="trailing" secondItem="Wir-hk-uYD" secondAttribute="trailing" id="MXR-3J-Yjt"/>
                     <constraint firstItem="Wir-hk-uYD" firstAttribute="leading" secondItem="xCc-Sj-iPj" secondAttribute="leading" id="Nji-Hi-JMr"/>
@@ -75,6 +68,7 @@
                     <constraint firstAttribute="bottom" secondItem="Wir-hk-uYD" secondAttribute="bottom" id="ci8-ds-v7N"/>
                     <constraint firstItem="mkr-bY-8vy" firstAttribute="top" secondItem="4ng-d0-Wx2" secondAttribute="bottom" constant="8" symbolic="YES" id="dcu-di-61h"/>
                     <constraint firstItem="0v2-g7-YEQ" firstAttribute="top" secondItem="xCc-Sj-iPj" secondAttribute="top" constant="15" id="e4e-0H-2Gl"/>
+                    <constraint firstItem="7sj-uq-7Aw" firstAttribute="centerY" secondItem="0v2-g7-YEQ" secondAttribute="centerY" id="ftl-SX-iKq"/>
                     <constraint firstItem="4ng-d0-Wx2" firstAttribute="leading" secondItem="0v2-g7-YEQ" secondAttribute="leading" id="lL9-LV-L6y"/>
                     <constraint firstItem="7sj-uq-7Aw" firstAttribute="trailing" secondItem="mkr-bY-8vy" secondAttribute="trailing" id="w5E-eK-sIj"/>
                 </constraints>
