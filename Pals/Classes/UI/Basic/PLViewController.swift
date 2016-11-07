@@ -25,7 +25,6 @@ extension PLViewController {
     func loadData<T : PLDatedObject where T : PLFilterable>
         (datasource: PLDatasource<T>, onLoad: () -> UITableView ) {
         datasource.cancel()
-        startActivityIndicator(.WhiteLarge)
         datasource.loadPage {[unowned self] (indices, error) in
             self.stopActivityIndicator()
             let table: UITableView = onLoad()

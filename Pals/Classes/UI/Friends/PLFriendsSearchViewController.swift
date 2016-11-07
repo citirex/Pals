@@ -39,7 +39,9 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
     }
 
     override func loadData() {
+		self.startActivityIndicator(.WhiteLarge, color: .grayColor(), position: .Center)
         loadData(datasource) { [unowned self] Void -> UITableView in
+			self.stopActivityIndicator()
             return self.datasource.searching ? self.resultsController.tableView : self.tableView
         }
     }

@@ -71,7 +71,9 @@ class PLPlacesViewController: PLSearchableViewController {
     // MARK: - Private Methods
     
     private func loadData() {
+		self.startActivityIndicator(.WhiteLarge, color: .whiteColor(), position: .Center)
         loadData(places) { [unowned self] Void -> UITableView in
+			self.stopActivityIndicator()
             return self.places.searching ? self.resultsController.tableView : self.tableView
         }
     }

@@ -109,7 +109,10 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	}
 	
     func loadData() {
+		
+		self.startActivityIndicator(.WhiteLarge, color: .grayColor(), position: .Center)
         loadData(datasource) {[unowned self] () -> UITableView in
+			self.stopActivityIndicator()
             return self.datasource.filtering ? self.resultsController.tableView : self.tableView
         }
     }
@@ -186,7 +189,12 @@ extension PLFriendBaseViewController: DZNEmptyDataSetSource {
 		let attributedString = NSAttributedString(string: string, font: .systemFontOfSize(18), color: .grayColor())
 		return attributedString
 	}
-    
+	
+	func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+		let named = scrollView === tableView ? "friends_placeholder" : "search"
+		return UIImage(named: named)!.imageResize(CGSizeMake(100, 100))
+	}
+	
 }
 
 
@@ -196,13 +204,16 @@ extension PLFriendBaseViewController: DZNEmptyDataSetDelegate {
 	
 	func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
 		navigationController?.navigationBar.shadowImage = nil
-		return false
+		return true
 	}
 	
 	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
 		return !datasource.loading
 	}
-    
+	
+	func emptyDataSetWillDisappear(scrollView: UIScrollView!) {
+		navigationController?.navigationBar.shadowImage = UIImage()
+	}
 }
 
 

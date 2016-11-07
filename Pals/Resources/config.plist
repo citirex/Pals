@@ -21,11 +21,11 @@
 		<key>ActiveServer</key>
 		<dict>
 			<key>http://yegor.pythonanywhere.com</key>
-			<true/>
+			<false/>
 			<key>http://192.168.1.14:8000</key>
 			<false/>
 			<key>https://api.pals.com</key>
-			<false/>
+			<true/>
 			<key>http://192.168.1.127:8181</key>
 			<false/>
 		</dict>
