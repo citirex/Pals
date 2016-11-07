@@ -12,6 +12,13 @@ struct PLPush {
     var count = 0
     var launchedByTap = false
     
+    init(type: PLPushType?, id: UInt64, count: Int, byTap: Bool) {
+        self.type = type
+        self.id = id
+        self.count = count
+        self.launchedByTap = byTap
+    }
+    
     init(data: [String : AnyObject], launchedByTap: Bool) {
         self.launchedByTap = launchedByTap
         if let type = data[PLKeys.type.string] as? String {
@@ -27,6 +34,15 @@ struct PLPush {
                 self.count = count
             }
         }
+    }
+    
+    // for testing purposes
+    static func random() -> PLPush {
+        let type = Int((arc4random() % 2) + 1)
+        let id = UInt64(arc4random() % 1000)
+        let count = Int(arc4random() % 100)
+        let byTap = Bool(Int(arc4random() % 2))
+        return PLPush(type: PLPushType(rawValue: type), id: id, count: count, byTap: byTap)
     }
 }
 
@@ -44,6 +60,10 @@ enum PLPushType : Int {
 }
 
 let kPLPushManagerDidReceivePush = "kPLPushManagerDidReceivePush"
+
+protocol PLPushSimulation {
+    func simulatePushes(settings: PLPushSettings)
+}
 
 class PLPushManager: NSObject {
 
@@ -93,9 +113,26 @@ class PLPushManager: NSObject {
             let push = PLPush(data: pushData, launchedByTap: launchedByTap)
             if let type = push.type {
                 PLLog("Push notification type: \(type.description)", type: .Pushes)
-                NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: push as? AnyObject, userInfo: nil)
+                notifyPush(push)
             }
         }
     }
     
+    func notifyPush(push: PLPush) {
+        NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: push as? AnyObject, userInfo: nil)
+    }
+}
+
+extension PLPushManager : PLPushSimulation {
+    func simulatePushes(settings: PLPushSettings) {
+        if settings.simulationEnabled {
+            NSTimer.scheduledTimerWithTimeInterval(settings.simulationInterval, target: self, selector: #selector(pushSimulatorFired(_:)), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func pushSimulatorFired(timer: NSTimer) {
+        let push = PLPush.random()
+        PLLog("Generated random push:\n\(push)")
+        notifyPush(push)
+    }
 }

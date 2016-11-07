@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>PushSimulation</key>
+	<dict>
+		<key>Enabled</key>
+		<false/>
+		<key>Interval</key>
+		<integer>10</integer>
+	</dict>
 	<key>FakeFeeds</key>
 	<dict>
 		<key>Enabled</key>
@@ -26,10 +33,10 @@
 			<false/>
 			<key>https://api.pals.com</key>
 			<false/>
-			<key>http://192.168.1.127:8181</key>
-			<false/>
-			<key>http://192.168.1.226:8888</key>
+			<key>http://192.168.1.127:8000</key>
 			<true/>
+			<key>http://192.168.1.226:8888</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>DefaultUser</key>
