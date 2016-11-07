@@ -17,5 +17,6 @@
 
 #import "QTCollectionViewParallaxLayout.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <Stripe/Stripe.h>
 
 #endif /* Pals_Bridging_Header_h */
