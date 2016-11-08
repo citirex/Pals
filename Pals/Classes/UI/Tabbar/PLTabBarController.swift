@@ -6,6 +6,10 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+enum PLTabBarItem: Int {
+    case ProfileTabBarItem, PlacesTabBarItem, OrderTabBarItem, FriendsTabBarItem
+}
+
 class PLTabBarController: UITabBarController {
 
     override func viewDidLoad() {
@@ -19,62 +23,71 @@ class PLTabBarController: UITabBarController {
             item.setTitleTextAttributes([NSForegroundColorAttributeName : selectedColor], forState: .Selected)
             item.setTitleTextAttributes([NSForegroundColorAttributeName : unselectedColor], forState: .Normal)
         }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(kPLPushManagerDidReceivePush, object: nil,
+        queue: .mainQueue()) { notification in
+            guard let push = notification.object as? PLPush else { return }
+            let item = push.type!.tabBarItem
+            let badgeValue = String(push.count)
+            
+            self.addBadgeToTabBarItem(item, badgeValue: badgeValue)
+        }
     }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        guard item.badgeValue != nil else { return }
+        item.badgeValue = nil
+    }
+
 }
+
 
 extension UITabBarController {
     
-    func setCounterNumber(number:Int, onTab tab:PLTabType) {
-        let tabItem = tabBar.items![tab.int]
-        tabItem.badgeValue = String(number)
-    }
-    
-    func incrementCounterNumberOn(tab: PLTabType) {
-        let tabItem = tabBar.items![tab.int]
-        if let badgeValue = tabItem.badgeValue {
-            if let count = Int(badgeValue) {
-                tabItem.badgeValue = String(count+1)
-            } else {
-                tabItem.badgeValue = nil
-            }
-        } else {
-            tabItem.badgeValue = "1"
+    func addBadgeToTabBarItem(item: PLTabBarItem, badgeValue: String) {
+        switch item {
+        case .PlacesTabBarItem: break
+        case .OrderTabBarItem : break
+        default:
+            tabBar.items![item.rawValue].badgeValue = badgeValue
         }
     }
     
-    func resetConterNumberOn(tab: PLTabType) {
-        tabBar.items![tab.int].badgeValue = nil
-    }
-    
-    func switchTabTo(tab: PLTabType) {
-        selectedIndex = tab.int
+    func incrementBadgeOnTabBarItem(item: PLTabBarItem) {
+        let badgeValue = String((Int(tabBar.items![item.rawValue].badgeValue!) ?? 0) + 1)
+        tabBar.items![item.rawValue].badgeValue = badgeValue
     }
     
     var orderViewController: PLOrderViewController {
-        return viewControllerForTab(.Order) as! PLOrderViewController
+        return viewControllerByTabBarItem(.OrderTabBarItem) as! PLOrderViewController
     }
     
     var profileViewController: PLProfileViewController {
-        return viewControllerForTab(.Profile) as! PLProfileViewController
+        return viewControllerByTabBarItem(.ProfileTabBarItem) as! PLProfileViewController
     }
     
-    func viewControllerForTab(type: PLTabType) -> UIViewController? {
-        let vc = (viewControllers![type.int] as! UINavigationController).viewControllers.first
-        return vc
+    private func viewControllerByTabBarItem(item: PLTabBarItem) -> UIViewController {
+        print("item: \(item.rawValue)")
+        return (viewControllers![item.rawValue] as! UINavigationController).viewControllers.first!
     }
+    
 }
 
-extension UIViewController
-{
-    class func instantiateFromStoryboard(storyboardName: String, storyboardId: String) -> Self
-    {
+
+extension UIViewController {
+    
+    class func instantiateFromStoryboard(storyboardName: String, storyboardId: String) -> Self {
         return instantiateFromStoryboardHelper(storyboardName, storyboardId: storyboardId)
     }
     
-    private class func instantiateFromStoryboardHelper<T>(storyboardName: String, storyboardId: String) -> T
-    {
+    private class func instantiateFromStoryboardHelper<T>(storyboardName: String, storyboardId: String) -> T {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         let controller = storyboard.instantiateViewControllerWithIdentifier(storyboardId) as! T
         return controller
     }
+    
 }
