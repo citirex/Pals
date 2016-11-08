@@ -264,9 +264,8 @@ class PLProfileViewController: TGLStackedViewController {
     //MARK: - Setup
     func setupUserInfo() {
         if let profile = profile {
-            title = profile.name
-            collectionBackgroundView.balanceButton.setTitle(String(format: "$%.2f", profile.balance), forState: .Normal)
-            collectionBackgroundView.balanceButton.addTarget(self, action: #selector(addFundsButtonPressed(_:)), forControlEvents: .TouchUpInside)
+			
+			collectionBackgroundView.nameLabel.text = profile.name
             collectionBackgroundView.myCoversButton.addTarget(self, action: #selector(myCoversButtonPressed(_:)), forControlEvents: .TouchUpInside)
             collectionBackgroundView.myDrinksButton.addTarget(self, action: #selector(myDrinksButtonPressed(_:)), forControlEvents: .TouchUpInside)
             
