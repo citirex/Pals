@@ -126,7 +126,7 @@ extension PLFriendProfileViewController {
         let type: PLCollectionSectionType = sender.tag == 0 ? .Covers : .Drinks
         orderViewController.setSectionType(type)
         orderViewController.order.user = friend
-        tabBarController?.switchTabTo(.Order)
+        tabBarController?.switchTabBarItemTo(.OrderTabBarItem)
     }
     
     @IBAction func inviteStatePressed(sender: UIButton) {

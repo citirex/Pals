@@ -11,13 +11,13 @@ enum PLCollectionSectionType {
     case Drinks
 }
 
-enum PLTabType: Int {
-    case Profile = 0
-    case Places
-    case Order
-    case Friends
-    var int: Int {return rawValue}
-}
+//enum PLTabType: Int {
+//    case Profile = 0
+//    case Places
+//    case Order
+//    case Friends
+//    var int: Int {return rawValue}
+//}
 
 var kPalsGoldColor: UIColor {
     return UIColor(red:0.85, green:0.73, blue:0.19, alpha:1.0)

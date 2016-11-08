@@ -6,7 +6,9 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-struct PLPush {
+import Permission
+
+class PLPush {
     var type: PLPushType?
     var id: UInt64?
     var count = 0
@@ -37,24 +39,32 @@ struct PLPush {
     }
     
     // for testing purposes
-    static func random() -> PLPush {
+    class func random() -> PLPush {
         let type = Int((arc4random() % 2) + 1)
         let id = UInt64(arc4random() % 1000)
         let count = Int(arc4random() % 100)
         let byTap = Bool(Int(arc4random() % 2))
         return PLPush(type: PLPushType(rawValue: type), id: id, count: count, byTap: byTap)
     }
+    
 }
 
-enum PLPushType : Int {
+enum PLPushType: Int {
     case Order = 1
-    case Friend
+    case Friends
+
+    
     var description: String {
         switch self {
-        case .Order:
-            return "Order"
-        case .Friend:
-            return "Friend"
+        case .Order   : return "Order"
+        case .Friends : return "Friends"
+        }
+    }
+    
+    var tabBarItem: Int {
+        switch self {
+        case .Order   : return PLTabBarItem.ProfileTabBarItem.rawValue
+        case .Friends : return PLTabBarItem.FriendsTabBarItem.rawValue
         }
     }
 }
@@ -70,6 +80,14 @@ class PLPushManager: NSObject {
     dynamic var deviceToken: String?
     
     func registerPushNotifications(application: UIApplication) {
+//        Permission.Notifications.request { status in
+//            switch status {
+//            case .Authorized:    print("authorized")
+//            case .Denied:        print("denied")
+//            case .Disabled:      print("disabled")
+//            case .NotDetermined: print("not determined")
+//            }
+//        }
         let types: UIUserNotificationType = [.Badge, .Sound, .Alert]
         let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
         application.registerUserNotificationSettings(settings)
@@ -113,15 +131,18 @@ class PLPushManager: NSObject {
             let push = PLPush(data: pushData, launchedByTap: launchedByTap)
             if let type = push.type {
                 PLLog("Push notification type: \(type.description)", type: .Pushes)
+
                 notifyPush(push)
             }
         }
     }
     
     func notifyPush(push: PLPush) {
-        NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: push as? AnyObject, userInfo: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: push)
     }
+    
 }
+
 
 extension PLPushManager : PLPushSimulation {
     func simulatePushes(settings: PLPushSettings) {
@@ -132,7 +153,8 @@ extension PLPushManager : PLPushSimulation {
     
     func pushSimulatorFired(timer: NSTimer) {
         let push = PLPush.random()
-        PLLog("Generated random push:\n\(push)")
+        PLLog("Generated random push:\n\(push): type: \(push.type!), count: \(push.count), byTap: \(push.launchedByTap)")
         notifyPush(push)
     }
+    
 }
