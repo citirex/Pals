@@ -13,17 +13,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d1f-d0-5ry">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_profile_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="d1f-d0-5ry">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wd2-lI-gI1">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fAv-FN-Dvd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <blurEffect style="dark"/>
-                </visualEffectView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6gY-hN-GqU" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
                     <rect key="frame" x="109" y="60" width="102" height="102"/>
                     <constraints>
@@ -67,10 +59,10 @@
                         <constraint firstAttribute="height" constant="1" id="mtI-RA-J83"/>
                     </constraints>
                 </view>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no love from your PALS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFG-0l-ezT">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no love from your PALS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFG-0l-ezT">
                     <rect key="frame" x="66" y="415" width="189" height="22"/>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -78,37 +70,32 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="p5u-zr-fNT" secondAttribute="trailing" id="1ak-03-Fq1"/>
                 <constraint firstItem="DPh-LG-qCh" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" id="3J4-kv-YEg"/>
-                <constraint firstItem="6gY-hN-GqU" firstAttribute="height" secondItem="wd2-lI-gI1" secondAttribute="height" multiplier="0.18" id="7t4-5k-iMD"/>
                 <constraint firstItem="p5u-zr-fNT" firstAttribute="width" secondItem="8Sc-c6-PaP" secondAttribute="width" multiplier="1:2" id="7yC-Gt-vqW"/>
                 <constraint firstItem="y68-sQ-VKo" firstAttribute="top" secondItem="6gY-hN-GqU" secondAttribute="bottom" constant="10" id="8N2-vY-rdT"/>
                 <constraint firstItem="jEq-4t-NXz" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" constant="16" id="AZQ-NG-JPW"/>
-                <constraint firstItem="wd2-lI-gI1" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" id="B2O-Uq-5Z1"/>
                 <constraint firstAttribute="trailing" secondItem="d1f-d0-5ry" secondAttribute="trailing" id="Emt-EZ-58k"/>
                 <constraint firstItem="d1f-d0-5ry" firstAttribute="top" secondItem="8Sc-c6-PaP" secondAttribute="top" id="If9-FI-bit"/>
                 <constraint firstAttribute="bottom" secondItem="d1f-d0-5ry" secondAttribute="bottom" id="JWb-Qb-NEI"/>
                 <constraint firstItem="p5u-zr-fNT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y68-sQ-VKo" secondAttribute="bottom" constant="10" id="Jg8-Gr-5XR"/>
                 <constraint firstItem="jEq-4t-NXz" firstAttribute="centerY" secondItem="8Sc-c6-PaP" secondAttribute="centerY" id="Jtj-E1-fKG"/>
-                <constraint firstAttribute="bottom" secondItem="wd2-lI-gI1" secondAttribute="bottom" id="MS2-mk-y3l"/>
                 <constraint firstAttribute="trailing" secondItem="jEq-4t-NXz" secondAttribute="trailing" constant="16" id="P1l-eL-ap2"/>
                 <constraint firstItem="0yG-cs-2WH" firstAttribute="bottom" secondItem="p5u-zr-fNT" secondAttribute="bottom" id="RYx-eR-6vT"/>
                 <constraint firstItem="d1f-d0-5ry" firstAttribute="leading" secondItem="8Sc-c6-PaP" secondAttribute="leading" id="SEz-5M-ocr"/>
-                <constraint firstItem="wd2-lI-gI1" firstAttribute="top" secondItem="8Sc-c6-PaP" secondAttribute="top" id="SLr-2z-dcW"/>
                 <constraint firstItem="jEq-4t-NXz" firstAttribute="top" secondItem="DPh-LG-qCh" secondAttribute="bottom" constant="8" id="TAG-L4-klW"/>
                 <constraint firstItem="JFG-0l-ezT" firstAttribute="centerY" secondItem="8Sc-c6-PaP" secondAttribute="bottom" multiplier="0.75" id="WRi-8S-jZz"/>
                 <constraint firstItem="y68-sQ-VKo" firstAttribute="centerX" secondItem="6gY-hN-GqU" secondAttribute="centerX" id="XIL-i1-WhY"/>
                 <constraint firstItem="0yG-cs-2WH" firstAttribute="centerX" secondItem="DPh-LG-qCh" secondAttribute="centerX" priority="250" id="Yp8-dI-Slt"/>
                 <constraint firstItem="0yG-cs-2WH" firstAttribute="centerX" secondItem="p5u-zr-fNT" secondAttribute="centerX" priority="750" id="Yqc-0y-CcX"/>
                 <constraint firstItem="DPh-LG-qCh" firstAttribute="width" secondItem="8Sc-c6-PaP" secondAttribute="width" multiplier="1:2" id="elu-BT-OeO"/>
-                <constraint firstAttribute="trailing" secondItem="wd2-lI-gI1" secondAttribute="trailing" id="iLz-Rc-eZy"/>
                 <constraint firstItem="6gY-hN-GqU" firstAttribute="centerX" secondItem="8Sc-c6-PaP" secondAttribute="centerX" id="ihg-Km-bAO"/>
                 <constraint firstItem="6gY-hN-GqU" firstAttribute="top" secondItem="8Sc-c6-PaP" secondAttribute="top" constant="60" id="m8B-FI-rfR"/>
                 <constraint firstItem="p5u-zr-fNT" firstAttribute="centerY" secondItem="DPh-LG-qCh" secondAttribute="centerY" id="mhz-us-uvg"/>
+                <constraint firstItem="6gY-hN-GqU" firstAttribute="height" secondItem="d1f-d0-5ry" secondAttribute="height" multiplier="0.18" id="pD8-Mi-YXT"/>
                 <constraint firstItem="JFG-0l-ezT" firstAttribute="centerX" secondItem="8Sc-c6-PaP" secondAttribute="centerX" id="qaC-ni-6q8"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="backgroundImageView" destination="d1f-d0-5ry" id="lT7-HI-Hj0"/>
                 <outlet property="myCoversButton" destination="DPh-LG-qCh" id="RWn-wv-tQp"/>
                 <outlet property="myCoversConstraint" destination="Yp8-dI-Slt" id="UNw-7G-Amf"/>
                 <outlet property="myDrinksButton" destination="p5u-zr-fNT" id="yp1-79-Pff"/>
@@ -120,4 +107,7 @@
             <point key="canvasLocation" x="352" y="281"/>
         </view>
     </objects>
+    <resources>
+        <image name="friend_profile_placeholder" width="1402" height="994"/>
+    </resources>
 </document>

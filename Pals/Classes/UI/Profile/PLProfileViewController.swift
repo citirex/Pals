@@ -270,7 +270,6 @@ class PLProfileViewController: TGLStackedViewController {
                                                                              placeholderImage: UIImage(named: "avatar_placeholder"),
                                                                              success: { (retuqest, response, image) in
                                                                                 self.collectionBackgroundView.userPicImageView.image = image
-                                                                                self.collectionBackgroundView.backgroundImageView.image = image
                 }, failure: { (request, response, error) in
                     print("Error when downloading profile image: \(error.debugDescription)")
             })
