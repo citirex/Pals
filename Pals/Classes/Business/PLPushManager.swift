@@ -57,7 +57,7 @@ class PLPush {
         }
 
     }
-    
+
     // for testing purposes
     class func random() -> PLPush {
         let type = Int((arc4random() % 2) + 1)
@@ -150,7 +150,7 @@ class PLPushManager: NSObject {
     }
     
     func notifyPush(push: PLPush) {
-        NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: push)
+        NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: nil)
     }
     
 }
