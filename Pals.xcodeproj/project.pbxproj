@@ -37,7 +37,6 @@
 		2480F8EA1D813E730095995F /* PLPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8841D813E730095995F /* PLPlace.swift */; };
 		2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8851D813E730095995F /* PLUniqueObject.swift */; };
 		2480F8EC1D813E730095995F /* PLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8861D813E730095995F /* PLUser.swift */; };
-		2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8961D813E730095995F /* PLAddFundsViewController.swift */; };
 		2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A31D813E730095995F /* PLLoginViewController.swift */; };
 		2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A51D813E730095995F /* PLOrderViewController.swift */; };
 		2480F8FF1D813E730095995F /* PLOrderDrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */; };
@@ -220,7 +219,6 @@
 		2480F8851D813E730095995F /* PLUniqueObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUniqueObject.swift; sourceTree = "<group>"; };
 		2480F8861D813E730095995F /* PLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUser.swift; sourceTree = "<group>"; };
 		2480F8871D813E730095995F /* Pals-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Pals-Bridging-Header.h"; path = "Classes/Pals-Bridging-Header.h"; sourceTree = "<group>"; };
-		2480F8961D813E730095995F /* PLAddFundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddFundsViewController.swift; sourceTree = "<group>"; };
 		2480F8A31D813E730095995F /* PLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLoginViewController.swift; sourceTree = "<group>"; };
 		2480F8A51D813E730095995F /* PLOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderViewController.swift; sourceTree = "<group>"; };
 		2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDrinkCell.swift; sourceTree = "<group>"; };
@@ -513,7 +511,6 @@
 				2480F8A21D813E730095995F /* Login */,
 				2480F8C11D813E730095995F /* SignUp */,
 				E8DA8B861D88334F008782E5 /* Profile */,
-				2480F8931D813E730095995F /* AddFunds */,
 				2480F89B1D813E730095995F /* Friends */,
 				E8E4A1301D89E1D600EA0DFE /* Friend Profile */,
 				2480F8A41D813E730095995F /* Order */,
@@ -526,14 +523,6 @@
 				E8BE86871D913AA20079855C /* Notifications */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		2480F8931D813E730095995F /* AddFunds */ = {
-			isa = PBXGroup;
-			children = (
-				2480F8961D813E730095995F /* PLAddFundsViewController.swift */,
-			);
-			path = AddFunds;
 			sourceTree = "<group>";
 		};
 		2480F8971D813E730095995F /* Basic */ = {
@@ -1291,7 +1280,6 @@
 				24DA61171D8BF642007F4973 /* PLCover.swift in Sources */,
 				E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */,
 				E8E4A12E1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift in Sources */,
-				2480F8F31D813E730095995F /* PLAddFundsViewController.swift in Sources */,
 				2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */,
 				D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */,
 				24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */,

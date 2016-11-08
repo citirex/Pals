@@ -9,7 +9,6 @@
 class PLFriendProfileViewController: PLViewController {
     
     @IBOutlet weak var friendProfileImageView: PLCircularImageView!
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var invitatedStatusButton: UIButton!
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var popUpMenuView: UIView!
@@ -25,7 +24,6 @@ class PLFriendProfileViewController: PLViewController {
         super.viewDidLoad()
         
         title = friend?.name
-        backgroundImageView.setImageWithURL(friend!.picture)
         invitatedStatusButton.setTitle(status, forState: .Normal)
         friendProfileImageView.setImageWithURL(friend.picture, placeholderImage: UIImage(named: "profile_placeholder"))
         
@@ -128,7 +126,7 @@ extension PLFriendProfileViewController {
         let type: PLCollectionSectionType = sender.tag == 0 ? .Covers : .Drinks
         orderViewController.setSectionType(type)
         orderViewController.order.user = friend
-        tabBarController?.switchTabTo(.Order)
+        tabBarController?.switchTabBarItemTo(.OrderTabBarItem)
     }
     
     @IBAction func inviteStatePressed(sender: UIButton) {

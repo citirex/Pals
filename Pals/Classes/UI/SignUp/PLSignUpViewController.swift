@@ -83,23 +83,6 @@ extension PLSignUpViewController {
 }
 
 
-// MARK: - UIImagePickerControllerDelegate
-
-extension PLSignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
-        userProfileImageView.image = imagePicked.crop(CGSizeMake(200, 200))
-        dismiss(true)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismiss(true)
-    }
-    
-}
-
-
 // MARK: - UITextFieldDelegate
 
 extension PLSignUpViewController: UITextFieldDelegate {

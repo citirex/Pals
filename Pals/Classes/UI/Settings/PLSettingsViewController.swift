@@ -15,7 +15,6 @@ private enum SectionType {
 private enum Item: String {
     case Account        = "Account"
     case CardInfo       = "Card Info"
-    case AddFunds       = "Add Funds"
     case Notifications  = "Notifications"
     case OrderHistory   = "Order History"
     case HelpAndFAQ     = "Help and FAQ"
@@ -26,7 +25,6 @@ private enum Item: String {
         switch self {
         case .Account:        return .EditProfileSegue
         case .CardInfo:       return .CardInfoSegue
-        case .AddFunds:       return .AddFundsSegue
         case .Notifications:  return .NotificationsSegue
         case .OrderHistory:   return .OrderHistorySegue
         case .HelpAndFAQ:     return .HelpAndFAQSegue
@@ -49,7 +47,7 @@ class PLSettingsViewController: PLViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var sections = [
-        Section(type: .General, items: [.Account, .CardInfo, .AddFunds, .Notifications]),
+        Section(type: .General, items: [.Account, .CardInfo, .Notifications]),
         Section(type: .Archive, items: [.OrderHistory]),
         Section(type: .Support, items: [.HelpAndFAQ, .TermsOfService, .PrivacyPolicy])
     ]

@@ -7,11 +7,11 @@
 //
 
 enum SegueIdentifier: String {
+    case AddFundsSegue
     case OrderPlacesSegue
     case OrderFriendsSegue
     case PlaceProfileSegue
     case FriendProfileSegue
-    case AddFundsSegue
     case EditProfileSegue
     case CardInfoSegue
     case NotificationsSegue

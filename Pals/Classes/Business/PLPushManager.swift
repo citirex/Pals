@@ -32,7 +32,7 @@ class PLBadge: PLDeserializable {
     }
 }
 
-struct PLPush {
+class PLPush {
     var badge: PLBadge?
     var id: UInt64?
     var launchedByTap = false
@@ -59,24 +59,32 @@ struct PLPush {
     }
     
     // for testing purposes
-    static func random() -> PLPush {
+    class func random() -> PLPush {
         let type = Int((arc4random() % 2) + 1)
         let id = UInt64(arc4random() % 1000)
         let count = Int(arc4random() % 100)
         let byTap = Bool(Int(arc4random() % 2))
         return PLPush(type: PLPushType(rawValue: type), id: id, count: count, byTap: byTap)
     }
+    
 }
 
-enum PLPushType : Int {
+enum PLPushType: Int {
     case Order = 1
-    case Friend
+    case Friends
+
+    
     var description: String {
         switch self {
-        case .Order:
-            return "Order"
-        case .Friend:
-            return "Friend"
+        case .Order   : return "Order"
+        case .Friends : return "Friends"
+        }
+    }
+    
+    var tabBarItem: Int {
+        switch self {
+        case .Order   : return PLTabBarItem.ProfileTabBarItem.rawValue
+        case .Friends : return PLTabBarItem.FriendsTabBarItem.rawValue
         }
     }
 }
@@ -142,8 +150,9 @@ class PLPushManager: NSObject {
     }
     
     func notifyPush(push: PLPush) {
-        NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: push as? AnyObject, userInfo: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: push)
     }
+    
 }
 
 extension PLPushManager : PLPushSimulation {
@@ -155,7 +164,8 @@ extension PLPushManager : PLPushSimulation {
     
     func pushSimulatorFired(timer: NSTimer) {
         let push = PLPush.random()
-        PLLog("Generated random push:\n\(push)", type: .Pushes)
+        PLLog("Generated random push:\n\(push): type: \(push.badge?.type), count: \(push.badge?.count), byTap: \(push.launchedByTap)")
         notifyPush(push)
     }
+    
 }
