@@ -30,7 +30,7 @@ class PLTabBarController: UITabBarController {
             let item = push.type!.tabBarItem
             let badgeValue = String(push.count)
             
-            self.addBadgeToTabBarItem(item, badgeValue: badgeValue)
+            self.tabBar.items![item].badgeValue = badgeValue
         }
     }
 
@@ -47,19 +47,14 @@ class PLTabBarController: UITabBarController {
 
 
 extension UITabBarController {
-    
-    func addBadgeToTabBarItem(item: PLTabBarItem, badgeValue: String) {
-        switch item {
-        case .PlacesTabBarItem: break
-        case .OrderTabBarItem : break
-        default:
-            tabBar.items![item.rawValue].badgeValue = badgeValue
-        }
-    }
-    
+
     func incrementBadgeOnTabBarItem(item: PLTabBarItem) {
         let badgeValue = String((Int(tabBar.items![item.rawValue].badgeValue!) ?? 0) + 1)
         tabBar.items![item.rawValue].badgeValue = badgeValue
+    }
+    
+    func switchTabBarItemTo(item: PLTabBarItem) {
+        selectedIndex = item.rawValue
     }
     
     var orderViewController: PLOrderViewController {
@@ -71,7 +66,6 @@ extension UITabBarController {
     }
     
     private func viewControllerByTabBarItem(item: PLTabBarItem) -> UIViewController {
-        print("item: \(item.rawValue)")
         return (viewControllers![item.rawValue] as! UINavigationController).viewControllers.first!
     }
     

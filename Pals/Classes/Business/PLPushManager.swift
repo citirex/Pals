@@ -40,7 +40,7 @@ class PLPush {
     
     // for testing purposes
     class func random() -> PLPush {
-        let type = Int((arc4random() % 4))
+        let type = Int((arc4random() % 2) + 1)
         let id = UInt64(arc4random() % 1000)
         let count = Int(arc4random() % 100)
         let byTap = Bool(Int(arc4random() % 2))
@@ -50,26 +50,21 @@ class PLPush {
 }
 
 enum PLPushType: Int {
-    case Profile
-    case Places
-    case Order
+    case Order = 1
     case Friends
+
     
     var description: String {
         switch self {
-        case .Profile : return "Profile"
-        case .Places  : return "Place"
         case .Order   : return "Order"
-        case .Friends  : return "Friends"
+        case .Friends : return "Friends"
         }
     }
     
-    var tabBarItem: PLTabBarItem {
+    var tabBarItem: Int {
         switch self {
-        case .Profile : return .ProfileTabBarItem
-        case .Places  : return .PlacesTabBarItem
-        case .Order   : return .OrderTabBarItem
-        case .Friends : return .FriendsTabBarItem
+        case .Order   : return PLTabBarItem.ProfileTabBarItem.rawValue
+        case .Friends : return PLTabBarItem.FriendsTabBarItem.rawValue
         }
     }
 }
