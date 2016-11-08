@@ -26,7 +26,6 @@ extension UINavigationBar {
     enum Style {
         case Default
         case ProfileStyle
-        case AddFundsStyle
         case FriendsStyle
         case FriendProfileStyle
         case OrderStyle
@@ -43,10 +42,6 @@ extension UINavigationBar {
         get { return .Default }
         set (style) {
             switch style {
-            case .AddFundsStyle:
-                transparent = true
-                barStyle    = .Default
-                tintColor   = .affairColor()
             case .FriendsStyle:
                 transparent = false
                 barStyle    = .Default
