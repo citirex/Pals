@@ -131,7 +131,8 @@ extension PLPlacesViewController: UITableViewDataSource {
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         guard let cell = cell as? PLPlaceCell else { return }
         let place = places[indexPath.row]
-        cell.placeCellData = place.cellData
+        let cellData = place.cellData
+        cell.placeCellData = cellData
         cell.chevron.hidden = false
     }
     

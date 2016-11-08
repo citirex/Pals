@@ -26,11 +26,11 @@ class PLTabBarController: UITabBarController {
         
         NSNotificationCenter.defaultCenter().addObserverForName(kPLPushManagerDidReceivePush, object: nil,
         queue: .mainQueue()) { notification in
-            guard let push = notification.object as? PLPush else { return }
-            let item = push.type!.tabBarItem
-            let badgeValue = String(push.count)
-            
-            self.tabBar.items![item].badgeValue = badgeValue
+//            guard let push = notification.object as? PLPush else { return }
+//            let item = push.type!.tabBarItem
+//            let badgeValue = String(push.count)
+//            
+//            self.tabBar.items![item].badgeValue = badgeValue
         }
     }
 

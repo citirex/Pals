@@ -85,8 +85,8 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
         
         barPlaceLabel.text = order.place.address
         
-        if let QR = cardQRCodeLabel.text where QR != order.QRcode {
-            cardQRCodeLabel.text = order.QRcode
+        if let QR = cardQRCodeLabel.text where QR != order.place.QRcode {
+            cardQRCodeLabel.text = order.place.QRcode
         }
         
         userNicknameLabel.text = order.user.name
@@ -94,7 +94,7 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     }
     
     func setupImages(order: PLOrderCellData) {
-        cardQRCodeImageView.image = QRCode.generateImage(order.QRcode, avatarImage: nil)
+        cardQRCodeImageView.image = QRCode.generateImage(order.place.QRcode, avatarImage: nil)
         setImage(order.user.picture)
     }
     
