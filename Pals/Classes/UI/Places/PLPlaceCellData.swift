@@ -14,4 +14,6 @@ struct PLPlaceCellData {
     let musicGengres: String
     let address: String
     let location: CLLocationCoordinate2D
+    let QRcode: String
+    let accessCode: String
 }

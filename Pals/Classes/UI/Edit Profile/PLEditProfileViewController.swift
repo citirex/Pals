@@ -136,8 +136,9 @@ extension PLEditProfileViewController {
     @IBAction func showActionSheet(sender: UIButton) {
         dismissKeyboard(sender)
         
-        PLImagePicker.pickImage(self, imageView: userProfileImageView) { image in
+        PLImagePicker.pickImage(self, imageView: userProfileImageView) {[unowned self] image in
             self.userProfileImageView.image = image
+            self.editData?.changePicture(image)
         }
     }
 

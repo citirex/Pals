@@ -6,34 +6,56 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-struct PLPush {
-    var type: PLPushType?
-    var id: UInt64?
+class PLBadge: PLDeserializable {
+    var type: PLPushType
     var count = 0
+
+    required init?(jsonDic: [String : AnyObject]) {
+        guard
+            let typeNum = jsonDic[PLKeys.type.string] as? Int,
+            let count = jsonDic[PLKeys.count.string] as? Int
+        else {
+            return nil
+        }
+        guard
+            let type = PLPushType(rawValue: typeNum)
+        else {
+            return nil
+        }
+        self.type = type
+        self.count = count
+    }
+    
+    init(type: PLPushType, count: Int) {
+        self.type = type
+        self.count = count
+    }
+}
+
+struct PLPush {
+    var badge: PLBadge?
+    var id: UInt64?
     var launchedByTap = false
     
     init(type: PLPushType?, id: UInt64, count: Int, byTap: Bool) {
-        self.type = type
+        self.badge = PLBadge(type: type!, count: count)
         self.id = id
-        self.count = count
         self.launchedByTap = byTap
     }
     
     init(data: [String : AnyObject], launchedByTap: Bool) {
         self.launchedByTap = launchedByTap
-        if let type = data[PLKeys.type.string] as? String {
-            if let pushType = PLPushType(rawValue: Int(type)!) {
-                self.type = pushType
+        if let type = data[PLKeys.type.string] as? Int {
+            if let pushType = PLPushType(rawValue: type) {
+                if let count = data[PLKeys.count.string] as? Int {
+                    self.badge = PLBadge(type: pushType, count: count)
+                }
             }
         }
-        if let id = data[PLKeys.id.string] as? String {
+        if let id = data[PLKeys.id.string] as? Int {
             self.id = UInt64(id)
         }
-        if let countStr = data[PLKeys.count.string] as? String {
-            if let count = Int(countStr) {
-                self.count = count
-            }
-        }
+
     }
     
     // for testing purposes
@@ -108,11 +130,12 @@ class PLPushManager: NSObject {
     
     func processPushInfo(aps: [String:AnyObject], launchedByTap: Bool) {
         PLLog("Received remote notification: \n\(aps)", type: .Pushes)
-        PLShowAlert("Received remote notification", message: aps.description)
+        if UIApplication.sharedApplication().applicationState == .Active {
+            PLShowAlert("Received remote notification", message: aps.description)
+        }
         if let pushData = aps[PLKeys.info.string] as? [String : AnyObject] {
             let push = PLPush(data: pushData, launchedByTap: launchedByTap)
-            if let type = push.type {
-                PLLog("Push notification type: \(type.description)", type: .Pushes)
+            if push.badge != nil {
                 notifyPush(push)
             }
         }
@@ -132,7 +155,7 @@ extension PLPushManager : PLPushSimulation {
     
     func pushSimulatorFired(timer: NSTimer) {
         let push = PLPush.random()
-        PLLog("Generated random push:\n\(push)")
+        PLLog("Generated random push:\n\(push)", type: .Pushes)
         notifyPush(push)
     }
 }

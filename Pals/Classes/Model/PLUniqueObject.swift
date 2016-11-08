@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLUniqueObject: NSObject, PLSerializable {
+class PLUniqueObject: NSObject, PLSerializable, PLDeserializable {
     
     var id: UInt64 = 0
     
@@ -27,8 +27,11 @@ protocol PLFilterable {
     static func filter(objc: AnyObject, text: String) -> Bool
 }
 
-protocol PLSerializable {
+protocol PLDeserializable {
     init?(jsonDic: [String:AnyObject])
+}
+
+protocol PLSerializable {
     func serialize() -> [String : AnyObject]
 }
 

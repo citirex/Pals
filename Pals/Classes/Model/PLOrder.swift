@@ -7,8 +7,6 @@
 //
 
 class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
-    let QRcode: String
-    let accessCode: String
     let user: PLUser
     let place: PLPlace
     var drinkSets = [PLDrinkset]()
@@ -21,9 +19,7 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
             let userDic = jsonDic[PLKeys.user.string] as? Dictionary<String,AnyObject>,
             let placeDic = jsonDic[PLKeys.place.string] as? Dictionary<String,AnyObject>,
             let message = jsonDic[PLKeys.message.string] as? String,
-            let isVIP = jsonDic[PLKeys.is_vip.string] as? Bool,
-            let accessCode = jsonDic[PLKeys.access_code.string] as? String,
-            let QRcode = jsonDic[PLKeys.qr_code.string] as? String
+            let isVIP = jsonDic[PLKeys.is_vip.string] as? Bool
         else {
             return nil
         }
@@ -37,8 +33,6 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
         self.place = place
         self.message = message
         self.isVIP = isVIP
-        self.accessCode = accessCode
-        self.QRcode = QRcode
         
         if let drinkSetsArray = jsonDic[PLKeys.drinks.string] as? [Dictionary<String,AnyObject>] {
             for drinkSetDic in drinkSetsArray {
@@ -57,17 +51,7 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
         
         super.init(jsonDic: jsonDic)
     }
-    
-    init(withUser user: PLUser, place: PLPlace, isVip vip: Bool, message: String?, qrCode:String, accessCode: String) {
-        self.user = user
-        self.place = place
-        self.message = message ?? ""
-        self.isVIP = vip
-        self.accessCode = accessCode
-        self.QRcode = qrCode
-        super.init(jsonDic: [:])!
-    }
-    
+     
     override func serialize() -> [String : AnyObject] {
         return [:]
     }
@@ -75,7 +59,7 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
     static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
     var cellData: PLOrderCellData {
-        return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, QRcode: QRcode, accessCode: accessCode, date: date, drinkSets: drinkSets, covers: covers)
+        return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, date: date, drinkSets: drinkSets, covers: covers)
     }
 }
 
@@ -84,8 +68,6 @@ struct PLOrderCellData {
     let place: PLPlace
     let isVIP: Bool
     let message: String
-    let QRcode: String
-    let accessCode: String
     let date: NSDate?
     let drinkSets: [PLDrinkset]?
     let covers: [PLCover]?

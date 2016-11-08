@@ -72,6 +72,7 @@ enum PLKeys : String {
     case token
     case expires
     case auth_data
+    case badges
     var string : String {
         return rawValue
     }

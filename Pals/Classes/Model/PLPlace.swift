@@ -9,22 +9,26 @@
 import CoreLocation
 
 class PLPlace : PLDatedObject, PLCellRepresentable, PLFilterable {
-    let name: String
+    var name = ""
     var picture: NSURL?
     var musicGengres = ""
     var address = ""
     var phone = ""
     var location = CLLocationCoordinate2D()
     var closeTime = ""
+    var QRcode: String
+    var accessCode = ""
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let name = jsonDic[PLKeys.name.string] as? String
+            let QRcode = jsonDic[PLKeys.qr_code.string] as? String
         else {
             return nil
         }
-        self.name = name
-
+        self.QRcode = QRcode
+        if let name = jsonDic[PLKeys.name.string] as? String {
+            self.name = name
+        }
         if let picture = jsonDic[PLKeys.picture.string] as? String {
             self.picture = NSURL(string: picture)!
         }
@@ -48,6 +52,9 @@ class PLPlace : PLDatedObject, PLCellRepresentable, PLFilterable {
         if let closeTime = jsonDic[PLKeys.close_time.string] as? String {
             self.closeTime = closeTime
         }
+        if let accessCode = jsonDic[PLKeys.access_code.string] as? String {
+            self.accessCode = accessCode
+        }
         super.init(jsonDic: jsonDic)
     }
     
@@ -59,6 +66,6 @@ class PLPlace : PLDatedObject, PLCellRepresentable, PLFilterable {
     }
     
     var cellData: PLPlaceCellData {
-        return PLPlaceCellData(name: name, picture: picture, musicGengres: musicGengres, address: address, location: location)
+        return PLPlaceCellData(name: name, picture: picture, musicGengres: musicGengres, address: address, location: location, QRcode: QRcode, accessCode: accessCode)
     }
 }

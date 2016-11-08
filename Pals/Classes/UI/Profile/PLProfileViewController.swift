@@ -6,7 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-let kProfileInfoChanged = "ProfileChanged"
 private let kCellHeaderOffset: CGFloat = 54
 
 class PLProfileViewController: TGLStackedViewController {
@@ -49,7 +48,7 @@ class PLProfileViewController: TGLStackedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification(_:)), name:kProfileInfoChanged, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotification.ProfileChanged.str, object: nil)
         profile = PLFacade.profile
         currentTab = .Drinks
         view.addSubview(spinner)
@@ -142,10 +141,8 @@ class PLProfileViewController: TGLStackedViewController {
         }
     }
     
-    func profileInfoChangedNotification(notification: NSNotification){
-        if notification.name == kProfileInfoChanged {
-            profile = PLFacade.profile
-        }
+    func profileInfoChangedNotification() {
+        profile = PLFacade.profile
     }
 
     func loadPageIfEmpty() {

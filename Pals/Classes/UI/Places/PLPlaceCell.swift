@@ -25,7 +25,6 @@ class PLPlaceCell: UITableViewCell {
     var placeCellData: PLPlaceCellData! {
         didSet {
             let placeholderImage = UIImage(named: "place_placeholder")
-            
             if let picture = placeCellData.picture {
                 backgroundImageView.setImageWithURLRequest(NSURLRequest(URL: picture),
                         placeholderImage: placeholderImage,

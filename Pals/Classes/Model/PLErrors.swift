@@ -9,7 +9,7 @@
 enum PLErrorDomain : String {
     case Unknown
     case User
-    case Checkout
+    case Order
     case Location
     case Parsing
     var string: String {return rawValue}
@@ -26,7 +26,7 @@ let kPLErrorTypeWrongEmail = PLErrorType(code: 1001, reason: "This email is not 
 let kPLErrorTypeLocationNotAvailable = PLErrorType(code: 1000, reason: "Location services are not available. Go to Settings to activate them.")
 let kPLErrorTypeLocationFailed = PLErrorType(code: 1001, reason: "Failed to fetch location data.")
 //FIXME: below, i dont really know what to write in error description
-let kPLErrorTypeCheckoutFailed = PLErrorType(code: 1000, reason: "Failed post data to server")
+let kPLErrorTypeNewOrderDeserializationFailed = PLErrorType(code: 1005, reason: "Can't deserialize order")
 let kPLErrorTypeParsingFailed = PLErrorType(code: 1001, reason: "Failed to parse JSON")
 let kPLErrorTypeEmptyField = PLErrorType(code: 1002, reason: "Fields should not be empty!")
 let kPLErrorTypeFBLoginCancelledByUser = PLErrorType(code: 1004, reason: "Login with Facebook was cancelled by user!")

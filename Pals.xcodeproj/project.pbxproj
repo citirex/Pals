@@ -99,6 +99,7 @@
 		D47DC1F41DBEA9D800420958 /* PLPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DC1F31DBEA9D800420958 /* PLPushManager.swift */; };
 		D47DC1F61DBEAF2000420958 /* PLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DC1F51DBEAF2000420958 /* PLData.swift */; };
 		D4949F5F1DCD085700FEF0C8 /* PLPaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4949F5E1DCD085700FEF0C8 /* PLPaymentManager.swift */; };
+		D4949F611DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4949F601DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift */; };
 		D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */; };
 		D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A921D82B32700F48F4E /* PLAlert.swift */; };
 		D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A941D82C71100F48F4E /* PLViewController.swift */; };
@@ -288,6 +289,7 @@
 		D47DC1F31DBEA9D800420958 /* PLPushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPushManager.swift; sourceTree = "<group>"; };
 		D47DC1F51DBEAF2000420958 /* PLData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLData.swift; sourceTree = "<group>"; };
 		D4949F5E1DCD085700FEF0C8 /* PLPaymentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPaymentManager.swift; sourceTree = "<group>"; };
+		D4949F601DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFacadeNetworkAPI.swift; sourceTree = "<group>"; };
 		D4950A901D82A0DD00F48F4E /* PLPlaceCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlaceCellData.swift; sourceTree = "<group>"; };
 		D4950A921D82B32700F48F4E /* PLAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAlert.swift; sourceTree = "<group>"; };
 		D4950A941D82C71100F48F4E /* PLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLViewController.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				D4CEC2531D81A3B400D4CD08 /* Datasources */,
 				D47DC1E51DBDF55000420958 /* PageCollection */,
 				2480F8711D813E730095995F /* PLFacade.swift */,
+				D4949F601DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift */,
 				D47DC1F31DBEA9D800420958 /* PLPushManager.swift */,
 				D4949F5E1DCD085700FEF0C8 /* PLPaymentManager.swift */,
 				D4753AC11DC0B62B0006231C /* PLDeviceTokenListener.swift */,
@@ -1298,6 +1301,7 @@
 				D47DC1F61DBEAF2000420958 /* PLData.swift in Sources */,
 				E81E32171DA16A7A00E46ABB /* PLNavigationBar.swift in Sources */,
 				D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */,
+				D4949F611DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift in Sources */,
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
 				E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,

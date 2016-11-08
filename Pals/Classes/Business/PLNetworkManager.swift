@@ -38,6 +38,8 @@ enum PLAPIService : String {
     case Events
     case Covers
     case AddDeviceToken = "add_device_token"
+    case UpdateBadges = "update_badges"
+    case FetchBadges = "badges"
     var string: String {return rawValue.lowercaseString}
 }
 
