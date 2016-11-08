@@ -27,17 +27,17 @@ var kPalsGoldColor: UIColor {
 //MARK: - Order
 //D9BA30 VIP card color
 var kPalsOrderCardVIPColor: UIColor {
-    return kPalsGoldColor
+    return UIColor(r: 193, g: 61, b: 61)
 }
 
 //322C58 liquor card color
-var kPalsOrderCardDrinkStrongColor: UIColor {
-    return UIColor(red:0.20, green:0.17, blue:0.35, alpha:1.0)
+var kPalsOrderCardLiqiorDrinkColor: UIColor {
+    return UIColor(r: 50, g: 44, b: 88)
 }
 
 //00999E beer card color
-var kPalsOrderCardDrinkLightColor: UIColor {
-    return UIColor(red:0.00, green:0.60, blue:0.62, alpha:1.0)
+var kPalsOrderCardBeerDrinkColor: UIColor {
+    return UIColor(r: 0, g: 153, b: 158)
 }
 
 //2be089 undefined drink color MY CUSTOM nod design color
@@ -47,7 +47,7 @@ var kPalsOrderCardDrinkUndefinedColor: UIColor {
 
 //823051 myself card color
 var kPalsOrderCardMyselfColor: UIColor {
-    return UIColor(red:0.51, green:0.19, blue:0.32, alpha:1.0)
+    return UIColor(r: 130, g: 48, b: 81)
 }
 
 //3CB17A cover background color

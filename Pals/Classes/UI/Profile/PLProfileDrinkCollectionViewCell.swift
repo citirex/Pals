@@ -67,7 +67,7 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
             headerView.backgroundColor = .affairColor()
         case .Drinks:
             if let drinkType = order.drinkSets?.first?.drink.type where drinkType != .Undefined {
-                headerView.backgroundColor = (drinkType == .Light) ? kPalsOrderCardDrinkLightColor : kPalsOrderCardDrinkStrongColor
+                headerView.backgroundColor = (drinkType == .Light) ? kPalsOrderCardBeerDrinkColor : kPalsOrderCardLiqiorDrinkColor
             } else {
                 headerView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
             }

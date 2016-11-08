@@ -271,6 +271,19 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1v-eX-EMV" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                                                <rect key="frame" x="112" y="88" width="151" height="151"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="FiR-Kx-BL2" secondAttribute="height" multiplier="1:1" id="7rW-sw-H0z"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Yf-l5-FHH">
+                                                <rect key="frame" x="159" y="259" width="56" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdR-4Y-hBs" userLabel="Line">
                                                 <rect key="frame" x="34" y="309" width="307" height="1"/>
                                                 <color key="backgroundColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
@@ -304,24 +317,19 @@
                                                     <action selector="sendButtonPressed:" destination="BXZ-AW-ugp" eventType="touchUpInside" id="PtP-3z-HNU"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
-                                                <rect key="frame" x="112" y="103" width="151" height="151"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="FiR-Kx-BL2" secondAttribute="height" multiplier="1:1" id="7rW-sw-H0z"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="QdR-4Y-hBs" firstAttribute="width" secondItem="d1v-eX-EMV" secondAttribute="width" multiplier="0.82" id="2uo-k5-9Mx"/>
+                                            <constraint firstItem="6Yf-l5-FHH" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="20" id="6MO-Gv-Rc1"/>
                                             <constraint firstItem="QdR-4Y-hBs" firstAttribute="centerX" secondItem="FiR-Kx-BL2" secondAttribute="centerX" id="89U-jO-PHt"/>
                                             <constraint firstItem="YQe-bE-oD8" firstAttribute="top" secondItem="KEx-Ry-Xdr" secondAttribute="bottom" constant="44" id="Pvx-Cv-CBZ"/>
                                             <constraint firstItem="QdR-4Y-hBs" firstAttribute="centerY" secondItem="d1v-eX-EMV" secondAttribute="centerY" id="RBG-iO-lpe"/>
                                             <constraint firstItem="FiR-Kx-BL2" firstAttribute="height" secondItem="d1v-eX-EMV" secondAttribute="height" multiplier="0.245" id="WCc-ec-pNS"/>
                                             <constraint firstItem="KEx-Ry-Xdr" firstAttribute="centerX" secondItem="YQe-bE-oD8" secondAttribute="centerX" id="as0-17-Viw"/>
+                                            <constraint firstItem="6Yf-l5-FHH" firstAttribute="centerX" secondItem="FiR-Kx-BL2" secondAttribute="centerX" id="fEf-2v-edR"/>
                                             <constraint firstItem="KEx-Ry-Xdr" firstAttribute="width" secondItem="d1v-eX-EMV" secondAttribute="width" multiplier="0.465" id="hGk-gw-ydt"/>
-                                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="55" id="laz-hT-ODt"/>
+                                            <constraint firstItem="QdR-4Y-hBs" firstAttribute="top" secondItem="FiR-Kx-BL2" secondAttribute="bottom" constant="70" id="laz-hT-ODt"/>
                                             <constraint firstItem="YQe-bE-oD8" firstAttribute="width" secondItem="KEx-Ry-Xdr" secondAttribute="width" id="n31-bc-rOo"/>
                                             <constraint firstItem="KEx-Ry-Xdr" firstAttribute="centerX" secondItem="d1v-eX-EMV" secondAttribute="centerX" id="u1d-ak-FhR"/>
                                             <constraint firstItem="QdR-4Y-hBs" firstAttribute="centerX" secondItem="d1v-eX-EMV" secondAttribute="centerX" id="v4F-vo-92g"/>
@@ -370,6 +378,7 @@
                         <outlet property="friendProfileImageView" destination="FiR-Kx-BL2" id="PT7-A0-EQw"/>
                         <outlet property="invitatedStatusButton" destination="sDv-QM-fSN" id="XfJ-Ml-Zfp"/>
                         <outlet property="moreButton" destination="AKF-lV-M1l" id="As2-vK-rQM"/>
+                        <outlet property="nameLabel" destination="6Yf-l5-FHH" id="EjB-ZE-1bN"/>
                         <outlet property="popUpMenuView" destination="jz8-ck-L0N" id="5O1-J8-yqh"/>
                     </connections>
                 </viewController>

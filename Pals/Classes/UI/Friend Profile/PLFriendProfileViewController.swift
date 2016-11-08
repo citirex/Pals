@@ -8,6 +8,7 @@
 
 class PLFriendProfileViewController: PLViewController {
     
+	@IBOutlet var nameLabel: UILabel!
     @IBOutlet weak var friendProfileImageView: PLCircularImageView!
     @IBOutlet weak var invitatedStatusButton: UIButton!
     @IBOutlet weak var moreButton: UIBarButtonItem!
@@ -22,8 +23,8 @@ class PLFriendProfileViewController: PLViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = friend?.name
+		
+		nameLabel.text = friend?.name
         invitatedStatusButton.setTitle(status, forState: .Normal)
         friendProfileImageView.setImageWithURL(friend.picture, placeholderImage: UIImage(named: "profile_placeholder"))
         
