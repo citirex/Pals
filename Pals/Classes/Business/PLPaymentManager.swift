@@ -11,6 +11,7 @@ import Stripe
 class PLPaymentManager {
     
     func configure() {
-        STPPaymentConfiguration.sharedConfiguration().publishableKey = "pk_test_aHo0dmITXHD48TyLNnfyLMhO"
+        STPPaymentConfiguration.sharedConfiguration().publishableKey = "pk_test_GueQlPAZTwELDdXbuvl5TGwk"
+        
     }
 }

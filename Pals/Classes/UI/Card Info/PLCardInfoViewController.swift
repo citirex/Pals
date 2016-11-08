@@ -7,43 +7,43 @@
 //
 
 import UIKit
+import Stripe
 
 class PLCardInfoViewController: PLViewController {
     
-    @IBOutlet weak var creditCardNumberTextField: PLFormTextField!
-    @IBOutlet weak var expirationDateTextField:   PLFormTextField!
-    @IBOutlet weak var zipCodeTextField:          PLFormTextField!
-    @IBOutlet weak var cvvCodeTextField:          PLFormTextField!
+    @IBOutlet private var cardField: STPPaymentCardTextField?
+    @IBOutlet private weak var creditCardNumberTextField: PLFormTextField!
+    @IBOutlet private weak var expirationDateTextField:   PLFormTextField!
+    @IBOutlet private weak var zipCodeTextField:          PLFormTextField!
+    @IBOutlet private weak var cvvCodeTextField:          PLFormTextField!
+    private var allFields = [UITextField]()
     
-
+    lazy var expirationDatePicker = PLDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         hideKeyboardWhenTapped = true
+        allFields.append(creditCardNumberTextField!)
+        allFields.append(zipCodeTextField!)
+        allFields.append(cvvCodeTextField!)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.navigationBar.style = .CardInfoStyle
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         creditCardNumberTextField.becomeFirstResponder()
     }
-    
     
     // MARK: - Actions
     
     func completePressed(sender: UIButton) {
         dismissKeyboard(sender)
-        
         navigationController?.popViewControllerAnimated(true)
     }
-    
 
     private lazy var inputContainerView: UIView = {
         let containerView = UIView()
@@ -64,19 +64,26 @@ class PLCardInfoViewController: PLViewController {
         return containerView
     }()
 
-    
     override var inputAccessoryView: UIView? { return inputContainerView }
-
 }
-
 
 // MARK: - UITextFieldDelegate
 
 extension PLCardInfoViewController: UITextFieldDelegate {
-
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if expirationDatePicker.isPresented {
+            expirationDatePicker.dismiss()
+        }
+    }
+    
+    @IBAction func didClickExpirationField() {
+        for field in allFields {
+            field.resignFirstResponder()
+        }
+        if !expirationDatePicker.isPresented {
+            expirationDatePicker.presentOnView(view)
+        } else {
+            expirationDatePicker.dismiss()
+        }
+    }
 }
-
-
-
-
-
