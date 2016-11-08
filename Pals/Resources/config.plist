@@ -5,7 +5,7 @@
 	<key>PushSimulation</key>
 	<dict>
 		<key>Enabled</key>
-		<true/>
+		<false/>
 		<key>Interval</key>
 		<integer>10</integer>
 	</dict>
