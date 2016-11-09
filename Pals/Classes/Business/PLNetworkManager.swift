@@ -38,6 +38,7 @@ enum PLAPIService : String {
     case Events
     case Covers
     case AddDeviceToken = "add_device_token"
+    case AddPaymentToken = "add_payment_token"
     case UpdateBadges = "update_badges"
     case FetchBadges = "badges"
     var string: String {return rawValue.lowercaseString}
@@ -56,7 +57,7 @@ struct PLUploadAttachment {
             return nil
         }
         let data = UIImagePNGRepresentation(image!)!
-        return PLUploadAttachment(name: PLKeys.picture.string, mimeType: kMimePng, data: data)
+        return PLUploadAttachment(name: PLKey.picture.string, mimeType: kMimePng, data: data)
     }
 }
 
@@ -120,7 +121,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
     class func handleSuccessResponse(response: [String : AnyObject], completion: (error: NSError?) -> ()) {
         handleResponseKey(response) { (dic, error) in
             if let aDic = dic as? [String : AnyObject] {
-                if let success = aDic[PLKeys.success.string] as? Bool {
+                if let success = aDic[.success] as? Bool {
                     if success {
                         completion(error: nil)
                     } else {
@@ -143,7 +144,7 @@ class PLNetworkManager: PLNetworkManagerInterface {
     }
     
     class func handleResponseKey(response: [String : AnyObject], completion: (dic: AnyObject?, error: NSError?) -> ()) {
-        if let dic = response[PLKeys.response.string] {
+        if let dic = response[.response] {
             completion(dic: dic, error: nil)
         } else {
             completion(dic: nil, error: PLError(domain: .User, type: kPLErrorTypeBadResponse))

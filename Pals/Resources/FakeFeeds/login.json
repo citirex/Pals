@@ -1,11 +1,20 @@
 {
     "response" : {
-        "user" : {
-            "id" : 667,
-            "name" : "John Doe",
-            "picture" : "https://robohash.org/johndoe",
-            "email" : "johndoe@gmail.com",
-            "balance" : 100.48,
-        }
+            "user" : {
+                "id" : 667,
+                "name" : "John Doe",
+                "picture" : "https://robohash.org/johndoe",
+                "email" : "johndoe@gmail.com",
+                "customer" : {
+                    "id" : "cus_9VCVAhJUOb3pEF",
+                    "source" : {
+                        "id" : "card_19CC5NFpqi0dKr6X56PpoOb2",
+                        "address_zip" : "21423",
+                        "last4" : "4242",
+                        "exp_month" : 8,
+                        "exp_year" : 2017
+                    }
+                }
+            }
     }
 }

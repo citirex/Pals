@@ -18,7 +18,7 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
     var userId: UInt64? {
         didSet {
             if let id = userId {
-                collection.appendParams([PLKeys.id.string : String(id)])
+                collection.appendParams([PLKey.id.string : String(id)])
             }
         }
     }
@@ -40,13 +40,13 @@ class PLOrderDatasource: PLDatasource<PLOrder> {
     
     convenience init(orderType: PLOrderType, sectioned: Bool) {
         self.init(url: PLAPIService.Orders.string, offsetById: false, sectioned: sectioned)
-        collection.appendPath([PLKeys.orders.string])
-        collection.appendParams([PLKeys.type.string : orderType.number])
+        collection.appendPath([PLKey.orders.string])
+        collection.appendParams([PLKey.type.string : orderType.number])
         self.orderType = orderType
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return (orderType == .Covers ? PLKeys.order_covers : PLKeys.order_drinks).string
+        return (orderType == .Covers ? PLKey.order_covers : PLKey.order_drinks).string
     }
     
 }

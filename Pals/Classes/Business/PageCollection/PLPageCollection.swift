@@ -32,10 +32,10 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     }
     var searchFilter: String? {
         get {
-            return preset.params[PLKeys.filter.string] as? String
+            return preset.params[.filter] as? String
         }
         set {
-            preset.params[PLKeys.filter.string] = newValue?.lowercaseString
+            preset.params[.filter] = newValue?.lowercaseString
             if newValue == nil {
                 searching = false
             } else {
@@ -73,8 +73,8 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
     }
     
     convenience init(url: String, size: Int, offsetById: Bool, sectioned: Bool) {
-        let offsetKey = offsetById ? PLKeys.since.string : PLKeys.offset.string
-        let preset = PLPageCollectionPreset(url: url, sizeKey: PLKeys.per_page.string, offsetKey: offsetKey, size: size, offsetById: offsetById)
+        let offsetKey = offsetById ? PLKey.since.string : PLKey.offset.string
+        let preset = PLPageCollectionPreset(url: url, sizeKey: PLKey.per_page.string, offsetKey: offsetKey, size: size, offsetById: offsetById)
         self.init(preset: preset, sectioned: sectioned)
     }
     

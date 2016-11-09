@@ -7,14 +7,6 @@
 //
 
 class PLCurrentUser: PLUser {
-    func hasEnoughMoneyToPayFor(order: PLCheckoutOrder) -> Bool {
-        guard PLFacade.instance.settingsManager.balanceCheckEnabled else {
-            return true
-        }
-        let totalAmount = order.calculateTotalAmount()
-        return balance >= totalAmount
-    }
-    
     override var cellData: PLFriendCellData {
         var data = super.cellData
         data.me = true

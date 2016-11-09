@@ -28,7 +28,6 @@ struct PLSignUpData {
             case .SourceFacebook(_): return nil
         }
     }
-    
 }
 
 struct Facebook {
@@ -37,10 +36,10 @@ struct Facebook {
     var email: String
     var pictureURLString: String
     var params: [String : AnyObject] {
-        let params = [PLKeys.fbid.string : fbid,
-                      PLKeys.name.string : username,
-                      PLKeys.email.string : email,
-                      PLKeys.picture.string : pictureURLString]
+        let params = [PLKey.fbid.string : fbid,
+                      PLKey.name.string : username,
+                      PLKey.email.string : email,
+                      PLKey.picture.string : pictureURLString]
         return params
     }
 }
@@ -51,9 +50,9 @@ struct Manual {
     var password: String
     var picture: UIImage?
     var params: [String : AnyObject] {
-        let params = [PLKeys.username.string : username,
-                      PLKeys.email.string : email,
-                      PLKeys.password.string : password]
+        let params = [PLKey.username.string : username,
+                      PLKey.email.string : email,
+                      PLKey.password.string : password]
         return params
     }
 }

@@ -18,6 +18,13 @@ class PLViewController: UIViewController {
         return .LightContent
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.activityIndicator != nil {
+            stopActivityIndicator()
+        }
+    }
+    
 }
 
 extension PLViewController {
@@ -90,6 +97,10 @@ extension UIViewController {
 
     var activityIndicatorTag: Int { return 999999 }
     
+    var activityIndicator: UIActivityIndicatorView? {
+        return self.targetView.viewWithTag(self.activityIndicatorTag) as? UIActivityIndicatorView
+    }
+    
     var targetView: UIView {
         var targetView: UIView?
         if let navVC = self.navigationController {
@@ -101,28 +112,23 @@ extension UIViewController {
     }
     
     func startActivityIndicator(style: UIActivityIndicatorViewStyle, color: UIColor? = nil, position: PLPosition = .Center) {
-        dispatch_async(dispatch_get_main_queue(), {
-            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
-            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-            activityIndicator.tag = self.activityIndicatorTag
-            activityIndicator.center = self.view.center
-            activityIndicator.hidesWhenStopped = true
-            activityIndicator.color = color
-            activityIndicator.startAnimating()
-            self.targetView.addSubview(activityIndicator)
-            self.targetView.bringSubviewToFront(activityIndicator)
-            
-            self.addConstraints(activityIndicator, position: position)
-        })
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.tag = self.activityIndicatorTag
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = color
+        activityIndicator.startAnimating()
+        self.targetView.addSubview(activityIndicator)
+        self.targetView.bringSubviewToFront(activityIndicator)
+        self.addConstraints(activityIndicator, position: position)
     }
     
     func stopActivityIndicator() {
-        dispatch_async(dispatch_get_main_queue(), {
-            if let spinner = self.targetView.viewWithTag(self.activityIndicatorTag) as? UIActivityIndicatorView {
-                spinner.stopAnimating()
-                spinner.removeFromSuperview()
-            }
-        })
+        if let spinner = self.activityIndicator {
+            spinner.stopAnimating()
+            spinner.removeFromSuperview()
+        }
     }
     
     private func addConstraints(activityIndicator: UIActivityIndicatorView, position: PLPosition) {

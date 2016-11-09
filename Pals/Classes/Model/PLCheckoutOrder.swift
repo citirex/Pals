@@ -20,8 +20,8 @@ class PLCheckoutOrder {
     
     func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.user_id.string] = String(user!.id)
-        dic[PLKeys.place_id.string] = String(place!.id)
+        dic[.user_id] = String(user!.id)
+        dic[.place_id] = String(place!.id)
         
         var drinks = [[String : AnyObject]]()
         for (_, drinkset) in self.drinks {
@@ -29,7 +29,7 @@ class PLCheckoutOrder {
             drinks.append(drinkDic)
         }
         if drinks.count > 0 {
-            dic[PLKeys.drinks.string] = drinks
+            dic[.drinks] = drinks
         }
         
         var covers = [[String : AnyObject]]()
@@ -39,11 +39,11 @@ class PLCheckoutOrder {
         }
         
         if covers.count > 0 {
-            dic[PLKeys.covers.string] = covers
+            dic[.covers] = covers
         }
-        dic[PLKeys.is_vip.string] = String(isVIP)
+        dic[.is_vip] = String(isVIP)
         if message != nil && !message!.isEmpty {
-            dic[PLKeys.message.string] = message
+            dic[.message] = message
         }
         return dic
     }

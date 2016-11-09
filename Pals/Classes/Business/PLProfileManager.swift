@@ -53,8 +53,8 @@ protocol PLAuthStorage {
 extension PLProfileManager : PLAuthStorage {
     
     func hasValidToken() -> Bool {
-        if let authData = ud.dictionaryForKey(PLKeys.auth_data.string) {
-            if let timest = authData[PLKeys.expires.string] as? NSTimeInterval {
+        if let authData = ud.dictionaryForKey(PLKey.auth_data.string) {
+            if let timest = authData[.expires] as? NSTimeInterval {
                 if NSDate().compare(NSDate(timeIntervalSince1970: timest)) == .OrderedAscending {
                     return true
                 } else {
@@ -67,8 +67,8 @@ extension PLProfileManager : PLAuthStorage {
     
     func resetProfileAndToken() {
         userToken = nil
-        ud.setObject(nil, forKey: PLKeys.auth_data.string)
-        ud.setObject(nil, forKey: PLKeys.user.string)
+        ud.setObject(nil, forKey: PLKey.auth_data.string)
+        ud.setObject(nil, forKey: PLKey.user.string)
         ud.synchronize()
     }
     
@@ -76,13 +76,13 @@ extension PLProfileManager : PLAuthStorage {
         var token: String?
         var expires: NSTimeInterval?
         if let tokenD = tokenData {
-            token = tokenD[PLKeys.token.string] as? String
+            token = tokenD[.token] as? String
             self.userToken = token
-            expires = tokenD[PLKeys.expires.string] as? NSTimeInterval
+            expires = tokenD[.expires] as? NSTimeInterval
         }
         if token != nil && expires != nil {
-            let authData = [PLKeys.token.string : token!, PLKeys.expires.string : NSNumber(double: expires!)]
-            ud.setObject(authData, forKey: PLKeys.auth_data.string)
+            let authData = [PLKey.token.string : token!, PLKey.expires.string : NSNumber(double: expires!)]
+            ud.setObject(authData, forKey: PLKey.auth_data.string)
             ud.synchronize()
         }
     }
@@ -91,7 +91,7 @@ extension PLProfileManager : PLAuthStorage {
         if let user = PLCurrentUser(jsonDic: userDic) {
             profile = user
             NSNotificationCenter.defaultCenter().postNotificationName(PLNotification.ProfileChanged.str, object: nil)
-            ud.setObject(userDic, forKey: PLKeys.user.string)
+            ud.setObject(userDic, forKey: PLKey.user.string)
             ud.synchronize()
             return true
         }
@@ -99,7 +99,7 @@ extension PLProfileManager : PLAuthStorage {
     }
     
     func restoreProfile() {
-        if let profileDic = ud.dictionaryForKey(PLKeys.user.string) {
+        if let profileDic = ud.dictionaryForKey(PLKey.user.string) {
             if let user = PLCurrentUser(jsonDic: profileDic) {
                 profile = user
                 restoreToken()
@@ -108,8 +108,8 @@ extension PLProfileManager : PLAuthStorage {
     }
     
     func restoreToken() {
-        if let authData = ud.dictionaryForKey(PLKeys.auth_data.string) {
-            if let token = authData[PLKeys.token.string] as? String {
+        if let authData = ud.dictionaryForKey(PLKey.auth_data.string) {
+            if let token = authData[.token] as? String {
                 self.userToken = token
             }
         }
@@ -142,10 +142,10 @@ extension PLProfileManager : PLAuthStorage {
                 if error == nil {
                     if let user = result as? NSDictionary {
                         guard
-                            let userID = user.valueForKey(PLKeys.id.string) as? String,
-                            let name = user.valueForKey(PLKeys.name.string) as? String,
-                            let email = user.valueForKey(PLKeys.email.string) as? String,
-                            let imageUrl = ((user.valueForKey(PLKeys.picture.string) as? NSDictionary)?.valueForKey(PLKeys.data.string) as? NSDictionary)?.valueForKey(PLKeys.url.string) as? String
+                            let userID = user.valueForKey(PLKey.id.string) as? String,
+                            let name = user.valueForKey(PLKey.name.string) as? String,
+                            let email = user.valueForKey(PLKey.email.string) as? String,
+                            let imageUrl = ((user.valueForKey(PLKey.picture.string) as? NSDictionary)?.valueForKey(PLKey.data.string) as? NSDictionary)?.valueForKey(PLKey.url.string) as? String
                         else {
                             return completion(data: nil, error: PLError(domain: .User, type: kPLErrorWrongDatastruct))
                         }

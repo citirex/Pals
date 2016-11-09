@@ -12,9 +12,9 @@ class PLCoversDatasource: PLDatasource<PLCover> {
             collection.clean()
             if let id = placeId {
                 var params = PLURLParams()
-                params[PLKeys.place_id.string] = String(id)
+                params[.place_id] = String(id)
                 if isVIP == true {
-                    params[PLKeys.is_vip.string] = isVIP
+                    params[.is_vip] = isVIP
                 }
                 collection.appendParams(params)
             }
@@ -29,10 +29,10 @@ class PLCoversDatasource: PLDatasource<PLCover> {
     
     convenience init() {
         self.init(url: PLAPIService.Covers.string, offsetById: false)
-        collection.appendPath([PLKeys.covers.string])
+        collection.appendPath([PLKey.covers.string])
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return (isVIP == true) ? PLKeys.vip_covers.string : PLKeys.covers.string
+        return (isVIP == true) ? PLKey.vip_covers.string : PLKey.covers.string
     }
 }

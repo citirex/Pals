@@ -30,6 +30,7 @@ let kPLErrorTypeNewOrderDeserializationFailed = PLErrorType(code: 1005, reason: 
 let kPLErrorTypeParsingFailed = PLErrorType(code: 1001, reason: "Failed to parse JSON")
 let kPLErrorTypeEmptyField = PLErrorType(code: 1002, reason: "Fields should not be empty!")
 let kPLErrorTypeFBLoginCancelledByUser = PLErrorType(code: 1004, reason: "Login with Facebook was cancelled by user!")
+let kPLErrorTypePaymentSystemFailed = PLErrorType(code: 1006, reason: "A payment system cannot process your card info!")
 
 let kPLErrorUnknown =  NSError(domain: PLErrorDomain.Unknown.string, code: 0, userInfo: nil)
 let kPLErrorJSON = PLError(domain: .Parsing, type: kPLErrorTypeParsingFailed)

@@ -18,7 +18,7 @@ class PLDrink : PLPricedItem, PLCellRepresentable, PLFilterable {
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let drinkType = jsonDic[PLKeys.type.string] as? Int
+            let drinkType = jsonDic[.type] as? Int
         else {
             return nil
         }
@@ -30,7 +30,7 @@ class PLDrink : PLPricedItem, PLCellRepresentable, PLFilterable {
     
     override func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.type.string] = type.rawValue
+        dic[.type] = type.rawValue
         dic.append(super.serialize())
         return dic
     }

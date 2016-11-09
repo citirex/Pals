@@ -912,7 +912,7 @@
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="yKu-nc-ZwY"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="CVV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gl-CT-gfw" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="CVC" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gl-CT-gfw" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="123" width="259" height="41"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -991,6 +991,7 @@
                     <connections>
                         <outlet property="creditCardNumberTextField" destination="BjM-1l-qio" id="dZH-gM-cPf"/>
                         <outlet property="cvvCodeTextField" destination="6gl-CT-gfw" id="6N8-nq-3lg"/>
+                        <outlet property="expirationDateActivateButton" destination="ilR-qR-093" id="GjE-91-YIt"/>
                         <outlet property="expirationDateTextField" destination="nI2-1i-ZTZ" id="Gdj-he-7TX"/>
                         <outlet property="zipCodeTextField" destination="893-bh-utp" id="lwg-vG-TYD"/>
                     </connections>

@@ -104,9 +104,6 @@ class PLOrderCheckoutPopupViewController: UIViewController {
             PLShowAlert("Error", message: "Order is not selected")
             return
         }
-        guard PLFacade.profile!.hasEnoughMoneyToPayFor(order!) else {
-            return PLShowAlert("Error", message: "You have not enough money to make this purchase")
-        }
         
         let message = (textViewText == placeholderText) ? "" : textViewText
         textViewText = placeholderText

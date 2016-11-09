@@ -12,8 +12,8 @@ class PLBadge: PLDeserializable {
 
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let typeNum = jsonDic[PLKeys.type.string] as? Int,
-            let count = jsonDic[PLKeys.count.string] as? Int
+            let typeNum = jsonDic[.type] as? Int,
+            let count = jsonDic[.count] as? Int
         else {
             return nil
         }
@@ -45,14 +45,14 @@ class PLPush {
     
     init(data: [String : AnyObject], launchedByTap: Bool) {
         self.launchedByTap = launchedByTap
-        if let type = data[PLKeys.type.string] as? Int {
+        if let type = data[.type] as? Int {
             if let pushType = PLPushType(rawValue: type) {
-                if let count = data[PLKeys.count.string] as? Int {
+                if let count = data[.count] as? Int {
                     self.badge = PLBadge(type: pushType, count: count)
                 }
             }
         }
-        if let id = data[PLKeys.id.string] as? Int {
+        if let id = data[.id] as? Int {
             self.id = UInt64(id)
         }
 
@@ -141,7 +141,7 @@ class PLPushManager: NSObject {
         if UIApplication.sharedApplication().applicationState == .Active {
             PLShowAlert("Received remote notification", message: aps.description)
         }
-        if let pushData = aps[PLKeys.info.string] as? [String : AnyObject] {
+        if let pushData = aps[.info] as? [String : AnyObject] {
             let push = PLPush(data: pushData, launchedByTap: launchedByTap)
             if push.badge != nil {
                 notifyPush(push)

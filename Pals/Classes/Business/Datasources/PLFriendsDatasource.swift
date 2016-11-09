@@ -20,9 +20,9 @@ enum PLFriendsDatasourceType {
     var fakeFeedName: String {
         switch self {
         case .Friends:
-            return PLKeys.friends.string
+            return PLKey.friends.string
         case .Invitable:
-            return PLKeys.invitefriends.string
+            return PLKey.invitefriends.string
         }
     }
 }
@@ -44,10 +44,10 @@ class PLFriendsDatasource: PLDatasource<PLUser> {
     
     convenience init(userId: UInt64, type: PLFriendsDatasourceType) {
         var params = PLURLParams()
-        params[PLKeys.id.string] = String(userId)
+        params[.id] = String(userId)
         self.init(service: type.service, params: params)
         self.type = type
-        collection.appendPath([PLKeys.friends.string])
+        collection.appendPath([PLKey.friends.string])
     }
     
     override func fakeFeedFilenameKey() -> String {

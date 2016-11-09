@@ -236,11 +236,11 @@ extension PLOrderViewController {
     @objc private func checkoutButtonPressed(sender: UIButton) {
         guard order.user != nil else {
             checkoutButton.shake()
-            return PLShowAlert(title: "Need to chose user")
+            return PLShowAlert("Need to chose user")
         }
         guard order.place != nil else {
             checkoutButton.shake()
-            return PLShowAlert(title: "Need to chose place")
+            return PLShowAlert("Need to chose place")
         }
         createAndShowSendPopup(order)
     }
@@ -273,7 +273,7 @@ extension PLOrderViewController {
                     self.tabBarController?.incrementBadgeOnTabBarItem(.ProfileTabBarItem)
                     self.tabBarController?.switchTabBarItemTo(.ProfileTabBarItem)
                 } else {
-                    PLShowAlert(title: "Success")
+                    PLShowAlert("Success")
                 }
             
             } else {

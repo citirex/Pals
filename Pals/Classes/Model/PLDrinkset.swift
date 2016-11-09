@@ -16,8 +16,8 @@ class PLDrinkset : PLUniqueObject, PLCellRepresentable {
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let aQuantity = jsonDic[PLKeys.quantity.string] as? NSNumber,
-            let drinkDic = jsonDic[PLKeys.drink.string] as? Dictionary<String,AnyObject>
+            let aQuantity = jsonDic[.quantity] as? NSNumber,
+            let drinkDic = jsonDic[.drink] as? Dictionary<String,AnyObject>
             else {
                 return nil
         }
@@ -41,8 +41,8 @@ class PLDrinkset : PLUniqueObject, PLCellRepresentable {
 
     override func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.quantity.string] = String(quantity)
-        dic[PLKeys.drink.string] = String(drink.id)
+        dic[.quantity] = String(quantity)
+        dic[.drink] = String(drink.id)
         return dic
     }
     

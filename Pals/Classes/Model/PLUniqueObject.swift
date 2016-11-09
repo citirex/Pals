@@ -11,14 +11,14 @@ class PLUniqueObject: NSObject, PLSerializable, PLDeserializable {
     var id: UInt64 = 0
     
     required init?(jsonDic: [String : AnyObject]) {
-        if let id = jsonDic[PLKeys.id.string] as? NSNumber {
+        if let id = jsonDic[.id] as? NSNumber {
             self.id = id.unsignedLongLongValue
         }
     }
     
     func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.id.string] = String(id)
+        dic[.id] = String(id)
         return dic
     }
 }

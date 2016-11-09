@@ -11,7 +11,7 @@ class PLEventsDatasource: PLDatasource<PLEvent> {
     var placeId: UInt64? {
         didSet {
             if let id = placeId {
-                collection.appendParams([PLKeys.place_id.string : String(id)])
+                collection.appendParams([PLKey.place_id.string : String(id)])
             }
         }
     }
@@ -22,10 +22,10 @@ class PLEventsDatasource: PLDatasource<PLEvent> {
     
     convenience init() {
         self.init(url: PLAPIService.Events.string, offsetById: false)
-        collection.appendPath([PLKeys.events.string])
+        collection.appendPath([PLKey.events.string])
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLKeys.events.string
+        return PLKey.events.string
     }
 }

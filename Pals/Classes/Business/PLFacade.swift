@@ -123,8 +123,8 @@ extension PLFacade._PLFacade {
     
     func handleUpdateProfile(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
         handleErrorCompletion(error, errorCompletion: completion) { () -> NSError? in
-            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
-                if let userDic = response[PLKeys.user.string] as? [String : AnyObject] {
+            if let response = dic[.response] as? [String : AnyObject] {
+                if let userDic = response[.user] as? [String : AnyObject] {
                     if self.profileManager.saveProfile(userDic) {
                         completion(error: nil)
                         return nil
@@ -137,9 +137,9 @@ extension PLFacade._PLFacade {
     
     func handleUserLogin(error: NSError?, dic: [String:AnyObject], completion: PLErrorCompletion) {
         handleErrorCompletion(error, errorCompletion: completion) { () -> NSError? in
-            if let response = dic[PLKeys.response.string] as? [String : AnyObject] {
-                if let userDic = response[PLKeys.user.string] as? [String : AnyObject] {
-                    let token = response[PLKeys.token.string] as? [String : AnyObject]
+            if let response = dic[.response] as? [String : AnyObject] {
+                if let userDic = response[.user] as? [String : AnyObject] {
+                    let token = response[.token] as? [String : AnyObject]
                     if self.profileManager.saveProfile(userDic) {
                         self.profileManager.saveToken(token)
                         completion(error: nil)

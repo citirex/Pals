@@ -51,7 +51,7 @@ class PLTokenListener: NSObject {
     
     private func requestUpdateIfNeeded() {
         if deviceToken != nil && userToken != nil {
-            let params = [PLKeys.device_token.string : deviceToken!]
+            let params = [PLKey.device_token.string : deviceToken!]
             PLNetworkManager.postWithAttributes(.AddDeviceToken, attributes: params, completion: { (dic, error) in
                 if error != nil {
                     // in case of error we don't need to notify a user since it deals with push notifications

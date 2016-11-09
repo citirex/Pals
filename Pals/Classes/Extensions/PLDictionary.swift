@@ -63,3 +63,22 @@ extension CollectionType {
         return dictionary
     }
 }
+
+extension Dictionary {
+    subscript(key: PLKey) -> AnyObject? {
+        get {
+            if let theKey = key.string as? Key {
+                if let value = self[theKey] as? AnyObject {
+                    return value
+                }
+            }
+            return nil
+        }
+        set {
+            if let theKey = key.string as? Key {
+                self[theKey] = newValue as? Value
+            }
+        }
+
+    }
+}

@@ -51,10 +51,10 @@ class PLEditUserData : NSObject {
     var params: [String : AnyObject] {
         var dic = [String : AnyObject]()
         if name.new != nil && !(name.new as! String).isEmpty {
-            dic[PLKeys.name.string] = name.new!
+            dic[.name] = name.new!
         }
         if additional.new != nil && !(additional.new as! String).isEmpty {
-            dic[PLKeys.additional.string] = additional.new!
+            dic[.additional] = additional.new!
         }
         return dic
     }

@@ -11,10 +11,10 @@ import MapKit.MKGeometry
 extension MKCoordinateRegion {
     var params: PLURLParams {
         var params = PLURLParams()
-        params[PLKeys.lat.string] = center.latitude
-        params[PLKeys.long.string] = center.longitude
-        params[PLKeys.dlat.string] = span.latitudeDelta
-        params[PLKeys.dlong.string] = span.longitudeDelta
+        params[.lat] = center.latitude
+        params[.long] = center.longitude
+        params[.dlat] = span.latitudeDelta
+        params[.dlong] = span.longitudeDelta
         return params
     }
 }
@@ -60,10 +60,10 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
         let service = PLAPIService.Places.string
         let offsetById = false
         self.init(url: service, offsetById: offsetById)
-        collection.appendPath([PLKeys.places.string])
+        collection.appendPath([PLKey.places.string])
     }
     
     override func fakeFeedFilenameKey() -> String {
-        return PLKeys.places.string
+        return PLKey.places.string
     }
 }

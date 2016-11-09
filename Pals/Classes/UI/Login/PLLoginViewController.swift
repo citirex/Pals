@@ -63,7 +63,7 @@ class PLLoginViewController: PLViewController {
             self.stopActivityIndicator()
             
             guard error == nil else { return PLShowErrorAlert(error: error!) }
-            PLShowAlert(title:"A new generated password has been sent to your email.")
+            PLShowAlert("A new generated password has been sent to your email.")
         })
     }
 
@@ -111,7 +111,7 @@ extension PLLoginViewController {
             if let emailTextField = alert.textFields!.first where emailTextField.text!.trim().isValidEmail {
                 self.sendPassword(emailTextField.text!)
             } else {
-                PLShowAlert(title: "Please, enter a valid user email.")
+                PLShowAlert("Please, enter a valid user email.")
             }
         })
         forgotAction.enabled = false

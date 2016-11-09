@@ -10,7 +10,7 @@ class PLDatedObject: PLUniqueObject {
     var date: NSDate?
     
     required init?(jsonDic: [String : AnyObject]) {
-        if let timestamp = jsonDic[PLKeys.date.string] as? NSTimeInterval {
+        if let timestamp = jsonDic[.date] as? NSTimeInterval {
             date = NSDate(timeIntervalSince1970: timestamp)
             PLLog("\(self.dynamicType) \(date!)", type: .Initialization)
         }

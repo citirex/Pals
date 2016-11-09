@@ -12,8 +12,8 @@ class PLEvent : PLDatedObject, PLFilterable {
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let ePicture = jsonDic[PLKeys.picture.string] as? String,
-            let eInfo = jsonDic[PLKeys.info.string] as? String
+            let ePicture = jsonDic[.picture] as? String,
+            let eInfo = jsonDic[.info] as? String
             else {
                 return nil
         }

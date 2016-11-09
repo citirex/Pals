@@ -6,6 +6,8 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+import Stripe
+
 typealias PLCheckoutOrderCompletion = (order: PLOrder?, error: NSError?) -> ()
 typealias PLErrorCompletion = (error: NSError?) -> ()
 typealias PLFetchesBadgesCompletion = (badges: [PLBadge], error: NSError?) -> ()
@@ -22,13 +24,14 @@ protocol PLFacadeNetworkAPI {
     static func sendPassword(email: String, completion: PLErrorCompletion)
     static func resetBadges(type: PLPushType)
     static func fetchBadges(completion: PLFetchesBadgesCompletion)
+    static func addPaymentCard(cardParams: STPCardParams, completion: PLErrorCompletion)
 }
 
 extension PLFacade: PLFacadeNetworkAPI {
     class func login(userName:String, password: String, completion: PLErrorCompletion) {
         instance._login(userName, password: password, completion: completion)
     }
-    
+
     class func loginFB(completion: PLErrorCompletion) {
         instance._loginFB(completion)
     }
@@ -68,6 +71,23 @@ extension PLFacade: PLFacadeNetworkAPI {
     static func resetBadges(type: PLPushType) {
         instance._resetBadges(type)
     }
+    
+    static func addPaymentCard(cardParams: STPCardParams, completion: PLErrorCompletion) {
+        instance.paymentManager.generatePaymentToken(cardParams) { (token, error) in
+            if error != nil {
+                completion(error: error)
+            } else {
+                if let t = token {
+                    let params = [PLKey.token.string : t.tokenId]
+                    PLNetworkManager.postWithAttributes(.AddPaymentToken, attributes: params, completion: { (dic, error) in
+                        instance.handleUserLogin(error, dic: dic, completion: completion)
+                    })
+                } else {
+                    completion(error: PLError(domain: .User, type: kPLErrorTypePaymentSystemFailed))
+                }
+            }
+        }
+    }
 }
 
 extension PLFacade._PLFacade {
@@ -80,7 +100,7 @@ extension PLFacade._PLFacade {
     }
     
     func _login(userName:String, password: String, completion: PLErrorCompletion) {
-        let params = [PLKeys.login.string : userName, PLKeys.password.string : password]
+        let params = [PLKey.login.string : userName, PLKey.password.string : password]
         PLNetworkManager.get(.Login, parameters: params) { (dic, error) in
             self.handleUserLogin(error, dic: dic, completion: completion)
         }
@@ -101,7 +121,7 @@ extension PLFacade._PLFacade {
     
     func _logout(completion: PLErrorCompletion) {
         PLNetworkManager.get(PLAPIService.Logout, parameters: nil) { (dic, error) in
-            if let success = dic[PLKeys.dinosaur.string] as? Bool {
+            if let success = dic[.dinosaur] as? Bool {
                 if success {
                     self.profileManager.resetProfileAndToken()
                     completion(error: nil)
@@ -113,7 +133,7 @@ extension PLFacade._PLFacade {
     }
     
     func _sendPassword(email: String, completion: PLErrorCompletion) {
-        let params = [PLKeys.email.string : email]
+        let params = [PLKey.email.string : email]
         PLNetworkManager.postWithAttributes(.SendPassword, attributes: params) { (dic, error) in
             PLNetworkManager.handleFullResponse(dic, error: error, completion: completion)
         }
@@ -128,7 +148,7 @@ extension PLFacade._PLFacade {
     }
     
     func _unfriend(user: PLUser, completion: PLErrorCompletion) {
-        let params = [PLKeys.friend_id.string : NSNumber(unsignedLongLong: user.id)]
+        let params = [PLKey.friend_id.string : NSNumber(unsignedLongLong: user.id)]
         PLNetworkManager.postWithAttributes(PLAPIService.Unfriend, attributes: params) { (dic, error) in
             PLNetworkManager.handleSuccessResponse(dic, completion: { (error) in
                 if error == nil {
@@ -141,7 +161,7 @@ extension PLFacade._PLFacade {
     
     func _addFriend(user: PLUser, completion: PLErrorCompletion) {
         user.inviting = true
-        let params = [PLKeys.friend_id.string : NSNumber(unsignedLongLong: user.id)]
+        let params = [PLKey.friend_id.string : NSNumber(unsignedLongLong: user.id)]
         PLNetworkManager.postWithAttributes(.AddFriend, attributes: params) { (dic, error) in
             user.inviting = false
             PLNetworkManager.handleSuccessResponse(dic, completion: { (error) in
@@ -163,7 +183,7 @@ extension PLFacade._PLFacade {
     func _fetchBadges(completion: PLFetchesBadgesCompletion) {
         PLNetworkManager.get(.FetchBadges, parameters: nil) { (dic, error) in
             var badges = [PLBadge]()
-            if let objects = dic[PLKeys.badges.string] as? [Dictionary<String,AnyObject>] {
+            if let objects = dic[.badges] as? [Dictionary<String,AnyObject>] {
                 for badgeData in objects {
                     if let badge = PLBadge(jsonDic: badgeData) {
                         badges.append(badge)
@@ -175,7 +195,7 @@ extension PLFacade._PLFacade {
     }
     
     func _resetBadges(type: PLPushType) {
-        let params = [PLKeys.count.string : 0, PLKeys.type.string : type.rawValue]
+        let params = [PLKey.count.string : 0, PLKey.type.string : type.rawValue]
         PLNetworkManager.postWithAttributes(.UpdateBadges, attributes: params) { (dic, error) in
             PLNetworkManager.handleFullResponse(dic, error: error, completion: { (error) in
                 if error != nil {

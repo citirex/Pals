@@ -6,18 +6,10 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-func PLShowAlert(title: String!, message:String!) {
+func PLShowAlert(title: String? = nil, message:String? = nil, completion: (()->())? = nil) {
     let tit = title ?? ""
     let mes = message ?? ""
-    PLAlertController().show(tit, message: mes)
-}
-
-func PLShowAlert(message message:String) {
-    PLShowAlert(nil, message: message)
-}
-
-func PLShowAlert(title title: String) {
-    PLShowAlert(title, message: nil)
+    PLAlertController().show(tit, message: mes, completion: completion)
 }
 
 func PLShowErrorAlert(error error:NSError) {
@@ -27,14 +19,17 @@ func PLShowErrorAlert(error error:NSError) {
             return
         }
     }
-    PLShowAlert(title: error.localizedDescription)
+    PLShowAlert(error.localizedDescription)
 }
 
 class PLAlertController: UIAlertController {
     
-    func show(title: String, message:String ) {
+    func show(title: String, message: String, completion: (()->())? = nil) {
         let alert = PLAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+        let action = UIAlertAction(title: "OK", style: .Cancel) { (action) in
+            completion?()
+        }
+        alert.addAction(action)
     
         let alertVC = PLViewController()
         let alertWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -52,9 +47,4 @@ class PLAlertController: UIAlertController {
         let alertWindow = UIApplication.sharedApplication().keyWindow!
         alertWindow.hidden = true
     }
-
 }
-
-
-
-

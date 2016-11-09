@@ -97,6 +97,8 @@
 		D47DC1EF1DBDF67C00420958 /* PLPageCollectionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DC1EE1DBDF67C00420958 /* PLPageCollectionStorage.swift */; };
 		D47DC1F41DBEA9D800420958 /* PLPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DC1F31DBEA9D800420958 /* PLPushManager.swift */; };
 		D47DC1F61DBEAF2000420958 /* PLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DC1F51DBEAF2000420958 /* PLData.swift */; };
+		D4945B131DD33A9C0005FD8C /* PLCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4945B121DD33A9C0005FD8C /* PLCustomer.swift */; };
+		D4945B151DD3585F0005FD8C /* PLPaymentSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4945B141DD3585F0005FD8C /* PLPaymentSource.swift */; };
 		D4949F5F1DCD085700FEF0C8 /* PLPaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4949F5E1DCD085700FEF0C8 /* PLPaymentManager.swift */; };
 		D4949F611DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4949F601DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift */; };
 		D4949F631DD2743000FEF0C8 /* PLDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4949F621DD2743000FEF0C8 /* PLDatePicker.swift */; };
@@ -287,6 +289,8 @@
 		D47DC1EE1DBDF67C00420958 /* PLPageCollectionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPageCollectionStorage.swift; sourceTree = "<group>"; };
 		D47DC1F31DBEA9D800420958 /* PLPushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPushManager.swift; sourceTree = "<group>"; };
 		D47DC1F51DBEAF2000420958 /* PLData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLData.swift; sourceTree = "<group>"; };
+		D4945B121DD33A9C0005FD8C /* PLCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCustomer.swift; sourceTree = "<group>"; };
+		D4945B141DD3585F0005FD8C /* PLPaymentSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPaymentSource.swift; sourceTree = "<group>"; };
 		D4949F5E1DCD085700FEF0C8 /* PLPaymentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPaymentManager.swift; sourceTree = "<group>"; };
 		D4949F601DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFacadeNetworkAPI.swift; sourceTree = "<group>"; };
 		D4949F621DD2743000FEF0C8 /* PLDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLDatePicker.swift; path = "Card Info/PLDatePicker.swift"; sourceTree = "<group>"; };
@@ -500,6 +504,8 @@
 				D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */,
 				2480F8861D813E730095995F /* PLUser.swift */,
 				D47DC1DC1DB8F3EC00420958 /* PLCurrentUser.swift */,
+				D4945B121DD33A9C0005FD8C /* PLCustomer.swift */,
+				D4945B141DD3585F0005FD8C /* PLPaymentSource.swift */,
 				D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */,
 			);
 			path = Model;
@@ -1247,6 +1253,7 @@
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
 				E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */,
+				D4945B131DD33A9C0005FD8C /* PLCustomer.swift in Sources */,
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
 				D47DC1ED1DBDF57F00420958 /* PLPageCollectionDeserializer.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
@@ -1269,6 +1276,7 @@
 				24DDA9361D9A663500FCDBCA /* PLEventsDatasource.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				E8DA8B921D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
+				D4945B151DD3585F0005FD8C /* PLPaymentSource.swift in Sources */,
 				D4949F5F1DCD085700FEF0C8 /* PLPaymentManager.swift in Sources */,
 				04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */,
 				E80692911DA0422200500684 /* PLFriendProfileViewController.swift in Sources */,

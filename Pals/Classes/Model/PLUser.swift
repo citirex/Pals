@@ -10,41 +10,40 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     var name: String
     var email: String
     var picture: NSURL
-    var balance = Float(0)
     var additional: String?
+    var customer: PLCustomer?
     // by default we assume that a given user is not a friend of a current one
     dynamic var invited: Bool = false
     dynamic var inviting: Bool = false
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let name = jsonDic[PLKeys.name.string] as? String,
-            let email = jsonDic[PLKeys.email.string] as? String,
-            let picture = jsonDic[PLKeys.picture.string] as? String
+            let name = jsonDic[.name] as? String,
+            let email = jsonDic[.email] as? String,
+            let picture = jsonDic[.picture] as? String
         else {
             return nil
         }
         self.name = name
         self.email = email
         self.picture = NSURL(string: picture)!
-        if let balance = jsonDic[PLKeys.balance.string] as? Float {
-            self.balance = balance
-        }
-        if let additional = jsonDic[PLKeys.additional.string] as? String {
+        if let additional = jsonDic[.additional] as? String {
             self.additional = additional
         }
-        if let invited = jsonDic[PLKeys.invited.string] as? Bool {
+        if let invited = jsonDic[.invited] as? Bool {
             self.invited = invited
+        }
+        if let customerDic = jsonDic[.customer] as? [String : AnyObject] {
+            self.customer = PLCustomer(jsonDic: customerDic)!
         }
         super.init(jsonDic: jsonDic)
     }
     
     override func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.name.string] = name
-        dic[PLKeys.email.string] = email
-        dic[PLKeys.picture.string] = picture.absoluteString
-        dic[PLKeys.balance.string] = String(balance)
+        dic[.name] = name
+        dic[.email] = email
+        dic[.picture] = picture.absoluteString
         dic.append(super.serialize())
         return dic
     }

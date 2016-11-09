@@ -12,8 +12,8 @@ class PLPricedItem: PLDatedObject {
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let name = jsonDic[PLKeys.name.string] as? String,
-            let price = jsonDic[PLKeys.price.string] as? Float
+            let name = jsonDic[.name] as? String,
+            let price = jsonDic[.price] as? Float
         else {
             return nil
         }
@@ -24,8 +24,8 @@ class PLPricedItem: PLDatedObject {
     
     override func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.name.string] = name
-        dic[PLKeys.price.string] = price
+        dic[.name] = name
+        dic[.price] = price
         dic.append(super.serialize())
         return dic
     }
@@ -41,7 +41,7 @@ class PLCover: PLPricedItem, PLCellRepresentable, PLFilterable {
     
     override func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
-        dic[PLKeys.cover.string] = String(id)
+        dic[.cover] = String(id)
         return dic
     }
 }

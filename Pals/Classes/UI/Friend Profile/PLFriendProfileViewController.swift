@@ -87,7 +87,7 @@ class PLFriendProfileViewController: PLViewController {
                 PLLog("Error, when trying unfriend", error!.debugDescription, type: .Network)
             } else {
                 self.invitatedStatusButton.setTitle(self.status, forState: .Normal)
-                PLShowAlert(title: "Success")
+                PLShowAlert("Success")
             }
         }
     }
@@ -101,7 +101,7 @@ class PLFriendProfileViewController: PLViewController {
                 PLLog("Error, when trying add friend", error!.debugDescription, type: .Network)
             } else {
                 self.invitatedStatusButton.setTitle(self.status, forState: .Normal)
-                PLShowAlert(title: "Success")
+                PLShowAlert("Success")
             }
         }
     }

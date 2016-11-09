@@ -21,27 +21,27 @@ class PLPlace : PLDatedObject, PLCellRepresentable, PLFilterable {
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let QRcode = jsonDic[PLKeys.qr_code.string] as? String
+            let QRcode = jsonDic[.qr_code] as? String
         else {
             return nil
         }
         self.QRcode = QRcode
-        if let name = jsonDic[PLKeys.name.string] as? String {
+        if let name = jsonDic[.name] as? String {
             self.name = name
         }
-        if let picture = jsonDic[PLKeys.picture.string] as? String {
+        if let picture = jsonDic[.picture] as? String {
             self.picture = NSURL(string: picture)!
         }
-        if let address = jsonDic[PLKeys.address.string] as? String {
+        if let address = jsonDic[.address] as? String {
             self.address = address
         }
-        if let phone = jsonDic[PLKeys.phone.string] as? String {
+        if let phone = jsonDic[.phone] as? String {
             self.phone = phone
         }
-        if let musicGengres = jsonDic[PLKeys.genres.string] as? String {
+        if let musicGengres = jsonDic[.genres] as? String {
             self.musicGengres = musicGengres
         }
-        if let locationStr = jsonDic[PLKeys.location.string] as? String {
+        if let locationStr = jsonDic[.location] as? String {
             let coords = locationStr.componentsSeparatedByString(":")
             if coords.count == 2,
                 let lat = Double(coords[0]),
@@ -49,10 +49,10 @@ class PLPlace : PLDatedObject, PLCellRepresentable, PLFilterable {
                 self.location = CLLocationCoordinate2D(latitude: lat, longitude: long)
             }
         }
-        if let closeTime = jsonDic[PLKeys.close_time.string] as? String {
+        if let closeTime = jsonDic[.close_time] as? String {
             self.closeTime = closeTime
         }
-        if let accessCode = jsonDic[PLKeys.access_code.string] as? String {
+        if let accessCode = jsonDic[.access_code] as? String {
             self.accessCode = accessCode
         }
         super.init(jsonDic: jsonDic)
