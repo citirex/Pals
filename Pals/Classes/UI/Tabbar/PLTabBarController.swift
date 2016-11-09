@@ -60,9 +60,9 @@ class PLTabBarController: UITabBarController {
 
         switch PLTabBarItem(rawValue: selectedIndex)! {
         case .ProfileTabBarItem:
-            PLFacade.resetBadges(PLPushType.Order)
+            PLFacade.resetBadges(.Order)
         case .FriendsTabBarItem:
-            PLFacade.resetBadges(PLPushType.Friends)
+            PLFacade.resetBadges(.Friends)
         default:
             break
         }
