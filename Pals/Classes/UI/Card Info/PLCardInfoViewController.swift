@@ -18,7 +18,7 @@ class PLCardInfoViewController: PLViewController {
     @IBOutlet private weak var cvvCodeTextField:          PLFormTextField!
     private var allFields = [UITextField]()
     
-    lazy var expirationDatePicker = PLDatePicker()
+    lazy var expirationDatePicker = PLExpirationDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,15 +75,26 @@ extension PLCardInfoViewController: UITextFieldDelegate {
             expirationDatePicker.dismiss()
         }
     }
+}
+
+// MARK: - PLExpirationDatePickerDelegate
+
+extension PLCardInfoViewController : PLExpirationDatePickerDelegate {
     
     @IBAction func didClickExpirationField() {
         for field in allFields {
             field.resignFirstResponder()
         }
         if !expirationDatePicker.isPresented {
+            expirationDatePicker.delegate = self
             expirationDatePicker.presentOnView(view)
         } else {
             expirationDatePicker.dismiss()
         }
+    }
+    
+    func expirationDatePicker(picker: PLExpirationDatePicker, didChangeDate date: PLExpirationDate) {
+        let last2Year = date.year%1000
+        expirationDateTextField.text = String(format: "%.2d/%d", date.month, last2Year)
     }
 }

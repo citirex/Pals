@@ -1,22 +1,32 @@
 //
-//  PLDatePicker.swift
+//  PLExpirationDatePicker.swift
 //  Pals
 //
 //  Created by ruckef on 08.11.16.
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-protocol PLDatePickerDelegate: class {
-    func datePicker(picker: PLDatePicker, didChangeDate date: NSDate, dateString: String)
+struct PLExpirationDate {
+    var month: Int
+    var year: Int
 }
 
-class PLDatePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
+protocol PLExpirationDatePickerDelegate: class {
+    func expirationDatePicker(picker: PLExpirationDatePicker, didChangeDate date: PLExpirationDate)
+}
+
+class PLExpirationDatePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    weak var delegate: PLDatePickerDelegate?
+    weak var delegate: PLExpirationDatePickerDelegate?
     
+    // tells if a picker displayed on view
     var isPresented: Bool {return presented}
     
+    // expiration year range from a current year e.g. 2016-2026
     var years = 11
+    
+    // selected date, becomes to nil when a picker rolls
+    var expirationDate: PLExpirationDate?
     
     func presentOnView(view: UIView) {
         self.presentingView = view
@@ -24,6 +34,7 @@ class PLDatePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         picker.dataSource = self
         var frame = self.picker.frame
         frame.origin.y = view.frame.height
+        frame.size.width = view.frame.width
         picker.frame = frame
         view.addSubview(picker)
         selectMiddleRows()
@@ -33,7 +44,6 @@ class PLDatePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         
         UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: { 
             frame.origin.y = view.frame.height - frame.height
-            frame.size.width = view.frame.width
             self.picker.frame = frame
         }, completion: { (succes) in
             self.presented = true
@@ -100,5 +110,25 @@ class PLDatePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 50000
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let monthIdx = pickerView.selectedRowInComponent(0)
+        let yearIdx = pickerView.selectedRowInComponent(1)
+        let month = monthFromRow(monthIdx)+1
+        let year = yearFromRow(yearIdx)
+        expirationDate = PLExpirationDate(month: month, year: year)
+        delegate?.expirationDatePicker(self, didChangeDate: expirationDate!)
+    }
+    
+    private func yearFromRow(row: Int) -> Int {
+        let yearOffset = row % years
+        let year = currentYear + yearOffset
+        return year
+    }
+    
+    private func monthFromRow(row: Int) -> Int {
+        let month = row % months.count
+        return month
     }
 }
