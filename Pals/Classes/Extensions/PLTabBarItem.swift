@@ -18,9 +18,8 @@ extension UITabBarItem {
     }
     
     func plusBadge() {
-        var value = Int(badgeValue ?? "0") ?? 0
-        value += 1
-        badgeValue = String(value)
+        let value = Int(badgeValue ?? "0") ?? 0
+        badgeValue = String(value + 1)
     }
     
 }

@@ -19,6 +19,8 @@ class PLTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        delegate = self
+        
         let selectedColor = UIColor.whiteColor()
         let unselectedColor = UIColor.blackColor()
         for item in tabBar.items! {
@@ -28,27 +30,17 @@ class PLTabBarController: UITabBarController {
             item.setTitleTextAttributes([NSForegroundColorAttributeName : unselectedColor], forState: .Normal)
         }
         
-        PLFacade.fetchBadges { badges, error in
-            guard error == nil else { return PLShowErrorAlert(error: error!) }
-            
-            badges.forEach { badge in
-                let item = badge.type.tabBarItem
-                self.tabBar.items![item].setBadge(badge)
-            }
-        }
-        
         NSNotificationCenter.defaultCenter().addObserverForName(
         kPLPushManagerDidReceivePush, object: nil, queue: .mainQueue()) { notification in
-            guard let push = notification.object as? PLPush else { return }
+            self.updateBadgeOnTabBarItem()
             
-            let badge = push.badge
-            let item = push.badge?.type.tabBarItem
-            self.tabBar.items![item!].setBadge(badge!)
+            var numberOfBadges = UIApplication.sharedApplication().applicationIconBadgeNumber
+            numberOfBadges += 1
+            UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
         }
+        
+        updateBadgeOnTabBarItem()
     }
-    
-    
-    // MARK: - UITabBarControllerDelegate
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         guard item.badgeValue != nil else { return }
@@ -57,18 +49,38 @@ class PLTabBarController: UITabBarController {
         numberOfBadges -= Int(item.badgeValue ?? "0") ?? 0
         UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
         item.badgeValue = nil
+    }
+    
+    func updateBadgeOnTabBarItem() {
+        PLFacade.fetchBadges { badges, error in
+            guard error == nil else { return PLShowErrorAlert(error: error!) }
+            
+            badges.forEach { badge in
+                let item = badge.type.tabBarItem
+                self.tabBar.items![item].setBadge(badge)
+            }
+        }
+    }
+    
+}
 
-        switch PLTabBarItem(rawValue: selectedIndex)! {
-        case .ProfileTabBarItem:
-            PLFacade.resetBadges(.Order)
-        case .FriendsTabBarItem:
-            PLFacade.resetBadges(.Friends)
+
+// MARK: - UITabBarControllerDelegate
+
+extension PLTabBarController: UITabBarControllerDelegate {
+    
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        let tabBarItem = PLTabBarItem(rawValue: tabBarController.selectedIndex)!
+        switch tabBarItem {
+        case .ProfileTabBarItem: PLFacade.resetBadges(.Order)
+        case .FriendsTabBarItem: PLFacade.resetBadges(.Friends)
         default:
             break
         }
     }
-
+    
 }
+
 
 
 extension UITabBarController {

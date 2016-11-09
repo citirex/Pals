@@ -128,7 +128,7 @@ class PLPushManager: NSObject {
         }
     }
     
-    func processLauchOptions(options: [NSObject : AnyObject]?) {
+    func processLaunchOptions(options: [NSObject : AnyObject]?) {
         if options != nil {
             if let aps = options![UIApplicationLaunchOptionsRemoteNotificationKey] as? [String:AnyObject] {
                 processPushInfo(aps, launchedByTap: true)
@@ -155,7 +155,8 @@ class PLPushManager: NSObject {
     
 }
 
-extension PLPushManager : PLPushSimulation {
+extension PLPushManager: PLPushSimulation {
+    
     func simulatePushes(settings: PLPushSettings) {
         if settings.simulationEnabled {
             NSTimer.scheduledTimerWithTimeInterval(settings.simulationInterval, target: self, selector: #selector(pushSimulatorFired(_:)), userInfo: nil, repeats: true)
