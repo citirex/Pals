@@ -17,6 +17,8 @@ class PLImagePicker: NSObject {
     
     private static let sharedInstance = PLImagePicker()
     
+    private var didUserSetProfileImage = false
+    
     static func pickImage(controller: UIViewController, imageView: UIImageView, completion: imagePickerCompletion) {
         sharedInstance.pickImage(controller, imageView: imageView, completion: completion)
     }
@@ -27,7 +29,7 @@ class PLImagePicker: NSObject {
         
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
         
-        if imageView.image != nil {
+        if didUserSetProfileImage {
             optionMenu.addAction(UIAlertAction(title: "Remove image", style: .Destructive, handler: { [unowned self] alert in
                 self.removeImageFrom(imageView)
                 }))
@@ -75,6 +77,8 @@ class PLImagePicker: NSObject {
     
     private func removeImageFrom(imageView: UIImageView) {
         imageView.image = nil
+        
+        didUserSetProfileImage = false
     }
 
 }
@@ -86,6 +90,8 @@ extension PLImagePicker: UIImagePickerControllerDelegate, UINavigationController
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         guard let imagePicked = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         picker.dismissViewControllerAnimated(true) {
+            self.didUserSetProfileImage = true
+            
             self.completion!(image: imagePicked.crop(CGSizeMake(200, 200)))
         }
     }

@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-       
+    
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
