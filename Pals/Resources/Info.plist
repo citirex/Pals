@@ -56,6 +56,10 @@
 	<string>The app will use your location only when running</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow access to add photos from Facebook</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

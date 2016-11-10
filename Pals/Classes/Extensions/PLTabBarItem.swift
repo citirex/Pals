@@ -11,9 +11,9 @@ import Foundation
 
 extension UITabBarItem {
     
-    func setBadge(badge: PLBadge) {
-        if badge.count > 0 {
-            badgeValue = String(badge.count)
+    func setBadge(count: Int) {
+        if count > 0 {
+            badgeValue = String(count)
         }
     }
     
