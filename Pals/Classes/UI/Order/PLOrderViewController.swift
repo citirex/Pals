@@ -270,8 +270,6 @@ extension PLOrderViewController {
                 if PLFacade.profile!.id == order?.user.id {
                     let profileViewController = self.tabBarController!.profileViewController
                     profileViewController.addNewOrder(newOrder)
-                    let item = PLTabBarItem.ProfileItem.rawValue
-                    self.tabBarController?.tabBar.items![item].plusBadge()
                     self.tabBarController?.switchTabBarItemTo(.ProfileItem)
                 } else {
                     PLShowAlert("Success")

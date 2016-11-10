@@ -61,7 +61,9 @@ class PLTabBarController: UITabBarController {
             badges.forEach { [unowned self] badge in
                 numberOfBadges += badge.count
                 let item = badge.type.tabBarItem
-                self.tabBar.items![item].setBadge(badge.count)
+                if badge.count > 0 {
+                    self.tabBar.items![item].badgeValue = String(badge.count)
+                }
             }
             UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
         }
