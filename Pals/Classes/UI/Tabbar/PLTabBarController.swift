@@ -7,7 +7,7 @@
 //
 
 enum PLTabBarItem: Int {
-    case ProfileTabBarItem, PlacesTabBarItem, OrderTabBarItem, FriendsTabBarItem
+    case ProfileItem, PlacesItem, OrderItem, FriendsItem
 }
 
 class PLTabBarController: UITabBarController {
@@ -19,8 +19,6 @@ class PLTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        delegate = self
-        
         let selectedColor = UIColor.whiteColor()
         let unselectedColor = UIColor.blackColor()
         for item in tabBar.items! {
@@ -30,16 +28,9 @@ class PLTabBarController: UITabBarController {
             item.setTitleTextAttributes([NSForegroundColorAttributeName : unselectedColor], forState: .Normal)
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(
-        kPLPushManagerDidReceivePush, object: nil, queue: .mainQueue()) { notification in
-            self.updateBadgeOnTabBarItem()
-            
-            var numberOfBadges = UIApplication.sharedApplication().applicationIconBadgeNumber
-            numberOfBadges += 1
-            UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
-        }
-        
-        updateBadgeOnTabBarItem()
+        delegate = self
+        updateBadgeCount()
+        registerForRemoteNotifications()
     }
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
@@ -51,14 +42,30 @@ class PLTabBarController: UITabBarController {
         item.badgeValue = nil
     }
     
-    func updateBadgeOnTabBarItem() {
+    
+    // MARK: - Private methods
+    
+    private func registerForRemoteNotifications() {
+        NSNotificationCenter.defaultCenter().addObserverForName(kPLPushManagerDidReceivePush, object: nil,
+            queue: .mainQueue()) { [unowned self] notification in
+            self.updateBadgeCount()
+        }
+    }
+    
+    private func updateBadgeCount() {
         PLFacade.fetchBadges { badges, error in
             guard error == nil else { return PLShowErrorAlert(error: error!) }
+
+            var numberOfBadges = 0
             
-            badges.forEach { badge in
+            badges.forEach { [unowned self] badge in
+                numberOfBadges += badge.count
                 let item = badge.type.tabBarItem
-                self.tabBar.items![item].setBadge(badge)
+                if badge.count > 0 {
+                    self.tabBar.items![item].badgeValue = String(badge.count)
+                }
             }
+            UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
         }
     }
     
@@ -70,10 +77,10 @@ class PLTabBarController: UITabBarController {
 extension PLTabBarController: UITabBarControllerDelegate {
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        let tabBarItem = PLTabBarItem(rawValue: tabBarController.selectedIndex)!
-        switch tabBarItem {
-        case .ProfileTabBarItem: PLFacade.resetBadges(.Order)
-        case .FriendsTabBarItem: PLFacade.resetBadges(.Friends)
+        let item = PLTabBarItem(rawValue: tabBarController.selectedIndex)!
+        switch item {
+        case .ProfileItem: PLFacade.resetBadges(.Order)
+        case .FriendsItem: PLFacade.resetBadges(.Friends)
         default:
             break
         }
@@ -90,11 +97,11 @@ extension UITabBarController {
     }
     
     var orderViewController: PLOrderViewController {
-        return viewControllerByTabBarItem(.OrderTabBarItem) as! PLOrderViewController
+        return viewControllerByTabBarItem(.OrderItem) as! PLOrderViewController
     }
     
     var profileViewController: PLProfileViewController {
-        return viewControllerByTabBarItem(.ProfileTabBarItem) as! PLProfileViewController
+        return viewControllerByTabBarItem(.ProfileItem) as! PLProfileViewController
     }
     
     private func viewControllerByTabBarItem(item: PLTabBarItem) -> UIViewController {

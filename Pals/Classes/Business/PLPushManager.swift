@@ -83,8 +83,8 @@ enum PLPushType: Int {
     
     var tabBarItem: Int {
         switch self {
-        case .Order   : return PLTabBarItem.ProfileTabBarItem.rawValue
-        case .Friends : return PLTabBarItem.FriendsTabBarItem.rawValue
+        case .Order   : return PLTabBarItem.ProfileItem.rawValue
+        case .Friends : return PLTabBarItem.FriendsItem.rawValue
         }
     }
 }
@@ -122,10 +122,13 @@ class PLPushManager: NSObject {
         PLLog("Did receive device token: \(deviceToken!)", type: .Pushes)
     }
     
-    func didReceiveRemoteNotification(info: [NSObject : AnyObject]) {
-        if let anInfo = info as? [String:AnyObject] {
-            processPushInfo(anInfo, launchedByTap: false)
+    func didReceiveRemoteNotification(userInfo: [NSObject : AnyObject], fetchCompletionHandler
+        completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        if let userInfo = userInfo as? [String:AnyObject] {
+            processPushInfo(userInfo, launchedByTap: false)
         }
+        completionHandler(.NewData)
     }
     
     func processLaunchOptions(options: [NSObject : AnyObject]?) {

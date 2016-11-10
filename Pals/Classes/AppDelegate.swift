@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-    
+        
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -69,9 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PLFacade.didReceiveDeviceToken(deviceToken)
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PLFacade.didReceiveRemoteNotification(userInfo)
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        PLFacade.didReceiveRemoteNotification(userInfo, fetchCompletionHandler: completionHandler)
     }
     
 }
+    
 

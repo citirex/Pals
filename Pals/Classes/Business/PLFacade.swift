@@ -18,7 +18,7 @@ protocol PLFacadePushes {
     static func didRegisterPushSettings(application: UIApplication, settings: UIUserNotificationSettings)
     static func didFailToRegisterPushSettings(error: NSError)
     static func didReceiveDeviceToken(token: NSData)
-    static func didReceiveRemoteNotification(info: [NSObject : AnyObject])
+    static func didReceiveRemoteNotification(userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void)
 }
 
 protocol PLFacadeRepresentable {
@@ -101,8 +101,8 @@ extension PLFacade: PLFacadePushes {
     class func didReceiveDeviceToken(token: NSData) {
         PLFacade.instance.pushManager.didReceiveDeviceToken(token)
     }
-    class func didReceiveRemoteNotification(info: [NSObject : AnyObject]) {
-        PLFacade.instance.pushManager.didReceiveRemoteNotification(info)
+    class func didReceiveRemoteNotification(userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        PLFacade.instance.pushManager.didReceiveRemoteNotification(userInfo, fetchCompletionHandler: completionHandler)
     }
 }
 
