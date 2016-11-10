@@ -34,6 +34,7 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
             self.invited = invited
         }
         if let customerDic = jsonDic[.customer] as? [String : AnyObject] {
+            PLLog(customerDic, type: .Deserialization)
             self.customer = PLCustomer(jsonDic: customerDic)!
         }
         super.init(jsonDic: jsonDic)

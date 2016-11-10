@@ -12,4 +12,8 @@ class PLCurrentUser: PLUser {
         data.me = true
         return data
     }
+    
+    var hasPaymentCard: Bool {
+        return customer?.paymentSource != nil
+    }
 }

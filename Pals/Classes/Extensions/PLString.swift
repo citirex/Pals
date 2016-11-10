@@ -33,5 +33,11 @@ extension String {
         
         return randomString
     }
-    
+
+}
+
+extension String {
+     func removedWhitespaces() -> String {
+        return stringByReplacingOccurrencesOfString(" ", withString: "")
+    }
 }

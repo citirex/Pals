@@ -9,6 +9,12 @@
 struct PLExpirationDate {
     var month: Int
     var year: Int
+    
+    var string: String {
+        let last2Year = year%1000
+        let str = String(format: "%.2d/%d", month, last2Year)
+        return str
+    }
 }
 
 protocol PLExpirationDatePickerDelegate: class {

@@ -28,6 +28,7 @@ class PLCardInfoViewController: PLViewController {
         allFields.append(creditCardNumberTextField!)
         allFields.append(zipCodeTextField!)
         allFields.append(cvvCodeTextField!)
+        prefillCardFields()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -43,19 +44,83 @@ class PLCardInfoViewController: PLViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        creditCardNumberTextField.becomeFirstResponder()
+        if !PLFacade.profile!.hasPaymentCard {
+            creditCardNumberTextField.becomeFirstResponder()
+        }
+    }
+    
+    func prefillCardFields() {
+        if let source = PLFacade.profile?.customer?.paymentSource {
+            if let expDate = source.expirationDate {
+                expirationDateTextField.text = source.expirationDate?.string
+                cardForm.expYear = UInt(expDate.year)
+                cardForm.expMonth = UInt(expDate.month)
+            }
+            zipCodeTextField.text = source.zip
+            prefillCardNumber(source.last4)
+            prefillCVC()
+        }
+    }
+    
+    func prefillCardNumber(last4: String?) {
+        if last4 != nil {
+            creditCardNumberTextField.text = "●●●● ●●●● ●●●● \(last4!)"
+        } else {
+            creditCardNumberTextField.text = "●●●● ●●●● ●●●● ●●●●"
+        }
+    }
+    
+    func prefillCVC() {
+        cvvCodeTextField.text = "●●●"
     }
     
     func textFieldChanged(notification: NSNotification) {
         let field = notification.object as! UITextField
         let text = field.text
         if field === creditCardNumberTextField {
-            cardForm.number = text
+            field.text = addWhiteSpacesToNumberString(text)
+            cardForm.number = text?.removedWhitespaces()
         } else if field === zipCodeTextField {
             cardForm.addressZip = text
         } else if field === cvvCodeTextField {
-            cardForm.cvc = text
+            let cvc = trimCVCto3Chars(text)
+            field.text = cvc
+            cardForm.cvc = cvc
         }
+    }
+    
+    func trimCVCto3Chars(cvc: String?) -> String? {
+        if var str = cvc {
+            if str.characters.count > 3 {
+                str = str.substringToIndex(str.startIndex.advancedBy(3))
+            }
+            return str
+        }
+        return nil
+    }
+    
+    func addWhiteSpacesToNumberString(string: String?) -> String? {
+        if var str = string {
+            str = str.stringByReplacingOccurrencesOfString(" ", withString: "")
+            if str.characters.count > 16 {
+                str = str.substringToIndex(str.startIndex.advancedBy(16))
+            }
+            var fourDigitArray = [String]()
+            var fourDigits = [Character]()
+            for i in 0..<str.characters.count {
+                let character = str[str.startIndex.advancedBy(i)]
+                let fold = i%4 == 0 && i != 0
+                if fold {
+                    fourDigitArray.append(String(fourDigits))
+                    fourDigits = [Character]()
+                }
+                fourDigits.append(character)
+            }
+            fourDigitArray.append(String(fourDigits))
+            let newStr = fourDigitArray.joinWithSeparator(" ")
+            return newStr
+        }
+        return nil
     }
     
     func enableControls(enabled: Bool) {
@@ -123,6 +188,31 @@ extension PLCardInfoViewController: UITextFieldDelegate {
         if expirationDatePicker.isPresented {
             expirationDatePicker.dismiss()
         }
+        if PLFacade.profile!.hasPaymentCard {
+            if textField === creditCardNumberTextField {
+                if let number = cardForm.number where !number.isEmpty {
+                    textField.text = addWhiteSpacesToNumberString(number)
+                } else {
+                    textField.text = nil
+                }
+            } else if textField === cvvCodeTextField {
+                textField.text = cardForm.cvc
+            }
+        }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if PLFacade.profile!.hasPaymentCard {
+            if let text = textField.text {
+                if text.isEmpty {
+                    if textField === creditCardNumberTextField {
+                        prefillCardNumber(PLFacade.profile?.customer?.paymentSource?.last4)
+                    } else if textField === cvvCodeTextField {
+                        prefillCVC()
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -143,8 +233,7 @@ extension PLCardInfoViewController : PLExpirationDatePickerDelegate {
     }
     
     func expirationDatePicker(picker: PLExpirationDatePicker, didChangeDate date: PLExpirationDate) {
-        let last2Year = date.year%1000
-        expirationDateTextField.text = String(format: "%.2d/%d", date.month, last2Year)
+        expirationDateTextField.text = date.string
         cardForm.expMonth = UInt(date.month)
         cardForm.expYear = UInt(date.year)
     }
