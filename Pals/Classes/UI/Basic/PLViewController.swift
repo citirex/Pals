@@ -136,7 +136,7 @@ extension UIViewController {
         case .Center:
             activityIndicator.autoCenterInSuperview()
         case .Bottom:
-            activityIndicator.autoAlignAxis(.Horizontal, toSameAxisOfView: self.view, withMultiplier: 1.65)
+            activityIndicator.autoAlignAxis(.Horizontal, toSameAxisOfView: self.targetView, withMultiplier: 1.65)
             activityIndicator.autoAlignAxisToSuperviewAxis(.Vertical)
         }
     }

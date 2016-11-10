@@ -174,13 +174,13 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let event = events[indexPath.row].cellData
-        let objectsToShare = ["\(place.name) \(eventDateFormatter.stringFromDate(event.date)),\n\(event.info))"]
+        let objectsToShare = ["\(place.name) \(eventDateFormatter.stringFromDate(event.start)),\n\(event.info))"]
         let calendarActivity = PLActivity(title: "To calendar", imageName: "icon_calendar") {
             
             let alertView = UIAlertController(title: "Add event to calendar?", message: nil, preferredStyle: .Alert)
             
             let buttonYes = UIAlertAction(title: "Yes", style: .Default, handler: { (action) in
-                self.addEventToCalendar(title: self.place.name, description: event.info, startDate: event.date, endDate: event.date.dateByAddingTimeInterval(3600)) { (success, error) in
+                self.addEventToCalendar(title: self.place.name, description: event.info, startDate: event.start, endDate: event.end) { (success, error) in
                     //load slow need fix maybe
                     if error == nil && success == true {
                         self.showAlertWithText("Success", message: "Event added to calendar")

@@ -32,6 +32,7 @@ enum PLKey : String {
     
     case email
     case email_unique
+    case ends
     case events
     case expires
     case exp_month
@@ -85,6 +86,7 @@ enum PLKey : String {
     case success
     case since
     case source
+    case starts
     
     case type
     case token

@@ -22,8 +22,18 @@ class PLPlaceProfileCell: UICollectionViewCell {
     
     func setupWithEventInfo(event: PLEventCellData, andDateFormatter dateFormatter: NSDateFormatter) {
         eventImageView.setImageWithURL(event.picture, placeholderImage: UIImage(named: "no_image_placeholder"))
-        eventDateLabel.text        =  dateFormatter.stringFromDate(event.date)
+        eventDateLabel.text = dateRangeString(event.start, end: event.end)
         eventDescriptionLabel.text = event.info
+    }
+    
+    func dateRangeString(start: NSDate, end: NSDate) -> String {
+        func dateString(date: NSDate) -> String {
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = .MediumStyle
+            formatter.timeStyle = .NoStyle
+            return formatter.stringFromDate(date)
+        }
+        return "\(dateString(start)) - \(dateString(end))"
     }
     
     override func drawRect(rect: CGRect) {
