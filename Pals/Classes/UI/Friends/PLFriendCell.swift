@@ -31,7 +31,6 @@ class PLFriendCell: UITableViewCell{
         return PLLoadingIndicatorView(frame:CGRectMake(0,0,33,33),indicatorStyle: .Gray)
     }()
 
-	var currentUrl = ""
     private var invitedUserID: UInt64 = 0
     
     weak var delegate : PLFriendCellDelegate?
@@ -97,32 +96,7 @@ class PLFriendCell: UITableViewCell{
     }
 	
 	func setCorrectImage(url: NSURL) {
-		avatarImage.image = nil
-		let urlString = url.absoluteString
-		let request = NSURLRequest(URL: url)
-		currentUrl = urlString
-		
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-			if urlString != self.currentUrl {
-				return
-			}
-			self.avatarImage.setImageWithURLRequest(request, placeholderImage: nil, success: {[unowned self] (request, response, image) in
-				if urlString != self.currentUrl {
-					return
-				}
-				dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-					if self.avatarImage.image == UIImage(named: "user") {
-						return
-					} else {
-						self.avatarImage.image = image
-					}
-					})
-			}) {[unowned self] (request, response, error) in
-				dispatch_async(dispatch_get_main_queue()) {
-					self.avatarImage.image = nil
-				}
-			}
-		}
+        avatarImage.setImageSafely(fromURL: url, placeholderImage: UIImage(named: "user"))
 	}
 
 	func addFriendAction(sender: PLFriendCell) {

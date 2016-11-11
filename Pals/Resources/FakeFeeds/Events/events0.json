@@ -3,121 +3,117 @@
               {
               "id":1,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1475964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
+              "starts" : 1479931200,
+              "ends" : 1479938400
               },
               {
               "id":2,
-              "picture":"https://ih0.redbubble.net/image.89853365.9280/poster,220x200,ffffff-pad,220x200,ffffff.u6.jpg",
-              "date":1474234432,
+              "picture":"https://1ih0.redbubble.net/image.89853365.9280/poster,220x200,ffffff-pad,220x200,ffffff.u6.jpg",
               "info":"Just another Rave.",
+              "starts" : 1479931200,
+              "ends" : 1479938400
               },
               {
               "id":3,
               "picture":"http://1.bp.blogspot.com/-pQRiZISgi5M/UZLQXJJtOeI/AAAAAAAAGeY/q0uaZO4od5E/s1600/psychedelic-landscape-painting.jpg",
-              "date":1475364432,
               "info":"Psy trance party, lot of good music, free mojito and cigarets",
+              "starts" : 1479931200,
+              "ends" : 1479938400
               },
               {
               "id":4,
               "picture":"https://marketplace.canva.com/MAB1BYHoNWk/1/0/thumbnail_large/canva-rock-music-concert-poster-MAB1BYHoNWk.jpg",
-              "date":1474984432,
               "info":"ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK ROCK!!!!!!!!",
+              "starts" : 1480183200,
+              "ends" : 1480201200
               },
               {
               "id":5,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/b2/32/86/b23286a028aaf6b795ff0e9e9c66cca8.jpg",
-              "date":1474974432,
               "info":"PArty for hipsters. Dress code: selfie stick and bread",
               },
               {
               "id":6,
               "picture":"http://dgeiu3fz282x5.cloudfront.net/g/l/lgpp0425+tongue-logo-rolling-stones-poster.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! We wait for YOU!",
               },
               {
               "id":7,
               "picture":"https://marketplace.canva.com/MAB050WN6w8/1/0/thumbnail_large/canva-jazz-music-saxophone-festival-poster-MAB050WN6w8.jpg",
-              "date":1474964432,
               "info":"Acid Jazz..",
               },
               {
               "id":8,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
+              "starts" : 1480183200,
+              "ends" : 1480201200
               },
               {
               "id":9,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
-              "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
+              "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla felis nec massa auctor, suscipit elementum sem pretium. Aenean auctor magna vel vestibulum blandit. Nullam erat enim, mattis a sem nec, egestas dignissim diam. Maecenas quis libero leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin placerat, odio non rhoncus luctus, sapien libero consectetur nisi, ut ullamcorper erat nunc molestie nisl. Duis efficitur volutpat dolor et faucibus.\nDonec porta est nunc, a tincidunt justo consequat ac. Duis eget fermentum quam. Fusce tincidunt risus sed turpis posuere rhoncus. Nulla dictum quam at est molestie, sit amet mattis metus auctor. Vestibulum sed leo ligula. Vestibulum volutpat elementum risus et volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque magna at lorem tristique, et pellentesque mauris fringilla. Proin id tortor rutrum, aliquam sapien sed, auctor enim. Duis tempus purus eu sem venenatis, sit amet elementum arcu tristique.",
+              "starts" : 1480183200,
+              "ends" : 1480201200
               },
               {
               "id":10,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
-              "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
+              "info":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla felis nec massa auctor, suscipit elementum sem pretium. Aenean auctor magna vel vestibulum blandit. Nullam erat enim, mattis a sem nec, egestas dignissim diam. Maecenas quis libero leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin placerat, odio non rhoncus luctus, sapien libero consectetur nisi, ut ullamcorper erat nunc molestie nisl. Duis efficitur volutpat dolor et faucibus.Donec porta est nunc, a tincidunt justo consequat ac. Duis eget fermentum quam. Fusce tincidunt risus sed turpis posuere rhoncus. Nulla dictum quam at est molestie, sit amet mattis metus auctor. Vestibulum sed leo ligula. Vestibulum volutpat elementum risus et volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque magna at lorem tristique, et pellentesque mauris fringilla. Proin id tortor rutrum, aliquam sapien sed, auctor enim. Duis tempus purus eu sem venenatis, sit amet elementum arcu tristique.Proin eget quam blandit orci consectetur viverra sit amet ut magna. Etiam lacinia erat at urna hendrerit euismod. Nam lobortis magna nec mauris cursus, feugiat auctor arcu bibendum. Integer sollicitudin tellus arcu, vitae semper urna dignissim eget. Curabitur vel lorem congue, rhoncus elit pharetra, egestas tellus. Nulla ultricies sit amet velit et cursus. Sed ornare vitae ipsum a commodo. Proin tempor tristique turpis quis luctus. Etiam a magna eget turpis finibus aliquam. Suspendisse eleifend justo enim, sit amet porta sapien finibus in. Morbi at sollicitudin neque. Sed cursus ultrices urna. Maecenas semper aliquet auctor. Cras commodo pulvinar eros, finibus molestie lacus dapibus placerat. Quisque at elementum metus.Nam scelerisque odio nec urna pulvinar ornare. Mauris et augue ipsum. Fusce pharetra, diam sed elementum imperdiet, augue nulla condimentum orci, eget posuere dui elit id nisl. Proin tempor libero vitae est maximus, ut mollis diam lobortis. Etiam vel consectetur dui, in hendrerit sem. Sed rhoncus blandit lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla ipsum urna, mollis eget vestibulum a, fringilla eu dolor. Donec eget nisi consectetur, ullamcorper velit in, dictum ante. Mauris elementum ipsum condimentum tortor rutrum feugiat faucibus sit amet tellus. Duis justo leo, elementum nec posuere in, placerat ut risus. Suspendisse rutrum, elit in vestibulum aliquet, elit risus tincidunt odio, in tempor neque diam eu lectus. Duis blandit eros quis arcu volutpat commodo. Quisque efficitur ligula et odio efficitur egestas.",
+              "starts" : 1479398400,
+              "ends" : 1479409200
               },
               {
               "id":11,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
+              "starts" : 1480183200,
+              "ends" : 1480201200
               },
               {
               "id":12,
               "picture":"http://www.posterscene.com/images/items/full/pixies_redrocks.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!!",
               },
               {
               "id":13,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Girls, drinks, music!",
               },
               {
               "id":14,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
               },
               {
               "id":15,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
               },
               {
               "id":16,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
               },
               {
               "id":17,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Girls, drinks for YOU!",
               },
               {
               "id":18,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
               },
               {
               "id":19,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Come with friends",
               },
               {
               "id":20,
               "picture":"https://s-media-cache-ak0.pinimg.com/236x/4f/61/97/4f6197324add3cb720b7099dcd762df7.jpg",
-              "date":1474964432,
               "info":"Hardest hardstyle ever, 400 bpm!!! Girls, drinks, music! We wait for YOU!",
               }
               ]

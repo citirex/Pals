@@ -27,8 +27,6 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     @IBOutlet var userNicknameLabel: UILabel!
     @IBOutlet var userMessageLabel: UILabel!
     
-    private var currentUrl = ""
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         userView.layer.cornerRadius = 10
@@ -99,26 +97,7 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     }
     
     private func setImage(url: NSURL) {
-        userPicImageView.image = nil
-        let urlString = url.absoluteString
-        let request = NSURLRequest(URL: url)
-        currentUrl = urlString
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            if urlString != self.currentUrl {
-                return
-            }
-            self.userPicImageView.setImageWithURLRequest(request, placeholderImage: nil, success: {[unowned self] (request, response, image) in
-                if urlString != self.currentUrl {
-                    return
-                }
-                dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-                    self.userPicImageView.image = image
-                    })
-            }) { (request, response, error) in
-               PLShowErrorAlert(error: error)
-            }
-        }
+        userPicImageView.setImageSafely(fromURL: url, placeholderImage: UIImage(named: "user")!)
     }
     
     func setupCellCornersAndShadow() {

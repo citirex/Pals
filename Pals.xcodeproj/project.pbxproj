@@ -80,6 +80,10 @@
 		D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41194ED1D86B7C600AED4D1 /* PLBlurView.swift */; };
 		D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */; };
 		D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */; };
+		D41494251DD5B5800081509E /* PLEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41494231DD5B5800081509E /* PLEventCell.swift */; };
+		D41494261DD5B5800081509E /* PLEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41494241DD5B5800081509E /* PLEventCell.xib */; };
+		D41494281DD5B81C0081509E /* PLCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41494271DD5B81C0081509E /* PLCollectionView.swift */; };
+		D414942A1DD62D350081509E /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41494291DD62D350081509E /* PLImageView.swift */; };
 		D419F0D11DB62E1F0095C5AA /* PLEditUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */; };
 		D448496A1DB7A3EF00737413 /* PLSearchableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
@@ -122,7 +126,6 @@
 		E8204A281DA82F4000BDBFCE /* PLFormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */; };
 		E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */; };
 		E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */; };
-		E829DDD31D8151BE00D8C130 /* PLPlaceProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDCE1D8151BE00D8C130 /* PLPlaceProfileCell.xib */; };
 		E829DDD41D8151BE00D8C130 /* PLPlaceProfileSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDCF1D8151BE00D8C130 /* PLPlaceProfileSectionHeader.swift */; };
 		E829DDD51D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDD01D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib */; };
 		E829DDD61D8151BE00D8C130 /* PLPlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */; };
@@ -184,7 +187,6 @@
 		E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B8C1D88334F008782E5 /* PLProfileHeaderView.swift */; };
 		E8DA8B951D88334F008782E5 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8DA8B8D1D88334F008782E5 /* PLProfileHeaderView.xib */; };
 		E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */; };
-		E8E4A12E1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E4A12C1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift */; };
 		E8E4A1321D89EC0A00EA0DFE /* PLEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E4A1311D89EC0A00EA0DFE /* PLEditProfileViewController.swift */; };
 		E8F1C8AE1DBE4009008D95B2 /* PLTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F1C8AD1DBE4009008D95B2 /* PLTableView.swift */; };
 		E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC02541DA92B18006C94E7 /* PLPlaceNameCell.swift */; };
@@ -271,6 +273,10 @@
 		D41194F11D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Additions.m"; sourceTree = "<group>"; };
 		D41194F21D86BB7100AED4D1 /* View+LayoutConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+LayoutConstraints.h"; sourceTree = "<group>"; };
 		D41194F31D86BB7100AED4D1 /* View+LayoutConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+LayoutConstraints.m"; sourceTree = "<group>"; };
+		D41494231DD5B5800081509E /* PLEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEventCell.swift; path = "Place Profile/PLEventCell.swift"; sourceTree = "<group>"; };
+		D41494241DD5B5800081509E /* PLEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLEventCell.xib; path = "Place Profile/PLEventCell.xib"; sourceTree = "<group>"; };
+		D41494271DD5B81C0081509E /* PLCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCollectionView.swift; sourceTree = "<group>"; };
+		D41494291DD62D350081509E /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImageView.swift; sourceTree = "<group>"; };
 		D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEditUserData.swift; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchableViewController.swift; sourceTree = "<group>"; };
@@ -313,7 +319,6 @@
 		E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFormTextField.swift; sourceTree = "<group>"; };
 		E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileHeader.swift; path = "Place Profile/PLPlaceProfileHeader.swift"; sourceTree = "<group>"; };
 		E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileHeader.xib; path = "Place Profile/PLPlaceProfileHeader.xib"; sourceTree = "<group>"; };
-		E829DDCE1D8151BE00D8C130 /* PLPlaceProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileCell.xib; path = "Place Profile/PLPlaceProfileCell.xib"; sourceTree = "<group>"; };
 		E829DDCF1D8151BE00D8C130 /* PLPlaceProfileSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileSectionHeader.swift; path = "Place Profile/PLPlaceProfileSectionHeader.swift"; sourceTree = "<group>"; };
 		E829DDD01D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileSectionHeader.xib; path = "Place Profile/PLPlaceProfileSectionHeader.xib"; sourceTree = "<group>"; };
 		E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileViewController.swift; path = "Place Profile/PLPlaceProfileViewController.swift"; sourceTree = "<group>"; };
@@ -379,7 +384,6 @@
 		E8DA8B8C1D88334F008782E5 /* PLProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileHeaderView.swift; sourceTree = "<group>"; };
 		E8DA8B8D1D88334F008782E5 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileHeaderView.xib; sourceTree = "<group>"; };
 		E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileViewController.swift; sourceTree = "<group>"; };
-		E8E4A12C1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileCell.swift; path = "Place Profile/PLPlaceProfileCell.swift"; sourceTree = "<group>"; };
 		E8E4A1311D89EC0A00EA0DFE /* PLEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PLEditProfileViewController.swift; path = "Edit Profile/PLEditProfileViewController.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E8F1C8AD1DBE4009008D95B2 /* PLTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTableView.swift; sourceTree = "<group>"; };
 		E8FC02541DA92B18006C94E7 /* PLPlaceNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceNameCell.swift; path = "Order History/PLPlaceNameCell.swift"; sourceTree = "<group>"; };
@@ -473,6 +477,7 @@
 				2480F87B1D813E730095995F /* PLStoryboard.swift */,
 				2480F87C1D813E730095995F /* PLString.swift */,
 				E8DA8B581D881D7C008782E5 /* PLView.swift */,
+				D41494291DD62D350081509E /* PLImageView.swift */,
 				E8007BD61DA0073700372347 /* PLLocation.swift */,
 				E829DDDB1D819A6300D8C130 /* PLConstants.swift */,
 				E8A658691D9D0B6900D8257F /* PLDate.swift */,
@@ -482,6 +487,7 @@
 				D4FECA241D9D5EB800B3CA82 /* PLLog.swift */,
 				E85083141DAD1AEA0077A81C /* PLAttributedString.swift */,
 				D47DC1F51DBEAF2000420958 /* PLData.swift */,
+				D41494271DD5B81C0081509E /* PLCollectionView.swift */,
 			);
 			name = Extensions;
 			path = Classes/Extensions;
@@ -888,8 +894,8 @@
 		E83C51041D82FE7D0095A3C5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E8E4A12C1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift */,
-				E829DDCE1D8151BE00D8C130 /* PLPlaceProfileCell.xib */,
+				D41494231DD5B5800081509E /* PLEventCell.swift */,
+				D41494241DD5B5800081509E /* PLEventCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1124,7 +1130,6 @@
 				E837C1F61D902CAE0080A074 /* covers0.json in Resources */,
 				E883A8431DAA6269006DB9CF /* PLPlaceCell.xib in Resources */,
 				E837C1FD1D902CAE0080A074 /* friends0.json in Resources */,
-				E829DDD31D8151BE00D8C130 /* PLPlaceProfileCell.xib in Resources */,
 				E837C20E1D902CAE0080A074 /* signup.json in Resources */,
 				2480F9241D813E730095995F /* Main.storyboard in Resources */,
 				2480F91A1D813E730095995F /* config.plist in Resources */,
@@ -1147,6 +1152,7 @@
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
 				2414F4571D997249000BA1F5 /* vip_drinks0.json in Resources */,
 				24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */,
+				D41494261DD5B5800081509E /* PLEventCell.xib in Resources */,
 				24E286E91D9E4A2E00B8D80C /* create_order.json in Resources */,
 				2414F4591D997249000BA1F5 /* vip_drinks2.json in Resources */,
 				E837C2021D902CAE0080A074 /* order_covers0.json in Resources */,
@@ -1265,6 +1271,7 @@
 				2480F8E61D813E730095995F /* PLEvent.swift in Sources */,
 				E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */,
 				D4949F631DD2743000FEF0C8 /* PLDatePicker.swift in Sources */,
+				D414942A1DD62D350081509E /* PLImageView.swift in Sources */,
 				E83B4E4F1D87364E002E72F6 /* PLBackBarButtonItem.swift in Sources */,
 				E85083151DAD1AEA0077A81C /* PLAttributedString.swift in Sources */,
 				D47B45661D903DF80042EB9A /* PLProfileDatasourceContainer.swift in Sources */,
@@ -1291,10 +1298,10 @@
 				D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */,
 				24DA61171D8BF642007F4973 /* PLCover.swift in Sources */,
 				E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */,
-				E8E4A12E1D89DBEE00EA0DFE /* PLPlaceProfileCell.swift in Sources */,
 				2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */,
 				D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */,
 				24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */,
+				D41494281DD5B81C0081509E /* PLCollectionView.swift in Sources */,
 				E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */,
 				D47DC1DD1DB8F3EC00420958 /* PLCurrentUser.swift in Sources */,
 				2480F8E81D813E730095995F /* PLKeys.swift in Sources */,
@@ -1342,6 +1349,7 @@
 				E8DA8B841D8832E8008782E5 /* TGLStackedLayout.m in Sources */,
 				E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */,
 				24DDA9381D9AABE600FCDBCA /* PLActivity.swift in Sources */,
+				D41494251DD5B5800081509E /* PLEventCell.swift in Sources */,
 				D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */,
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,

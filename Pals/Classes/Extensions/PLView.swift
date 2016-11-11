@@ -4,9 +4,7 @@
 //
 //  Created by Vitaliy Delidov on 9/13/16.
 //  Copyright © 2016 citirex. All rights reserved.
-//
-
-import Foundation
+//e
 
 extension UIView {
     

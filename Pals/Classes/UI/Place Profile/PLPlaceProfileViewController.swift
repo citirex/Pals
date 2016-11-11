@@ -12,7 +12,7 @@ private let kStillHeaderIdentifier = "stillHeader"
 private let kStickyHeaderIdentifier = "stickyHeader"
 
 private let kCollectionHeaderHeight: CGFloat = 188
-private let kCollectionCellHeight: CGFloat = 115
+private let kPLEventCellMinHeight: CGFloat = 130
 
 
 class PLPlaceProfileViewController: PLViewController {
@@ -35,20 +35,22 @@ class PLPlaceProfileViewController: PLViewController {
     
     var place: PLPlace!
     
-  
+    lazy var sizingCell: PLEventCell = {
+        let objects = NSBundle.mainBundle().loadNibNamed(PLEventCell.nibName(), owner: PLEventCell.self, options: nil) as! [UIView]
+        let cell = objects.first as! PLEventCell
+        return cell
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
         setupBackBarButtonItem()
-        
         loadEvents()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-    
         navigationController?.navigationBar.style = .PlaceProfileStyle
     }
 
@@ -102,7 +104,7 @@ class PLPlaceProfileViewController: PLViewController {
         collectionView.registerNib(UINib(nibName: PLPlaceProfileHeader.nibName, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: PLPlaceProfileSectionHeader.nibName, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier)
         
-        collectionView.registerNib(UINib(nibName: PLPlaceProfileCell.nibName, bundle: nil), forCellWithReuseIdentifier: PLPlaceProfileCell.identifier)
+        collectionView.registerCell(PLEventCell)
         
         noEventsView.setTopTextColor(UIColor(white: 77))
         self.collectionView.addSubview(noEventsView)
@@ -117,9 +119,7 @@ class PLPlaceProfileViewController: PLViewController {
         noEventsView.autoAlignAxisToSuperviewAxis(.Vertical)
         noEventsView.hidden = true
     }
-    
 }
-
 
 // MARK: - UICollectionViewDataSource
 
@@ -134,16 +134,19 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PLPlaceProfileCell.identifier, forIndexPath: indexPath)
-            as! PLPlaceProfileCell
+        let cell = collectionView.dequeueReusableCell(PLEventCell.self, forIndexPath: indexPath) as! PLEventCell
+        cell.delegate = self
         let event = events[indexPath.row].cellData
-        cell.setupWithEventInfo(event, andDateFormatter: eventDateFormatter)
-        
+        cell.updateWithEvent(event)
         return cell
     }
-    
 }
 
+extension PLPlaceProfileViewController : PLEventCellDelegate {
+    func eventCell(cell: PLEventCell, didClickBuyEvent event: PLEventCellData) {
+        print(event.eventID)
+    }
+}
 
 // MARK: - UICollectionViewDelegate
 
@@ -254,11 +257,11 @@ extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(view.frame.size.width, kCollectionCellHeight)
+        let event = events[indexPath.row].cellData
+        let cell = sizingCell
+        cell.updateWithEvent(event)
+        let minSize = CGSizeMake(collectionView.frame.width, kPLEventCellMinHeight)
+        let size = cell.compressedLayoutSizeFittingMinimumSize(minSize)
+        return size
     }
 }
-
-
-extension UIView {
-    
-    }
