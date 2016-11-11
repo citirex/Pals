@@ -1018,7 +1018,7 @@
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" id="UVw-xv-aHl" customClass="PLNotificationCell" customModule="Pals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" id="UVw-xv-aHl" customClass="PLNotificationCell" customModule="Pals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVw-xv-aHl" id="8Ek-c8-5vN">
@@ -1076,7 +1076,7 @@
             </objects>
             <point key="canvasLocation" x="-2199.5" y="748.5"/>
         </scene>
-        <!--Empty Data Set Delegate-->
+        <!--Order History-->
         <scene sceneID="ESD-Th-IME">
             <objects>
                 <viewController title="Order History" id="nZe-CE-B1W" customClass="PLOrderHistoryViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
@@ -1179,8 +1179,6 @@
                                 <connections>
                                     <outlet property="dataSource" destination="nZe-CE-B1W" id="Mqv-X8-esO"/>
                                     <outlet property="delegate" destination="nZe-CE-B1W" id="6Gn-0C-Boe"/>
-                                    <outlet property="emptyDataSetDelegate" destination="nZe-CE-B1W" id="v0g-Ds-5V4"/>
-                                    <outlet property="emptyDataSetSource" destination="nZe-CE-B1W" id="ZUY-4C-jYY"/>
                                 </connections>
                             </tableView>
                         </subviews>

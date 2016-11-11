@@ -12,14 +12,14 @@ class PLNotificationCell: UITableViewCell {
     
     static let identifier = "NotificationCell"
     
-    typealias notificationStateDelegate = (sender: PLNotificationCell, enabled: Bool) -> Void
-    var notificationState: notificationStateDelegate?
+    typealias notificationStateDelegate = (sender: UISwitch) -> Void
+    var didChangeNotification: notificationStateDelegate?
 
     @IBOutlet weak var notificationName: UILabel!
     
 
     @IBAction func switchValueChanged(sender: UISwitch) {
-//        notificationState!(sender: self, enabled: sender.on ? true : false)
+        didChangeNotification!(sender: sender)
     }
 
 }
