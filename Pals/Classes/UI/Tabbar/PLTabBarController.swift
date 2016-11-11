@@ -105,7 +105,7 @@ extension UITabBarController {
     }
     
     private func viewControllerByTabBarItem(item: PLTabBarItem) -> UIViewController {
-        return (viewControllers![item.rawValue] as! UINavigationController).viewControllers.first!
+        return (viewControllers![item.rawValue] as! UINavigationController).topViewController!
     }
     
 }

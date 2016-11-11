@@ -55,8 +55,8 @@ class PLSignUpViewController: PLViewController {
                 print("Error: \(error)")
                 return PLShowAlert("Error", message: "This Username is Taken!") //FIXME: show actual error message
             }
-            let tabBarController = UIStoryboard.tabBarController() as! UITabBarController
-            self.present(tabBarController, animated: true)
+            let tabBarController = UIStoryboard.tabBarController()
+            self.present(tabBarController!, animated: true)
         }
     }
 

@@ -105,8 +105,9 @@ class PLFriendProfileViewController: PLViewController {
             }
         }
     }
-
+    
 }
+
 
 // MARK: - Actions
 
@@ -124,8 +125,15 @@ extension PLFriendProfileViewController {
         hidePopUpMenu()
         
         let orderViewController = tabBarController!.orderViewController
-        let type: PLCollectionSectionType = sender.tag == 0 ? .Covers : .Drinks
-        orderViewController.setSectionType(type)
+        
+        switch sender.tag {
+        case 0:
+            orderViewController.currentSection = .Covers
+        case 1:
+            orderViewController.currentSection = .Drinks
+        default:
+            break
+        }
         orderViewController.order.user = friend
         tabBarController?.switchTabBarItemTo(.OrderItem)
     }
