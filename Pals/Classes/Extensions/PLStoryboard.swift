@@ -7,7 +7,6 @@
 //
 
 enum SegueIdentifier: String {
-    case AddFundsSegue
     case OrderPlacesSegue
     case OrderFriendsSegue
     case PlaceProfileSegue
@@ -37,8 +36,8 @@ extension UIStoryboard {
         return mainStoryboard.instantiateViewControllerWithIdentifier(type.string)
     }
     
-    class func tabBarController() -> UIViewController? {
-        return viewControllerWithType(.TabBarController)
+    class func tabBarController() -> PLTabBarController? {
+        return viewControllerWithType(.TabBarController) as? PLTabBarController
     }
     
     class func loginViewController() -> PLLoginViewController? {

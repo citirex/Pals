@@ -54,23 +54,25 @@ class PLTabBarController: UITabBarController {
     
     private func updateBadgeCount() {
         PLFacade.fetchBadges { badges, error in
-            guard error == nil else { return PLShowErrorAlert(error: error!) }
+            let app = UIApplication.sharedApplication()
+            guard error == nil else {
+                app.applicationIconBadgeNumber = 0
+                PLLog("Failed to receive badge number", type: .Network)
+                return
+            }
 
             var numberOfBadges = 0
-            
-            badges.forEach { [unowned self] badge in
+            for badge in badges {
                 numberOfBadges += badge.count
                 let item = badge.type.tabBarItem
                 if badge.count > 0 {
                     self.tabBar.items![item].badgeValue = String(badge.count)
                 }
             }
-            UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
+            app.applicationIconBadgeNumber = numberOfBadges
         }
     }
-    
 }
-
 
 // MARK: - UITabBarControllerDelegate
 
@@ -105,7 +107,7 @@ extension UITabBarController {
     }
     
     private func viewControllerByTabBarItem(item: PLTabBarItem) -> UIViewController {
-        return (viewControllers![item.rawValue] as! UINavigationController).viewControllers.first!
+        return (viewControllers![item.rawValue] as! UINavigationController).topViewController!
     }
     
 }

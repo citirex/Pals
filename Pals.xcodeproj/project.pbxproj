@@ -975,6 +975,8 @@
 			isa = PBXGroup;
 			children = (
 				E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */,
+				E8EC5A951DD5EB60004891E4 /* Friends Notification */,
+				E8EC5A941DD5EB4E004891E4 /* Orders Notification */,
 				E8BE86861D913A8A0079855C /* Cell */,
 			);
 			name = Notifications;
@@ -1043,6 +1045,20 @@
 				E80692901DA0422200500684 /* PLFriendProfileViewController.swift */,
 			);
 			name = "Friend Profile";
+			sourceTree = "<group>";
+		};
+		E8EC5A941DD5EB4E004891E4 /* Orders Notification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Orders Notification";
+			sourceTree = "<group>";
+		};
+		E8EC5A951DD5EB60004891E4 /* Friends Notification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Friends Notification";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

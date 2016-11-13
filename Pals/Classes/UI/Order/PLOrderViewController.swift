@@ -13,6 +13,11 @@ private let kCoverCellIdentifier = "coverCell"
 
 private let kCheckoutButtonHeight: CGFloat = 74
 
+enum PLOrderSection {
+    case Covers
+    case Drinks
+}
+
 class PLOrderViewController: PLViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
@@ -26,19 +31,21 @@ class PLOrderViewController: PLViewController {
     private var drinksDatasource = PLDrinksDatasource()
     private var coversDatasource = PLCoversDatasource()
     
-    private var currentTab = PLCollectionSectionType.Drinks
-    private let animableVipView = UINib(nibName: "PLOrderAnimableVipView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
+    var currentSection: PLOrderSection = .Drinks
+    
+    private let animableVipView = UINib(nibName: "PLOrderAnimableVipView",
+        bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
  
     private lazy var noItemsView: PLEmptyBackgroundView = {
         let emptyView = PLEmptyBackgroundView(topText: "No drinks", bottomText: nil)
-        self.collectionView.addSubview(emptyView)
-        emptyView.autoCenterInSuperview()
         emptyView.hidden = true
         
+        self.collectionView.addSubview(emptyView)
+        emptyView.autoCenterInSuperview()
         return emptyView
     }()
     
-    private var vipButton: UIBarButtonItem? = nil
+    private var vipButton: UIBarButtonItem?
     private var checkoutButton = UIButton(frame: CGRectZero)
     private var checkoutButtonOnScreen = false
     
@@ -57,13 +64,16 @@ class PLOrderViewController: PLViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        didChangeOrderSection(currentSection)
+        
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
         }
-        navigationController?.navigationBar.barStyle = .Black
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        navigationController?.navigationBar.translucent = false
-        navigationController?.navigationBar.barTintColor = (order.isVIP == true) ? kPalsGoldColor : UIColor.affairColor()
+        navigationController?.navigationBar.barStyle     = .Black
+        navigationController?.navigationBar.tintColor    = .whiteColor()
+        navigationController?.navigationBar.translucent  = false
+        navigationController?.navigationBar.barTintColor = (order.isVIP == true) ? kPalsGoldColor : .affairColor()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -72,26 +82,24 @@ class PLOrderViewController: PLViewController {
             navigationItem.titleView = animableVipView
         }
     }
-        
-    
-    //Publiq methods
-    func setSectionType(type: PLCollectionSectionType) {
-        orderTabChanged(type)
-    }
-    
+
     func setNewPlace(place: PLPlace) {
         order.place = place
         updateDataForSelectedPlace()
     }
+    
 }
 
+
 //MARK: - Checkout behavior
+
 extension PLOrderViewController {
-    //MARK: - Network
+    
     private func loadDrinks() {
         startActivityIndicator(.WhiteLarge)
         coversDatasource.cancel()
-        drinksDatasource.loadPage {[unowned self] (indices, error) in
+        drinksDatasource.loadPage { [unowned self] indices, error in
+            self.stopActivityIndicator()
             self.collectionViewInsertItems(indices, withError: error)
         }
     }
@@ -99,39 +107,35 @@ extension PLOrderViewController {
     private func loadCovers() {
         startActivityIndicator(.WhiteLarge)
         drinksDatasource.cancel()
-        coversDatasource.loadPage {[unowned self] (indices, error) in
+        coversDatasource.loadPage { [unowned self] indices, error in
+            self.stopActivityIndicator()
             self.collectionViewInsertItems(indices, withError: error)
         }
     }
     
-    private func collectionViewInsertItems(indices: [NSIndexPath],withError error: NSError?) {
-        if error == nil {
-            if indices.count > 0 {
-                noItemsView.hidden = true
-                let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
-                self.collectionView?.performBatchUpdates({
-                    self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
-                    }, completion: { (complete) in
-                })
-            } else {
-                switch currentTab {
-                case .Drinks:
-                    if drinksDatasource.pagesLoaded == 0 && order.place != nil {
-                        noItemsView.setupTextLabels("No drinks", bottomText: nil)
-                        noItemsView.hidden = false
-                    }
-                case .Covers:
-                    if coversDatasource.pagesLoaded == 0 && order.place != nil {
-                        noItemsView.setupTextLabels("No covers", bottomText: nil)
-                        noItemsView.hidden = false
-                    }
+    private func collectionViewInsertItems(indices: [NSIndexPath], withError error: NSError?) {
+        guard error == nil else { return PLShowErrorAlert(error: error!) }
+        if indices.count > 0 {
+            noItemsView.hidden = true
+            let newIndexPaths = indices.map({ NSIndexPath(forItem: $0.row, inSection: 1) })
+            self.collectionView?.performBatchUpdates({
+                self.collectionView?.insertItemsAtIndexPaths(newIndexPaths)
+                }, completion: { (complete) in
+            })
+        } else {
+            switch currentSection {
+            case .Drinks:
+                if drinksDatasource.pagesLoaded == 0 && order.place != nil {
+                    noItemsView.setupTextLabels("No drinks", bottomText: nil)
+                    noItemsView.hidden = false
+                }
+            case .Covers:
+                if coversDatasource.pagesLoaded == 0 && order.place != nil {
+                    noItemsView.setupTextLabels("No covers", bottomText: nil)
+                    noItemsView.hidden = false
                 }
             }
-            
-        } else {
-            PLShowErrorAlert(error: error!)
         }
-        self.stopActivityIndicator()
     }
     
     //MARK: - Actions
@@ -161,7 +165,7 @@ extension PLOrderViewController {
             resetDataSources()
             updateCheckoutButtonState()
             collectionView.reloadSections(NSIndexSet(index: 1))
-            currentTab == .Drinks ? loadDrinks() : loadCovers()
+            currentSection == .Drinks ? loadDrinks() : loadCovers()
         }
     }
     
@@ -197,7 +201,7 @@ extension PLOrderViewController {
             frame.origin.y = originYFinish
             shiftCollectionView(true)
             
-            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.AllowUserInteraction], animations: {
+            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: [UIViewAnimationOptions.BeginFromCurrentState, .AllowUserInteraction], animations: {
                 self.checkoutButton.frame = frame
                 }, completion: nil)
         }
@@ -233,7 +237,7 @@ extension PLOrderViewController {
     
     
     
-    @objc private func checkoutButtonPressed(sender: UIButton) {
+    func checkoutButtonPressed(sender: UIButton) {
         guard order.user != nil else {
             checkoutButton.shake()
             return PLShowAlert("Need to chose user")
@@ -284,7 +288,7 @@ extension PLOrderViewController {
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate {
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderSectionDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate {
     
     //MARK: Order drinks count
     func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
@@ -319,14 +323,14 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         }
         drinksDatasource.placeId = order.place!.id
         coversDatasource.placeId = order.place!.id
-        currentTab == .Drinks ? loadDrinks() : loadCovers()
+        currentSection == .Drinks ? loadDrinks() : loadCovers()
     }
     
     //MARK: Order change tab
-    func orderTabChanged(tab: PLCollectionSectionType) {
+    func didChangeOrderSection(section: PLOrderSection) {
         noItemsView.hidden = true
-        self.stopActivityIndicator()
-        switch currentTab {
+        stopActivityIndicator()
+        switch currentSection {
         case .Drinks:
             drinksOffset = collectionView.contentOffset
             drinksDatasource.cancel()
@@ -341,8 +345,8 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
             }
         }
         
-        currentTab = tab
-        collectionView.contentOffset = (self.currentTab == .Drinks) ? self.drinksOffset : self.coversOffset
+        currentSection = section
+        collectionView.contentOffset = currentSection == .Drinks ? drinksOffset : coversOffset
         collectionView.reloadData()
     }
     
@@ -363,7 +367,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
         vipButton?.setTitleTextAttributes([
             NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 20.0)!,
             NSForegroundColorAttributeName: UIColor.orangeColor()],
-                                          forState: UIControlState.Normal)
+                                          forState: .Normal)
         navigationItem.rightBarButtonItem = vipButton
         
         collectionView.registerNib(UINib(nibName: "PLOrderStillHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier)
@@ -373,15 +377,15 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderCurrentTabDele
     }
     
     func setupCheckoutButton() {
-        checkoutButton.frame = CGRectMake(0,0,view.bounds.size.width,kCheckoutButtonHeight)
+        checkoutButton.frame = CGRectMake(0,0,view.bounds.size.width, kCheckoutButtonHeight)
         checkoutButton.setTitle("Send", forState: .Normal)
         checkoutButton.backgroundColor = UIColor(red:0.25, green:0.57, blue:0.42, alpha:1.0)
-        checkoutButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        checkoutButton.titleLabel?.font = UIFont.systemFontOfSize(24)
+        checkoutButton.setTitleColor(.whiteColor(), forState: .Normal)
+        checkoutButton.titleLabel?.font = .systemFontOfSize(24)
         checkoutButton.round([.TopLeft, .TopRight], radius: 10)
         checkoutButton.hidden = true
-        self.view.addSubview(checkoutButton)
-        checkoutButton.addTarget(self, action: #selector(checkoutButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        view.addSubview(checkoutButton)
+        checkoutButton.addTarget(self, action: .checkoutPressed, forControlEvents: .TouchUpInside)
     }
     
     
@@ -414,7 +418,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         
         if section == 1 {
-            switch currentTab {
+            switch currentSection {
             case .Drinks:
                 return drinksDatasource.count
             case .Covers:
@@ -429,10 +433,10 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let identifier = (currentTab == .Drinks) ? kDrinkCellIdentifier : kCoverCellIdentifier
+        let identifier = currentSection == .Drinks ? kDrinkCellIdentifier : kCoverCellIdentifier
         let dequeuedCell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
         
-        switch currentTab {
+        switch currentSection {
         case .Drinks:
             let cell = dequeuedCell as! PLOrderDrinkCell
             let drink = drinksDatasource[indexPath.row].cellData
@@ -466,7 +470,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLOrdeStickyHeader
             header.delegate = self
-            header.currentTab = currentTab
+            header.currentSection = currentSection
             
             return header
         }
@@ -474,7 +478,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     
     //MARK: Collection delegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        switch currentTab {
+        switch currentSection {
         case .Drinks: break
         case .Covers:
             updateCoverAt(indexPath)
@@ -487,7 +491,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let height = (currentTab == .Drinks) ? PLOrderDrinkCell.height : PLOrderCoverCell.height
+        let height = currentSection == .Drinks ? PLOrderDrinkCell.height : PLOrderCoverCell.height
         return CGSizeMake(collectionView.bounds.size.width, height)
     }
     
@@ -500,7 +504,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        switch currentTab {
+        switch currentSection {
         case .Drinks: if indexPath.row == drinksDatasource.count - 1 { loadDrinks() }
         case .Covers: if indexPath.row == coversDatasource.count - 1 { loadCovers() }
         }

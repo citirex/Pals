@@ -98,15 +98,15 @@ extension UIViewController {
     var activityIndicatorTag: Int { return 999999 }
     
     var activityIndicator: UIActivityIndicatorView? {
-        return self.targetView.viewWithTag(self.activityIndicatorTag) as? UIActivityIndicatorView
+        return targetView.viewWithTag(activityIndicatorTag) as? UIActivityIndicatorView
     }
     
     var targetView: UIView {
         var targetView: UIView?
-        if let navVC = self.navigationController {
+        if let navVC = navigationController {
             targetView = navVC.view
         } else {
-            targetView = self.view
+            targetView = view
         }
         return targetView!
     }
@@ -114,18 +114,18 @@ extension UIViewController {
     func startActivityIndicator(style: UIActivityIndicatorViewStyle, color: UIColor? = nil, position: PLPosition = .Center) {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.tag = self.activityIndicatorTag
-        activityIndicator.center = self.view.center
+        activityIndicator.tag = activityIndicatorTag
+        activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = color
         activityIndicator.startAnimating()
-        self.targetView.addSubview(activityIndicator)
-        self.targetView.bringSubviewToFront(activityIndicator)
-        self.addConstraints(activityIndicator, position: position)
+        targetView.addSubview(activityIndicator)
+        targetView.bringSubviewToFront(activityIndicator)
+        addConstraints(activityIndicator, position: position)
     }
     
     func stopActivityIndicator() {
-        if let spinner = self.activityIndicator {
+        if let spinner = activityIndicator {
             spinner.stopAnimating()
             spinner.removeFromSuperview()
         }
@@ -136,7 +136,7 @@ extension UIViewController {
         case .Center:
             activityIndicator.autoCenterInSuperview()
         case .Bottom:
-            activityIndicator.autoAlignAxis(.Horizontal, toSameAxisOfView: self.targetView, withMultiplier: 1.65)
+            activityIndicator.autoAlignAxis(.Horizontal, toSameAxisOfView: targetView, withMultiplier: 1.65)
             activityIndicator.autoAlignAxisToSuperviewAxis(.Vertical)
         }
     }

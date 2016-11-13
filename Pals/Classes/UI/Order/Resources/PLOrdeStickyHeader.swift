@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol OrderCurrentTabDelegate: class {
-    func orderTabChanged(tab: PLCollectionSectionType)
+protocol OrderSectionDelegate: class {
+    func didChangeOrderSection(section: PLOrderSection)
 }
 
 class PLOrdeStickyHeader: UICollectionViewCell {
@@ -22,9 +22,9 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     @IBOutlet private var coverConstraint: NSLayoutConstraint!
     @IBOutlet private var drinkConstraint: NSLayoutConstraint!
     
-    weak var delegate: OrderCurrentTabDelegate?
+    weak var delegate: OrderSectionDelegate?
     
-    var currentTab = PLCollectionSectionType.Drinks {
+    var currentSection: PLOrderSection = .Drinks {
         didSet{
             updateButtonsState()
             updateListIndicator()
@@ -57,32 +57,32 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     
     
     @IBAction private func coverButtonPressed(sender: UIButton?) {
-        if currentTab != .Covers {
-            setupCollectionForState(.Covers)
+        if currentSection != .Covers {
+            setupCollectionForSection(.Covers)
         }
     }
     
     @IBAction private func drinksButtonPressed(sender: UIButton?) {
-        if currentTab != .Drinks {
-            setupCollectionForState(.Drinks)
+        if currentSection != .Drinks {
+            setupCollectionForSection(.Drinks)
         }
     }
     
-    private func setupCollectionForState(state: PLCollectionSectionType) {
-        currentTab = state
+    private func setupCollectionForSection(section: PLOrderSection) {
+        currentSection = section
         updateButtonsState()
         updateListIndicator()
-        delegate?.orderTabChanged(state)
+        delegate?.didChangeOrderSection(section)
     }
     
     private func updateButtonsState() {
-        coverButton.selected = (currentTab == .Drinks) ? false : true
-        drinkButton.selected = (currentTab == .Drinks) ? true : false
+        coverButton.selected = currentSection != .Drinks
+        drinkButton.selected = currentSection == .Drinks
     }
     
     private func updateListIndicator() {
-        coverConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
-        drinkConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        coverConstraint.priority = currentSection == .Covers ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
+        drinkConstraint.priority = currentSection == .Covers ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
         
         UIView.animateWithDuration(0.2) {
             self.layoutIfNeeded()

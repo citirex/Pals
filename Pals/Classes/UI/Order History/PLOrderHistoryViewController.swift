@@ -25,9 +25,12 @@ class PLOrderHistoryViewController: PLViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         let nib = UINib(nibName: PLOrderHistorySectionHeader.nibName, bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: PLOrderHistorySectionHeader.reuseIdentifier)
+        
+        tableView.emptyDataSetSource   = self
+        tableView.emptyDataSetDelegate = self
         
         loadOrders()
     }
@@ -39,7 +42,7 @@ class PLOrderHistoryViewController: PLViewController {
         startActivityIndicator(.WhiteLarge, color: .grayColor())
         tableView.reloadEmptyDataSet()
         
-        orders.load {[unowned self] (page, error) in
+        orders.load { [unowned self] page, error in
             self.isLoading = false
             self.stopActivityIndicator()
             

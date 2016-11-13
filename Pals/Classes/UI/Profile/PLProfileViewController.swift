@@ -22,12 +22,12 @@ class PLProfileViewController: TGLStackedViewController {
     
     var collectionBackgroundView = UINib(nibName: "PLProfileHeaderView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLProfileHeaderView
     
-    private var currentTab = PLCollectionSectionType.Drinks {
+    private var currentSection = PLOrderSection.Drinks {
         willSet {
-            datasourceSwitcher.saveOffset(collectionView!.contentOffset, forType: currentTab)
+            datasourceSwitcher.saveOffset(collectionView!.contentOffset, inSection: currentSection)
         }
         didSet {
-            datasourceSwitcher.switchDatasource(currentTab)
+            datasourceSwitcher.switchDatasource(currentSection)
             collectionHelper.datasource = currentDatasource
             collectionView?.reloadData()
             collectionView?.contentOffset = datasourceSwitcher.currentOffset
@@ -50,7 +50,7 @@ class PLProfileViewController: TGLStackedViewController {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotification.ProfileChanged.str, object: nil)
         profile = PLFacade.profile
-        currentTab = .Drinks
+        currentSection = .Drinks
         view.addSubview(spinner)
         setupCollectionView()
     }
@@ -65,14 +65,14 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func addNewOrder(order: PLOrder) {
-        if order.covers.count == 0 && currentTab == .Covers {
-            datasourceSwitcher.resetOffset(forType: .Drinks)
+        if order.covers.count == 0 && currentSection == .Covers {
+            datasourceSwitcher.resetOffset(inSection: .Drinks)
             myDrinksButtonPressed(nil)
-        } else if order.drinkSets.count == 0 && currentTab == .Drinks{
-            datasourceSwitcher.resetOffset(forType: .Covers)
+        } else if order.drinkSets.count == 0 && currentSection == .Drinks {
+            datasourceSwitcher.resetOffset(inSection: .Covers)
             myCoversButtonPressed(nil)
         } else {
-            datasourceSwitcher.resetOffset(forType: currentTab)
+            datasourceSwitcher.resetOffset(inSection: currentSection)
         }
         
         needsToShowNewOrder = true
@@ -187,31 +187,28 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     //MARK: - Actions
-    func addFundsButtonPressed(sender: UIButton) {
-        performSegueWithIdentifier(SegueIdentifier.AddFundsSegue, sender: sender)
-    }
-    
+
     func myCoversButtonPressed(sender: AnyObject?) {
-        if currentTab != .Covers {
+        if currentSection != .Covers {
             setupCollectionForState(.Covers)
         }
     }
     
     func myDrinksButtonPressed(sender: AnyObject?) {
-        if currentTab != .Drinks {
+        if currentSection != .Drinks {
             setupCollectionForState(.Drinks)
         }
     }
     
-    func setupCollectionForState(state: PLCollectionSectionType) {
+    func setupCollectionForState(orderSection: PLOrderSection) {
         currentDatasource.cancel()
-        currentTab = state
+        currentSection = orderSection
         updateListIndicator()
     }
     
     func updateListIndicator() {
-        collectionBackgroundView.myCoversConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
-        collectionBackgroundView.myDrinksConstraint.priority = (currentTab == .Covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        collectionBackgroundView.myCoversConstraint.priority = (currentSection == .Covers) ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
+        collectionBackgroundView.myDrinksConstraint.priority = (currentSection == .Covers) ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
         UIView.animateWithDuration(0.2) {
             self.collectionBackgroundView.layoutIfNeeded()
         }

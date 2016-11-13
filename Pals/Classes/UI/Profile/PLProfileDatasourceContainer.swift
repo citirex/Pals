@@ -33,8 +33,8 @@ class PLProfileDatasourceSwitcher {
         covers.datasource.userId = id
     }
     
-    func switchDatasource(type: PLCollectionSectionType) {
-        switch type {
+    func switchDatasource(orderSection: PLOrderSection) {
+        switch orderSection {
         case .Drinks:
             currentDatasourceC = drinks
         case .Covers:
@@ -42,8 +42,8 @@ class PLProfileDatasourceSwitcher {
         }
     }
     
-    func saveOffset(offset: CGPoint, forType type:PLCollectionSectionType) {
-        switch type {
+    func saveOffset(offset: CGPoint, inSection orderSection: PLOrderSection) {
+        switch orderSection {
         case .Drinks:
             drinks.offset = offset
         case .Covers:
@@ -51,8 +51,8 @@ class PLProfileDatasourceSwitcher {
         }
     }
     
-    func resetOffset(forType type:PLCollectionSectionType) {
-        switch type {
+    func resetOffset(inSection orderSection: PLOrderSection) {
+        switch orderSection {
         case .Drinks:
             drinks.offset = CGPointZero
         case .Covers:
