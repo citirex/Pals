@@ -119,6 +119,17 @@ class PLPlaceProfileViewController: PLViewController {
         noEventsView.autoAlignAxisToSuperviewAxis(.Vertical)
         noEventsView.hidden = true
     }
+    
+    func switchToOrderWithPlace(place: PLPlace?, eventId: UInt64?) {
+        if place != nil {
+            tabBarController?.switchTabBarItemTo(.OrderItem) {
+                let notifObj = PLPlaceEventNotification(place: place!, eventId: eventId)
+                PLNotifications.postNotification(.PlaceDidSelect, object: notifObj)
+            }
+        } else {
+            PLLog("No place is set")
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -144,7 +155,7 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
 
 extension PLPlaceProfileViewController : PLEventCellDelegate {
     func eventCell(cell: PLEventCell, didClickBuyEvent event: PLEventCellData) {
-        print(event.eventID)
+        switchToOrderWithPlace(place, eventId: event.eventID)
     }
 }
 
@@ -167,9 +178,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
             sectionHeader.place = place
             sectionHeader.didTapOrderButton  = { [unowned self] sender in
-                let orderViewController = self.tabBarController!.orderViewController
-                orderViewController.order.place = self.place
-                self.tabBarController?.selectedIndex = PLTabBarItem.OrderItem.rawValue
+                self.switchToOrderWithPlace(self.place, eventId: nil)
             }
             return sectionHeader
         }

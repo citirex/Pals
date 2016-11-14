@@ -8,6 +8,9 @@
 
 class PLViewController: UIViewController {
     
+    var willAppearCompletion: (()->())?
+    var appeared = false
+    
     lazy var spinner: UIActivityIndicatorView = {
         let spnr = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         self.view.addSubview(spnr)
@@ -23,6 +26,14 @@ class PLViewController: UIViewController {
         if self.activityIndicator != nil {
             stopActivityIndicator()
         }
+        appeared = false
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        willAppearCompletion?()
+        willAppearCompletion = nil
+        appeared = true
     }
     
 }
