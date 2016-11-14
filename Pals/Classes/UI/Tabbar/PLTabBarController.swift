@@ -94,6 +94,30 @@ extension PLTabBarController: UITabBarControllerDelegate {
 
 extension UITabBarController {
 
+    func switchTabBarItemTo(item: PLTabBarItem, completion: ()->()) {
+        selectedIndex = item.rawValue
+        if let navVC = selectedViewController as? UINavigationController {
+            if navVC.viewControllers.count > 0 {
+                if let topVC = navVC.topViewController {
+                    let rootVC = navVC.viewControllers[0]
+                    if rootVC != topVC {
+                        // Top vc is not root vc, so we get back to root
+                        navVC.popToRootViewControllerAnimated(false)
+                    }
+                    if let soughtVC = rootVC as? PLViewController {
+                        if soughtVC.appeared {
+                            completion()
+                        } else {
+                            soughtVC.willAppearCompletion = completion
+                        }
+                    }
+                }
+            } else {
+                PLLog("\(item) had no view controller in stack!")
+            }
+        }
+    }
+    
     func switchTabBarItemTo(item: PLTabBarItem) {
         selectedIndex = item.rawValue
     }

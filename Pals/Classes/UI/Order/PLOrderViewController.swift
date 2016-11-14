@@ -63,9 +63,13 @@ class PLOrderViewController: PLViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        PLNotifications.addObserver(self, selector: #selector(onDidSelectNewPlace(_:)), type: .PlaceDidSelect)
+        
         super.viewWillAppear(animated)
         
-        didChangeOrderSection(currentSection)
+        if !drinksDatasource.loading && !coversDatasource.loading {
+            didChangeOrderSection(currentSection)
+        }
         
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
@@ -74,6 +78,11 @@ class PLOrderViewController: PLViewController {
         navigationController?.navigationBar.tintColor    = .whiteColor()
         navigationController?.navigationBar.translucent  = false
         navigationController?.navigationBar.barTintColor = (order.isVIP == true) ? kPalsGoldColor : .affairColor()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        PLNotifications.removeObserver(self)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -87,9 +96,17 @@ class PLOrderViewController: PLViewController {
         order.place = place
         updateDataForSelectedPlace()
     }
+ 
+    func onDidSelectNewPlace(notification: NSNotification) {
+        if let notifObj = notification.object as? PLPlaceEventNotification {
+            setNewPlace(notifObj.place)
+            if let coverId = notifObj.eventId {
+                //TODO: save cover
+            }
+        }
+    }
     
 }
-
 
 //MARK: - Checkout behavior
 
