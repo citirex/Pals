@@ -8,7 +8,7 @@
 
 import Stripe
 
-typealias PLCheckoutOrderCompletion = (order: PLOrder?, error: NSError?) -> ()
+typealias PLCheckoutOrderCompletion = (orders: [PLOrder], error: NSError?) -> ()
 typealias PLErrorCompletion = (error: NSError?) -> ()
 typealias PLFetchesBadgesCompletion = (badges: [PLBadge], error: NSError?) -> ()
 

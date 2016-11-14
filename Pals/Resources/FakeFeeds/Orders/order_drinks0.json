@@ -16,7 +16,9 @@
                    "address":"86a Olesya Gonchara str, Kiev",
                    "phone":"380441112233",
                    "location":"50.448298:30.496656",
-                   "close_time":"20:00"
+                   "close_time":"20:00",
+                   "access_code":"BBBB666",
+                   "qr_code":"scarfac8",
                 },
                 "drinks" : [
                             {
@@ -49,8 +51,6 @@
                             ],
                 "message":"Hi, check out this amazing tasty coffee!",
                 "is_vip":0,
-                "access_code":"BBBB666",
-                "qr_code":"scarfac8",
                 "date" : 1475337600
          },
          {

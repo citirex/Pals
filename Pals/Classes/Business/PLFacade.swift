@@ -152,13 +152,17 @@ extension PLFacade._PLFacade {
     }
     
     func handleCheckoutOrder(error: NSError?, dic: [String:AnyObject], completion: PLCheckoutOrderCompletion) {
+        var orders = [PLOrder]()
         if error != nil {
-            completion(order: nil, error: error!)
+            completion(orders: orders, error: error!)
         } else {
-            if let order = PLOrder(jsonDic: dic) {
-                completion(order: order, error: nil)
+            if let ordersObjects = dic[.orders] as? [Dictionary<String,AnyObject>] {
+                orders = ordersObjects.flatMap({PLOrder(jsonDic: $0)})
+                completion(orders: orders, error: nil)
+
             } else {
-                completion(order: nil, error: PLError(domain: .Order, type: kPLErrorTypeNewOrderDeserializationFailed))
+                let error = PLError(domain: .Order, type: kPLErrorTypeNewOrderDeserializationFailed)
+                completion(orders: orders, error: error)
             }
         }
     }

@@ -261,28 +261,42 @@ extension PLOrderViewController {
     
     func sendCurrentOrder() {
         startActivityIndicator(.WhiteLarge)
-        PLFacade.sendOrder(order) {[unowned self] (order,error) in
-            if let newOrder = order {
-                self.order = PLCheckoutOrder()
-                self.resetOffsets()
-                self.performTransitionToVipState(false)
-                self.resetDataSources()
-                self.updateCheckoutButtonState()
-                self.collectionView.reloadData()
-                
-                
-                if PLFacade.profile!.id == order?.user.id {
-                    let profileViewController = self.tabBarController!.profileViewController
-                    profileViewController.addNewOrder(newOrder)
-                    self.tabBarController?.switchTabBarItemTo(.ProfileItem)
-                } else {
-                    PLShowAlert("Success")
-                }
-            
+        PLFacade.sendOrder(order) {[unowned self] (orders,error) in
+            self.stopActivityIndicator()
+            if error == nil {
+                self.resetOrderState()
+                self.updateProfileWithOrders(orders)
             } else {
                 PLShowErrorAlert(error: error!)
             }
-            self.stopActivityIndicator()
+        }
+    }
+    
+    private func resetOrderState() {
+        self.order = PLCheckoutOrder()
+        self.resetOffsets()
+        self.performTransitionToVipState(false)
+        self.resetDataSources()
+        self.updateCheckoutButtonState()
+        self.collectionView.reloadData()
+    }
+    
+    private func updateProfileWithOrders(orders: [PLOrder]) {
+        let myId = PLFacade.profile!.id
+        var myOrders = [PLOrder]()
+        for order in orders {
+            if myId == order.user.id {
+                myOrders.append(order)
+            }
+        }
+        
+        if myOrders.count > 0 {
+            let first = myOrders.first!
+            let profileViewController = self.tabBarController!.profileViewController
+            profileViewController.addNewOrder(first)
+            self.tabBarController?.switchTabBarItemTo(.ProfileItem)
+        } else {
+            PLShowAlert("Success")
         }
     }
 }

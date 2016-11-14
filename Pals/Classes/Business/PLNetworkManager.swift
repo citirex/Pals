@@ -153,8 +153,8 @@ class PLNetworkManager: PLNetworkManagerInterface {
     
     class func handleSuccessCompletion(object: AnyObject?, completion: PLNetworkRequestCompletion, request: NSURLRequest?) {
         logLoaded(request)
-        let dic = object as! [String : AnyObject]
-        completion(dic: dic, error: nil)
+        let dic = object as? [String : AnyObject]
+        completion(dic: dic ?? [:], error: nil)
     }
     
     class func handleErrorCompletion(error: NSError, fakeFeedFilename: String, completion: PLNetworkRequestCompletion) {
