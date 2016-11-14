@@ -21,6 +21,24 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     @IBOutlet private var messageTextView: UITextView!
     @IBOutlet private var popupView: UIView!
     
+    @IBOutlet weak var checkboxContainer: UIView!
+    @IBOutlet weak var containerHeightConstraint: NSLayoutConstraint!
+    
+    private var initialContainerHeight: CGFloat!
+    
+    private var didSetupConstraints = false
+    
+    lazy var drinksCheckbox: PLCheckbox! = {
+        let checkbox = PLCheckbox(title: "Separate Drinks")
+        return checkbox
+    }()
+    lazy var coversCheckbox: PLCheckbox! = {
+        let checkbox = PLCheckbox(title: "Separate Covers")
+        return checkbox
+    }()
+    
+    private var checkboxes = [PLCheckbox]()
+    
     var order: PLCheckoutOrder? {
         didSet {
             if let ord = order {
@@ -38,18 +56,74 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     var locationName: String? = nil
     var orderAmount: Float? = nil
     
-    lazy private var tapGesture : UITapGestureRecognizer = {
+    lazy private var tapGesture: UITapGestureRecognizer = {
         return UITapGestureRecognizer(target: self, action: #selector(reciveTap(_:)))
     }()
     
     weak var delegate: CheckoutOrderPopupDelegate? = nil
     
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialContainerHeight = containerHeightConstraint.constant
+        
         view.hidden = true
         popupView.layer.cornerRadius = 10
+        
+        setupCheckbox()
     }
+    
+    func setupCheckbox() {
+        if order?.drinks.count > 0 {
+            checkboxContainer.addSubview(drinksCheckbox)
+            checkboxes.append(drinksCheckbox)
+            drinksCheckbox.stateChanged = { checkbox in
+                print("drinks checkbox: \(checkbox.state)")
+            }
+        }
+        if order?.covers.count > 0 {
+            checkboxContainer.addSubview(coversCheckbox)
+            checkboxes.append(coversCheckbox)
+            coversCheckbox.stateChanged = { checkbox in
+                print("covers checkbox: \(checkbox.state)")
+            }
+        }
+    }
+    
+    override func updateViewConstraints() {
+        if !didSetupConstraints {
+            if checkboxes.count > 1 {
+                if containerHeightConstraint.constant != initialContainerHeight {
+                    containerHeightConstraint.constant = initialContainerHeight
+                }
+                drinksCheckbox.autoSetDimension(.Height, toSize: 25.0)
+                drinksCheckbox.autoPinEdgeToSuperviewEdge(.Top)
+                drinksCheckbox.autoPinEdgeToSuperviewEdge(.Leading)
+                drinksCheckbox.autoPinEdgeToSuperviewEdge(.Trailing)
+                
+                coversCheckbox.autoPinEdge(.Top, toEdge: .Bottom, ofView: drinksCheckbox, withOffset: 10)
+                
+                coversCheckbox.autoSetDimension(.Height, toSize: 25.0)
+                coversCheckbox.autoPinEdgeToSuperviewEdge(.Bottom)
+                coversCheckbox.autoPinEdgeToSuperviewEdge(.Leading)
+                coversCheckbox.autoPinEdgeToSuperviewEdge(.Trailing)
+            } else {
+                if let checkbox = checkboxes.first {
+                    containerHeightConstraint.constant = 25
+                    checkbox.autoSetDimension(.Height, toSize: 25.0)
+                    checkbox.autoPinEdgeToSuperviewEdge(.Bottom)
+                    checkbox.autoPinEdgeToSuperviewEdge(.Leading)
+                    checkbox.autoPinEdgeToSuperviewEdge(.Trailing)
+                }
+            }
+            didSetupConstraints = true
+        }
+        super.updateViewConstraints()
+    }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

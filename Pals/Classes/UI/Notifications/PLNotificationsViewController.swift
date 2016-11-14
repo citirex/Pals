@@ -52,19 +52,18 @@ extension PLNotificationsViewController: UITableViewDataSource {
         
         let item = sections[indexPath.section].items[indexPath.row]
         cell.notificationName?.text = item.rawValue
-        
-        switch indexPath.row {
-        case 0:
-            cell.didChangeNotification = { sender in
-                print("sender on: \(sender.on)")
-            }
-        case 1:
-            cell.didChangeNotification = { sender in
-                print("sender on: \(sender.on)")
-            }
-        default:
-            break
-        }
+        cell.delegate = self
+    }
+    
+}
+
+
+// MARK: - NotificationCellDelegate
+
+extension PLNotificationsViewController: NotificationCellDelegate {
+
+    func didChangeValueForCell(cell: PLNotificationCell, sender: UISwitch) {
+        print("row: \(tableView.indexPathForCell(cell)?.row), switch: \(sender.on)")
     }
     
 }

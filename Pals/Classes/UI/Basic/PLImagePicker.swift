@@ -10,20 +10,20 @@ import UIKit
 import Permission
 
 class PLImagePicker: NSObject {
-    typealias imagePickerCompletion = (image: UIImage) -> Void
+    typealias PLImagePickerCompletion = (image: UIImage) -> Void
     
-    private var completion: imagePickerCompletion?
+    private var completion: PLImagePickerCompletion?
     private var controller: UIViewController!
     
     private static let sharedInstance = PLImagePicker()
     
     private var didUserSetProfileImage = false
     
-    static func pickImage(controller: UIViewController, imageView: UIImageView, completion: imagePickerCompletion) {
+    static func pickImage(controller: UIViewController, imageView: UIImageView, completion: PLImagePickerCompletion) {
         sharedInstance.pickImage(controller, imageView: imageView, completion: completion)
     }
     
-    private func pickImage(controller: UIViewController, imageView: UIImageView, completion: imagePickerCompletion) {
+    private func pickImage(controller: UIViewController, imageView: UIImageView, completion: PLImagePickerCompletion) {
         self.controller = controller
         self.completion = completion
         

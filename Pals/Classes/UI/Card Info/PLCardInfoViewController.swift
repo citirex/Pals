@@ -157,7 +157,6 @@ class PLCardInfoViewController: PLViewController {
         }
     }
 
-    // MARK: - Lazy
     
     private lazy var inputContainerView: UIView = {
         let containerView = UIView()
@@ -173,7 +172,7 @@ class PLCardInfoViewController: PLViewController {
         sendButton.addTarget(self, action: .completePressed, forControlEvents: .TouchUpInside)
         containerView.addSubview(sendButton)
         
-        sendButton.addConstraintsWithEdgeInsets(UIEdgeInsetsZero)
+        sendButton.autoPinEdgesToSuperviewEdges()
 
         return containerView
     }()
