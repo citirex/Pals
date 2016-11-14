@@ -84,6 +84,7 @@
 		D41494261DD5B5800081509E /* PLEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41494241DD5B5800081509E /* PLEventCell.xib */; };
 		D41494281DD5B81C0081509E /* PLCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41494271DD5B81C0081509E /* PLCollectionView.swift */; };
 		D414942A1DD62D350081509E /* PLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41494291DD62D350081509E /* PLImageView.swift */; };
+		D414942C1DD9DC5F0081509E /* PLNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D414942B1DD9DC5F0081509E /* PLNotifications.swift */; };
 		D419F0D11DB62E1F0095C5AA /* PLEditUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */; };
 		D448496A1DB7A3EF00737413 /* PLSearchableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
@@ -277,6 +278,7 @@
 		D41494241DD5B5800081509E /* PLEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLEventCell.xib; path = "Place Profile/PLEventCell.xib"; sourceTree = "<group>"; };
 		D41494271DD5B81C0081509E /* PLCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCollectionView.swift; sourceTree = "<group>"; };
 		D41494291DD62D350081509E /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImageView.swift; sourceTree = "<group>"; };
+		D414942B1DD9DC5F0081509E /* PLNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNotifications.swift; sourceTree = "<group>"; };
 		D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEditUserData.swift; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchableViewController.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				E85083141DAD1AEA0077A81C /* PLAttributedString.swift */,
 				D47DC1F51DBEAF2000420958 /* PLData.swift */,
 				D41494271DD5B81C0081509E /* PLCollectionView.swift */,
+				D414942B1DD9DC5F0081509E /* PLNotifications.swift */,
 			);
 			name = Extensions;
 			path = Classes/Extensions;
@@ -1346,6 +1349,7 @@
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
 				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,
 				049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */,
+				D414942C1DD9DC5F0081509E /* PLNotifications.swift in Sources */,
 				E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */,
 				E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */,
 				E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */,

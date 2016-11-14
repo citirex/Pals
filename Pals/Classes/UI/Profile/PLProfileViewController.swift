@@ -48,7 +48,7 @@ class PLProfileViewController: TGLStackedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotification.ProfileChanged.str, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotificationType.ProfileChanged.str, object: nil)
         profile = PLFacade.profile
         currentSection = .Drinks
         view.addSubview(spinner)
