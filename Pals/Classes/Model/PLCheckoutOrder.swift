@@ -65,6 +65,10 @@ class PLCheckoutOrder {
         }
     }
     
+    func updateCoverSet(coverSet: PLCoverSet) {
+        PLLog("Event cover: \(coverSet.cover.name), count: \(coverSet.quantity)")
+    }
+    
     func updateWithCoverID(cover: PLEvent, inCell coverCell: PLOrderCoverCell) {
         if covers[cover.id] != nil {
             covers.removeValueForKey(cover.id)

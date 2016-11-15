@@ -492,7 +492,8 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         case .Covers:
             let cell = dequeuedCell as! PLOrderCoverCell
             let cover = coversDatasource[indexPath.row]
-            cell.coverTitle = cover.name
+            cell.event = cover
+            cell.delegate = self
             if order.covers[cover.id] != nil {
                 cell.setDimmed(true, animated: false)
             }
@@ -552,6 +553,13 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         }
     }
     
+}
+
+extension PLOrderViewController : PLCoverCellDelegate {
+    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt64) {
+        let coverSet = PLCoverSet(cover: event, andCount: count)
+        order.updateCoverSet(coverSet)
+    }
 }
 
 
