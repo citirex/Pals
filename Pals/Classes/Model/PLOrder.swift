@@ -10,7 +10,7 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
     let user: PLUser
     let place: PLPlace
     var drinkSets = [PLDrinkset]()
-    var covers = [PLCover]()
+    var covers = [PLEvent]()
     let isVIP: Bool
     let message: String
     
@@ -43,7 +43,7 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
         }
         if let coversArray = jsonDic[.covers] as? [Dictionary<String,AnyObject>] {
             for coverDic in coversArray {
-                if let cover = PLCover(jsonDic: coverDic) {
+                if let cover = PLEvent(jsonDic: coverDic) {
                     covers.append(cover)
                 }
             }
@@ -69,6 +69,6 @@ struct PLOrderCellData {
     let message: String
     let date: NSDate?
     let drinkSets: [PLDrinkset]?
-    let covers: [PLCover]?
+    let covers: [PLEvent]?
 }
 

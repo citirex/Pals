@@ -3,11 +3,15 @@
               {
               "id":1,
               "name":"Package of bottles",
-              "price":12.9
+              "info" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis nunc dui, id egestas ante sodales fermentum. Vivamus scelerisque et urna ullamcorper posuere. Praesent lorem ligula, condimentum in efficitur et, pretium nec turpis. Sed elementum gravida tellus, a semper ligula. Fusce sit amet metus mollis orci feugiat tincidunt. Nam accumsan posuere mauris in facilisis. Aenean ut magna ligula. Praesent a varius neque. Vivamus quis metus in arcu pellentesque sollicitudin. Vestibulum."
+              "price":12.9,
+              "starts" : 1483023600,
+              "ends" : 1483034400
               },
               {
               "id":2,
               "name":"Beveragarium",
+              "info" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut dolor ut tortor tincidunt tristique eu nec lectus. Nullam pellentesque iaculis felis a tempor. Ut aliquet tincidunt arcu a pellentesque. Aenean aliquet rutrum facilisis. Sed iaculis tincidunt libero ac dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tempor lacus rutrum dui posuere, eu tempor odio commodo. Aenean auctor tincidunt metus, et egestas libero varius eu. Suspendisse condimentum, ex ut aliquet aliquet, augue urna vestibulum sapien, nec scelerisque nulla mi sed nibh. Aliquam vulputate erat at felis mollis, non faucibus orci rhoncus. Cras rhoncus lacus ac leo pulvinar auctor. Duis eleifend tortor risus. Nullam ut risus sit amet lorem blandit molestie. Integer at tempus ligula, eget auctor diam. Suspendisse potenti. Maecenas suscipit venenatis ornare. Duis a ipsum nec arcu rhoncus convallis eget sit amet enim. Phasellus molestie leo et turpis porta, sit amet maximus."
               "price":9.50
               },
               {

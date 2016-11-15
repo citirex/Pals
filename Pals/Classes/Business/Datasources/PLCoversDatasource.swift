@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLCoversDatasource: PLDatasource<PLCover> {
+class PLCoversDatasource: PLDatasource<PLEvent> {
     var placeId: UInt64? {
         didSet {
             collection.clean()

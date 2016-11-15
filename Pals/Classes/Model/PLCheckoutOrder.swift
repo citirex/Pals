@@ -14,7 +14,7 @@ class PLCheckoutOrder {
         }
     }
     var drinks = [UInt64:PLDrinkset]()
-    var covers = [UInt64:PLCover]()
+    var covers = [UInt64:PLEvent]()
     var isVIP = false
     var message: String?
     
@@ -55,12 +55,13 @@ class PLCheckoutOrder {
             if let drinkSet = drinks[drink.id] {
                 drinkSet.quantity = count
             } else {
-                drinks.updateValue(PLDrinkset(aDrink: drink, andCount: count)!, forKey: drink.id)
+                let drinkSet = PLDrinkset(drink: drink, andCount: count)
+                drinks.updateValue(drinkSet, forKey: drink.id)
             }
         }
     }
     
-    func updateWithCoverID(cover: PLCover, inCell coverCell: PLOrderCoverCell) {
+    func updateWithCoverID(cover: PLEvent, inCell coverCell: PLOrderCoverCell) {
         if covers[cover.id] != nil {
             covers.removeValueForKey(cover.id)
             coverCell.setDimmed(false, animated: true)

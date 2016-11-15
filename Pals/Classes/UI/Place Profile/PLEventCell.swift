@@ -14,11 +14,14 @@ class PLEventCell: UICollectionViewCell {
 
     var delegate: PLEventCellDelegate?
     
-    @IBOutlet private var eventImageView: PLCircularImageView!
+    @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var eventDescriptionLabel: UILabel!
+    @IBOutlet private var eventImageView: PLCircularImageView!
     @IBOutlet private var startDateLabel: UILabel!
     @IBOutlet private var endDateLabel: UILabel!
     @IBOutlet private var strip: UIView!
+    @IBOutlet private var buyButton: UIButton!
+    
     private var eventData: PLEventCellData?
     
     override func awakeFromNib() {
@@ -32,10 +35,12 @@ class PLEventCell: UICollectionViewCell {
     
     func updateWithEvent(event: PLEventCellData) {
         let placeholder = UIImage(named: "no_image_placeholder")
+        nameLabel.text = event.name
         eventImageView.setImageSafely(fromURL: event.picture, placeholderImage: placeholder)
         eventDescriptionLabel.text = event.info
         startDateLabel.text = dateString(event.start)
         endDateLabel.text = dateString(event.end)
+        buyButton.hidden = !event.available
         eventData = event
     }
     

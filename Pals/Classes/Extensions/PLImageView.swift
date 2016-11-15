@@ -8,7 +8,7 @@
 
 protocol PLSaveImageURLSettable {
     var currentUrl: String? {get set}
-    func setImageSafely(fromURL url: NSURL, placeholderImage: UIImage?)
+    func setImageSafely(fromURL url: NSURL?, placeholderImage: UIImage?)
 }
 
 var kPLSaveImageURLSettableKey = "kPLSaveImageURLSettableKey"
@@ -24,7 +24,14 @@ extension UIImageView : PLSaveImageURLSettable {
             objc_setAssociatedObject(self, &kPLSaveImageURLSettableKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
-    func setImageSafely(fromURL url: NSURL, placeholderImage: UIImage?) {
+    func setImageSafely(fromURL aURL: NSURL?, placeholderImage: UIImage?) {
+        guard
+            let url = aURL
+        else {
+            image = placeholderImage
+            return
+        }
+        
         image = nil
         let urlString = url.absoluteString
         let request = NSURLRequest(URL: url)

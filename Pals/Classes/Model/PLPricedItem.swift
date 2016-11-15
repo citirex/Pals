@@ -1,0 +1,33 @@
+//
+//  PLCover.swift
+//  Pals
+//
+//  Created by Maks Sergeychuk on 9/16/16.
+//  Copyright © 2016 citirex. All rights reserved.
+//
+
+class PLPricedItem: PLDatedObject {
+    var name: String
+    var price = Float(0)
+    
+    required init?(jsonDic: [String : AnyObject]) {
+        guard
+            let name = jsonDic[.name] as? String
+        else {
+            return nil
+        }
+        self.name = name
+        if let price = jsonDic[.price] as? Float {
+            self.price = price
+        }
+        super.init(jsonDic: jsonDic)
+    }
+    
+    override func serialize() -> [String : AnyObject] {
+        var dic = [String : AnyObject]()
+        dic[.name] = name
+        dic[.price] = price
+        dic.append(super.serialize())
+        return dic
+    }
+}
