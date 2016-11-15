@@ -75,14 +75,16 @@ class PLOrderCheckoutPopupViewController: UIViewController {
             checkboxContainer.addSubview(drinksCheckbox)
             checkboxes.append(drinksCheckbox)
             drinksCheckbox.stateChanged = { checkbox in
-                print("drinks checkbox: \(checkbox.state)")
+                self.order?.isSplitDrinks = checkbox.checked
+                self.order?.serialize()
             }
         }
         if order?.covers.count > 0 {
             checkboxContainer.addSubview(coversCheckbox)
             checkboxes.append(coversCheckbox)
             coversCheckbox.stateChanged = { checkbox in
-                print("covers checkbox: \(checkbox.state)")
+                self.order?.isSplitCovers = checkbox.checked
+                self.order?.serialize()
             }
         }
     }
@@ -165,6 +167,10 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     }
     
     @IBAction private func cancelButtonPressed(sender: UIButton) {
+        order?.isSplitCovers = false
+        order?.isSplitDrinks = false
+        order?.serialize()
+        
         delegate?.orderPopupCancelClicked(self)
     }
     

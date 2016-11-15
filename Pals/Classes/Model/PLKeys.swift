@@ -51,6 +51,8 @@ enum PLKey : String {
     case info
     case invited
     case invitefriends
+    case is_split_covers
+    case is_split_drinks
     case is_vip
     
     case login
