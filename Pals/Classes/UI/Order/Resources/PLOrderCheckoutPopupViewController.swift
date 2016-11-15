@@ -71,20 +71,19 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     }
     
     func setupCheckbox() {
-        if order?.drinks.count > 0 {
+        if order?.drinks.first?.1.cellData.quantity > 1 {
             checkboxContainer.addSubview(drinksCheckbox)
             checkboxes.append(drinksCheckbox)
             drinksCheckbox.stateChanged = { checkbox in
                 self.order?.isSplitDrinks = checkbox.checked
-                self.order?.serialize()
             }
         }
-        if order?.covers.count > 0 {
+
+        if order?.covers.count > 1 {
             checkboxContainer.addSubview(coversCheckbox)
             checkboxes.append(coversCheckbox)
             coversCheckbox.stateChanged = { checkbox in
                 self.order?.isSplitCovers = checkbox.checked
-                self.order?.serialize()
             }
         }
     }
@@ -183,6 +182,7 @@ class PLOrderCheckoutPopupViewController: UIViewController {
         let message = (textViewText == placeholderText) ? "" : textViewText
         textViewText = placeholderText
         order?.message = message
+        order?.serialize()
         delegate?.orderPopupSendClicked(self)
     }
     

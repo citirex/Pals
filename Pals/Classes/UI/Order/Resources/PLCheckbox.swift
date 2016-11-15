@@ -70,11 +70,8 @@ class PLCheckbox: UIView {
     func handleTap(gesture: UITapGestureRecognizer) {
         checked = !checked
         
-        if checked {
-            checkmark.show()
-        } else {
-            checkmark.hide()
-        }
+        checked ? checkmark.show() : checkmark.hide()
+
         stateChanged!(checkbox: self)
     }
     
