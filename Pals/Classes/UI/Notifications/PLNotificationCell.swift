@@ -8,18 +8,22 @@
 
 import UIKit
 
+protocol NotificationCellDelegate: class {
+    func didChangeValueForCell(cell: PLNotificationCell, sender: UISwitch)
+}
+
 class PLNotificationCell: UITableViewCell {
     
     static let identifier = "NotificationCell"
-    
-    typealias notificationStateDelegate = (sender: UISwitch) -> Void
-    var didChangeNotification: notificationStateDelegate?
 
     @IBOutlet weak var notificationName: UILabel!
     
+    weak var delegate: NotificationCellDelegate?
+    
+    
 
     @IBAction func switchValueChanged(sender: UISwitch) {
-        didChangeNotification!(sender: sender)
+        delegate?.didChangeValueForCell(self, sender: sender)
     }
 
 }

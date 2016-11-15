@@ -10,8 +10,8 @@ import UIKit
 
 class PLBackBarButtonItem: UIBarButtonItem {
     
-    typealias didTapBackButtonDelegate = Void -> Void
-    var didTapBackButton: didTapBackButtonDelegate?
+    typealias PLTapBackButtonDelegate = Void -> Void
+    var didTapBackButton: PLTapBackButtonDelegate?
     
     
     override init() {

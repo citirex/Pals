@@ -13,8 +13,8 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
     static let nibName    = "PLPlaceProfileSectionHeader"
     static let identifier = "SectionHeader"
     
-    typealias didTapOrderButtonDelegate = (sender: UIButton) -> Void
-    var didTapOrderButton: didTapOrderButtonDelegate?
+    typealias PLTapOrderButtonDelegate = (sender: UIButton) -> Void
+    var didTapOrderButton: PLTapOrderButtonDelegate?
 
     @IBOutlet weak var placeNameLabel     : UILabel!
     @IBOutlet weak var musicGenresLabel   : UILabel!

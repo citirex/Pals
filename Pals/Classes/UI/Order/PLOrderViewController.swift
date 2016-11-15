@@ -304,7 +304,8 @@ extension PLOrderViewController {
         for order in orders {
             if myId == order.user.id {
                 myOrders.append(order)
-            }
+				order.user.picture = PLFacade.profile!.picture
+			}
         }
         
         if myOrders.count > 0 {
