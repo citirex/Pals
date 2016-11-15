@@ -12,21 +12,18 @@ protocol CheckoutOrderPopupDelegate: class {
 }
 
 class PLOrderCheckoutPopupViewController: UIViewController {
-
-    private let placeholderText = "Write a message... (optional)"
     
     @IBOutlet private var userNameLabel: UILabel!
     @IBOutlet private var locationLabel: UILabel!
     @IBOutlet private var amountLabel: UILabel!
     @IBOutlet private var messageTextView: UITextView!
     @IBOutlet private var popupView: UIView!
-    
     @IBOutlet weak var checkboxContainer: UIView!
     @IBOutlet weak var containerHeightConstraint: NSLayoutConstraint!
-    
-    private var initialContainerHeight: CGFloat!
-    
+
+    private let placeholderText = "Write a message... (optional)"
     private var didSetupConstraints = false
+    private var checkboxes = [PLCheckbox]()
     
     lazy var drinksCheckbox: PLCheckbox! = {
         let checkbox = PLCheckbox(title: "Separate Drinks")
@@ -36,8 +33,13 @@ class PLOrderCheckoutPopupViewController: UIViewController {
         let checkbox = PLCheckbox(title: "Separate Covers")
         return checkbox
     }()
+    lazy var tapGesture: UITapGestureRecognizer = {
+        return UITapGestureRecognizer(target: self, action: #selector(reciveTap(_:)))
+    }()
     
-    private var checkboxes = [PLCheckbox]()
+    var userName: String?
+    var locationName: String?
+    var orderAmount: Float?
     
     var order: PLCheckoutOrder? {
         didSet {
@@ -52,13 +54,6 @@ class PLOrderCheckoutPopupViewController: UIViewController {
             }
         }
     }
-    var userName: String? = nil
-    var locationName: String? = nil
-    var orderAmount: Float? = nil
-    
-    lazy private var tapGesture: UITapGestureRecognizer = {
-        return UITapGestureRecognizer(target: self, action: #selector(reciveTap(_:)))
-    }()
     
     weak var delegate: CheckoutOrderPopupDelegate? = nil
     
@@ -68,7 +63,6 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialContainerHeight = containerHeightConstraint.constant
         
         view.hidden = true
         popupView.layer.cornerRadius = 10
@@ -81,39 +75,42 @@ class PLOrderCheckoutPopupViewController: UIViewController {
             checkboxContainer.addSubview(drinksCheckbox)
             checkboxes.append(drinksCheckbox)
             drinksCheckbox.stateChanged = { checkbox in
-                print("drinks checkbox: \(checkbox.state)")
+                self.order?.isSplitDrinks = checkbox.checked
+                self.order?.serialize()
             }
         }
         if order?.covers.count > 0 {
             checkboxContainer.addSubview(coversCheckbox)
             checkboxes.append(coversCheckbox)
             coversCheckbox.stateChanged = { checkbox in
-                print("covers checkbox: \(checkbox.state)")
+                self.order?.isSplitCovers = checkbox.checked
+                self.order?.serialize()
             }
         }
     }
     
     override func updateViewConstraints() {
         if !didSetupConstraints {
+            let checkboxHeight: CGFloat = 25.0
+            let offset: CGFloat = 10.0
+            
             if checkboxes.count > 1 {
-                if containerHeightConstraint.constant != initialContainerHeight {
-                    containerHeightConstraint.constant = initialContainerHeight
-                }
-                drinksCheckbox.autoSetDimension(.Height, toSize: 25.0)
+                containerHeightConstraint.constant = CGFloat(checkboxes.count) * checkboxHeight + offset
+                drinksCheckbox.autoSetDimension(.Height, toSize: checkboxHeight)
                 drinksCheckbox.autoPinEdgeToSuperviewEdge(.Top)
                 drinksCheckbox.autoPinEdgeToSuperviewEdge(.Leading)
                 drinksCheckbox.autoPinEdgeToSuperviewEdge(.Trailing)
                 
-                coversCheckbox.autoPinEdge(.Top, toEdge: .Bottom, ofView: drinksCheckbox, withOffset: 10)
+                coversCheckbox.autoPinEdge(.Top, toEdge: .Bottom, ofView: drinksCheckbox, withOffset: offset)
                 
-                coversCheckbox.autoSetDimension(.Height, toSize: 25.0)
+                coversCheckbox.autoSetDimension(.Height, toSize: checkboxHeight)
                 coversCheckbox.autoPinEdgeToSuperviewEdge(.Bottom)
                 coversCheckbox.autoPinEdgeToSuperviewEdge(.Leading)
                 coversCheckbox.autoPinEdgeToSuperviewEdge(.Trailing)
             } else {
                 if let checkbox = checkboxes.first {
-                    containerHeightConstraint.constant = 25
-                    checkbox.autoSetDimension(.Height, toSize: 25.0)
+                    containerHeightConstraint.constant = checkboxHeight
+                    checkbox.autoSetDimension(.Height, toSize: checkboxHeight)
                     checkbox.autoPinEdgeToSuperviewEdge(.Bottom)
                     checkbox.autoPinEdgeToSuperviewEdge(.Leading)
                     checkbox.autoPinEdgeToSuperviewEdge(.Trailing)
@@ -160,16 +157,20 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     func hide() {
         UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveLinear, animations: {
             self.popupView.transform = CGAffineTransformMakeTranslation(0, -self.view.bounds.size.height)
-            self.view.backgroundColor = UIColor.clearColor()
-            }, completion: { (complete) in
+            self.view.backgroundColor = .clearColor()
+            }, completion: { complete in
                 self.popupView.transform = CGAffineTransformIdentity
                 self.view.alpha = 1
-                self.dismissViewControllerAnimated(false, completion: nil)
+                self.dismiss(false)
                 self.view.hidden = true
         })
     }
     
     @IBAction private func cancelButtonPressed(sender: UIButton) {
+        order?.isSplitCovers = false
+        order?.isSplitDrinks = false
+        order?.serialize()
+        
         delegate?.orderPopupCancelClicked(self)
     }
     

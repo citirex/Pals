@@ -15,6 +15,8 @@ class PLCheckoutOrder {
     }
     var drinks = [UInt64:PLDrinkset]()
     var covers = [UInt64:PLEvent]()
+    var isSplitCovers = false
+    var isSplitDrinks = false
     var isVIP = false
     var message: String?
     
@@ -30,6 +32,7 @@ class PLCheckoutOrder {
         }
         if drinks.count > 0 {
             dic[.drinks] = drinks
+            dic[.is_split_drinks] = String(isSplitDrinks)
         }
         
         var covers = [[String : AnyObject]]()
@@ -40,6 +43,7 @@ class PLCheckoutOrder {
         
         if covers.count > 0 {
             dic[.covers] = covers
+            dic[.is_split_covers] = String(isSplitCovers)
         }
         dic[.is_vip] = String(isVIP)
         if message != nil && !message!.isEmpty {

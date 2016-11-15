@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum PLCheckboxState {
-    case Checked
-    case Unchecked
-}
-
 class PLCheckbox: UIView {
     
     typealias CheckboxStateChange = (checkbox: PLCheckbox) -> Void
@@ -23,14 +18,12 @@ class PLCheckbox: UIView {
     private var checkmark: PLCheckmark!
     
     private var shouldSetupConstraints = true
-    private var checked = false
     
     private lazy var tapGesture: UITapGestureRecognizer = {
         return UITapGestureRecognizer(target: self, action: .handleTap)
     }()
     
-    var state: PLCheckboxState = .Unchecked
-    
+    var checked = false
     
     
     
@@ -77,11 +70,10 @@ class PLCheckbox: UIView {
     func handleTap(gesture: UITapGestureRecognizer) {
         checked = !checked
         
-        state = checked ? .Checked : .Unchecked
-        
-        switch state {
-        case .Checked:   checkmark.show()
-        case .Unchecked: checkmark.hide()
+        if checked {
+            checkmark.show()
+        } else {
+            checkmark.hide()
         }
         stateChanged!(checkbox: self)
     }
