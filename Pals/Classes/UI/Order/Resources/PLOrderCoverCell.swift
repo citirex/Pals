@@ -32,6 +32,15 @@ class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
         }
     }
     
+    var coverNumber: UInt64 {
+        set {
+            counter.counter = newValue
+        }
+        get {
+            return counter.counter
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

@@ -7,6 +7,12 @@
 //
 
 class PLCurrentUser: PLUser {
+    
+    required init?(jsonDic: [String : AnyObject]) {
+        PLLog(jsonDic, type: .Deserialization)
+        super.init(jsonDic: jsonDic)
+    }
+    
     override var cellData: PLFriendCellData {
         var data = super.cellData
         data.me = true
