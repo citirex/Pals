@@ -13,12 +13,13 @@ class PLFriendProfileViewController: PLViewController {
     @IBOutlet weak var invitatedStatusButton: UIButton!
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var popUpMenuView: UIView!
-
+    
     private var status: String! {
         return friend.invited ? "Unfriend" : "Add friend"
     }
     
     var friend: PLUser!
+    
 
     
     override func viewDidLoad() {
@@ -37,7 +38,6 @@ class PLFriendProfileViewController: PLViewController {
         navigationController?.navigationBar.style = .FriendProfileStyle
     }
 
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -124,18 +124,18 @@ extension PLFriendProfileViewController {
     @IBAction func sendButtonPressed(sender: UIButton) {
         hidePopUpMenu()
         
-        let orderViewController = tabBarController!.orderViewController
-        
+        var section: PLOrderSection!
         switch sender.tag {
-        case 0:
-            orderViewController.currentSection = .Covers
-        case 1:
-            orderViewController.currentSection = .Drinks
+        case 0: section = .Covers
+        case 1: section = .Drinks
         default:
             break
         }
-        orderViewController.order.user = friend
-        tabBarController?.switchTabBarItemTo(.OrderItem)
+        
+        tabBarController?.switchTabBarItemTo(.OrderItem) {
+            let object = PLFriendNotification(friend: self.friend, section: section)
+            PLNotifications.postNotification(.FriendSend, object: object)
+        }
     }
     
     @IBAction func inviteStatePressed(sender: UIButton) {

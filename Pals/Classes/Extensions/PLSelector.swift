@@ -19,4 +19,5 @@ extension Selector {
     static let textFieldDidChange = #selector(PLEditProfileViewController.textFieldDidChange(_:))
     static let checkoutPressed    = #selector(PLOrderViewController.checkoutButtonPressed(_:))
     static let handleTap          = #selector(PLCheckbox.handleTap)
+    static let friendSendNotification =  #selector(PLOrderViewController.send(_:))
 }

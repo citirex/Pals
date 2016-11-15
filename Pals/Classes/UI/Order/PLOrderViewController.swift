@@ -31,7 +31,7 @@ class PLOrderViewController: PLViewController {
     private var drinksDatasource = PLDrinksDatasource()
     private var coversDatasource = PLCoversDatasource()
     
-    var currentSection: PLOrderSection = .Drinks
+    private var currentSection: PLOrderSection = .Drinks
     
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView",
         bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
@@ -64,6 +64,7 @@ class PLOrderViewController: PLViewController {
     
     override func viewWillAppear(animated: Bool) {
         PLNotifications.addObserver(self, selector: #selector(onDidSelectNewPlace(_:)), type: .PlaceDidSelect)
+        PLNotifications.addObserver(self, selector: .friendSendNotification, type: .FriendSend)
         
         super.viewWillAppear(animated)
         
@@ -95,6 +96,15 @@ class PLOrderViewController: PLViewController {
     func setNewPlace(place: PLPlace) {
         order.place = place
         updateDataForSelectedPlace()
+    }
+    
+    
+    // MARK: - Notifications
+    
+    func send(notification: NSNotification) {
+        guard let object = notification.object as? PLFriendNotification else { return }
+        order.user = object.friend
+        didChangeOrderSection(object.section)
     }
  
     func onDidSelectNewPlace(notification: NSNotification) {
