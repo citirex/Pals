@@ -11,19 +11,21 @@ import UIKit
 private let kDimmed: CGFloat = 0.3
 private let kTransparent: CGFloat = 0
 
-class PLOrderCoverCell: UICollectionViewCell {
+class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
     
     static let height: CGFloat = 200.0
     
     @IBOutlet private var bgView: UIView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var dimmedView: UIView!
+    @IBOutlet private var counter: PLCounterView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         bgView.layer.cornerRadius = 10
         bgView.clipsToBounds = true
+        counter.delegate = self
     }
     
     override func prepareForReuse() {
@@ -50,6 +52,10 @@ class PLOrderCoverCell: UICollectionViewCell {
         get{
            return titleLabel.text
         }
+    }
+    
+    func counterView(view: PLCounterView, didChangeCounter counter: Int) {
+        PLLog("Count: \(counter)")
     }
     
 }
