@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="9g6-5s-14P" customClass="PLNewFriendNotificationCell" customModule="Pals" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9g6-5s-14P" id="hxZ-vC-G5L">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="vjA-A5-wVn" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                        <rect key="frame" x="8" y="11" width="67" height="67"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="vjA-A5-wVn" secondAttribute="height" multiplier="1:1" id="Dy3-na-kFm"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VeraVasilievna Dristanul'ko wants to be Your friend" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4U-eU-o4V">
+                        <rect key="frame" x="83" y="0.0" width="237" height="67"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHF-hg-ot7">
+                        <rect key="frame" x="0.0" y="86" width="160" height="41"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="Decline">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="declineButton:" destination="9g6-5s-14P" eventType="touchUpInside" id="vOv-0v-r5T"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBf-Vw-xVd">
+                        <rect key="frame" x="160" y="86" width="160" height="41"/>
+                        <color key="backgroundColor" red="0.23137254900000001" green="0.80000000000000004" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" title="Confirm">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="confirmButton:" destination="9g6-5s-14P" eventType="touchUpInside" id="dVq-xr-eEn"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="h4U-eU-o4V" firstAttribute="height" secondItem="vjA-A5-wVn" secondAttribute="height" id="6h7-m2-nvx"/>
+                    <constraint firstItem="GBf-Vw-xVd" firstAttribute="width" secondItem="hxZ-vC-G5L" secondAttribute="width" multiplier="0.5" id="74Z-Y1-hL1"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="vjA-A5-wVn" secondAttribute="leading" id="8k5-vi-1kL"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NHF-hg-ot7" secondAttribute="bottom" constant="-8" id="BH7-eu-Lhd"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="GBf-Vw-xVd" secondAttribute="bottom" constant="-8" id="DHn-Fz-7Lu"/>
+                    <constraint firstItem="h4U-eU-o4V" firstAttribute="top" secondItem="hxZ-vC-G5L" secondAttribute="topMargin" constant="-8" id="Kh2-Ed-Kxs"/>
+                    <constraint firstItem="vjA-A5-wVn" firstAttribute="width" secondItem="hxZ-vC-G5L" secondAttribute="height" multiplier="67:127" id="LVu-J5-0vk"/>
+                    <constraint firstItem="vjA-A5-wVn" firstAttribute="top" secondItem="hxZ-vC-G5L" secondAttribute="topMargin" constant="3" id="Luf-xO-NhF"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="h4U-eU-o4V" secondAttribute="trailing" constant="-8" id="N0O-KE-PPL"/>
+                    <constraint firstItem="NHF-hg-ot7" firstAttribute="top" secondItem="vjA-A5-wVn" secondAttribute="bottom" constant="8" id="ZLU-Bp-mb3"/>
+                    <constraint firstItem="NHF-hg-ot7" firstAttribute="leading" secondItem="hxZ-vC-G5L" secondAttribute="leadingMargin" constant="-8" id="b0O-tb-M9F"/>
+                    <constraint firstItem="NHF-hg-ot7" firstAttribute="width" secondItem="hxZ-vC-G5L" secondAttribute="width" multiplier="0.5" id="jJz-q6-kAg"/>
+                    <constraint firstItem="h4U-eU-o4V" firstAttribute="leading" secondItem="vjA-A5-wVn" secondAttribute="trailing" constant="8" id="lIg-jG-VEc"/>
+                    <constraint firstItem="GBf-Vw-xVd" firstAttribute="height" secondItem="NHF-hg-ot7" secondAttribute="height" id="lYQ-NH-5WQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="GBf-Vw-xVd" secondAttribute="trailing" constant="-8" id="zhB-hm-Cwd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="avatarNewFriend" destination="vjA-A5-wVn" id="bhS-FE-Ruh"/>
+                <outlet property="labelNewFriend" destination="h4U-eU-o4V" id="sgn-tE-SKJ"/>
+            </connections>
+            <point key="canvasLocation" x="238" y="212"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="no_image_placeholder" width="600" height="600"/>
+    </resources>
+</document>

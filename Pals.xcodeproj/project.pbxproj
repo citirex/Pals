@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049692F41DDB2C9E00A65C60 /* PLNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049692F31DDB2C9E00A65C60 /* PLNotificationViewController.swift */; };
+		049692F81DDB3F2500A65C60 /* PLNewFriendNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049692F61DDB3F2500A65C60 /* PLNewFriendNotificationCell.swift */; };
+		049692F91DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */; };
+		049692FC1DDB3F6500A65C60 /* PLNewsNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */; };
+		049692FD1DDB3F6500A65C60 /* PLNewsNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */; };
 		049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F61D83083800C2E32D /* PLFriendCell.swift */; };
 		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
@@ -196,6 +201,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		049692F31DDB2C9E00A65C60 /* PLNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNotificationViewController.swift; sourceTree = "<group>"; };
+		049692F61DDB3F2500A65C60 /* PLNewFriendNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNewFriendNotificationCell.swift; sourceTree = "<group>"; };
+		049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewFriendNotificationCell.xib; sourceTree = "<group>"; };
+		049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNewsNotificationCell.swift; sourceTree = "<group>"; };
+		049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewsNotificationCell.xib; sourceTree = "<group>"; };
 		049BA9F61D83083800C2E32D /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
@@ -408,6 +418,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		049692F21DDB2C7E00A65C60 /* Notificaton */ = {
+			isa = PBXGroup;
+			children = (
+				049692F31DDB2C9E00A65C60 /* PLNotificationViewController.swift */,
+				049692F51DDB2CB600A65C60 /* Resources */,
+			);
+			path = Notificaton;
+			sourceTree = "<group>";
+		};
+		049692F51DDB2CB600A65C60 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				049692F61DDB3F2500A65C60 /* PLNewFriendNotificationCell.swift */,
+				049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */,
+				049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */,
+				049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2414F44B1D997249000BA1F5 /* vip_Covers */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +557,7 @@
 		2480F8921D813E730095995F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				049692F21DDB2C7E00A65C60 /* Notificaton */,
 				2480F8971D813E730095995F /* Basic */,
 				E8042B381D8C54D900755EF3 /* Tabbar */,
 				2480F8A21D813E730095995F /* Login */,
@@ -1155,6 +1186,7 @@
 				E837C1F61D902CAE0080A074 /* covers0.json in Resources */,
 				E883A8431DAA6269006DB9CF /* PLPlaceCell.xib in Resources */,
 				E837C1FD1D902CAE0080A074 /* friends0.json in Resources */,
+				049692F91DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib in Resources */,
 				E837C20E1D902CAE0080A074 /* signup.json in Resources */,
 				2480F9241D813E730095995F /* Main.storyboard in Resources */,
 				2480F91A1D813E730095995F /* config.plist in Resources */,
@@ -1198,6 +1230,7 @@
 				2414F4561D997249000BA1F5 /* vip_covers2.json in Resources */,
 				24F012B91DBA16510072556F /* add_friend.json in Resources */,
 				24DDA9311D9A658800FCDBCA /* events0.json in Resources */,
+				049692FD1DDB3F6500A65C60 /* PLNewsNotificationCell.xib in Resources */,
 				E837C20A1D902CAE0080A074 /* places1.json in Resources */,
 				E837C2051D902CAE0080A074 /* order_drinks0.json in Resources */,
 				2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */,
@@ -1286,6 +1319,7 @@
 				E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */,
 				D4945B131DD33A9C0005FD8C /* PLCustomer.swift in Sources */,
 				24C20C711D8A9C5D0040F2F5 /* PLOrderCoverCell.swift in Sources */,
+				049692F81DDB3F2500A65C60 /* PLNewFriendNotificationCell.swift in Sources */,
 				D47DC1ED1DBDF57F00420958 /* PLPageCollectionDeserializer.swift in Sources */,
 				2480F8EC1D813E730095995F /* PLUser.swift in Sources */,
 				E8DA8B851D8832E8008782E5 /* TGLStackedViewController.m in Sources */,
@@ -1296,6 +1330,7 @@
 				2480F8E61D813E730095995F /* PLEvent.swift in Sources */,
 				E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */,
 				D4949F631DD2743000FEF0C8 /* PLDatePicker.swift in Sources */,
+				049692FC1DDB3F6500A65C60 /* PLNewsNotificationCell.swift in Sources */,
 				D414942A1DD62D350081509E /* PLImageView.swift in Sources */,
 				E83B4E4F1D87364E002E72F6 /* PLBackBarButtonItem.swift in Sources */,
 				E85083151DAD1AEA0077A81C /* PLAttributedString.swift in Sources */,
@@ -1345,6 +1380,7 @@
 				24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */,
 				2480F8DF1D813E730095995F /* PLDevice.swift in Sources */,
 				D419F0D11DB62E1F0095C5AA /* PLEditUserData.swift in Sources */,
+				049692F41DDB2C9E00A65C60 /* PLNotificationViewController.swift in Sources */,
 				D46D2B871D87583B0058060E /* PLColor.swift in Sources */,
 				2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */,
 				D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */,

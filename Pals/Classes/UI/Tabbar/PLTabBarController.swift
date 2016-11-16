@@ -7,7 +7,7 @@
 //
 
 enum PLTabBarItem: Int {
-    case ProfileItem, PlacesItem, OrderItem, FriendsItem
+    case ProfileItem, PlacesItem, OrderItem, NotificationItem, FriendsItem
 }
 
 class PLTabBarController: UITabBarController {
