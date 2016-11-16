@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
 @IBDesignable
 class PLOrderHistorySectionHeader: UITableViewHeaderFooterView {
 
@@ -16,20 +14,19 @@ class PLOrderHistorySectionHeader: UITableViewHeaderFooterView {
     
     @IBOutlet weak var dateLabel: UILabel! 
         
-    var orderCellData: PLOrderCellData! {
+    var order: PLOrder? {
         didSet {
-            if let date = orderCellData.date {
-                dateLabel.text = date.since
-            } else {
-                dateLabel.text = ""
+            dateLabel.text = ""
+            if let o = order {
+                if let date = o.date {
+                    dateLabel.text = date.since
+                }
             }
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         addBorder(.Top, color: .lightGrayColor(), width: 0.5)
     }
-    
 }

@@ -41,21 +41,6 @@ class PLEvent : PLPricedItem, PLFilterable {
     
     static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
-    var cellData: PLEventCellData {
-        return PLEventCellData(eventID: id, picture: picture, name: name, info: info, saleStart: saleStart, start: start, end: end, price: price)
-    }
-}
-
-struct PLEventCellData {
-    let eventID: UInt64
-    let picture: NSURL?
-    let name: String
-    let info: String
-    let saleStart: NSDate
-    let start: NSDate
-    let end: NSDate
-    var price: Float
-    
     var available: Bool {
         let availableForSale = NSDate().compare(self.saleStart) == .OrderedDescending
         let ended = isEnded
@@ -65,5 +50,6 @@ struct PLEventCellData {
     var isEnded: Bool {
         return NSDate().compare(self.end) == .OrderedDescending
     }
+    
+    override class var itemKey: PLKey {return .cover}
 }
-

@@ -6,7 +6,12 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLPricedItem: PLDatedObject {
+protocol PLItemKeyable {
+    static var itemKey: PLKey {get}
+}
+
+
+class PLPricedItem: PLDatedObject, PLItemKeyable {
     var name: String
     var price = Float(0)
     
@@ -30,4 +35,6 @@ class PLPricedItem: PLDatedObject {
         dic.append(super.serialize())
         return dic
     }
+    
+    class var itemKey: PLKey {return .any}
 }

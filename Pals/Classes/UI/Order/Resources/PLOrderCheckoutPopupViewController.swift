@@ -71,7 +71,7 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     }
     
     func setupCheckbox() {
-        if order?.drinks.first?.1.cellData.quantity > 1 {
+        if order!.hasAtLeastTwoDrinks {
             checkboxContainer.addSubview(drinksCheckbox)
             checkboxes.append(drinksCheckbox)
             drinksCheckbox.stateChanged = { checkbox in
@@ -79,7 +79,7 @@ class PLOrderCheckoutPopupViewController: UIViewController {
             }
         }
 
-        if order?.covers.count > 1 {
+        if order!.hasAtLeastTwoCovers {
             checkboxContainer.addSubview(coversCheckbox)
             checkboxes.append(coversCheckbox)
             coversCheckbox.stateChanged = { checkbox in

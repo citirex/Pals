@@ -7,6 +7,7 @@
 //
 
 enum PLKey : String {
+    case any
     case access_code
     case additional
     case address
@@ -54,6 +55,7 @@ enum PLKey : String {
     case is_split_covers
     case is_split_drinks
     case is_vip
+    case is_used
     
     case login
     case location

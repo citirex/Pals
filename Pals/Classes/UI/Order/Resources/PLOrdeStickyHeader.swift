@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol OrderSectionDelegate: class {
-    func didChangeOrderSection(section: PLOrderSection)
+protocol PLOrderHeaderDelegate: class {
+    func orderHeader(header: PLOrdeStickyHeader, didChangeSection section: PLOrderSection)
 }
 
 class PLOrdeStickyHeader: UICollectionViewCell {
@@ -22,7 +22,7 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     @IBOutlet private var coverConstraint: NSLayoutConstraint!
     @IBOutlet private var drinkConstraint: NSLayoutConstraint!
     
-    weak var delegate: OrderSectionDelegate?
+    weak var delegate: PLOrderHeaderDelegate?
     
     var currentSection: PLOrderSection = .Drinks {
         didSet{
@@ -72,7 +72,7 @@ class PLOrdeStickyHeader: UICollectionViewCell {
         currentSection = section
         updateButtonsState()
         updateListIndicator()
-        delegate?.didChangeOrderSection(section)
+        delegate?.orderHeader(self, didChangeSection: section)
     }
     
     private func updateButtonsState() {

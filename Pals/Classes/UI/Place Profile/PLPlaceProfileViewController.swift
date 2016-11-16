@@ -120,10 +120,10 @@ class PLPlaceProfileViewController: PLViewController {
         noEventsView.hidden = true
     }
     
-    func switchToOrderWithPlace(place: PLPlace?, eventId: UInt64?) {
+    func switchToOrderWithPlace(place: PLPlace?, event: PLEvent?) {
         if place != nil {
             tabBarController?.switchTabBarItemTo(.OrderItem) {
-                let notifObj = PLPlaceEventNotification(place: place!, eventId: eventId)
+                let notifObj = PLPlaceEventNotification(place: place!, event: event)
                 PLNotifications.postNotification(.PlaceDidSelect, object: notifObj)
             }
         } else {
@@ -147,15 +147,15 @@ extension PLPlaceProfileViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(PLEventCell.self, forIndexPath: indexPath) as! PLEventCell
         cell.delegate = self
-        let event = events[indexPath.row].cellData
+        let event = events[indexPath.row]
         cell.updateWithEvent(event)
         return cell
     }
 }
 
 extension PLPlaceProfileViewController : PLEventCellDelegate {
-    func eventCell(cell: PLEventCell, didClickBuyEvent event: PLEventCellData) {
-        switchToOrderWithPlace(place, eventId: event.eventID)
+    func eventCell(cell: PLEventCell, didClickBuyEvent event: PLEvent) {
+        switchToOrderWithPlace(place, event: event)
     }
 }
 
@@ -178,14 +178,14 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
             let sectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLPlaceProfileSectionHeader
             sectionHeader.place = place
             sectionHeader.didTapOrderButton  = { [unowned self] sender in
-                self.switchToOrderWithPlace(self.place, eventId: nil)
+                self.switchToOrderWithPlace(self.place, event: nil)
             }
             return sectionHeader
         }
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let event = events[indexPath.row].cellData
+        let event = events[indexPath.row]
         let objectsToShare = ["\(place.name) \(eventDateFormatter.stringFromDate(event.start)),\n\(event.info))"]
         let calendarActivity = PLActivity(title: "To calendar", imageName: "icon_calendar") {
             
@@ -266,7 +266,7 @@ extension PLPlaceProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let event = events[indexPath.row].cellData
+        let event = events[indexPath.row]
         let cell = sizingCell
         cell.updateWithEvent(event)
         let minSize = CGSizeMake(collectionView.frame.width, kPLEventCellMinHeight)

@@ -65,7 +65,7 @@ class PLProfileViewController: TGLStackedViewController {
     }
     
     func addNewOrder(order: PLOrder) {
-        if order.covers.count == 0 && currentSection == .Covers {
+        if order.coverSets.count == 0 && currentSection == .Covers {
             datasourceSwitcher.resetOffset(inSection: .Drinks)
             myDrinksButtonPressed(nil)
         } else if order.drinkSets.count == 0 && currentSection == .Drinks {
@@ -319,7 +319,7 @@ extension PLProfileViewController : UICollectionViewDelegate {
             self.exposedItemIndexPath = indexPath
             
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PLProfileDrinkCollectionViewCell
-            cell.setupImages(currentDatasource[indexPath.row].cellData)
+            cell.setupImages(currentDatasource[indexPath.row])
         }
     }
 }

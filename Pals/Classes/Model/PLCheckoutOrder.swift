@@ -13,12 +13,34 @@ class PLCheckoutOrder {
             clean()
         }
     }
-    var drinks = [UInt64:PLDrinkset]()
-    var covers = [UInt64:PLCoverSet]()
+    private var drinks = [UInt64:PLItemSet<PLPricedItem>]()
+    private var covers = [UInt64:PLItemSet<PLPricedItem>]()
     var isSplitCovers = false
     var isSplitDrinks = false
     var isVIP = false
     var message: String?
+    
+    var coverSetCount : Int { return covers.count }
+    var drinkSetCount : Int { return drinks.count }
+    
+    var hasAtLeastTwoDrinks: Bool {
+        return hasAtLeastTwoItemsInDic(drinks)
+    }
+    
+    var hasAtLeastTwoCovers: Bool {
+        return hasAtLeastTwoItemsInDic(covers)
+    }
+    
+    private func hasAtLeastTwoItemsInDic(dic: [UInt64:PLItemSet<PLPricedItem>]) -> Bool {
+        var itemCount = UInt64(0)
+        for (_, value) in dic {
+            itemCount += value.quantity
+            if itemCount > 1 {
+                return true
+            }
+        }
+        return false
+    }
     
     func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
@@ -27,7 +49,7 @@ class PLCheckoutOrder {
         
         var drinks = [[String : AnyObject]]()
         for (_, drinkset) in self.drinks {
-            let drinkDic = drinkset.serialize()
+            let drinkDic = drinkset.serializeWithKey(PLDrink.itemKey)
             drinks.append(drinkDic)
         }
         if drinks.count > 0 {
@@ -37,7 +59,7 @@ class PLCheckoutOrder {
         
         var covers = [[String : AnyObject]]()
         for (_, cover) in self.covers {
-            let coverDic = cover.serialize()
+            let coverDic = cover.serializeWithKey(PLEvent.itemKey)
             covers.append(coverDic)
         }
         
@@ -53,37 +75,53 @@ class PLCheckoutOrder {
     }
     
     func updateWithDrink(drink: PLDrink, andCount count: UInt64) {
+        updateItem(drink, withCount: count, section: .Drinks)
+    }
+    
+    func updateWithCover(event: PLEvent, andCount count: UInt64) {
+        updateItem(event, withCount: count, section: .Covers)
+    }
+    
+    func updateItem(item: PLPricedItem, withCount count: UInt64, section: PLOrderSection) {
+        var dic = (section == .Drinks) ? drinks : covers
+        let id = item.id
         if count == 0 {
-            drinks.removeValueForKey(drink.id)
+            dic.removeValueForKey(id)
         } else {
-            if let drinkSet = drinks[drink.id] {
-                drinkSet.quantity = count
-            } else {
-                let drinkSet = PLDrinkset(drink: drink, andCount: count)
-                drinks.updateValue(drinkSet, forKey: drink.id)
-            }
+            let itemSet = PLItemSet<PLPricedItem>(item: item, andCount: count)
+            dic.updateValue(itemSet, forKey: id)
+        }
+        if section == .Drinks {
+            drinks = dic
+        } else {
+            covers = dic
         }
     }
     
-    func updateCoverSet(coverSet: PLCoverSet) {
-        let id = coverSet.cover.id
-        if coverSet.quantity == 0 {
-            covers.removeValueForKey(id)
-        } else {
-            covers.updateValue(coverSet, forKey: id)
+    func itemById(id: UInt64, inSection section: PLOrderSection) -> PLItemSet<PLPricedItem>? {
+        var dic = (section == .Drinks) ? drinks : covers
+        let obj = dic[id]
+        return obj
+    }
+    
+    func appendCover(event: PLEvent) {
+        var newCount = UInt64(1)
+        if let coverSet = covers[event.id] {
+            newCount += coverSet.quantity
         }
+        updateWithCover(event, andCount: newCount)
     }
     
     func calculateTotalAmount() -> Float {
         var amount: Float = 0.0
         if drinks.count > 0 {
             for drinkSet in drinks.values {
-                amount += Float(drinkSet.quantity) * drinkSet.drink.price
+                amount += Float(drinkSet.quantity) * drinkSet.item.price
             }
         }
         if covers.count > 0 {
             for coverSet in covers.values {
-                amount += Float(coverSet.quantity) * coverSet.cover.price
+                amount += Float(coverSet.quantity) * coverSet.item.price
             }
         }
         return amount
