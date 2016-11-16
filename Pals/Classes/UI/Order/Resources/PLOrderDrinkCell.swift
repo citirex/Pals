@@ -33,7 +33,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
         
     }
     
-    func setupWith(drink: PLDrinkCellData, isVip vip: Bool) {
+    func setupWith(drink: PLDrink, isVip vip: Bool) {
         drinkNameLabel.text = drink.name
         drinkPriceLabel.text = (drink.price > 0) ? "$" + String(format: "%.2f", drink.price) : "Specify"
         setupColorsForVipState(vip, withType: drink.type)

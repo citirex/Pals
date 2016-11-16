@@ -6,11 +6,11 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
+class PLOrder: PLDatedObject, PLFilterable {
     let user: PLUser
     let place: PLPlace
-    var drinkSets = [PLDrinkset]()
-    var covers = [PLEvent]()
+    var drinkSets = [PLItemSet<PLDrink>]()
+    var coverSets = [PLItemSet<PLEvent>]()
     let isVIP: Bool
     let message: String
     
@@ -36,15 +36,15 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
         
         if let drinkSetsArray = jsonDic[.drinks] as? [Dictionary<String,AnyObject>] {
             for drinkSetDic in drinkSetsArray {
-                if let drinkSet = PLDrinkset(jsonDic: drinkSetDic) {
+                if let drinkSet = PLItemSet<PLDrink>(jsonDic: drinkSetDic) {
                     drinkSets.append(drinkSet)
                 }
             }
         }
         if let coversArray = jsonDic[.covers] as? [Dictionary<String,AnyObject>] {
             for coverDic in coversArray {
-                if let cover = PLEvent(jsonDic: coverDic) {
-                    covers.append(cover)
+                if let cover = PLItemSet<PLEvent>(jsonDic: coverDic) {
+                    coverSets.append(cover)
                 }
             }
         }
@@ -57,18 +57,4 @@ class PLOrder: PLDatedObject, PLCellRepresentable, PLFilterable {
     
     static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
-    var cellData: PLOrderCellData {
-        return PLOrderCellData(user: user, place: place, isVIP: isVIP, message: message, date: date, drinkSets: drinkSets, covers: covers)
-    }
 }
-
-struct PLOrderCellData {
-    let user: PLUser
-    let place: PLPlace
-    let isVIP: Bool
-    let message: String
-    let date: NSDate?
-    let drinkSets: [PLDrinkset]?
-    let covers: [PLEvent]?
-}
-

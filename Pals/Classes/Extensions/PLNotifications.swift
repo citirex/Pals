@@ -18,14 +18,14 @@ class PLFriendNotification {
 
 class PLPlaceEventNotification {
     var place: PLPlace
-    var eventId: UInt64?
+    var event: PLEvent?
     
     convenience init(place: PLPlace){
-        self.init(place: place, eventId: nil)
+        self.init(place: place, event: nil)
     }
-    init(place: PLPlace, eventId: UInt64?) {
+    init(place: PLPlace, event: PLEvent?) {
         self.place = place
-        self.eventId = eventId
+        self.event = event
     }
 }
 

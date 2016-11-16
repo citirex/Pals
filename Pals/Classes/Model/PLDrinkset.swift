@@ -30,37 +30,28 @@ class PLCountableItem: PLUniqueObject {
     }
 }
 
-class PLDrinkset : PLCountableItem, PLCellRepresentable {
-    var drink: PLDrink
+class PLItemSet<T: PLPricedItem> : PLCountableItem {
     
+    let item: T
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let drinkDic = jsonDic[.drink] as? Dictionary<String,AnyObject>,
-            let drink = PLDrink(jsonDic: drinkDic)
+            let itemDic = jsonDic[T.itemKey] as? Dictionary<String,AnyObject>,
+            let item = T(jsonDic: itemDic)
         else {
             return nil
         }
-        self.drink = drink
+        self.item = item
         super.init(jsonDic: jsonDic)
     }
     
-    init(drink: PLDrink, andCount count: UInt64) {
-        self.drink = drink
+    init(item: T, andCount count: UInt64) {
+        self.item = item
         super.init(count: count)
     }
-
-    override func serialize() -> [String : AnyObject] {
+    
+    func serializeWithKey(key: PLKey) -> [String : AnyObject] {
         var dic = super.serialize()
-        dic[.drink] = String(drink.id)
+        dic[key.string] = String(item.id)
         return dic
     }
-    
-    var cellData: PLDrinksetCellData {
-        return PLDrinksetCellData(quantity: quantity, drink: drink)
-    }
-}
-
-struct PLDrinksetCellData {
-    var quantity: UInt64
-    var drink: PLDrink
 }

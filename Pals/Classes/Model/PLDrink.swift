@@ -12,7 +12,7 @@ enum DrinkType: Int {
     case Strong
 }
 
-class PLDrink : PLPricedItem, PLCellRepresentable, PLFilterable {
+class PLDrink : PLPricedItem, PLFilterable {
     
     var type: DrinkType = .Undefined
     
@@ -37,15 +37,5 @@ class PLDrink : PLPricedItem, PLCellRepresentable, PLFilterable {
     
     static func filter(objc: AnyObject, text: String) -> Bool {return false}
     
-    var cellData: PLDrinkCellData {
-        return PLDrinkCellData(drinkId: id, name: name, price: price, type: type)
-    }
-    
-}
-
-struct PLDrinkCellData {
-    var drinkId: UInt64
-    var name: String
-    var price: Float
-    var type: DrinkType
+    override class var itemKey: PLKey {return .drink}
 }

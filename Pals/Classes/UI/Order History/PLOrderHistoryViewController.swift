@@ -109,7 +109,7 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
             }
         case .Drink:
             if let cell = cell as? PLOrderHistoryCell {
-                let drink = (historyObject as! PLDrinkset).drink
+                let drink = (historyObject as! PLItemSet<PLDrink>).item
                 cell.drink = drink
             }
         }
@@ -152,7 +152,7 @@ extension PLOrderHistoryViewController: UITableViewDelegate {
         let sectionHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as! PLOrderHistorySectionHeader
         
         if let firstOrder = orders.objectsInSection(section).first {
-            sectionHeader.orderCellData = firstOrder.cellData
+            sectionHeader.order = firstOrder
         }
         return sectionHeader
     }

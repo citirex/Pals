@@ -21,7 +21,7 @@ class PLProfileCollectionHelper: NSObject, UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(drinkCellIdentifier, forIndexPath: indexPath) as! PLProfileDrinkCollectionViewCell
-        if let orderCellData = datasource?[indexPath.row].cellData {
+        if let orderCellData = datasource?[indexPath.row] {
             cell.setupWith(orderCellData, withOrderType: datasource!.orderType, forIndexPath: indexPath)
         }
         

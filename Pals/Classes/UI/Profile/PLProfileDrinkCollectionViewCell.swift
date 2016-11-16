@@ -57,14 +57,14 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func setupWith(order: PLOrderCellData, withOrderType type: PLOrderType, forIndexPath indexPath: NSIndexPath) {
+    func setupWith(order: PLOrder, withOrderType type: PLOrderType, forIndexPath indexPath: NSIndexPath) {
         switch type {
         case .Covers:
             cardTitleLabel.text = (order.isVIP) ? "VIP" : order.place.name
             cardCaptionLabel.text = (order.isVIP) ? order.place.name : order.place.musicGengres
             headerView.backgroundColor = .affairColor()
         case .Drinks:
-            if let drinkType = order.drinkSets?.first?.drink.type where drinkType != .Undefined {
+            if let drinkType = order.drinkSets.first?.item.type where drinkType != .Undefined {
                 headerView.backgroundColor = (drinkType == .Light) ? kPalsOrderCardBeerDrinkColor : kPalsOrderCardLiqiorDrinkColor
             } else {
                 headerView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
@@ -91,7 +91,7 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
         userMessageLabel.text = order.message
     }
     
-    func setupImages(order: PLOrderCellData) {
+    func setupImages(order: PLOrder) {
         cardQRCodeImageView.image = QRCode.generateImage(order.place.QRcode, avatarImage: nil)
         setImage(order.user.picture)
     }

@@ -7,7 +7,7 @@
 //
 
 protocol PLEventCellDelegate {
-    func eventCell(cell: PLEventCell, didClickBuyEvent event: PLEventCellData)
+    func eventCell(cell: PLEventCell, didClickBuyEvent event: PLEvent)
 }
 
 class PLEventCell: UICollectionViewCell {
@@ -22,7 +22,7 @@ class PLEventCell: UICollectionViewCell {
     @IBOutlet private var strip: UIView!
     @IBOutlet private var buyButton: UIButton!
     
-    private var eventData: PLEventCellData?
+    private var event: PLEvent?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +33,7 @@ class PLEventCell: UICollectionViewCell {
         }
     }
     
-    func updateWithEvent(event: PLEventCellData) {
+    func updateWithEvent(event: PLEvent) {
         let placeholder = UIImage(named: "no_image_placeholder")
         nameLabel.text = event.name
         eventImageView.setImageSafely(fromURL: event.picture, placeholderImage: placeholder)
@@ -41,11 +41,11 @@ class PLEventCell: UICollectionViewCell {
         startDateLabel.text = dateString(event.start)
         endDateLabel.text = dateString(event.end)
         buyButton.hidden = !event.available
-        eventData = event
+        self.event = event
     }
     
     @IBAction func buyButtonClicked() {
-        if let event = eventData {
+        if let event = self.event {
             delegate?.eventCell(self, didClickBuyEvent: event)
         }
     }

@@ -92,7 +92,6 @@
 		D414942C1DD9DC5F0081509E /* PLNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D414942B1DD9DC5F0081509E /* PLNotifications.swift */; };
 		D419F0D11DB62E1F0095C5AA /* PLEditUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */; };
 		D448496A1DB7A3EF00737413 /* PLSearchableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */; };
-		D46B0EE51DDAF96600AD2B69 /* PLCoverSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B0EE41DDAF96600AD2B69 /* PLCoverSet.swift */; };
 		D46B0EE71DDB13EA00AD2B69 /* PLCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B0EE61DDB13EA00AD2B69 /* PLCounterView.swift */; };
 		D46D2B871D87583B0058060E /* PLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B861D87583B0058060E /* PLColor.swift */; };
 		D46D2B891D875BB10058060E /* PLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D2B881D875BB10058060E /* PLImage.swift */; };
@@ -295,7 +294,6 @@
 		D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEditUserData.swift; sourceTree = "<group>"; };
 		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchableViewController.swift; sourceTree = "<group>"; };
-		D46B0EE41DDAF96600AD2B69 /* PLCoverSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCoverSet.swift; sourceTree = "<group>"; };
 		D46B0EE61DDB13EA00AD2B69 /* PLCounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCounterView.swift; sourceTree = "<group>"; };
 		D46D2B861D87583B0058060E /* PLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLColor.swift; sourceTree = "<group>"; };
 		D46D2B881D875BB10058060E /* PLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImage.swift; sourceTree = "<group>"; };
@@ -538,7 +536,6 @@
 				2480F87E1D813E730095995F /* PLDrink.swift */,
 				24DA61161D8BF642007F4973 /* PLPricedItem.swift */,
 				24C20C6E1D894AD80040F2F5 /* PLDrinkset.swift */,
-				D46B0EE41DDAF96600AD2B69 /* PLCoverSet.swift */,
 				2480F87F1D813E730095995F /* PLErrors.swift */,
 				2480F8801D813E730095995F /* PLEvent.swift */,
 				2480F8811D813E730095995F /* PLFakeFeed.swift */,
@@ -1373,7 +1370,6 @@
 				D41194F41D86BB7100AED4D1 /* NSLayoutConstraint+Additions.m in Sources */,
 				D4949F611DD0983500FEF0C8 /* PLFacadeNetworkAPI.swift in Sources */,
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
-				D46B0EE51DDAF96600AD2B69 /* PLCoverSet.swift in Sources */,
 				E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,
 				E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */,

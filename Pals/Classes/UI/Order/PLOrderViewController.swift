@@ -70,7 +70,7 @@ class PLOrderViewController: PLViewController {
         super.viewWillAppear(animated)
         
         if !drinksDatasource.loading && !coversDatasource.loading {
-            didChangeOrderSection(currentSection)
+            switchSection(currentSection)
         }
         
         if navigationItem.titleView != animableVipView {
@@ -105,27 +105,39 @@ class PLOrderViewController: PLViewController {
     func send(notification: NSNotification) {
         guard let object = notification.object as? PLFriendNotification else { return }
         order.user = object.friend
-        didChangeOrderSection(object.section)
+        switchSection(object.section)
     }
  
     func onDidSelectNewPlace(notification: NSNotification) {
         if let notifObj = notification.object as? PLPlaceEventNotification {
-            setNewPlace(notifObj.place)
-            if let coverId = notifObj.eventId {
-                //TODO: save cover
+            let selectedPlace = notifObj.place
+            // set a new place if only no place or selected another place
+            if order.place == nil || order.place!.id != selectedPlace.id {
+                setNewPlace(notifObj.place)
+            }
+            if let event = notifObj.event {
+                //TODO: switch to Covers if event is selected and Covers section is not
+                if currentSection != .Covers {
+                    switchSection(.Covers)
+                }
+                order.appendCover(event)
             }
         }
     }
-    
 }
 
 //MARK: - Checkout behavior
 
 extension PLOrderViewController {
     
+    func cancelLoadingDatasources() {
+        coversDatasource.cancel()
+        drinksDatasource.cancel()
+    }
+    
     private func loadDrinks() {
         startActivityIndicator(.WhiteLarge)
-        coversDatasource.cancel()
+        cancelLoadingDatasources()
         drinksDatasource.loadPage { [unowned self] indices, error in
             self.stopActivityIndicator()
             self.collectionViewInsertItems(indices, withError: error)
@@ -134,7 +146,7 @@ extension PLOrderViewController {
     
     private func loadCovers() {
         startActivityIndicator(.WhiteLarge)
-        drinksDatasource.cancel()
+        cancelLoadingDatasources()
         coversDatasource.loadPage { [unowned self] indices, error in
             self.stopActivityIndicator()
             self.collectionViewInsertItems(indices, withError: error)
@@ -212,9 +224,8 @@ extension PLOrderViewController {
         dismiss(false)
     }
     
-    
     func updateCheckoutButtonState() {
-        (order.drinks.count > 0 || order.covers.count > 0) ? showCheckoutButton() : hideCheckoutButton()
+        (order.drinkSetCount > 0 || order.coverSetCount > 0) ? showCheckoutButton() : hideCheckoutButton()
     }
     
     private func showCheckoutButton() {
@@ -334,6 +345,12 @@ extension PLOrderViewController {
     }
 }
 
+extension PLOrderViewController : PLOrderHeaderDelegate {
+    func orderHeader(header: PLOrdeStickyHeader, didChangeSection section: PLOrderSection) {
+        switchSection(section)
+    }
+}
+
 //MARK: - Order items delegate, Tab changed delegate
 extension PLOrderViewController: OrderDrinksCounterDelegate, OrderSectionDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate, PLCardInfoDelegate {
     
@@ -366,19 +383,18 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderSectionDelegat
     }
     
     //MARK: Order change tab
-    func didChangeOrderSection(section: PLOrderSection) {
+    func switchSection(section: PLOrderSection) {
         noItemsView.hidden = true
         stopActivityIndicator()
+        cancelLoadingDatasources()
         switch currentSection {
         case .Drinks:
             drinksOffset = collectionView.contentOffset
-            drinksDatasource.cancel()
             if coversDatasource.pagesLoaded < 1 && order.place != nil {
                 loadCovers()
             }
         case .Covers:
             coversOffset = collectionView.contentOffset
-            coversDatasource.cancel()
             if drinksDatasource.pagesLoaded < 1 && order.place != nil {
                 loadDrinks()
             }
@@ -483,12 +499,13 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         switch currentSection {
         case .Drinks:
             let cell = dequeuedCell as! PLOrderDrinkCell
-            let drink = drinksDatasource[indexPath.row].cellData
-            
+            let drink = drinksDatasource[indexPath.row]
             cell.delegate = self
             cell.setupWith(drink, isVip: order.isVIP)
-            if let drinkSet = order.drinks[drink.drinkId] {
-                cell.drinkCount = drinkSet.quantity
+
+            cell.drinkCount = 0
+            if let item = order.itemById(drink.id, inSection: .Drinks) {
+                cell.drinkCount = item.quantity
             }
             return cell
         case .Covers:
@@ -496,10 +513,9 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             let cover = coversDatasource[indexPath.row]
             cell.event = cover
             cell.delegate = self
-            if let savedCoverSet = order.covers[cover.id] {
-                cell.coverNumber = savedCoverSet.quantity
-            } else {
-                cell.coverNumber = 0
+            cell.coverNumber = 0
+            if let item = order.itemById(cover.id, inSection: .Covers) {
+                cell.coverNumber = item.quantity
             }
             return cell
         }
@@ -552,8 +568,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
 
 extension PLOrderViewController : PLCoverCellDelegate {
     func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt64) {
-        let coverSet = PLCoverSet(cover: event, andCount: count)
-        order.updateCoverSet(coverSet)
+        order.updateWithCover(event, andCount: count)
         updateCheckoutButtonState()
     }
 }
