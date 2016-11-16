@@ -6,24 +6,47 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
 private let kDimmed: CGFloat = 0.3
 private let kTransparent: CGFloat = 0
 
-class PLOrderCoverCell: UICollectionViewCell {
+protocol PLCoverCellDelegate : class {
+    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt64)
+}
+
+class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
+
+    weak var delegate: PLCoverCellDelegate?
     
     static let height: CGFloat = 200.0
     
     @IBOutlet private var bgView: UIView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var dimmedView: UIView!
+    @IBOutlet private var counter: PLCounterView!
+    
+    var event: PLEvent? {
+        didSet {
+            if let e = event {
+                titleLabel.text = e.name
+            }
+        }
+    }
+    
+    var coverNumber: UInt64 {
+        set {
+            counter.counter = newValue
+        }
+        get {
+            return counter.counter
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         bgView.layer.cornerRadius = 10
         bgView.clipsToBounds = true
+        counter.delegate = self
     }
     
     override func prepareForReuse() {
@@ -49,6 +72,12 @@ class PLOrderCoverCell: UICollectionViewCell {
         }
         get{
            return titleLabel.text
+        }
+    }
+    
+    func counterView(view: PLCounterView, didChangeCounter counter: UInt64) {
+        if event != nil {
+            delegate?.coverCell(self, didUpdateCover: event!, withCount: counter)
         }
     }
     

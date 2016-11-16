@@ -337,14 +337,6 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderSectionDelegat
         order.updateWithDrink(drinksDatasource[collectionView.indexPathForCell(drinkCell)!.row], andCount: count)
         updateCheckoutButtonState()
     }
-
-    func updateCoverAt(indexPath: NSIndexPath) {
-        let coverCell = collectionView.cellForItemAtIndexPath(indexPath) as! PLOrderCoverCell
-        let cover = coversDatasource[indexPath.row]
-        order.updateWithCoverID(cover, inCell: coverCell)
-        updateCheckoutButtonState()
-    }
-    
     
     //MARK: Cnange user
     func userNamePressed(sender: AnyObject) {
@@ -492,9 +484,12 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         case .Covers:
             let cell = dequeuedCell as! PLOrderCoverCell
             let cover = coversDatasource[indexPath.row]
-            cell.coverTitle = cover.name
-            if order.covers[cover.id] != nil {
-                cell.setDimmed(true, animated: false)
+            cell.event = cover
+            cell.delegate = self
+            if let savedCoverSet = order.covers[cover.id] {
+                cell.coverNumber = savedCoverSet.quantity
+            } else {
+                cell.coverNumber = 0
             }
             return cell
         }
@@ -515,15 +510,6 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             header.currentSection = currentSection
             
             return header
-        }
-    }
-    
-    //MARK: Collection delegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        switch currentSection {
-        case .Drinks: break
-        case .Covers:
-            updateCoverAt(indexPath)
         }
     }
     
@@ -552,6 +538,14 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
         }
     }
     
+}
+
+extension PLOrderViewController : PLCoverCellDelegate {
+    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt64) {
+        let coverSet = PLCoverSet(cover: event, andCount: count)
+        order.updateCoverSet(coverSet)
+        updateCheckoutButtonState()
+    }
 }
 
 

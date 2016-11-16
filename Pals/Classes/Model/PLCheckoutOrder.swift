@@ -14,7 +14,9 @@ class PLCheckoutOrder {
         }
     }
     var drinks = [UInt64:PLDrinkset]()
-    var covers = [UInt64:PLEvent]()
+    var covers = [UInt64:PLCoverSet]()
+    var isSplitCovers = false
+    var isSplitDrinks = false
     var isVIP = false
     var message: String?
     
@@ -30,6 +32,7 @@ class PLCheckoutOrder {
         }
         if drinks.count > 0 {
             dic[.drinks] = drinks
+            dic[.is_split_drinks] = String(isSplitDrinks)
         }
         
         var covers = [[String : AnyObject]]()
@@ -40,6 +43,7 @@ class PLCheckoutOrder {
         
         if covers.count > 0 {
             dic[.covers] = covers
+            dic[.is_split_covers] = String(isSplitCovers)
         }
         dic[.is_vip] = String(isVIP)
         if message != nil && !message!.isEmpty {
@@ -61,27 +65,25 @@ class PLCheckoutOrder {
         }
     }
     
-    func updateWithCoverID(cover: PLEvent, inCell coverCell: PLOrderCoverCell) {
-        if covers[cover.id] != nil {
-            covers.removeValueForKey(cover.id)
-            coverCell.setDimmed(false, animated: true)
+    func updateCoverSet(coverSet: PLCoverSet) {
+        let id = coverSet.cover.id
+        if coverSet.quantity == 0 {
+            covers.removeValueForKey(id)
         } else {
-            covers.updateValue(cover, forKey: cover.id)
-            coverCell.setDimmed(true, animated: true)
+            covers.updateValue(coverSet, forKey: id)
         }
     }
     
     func calculateTotalAmount() -> Float {
         var amount: Float = 0.0
-        
         if drinks.count > 0 {
             for drinkSet in drinks.values {
                 amount += Float(drinkSet.quantity) * drinkSet.drink.price
             }
         }
         if covers.count > 0 {
-            for aCover in covers.values {
-                amount += aCover.price
+            for coverSet in covers.values {
+                amount += Float(coverSet.quantity) * coverSet.cover.price
             }
         }
         return amount

@@ -35,6 +35,7 @@ class PLEvent : PLPricedItem, PLFilterable {
     override func serialize() -> [String : AnyObject] {
         var dic = [String : AnyObject]()
         dic[.cover] = String(id)
+        dic[.quantity] = String(1) //TODO: - remove it. // added for test
         return dic
     }
     
