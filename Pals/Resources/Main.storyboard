@@ -871,7 +871,7 @@
         <!--Card Info-->
         <scene sceneID="CcP-Cm-oqJ">
             <objects>
-                <viewController title="Card Info" id="DmR-jl-w2z" customClass="PLCardInfoViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Card Info" title="Card Info" id="DmR-jl-w2z" customClass="PLCardInfoViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bmV-3L-Jyy"/>
                         <viewControllerLayoutGuide type="bottom" id="e4A-5q-Ul3"/>

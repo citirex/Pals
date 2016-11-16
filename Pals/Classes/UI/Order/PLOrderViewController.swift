@@ -280,7 +280,7 @@ extension PLOrderViewController {
     }
     
     
-    
+    //MARK: - Send Button
     func checkoutButtonPressed(sender: UIButton) {
         guard order.user != nil else {
             checkoutButton.shake()
@@ -312,10 +312,13 @@ extension PLOrderViewController {
                 self.updateProfileWithOrders(orders)
             } else {
                 PLShowErrorAlert(error: error!)
+				if !PLFacade.profile!.hasPaymentCard {
+					self.navigationController?.pushViewController((self.storyboard?.instantiateViewControllerWithIdentifier("Card Info"))!, animated: true)
+				}
             }
         }
     }
-    
+	
     private func resetOrderState() {
         self.order = PLCheckoutOrder()
         self.resetOffsets()
@@ -353,7 +356,7 @@ extension PLOrderViewController : PLOrderHeaderDelegate {
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate {
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate{
     
     //MARK: Order drinks count
     func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
