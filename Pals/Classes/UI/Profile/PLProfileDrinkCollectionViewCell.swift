@@ -47,6 +47,15 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
         containerView.layer.mask = mask  
     }
     
+    func setupCellCornersAndShadow() {
+        contentView.layer.cornerRadius = 20
+        contentView.layer.masksToBounds = false
+        contentView.layer.shadowColor = UIColor.blackColor().CGColor
+        contentView.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        contentView.layer.shadowOpacity = 0.9
+        contentView.layer.shadowRadius = 7
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         scrollView.contentOffset = CGPointMake(0, 0)
@@ -98,14 +107,5 @@ class PLProfileDrinkCollectionViewCell: UICollectionViewCell {
     
     private func setImage(url: NSURL) {
         userPicImageView.setImageSafely(fromURL: url, placeholderImage: UIImage(named: "user")!)
-    }
-    
-    func setupCellCornersAndShadow() {
-        contentView.layer.cornerRadius = 20
-        contentView.layer.masksToBounds = false
-        contentView.layer.shadowColor = UIColor.blackColor().CGColor
-        contentView.layer.shadowOffset = CGSizeMake(0.0, 5.0)
-        contentView.layer.shadowOpacity = 0.9
-        contentView.layer.shadowRadius = 7
     }
 }

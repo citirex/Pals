@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PLOrderCardCell" id="gTV-IL-0wX" customClass="PLOrderCardCell" customModule="Pals" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcP-Xf-1fi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J56-9s-gC2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Music Genres&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78R-h6-631">
+                                        <rect key="frame" x="8" y="29" width="304" height="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Place&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjM-EM-nWV">
+                                        <rect key="frame" x="8" y="6" width="304" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jH-4Q-DZ1">
+                                        <rect key="frame" x="265" y="7" width="40" height="40"/>
+                                        <state key="normal" backgroundImage="qr_icon"/>
+                                        <connections>
+                                            <action selector="switchModeButtonClicked" destination="gTV-IL-0wX" eventType="touchUpInside" id="rcr-vY-yW0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="MjM-EM-nWV" secondAttribute="trailing" constant="8" id="WHI-6G-yhg"/>
+                                    <constraint firstAttribute="trailing" secondItem="78R-h6-631" secondAttribute="trailing" constant="8" id="Wsz-kN-qME"/>
+                                    <constraint firstItem="MjM-EM-nWV" firstAttribute="leading" secondItem="J56-9s-gC2" secondAttribute="leading" constant="8" id="eC3-VC-1DQ"/>
+                                    <constraint firstItem="78R-h6-631" firstAttribute="top" secondItem="MjM-EM-nWV" secondAttribute="bottom" constant="2" id="kyB-y1-Nxk"/>
+                                    <constraint firstItem="78R-h6-631" firstAttribute="leading" secondItem="J56-9s-gC2" secondAttribute="leading" constant="8" id="nit-jt-wqz"/>
+                                    <constraint firstItem="MjM-EM-nWV" firstAttribute="top" secondItem="J56-9s-gC2" secondAttribute="top" constant="6" id="uR5-5x-Asu"/>
+                                    <constraint firstAttribute="height" constant="70" id="y6T-ec-y3u"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="J56-9s-gC2" firstAttribute="leading" secondItem="KcP-Xf-1fi" secondAttribute="leading" id="Wha-Pu-zKo"/>
+                            <constraint firstItem="J56-9s-gC2" firstAttribute="top" secondItem="KcP-Xf-1fi" secondAttribute="top" id="eHq-bC-8me"/>
+                            <constraint firstAttribute="trailing" secondItem="J56-9s-gC2" secondAttribute="trailing" id="lQU-eb-ObV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="KcP-Xf-1fi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7t8-QO-4ta"/>
+                <constraint firstItem="KcP-Xf-1fi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DEI-fp-epZ"/>
+                <constraint firstAttribute="trailing" secondItem="KcP-Xf-1fi" secondAttribute="trailing" id="bCb-5J-Mvj"/>
+                <constraint firstAttribute="bottom" secondItem="KcP-Xf-1fi" secondAttribute="bottom" id="yYg-bf-Uep"/>
+            </constraints>
+            <connections>
+                <outlet property="cardModeButton" destination="0jH-4Q-DZ1" id="jCx-1z-5qV"/>
+                <outlet property="headerView" destination="J56-9s-gC2" id="2Ww-UT-rTe"/>
+                <outlet property="musicGenresLabel" destination="78R-h6-631" id="oRO-62-u2F"/>
+                <outlet property="placeTitleLabel" destination="MjM-EM-nWV" id="mrJ-xY-eRr"/>
+                <outlet property="underlay" destination="KcP-Xf-1fi" id="nui-7z-lQS"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="qr_icon" width="200" height="200"/>
+    </resources>
+</document>

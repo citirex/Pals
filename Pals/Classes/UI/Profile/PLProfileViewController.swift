@@ -277,9 +277,7 @@ class PLProfileViewController: TGLStackedViewController {
         setupCollectionBackgroundView(collectionBackgroundView)
         let collectionSize = collectionView!.bounds.size
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(collectionSize.height / 2, 0, 0, 0)
-        
-        self.collectionView?.registerNib(UINib(nibName: "PLProfileDrinkCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: drinkCellIdentifier)
-        
+        collectionView?.registerNib(UINib(nibName: PLOrderCardCell.nibName(), bundle: nil), forCellWithReuseIdentifier: PLOrderCardCell.identifier())
         
         let tabBarHeight = self.tabBarController!.tabBar.frame.height
         let exposedCardHeight = collectionSize.height - tabBarHeight - 60
@@ -313,13 +311,13 @@ extension PLProfileViewController : UICollectionViewDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if self.exposedItemIndexPath != nil && indexPath.item == self.exposedItemIndexPath?.item {
-            self.exposedItemIndexPath = nil
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PLOrderCardCell
+        if exposedItemIndexPath != nil && indexPath.item == exposedItemIndexPath?.item {
+            exposedItemIndexPath = nil
+            cell.onCardDidSelect(false)
         } else {
-            self.exposedItemIndexPath = indexPath
-            
-            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PLProfileDrinkCollectionViewCell
-            cell.setupImages(currentDatasource[indexPath.row])
+            exposedItemIndexPath = indexPath
+            cell.onCardDidSelect(true)
         }
     }
 }

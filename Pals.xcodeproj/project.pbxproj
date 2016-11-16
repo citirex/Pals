@@ -121,6 +121,10 @@
 		D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */; };
 		D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */; };
 		D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */; };
+		D4E53C661DDC9F330047477A /* PLOrderCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C641DDC9F330047477A /* PLOrderCardCell.swift */; };
+		D4E53C671DDC9F330047477A /* PLOrderCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E53C651DDC9F330047477A /* PLOrderCardCell.xib */; };
+		D4E53C691DDCB7600047477A /* PLOrderCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C681DDCB7600047477A /* PLOrderCardListView.swift */; };
+		D4E53C6B1DDCB7860047477A /* PLOrderCardScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C6A1DDCB7860047477A /* PLOrderCardScanView.swift */; };
 		D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */; };
 		D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA241D9D5EB800B3CA82 /* PLLog.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
@@ -323,6 +327,10 @@
 		D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2581D81A45900D4CD08 /* PLPlacesDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesDatasource.swift; sourceTree = "<group>"; };
+		D4E53C641DDC9F330047477A /* PLOrderCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCardCell.swift; sourceTree = "<group>"; };
+		D4E53C651DDC9F330047477A /* PLOrderCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCardCell.xib; sourceTree = "<group>"; };
+		D4E53C681DDCB7600047477A /* PLOrderCardListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCardListView.swift; sourceTree = "<group>"; };
+		D4E53C6A1DDCB7860047477A /* PLOrderCardScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCardScanView.swift; sourceTree = "<group>"; };
 		D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatedObject.swift; sourceTree = "<group>"; };
 		D4FECA241D9D5EB800B3CA82 /* PLLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLog.swift; sourceTree = "<group>"; };
 		E8007BD61DA0073700372347 /* PLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocation.swift; sourceTree = "<group>"; };
@@ -1062,6 +1070,10 @@
 				E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */,
 				E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */,
 				E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */,
+				D4E53C641DDC9F330047477A /* PLOrderCardCell.swift */,
+				D4E53C651DDC9F330047477A /* PLOrderCardCell.xib */,
+				D4E53C681DDCB7600047477A /* PLOrderCardListView.swift */,
+				D4E53C6A1DDCB7860047477A /* PLOrderCardScanView.swift */,
 				E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */,
 				E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */,
 				E8DA8B8C1D88334F008782E5 /* PLProfileHeaderView.swift */,
@@ -1193,6 +1205,7 @@
 				E837C1FA1D902CAE0080A074 /* drinks1.json in Resources */,
 				2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */,
 				24DDA9331D9A658800FCDBCA /* events2.json in Resources */,
+				D4E53C671DDC9F330047477A /* PLOrderCardCell.xib in Resources */,
 				2414F4581D997249000BA1F5 /* vip_drinks1.json in Resources */,
 				24E286ED1D9E6C8700B8D80C /* updateprofile.json in Resources */,
 				E837C2001D902CAE0080A074 /* friends3.json in Resources */,
@@ -1294,6 +1307,7 @@
 			files = (
 				E8A658681D9CED4E00D8257F /* PLSelector.swift in Sources */,
 				D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */,
+				D4E53C661DDC9F330047477A /* PLOrderCardCell.swift in Sources */,
 				E8E4A1321D89EC0A00EA0DFE /* PLEditProfileViewController.swift in Sources */,
 				2480F8E31D813E730095995F /* PLString.swift in Sources */,
 				2480F8D81D813E730095995F /* AppDelegate.swift in Sources */,
@@ -1339,6 +1353,7 @@
 				D47DC1DF1DBA166400420958 /* PLDowntimer.swift in Sources */,
 				24F012BD1DBA3B020072556F /* PLLoadingIndicatorView.swift in Sources */,
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
+				D4E53C6B1DDCB7860047477A /* PLOrderCardScanView.swift in Sources */,
 				E85083131DACEC5B0077A81C /* PLEmptyBackgroundView.swift in Sources */,
 				24DDA9361D9A663500FCDBCA /* PLEventsDatasource.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
@@ -1401,6 +1416,7 @@
 				E85A26251DDA3ECD00710D7F /* PLCheckbox.swift in Sources */,
 				D47DC1E81DBDF55000420958 /* PLPage.swift in Sources */,
 				E8204A281DA82F4000BDBFCE /* PLFormTextField.swift in Sources */,
+				D4E53C691DDCB7600047477A /* PLOrderCardListView.swift in Sources */,
 				2480F8E01D813E730095995F /* PLDictionary.swift in Sources */,
 				E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */,
 				D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */,
