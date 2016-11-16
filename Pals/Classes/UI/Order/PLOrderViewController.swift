@@ -69,8 +69,14 @@ class PLOrderViewController: PLViewController {
         
         super.viewWillAppear(animated)
         
-        if !drinksDatasource.loading && !coversDatasource.loading {
-            switchSection(currentSection)
+        if currentSection == .Drinks {
+            if !drinksDatasource.loading {
+                loadDrinks()
+            }
+        } else {
+            if !coversDatasource.loading {
+                loadCovers()
+            }
         }
         
         if navigationItem.titleView != animableVipView {
