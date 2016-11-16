@@ -9,10 +9,6 @@
 import UIKit
 import Stripe
 
-protocol PLCardInfoDelegate: class {
-	func sendButtonPressed(sender: PLCardInfoViewController)
-}
-
 class PLCardInfoViewController: PLViewController {
     
     @IBOutlet private var cardField: STPPaymentCardTextField?
@@ -26,8 +22,6 @@ class PLCardInfoViewController: PLViewController {
     lazy var expirationDatePicker = PLExpirationDatePicker()
     lazy var cardForm = STPCardParams()
 	
-	weak var delegate: PLCardInfoDelegate? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTapped = true
@@ -161,7 +155,6 @@ class PLCardInfoViewController: PLViewController {
         case .Incomplete:
             PLShowAlert("Please, fill all required fields (card number, expiration date, cvc)")
         }
-//		delegate?.sendButtonPressed(self)
     }
 
     

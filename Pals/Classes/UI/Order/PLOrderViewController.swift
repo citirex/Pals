@@ -24,7 +24,6 @@ class PLOrderViewController: PLViewController {
     @IBOutlet private var bgImageView: UIImageView!
     
     var order = PLCheckoutOrder()
-	let creditCard = PLCardInfoViewController()
     
     private var drinksOffset = CGPointZero
     private var coversOffset = CGPointZero
@@ -314,13 +313,12 @@ extension PLOrderViewController {
             } else {
                 PLShowErrorAlert(error: error!)
 				if !PLFacade.profile!.hasPaymentCard {
-//					self.creditCard.delegate = self
-					self.sendButtonPressed(self.creditCard)
+					self.navigationController?.pushViewController((self.storyboard?.instantiateViewControllerWithIdentifier("Card Info"))!, animated: true)
 				}
             }
         }
     }
-    
+	
     private func resetOrderState() {
         self.order = PLCheckoutOrder()
         self.resetOffsets()
@@ -358,7 +356,7 @@ extension PLOrderViewController : PLOrderHeaderDelegate {
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderSectionDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate, PLCardInfoDelegate {
+extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate{
     
     //MARK: Order drinks count
     func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
@@ -420,11 +418,6 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderSectionDelegat
         popup.hide()
         sendCurrentOrder()
     }
-	
-	//MARK: - Send CardInfo
-	func sendButtonPressed(sender: PLCardInfoViewController) {
-		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("Card Info"))!, animated: true)
-	}
     
     //MARK: - Setup
     func setupCollectionView() {
