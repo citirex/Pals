@@ -81,4 +81,8 @@ extension UIColor {
         return UIColor(r: 59.0, g: 204.0, b: 136.0)
     }
     
+    // background for error label on scan view
+    class func maroonColor() -> UIColor {
+        return UIColor(r: 120.0, g: 14.0, b: 14.0)
+    }
 }

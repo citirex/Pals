@@ -108,6 +108,11 @@ extension PLProfileManager : PLAuthStorage {
         }
     }
     
+    func saveOrder(order: [String : AnyObject]) -> Bool {
+        
+        return false
+    }
+    
     //MARK: - Facebook
     
     func loginFB(completion: PLFacebookLoginCompletion) {

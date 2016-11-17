@@ -71,12 +71,28 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotificationType.ProfileChanged.str, object: nil)
+        
         profile = PLFacade.profile
         currentSection = .Drinks
         view.addSubview(spinner)
         setupCollectionView()
+        
+        registerKeyboardNotifications()
+    }
+    
+    
+    // MARK: - Notifications
+    
+    func registerKeyboardNotifications() {
+        PLNotifications.addObserver(self, selector: .changeOrderNotification, type: .OrderDidChange)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotificationType.ProfileChanged.str, object: nil)
+    }
+    
+    func didChangeOrder(notification: NSNotification) {
+        guard let order = notification.object as? PLOrder else { return }
+        PLFacade.updateOrder(order) { order, error in
+            guard error == nil else { return PLShowErrorAlert(error: error!) }
+        }
     }
     
     func onDidCreateNewOrders(notification: NSNotification) {
@@ -97,7 +113,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
 //        } else {
 //            datasourceSwitcher.resetOffset(inSection: currentSection)
 //        }
-//
+//        
 //        needsToShowNewOrder = true
 //        
 //        if currentDatasource.pagesLoaded == 0 || currentDatasource.loading == true {

@@ -41,6 +41,7 @@ enum PLAPIService : String {
     case AddPaymentToken = "add_payment_token"
     case UpdateBadges = "update_badges"
     case FetchBadges = "badges"
+    case UpdateOrder = "use_order"
     var string: String {return rawValue.lowercaseString}
 }
 
