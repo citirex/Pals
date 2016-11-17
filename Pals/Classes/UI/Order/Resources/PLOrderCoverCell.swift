@@ -10,7 +10,7 @@ private let kDimmed: CGFloat = 0.3
 private let kTransparent: CGFloat = 0
 
 protocol PLCoverCellDelegate : class {
-    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt64)
+    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: Int)
 }
 
 class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
@@ -32,7 +32,7 @@ class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
         }
     }
     
-    var coverNumber: UInt64 {
+    var coverNumber: Int {
         set {
             counter.counter = newValue
         }
@@ -75,7 +75,7 @@ class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
         }
     }
     
-    func counterView(view: PLCounterView, didChangeCounter counter: UInt64) {
+    func counterView(view: PLCounterView, didChangeCounter counter: Int) {
         if event != nil {
             delegate?.coverCell(self, didUpdateCover: event!, withCount: counter)
         }

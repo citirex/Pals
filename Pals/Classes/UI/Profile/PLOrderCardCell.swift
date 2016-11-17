@@ -72,7 +72,7 @@ class PLOrderCardCell: UICollectionViewCell {
     @IBOutlet var musicGenresLabel: UILabel!
     @IBOutlet var cardModeButton: UIButton!
     
-    private lazy var listContainerView: PLOrderCardListView = PLOrderCardListView()
+    private lazy var listContainerView: PLOrderCardListView = PLOrderCardListView.loadFromNib()!
     private lazy var scanContainerView: PLOrderCardScanView = PLOrderCardScanView()
     private var currentContainer: UIView?
     
@@ -101,10 +101,7 @@ class PLOrderCardCell: UICollectionViewCell {
         let strings = ["|-0-[view]-0-|", "V:[header]-0-[view]-0-|"]
         underlay.addConstraints(strings, views: views)
         currentContainer = view
-        if var aContainer = view as? PLOrderContainable {
-            aContainer.order = order
-        }
-        
+        updateCurrentContainerWithOrder(order)
     }
     
     var order: PLOrder? {
@@ -118,6 +115,13 @@ class PLOrderCardCell: UICollectionViewCell {
                 musicGenresLabel.text = "<Error>"
                 headerView.backgroundColor = PLCardType.Unknown.color
             }
+            updateCurrentContainerWithOrder(order)
+        }
+    }
+    
+    func updateCurrentContainerWithOrder(order: PLOrder?) {
+        if var aContainer = currentContainer as? PLOrderContainable {
+            aContainer.order = order
         }
     }
     

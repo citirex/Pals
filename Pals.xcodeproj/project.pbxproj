@@ -125,6 +125,9 @@
 		D4E53C671DDC9F330047477A /* PLOrderCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E53C651DDC9F330047477A /* PLOrderCardCell.xib */; };
 		D4E53C691DDCB7600047477A /* PLOrderCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C681DDCB7600047477A /* PLOrderCardListView.swift */; };
 		D4E53C6B1DDCB7860047477A /* PLOrderCardScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C6A1DDCB7860047477A /* PLOrderCardScanView.swift */; };
+		D4E53C781DDDA1170047477A /* PLOrderCardListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E53C771DDDA1170047477A /* PLOrderCardListView.xib */; };
+		D4E53C801DDDAF770047477A /* PLOrderItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C7E1DDDAF770047477A /* PLOrderItemCell.swift */; };
+		D4E53C811DDDAF770047477A /* PLOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E53C7F1DDDAF770047477A /* PLOrderItemCell.xib */; };
 		D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */; };
 		D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA241D9D5EB800B3CA82 /* PLLog.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
@@ -331,6 +334,9 @@
 		D4E53C651DDC9F330047477A /* PLOrderCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCardCell.xib; sourceTree = "<group>"; };
 		D4E53C681DDCB7600047477A /* PLOrderCardListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCardListView.swift; sourceTree = "<group>"; };
 		D4E53C6A1DDCB7860047477A /* PLOrderCardScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderCardScanView.swift; sourceTree = "<group>"; };
+		D4E53C771DDDA1170047477A /* PLOrderCardListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCardListView.xib; sourceTree = "<group>"; };
+		D4E53C7E1DDDAF770047477A /* PLOrderItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderItemCell.swift; sourceTree = "<group>"; };
+		D4E53C7F1DDDAF770047477A /* PLOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderItemCell.xib; sourceTree = "<group>"; };
 		D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatedObject.swift; sourceTree = "<group>"; };
 		D4FECA241D9D5EB800B3CA82 /* PLLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLog.swift; sourceTree = "<group>"; };
 		E8007BD61DA0073700372347 /* PLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocation.swift; sourceTree = "<group>"; };
@@ -822,6 +828,17 @@
 			path = Datasources;
 			sourceTree = "<group>";
 		};
+		D4E53C791DDDAEB80047477A /* OrderList */ = {
+			isa = PBXGroup;
+			children = (
+				D4E53C681DDCB7600047477A /* PLOrderCardListView.swift */,
+				D4E53C771DDDA1170047477A /* PLOrderCardListView.xib */,
+				D4E53C7E1DDDAF770047477A /* PLOrderItemCell.swift */,
+				D4E53C7F1DDDAF770047477A /* PLOrderItemCell.xib */,
+			);
+			name = OrderList;
+			sourceTree = "<group>";
+		};
 		E8042B381D8C54D900755EF3 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1072,7 +1089,7 @@
 				E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */,
 				D4E53C641DDC9F330047477A /* PLOrderCardCell.swift */,
 				D4E53C651DDC9F330047477A /* PLOrderCardCell.xib */,
-				D4E53C681DDCB7600047477A /* PLOrderCardListView.swift */,
+				D4E53C791DDDAEB80047477A /* OrderList */,
 				D4E53C6A1DDCB7860047477A /* PLOrderCardScanView.swift */,
 				E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */,
 				E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */,
@@ -1184,6 +1201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E837C2031D902CAE0080A074 /* order_covers1.json in Resources */,
+				D4E53C811DDDAF770047477A /* PLOrderItemCell.xib in Resources */,
 				2414F45A1D997249000BA1F5 /* vip_drinks3.json in Resources */,
 				E837C2071D902CAE0080A074 /* order_drinks2.json in Resources */,
 				E829DDD51D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib in Resources */,
@@ -1220,6 +1238,7 @@
 				E837C1FE1D902CAE0080A074 /* friends1.json in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
+				D4E53C781DDDA1170047477A /* PLOrderCardListView.xib in Resources */,
 				2414F4571D997249000BA1F5 /* vip_drinks0.json in Resources */,
 				24B5DD191D91564D0021050D /* PLOrderCheckoutPopupViewController.xib in Resources */,
 				D41494261DD5B5800081509E /* PLEventCell.xib in Resources */,
@@ -1328,6 +1347,7 @@
 				24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */,
 				E8C89F7E1DC2085D006D17FE /* PLOrderFriendsViewController.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
+				D4E53C801DDDAF770047477A /* PLOrderItemCell.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
 				E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */,

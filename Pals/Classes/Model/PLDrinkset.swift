@@ -7,18 +7,18 @@
 //
 
 class PLCountableItem: PLUniqueObject {
-    var quantity: UInt64
+    var quantity: Int
     required init?(jsonDic: [String : AnyObject]) {
         guard
             let aQuantity = jsonDic[.quantity] as? NSNumber
         else {
             return nil
         }
-        self.quantity = aQuantity.unsignedLongLongValue
+        self.quantity = aQuantity.integerValue
         super.init(jsonDic: jsonDic)
     }
     
-    init(count: UInt64) {
+    init(count: Int) {
         quantity = count
         super.init(jsonDic: [:])!
     }
@@ -44,7 +44,7 @@ class PLItemSet<T: PLPricedItem> : PLCountableItem {
         super.init(jsonDic: jsonDic)
     }
     
-    init(item: T, andCount count: UInt64) {
+    init(item: T, andCount count: Int) {
         self.item = item
         super.init(count: count)
     }

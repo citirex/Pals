@@ -10,8 +10,12 @@ protocol PLOrderContainable {
     var order: PLOrder? {get set}
 }
 
-class PLOrderCardListView: UIView, PLOrderContainable {
+class PLOrderCardListView: UIView, PLOrderContainable, PLNibNamable {
 
+    @IBOutlet var tableView: UITableView!
+    
+    class var nibName: String { return "PLOrderCardListView" }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -27,16 +31,36 @@ class PLOrderCardListView: UIView, PLOrderContainable {
     }
     
     func initialize() {
-        backgroundColor = .blueColor()
+        let nib = UINib(nibName: PLOrderItemCell.nibName(), bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: PLOrderItemCell.identifier())
+        
     }
     
     var order: PLOrder? {
         didSet {
             if let o = order {
-                
+                tableView.reloadData()
             } else {
                 
             }
         }
+    }
+}
+
+extension PLOrderCardListView: UITableViewDataSource, UITableViewDelegate {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = order?.itemsCount ?? 0
+        return count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(PLOrderItemCell.identifier()) as! PLOrderItemCell
+        let item = order![indexPath.row]
+        cell.item = item
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 55
     }
 }
