@@ -13,11 +13,16 @@ class PLProfileDatasourceSwitcher {
         var offset = CGPointZero
         
         init(){
-            self.datasource = PLOrderDatasource()
+            datasource = PLOrderDatasource()
         }
         
         init(datasource: PLOrderDatasource) {
             self.datasource = datasource
+        }
+        
+        mutating func clean() {
+            offset = CGPointZero
+            datasource.clean()
         }
     }
     
@@ -52,12 +57,12 @@ class PLProfileDatasourceSwitcher {
     }
     
     func resetOffset(inSection orderSection: PLOrderSection) {
-        switch orderSection {
-        case .Drinks:
-            drinks.offset = CGPointZero
-        case .Covers:
-            covers.offset = CGPointZero
-        }
+        saveOffset(CGPointZero, inSection: orderSection)
+    }
+    
+    func clear() {
+        drinks.clean()
+        covers.clean()
     }
     
 }

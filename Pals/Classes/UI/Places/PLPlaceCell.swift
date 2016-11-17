@@ -21,7 +21,6 @@ class PLPlaceCell: UITableViewCell {
     @IBOutlet weak var distanceLabel:     UILabel!
     @IBOutlet weak var chevron:       UIImageView!
     
-//    var currentUrl = ""
     var placeCellData: PLPlaceCellData! {
         didSet {
             let placeholderImage = UIImage(named: "place_placeholder")

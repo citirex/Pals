@@ -13,6 +13,7 @@ protocol PLOrderContainable {
 class PLOrderCardListView: UIView, PLOrderContainable, PLNibNamable {
 
     @IBOutlet var tableView: UITableView!
+    lazy var headerView: PLOrderItemHeaderView = PLOrderItemHeaderView.loadFromNib()!
     
     class var nibName: String { return "PLOrderCardListView" }
     
@@ -33,13 +34,25 @@ class PLOrderCardListView: UIView, PLOrderContainable, PLNibNamable {
     func initialize() {
         let nib = UINib(nibName: PLOrderItemCell.nibName(), bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: PLOrderItemCell.identifier())
-        
+        tableView.tableHeaderView = headerView
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let tableHeaderHeight = CGFloat(60)
+        var frame = tableView.tableHeaderView!.frame
+        if frame.height != tableHeaderHeight {
+            frame.size.height = tableHeaderHeight
+            tableView.tableHeaderView?.frame = frame
+        }
     }
     
     var order: PLOrder? {
         didSet {
             if let o = order {
                 tableView.reloadData()
+                let date = o.date?.stringForStyles(.MediumStyle, timeStyle: .ShortStyle) ?? ""
+                headerView.update(o.place.address, date: date, placeURL: o.place.picture)
             } else {
                 
             }

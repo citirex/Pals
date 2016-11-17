@@ -334,15 +334,13 @@ extension PLOrderViewController {
         for order in orders {
             if myId == order.user.id {
                 myOrders.append(order)
-				order.user.picture = PLFacade.profile!.picture
 			}
         }
         
         if myOrders.count > 0 {
-            let first = myOrders.first!
-            let profileViewController = self.tabBarController!.profileViewController
-            profileViewController.addNewOrder(first)
-            self.tabBarController?.switchTabBarItemTo(.ProfileItem)
+            tabBarController?.switchTabBarItemTo(.ProfileItem, completion: { 
+                PLNotifications.postNotification(.OrdersDidCreate, object: myOrders)
+            })
         } else {
             PLShowAlert("Success")
         }

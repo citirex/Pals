@@ -128,6 +128,10 @@
 		D4E53C781DDDA1170047477A /* PLOrderCardListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E53C771DDDA1170047477A /* PLOrderCardListView.xib */; };
 		D4E53C801DDDAF770047477A /* PLOrderItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C7E1DDDAF770047477A /* PLOrderItemCell.swift */; };
 		D4E53C811DDDAF770047477A /* PLOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E53C7F1DDDAF770047477A /* PLOrderItemCell.xib */; };
+		D4E53C871DDDF8720047477A /* PLOrderItemHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E53C861DDDF8720047477A /* PLOrderItemHeaderView.xib */; };
+		D4E53C891DDDF8B90047477A /* PLOrderItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C881DDDF8B90047477A /* PLOrderItemHeaderView.swift */; };
+		D4E53C8B1DDE0BEC0047477A /* PLOrderItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E53C8A1DDE0BEC0047477A /* PLOrderItemFooterView.swift */; };
+		D4E53C8D1DDE0C0B0047477A /* PLOrderItemFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E53C8C1DDE0C0B0047477A /* PLOrderItemFooterView.xib */; };
 		D4FECA231D9D5BFD00B3CA82 /* PLDatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */; };
 		D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FECA241D9D5EB800B3CA82 /* PLLog.swift */; };
 		DC5EA978C0138C7F424C113C /* Pods_Pals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1097158C5C13F1394D646D /* Pods_Pals.framework */; };
@@ -337,6 +341,10 @@
 		D4E53C771DDDA1170047477A /* PLOrderCardListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderCardListView.xib; sourceTree = "<group>"; };
 		D4E53C7E1DDDAF770047477A /* PLOrderItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderItemCell.swift; sourceTree = "<group>"; };
 		D4E53C7F1DDDAF770047477A /* PLOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderItemCell.xib; sourceTree = "<group>"; };
+		D4E53C861DDDF8720047477A /* PLOrderItemHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderItemHeaderView.xib; sourceTree = "<group>"; };
+		D4E53C881DDDF8B90047477A /* PLOrderItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderItemHeaderView.swift; sourceTree = "<group>"; };
+		D4E53C8A1DDE0BEC0047477A /* PLOrderItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderItemFooterView.swift; sourceTree = "<group>"; };
+		D4E53C8C1DDE0C0B0047477A /* PLOrderItemFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLOrderItemFooterView.xib; sourceTree = "<group>"; };
 		D4FECA221D9D5BFD00B3CA82 /* PLDatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatedObject.swift; sourceTree = "<group>"; };
 		D4FECA241D9D5EB800B3CA82 /* PLLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLog.swift; sourceTree = "<group>"; };
 		E8007BD61DA0073700372347 /* PLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocation.swift; sourceTree = "<group>"; };
@@ -835,6 +843,10 @@
 				D4E53C771DDDA1170047477A /* PLOrderCardListView.xib */,
 				D4E53C7E1DDDAF770047477A /* PLOrderItemCell.swift */,
 				D4E53C7F1DDDAF770047477A /* PLOrderItemCell.xib */,
+				D4E53C881DDDF8B90047477A /* PLOrderItemHeaderView.swift */,
+				D4E53C861DDDF8720047477A /* PLOrderItemHeaderView.xib */,
+				D4E53C8A1DDE0BEC0047477A /* PLOrderItemFooterView.swift */,
+				D4E53C8C1DDE0C0B0047477A /* PLOrderItemFooterView.xib */,
 			);
 			name = OrderList;
 			sourceTree = "<group>";
@@ -1237,6 +1249,7 @@
 				D410F71F1D9A7DA6000E8E06 /* invitefriends2.json in Resources */,
 				E837C1FE1D902CAE0080A074 /* friends1.json in Resources */,
 				2480F9041D813E730095995F /* PLOrdeStickyHeader.xib in Resources */,
+				D4E53C871DDDF8720047477A /* PLOrderItemHeaderView.xib in Resources */,
 				E837C1FF1D902CAE0080A074 /* friends2.json in Resources */,
 				D4E53C781DDDA1170047477A /* PLOrderCardListView.xib in Resources */,
 				2414F4571D997249000BA1F5 /* vip_drinks0.json in Resources */,
@@ -1262,6 +1275,7 @@
 				2414F4561D997249000BA1F5 /* vip_covers2.json in Resources */,
 				24F012B91DBA16510072556F /* add_friend.json in Resources */,
 				24DDA9311D9A658800FCDBCA /* events0.json in Resources */,
+				D4E53C8D1DDE0C0B0047477A /* PLOrderItemFooterView.xib in Resources */,
 				049692FD1DDB3F6500A65C60 /* PLNewsNotificationCell.xib in Resources */,
 				E837C20A1D902CAE0080A074 /* places1.json in Resources */,
 				E837C2051D902CAE0080A074 /* order_drinks0.json in Resources */,
@@ -1394,6 +1408,7 @@
 				24DA61171D8BF642007F4973 /* PLPricedItem.swift in Sources */,
 				E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */,
 				2480F8FD1D813E730095995F /* PLLoginViewController.swift in Sources */,
+				D4E53C8B1DDE0BEC0047477A /* PLOrderItemFooterView.swift in Sources */,
 				D41194F51D86BB7100AED4D1 /* View+LayoutConstraints.m in Sources */,
 				24C20C6D1D8947560040F2F5 /* PLCheckoutOrder.swift in Sources */,
 				D41494281DD5B81C0081509E /* PLCollectionView.swift in Sources */,
@@ -1417,6 +1432,7 @@
 				D419F0D11DB62E1F0095C5AA /* PLEditUserData.swift in Sources */,
 				049692F41DDB2C9E00A65C60 /* PLNotificationViewController.swift in Sources */,
 				D46D2B871D87583B0058060E /* PLColor.swift in Sources */,
+				D4E53C891DDDF8B90047477A /* PLOrderItemHeaderView.swift in Sources */,
 				2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */,
 				D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */,
 				2480F8E51D813E730095995F /* PLErrors.swift in Sources */,

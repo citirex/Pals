@@ -6,7 +6,12 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-class PLViewController: UIViewController {
+protocol PLAppearanceRespondable {
+    var willAppearCompletion: (()->())? {set get}
+    var appeared: Bool {set get}
+}
+
+class PLViewController: UIViewController, PLAppearanceRespondable {
     
     var willAppearCompletion: (()->())?
     var appeared = false

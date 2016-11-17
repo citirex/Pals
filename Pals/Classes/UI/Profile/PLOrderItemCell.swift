@@ -10,6 +10,8 @@ class PLOrderItemCell: UITableViewCell {
 
     @IBOutlet var picture: UIImageView!
     @IBOutlet var nameLabel: UILabel!
+    
+    @IBOutlet var expiresContainer: UIView!
     @IBOutlet var expiresLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
@@ -49,7 +51,8 @@ class PLOrderItemCell: UITableViewCell {
             imageName = "question_icon"
         }
         picture.image = UIImage(named: imageName)
-        updateNameForItem(set.item)
+        updateNameForItem(set.item, count: set.quantity)
+        updateExpiration(set.expires, expired: set.expired)
     }
     
     func updateWithCover(set: PLItemSet<PLEvent>) {
@@ -57,11 +60,28 @@ class PLOrderItemCell: UITableViewCell {
         let pictureUrl = set.item.picture
         let placeholder = UIImage(named: "cover_icon")
         picture.setImageSafely(fromURL: pictureUrl, placeholderImage: placeholder)
-        updateNameForItem(set.item)
+        updateNameForItem(set.item, count: set.quantity)
     }
     
-    func updateNameForItem(item: PLPricedItem) {
-        nameLabel.text = item.name
+    func updateNameForItem(item: PLPricedItem, count: Int) {
+        nameLabel.text = "\(item.name) (\(count))"
+    }
+    
+    func updateExpiration(date: NSDate?, expired: Bool) {
+        if let d = date {
+            expiresContainer.hidden = false
+            if !expired {
+                expiresLabel.text = "expires"
+                expiresLabel.textColor = .whiteColor()
+            } else {
+                expiresLabel.text = "expired"
+                expiresLabel.textColor = .redColor()
+            }
+            dateLabel.text = d.stringForType(.Date, style: .ShortStyle)
+            timeLabel.text = d.stringForType(.Time, style: .ShortStyle)
+        } else {
+            expiresContainer.hidden = true
+        }
     }
 }
 

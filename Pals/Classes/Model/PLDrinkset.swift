@@ -33,6 +33,14 @@ class PLCountableItem: PLUniqueObject {
 class PLItemSet<T: PLPricedItem> : PLCountableItem {
     
     let item: T
+    var expires: NSDate?
+    var expired: Bool {
+        if expires == nil {
+            return false
+        }
+        return expires!.compare(NSDate()) == .OrderedAscending
+    }
+    
     required init?(jsonDic: [String : AnyObject]) {
         guard
             let itemDic = jsonDic[T.itemKey] as? Dictionary<String,AnyObject>,
@@ -41,6 +49,9 @@ class PLItemSet<T: PLPricedItem> : PLCountableItem {
             return nil
         }
         self.item = item
+        if let expires = jsonDic[.expires] as? NSTimeInterval {
+            self.expires = NSDate(timeIntervalSince1970: expires)
+        }
         super.init(jsonDic: jsonDic)
     }
     

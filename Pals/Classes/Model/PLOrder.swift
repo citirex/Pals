@@ -16,7 +16,6 @@ class PLOrder: PLDatedObject, PLFilterable {
     let message: String
     
     required init?(jsonDic: [String : AnyObject]) {
-        PLLog(jsonDic, type: .Deserialization)
         guard
             let userDic = jsonDic[.user] as? Dictionary<String,AnyObject>,
             let placeDic = jsonDic[.place] as? Dictionary<String,AnyObject>,

@@ -8,7 +8,7 @@
 
 private let kCellHeaderOffset: CGFloat = 54
 
-class PLProfileViewController: TGLStackedViewController {
+class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable  {
 
     private var collectionHelper = PLProfileCollectionHelper()
     private var datasourceSwitcher = PLProfileDatasourceSwitcher()
@@ -43,7 +43,31 @@ class PLProfileViewController: TGLStackedViewController {
             setupUserInfo()
         }
     }
+    var willAppearCompletion: (()->())?
+    var appeared = false
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.activityIndicator != nil {
+            stopActivityIndicator()
+        }
+        appeared = false
+        PLNotifications.removeObserver(self)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        PLNotifications.addObserver(self, selector: #selector(onDidCreateNewOrders(_:)), type: .OrdersDidCreate)
+        willAppearCompletion?()
+        willAppearCompletion = nil
+        appeared = true
+        
+        navigationController?.navigationBar.style = .ProfileStyle
+        exposedItemIndexPath = nil
+        if needsToShowNewOrder == true && currentDatasource.count > 0 {
+            showNewOrder()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,37 +79,36 @@ class PLProfileViewController: TGLStackedViewController {
         setupCollectionView()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.style = .ProfileStyle
-        exposedItemIndexPath = nil
-        if needsToShowNewOrder == true && currentDatasource.count > 0 {
-            showNewOrder()
+    func onDidCreateNewOrders(notification: NSNotification) {
+        if let orders = notification.object as? [PLOrder] {
+            PLLog("Created \(orders.count) orders")
+            datasourceSwitcher.clear()
+            loadPageIfEmpty()
         }
     }
     
-    func addNewOrder(order: PLOrder) {
-        if order.coverSets.count == 0 && currentSection == .Covers {
-            datasourceSwitcher.resetOffset(inSection: .Drinks)
-            myDrinksButtonPressed(nil)
-        } else if order.drinkSets.count == 0 && currentSection == .Drinks {
-            datasourceSwitcher.resetOffset(inSection: .Covers)
-            myCoversButtonPressed(nil)
-        } else {
-            datasourceSwitcher.resetOffset(inSection: currentSection)
-        }
-        
-        needsToShowNewOrder = true
-        
-        if currentDatasource.pagesLoaded == 0 || currentDatasource.loading == true {
-            
-        } else {
-            currentDatasource[0] = order
-            if view.window != nil { // Needs to test when you recive order when you on profile screen
-                showNewOrder()
-            }
-        }
-    }
+//    func addNewOrder(order: PLOrder) {
+//        if order.coverSets.count == 0 && currentSection == .Covers {
+//            datasourceSwitcher.resetOffset(inSection: .Drinks)
+//            myDrinksButtonPressed(nil)
+//        } else if order.drinkSets.count == 0 && currentSection == .Drinks {
+//            datasourceSwitcher.resetOffset(inSection: .Covers)
+//            myCoversButtonPressed(nil)
+//        } else {
+//            datasourceSwitcher.resetOffset(inSection: currentSection)
+//        }
+//
+//        needsToShowNewOrder = true
+//        
+//        if currentDatasource.pagesLoaded == 0 || currentDatasource.loading == true {
+//            
+//        } else {
+//            currentDatasource[0] = order
+//            if view.window != nil { // Needs to test when you recive order when you on profile screen
+//                showNewOrder()
+//            }
+//        }
+//    }
     
     private func showNewOrder() {
         if needsToShowNewOrder == true {

@@ -6,7 +6,7 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-enum PLDateType: Int {
+enum PLPassedDateType: Int {
     case Today
     case Yesterday
     case DaysAgo
@@ -40,10 +40,14 @@ enum PLDateType: Int {
     }
 }
 
+enum PLDateType {
+    case Time
+    case Date
+}
 
 extension NSDate {
    
-    var dateComponent: (PLDateType, Int) {
+    var dateComponent: (PLPassedDateType, Int) {
         let calendar = NSCalendar.currentCalendar()
         let units: NSCalendarUnit = [.Day, .WeekOfMonth, .Month, .Year]
         let dateComp = calendar.components(units, fromDate: self)
@@ -78,7 +82,7 @@ extension NSDate {
         return (.Today, 1)
     }
     
-    var dateType: PLDateType {
+    var dateType: PLPassedDateType {
         return dateComponent.0
     }
     
@@ -88,4 +92,24 @@ extension NSDate {
         return component.1 > 1 ? "\(component.1) \(dateStr) Ago" : dateStr
     }
 
+    func stringForStyles(dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = dateStyle
+        formatter.timeStyle = timeStyle
+        return formatter.stringFromDate(self)
+    }
+    
+    func stringForType(dateType: PLDateType, style: NSDateFormatterStyle) -> String {
+        let formatter = NSDateFormatter()
+        switch dateType {
+        case .Date:
+            formatter.dateStyle = style
+            formatter.timeStyle = .NoStyle
+        case .Time:
+            formatter.timeStyle = style
+            formatter.dateStyle = .NoStyle
+        }
+        return formatter.stringFromDate(self)
+    }
+    
 }

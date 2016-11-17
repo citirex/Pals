@@ -9,7 +9,6 @@
 class PLCurrentUser: PLUser {
     
     required init?(jsonDic: [String : AnyObject]) {
-        PLLog(jsonDic, type: .Deserialization)
         super.init(jsonDic: jsonDic)
     }
     
