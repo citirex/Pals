@@ -115,21 +115,7 @@ extension UITabBarController {
             }
         }
     }
-    
-    func switchTabBarItemTo(item: PLTabBarItem) {
-        selectedIndex = item.rawValue
-    }
-    
-    var orderViewController: PLOrderViewController {
-        return viewControllerByTabBarItem(.OrderItem) as! PLOrderViewController
-    }
-    
-    private func viewControllerByTabBarItem(item: PLTabBarItem) -> UIViewController {
-        return (viewControllers![item.rawValue] as! UINavigationController).topViewController!
-    }
-    
 }
-
 
 extension UIViewController {
     

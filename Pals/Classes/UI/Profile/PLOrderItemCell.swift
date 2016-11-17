@@ -15,6 +15,7 @@ class PLOrderItemCell: UITableViewCell {
     @IBOutlet var expiresLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var separatorHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +23,12 @@ class PLOrderItemCell: UITableViewCell {
         for view in [picture, nameLabel, expiresLabel, dateLabel, timeLabel] {
             view.backgroundColor = .clearColor()
         }
+        setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        separatorHeightConstraint?.constant = 0.5
+        super.updateConstraints()
     }
     
     var item: AnyObject? {

@@ -141,6 +141,9 @@ extension PLOrderViewController {
     }
     
     private func loadDrinks() {
+        if drinksDatasource.placeId == nil {
+            return
+        }
         startActivityIndicator(.WhiteLarge)
         cancelLoadingDatasources()
         drinksDatasource.loadPage { [unowned self] indices, error in
@@ -150,6 +153,9 @@ extension PLOrderViewController {
     }
     
     private func loadCovers() {
+        if coversDatasource.placeId == nil {
+            return
+        }
         startActivityIndicator(.WhiteLarge)
         cancelLoadingDatasources()
         coversDatasource.loadPage { [unowned self] indices, error in

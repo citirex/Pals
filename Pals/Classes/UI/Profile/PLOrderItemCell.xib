@@ -15,6 +15,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWD-WU-RzY" userLabel="Separator">
+                        <rect key="frame" x="0.0" y="54" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="0.43780585850111853" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3d2-GJ-ptR"/>
+                        </constraints>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drink_icon" translatesAutoresizingMaskIntoConstraints="NO" id="sqN-bl-MTJ" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
                         <rect key="frame" x="8" y="8" width="40" height="40"/>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -85,9 +92,12 @@
                     <constraint firstAttribute="trailing" secondItem="dSS-et-w7Z" secondAttribute="trailing" constant="13" id="2GH-XK-m2c"/>
                     <constraint firstItem="dSS-et-w7Z" firstAttribute="leading" secondItem="j6O-lg-2eJ" secondAttribute="trailing" constant="3" id="65U-BC-bat"/>
                     <constraint firstItem="j6O-lg-2eJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="D3W-aC-li6"/>
+                    <constraint firstItem="sWD-WU-RzY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="GYi-eB-WXk"/>
                     <constraint firstItem="dSS-et-w7Z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JNl-em-BRv"/>
                     <constraint firstItem="j6O-lg-2eJ" firstAttribute="leading" secondItem="sqN-bl-MTJ" secondAttribute="trailing" constant="8" id="KPD-ru-UAr"/>
+                    <constraint firstAttribute="bottom" secondItem="sWD-WU-RzY" secondAttribute="bottom" id="KsJ-zN-JKR"/>
                     <constraint firstItem="sqN-bl-MTJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Y6M-js-h8M"/>
+                    <constraint firstAttribute="trailing" secondItem="sWD-WU-RzY" secondAttribute="trailing" id="klk-2a-hmb"/>
                     <constraint firstItem="sqN-bl-MTJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ouF-Fy-zyB"/>
                 </constraints>
             </tableViewCellContentView>
@@ -97,6 +107,7 @@
                 <outlet property="expiresLabel" destination="2XB-22-Lqu" id="9Ya-dW-Ii1"/>
                 <outlet property="nameLabel" destination="j6O-lg-2eJ" id="AOi-fh-llz"/>
                 <outlet property="picture" destination="sqN-bl-MTJ" id="CDn-Od-KmX"/>
+                <outlet property="separatorHeightConstraint" destination="3d2-GJ-ptR" id="71Q-HT-8mt"/>
                 <outlet property="timeLabel" destination="gUs-TC-l2h" id="EFM-s1-Vod"/>
             </connections>
             <point key="canvasLocation" x="323" y="308.5"/>

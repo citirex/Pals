@@ -35,4 +35,8 @@ class PLCoversDatasource: PLDatasource<PLEvent> {
     override func fakeFeedFilenameKey() -> String {
         return (isVIP == true) ? PLKey.vip_covers.string : PLKey.covers.string
     }
+    
+    override func clean() {
+        placeId = nil
+    }
 }
