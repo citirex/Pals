@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "scan_overlay.png",
+      "filename" : "scan_overlay@1x.png",
       "scale" : "1x"
     },
     {

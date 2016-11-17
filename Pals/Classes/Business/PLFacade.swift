@@ -167,6 +167,16 @@ extension PLFacade._PLFacade {
         }
     }
     
+    func handleUpdateOrder(error: NSError?, dic: [String:AnyObject], completion: PLUpdateOrderCompletion) {
+        if let response = dic[.response] as? [String : AnyObject] {
+            if let orderDic = response[.order] as? [String : AnyObject] {
+                if self.profileManager.saveOrder(orderDic) {
+                   
+                }
+            }
+        }
+    }
+    
     func _fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
         locationManager.fetchNearRegion(size, completion: completion)
     }
