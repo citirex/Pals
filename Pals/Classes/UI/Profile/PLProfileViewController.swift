@@ -319,7 +319,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
             let urlRequest = NSURLRequest(URL: profile.picture, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 60)
             collectionBackgroundView.userPicImageView.setImageWithURLRequest(urlRequest, placeholderImage: UIImage(named: "user"), success: { (retuqest, response, image) in
 						self.collectionBackgroundView.userPicImageView.image = image
-				if profile.picture.absoluteString.hasSuffix("default_avatar.png") || profile.picture.absoluteString.hasSuffix("blank_avatar_240x240.gif") || (profile.picture.absoluteString == "") {
+				if (profile.picture.absoluteString.rangeOfString("default_avatar.png") != nil) || (profile.picture.absoluteString.rangeOfString("default.png") != nil) || (profile.picture.absoluteString == "") {
 					self.collectionBackgroundView.userPicImageView.contentMode = .Center
 					self.collectionBackgroundView.userPicImageView.backgroundColor = .affairColor()
 					self.collectionBackgroundView.userPicImageView.image = UIImage(named: "user")

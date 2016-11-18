@@ -67,7 +67,7 @@ class PLEditProfileViewController: PLViewController {
             phoneNumberTextField.text = data.email
             additionalTextField.text  = data.additional
             userProfileImageView.setImageWithURL(data.picture, placeholderImage: UIImage(named: "user"))
-			if data.picture.absoluteString.hasSuffix("default_avatar.png") || data.picture.absoluteString.hasSuffix("blank_avatar_240x240.gif") || (data.picture.absoluteString == "") {
+			if (data.picture.absoluteString.rangeOfString("default_avatar.png") != nil) || (data.picture.absoluteString.rangeOfString("default.png") != nil) || (data.picture.absoluteString == "") {
 				userProfileImageView.contentMode = .Center
 				userProfileImageView.backgroundColor = .affairColor()
 				userProfileImageView.image = UIImage(named: "user")
