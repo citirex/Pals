@@ -27,7 +27,7 @@ class PLFriendProfileViewController: PLViewController {
 		
 		nameLabel.text = friend?.name
         invitatedStatusButton.setTitle(status, forState: .Normal)
-        friendProfileImageView.setImageWithURL(friend.picture, placeholderImage: UIImage(named: "profile_placeholder"))
+        friendProfileImageView.setImageWithURL(friend.picture, placeholderImage: UIImage(named: "user"))
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: .hidePopUpMenu))
     }

@@ -304,10 +304,13 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
             collectionBackgroundView.myDrinksButton.addTarget(self, action: #selector(myDrinksButtonPressed(_:)), forControlEvents: .TouchUpInside)
             
             let urlRequest = NSURLRequest(URL: profile.picture, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 60)
-            collectionBackgroundView.userPicImageView.setImageWithURLRequest(urlRequest,
-                                                                             placeholderImage: UIImage(named: "avatar_placeholder"),
-                                                                             success: { (retuqest, response, image) in
-                                                                                self.collectionBackgroundView.userPicImageView.image = image
+            collectionBackgroundView.userPicImageView.setImageWithURLRequest(urlRequest, placeholderImage: UIImage(named: "user"), success: { (retuqest, response, image) in
+						self.collectionBackgroundView.userPicImageView.image = image
+				if profile.picture.absoluteString.hasSuffix("default_avatar.png") || profile.picture.absoluteString.hasSuffix("blank_avatar_240x240.gif") || (profile.picture.absoluteString == "") {
+					self.collectionBackgroundView.userPicImageView.contentMode = .Center
+					self.collectionBackgroundView.userPicImageView.backgroundColor = .affairColor()
+					self.collectionBackgroundView.userPicImageView.image = UIImage(named: "user")
+				}
                 }, failure: { (request, response, error) in
                     print("Error when downloading profile image: \(error.debugDescription)")
             })
