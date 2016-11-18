@@ -24,7 +24,6 @@ class PLOrderViewController: PLViewController {
     @IBOutlet private var bgImageView: UIImageView!
     
     var order = PLCheckoutOrder()
-	let creditCard = PLCardInfoViewController()
     
     private var drinksOffset = CGPointZero
     private var coversOffset = CGPointZero
@@ -52,6 +51,8 @@ class PLOrderViewController: PLViewController {
     
     private let placeholderUserName = "Chose user"
     private let placeholderPlaceName = "Chose place"
+    
+    private var sendPopup: PLOrderCheckoutPopupViewController?
     
     
     //MARK: - View lifecycle
@@ -98,6 +99,7 @@ class PLOrderViewController: PLViewController {
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
         }
+        sendPopup?.show(from: tabBarController!)
     }
 
     func setNewPlace(place: PLPlace) {
@@ -297,17 +299,13 @@ extension PLOrderViewController {
             checkoutButton.shake()
             return PLShowAlert("Need to chose place")
         }
-        createAndShowSendPopup(order)
-    }
-    
-    func createAndShowSendPopup(order: PLCheckoutOrder) {
+        
         let popup = PLOrderCheckoutPopupViewController(nibName: "PLOrderCheckoutPopupViewController", bundle: nil)
         popup.delegate = self
         popup.modalPresentationStyle = .OverCurrentContext
         popup.order = order
-        tabBarController!.presentViewController(popup, animated: false) {
-            popup.show()
-        }
+        popup.show(from: tabBarController!)
+        sendPopup = popup
     }
     
     func sendCurrentOrder() {
@@ -319,11 +317,8 @@ extension PLOrderViewController {
                 self.updateProfileWithOrders(orders)
             } else {
                 PLShowErrorAlert(error: error!)
-				if !PLFacade.profile!.hasPaymentCard {
-					self.creditCard.delegate = self
-					self.creditCard.AddCardInfo()
-				}
             }
+            self.sendPopup = nil
         }
     }
 	
@@ -352,6 +347,13 @@ extension PLOrderViewController {
         } else {
             PLShowAlert("Success")
         }
+    }
+}
+
+extension PLOrderViewController : PLCardInfoViewControllerDelegate {
+    func cardInfoViewControllerDidAddPaymentInfo(vc: PLCardInfoViewController) {
+        sendPopup = nil
+        sendCurrentOrder()
     }
 }
 
@@ -418,10 +420,18 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviou
     //MARK: - Send Popup
     func orderPopupCancelClicked(popup: PLOrderCheckoutPopupViewController) {
         popup.hide()
+        sendPopup = nil
     }
     
     func orderPopupSendClicked(popup: PLOrderCheckoutPopupViewController) {
         popup.hide()
+        if PLFacade.profile!.hasPaymentCard == false {
+            if let addPaymentCardVC = UIStoryboard.viewControllerWithType(.CardInfo) as? PLCardInfoViewController {
+                addPaymentCardVC.delegate = self
+                navigationController?.pushViewController(addPaymentCardVC, animated: true)
+                return
+            }
+        }
         sendCurrentOrder()
     }
     
@@ -474,11 +484,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviou
 }
 
 //MARK: - CollectionView dataSource
-extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PLCardInfoDelegate {
-	
-	func addCardInfo() {
-		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("Card Info"))!, animated: true)
-	}
+extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if UIDevice.SYSTEM_VERSION_LESS_THAN("9.0") {

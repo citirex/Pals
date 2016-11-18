@@ -25,6 +25,7 @@ enum PLStoryboardType: String {
     case TabBarController
     case FriendsViewController
     case OrderFriendsViewController
+    case CardInfo
     var string: String {return rawValue}
 }
 
