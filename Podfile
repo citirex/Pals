@@ -8,7 +8,6 @@ target 'Pals' do
 
 pod 'AFNetworking'
 pod 'IQKeyboardManager'
-pod 'SwiftQRCode'
 pod 'GPUImage'
 pod 'Permission'
 pod 'PureLayout'
