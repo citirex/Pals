@@ -47,7 +47,7 @@ class PLFriendCell: UITableViewCell{
     }
     
     private func _updateUI(cellData: PLFriendCellData){
-        if cellData.picture.absoluteString.hasSuffix("default_avatar.png") || cellData.picture.absoluteString.hasSuffix("blank_avatar_240x240.gif") || (cellData.picture.absoluteString == ""){
+        if (cellData.picture.absoluteString.rangeOfString("default_avatar.png") != nil) || (cellData.picture.absoluteString.rangeOfString("default.png") != nil) || (cellData.picture.absoluteString == ""){
             avatarImage.contentMode = .Center
             avatarImage.backgroundColor = .affairColor()
             avatarImage.image = UIImage(named: "user")

@@ -66,12 +66,17 @@ class PLEditProfileViewController: PLViewController {
             usernameTextField.text    = data.name
             phoneNumberTextField.text = data.email
             additionalTextField.text  = data.additional
-            userProfileImageView.setImageWithURL(data.picture, placeholderImage: UIImage(named: "profile_placeholder"))
+            userProfileImageView.setImageWithURL(data.picture, placeholderImage: UIImage(named: "user"))
+			if (data.picture.absoluteString.rangeOfString("default_avatar.png") != nil) || (data.picture.absoluteString.rangeOfString("default.png") != nil) || (data.picture.absoluteString == "") {
+				userProfileImageView.contentMode = .Center
+				userProfileImageView.backgroundColor = .affairColor()
+				userProfileImageView.image = UIImage(named: "user")
+			}
         } else {
             usernameTextField.text     = "<Error name>"
             phoneNumberTextField.text  = "<Error phone>"
             additionalTextField.text   = "<Error additional>"
-            userProfileImageView.image = UIImage(named: "profile_placeholder")
+            userProfileImageView.image = UIImage(named: "user")
         }
     }
 
@@ -138,6 +143,7 @@ extension PLEditProfileViewController {
         dismissKeyboard(sender)
         
         PLImagePicker.pickImage(self, imageView: userProfileImageView) { [unowned self] image in
+			self.userProfileImageView.contentMode = .ScaleAspectFill
             self.userProfileImageView.image = image
             self.editData?.changePicture(image)
         }
