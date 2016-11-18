@@ -61,6 +61,8 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
 		collectionBackgroundView.userPicImageView.setImageWithURL(PLFacade.profile!.cellData.picture)
 		collectionBackgroundView.userPicImageView.setAvatarPlaceholder(collectionBackgroundView.userPicImageView, url: profile!.picture)
         
+        collectionView?.reloadData()
+        
         willAppearCompletion?()
         willAppearCompletion = nil
         appeared = true

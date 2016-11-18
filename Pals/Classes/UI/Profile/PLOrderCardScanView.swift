@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import SwiftQRCode
-
 protocol PLInitializable {
     func initialize()
 }
@@ -27,6 +25,10 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
     private var scanner: QRCode!
     
     private var didSetupConstraints = false
+    
+    deinit {
+        errorLabelHideTimer?.invalidate()
+    }
     
     var order: PLOrder? {
         didSet {
@@ -50,32 +52,72 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
         setupLayoutConstraints()
     }
     
+    var errorLabelHideTimer: NSTimer?
+    
     func setupScanner() {
         if bounds == CGRectZero { layoutIfNeeded() }
         
         checkmark.hidden = true
         errorLabel.hidden = true
         
-        scanner = QRCode(autoRemoveSubLayers: false, lineWidth: 0)
+        scanner = QRCode(autoRemoveSubLayers: true, lineWidth: 0)
         scanner.prepareScan(previewView) { [unowned self] qrCode in
-            //            if qrCode == self.order!.place.QRcode {
-            self.checkmark.hidden = false
-            PLNotifications.postNotification(.QRCodeScanned, object: self.order)
-            //            } else {
-            //                self.errorLabel.hidden = false
-            //            }
+            if qrCode == self.order!.place.QRcode {
+                self.checkmark.hidden = false
+                self.errorLabel.hidden = true
+                PLNotifications.postNotification(.QRCodeScanned, object: self.order)
+            } else {
+                self.errorLabel.hidden = false
+                self.checkmark.hidden = true
+                self.animateErrorLabelSlide(true)
+                self.errorLabelHideTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(self.hideErrorTimerFired), userInfo: nil, repeats: false)
+            }
         }
+    }
+    
+    func hideErrorTimerFired() {
+        self.animateErrorLabelSlide(false)
+    }
 
+    func animateErrorLabelSlide(appear: Bool) {
+        let labelFrame = self.errorLabel.frame
+        let selfHeight = self.bounds.size.height
+        let topPoint = selfHeight - labelFrame.size.height
+        let botPoint = selfHeight
+        
+        var initialY = CGFloat(0)
+        var eventualY = CGFloat(0)
+        if appear {
+            initialY = botPoint
+            eventualY = topPoint
+        } else {
+            initialY = topPoint
+            eventualY = botPoint
+        }
+        
+        var initialFrame = labelFrame
+        var eventualFrame = labelFrame
+        initialFrame.origin.y = initialY
+        eventualFrame.origin.y = eventualY
+        
+        self.errorLabel.frame = initialFrame
+        UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: {
+            self.errorLabel.frame = eventualFrame
+        }, completion: nil)
     }
     
     func enableCamera() {
         setupScanner()
-        scanner.startScan()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.scanner.startScan()
+        }
         scannerIsRunning = true
     }
     
     func disableCamera() {
-        scanner.stopScan()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.scanner.stopScan()
+        }
         scanner.removeAllLayers()
         scannerIsRunning = false
     }
@@ -88,7 +130,6 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
 extension PLOrderCardScanView: PLInitializable {
     
     func initialize() {
-        backgroundColor = .yellowColor()
         
         previewView = UIView.newAutoLayoutView()
         scanOverlay = UIImageView.newAutoLayoutView()

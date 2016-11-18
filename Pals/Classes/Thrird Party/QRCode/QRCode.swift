@@ -163,6 +163,10 @@ public class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
             
             return
         }
+        
+        if autoRemoveSubLayers {
+            removeAllLayers()
+        }
         session.stopRunning()
     }
     
@@ -196,6 +200,9 @@ public class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         dataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
     }
     
+    var mininumScanInterval: NSTimeInterval = 2
+    private var didScanTimer: NSTimer?
+    
     public func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
         clearDrawLayer()
@@ -208,12 +215,9 @@ public class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
                 if CGRectContainsRect(scanFrame, obj.bounds) {
                     currentDetectedCount = currentDetectedCount + 1
                     if currentDetectedCount > maxDetectedCount {
-                        session.stopRunning()
-                        
-                        completedCallBack!(stringValue: codeObject.stringValue)
-                        
-                        if autoRemoveSubLayers {
-                            removeAllLayers()
+                        if didScanTimer == nil {
+                            completedCallBack!(stringValue: codeObject.stringValue)
+                            didScanTimer = NSTimer.scheduledTimerWithTimeInterval(mininumScanInterval, target: self, selector: #selector(scanTimerFired), userInfo: nil, repeats: false)
                         }
                     }
                     
@@ -222,6 +226,10 @@ public class QRCode: NSObject, AVCaptureMetadataOutputObjectsDelegate {
                 }
             }
         }
+    }
+    
+    func scanTimerFired() {
+        didScanTimer = nil
     }
     
     public func removeAllLayers() {

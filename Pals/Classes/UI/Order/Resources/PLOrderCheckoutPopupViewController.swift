@@ -64,6 +64,23 @@ class PLOrderCheckoutPopupViewController: UIViewController {
         popupView.layer.cornerRadius = 10
         
         setupCheckbox()
+        setupLayoutConstraints()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        userNameLabel.text = userName
+        locationLabel.text = locationName
+        amountLabel.text = String(format: "$%.2f", orderAmount!)
+        if let o = order {
+            if o.message != nil && o.message!.characters.count > 0 {
+                messageTextView.text = o.message
+            }
+        }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     func setupCheckbox() {
@@ -84,8 +101,9 @@ class PLOrderCheckoutPopupViewController: UIViewController {
         }
     }
     
-    override func updateViewConstraints() {
+    func setupLayoutConstraints() {
         if !didSetupConstraints {
+            
             let checkboxHeight: CGFloat = 25.0
             let offset: CGFloat = 10.0
             
@@ -113,24 +131,6 @@ class PLOrderCheckoutPopupViewController: UIViewController {
             }
             didSetupConstraints = true
         }
-        super.updateViewConstraints()
-    }
-
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        userNameLabel.text = userName
-        locationLabel.text = locationName
-        amountLabel.text = String(format: "$%.2f", orderAmount!)
-        if let o = order {
-            if o.message != nil && o.message!.characters.count > 0 {
-                messageTextView.text = o.message
-            }
-        }
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
 
     func show(from vc: UIViewController) {
