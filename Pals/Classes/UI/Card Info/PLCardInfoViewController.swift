@@ -9,6 +9,10 @@
 import UIKit
 import Stripe
 
+protocol PLCardInfoDelegate: class {
+	func addCardInfo(sender: PLCardInfoViewController)
+}
+
 class PLCardInfoViewController: PLViewController {
     
     @IBOutlet private var cardField: STPPaymentCardTextField?
@@ -21,6 +25,8 @@ class PLCardInfoViewController: PLViewController {
     
     lazy var expirationDatePicker = PLExpirationDatePicker()
     lazy var cardForm = STPCardParams()
+	
+	weak var delegate: PLCardInfoDelegate? = nil
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +54,10 @@ class PLCardInfoViewController: PLViewController {
             creditCardNumberTextField.becomeFirstResponder()
         }
     }
+	
+	func AddCardInfo() {
+		delegate?.addCardInfo(self)
+	}
     
     func prefillCardFields() {
         if let source = PLFacade.profile?.customer?.paymentSource {
@@ -145,9 +155,12 @@ class PLCardInfoViewController: PLViewController {
                 if error != nil {
                     PLShowErrorAlert(error: error!)
                 } else{
-                    PLShowAlert("You have successfully added your card details") {
-                        self.navigationController?.popViewControllerAnimated(true)
-                    }
+					let alertController = UIAlertController(title: "You have successfully added your card details", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+					
+					alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+						self.navigationController?.popViewControllerAnimated(true)
+					}))
+					self.presentViewController(alertController, animated: true, completion: nil)
                 }
             })
         case .Invalid:

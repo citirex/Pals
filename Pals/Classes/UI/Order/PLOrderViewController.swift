@@ -24,6 +24,7 @@ class PLOrderViewController: PLViewController {
     @IBOutlet private var bgImageView: UIImageView!
     
     var order = PLCheckoutOrder()
+	let creditCard = PLCardInfoViewController()
     
     private var drinksOffset = CGPointZero
     private var coversOffset = CGPointZero
@@ -313,7 +314,8 @@ extension PLOrderViewController {
             } else {
                 PLShowErrorAlert(error: error!)
 				if !PLFacade.profile!.hasPaymentCard {
-					self.navigationController?.pushViewController((self.storyboard?.instantiateViewControllerWithIdentifier("Card Info"))!, animated: true)
+					self.creditCard.delegate = self
+					self.creditCard.AddCardInfo()
 				}
             }
         }
@@ -465,11 +467,14 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviou
             break
         }
     }
-
 }
 
 //MARK: - CollectionView dataSource
-extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PLCardInfoDelegate {
+	
+	func addCardInfo(sender: PLCardInfoViewController) {
+		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("Card Info"))!, animated: true)
+	}
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if UIDevice.SYSTEM_VERSION_LESS_THAN("9.0") {
