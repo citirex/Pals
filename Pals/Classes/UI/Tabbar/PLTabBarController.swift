@@ -87,10 +87,7 @@ extension PLTabBarController: UITabBarControllerDelegate {
             break
         }
     }
-    
 }
-
-
 
 extension UITabBarController {
 
@@ -104,7 +101,8 @@ extension UITabBarController {
                         // Top vc is not root vc, so we get back to root
                         navVC.popToRootViewControllerAnimated(false)
                     }
-                    if let soughtVC = rootVC as? PLViewController {
+                
+                    if var soughtVC = rootVC as? PLAppearanceRespondable  {
                         if soughtVC.appeared {
                             completion()
                         } else {
@@ -117,25 +115,7 @@ extension UITabBarController {
             }
         }
     }
-    
-    func switchTabBarItemTo(item: PLTabBarItem) {
-        selectedIndex = item.rawValue
-    }
-    
-    var orderViewController: PLOrderViewController {
-        return viewControllerByTabBarItem(.OrderItem) as! PLOrderViewController
-    }
-    
-    var profileViewController: PLProfileViewController {
-        return viewControllerByTabBarItem(.ProfileItem) as! PLProfileViewController
-    }
-    
-    private func viewControllerByTabBarItem(item: PLTabBarItem) -> UIViewController {
-        return (viewControllers![item.rawValue] as! UINavigationController).topViewController!
-    }
-    
 }
-
 
 extension UIViewController {
     

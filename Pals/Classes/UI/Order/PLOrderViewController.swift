@@ -142,6 +142,9 @@ extension PLOrderViewController {
     }
     
     private func loadDrinks() {
+        if drinksDatasource.placeId == nil {
+            return
+        }
         startActivityIndicator(.WhiteLarge)
         cancelLoadingDatasources()
         drinksDatasource.loadPage { [unowned self] indices, error in
@@ -151,6 +154,9 @@ extension PLOrderViewController {
     }
     
     private func loadCovers() {
+        if coversDatasource.placeId == nil {
+            return
+        }
         startActivityIndicator(.WhiteLarge)
         cancelLoadingDatasources()
         coversDatasource.loadPage { [unowned self] indices, error in
@@ -336,15 +342,13 @@ extension PLOrderViewController {
         for order in orders {
             if myId == order.user.id {
                 myOrders.append(order)
-				order.user.picture = PLFacade.profile!.picture
 			}
         }
         
         if myOrders.count > 0 {
-            let first = myOrders.first!
-            let profileViewController = self.tabBarController!.profileViewController
-            profileViewController.addNewOrder(first)
-            self.tabBarController?.switchTabBarItemTo(.ProfileItem)
+            tabBarController?.switchTabBarItemTo(.ProfileItem, completion: { 
+                PLNotifications.postNotification(.OrdersDidCreate, object: myOrders)
+            })
         } else {
             PLShowAlert("Success")
         }
@@ -361,7 +365,7 @@ extension PLOrderViewController : PLOrderHeaderDelegate {
 extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate{
     
     //MARK: Order drinks count
-    func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt64) {
+    func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: Int) {
         order.updateWithDrink(drinksDatasource[collectionView.indexPathForCell(drinkCell)!.row], andCount: count)
         updateCheckoutButtonState()
     }
@@ -571,7 +575,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
 }
 
 extension PLOrderViewController : PLCoverCellDelegate {
-    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt64) {
+    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: Int) {
         order.updateWithCover(event, andCount: count)
         updateCheckoutButtonState()
     }

@@ -14,6 +14,8 @@ class PLUniqueObject: NSObject, PLSerializable, PLDeserializable {
         if let id = jsonDic[.id] as? NSNumber {
             self.id = id.unsignedLongLongValue
         }
+        super.init()
+        PLLog("Deserialized \(self) from dic: \(jsonDic)", type: .Deserialization)
     }
     
     func serialize() -> [String : AnyObject] {

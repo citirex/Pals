@@ -14,7 +14,6 @@ class PLEvent : PLPricedItem, PLFilterable {
     let end: NSDate
     
     required init?(jsonDic: [String : AnyObject]) {
-        PLLog(jsonDic, type: .Deserialization)
         guard
             let info = jsonDic[.info] as? String,
             let picture = jsonDic[.picture] as? String,

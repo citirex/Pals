@@ -34,6 +34,8 @@ enum PLNotificationType: String {
     case ProfileSet
     case PlaceDidSelect
     case FriendSend
+    case OrdersDidCreate
+    case OrderDidChange
     var str: String {return rawValue}
 }
 

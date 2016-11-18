@@ -11,6 +11,7 @@ import Stripe
 typealias PLCheckoutOrderCompletion = (orders: [PLOrder], error: NSError?) -> ()
 typealias PLErrorCompletion = (error: NSError?) -> ()
 typealias PLFetchesBadgesCompletion = (badges: [PLBadge], error: NSError?) -> ()
+typealias PLUpdateOrderCompletion = (order: PLOrder, error: NSError?) -> ()
 
 protocol PLFacadeNetworkAPI {
     static func login(userName:String, password: String, completion: PLErrorCompletion)
@@ -25,6 +26,7 @@ protocol PLFacadeNetworkAPI {
     static func resetBadges(type: PLPushType)
     static func fetchBadges(completion: PLFetchesBadgesCompletion)
     static func addPaymentCard(cardParams: STPCardParams, completion: PLErrorCompletion)
+    static func updateOrder(order: PLOrder, completion: PLUpdateOrderCompletion)
 }
 
 extension PLFacade: PLFacadeNetworkAPI {
@@ -87,6 +89,10 @@ extension PLFacade: PLFacadeNetworkAPI {
                 }
             }
         }
+    }
+
+    static func updateOrder(order: PLOrder, completion: PLUpdateOrderCompletion) {
+        instance._updateOrder(order, completion: completion)
     }
 }
 
@@ -202,6 +208,13 @@ extension PLFacade._PLFacade {
                     PLShowErrorAlert(error: error!)
                 }
             })
+        }
+    }
+    
+    func _updateOrder(order: PLOrder, completion: PLUpdateOrderCompletion) {
+        let attributes = [PLKey.order_id.string : NSNumber(unsignedLongLong: order.id)]
+        PLNetworkManager.postWithAttributes(.UpdateOrder, attributes: attributes) { (dic, error) in
+            self.handleUpdateOrder(error, dic: dic, completion: completion)
         }
     }
 }

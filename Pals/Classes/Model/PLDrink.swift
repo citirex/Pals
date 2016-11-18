@@ -10,6 +10,17 @@ enum DrinkType: Int {
     case Undefined = 0
     case Light
     case Strong
+    
+    var cardType: PLCardType {
+        switch self {
+        case .Light:
+            return .Beer
+        case .Strong:
+            return .Liquor
+        case .Undefined:
+            return .Unknown
+        }
+    }
 }
 
 class PLDrink : PLPricedItem, PLFilterable {

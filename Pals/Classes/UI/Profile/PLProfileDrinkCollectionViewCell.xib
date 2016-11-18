@@ -226,6 +226,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="qr_placeholder" width="85" height="85"/>
+        <image name="qr_placeholder" width="273" height="275"/>
     </resources>
 </document>

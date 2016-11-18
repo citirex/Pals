@@ -31,8 +31,12 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jH-4Q-DZ1">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jH-4Q-DZ1">
                                         <rect key="frame" x="265" y="7" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Lw4-xH-AMF"/>
+                                            <constraint firstAttribute="width" constant="40" id="cib-tK-HYH"/>
+                                        </constraints>
                                         <state key="normal" backgroundImage="qr_icon"/>
                                         <connections>
                                             <action selector="switchModeButtonClicked" destination="gTV-IL-0wX" eventType="touchUpInside" id="rcr-vY-yW0"/>
@@ -41,6 +45,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="0jH-4Q-DZ1" secondAttribute="trailing" constant="15" id="95y-be-hww"/>
+                                    <constraint firstItem="0jH-4Q-DZ1" firstAttribute="top" secondItem="J56-9s-gC2" secondAttribute="top" constant="7" id="LZg-hz-5tN"/>
                                     <constraint firstAttribute="trailing" secondItem="MjM-EM-nWV" secondAttribute="trailing" constant="8" id="WHI-6G-yhg"/>
                                     <constraint firstAttribute="trailing" secondItem="78R-h6-631" secondAttribute="trailing" constant="8" id="Wsz-kN-qME"/>
                                     <constraint firstItem="MjM-EM-nWV" firstAttribute="leading" secondItem="J56-9s-gC2" secondAttribute="leading" constant="8" id="eC3-VC-1DQ"/>

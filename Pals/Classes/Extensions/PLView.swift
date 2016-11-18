@@ -133,6 +133,18 @@ extension UIView {
     }
 }
 
+protocol PLNibNamable {
+    static var nibName: String {get}
+}
 
-
-
+extension UIView {
+    static func loadFromNib<T : PLNibNamable>() -> T? {
+        let objects = NSBundle.mainBundle().loadNibNamed(T.nibName, owner: nil , options: nil)
+        for obj in objects {
+            if let view = obj as? T {
+                return view
+            }
+        }
+        return nil
+    }
+}

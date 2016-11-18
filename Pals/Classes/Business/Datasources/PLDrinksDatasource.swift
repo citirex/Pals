@@ -36,4 +36,8 @@ class PLDrinksDatasource: PLDatasource<PLDrink> {
     override func fakeFeedFilenameKey() -> String {
         return (isVIP == true) ? PLKey.vip_drinks.string : PLKey.drinks.string
     }
+    
+    override func clean() {
+        placeId = nil
+    }
 }

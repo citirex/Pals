@@ -12,6 +12,7 @@ class PLOrder: PLDatedObject, PLFilterable {
     var drinkSets = [PLItemSet<PLDrink>]()
     var coverSets = [PLItemSet<PLEvent>]()
     let isVIP: Bool
+    var used = false
     let message: String
     
     required init?(jsonDic: [String : AnyObject]) {
@@ -33,28 +34,39 @@ class PLOrder: PLDatedObject, PLFilterable {
         self.place = place
         self.message = message
         self.isVIP = isVIP
-        
+        if let used = jsonDic[.is_used] as? Bool {
+            self.used = used
+        }
         if let drinkSetsArray = jsonDic[.drinks] as? [Dictionary<String,AnyObject>] {
-            for drinkSetDic in drinkSetsArray {
-                if let drinkSet = PLItemSet<PLDrink>(jsonDic: drinkSetDic) {
-                    drinkSets.append(drinkSet)
-                }
-            }
+            let sets = drinkSetsArray.flatMap({ (jsonDic) -> PLItemSet<PLDrink>? in
+                return PLItemSet<PLDrink>(jsonDic: jsonDic)
+            })
+            drinkSets.appendContentsOf(sets)
         }
         if let coversArray = jsonDic[.covers] as? [Dictionary<String,AnyObject>] {
-            for coverDic in coversArray {
-                if let cover = PLItemSet<PLEvent>(jsonDic: coverDic) {
-                    coverSets.append(cover)
-                }
-            }
+            let sets = coversArray.flatMap({ (jsonDic) -> PLItemSet<PLEvent>? in
+                return PLItemSet<PLEvent>(jsonDic: jsonDic)
+            })
+            coverSets.appendContentsOf(sets)
         }
         super.init(jsonDic: jsonDic)
     }
-     
-    override func serialize() -> [String : AnyObject] {
-        return [:]
+    
+    var allItems: [AnyObject] {
+        var items = [AnyObject]()
+        drinkSets.forEach { items.append($0) }
+        coverSets.forEach { items.append($0) }
+        return items
     }
     
-    static func filter(objc: AnyObject, text: String) -> Bool {return false}
+    subscript(idx: Int) -> AnyObject {
+        return allItems[idx]
+    }
     
+    var itemsCount: Int {
+        return allItems.count
+    }
+    
+    override func serialize() -> [String : AnyObject] { return [:] }
+    static func filter(objc: AnyObject, text: String) -> Bool {return false}
 }
