@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="287" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-ZY-VP5" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-ZY-VP5" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
                         <rect key="frame" x="10" y="5" width="75" height="75"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="75" id="MfR-yw-7PQ"/>
