@@ -57,6 +57,9 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+		
+		collectionBackgroundView.userPicImageView.setImageWithURL(PLFacade.profile!.cellData.picture)
+		collectionBackgroundView.userPicImageView.setAvatarPlaceholder(collectionBackgroundView.userPicImageView, url: profile!.picture)
         
         willAppearCompletion?()
         willAppearCompletion = nil
@@ -318,12 +321,10 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
             
             let urlRequest = NSURLRequest(URL: profile.picture, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 60)
             collectionBackgroundView.userPicImageView.setImageWithURLRequest(urlRequest, placeholderImage: UIImage(named: "user"), success: { (retuqest, response, image) in
-						self.collectionBackgroundView.userPicImageView.image = image
-				if (profile.picture.absoluteString.rangeOfString("default_avatar.png") != nil) || (profile.picture.absoluteString.rangeOfString("default.png") != nil) || (profile.picture.absoluteString == "") {
-					self.collectionBackgroundView.userPicImageView.contentMode = .Center
-					self.collectionBackgroundView.userPicImageView.backgroundColor = .affairColor()
-					self.collectionBackgroundView.userPicImageView.image = UIImage(named: "user")
-				}
+				
+					self.collectionBackgroundView.userPicImageView.image = image
+				self.collectionBackgroundView.userPicImageView.setAvatarPlaceholder(self.collectionBackgroundView.userPicImageView, url: profile.picture)
+				
                 }, failure: { (request, response, error) in
                     print("Error when downloading profile image: \(error.debugDescription)")
             })

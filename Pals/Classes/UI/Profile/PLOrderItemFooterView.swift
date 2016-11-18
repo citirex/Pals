@@ -10,7 +10,7 @@ class PLOrderItemFooterView: UIView, PLNibNamable {
     
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var userMessageLabel: UILabel!
-    @IBOutlet var userImageView: UIImageView!
+    @IBOutlet var userImageView: PLCircularImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +21,10 @@ class PLOrderItemFooterView: UIView, PLNibNamable {
         usernameLabel.text = username
         userMessageLabel.text = message
         userImageView.setImageSafely(fromURL: userPicture, placeholderImage: UIImage(named: "user"))
+		
+		userImageView.setAvatarPlaceholder(userImageView, url: userPicture!)
     }
-    
+	
     override func layoutSubviews() {
         super.layoutSubviews()
         userMessageLabel.preferredMaxLayoutWidth = userMessageLabel.frame.width

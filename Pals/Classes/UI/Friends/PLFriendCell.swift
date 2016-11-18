@@ -15,7 +15,7 @@ class PLFriendCell: UITableViewCell{
     static let nibName    = "PLFriendCell"
     static let identifier = "FriendCell"
 	
-	@IBOutlet weak var avatarImage: UIImageView!
+	@IBOutlet weak var avatarImage: PLCircularImageView!
 	@IBOutlet weak var nameLabel: UILabel!
 	
     var cellData: PLFriendCellData?
@@ -47,15 +47,8 @@ class PLFriendCell: UITableViewCell{
     }
     
     private func _updateUI(cellData: PLFriendCellData){
-        if (cellData.picture.absoluteString.rangeOfString("default_avatar.png") != nil) || (cellData.picture.absoluteString.rangeOfString("default.png") != nil) || (cellData.picture.absoluteString == ""){
-            avatarImage.contentMode = .Center
-            avatarImage.backgroundColor = .affairColor()
-            avatarImage.image = UIImage(named: "user")
-        } else {
-			avatarImage.contentMode = .ScaleAspectFill
-            avatarImage.backgroundColor = .affairColor()
-            setCorrectImage(cellData.picture)
-        }
+		
+		avatarImage.setAvatarPlaceholder(avatarImage, url: cellData.picture)
         
         if cellData.me {
             nameLabel.text      = "Me"

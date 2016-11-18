@@ -28,12 +28,8 @@ class PLFriendProfileViewController: PLViewController {
 		nameLabel.text = friend?.name
         invitatedStatusButton.setTitle(status, forState: .Normal)
         friendProfileImageView.setImageWithURL(friend.picture, placeholderImage: UIImage(named: "user"))
-		if (friend.picture.absoluteString.rangeOfString("default_avatar.png") != nil) || (friend.picture.absoluteString.rangeOfString("default.png") != nil) || (friend.picture.absoluteString == "")
-			{
-			friendProfileImageView.contentMode = .Center
-			friendProfileImageView.backgroundColor = .affairColor()
-			friendProfileImageView.image = UIImage(named: "user")
-		}
+		
+		friendProfileImageView.setAvatarPlaceholder(friendProfileImageView, url: friend.picture)
 		
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: .hidePopUpMenu))
     }

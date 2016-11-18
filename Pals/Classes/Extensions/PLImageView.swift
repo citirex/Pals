@@ -59,4 +59,17 @@ extension UIImageView : PLSaveImageURLSettable {
             }
         }
     }
+	
+	func setAvatarPlaceholder(imageView: PLCircularImageView, url: NSURL) -> PLCircularImageView {
+		if (url.absoluteString.rangeOfString("default_avatar.png") != nil) || (url.absoluteString.rangeOfString("default.png") != nil) || (url.absoluteString == "") {
+			imageView.contentMode = .Center
+			imageView.backgroundColor = .affairColor()
+			imageView.image = UIImage(named: "user")
+		} else {
+			imageView.contentMode = .ScaleAspectFill
+			imageView.backgroundColor = .affairColor()
+			imageView.setImageSafely(fromURL: url, placeholderImage: UIImage(named: "user"))
+		}
+		return imageView
+	}
 }
