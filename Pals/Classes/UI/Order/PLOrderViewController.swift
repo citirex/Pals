@@ -476,7 +476,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviou
 //MARK: - CollectionView dataSource
 extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PLCardInfoDelegate {
 	
-	func addCardInfo(sender: PLCardInfoViewController) {
+	func addCardInfo() {
 		navigationController?.pushViewController((storyboard?.instantiateViewControllerWithIdentifier("Card Info"))!, animated: true)
 	}
     

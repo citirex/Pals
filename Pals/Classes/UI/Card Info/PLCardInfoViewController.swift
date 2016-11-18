@@ -10,7 +10,7 @@ import UIKit
 import Stripe
 
 protocol PLCardInfoDelegate: class {
-	func addCardInfo(sender: PLCardInfoViewController)
+	func addCardInfo()
 }
 
 class PLCardInfoViewController: PLViewController {
@@ -56,7 +56,7 @@ class PLCardInfoViewController: PLViewController {
     }
 	
 	func AddCardInfo() {
-		delegate?.addCardInfo(self)
+		delegate?.addCardInfo()
 	}
     
     func prefillCardFields() {
