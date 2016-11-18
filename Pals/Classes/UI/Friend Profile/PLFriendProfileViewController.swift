@@ -134,7 +134,7 @@ extension PLFriendProfileViewController {
         
         tabBarController?.switchTabBarItemTo(.OrderItem) {
             let object = PLFriendNotification(friend: self.friend, section: section)
-            PLNotifications.postNotification(.FriendSend, object: object)
+            PLNotifications.postNotification(.SendButtonPressed, object: object)
         }
     }
     
