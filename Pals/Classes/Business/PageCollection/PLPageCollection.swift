@@ -263,6 +263,10 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         }
     }
     
+    func updateItem(item: T, atIndex idx: Int) {
+        objects.replaceObjectAtIndex(idx, withObject: item)
+    }
+    
     func insert(obj: T, atIndex idx: Int) {
         objects.insertObject(obj, atIndex: idx)
     }

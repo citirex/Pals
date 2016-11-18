@@ -21,5 +21,5 @@ extension Selector {
     static let handleTap          = #selector(PLCheckbox.handleTap)
     
     static let sendButtonPressedNotification  = #selector(PLOrderViewController.sendButtonPressedNotification(_:))
-    static let qrCodeScannedNotification = #selector(PLProfileViewController.qrCodeScannedNotification(_:))
+    static let qrCodeScannedNotification  = #selector(PLProfileViewController.qrCodeScannedNotification(_:))
 }

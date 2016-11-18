@@ -141,9 +141,9 @@ class PLPushManager: NSObject {
     
     func processPushInfo(aps: [String:AnyObject], launchedByTap: Bool) {
         PLLog("Received remote notification: \n\(aps)", type: .Pushes)
-        if UIApplication.sharedApplication().applicationState == .Active {
-            PLShowAlert("Received remote notification", message: aps.description)
-        }
+//        if UIApplication.sharedApplication().applicationState == .Active {
+//            PLShowAlert("Received remote notification", message: aps.description)
+//        }
         if let pushData = aps[.info] as? [String : AnyObject] {
             let push = PLPush(data: pushData, launchedByTap: launchedByTap)
             if push.badge != nil {

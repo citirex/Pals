@@ -68,6 +68,10 @@ class PLDatasource<T: PLDatedObject where T : PLFilterable> : PLPageCollectionDe
         collection.clean()
     }
     
+    func updateItem(item: T, atIndex idx: Int) {
+        collection.updateItem(item, atIndex:idx)
+    }
+    
     //MARK: Adapter getters
     var count: Int { return collection.count }
     var pagesLoaded: Int { return collection.pagesLoaded }

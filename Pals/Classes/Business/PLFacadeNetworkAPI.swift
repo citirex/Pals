@@ -11,7 +11,7 @@ import Stripe
 typealias PLCheckoutOrderCompletion = (orders: [PLOrder], error: NSError?) -> ()
 typealias PLErrorCompletion = (error: NSError?) -> ()
 typealias PLFetchesBadgesCompletion = (badges: [PLBadge], error: NSError?) -> ()
-typealias PLUpdateOrderCompletion = (error: NSError?) -> ()
+typealias PLUpdateOrderCompletion = (order: PLOrder?, error: NSError?) -> ()
 
 protocol PLFacadeNetworkAPI {
     static func login(userName:String, password: String, completion: PLErrorCompletion)
@@ -214,10 +214,22 @@ extension PLFacade._PLFacade {
     func _updateOrder(order: PLOrder, completion: PLUpdateOrderCompletion) {
         let attributes = [PLKey.order_id.string : NSNumber(unsignedLongLong: order.id)]
         PLNetworkManager.postWithAttributes(.UpdateOrder, attributes: attributes) { (dic, error) in
-            guard error == nil else { return completion(error: error) }
-            order.used = true
-            order.serialize()
-            completion(error: nil)
+            print(dic)
+            if error != nil {
+                completion(order: nil, error: error)
+            } else {
+                PLNetworkManager.handleResponseKey(dic, completion: { (dic, error) in
+                    if let response = dic as? [String : AnyObject] {
+                        if let orderDic = response[.order] as? [String : AnyObject] {
+                            if let order = PLOrder(jsonDic: orderDic) {
+                                completion(order: order, error: nil)
+                                return
+                            }
+                        }
+                    }
+                    completion(order: nil, error: PLError(domain: .User, type: kPLErrorTypeBadResponse))
+                })
+            }
         }
     }
     
