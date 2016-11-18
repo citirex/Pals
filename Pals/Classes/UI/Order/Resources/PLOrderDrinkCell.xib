@@ -19,7 +19,7 @@
                         <rect key="frame" x="16" y="6" width="288" height="100"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ7-tK-EcZ">
-                                <rect key="frame" x="62" y="64" width="48" height="22"/>
+                                <rect key="frame" x="8" y="64" width="48" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                                     <action selector="minusButtonPressed:" destination="2YV-Qj-kwc" eventType="touchUpInside" id="jhn-0K-FTv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bud Light" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Wh-qi-sWo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bud Light" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Wh-qi-sWo">
                                 <rect key="frame" x="8" y="26" width="156" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,10 +80,10 @@
                             <constraint firstItem="fZ7-tK-EcZ" firstAttribute="centerY" secondItem="IAB-rG-Q14" secondAttribute="centerY" multiplier="1.5" id="Dvt-Rf-mIG"/>
                             <constraint firstItem="TdL-iY-ydE" firstAttribute="centerY" secondItem="IAB-rG-Q14" secondAttribute="centerY" id="HbZ-pA-wdJ"/>
                             <constraint firstItem="6Wh-qi-sWo" firstAttribute="leading" secondItem="IAB-rG-Q14" secondAttribute="leading" constant="8" id="HiQ-8V-b8u"/>
+                            <constraint firstItem="fZ7-tK-EcZ" firstAttribute="leading" secondItem="IAB-rG-Q14" secondAttribute="leading" constant="8" id="HuX-ub-v9Z"/>
                             <constraint firstAttribute="trailing" secondItem="TdL-iY-ydE" secondAttribute="trailing" id="Kc8-bi-Ft9"/>
                             <constraint firstItem="xPo-Ed-rhg" firstAttribute="leading" secondItem="Cct-rT-MvK" secondAttribute="trailing" id="UcC-6y-vzH"/>
                             <constraint firstItem="TdL-iY-ydE" firstAttribute="leading" secondItem="xPo-Ed-rhg" secondAttribute="trailing" id="X9a-xw-qbh"/>
-                            <constraint firstItem="fZ7-tK-EcZ" firstAttribute="centerX" secondItem="IAB-rG-Q14" secondAttribute="centerX" multiplier="0.6" id="ebQ-o2-Hp6"/>
                             <constraint firstItem="6Wh-qi-sWo" firstAttribute="centerY" secondItem="IAB-rG-Q14" secondAttribute="centerY" multiplier="0.8" id="spc-BK-RaS"/>
                         </constraints>
                     </view>

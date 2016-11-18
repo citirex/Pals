@@ -47,13 +47,13 @@ class PLFriendCell: UITableViewCell{
     }
     
     private func _updateUI(cellData: PLFriendCellData){
-        if cellData.picture.absoluteString == "" {
+        if cellData.picture.absoluteString.hasSuffix("default_avatar.png") || cellData.picture.absoluteString.hasSuffix("blank_avatar_240x240.gif") || (cellData.picture.absoluteString == ""){
             avatarImage.contentMode = .Center
             avatarImage.backgroundColor = .affairColor()
             avatarImage.image = UIImage(named: "user")
         } else {
 			avatarImage.contentMode = .ScaleAspectFill
-            avatarImage.backgroundColor = .clearColor()
+            avatarImage.backgroundColor = .affairColor()
             setCorrectImage(cellData.picture)
         }
         
