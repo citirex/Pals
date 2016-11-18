@@ -1495,7 +1495,7 @@
         <!--Notification-->
         <scene sceneID="hrQ-bI-Tqg">
             <objects>
-                <navigationController title="Notification" automaticallyAdjustsScrollViewInsets="NO" id="KY1-0O-lhN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NotificationNavigationController" title="Notification" automaticallyAdjustsScrollViewInsets="NO" id="KY1-0O-lhN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Notifications" image="notification-tab" id="ZDl-uy-OqD"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
