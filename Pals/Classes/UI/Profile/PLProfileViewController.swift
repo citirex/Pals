@@ -91,9 +91,22 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     
     func qrCodeScannedNotification(notification: NSNotification) {
         guard let order = notification.object as? PLOrder else { return }
-        PLFacade.updateOrder(order) { error in
+        startActivityIndicator(.WhiteLarge)
+        PLFacade.updateOrder(order) { (order, error) in
+            self.stopActivityIndicator()
             guard error == nil else { return PLShowErrorAlert(error: error!) }
-            PLShowAlert("", message: "Order \(order.id) was successfully used.")
+            if order != nil {
+                self.updateShowndCardOnSuccessScan(order!)
+            }
+        }
+    }
+    
+    func updateShowndCardOnSuccessScan(order: PLOrder) {
+        if let indexPath = exposedItemIndexPath {
+            currentDatasource.updateItem(order, atIndex: indexPath.item)
+            if let cell = collectionView?.cellForItemAtIndexPath(indexPath) as? PLOrderCardCell {
+                cell.order = order
+            }
         }
     }
     

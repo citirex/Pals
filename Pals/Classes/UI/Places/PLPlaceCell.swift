@@ -28,8 +28,13 @@ class PLPlaceCell: UITableViewCell {
                 backgroundImageView.setImageWithURLRequest(NSURLRequest(URL: picture),
                         placeholderImage: placeholderImage,
                         success: { [unowned self] request, response, image in
-                                                            
-                        self.backgroundImageView.addBlur(image, completion: { $0 != image }) }, failure: nil)
+                                    self.backgroundImageView.addBlur(image, completion: { $0 != image }) },
+                        failure: { [unowned self] request, response, error in
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        self.backgroundImageView.removeBlur()
+                                        self.backgroundImageView.image = placeholderImage
+                                    }
+                                })
             } else {
                 backgroundImageView.image = placeholderImage
             }
@@ -56,6 +61,11 @@ class PLPlaceCell: UITableViewCell {
         view.layer.shouldRasterize = true
     }
 
+    override func prepareForReuse() {
+         super.prepareForReuse()
+        backgroundImageView.removeBlur()
+    }
+    
 }
 
 

@@ -50,7 +50,7 @@ class PLBlurImageView: UIImageView {
 
 class PLBlurTask: NSOperation {
     
-    weak var image: UIImage?
+    var image: UIImage?
     weak var view: UIView?
     var blurredImage: UIImage?
     
@@ -73,7 +73,7 @@ class PLBlurTask: NSOperation {
         if cancelled {
             return
         }
-        picture.processImageUpToFilter(blur) { (image) in
+        picture.processImageUpToFilter(blur) {[unowned self] (image) in
             if self.cancelled {
                 return
             }

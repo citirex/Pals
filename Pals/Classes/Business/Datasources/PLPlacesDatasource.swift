@@ -36,6 +36,10 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
     }
     
     override func loadPage(completion: PLDatasourceIndicesChangeCompletion) {
+        super.loadPage(completion)
+        return
+        
+        // not included in this build
         PLFacade.fetchNearRegion { (region, error) in
             if region != nil {
                 self.region = region
