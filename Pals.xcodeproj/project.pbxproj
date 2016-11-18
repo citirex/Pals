@@ -201,8 +201,6 @@
 		E8DA8B851D8832E8008782E5 /* TGLStackedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B811D8832E8008782E5 /* TGLStackedViewController.m */; };
 		E8DA8B8F1D88334F008782E5 /* PLCollectionParalaxLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */; };
 		E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */; };
-		E8DA8B921D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */; };
-		E8DA8B931D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */; };
 		E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B8C1D88334F008782E5 /* PLProfileHeaderView.swift */; };
 		E8DA8B951D88334F008782E5 /* PLProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8DA8B8D1D88334F008782E5 /* PLProfileHeaderView.xib */; };
 		E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */; };
@@ -417,8 +415,6 @@
 		E8DA8B811D8832E8008782E5 /* TGLStackedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLStackedViewController.m; sourceTree = "<group>"; };
 		E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCollectionParalaxLayout.swift; sourceTree = "<group>"; };
 		E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileCollectionHelper.swift; sourceTree = "<group>"; };
-		E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileDrinkCollectionViewCell.swift; sourceTree = "<group>"; };
-		E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileDrinkCollectionViewCell.xib; sourceTree = "<group>"; };
 		E8DA8B8C1D88334F008782E5 /* PLProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileHeaderView.swift; sourceTree = "<group>"; };
 		E8DA8B8D1D88334F008782E5 /* PLProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLProfileHeaderView.xib; sourceTree = "<group>"; };
 		E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileViewController.swift; sourceTree = "<group>"; };
@@ -1103,8 +1099,6 @@
 				D4E53C651DDC9F330047477A /* PLOrderCardCell.xib */,
 				D4E53C791DDDAEB80047477A /* OrderList */,
 				D4E53C6A1DDCB7860047477A /* PLOrderCardScanView.swift */,
-				E8DA8B8A1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift */,
-				E8DA8B8B1D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib */,
 				E8DA8B8C1D88334F008782E5 /* PLProfileHeaderView.swift */,
 				E8DA8B8D1D88334F008782E5 /* PLProfileHeaderView.xib */,
 			);
@@ -1240,7 +1234,6 @@
 				24E286ED1D9E6C8700B8D80C /* updateprofile.json in Resources */,
 				E837C2001D902CAE0080A074 /* friends3.json in Resources */,
 				E837C2081D902CAE0080A074 /* order_drinks3.json in Resources */,
-				E8DA8B931D88334F008782E5 /* PLProfileDrinkCollectionViewCell.xib in Resources */,
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
 				E837C1FB1D902CAE0080A074 /* drinks2.json in Resources */,
 				E837C2011D902CAE0080A074 /* login.json in Resources */,
@@ -1391,7 +1384,6 @@
 				E85083131DACEC5B0077A81C /* PLEmptyBackgroundView.swift in Sources */,
 				24DDA9361D9A663500FCDBCA /* PLEventsDatasource.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
-				E8DA8B921D88334F008782E5 /* PLProfileDrinkCollectionViewCell.swift in Sources */,
 				D4945B151DD3585F0005FD8C /* PLPaymentSource.swift in Sources */,
 				D4949F5F1DCD085700FEF0C8 /* PLPaymentManager.swift in Sources */,
 				04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */,
