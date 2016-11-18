@@ -90,7 +90,9 @@ class PLOrderCardCell: UICollectionViewCell {
                 iconName = "list_icon"
                 container = scanContainerView
             }
-            cardModeButton.setBackgroundImage(UIImage(named: iconName), forState: .Normal)
+            if order != nil && !order!.used {
+                cardModeButton.setBackgroundImage(UIImage(named: iconName), forState: .Normal)
+            }
             showContainer(container)
         }
     }
@@ -113,9 +115,13 @@ class PLOrderCardCell: UICollectionViewCell {
                 headerView.backgroundColor = o.cardType.color
                 let named = o.used ? "green_check" : "qr_icon"
                 let image = UIImage(named: named)
-                cardModeButton.setBackgroundImage(image, forState: .Normal)
                 cardModeButton.hidden = !o.used
                 cardModeButton.enabled = !o.used
+                cardModeButton.setBackgroundImage(image, forState: .Normal)
+                if o.used && mode == .Scan {
+                    scanContainerView.disableCamera()
+                    mode = .List
+                }
             } else {
                 placeTitleLabel.text = "<Error>"
                 musicGenresLabel.text = "<Error>"
@@ -158,7 +164,6 @@ class PLOrderCardCell: UICollectionViewCell {
     func onCardDidSelect(selected: Bool) {
         guard let order = order else { return }
         if !order.used {
-            cardModeButton.enabled = selected
             cardModeButton.hidden = !selected
             if mode == .Scan {
                 if !selected && scanContainerView.scannerIsRunning {

@@ -58,24 +58,28 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
         
         scanner = QRCode(autoRemoveSubLayers: false, lineWidth: 0)
         scanner.prepareScan(previewView) { [unowned self] qrCode in
-            //            if qrCode == self.order!.place.QRcode {
-            self.checkmark.hidden = false
-            PLNotifications.postNotification(.QRCodeScanned, object: self.order)
-            //            } else {
-            //                self.errorLabel.hidden = false
-            //            }
+            if qrCode == self.order!.place.QRcode {
+                self.checkmark.hidden = false
+                PLNotifications.postNotification(.QRCodeScanned, object: self.order)
+            } else {
+                self.errorLabel.hidden = false
+            }
         }
 
     }
     
     func enableCamera() {
         setupScanner()
-        scanner.startScan()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.scanner.startScan()
+        }
         scannerIsRunning = true
     }
     
     func disableCamera() {
-        scanner.stopScan()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.scanner.stopScan()
+        }
         scanner.removeAllLayers()
         scannerIsRunning = false
     }
@@ -88,7 +92,6 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
 extension PLOrderCardScanView: PLInitializable {
     
     func initialize() {
-        backgroundColor = .yellowColor()
         
         previewView = UIView.newAutoLayoutView()
         scanOverlay = UIImageView.newAutoLayoutView()
