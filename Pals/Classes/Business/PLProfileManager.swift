@@ -80,19 +80,25 @@ extension PLProfileManager : PLAuthStorage {
         }
     }
     
+    var profileStoragePath : String {
+        let manager = NSFileManager.defaultManager()
+        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
+        return url.URLByAppendingPathComponent("user_profile_info").path!
+    }
+    
     func saveProfile(userDic: [String : AnyObject]) -> Bool {
         if let user = PLCurrentUser(jsonDic: userDic) {
             profile = user
             PLNotifications.postNotification(.ProfileChanged)
-            ud.setObject(userDic, forKey: PLKey.user.string)
-            ud.synchronize()
+            NSKeyedArchiver.archiveRootObject(userDic, toFile: profileStoragePath)
             return true
         }
         return false
     }
     
     func restoreProfile() {
-        if let profileDic = ud.dictionaryForKey(PLKey.user.string) {
+        let userObj = NSKeyedUnarchiver.unarchiveObjectWithFile(profileStoragePath)
+        if let profileDic = userObj as? [String : AnyObject] {
             if let user = PLCurrentUser(jsonDic: profileDic) {
                 profile = user
                 restoreToken()

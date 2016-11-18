@@ -57,10 +57,6 @@ class PLOrderCheckoutPopupViewController: UIViewController {
     
     weak var delegate: CheckoutOrderPopupDelegate? = nil
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,12 +122,23 @@ class PLOrderCheckoutPopupViewController: UIViewController {
         userNameLabel.text = userName
         locationLabel.text = locationName
         amountLabel.text = String(format: "$%.2f", orderAmount!)
+        if let o = order {
+            if o.message != nil && o.message!.characters.count > 0 {
+                messageTextView.text = o.message
+            }
+        }
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
 
+    func show(from vc: UIViewController) {
+        vc.presentViewController(self, animated: false) { [unowned self] in
+            self.show()
+        }
+    }
+    
     //MARK: - Actions
     func show() {
         popupView.alpha = 0

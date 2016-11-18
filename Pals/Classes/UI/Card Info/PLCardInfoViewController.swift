@@ -9,8 +9,8 @@
 import UIKit
 import Stripe
 
-protocol PLCardInfoDelegate: class {
-	func addCardInfo()
+protocol PLCardInfoViewControllerDelegate: class {
+    func cardInfoViewControllerDidAddPaymentInfo(vc: PLCardInfoViewController)
 }
 
 class PLCardInfoViewController: PLViewController {
@@ -26,7 +26,7 @@ class PLCardInfoViewController: PLViewController {
     lazy var expirationDatePicker = PLExpirationDatePicker()
     lazy var cardForm = STPCardParams()
 	
-	weak var delegate: PLCardInfoDelegate? = nil
+	weak var delegate: PLCardInfoViewControllerDelegate?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +54,6 @@ class PLCardInfoViewController: PLViewController {
             creditCardNumberTextField.becomeFirstResponder()
         }
     }
-	
-	func AddCardInfo() {
-		delegate?.addCardInfo()
-	}
     
     func prefillCardFields() {
         if let source = PLFacade.profile?.customer?.paymentSource {
@@ -154,13 +150,17 @@ class PLCardInfoViewController: PLViewController {
                 self.enableControls(true)
                 if error != nil {
                     PLShowErrorAlert(error: error!)
-                } else{
-					let alertController = UIAlertController(title: "You have successfully added your card details", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-					
-					alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-						self.navigationController?.popViewControllerAnimated(true)
-					}))
-					self.presentViewController(alertController, animated: true, completion: nil)
+                } else {
+                    if self.delegate != nil {
+                        self.navigationController?.popViewControllerAnimated(false)
+                        self.delegate?.cardInfoViewControllerDidAddPaymentInfo(self)
+                    } else {
+                        let alertController = UIAlertController(title: "You have successfully added your card details", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+                            self.navigationController?.popViewControllerAnimated(true)
+                        }))
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                    }
                 }
             })
         case .Invalid:
