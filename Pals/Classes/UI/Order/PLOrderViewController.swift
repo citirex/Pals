@@ -64,7 +64,7 @@ class PLOrderViewController: PLViewController {
     
     override func viewWillAppear(animated: Bool) {
         PLNotifications.addObserver(self, selector: #selector(onDidSelectNewPlace(_:)), type: .PlaceDidSelect)
-        PLNotifications.addObserver(self, selector: .friendSendNotification, type: .FriendSend)
+        PLNotifications.addObserver(self, selector: .sendButtonPressedNotification, type: .SendButtonPressed)
         
         super.viewWillAppear(animated)
         
@@ -107,7 +107,7 @@ class PLOrderViewController: PLViewController {
     
     // MARK: - Notifications
     
-    func send(notification: NSNotification) {
+    func sendButtonPressedNotification(notification: NSNotification) {
         guard let object = notification.object as? PLFriendNotification else { return }
         order.user = object.friend
         switchSection(object.section)

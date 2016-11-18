@@ -57,7 +57,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        PLNotifications.addObserver(self, selector: #selector(onDidCreateNewOrders(_:)), type: .OrdersDidCreate)
+        
         willAppearCompletion?()
         willAppearCompletion = nil
         appeared = true
@@ -67,6 +67,8 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
         if needsToShowNewOrder == true && currentDatasource.count > 0 {
             showNewOrder()
         }
+        
+        registerNotifications()
     }
     
     override func viewDidLoad() {
@@ -76,22 +78,22 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
         currentSection = .Drinks
         view.addSubview(spinner)
         setupCollectionView()
-        
-        registerKeyboardNotifications()
     }
     
     
     // MARK: - Notifications
     
-    func registerKeyboardNotifications() {
-        PLNotifications.addObserver(self, selector: .changeOrderNotification, type: .OrderDidChange)
+    func registerNotifications() {
+        PLNotifications.addObserver(self, selector: .qrCodeScannedNotification, type: .QRCodeScanned)
+        PLNotifications.addObserver(self, selector: #selector(onDidCreateNewOrders(_:)), type: .OrdersDidCreate)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotificationType.ProfileChanged.str, object: nil)
     }
     
-    func didChangeOrder(notification: NSNotification) {
+    func qrCodeScannedNotification(notification: NSNotification) {
         guard let order = notification.object as? PLOrder else { return }
-        PLFacade.updateOrder(order) { order, error in
+        PLFacade.updateOrder(order) { error in
             guard error == nil else { return PLShowErrorAlert(error: error!) }
+            PLShowAlert("", message: "Order \(order.id) was successfully used.")
         }
     }
     
