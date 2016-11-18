@@ -33,9 +33,9 @@ enum PLNotificationType: String {
     case ProfileChanged
     case ProfileSet
     case PlaceDidSelect
-    case FriendSend
+    case SendButtonPressed
     case OrdersDidCreate
-    case OrderDidChange
+    case QRCodeScanned
     var str: String {return rawValue}
 }
 

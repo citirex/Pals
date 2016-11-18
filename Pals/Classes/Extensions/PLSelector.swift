@@ -20,6 +20,6 @@ extension Selector {
     static let checkoutPressed    = #selector(PLOrderViewController.checkoutButtonPressed(_:))
     static let handleTap          = #selector(PLCheckbox.handleTap)
     
-    static let friendSendNotification  = #selector(PLOrderViewController.send(_:))
-    static let changeOrderNotification = #selector(PLProfileViewController.didChangeOrder(_:))
+    static let sendButtonPressedNotification  = #selector(PLOrderViewController.sendButtonPressedNotification(_:))
+    static let qrCodeScannedNotification = #selector(PLProfileViewController.qrCodeScannedNotification(_:))
 }

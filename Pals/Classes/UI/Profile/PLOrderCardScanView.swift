@@ -56,13 +56,13 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
         errorLabel.hidden = true
         
         scanner = QRCode(autoRemoveSubLayers: false, lineWidth: 0)
-        scanner.prepareScan(previewView) { [unowned self] QRCode in
-            if QRCode == self.order!.place.QRcode { 
+        scanner.prepareScan(previewView) { [unowned self] qrCode in
+//            if qrCode == self.order!.place.QRcode {
                 self.checkmark.hidden = false
-                PLNotifications.postNotification(.OrderDidChange, object: self.order)
-            } else {
-                self.errorLabel.hidden = false
-            }
+                PLNotifications.postNotification(.QRCodeScanned, object: self.order)
+//            } else {
+//                self.errorLabel.hidden = false
+//            }
         }
         scanner.startScan()
     }
