@@ -11,6 +11,11 @@ class PLOrderItemHeaderView: UIView, PLNibNamable {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var placeImageView: UIImageView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        translatesAutoresizingMaskIntoConstraints = true
+    }
+    
     func update(address: String, date: String, placeURL: NSURL?) {
         addressLabel.text = address
         dateLabel.text = date
