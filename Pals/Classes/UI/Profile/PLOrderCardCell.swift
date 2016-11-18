@@ -75,7 +75,8 @@ class PLOrderCardCell: UICollectionViewCell {
     private lazy var listContainerView: PLOrderCardListView = PLOrderCardListView.loadFromNib()!
     private lazy var scanContainerView: PLOrderCardScanView = PLOrderCardScanView()
     private var currentContainer: UIView?
-    
+
+    var checked = false
     
     var mode: PLCardMode = .List {
         didSet {
@@ -110,6 +111,11 @@ class PLOrderCardCell: UICollectionViewCell {
                 placeTitleLabel.text = o.place.name
                 musicGenresLabel.text = o.place.musicGengres
                 headerView.backgroundColor = o.cardType.color
+                let named = o.used ? "green_check" : "qr_icon"
+                let image = UIImage(named: named)
+                cardModeButton.setBackgroundImage(image, forState: .Normal)
+                cardModeButton.hidden = !o.used
+                cardModeButton.enabled = !o.used
             } else {
                 placeTitleLabel.text = "<Error>"
                 musicGenresLabel.text = "<Error>"
@@ -150,12 +156,25 @@ class PLOrderCardCell: UICollectionViewCell {
     }
     
     func onCardDidSelect(selected: Bool) {
-        cardModeButton.enabled = selected
+        guard let order = order else { return }
+        if !order.used {
+            cardModeButton.enabled = selected
+            cardModeButton.hidden = !selected
+            if mode == .Scan {
+                if !selected && scanContainerView.scannerIsRunning {
+                    scanContainerView.disableCamera()
+                    mode = .List
+                } else if selected && !scanContainerView.scannerIsRunning {
+                    scanContainerView.enableCamera()
+                }
+            }
+        }
     }
     
     @IBAction func switchModeButtonClicked() {
-        mode = (mode != .List) ? .List : .Scan
+        mode = mode != .List ? .List : .Scan
     }
+
 }
 
 extension PLOrderCardCell : PLReusableCell {

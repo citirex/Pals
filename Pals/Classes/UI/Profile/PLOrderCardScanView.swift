@@ -32,10 +32,11 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
         didSet {
             guard let order = order else { return }
             PLLog("Did set order \(order.id)")
-            if !order.used { checking() }
+            if !order.used { enableCamera() }
         }
     }
     
+    var scannerIsRunning = false
     
     override init(frame frameRect: CGRect) {
         super.init(frame: frameRect)
@@ -49,7 +50,7 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
         setupLayoutConstraints()
     }
     
-    private func checking() {
+    func setupScanner() {
         if bounds == CGRectZero { layoutIfNeeded() }
         
         checkmark.hidden = true
@@ -57,14 +58,26 @@ class PLOrderCardScanView: UIView, PLOrderContainable {
         
         scanner = QRCode(autoRemoveSubLayers: false, lineWidth: 0)
         scanner.prepareScan(previewView) { [unowned self] qrCode in
-//            if qrCode == self.order!.place.QRcode {
-                self.checkmark.hidden = false
-                PLNotifications.postNotification(.QRCodeScanned, object: self.order)
-//            } else {
-//                self.errorLabel.hidden = false
-//            }
+            //            if qrCode == self.order!.place.QRcode {
+            self.checkmark.hidden = false
+            PLNotifications.postNotification(.QRCodeScanned, object: self.order)
+            //            } else {
+            //                self.errorLabel.hidden = false
+            //            }
         }
+
+    }
+    
+    func enableCamera() {
+        setupScanner()
         scanner.startScan()
+        scannerIsRunning = true
+    }
+    
+    func disableCamera() {
+        scanner.stopScan()
+        scanner.removeAllLayers()
+        scannerIsRunning = false
     }
     
 }
