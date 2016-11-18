@@ -58,6 +58,8 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        collectionView?.reloadData()
+        
         willAppearCompletion?()
         willAppearCompletion = nil
         appeared = true
