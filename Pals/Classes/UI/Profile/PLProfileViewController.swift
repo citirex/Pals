@@ -10,9 +10,9 @@ private let kCellHeaderOffset: CGFloat = 54
 
 class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable  {
 
-    private var collectionHelper = PLProfileCollectionHelper()
-    private var datasourceSwitcher = PLProfileDatasourceSwitcher()
-    private var currentDatasource: PLOrderDatasource { return datasourceSwitcher.currentDatasource }
+    var collectionHelper = PLProfileCollectionHelper()
+    var datasourceSwitcher = PLProfileDatasourceSwitcher()
+    var currentDatasource: PLOrderDatasource { return datasourceSwitcher.currentDatasource }
     
     private var needsToShowNewOrder = false
     
@@ -57,7 +57,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-		
+        
 		collectionBackgroundView.userPicImageView.setImageWithURL(PLFacade.profile!.cellData.picture)
 		collectionBackgroundView.userPicImageView.setAvatarPlaceholder(collectionBackgroundView.userPicImageView, url: profile!.picture)
         

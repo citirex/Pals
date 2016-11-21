@@ -148,12 +148,19 @@ class PLPushManager: NSObject {
             let push = PLPush(data: pushData, launchedByTap: launchedByTap)
             if push.badge != nil {
                 notifyPush(push)
+                if push.badge?.type == .Order {
+                    notifyProfile()
+                }
             }
         }
     }
     
     func notifyPush(push: PLPush) {
         NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: nil)
+    }
+    
+    func notifyProfile() {
+        PLNotifications.postNotification(.OrderDidReceive)
     }
     
 }

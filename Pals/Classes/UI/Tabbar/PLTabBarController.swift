@@ -46,6 +46,7 @@ class PLTabBarController: UITabBarController {
     // MARK: - Private methods
     
     private func registerForRemoteNotifications() {
+        PLNotifications.addObserver(self, selector: .orderDidReceiveNotification, type: .OrderDidReceive)
         NSNotificationCenter.defaultCenter().addObserverForName(kPLPushManagerDidReceivePush, object: nil,
             queue: .mainQueue()) { [unowned self] notification in
             self.updateBadgeCount()
@@ -72,7 +73,25 @@ class PLTabBarController: UITabBarController {
             app.applicationIconBadgeNumber = numberOfBadges
         }
     }
+    
+    func orderDidReceiveNotification() {
+        var profileViewController: PLProfileViewController!
+        
+        if let profileVC = UIApplication.topViewController(selectedViewController)
+            as? PLProfileViewController {
+            profileViewController = profileVC
+        } else {
+            if let profileVC = UIApplication.topViewController(viewControllers!.first) as? PLProfileViewController {
+                profileViewController = profileVC
+            }
+        }
+        
+        profileViewController.datasourceSwitcher.clear()
+        profileViewController.loadPageIfEmpty()
+    }
+    
 }
+
 
 // MARK: - UITabBarControllerDelegate
 
@@ -88,6 +107,7 @@ extension PLTabBarController: UITabBarControllerDelegate {
         }
     }
 }
+
 
 extension UITabBarController {
 
@@ -130,3 +150,24 @@ extension UIViewController {
     }
     
 }
+
+
+extension UIApplication {
+    
+    class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = base as? UINavigationController {
+            return topViewController(navigationController.visibleViewController)
+        }
+        if let tabBarController = base as? UITabBarController {
+            if let selected = tabBarController.selectedViewController {
+                return topViewController(selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(presented)
+        }
+        return base
+    }
+    
+}
+
