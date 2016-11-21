@@ -52,9 +52,50 @@
                 "message":"Hi, check out this amazing tasty coffee!",
                 "is_vip":0,
                 "date" : 1475337600
-         },
-         {
+                },
+                
+                
+                
+                {
                 "id":2,
+                "user":{
+                "id" : 6,
+                "name" : "Lysandra Eabbeche",
+                "picture" : "https://robohash.org/lysandraeabbeche",
+                "email" : "lysandraeabbeche@gmail.com"
+                },
+                "place":{
+                "id":1,
+                "name":"Coffee House",
+                "picture":"https://irs0.4sqi.net/img/general/width960/btxjlgiz_M5t6IIPTd0PrjB5k0aw5vonDzu3ufwOdnI.jpg",
+                "genres":"Lounge/Pop/Jazz/Slamming Brutal Death Metal",
+                "address":"86a Olesya Gonchara str, Kiev",
+                "phone":"380441112233",
+                "location":"50.448298:30.496656",
+                "close_time":"20:00",
+                "access_code":"BBBB666",
+                "qr_code" : "https://irs0.4sqi.net/img/general/width960/btxjlgiz_M5t6IIPTd0PrjB5k0aw5vonDzu3ufwOdnI.jpg"
+                },
+                "drinks" : [
+                            {
+                            "drink" : {
+                            "id":7,
+                            "name":"Tyrconnell whiskey",
+                            "price":25.3,
+                            "type":2
+                            },
+                            "quantity" : 1
+                            }
+                            ],
+                "message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut dolor ut tortor tincidunt tristique eu nec lectus. Nullam pellentesque iaculis felis a tempor. Ut aliquet tincidunt arcu a pellentesque. Aenean aliquet rutrum facilisis. Sed iaculis tincidunt libero ac dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tempor lacus rutrum dui posuere, eu tempor odio commodo. Aenean auctor tincidunt metus, et egestas libero varius eu. Suspendisse condimentum, ex ut aliquet aliquet, augue urna vestibulum sapien, nec scelerisque nulla mi sed nibh. Aliquam vulputate erat at felis mollis, non faucibus orci rhoncus. Cras rhoncus lacus ac leo pulvinar auctor. Duis eleifend tortor risus. Nullam ut risus sit amet lorem blandit molestie. Integer at tempus ligula, eget auctor diam. Suspendisse potenti. Maecenas suscipit venenatis ornare. Duis a ipsum nec arcu rhoncus convallis eget sit amet enim. Phasellus molestie leo et turpis porta, sit amet maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut dolor ut tortor tincidunt tristique eu nec lectus. Nullam pellentesque iaculis felis a tempor. Ut aliquet tincidunt arcu a pellentesque. Aenean aliquet rutrum facilisis. Sed iaculis tincidunt libero ac dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tempor lacus rutrum dui posuere, eu tempor odio commodo. Aenean auctor tincidunt metus, et egestas libero varius eu. Suspendisse condimentum, ex ut aliquet aliquet, augue urna vestibulum sapien, nec scelerisque nulla mi sed nibh. Aliquam vulputate erat at felis mollis, non faucibus orci rhoncus. Cras rhoncus lacus ac leo pulvinar auctor. Duis eleifend tortor risus. Nullam ut risus sit amet lorem blandit molestie. Integer at tempus ligula, eget auctor diam. Suspendisse potenti. Maecenas suscipit venenatis ornare. Duis a ipsum nec arcu rhoncus convallis eget sit amet enim. Phasellus molestie leo et turpis porta, sit amet maximus.",
+                "is_vip":0,
+                "is_used" : 1,
+                "date" : 1475337600
+                },
+                
+                
+                {
+                "id":3,
                 "user":{
                    "id":20,
                    "name":"Steven Whitney",
@@ -69,51 +110,54 @@
                    "address":"74 Olesya Gonchara str, Kiev",
                    "phone":"380449998877",
                    "location":"50.449099:30.499075",
-                   "close_time":"18:00"
+                   "close_time":"18:00",
+                    "qr_code" : "https://irs0.4sqi.net/img/general/width960/31068316_m90JTVhqQ6g7Nl0gWH94IpWXzO1brerbIJY_8OJmUSs.jpg"
                 },
                 "drinks" : [
                                 {
-                                    "drink" : {
-                                        "id":13,
-                                        "name":"Vodka Pshenichna 40%",
-                                        "price":29.0,
-                                        "type":2
-                                    },
-                                    "quantity" : 2
+                            "drink" : {
+                            "id":6,
+                            "name":"Rogan Svitle 4.5%",
+                            "price":12.9,
+                            "type":1
+                            },
+                            "quantity" : 2
+                            },
+                            {
+                                "drink" : {
+                                    "id":14,
+                                    "name":"Portwine 777 12%",
+                                    "price":18.22,
+                                    "type":1
                                 },
-                                {
-                                    "drink" : {
-                                        "id":14,
-                                        "name":"Portwine 777 12%",
-                                        "price":18.22,
-                                        "type":1
-                                    },
-                                    "quantity" : 5
-                                }
+                                "quantity" : 5
+                            }
                             ],
                 "message":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.",
                 "is_vip":1,
-                "access_code":"FFGG333",
-                "qr_code":"https://robohash.org/stevenwhitney",
                 "date" : 1475139600
          },
+                
+                
+                
          {
-                "id":3,
+                "id":4,
                 "user":{
-                   "id":8,
-                   "name":"Luther Mounce",
-                   "picture":"https://robohash.org/luthermounce",
-                   "email":"luthermounce@gmail.com"
+                "id" : 5,
+                "name" : "Anderson Lowell",
+                "picture" : "https://robohash.org/andersonlowell",
+                "email" : "andersonlowell@gmail.com"
                 },
                 "place":{
-                   "id":1,
-                   "name":"Coffee House",
-                   "picture":"https://irs0.4sqi.net/img/general/width960/btxjlgiz_M5t6IIPTd0PrjB5k0aw5vonDzu3ufwOdnI.jpg",
-                   "genres":"Lounge/Pop/Jazz/Slamming Brutal Death Metal",
-                   "address":"86a Olesya Gonchara str, Kiev",
-                   "phone":"380441112233",
-                   "location":"50.448298:30.496656",
-                   "close_time":"20:00"
+                "id" : 2,
+                "name" : "OTP Bank",
+                "picture" : "https://irs0.4sqi.net/img/general/width960/31068316_m90JTVhqQ6g7Nl0gWH94IpWXzO1brerbIJY_8OJmUSs.jpg",
+                "genres" : "Ambient",
+                "address" : "74 Olesya Gonchara str, Kiev",
+                "phone" : "380449998877",
+                "location" : "50.449099:30.499075",
+                "close_time" : "18:00",
+                "qr_code" : "https://irs0.4sqi.net/img/general/width960/31068316_m90JTVhqQ6g7Nl0gWH94IpWXzO1brerbIJY_8OJmUSs.jpg"
                 },
                 "drinks" : [
                                 {
@@ -128,12 +172,14 @@
                             ],
                 "message":"Hi, check out this amazing tasty coffee!",
                 "is_vip":0,
-                "access_code":"BBBB666",
-                "qr_code":"scarfac8",
+                "is_used" : 0,
                 "date" : 1475139600
          },
+                
+                
+                
          {
-                "id":4,
+                "id":5,
                 "user":{
                    "id":8,
                    "name":"Luther Mounce",
@@ -148,7 +194,9 @@
                    "address":"86a Olesya Gonchara str, Kiev",
                    "phone":"380441112233",
                    "location":"50.448298:30.496656",
-                   "close_time":"20:00"
+                   "close_time":"20:00",
+                    "access_code":"BBBB666",
+                    "qr_code":"scarfac8",
                 },
                 "drinks" : [
                             {
@@ -162,11 +210,12 @@
                             }
                             ],
                 "message":"Hi, check out this amazing tasty coffee!",
-                "is_vip":0,
-                "access_code":"BBBB666",
-                "qr_code":"scarfac8",
+                "is_vip":1,
                 "date" : 1475053200
          },
+                
+                
+                
          {
                 "id":5,
                 "user":{
