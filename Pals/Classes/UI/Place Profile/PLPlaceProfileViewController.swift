@@ -249,11 +249,9 @@ extension PLPlaceProfileViewController: UICollectionViewDelegate {
         })
     }
 
-    
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == events.count - 1 { loadEvents() }
+        if events.shouldLoadNextPage(indexPath) { loadEvents() }
     }
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

@@ -363,7 +363,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
 
 extension PLProfileViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == currentDatasource.count-1 {
+        if currentDatasource.shouldLoadNextPage(indexPath){
             loadPage()
         }
     }

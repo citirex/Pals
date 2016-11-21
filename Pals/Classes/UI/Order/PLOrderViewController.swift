@@ -124,11 +124,14 @@ class PLOrderViewController: PLViewController {
                 setNewPlace(notifObj.place)
             }
             if let event = notifObj.event {
-                //TODO: switch to Covers if event is selected and Covers section is not
+                order.appendCover(event)
                 if currentSection != .Covers {
                     switchSection(.Covers)
+                } else {
+                    let visibleItems = collectionView.indexPathsForVisibleItems()
+                    collectionView.reloadItemsAtIndexPaths(visibleItems)
                 }
-                order.appendCover(event)
+                updateCheckoutButtonState()
             }
         }
     }
@@ -144,7 +147,7 @@ extension PLOrderViewController {
     }
     
     private func loadDrinks() {
-        if drinksDatasource.placeId == nil {
+        if order.place == nil {
             return
         }
         startActivityIndicator(.WhiteLarge)
@@ -156,7 +159,7 @@ extension PLOrderViewController {
     }
     
     private func loadCovers() {
-        if coversDatasource.placeId == nil {
+        if order.place == nil {
             return
         }
         startActivityIndicator(.WhiteLarge)
@@ -239,7 +242,8 @@ extension PLOrderViewController {
     }
     
     func updateCheckoutButtonState() {
-        (order.drinkSetCount > 0 || order.coverSetCount > 0) ? showCheckoutButton() : hideCheckoutButton()
+        let criteria = (order.drinkSetCount > 0 || order.coverSetCount > 0) && order.place != nil && order.user != nil
+        criteria ? showCheckoutButton() : hideCheckoutButton()
     }
     
     private func showCheckoutButton() {
@@ -516,7 +520,6 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             let drink = drinksDatasource[indexPath.row]
             cell.delegate = self
             cell.setupWith(drink, isVip: order.isVIP)
-
             cell.drinkCount = 0
             if let item = order.itemById(drink.id, inSection: .Drinks) {
                 cell.drinkCount = item.quantity
@@ -527,11 +530,15 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             let cover = coversDatasource[indexPath.row]
             cell.event = cover
             cell.delegate = self
-            cell.coverNumber = 0
-            if let item = order.itemById(cover.id, inSection: .Covers) {
-                cell.coverNumber = item.quantity
-            }
+            updateCoverCount(cover, inCell: cell)
             return cell
+        }
+    }
+    
+    func updateCoverCount(cover: PLEvent, inCell cell: PLOrderCoverCell) {
+        cell.coverNumber = 0
+        if let item = order.itemById(cover.id, inSection: .Covers) {
+            cell.coverNumber = item.quantity
         }
     }
     
@@ -573,11 +580,10 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         switch currentSection {
-        case .Drinks: if indexPath.row == drinksDatasource.count - 1 { loadDrinks() }
-        case .Covers: if indexPath.row == coversDatasource.count - 1 { loadCovers() }
+        case .Drinks: if drinksDatasource.shouldLoadNextPage(indexPath) { loadDrinks() }
+        case .Covers: if coversDatasource.shouldLoadNextPage(indexPath) { loadCovers() }
         }
     }
-    
 }
 
 extension PLOrderViewController : PLCoverCellDelegate {
@@ -606,5 +612,6 @@ extension PLOrderViewController: PLOrderFriendsSelectionDelegate {
         order.user = friend
         collectionView.reloadSections(NSIndexSet(index: 0))
         controller.navigationController?.popViewControllerAnimated(true)
+        updateCheckoutButtonState()
     }
 }
