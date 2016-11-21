@@ -81,6 +81,7 @@ class PLFriendProfileViewController: PLViewController {
     }
     
     private func unfriend() {
+		self.hidePopUpMenu()
         startActivityIndicator(.WhiteLarge)
         PLFacade.unfriend(friend) { [unowned self] error in
             self.stopActivityIndicator()
@@ -95,6 +96,7 @@ class PLFriendProfileViewController: PLViewController {
     }
     
     private func addFriend() {
+		self.hidePopUpMenu()
         startActivityIndicator(.WhiteLarge)
         PLFacade.addFriend(friend) { [unowned self] error in
             self.stopActivityIndicator()
