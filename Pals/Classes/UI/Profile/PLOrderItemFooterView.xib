@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;user message&gt;" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62G-hX-5hK">
-                    <rect key="frame" x="68" y="24" width="224" height="16"/>
+                    <rect key="frame" x="68" y="24" width="224" height="28"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="Oc4-Yf-xbD"/>
@@ -40,7 +40,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="62G-hX-5hK" firstAttribute="top" secondItem="n48-g0-fG3" secondAttribute="bottom" constant="2" id="Cfn-Uz-YjK"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="62G-hX-5hK" secondAttribute="bottom" constant="8" id="J5M-4l-qlD"/>
+                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="62G-hX-5hK" secondAttribute="bottom" constant="8" id="J5M-4l-qlD"/>
                 <constraint firstItem="62G-hX-5hK" firstAttribute="leading" secondItem="X5f-Zm-WlA" secondAttribute="trailing" constant="8" id="PNJ-eX-yvV"/>
                 <constraint firstAttribute="trailing" secondItem="62G-hX-5hK" secondAttribute="trailing" constant="8" id="bqW-aX-MwW"/>
                 <constraint firstItem="X5f-Zm-WlA" firstAttribute="leading" secondItem="0nX-7f-gqo" secondAttribute="leading" constant="10" id="jdx-uG-hWv"/>
