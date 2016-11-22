@@ -60,6 +60,8 @@ class PLOrderCardListView: UIView, PLOrderContainable, PLNibNamable {
             frame.size.height = tableFooterHeight
             tableView.tableFooterView?.frame = frame
         }
+        
+        tableView.contentInset.bottom = footerView.userMessageLabel.bounds.height-footerView.initialMessageLabelHeight
     }
     
     var order: PLOrder? {

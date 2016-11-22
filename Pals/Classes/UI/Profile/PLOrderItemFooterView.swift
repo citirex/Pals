@@ -12,9 +12,12 @@ class PLOrderItemFooterView: UIView, PLNibNamable {
     @IBOutlet var userMessageLabel: UILabel!
     @IBOutlet var userImageView: PLCircularImageView!
 
+    var initialMessageLabelHeight = CGFloat(0)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         translatesAutoresizingMaskIntoConstraints = true
+        initialMessageLabelHeight = userMessageLabel.frame.height
     }
     
     func update(username: String, message: String?, userPicture: NSURL?) {

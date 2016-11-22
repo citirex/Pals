@@ -159,8 +159,9 @@ class PLOrderCardCell: UICollectionViewCell {
         let mask = CAShapeLayer()
         mask.path = path.CGPath
         underlay.layer.mask = mask
-		
-		listContainerView.tableView.contentInset.bottom = listContainerView.footerView.userMessageLabel.bounds.height
+        if currentContainer === listContainerView {
+            listContainerView.setNeedsLayout()
+        }
     }
     
     func onCardDidSelect(selected: Bool) {
