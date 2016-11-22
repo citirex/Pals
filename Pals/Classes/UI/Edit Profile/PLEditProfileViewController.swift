@@ -15,19 +15,17 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var additionalTextField: UITextField!
     @IBOutlet weak var addProfileImageButton: UIButton!
+    @IBOutlet weak var editBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var applyButton: UIButton!
+    
     
     private var edit = false {
         didSet {
             updateEnabledStatus(edit)
-            guard edit else {
-                if editData != nil {
-                    updateUserProfileIfNeeded(editData!)
-                }
-                return
-            }
             usernameTextField.becomeFirstResponder()
         }
     }
+    
     private var editData = PLEditUserData(user: PLFacade.profile)
     
     
@@ -55,6 +53,7 @@ class PLEditProfileViewController: PLViewController {
     // MARK: - Private Methods
     
     private func updateEnabledStatus(status: Bool) {
+        applyButton.hidden            = !status
         usernameTextField.enabled     = status
         additionalTextField.enabled   = status
         addProfileImageButton.enabled = status
@@ -118,8 +117,20 @@ class PLEditProfileViewController: PLViewController {
 
 extension PLEditProfileViewController {
     
+    @IBAction func applyAction(sender: UIButton) {
+        guard editData != nil else { return }
+        edit = false
+        editBarButtonItem.image = UIImage(named: "edit")
+        updateUserProfileIfNeeded(editData!)
+    }
+    
     @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
         edit = !edit
+        sender.image = edit ? UIImage(named: "cancel") : UIImage(named: "edit")
+        
+        if !edit {
+            updateProfileUI()
+        }
     }
     
     @IBAction func showSignOutAlert(sender: UIButton) {
