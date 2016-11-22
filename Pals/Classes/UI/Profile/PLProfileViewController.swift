@@ -57,7 +57,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-		
+        
 		collectionBackgroundView.userPicImageView.setImageWithURL(PLFacade.profile!.cellData.picture)
 		collectionBackgroundView.userPicImageView.setAvatarPlaceholder(collectionBackgroundView.userPicImageView, url: profile!.picture)
         
@@ -116,9 +116,13 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     func onDidCreateNewOrders(notification: NSNotification) {
         if let orders = notification.object as? [PLOrder] {
             PLLog("Created \(orders.count) orders")
-            datasourceSwitcher.clear()
-            loadPageIfEmpty()
+            updatePage()
         }
+    }
+    
+    func updatePage() {
+        datasourceSwitcher.clear()
+        loadPageIfEmpty()
     }
     
 //    func addNewOrder(order: PLOrder) {

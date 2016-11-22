@@ -36,6 +36,7 @@ enum PLNotificationType: String {
     case SendButtonPressed
     case OrdersDidCreate
     case QRCodeScanned
+    case OrderDidReceive
     var str: String {return rawValue}
 }
 

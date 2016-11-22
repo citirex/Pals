@@ -12,6 +12,8 @@ enum PLTabBarItem: Int {
 
 class PLTabBarController: UITabBarController {
     
+    private var didReceiveNewOrders = false
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
@@ -46,6 +48,7 @@ class PLTabBarController: UITabBarController {
     // MARK: - Private methods
     
     private func registerForRemoteNotifications() {
+        PLNotifications.addObserver(self, selector: .orderDidReceiveNotification, type: .OrderDidReceive)
         NSNotificationCenter.defaultCenter().addObserverForName(kPLPushManagerDidReceivePush, object: nil,
             queue: .mainQueue()) { [unowned self] notification in
             self.updateBadgeCount()
@@ -72,7 +75,19 @@ class PLTabBarController: UITabBarController {
             app.applicationIconBadgeNumber = numberOfBadges
         }
     }
+    
+    func orderDidReceiveNotification() {
+        didReceiveNewOrders = true
+        
+        if let profileViewController = UIApplication.topViewController(selectedViewController)
+            as? PLProfileViewController {
+            profileViewController.updatePage()
+            didReceiveNewOrders = false
+        }
+    }
+    
 }
+
 
 // MARK: - UITabBarControllerDelegate
 
@@ -81,13 +96,25 @@ extension PLTabBarController: UITabBarControllerDelegate {
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         let item = PLTabBarItem(rawValue: tabBarController.selectedIndex)!
         switch item {
-        case .ProfileItem: PLFacade.resetBadges(.Order)
-        case .FriendsItem: PLFacade.resetBadges(.Friends)
+        case .ProfileItem:
+            PLFacade.resetBadges(.Order)
+            
+        if didReceiveNewOrders {
+            if let profileViewController = UIApplication.topViewController(viewControllers!.first)
+                as? PLProfileViewController {
+                profileViewController.updatePage()
+                didReceiveNewOrders = false
+            }
+        }
+        case .FriendsItem:
+            PLFacade.resetBadges(.Friends)
         default:
             break
         }
     }
+    
 }
+
 
 extension UITabBarController {
 
@@ -130,3 +157,24 @@ extension UIViewController {
     }
     
 }
+
+
+extension UIApplication {
+    
+    class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = base as? UINavigationController {
+            return topViewController(navigationController.visibleViewController)
+        }
+        if let tabBarController = base as? UITabBarController {
+            if let selected = tabBarController.selectedViewController {
+                return topViewController(selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(presented)
+        }
+        return base
+    }
+    
+}
+
