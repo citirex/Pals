@@ -45,6 +45,7 @@ class PLFacade : PLFacadeRepresentable {
     
     //MARK: AppDelegate
     class func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        PLNetworkSession.shared.delegate = instance
         PLFacade.instance.paymentManager.configure()
         PLFacade.instance.pushManager.registerPushNotifications(application)
         PLFacade.instance.pushManager.processLaunchOptions(launchOptions)
@@ -78,6 +79,19 @@ class PLFacade : PLFacadeRepresentable {
             tokenListen.listen(pushManager, tokenType: .DeviceToken)
             pushManager.simulatePushes(settingsManager.pushSettings)
         }
+    }
+}
+
+extension PLFacade._PLFacade  : PLNetworkSessionDelegate {
+    func networkSession(session: PLNetworkSession, shouldHandleError error: NSError, response: NSHTTPURLResponse) -> Bool {
+        if response.statusCode == 403 {
+            if profileManager.profile != nil {
+                profileManager.clear()
+                (UIApplication.sharedApplication().delegate as? AppDelegate)?.forceLogout()
+            }
+            return true
+        }
+        return false
     }
 }
 

@@ -69,50 +69,8 @@ protocol PLNetworkManagerInterface {
     static func post(service: PLAPIService, parameters: [String:AnyObject], attachment:PLUploadAttachment?, completion: PLNetworkRequestCompletion)
 }
 
-class PLNetworkSession: AFHTTPSessionManager {
-    static let baseUrl: NSURL = {
-        let base = PLFacade.instance.settingsManager.server
-        let url = NSURL(string: base)!
-        return url
-    }()
-    static let shared = PLNetworkSession(baseURL: baseUrl, sessionConfiguration:
-        { ()-> NSURLSessionConfiguration in
-            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-            config.timeoutIntervalForRequest = 25
-            return config
-        }()
-    )
-    
-    override init(baseURL url: NSURL?, sessionConfiguration configuration: NSURLSessionConfiguration?) {
-        super.init(baseURL: url, sessionConfiguration: configuration)
-        if let jsonDeserializer = responseSerializer as? AFJSONResponseSerializer {
-            jsonDeserializer.removesKeysWithNullValues = true
-        }
-        requestSerializer = AFJSONRequestSerializer()
-        PLFacade.instance.profileManager.addObserver(self, forKeyPath: PLTokenType.UserToken.keyPath, options: [.New,.Initial], context: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    deinit {
-        PLFacade.instance.profileManager.removeObserver(self, forKeyPath: PLTokenType.UserToken.keyPath)
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == PLTokenType.UserToken.keyPath {
-            if let manager = object as? PLProfileManager {
-                let tokenValue: String? = (manager.userToken != nil) ? "Token \(manager.userToken!)" : nil
-                requestSerializer.setValue(tokenValue, forHTTPHeaderField: "Authorization")
-                PLLog("Set up requests headers:\n\(requestSerializer.HTTPRequestHeaders)", type: .Network)
-            }
-        }
-    }
-}
-
 class PLNetworkManager: PLNetworkManagerInterface {
-
+    
     class func handleFullResponse(response: [String : AnyObject], error: NSError?, completion: PLErrorCompletion) {
         if !handleErrorResponse(error, completion: completion) {
             handleSuccessResponse(response, completion: completion)
