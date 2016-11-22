@@ -114,6 +114,11 @@ extension PLProfileManager : PLAuthStorage {
         }
     }
     
+    func clear() {
+        profile = nil
+        resetProfileAndToken()
+    }
+    
     //MARK: - Facebook
     
     func loginFB(completion: PLFacebookLoginCompletion) {

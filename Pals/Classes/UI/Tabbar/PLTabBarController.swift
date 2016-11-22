@@ -12,6 +12,8 @@ enum PLTabBarItem: Int {
 
 class PLTabBarController: UITabBarController {
     
+    private var didReceiveNewOrders = false
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
@@ -75,19 +77,13 @@ class PLTabBarController: UITabBarController {
     }
     
     func orderDidReceiveNotification() {
-        var profileViewController: PLProfileViewController!
+        didReceiveNewOrders = true
         
-        if let profileVC = UIApplication.topViewController(selectedViewController)
+        if let profileViewController = UIApplication.topViewController(selectedViewController)
             as? PLProfileViewController {
-            profileViewController = profileVC
-        } else {
-            if let profileVC = UIApplication.topViewController(viewControllers!.first) as? PLProfileViewController {
-                profileViewController = profileVC
-            }
+            profileViewController.updatePage()
+            didReceiveNewOrders = false
         }
-        
-        profileViewController.datasourceSwitcher.clear()
-        profileViewController.loadPageIfEmpty()
     }
     
 }
@@ -100,12 +96,23 @@ extension PLTabBarController: UITabBarControllerDelegate {
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         let item = PLTabBarItem(rawValue: tabBarController.selectedIndex)!
         switch item {
-        case .ProfileItem: PLFacade.resetBadges(.Order)
-        case .FriendsItem: PLFacade.resetBadges(.Friends)
+        case .ProfileItem:
+            PLFacade.resetBadges(.Order)
+            
+        if didReceiveNewOrders {
+            if let profileViewController = UIApplication.topViewController(viewControllers!.first)
+                as? PLProfileViewController {
+                profileViewController.updatePage()
+                didReceiveNewOrders = false
+            }
+        }
+        case .FriendsItem:
+            PLFacade.resetBadges(.Friends)
         default:
             break
         }
     }
+    
 }
 
 

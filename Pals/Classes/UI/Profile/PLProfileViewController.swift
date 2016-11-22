@@ -10,9 +10,9 @@ private let kCellHeaderOffset: CGFloat = 54
 
 class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable  {
 
-    var collectionHelper = PLProfileCollectionHelper()
-    var datasourceSwitcher = PLProfileDatasourceSwitcher()
-    var currentDatasource: PLOrderDatasource { return datasourceSwitcher.currentDatasource }
+    private var collectionHelper = PLProfileCollectionHelper()
+    private var datasourceSwitcher = PLProfileDatasourceSwitcher()
+    private var currentDatasource: PLOrderDatasource { return datasourceSwitcher.currentDatasource }
     
     private var needsToShowNewOrder = false
     
@@ -116,9 +116,13 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     func onDidCreateNewOrders(notification: NSNotification) {
         if let orders = notification.object as? [PLOrder] {
             PLLog("Created \(orders.count) orders")
-            datasourceSwitcher.clear()
-            loadPageIfEmpty()
+            updatePage()
         }
+    }
+    
+    func updatePage() {
+        datasourceSwitcher.clear()
+        loadPageIfEmpty()
     }
     
 //    func addNewOrder(order: PLOrder) {

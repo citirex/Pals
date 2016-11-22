@@ -33,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true 
     }
 
+    func forceLogout() {
+        window?.rootViewController = UIStoryboard.loginViewController()
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         PLFacade.applicationWillResignActive(application)
     }
