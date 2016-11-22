@@ -41,15 +41,23 @@ enum PLDrinkType: Int {
         return UIImage(named: name)!
     }
     
-    var cardType: PLCardType {
+    var color: UIColor {
+        var color: UIColor!
         switch self {
         case .Beer:
-            return .Beer
+            color = .beerColor
         case .Spirit:
-            return .Liquor
-        default:
-            return .Unknown
+            color = .spiritColor
+        case .Cocktail:
+            color = .cocktailColor
+        case .Wine:
+            color = .wineColor
+        case .NonAlcohol:
+            color = .nonAlcoholColor
+        case .Unknown:
+            color = .unknownColor
         }
+        return color
     }
 }
 

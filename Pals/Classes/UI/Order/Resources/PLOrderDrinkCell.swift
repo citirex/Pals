@@ -58,7 +58,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
             bgView.backgroundColor = UIColor.whiteColor()
         } else {
             setupTextWith(color: UIColor.whiteColor())
-            bgView.backgroundColor = type.cardType.color
+            bgView.backgroundColor = type.color
         }
     }
     

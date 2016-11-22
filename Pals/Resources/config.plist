@@ -12,7 +12,7 @@
 	<key>FakeFeeds</key>
 	<dict>
 		<key>Enabled</key>
-		<true/>
+		<false/>
 		<key>LoadDelay</key>
 		<real>0.5</real>
 	</dict>
@@ -27,10 +27,10 @@
 	<dict>
 		<key>ActiveServer</key>
 		<dict>
-			<key>http://1192.168.1.127:8000</key>
-			<true/>
-			<key>http://pals-api-dev.eu-west-1.elasticbeanstalk.com</key>
+			<key>http://192.168.1.127:8000</key>
 			<false/>
+			<key>http://pals-api-dev.eu-west-1.elasticbeanstalk.com</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>DefaultUser</key>

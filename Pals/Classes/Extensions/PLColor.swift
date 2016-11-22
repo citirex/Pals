@@ -8,22 +8,31 @@
 
 extension UIColor {
 
-    convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+    convenience init(r: UInt, g: UInt, b: UInt, a: UInt) {
         let divider = CGFloat(255)
-        self.init(red: r/divider, green: g/divider, blue: b/divider, alpha: a/divider)
+        let color: (CGFloat,CGFloat,CGFloat,CGFloat) = (CGFloat(r)/divider, CGFloat(g)/divider, CGFloat(b)/divider, CGFloat(a)/divider)
+        self.init(red: color.0, green: color.1, blue: color.2, alpha: color.3 )
     }
-    convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
+    convenience init(r: UInt, g: UInt, b: UInt) {
         self.init(r: r, g: g, b: b, a: 255)
     }
     
-    convenience init(white: CGFloat) {
-        self.init(r: white, g: white, b: white, a: 255)
+    convenience init(_ r: UInt, _ g: UInt, _ b: UInt) {
+        self.init(r: r, g: g, b: b)
+    }
+    
+    convenience init(rgb: (UInt,UInt,UInt)) {
+        self.init(r: rgb.0, g: rgb.1, b: rgb.2)
+    }
+    
+    convenience init(white: UInt) {
+        self.init(r: white, g: white, b: white)
     }
     
     static func rand() -> UIColor {
-        let r = CGFloat(arc4random()%255)
-        let g = CGFloat(arc4random()%255)
-        let b = CGFloat(arc4random()%255)
+        let r = UInt(arc4random()%255)
+        let g = UInt(arc4random()%255)
+        let b = UInt(arc4random()%255)
         let color = UIColor(r: r, g: g, b: b)
         return color
     }
@@ -39,50 +48,60 @@ extension UIColor {
     
     // NavigationBar tintColor
     class func affairColor() -> UIColor {
-        return UIColor(r: 111.0, g: 64.0, b: 151.0)
+        return UIColor(111,64,151)
     }
-    
     
     /// Sign Up screen 
     
     // TextField placeholder color
     class func chatelleColor() -> UIColor {
-        return UIColor(r: 189.0, g: 177.0, b: 200.0)
+        return UIColor(r: 189, g: 177, b: 20)
     }
     
     /// Edit Profile
     
     // Line border for label
     class func darkGray() -> UIColor {
-        return UIColor(r: 151, g: 151.0, b: 151.0)
+        return UIColor(r: 151, g: 151, b: 151)
     }
     
     // navigation bar tint color for imagePicker
     class func crayonPurple() -> UIColor {
-        return UIColor(r: 111.0, g: 64.0, b: 151.0)
+        return UIColor(r: 111, g: 64, b: 151)
     }
     
     // description label text color
     class func doveGray() -> UIColor {
-        return UIColor(r: 92.0, g: 92.0, b: 92.0)
+        return UIColor(r: 92, g: 92, b: 92)
     }
     
     /// Card Info
     
     // complete button tint color
     class func mediumOrchidColor() -> UIColor {
-        return UIColor(r: 189.0, g: 16.0, b: 224.0)
+        return UIColor(r: 189, g: 16, b: 224)
     }
     
     /// Add Funds  
     
     // refill button background
     class func chamrockColor() -> UIColor {
-        return UIColor(r: 59.0, g: 204.0, b: 136.0)
+        return UIColor(r: 59, g: 204, b: 136)
     }
     
     // background for error label on scan view
     class func maroonColor() -> UIColor {
-        return UIColor(r: 120.0, g: 14.0, b: 14.0)
+        return UIColor(r: 120, g: 14, b: 14)
     }
+    
+    class var beerColor: UIColor { return UIColor(241,197,0) }
+    class var spiritColor: UIColor { return UIColor(147,80,0) }
+    class var cocktailColor: UIColor { return UIColor(140,224,254) }
+    class var wineColor: UIColor { return UIColor(131,0,14) }
+    class var nonAlcoholColor: UIColor { return UIColor(130,200,83) }
+    class var unknownColor: UIColor { return UIColor(white: 152) }
+    
+    class var coverColor: UIColor { return UIColor(100,66,147) }
+    class var vipColor: UIColor { return UIColor(193,61,61) }
+    class var myCardColor: UIColor { return UIColor(130,48,81) }
 }

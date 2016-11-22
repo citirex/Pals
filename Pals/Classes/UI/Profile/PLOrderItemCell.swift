@@ -59,7 +59,7 @@ class PLOrderItemCell: UITableViewCell {
     
     func updateWithDrink(set: PLItemSet<PLDrink>) {
         let drinkType = set.item.type
-        contentView.backgroundColor = drinkType.cardType.color
+        contentView.backgroundColor = drinkType.color
         picture.image = drinkType.image
         updateNameForItem(set.item, count: set.quantity)
         updateExpiration(set.expires, expired: set.expired)
