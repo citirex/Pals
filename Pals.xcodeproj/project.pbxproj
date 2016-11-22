@@ -303,7 +303,7 @@
 		D41494291DD62D350081509E /* PLImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImageView.swift; sourceTree = "<group>"; };
 		D414942B1DD9DC5F0081509E /* PLNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNotifications.swift; sourceTree = "<group>"; };
 		D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEditUserData.swift; sourceTree = "<group>"; };
-		D42F53C51D76B497005DEA34 /* Pals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pals.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D42F53C51D76B497005DEA34 /* Spal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44849691DB7A3EF00737413 /* PLSearchableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchableViewController.swift; sourceTree = "<group>"; };
 		D46B0EE61DDB13EA00AD2B69 /* PLCounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCounterView.swift; sourceTree = "<group>"; };
 		D46D2B861D87583B0058060E /* PLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLColor.swift; sourceTree = "<group>"; };
@@ -798,7 +798,7 @@
 		D42F53C61D76B497005DEA34 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D42F53C51D76B497005DEA34 /* Pals.app */,
+				D42F53C51D76B497005DEA34 /* Spal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1154,9 +1154,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D42F53C41D76B497005DEA34 /* Pals */ = {
+		D42F53C41D76B497005DEA34 /* Spal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D42F53D71D76B497005DEA34 /* Build configuration list for PBXNativeTarget "Pals" */;
+			buildConfigurationList = D42F53D71D76B497005DEA34 /* Build configuration list for PBXNativeTarget "Spal" */;
 			buildPhases = (
 				F5AB92BEE7FD97B1DE8EBA28 /* [CP] Check Pods Manifest.lock */,
 				D42F53C11D76B497005DEA34 /* Sources */,
@@ -1169,9 +1169,9 @@
 			);
 			dependencies = (
 			);
-			name = Pals;
+			name = Spal;
 			productName = Pals;
-			productReference = D42F53C51D76B497005DEA34 /* Pals.app */;
+			productReference = D42F53C51D76B497005DEA34 /* Spal.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1211,7 +1211,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D42F53C41D76B497005DEA34 /* Pals */,
+				D42F53C41D76B497005DEA34 /* Spal */,
 			);
 		};
 /* End PBXProject section */
@@ -1579,9 +1579,9 @@
 				INFOPLIST_FILE = Pals/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
+				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Spal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0f3b6f58-3987-4c27-9968-5b90cce3ae3b";
+				PROVISIONING_PROFILE = "19aacb38-7ff8-4fa5-bbe9-58f6b2828bec";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pals/Classes/Pals-Bridging-Header.h";
 			};
 			name = Debug;
@@ -1596,9 +1596,9 @@
 				INFOPLIST_FILE = Pals/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Pals;
+				PRODUCT_BUNDLE_IDENTIFIER = com.citirex.Spal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0f3b6f58-3987-4c27-9968-5b90cce3ae3b";
+				PROVISIONING_PROFILE = "19aacb38-7ff8-4fa5-bbe9-58f6b2828bec";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pals/Classes/Pals-Bridging-Header.h";
 			};
 			name = Release;
@@ -1615,7 +1615,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D42F53D71D76B497005DEA34 /* Build configuration list for PBXNativeTarget "Pals" */ = {
+		D42F53D71D76B497005DEA34 /* Build configuration list for PBXNativeTarget "Spal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D42F53D81D76B497005DEA34 /* Debug */,
