@@ -52,20 +52,13 @@ class PLOrderDrinkCell: UICollectionViewCell {
         delegate?.updateOrderWith(self, andCount: drinkCount)
     }
     
-    private func setupColorsForVipState(isVip: Bool, withType type: DrinkType) {
+    private func setupColorsForVipState(isVip: Bool, withType type: PLDrinkType) {
         if isVip == true {
             setupTextWith(color: UIColor.blackColor())
             bgView.backgroundColor = UIColor.whiteColor()
         } else {
             setupTextWith(color: UIColor.whiteColor())
-            switch type {
-            case .Light:
-                bgView.backgroundColor = kPalsOrderCardBeerDrinkColor
-            case .Strong:
-                bgView.backgroundColor = kPalsOrderCardLiqiorDrinkColor
-            case .Undefined:
-                bgView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
-            }
+            bgView.backgroundColor = type.cardType.color
         }
     }
     

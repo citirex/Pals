@@ -49,7 +49,7 @@ extension PLOrder {
         
         if drinkSets.count > 0 {
             let fistDrinkType = drinkSets.first!.item.type
-            if fistDrinkType == .Strong {
+            if fistDrinkType == .Spirit {
                 return .Liquor
             } else {
                 return .Beer
