@@ -38,17 +38,9 @@ extension UIColor {
     }
     
     
-    // TODO: - Needs check with original colors
-    
-   // ****************** Old colors ***********************************
-    
-    
-    
-    //******************* Checked colors *******************
-    
     // NavigationBar tintColor
     class func affairColor() -> UIColor {
-        return UIColor(111,64,151)
+        return UIColor(r: 111, g: 64, b: 151)
     }
     
     /// Sign Up screen 
@@ -75,16 +67,7 @@ extension UIColor {
         return UIColor(r: 92, g: 92, b: 92)
     }
     
-    /// Card Info
-    
-    // complete button tint color
-    class func mediumOrchidColor() -> UIColor {
-        return UIColor(r: 189, g: 16, b: 224)
-    }
-    
-    /// Add Funds  
-    
-    // refill button background
+    // invite pals button background
     class func chamrockColor() -> UIColor {
         return UIColor(r: 59, g: 204, b: 136)
     }
@@ -93,6 +76,14 @@ extension UIColor {
     class func maroonColor() -> UIColor {
         return UIColor(r: 120, g: 14, b: 14)
     }
+    
+    /// Card Info
+    
+    // complete button tint color
+    class func mediumOrchidColor() -> UIColor {
+        return UIColor(r: 189, g: 16, b: 224)
+    }
+    
     
     class var beerColor: UIColor { return UIColor(241,197,0) }
     class var spiritColor: UIColor { return UIColor(147,80,0) }

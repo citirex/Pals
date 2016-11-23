@@ -20,8 +20,9 @@ extension Selector {
     static let checkoutPressed    = #selector(PLOrderViewController.checkoutButtonPressed(_:))
     static let tappedEditButton   = #selector(PLEditProfileViewController.tappedEditButton(_:))
     static let tappedCancelButton = #selector(PLEditProfileViewController.tappedCancelButton(_:))
+    static let limitLength        = #selector(PLFormTextField.limitLength)
     static let handleTap          = #selector(PLCheckbox.handleTap)
-    
+
     static let sendButtonPressedNotification = #selector(PLOrderViewController.sendButtonPressedNotification(_:))
     static let qrCodeScannedNotification     = #selector(PLProfileViewController.qrCodeScannedNotification(_:))
     static let orderDidReceiveNotification   = #selector(PLTabBarController.orderDidReceiveNotification)

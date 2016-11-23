@@ -122,7 +122,7 @@ class PLEditProfileViewController: PLViewController {
         }
     }
     
-    private func resetProfile() {
+    private func resetUserProfileFields() {
         userProfileImageView.setImageWithURL(editData?.picture.old as! NSURL)
         usernameTextField.text   = editData?.name.old as? String
         additionalTextField.text = editData?.additional.old as? String
@@ -141,7 +141,7 @@ extension PLEditProfileViewController {
     
     func tappedCancelButton(sender: UIButton) {
         edit = false
-        resetProfile()
+        resetUserProfileFields()
     }
     
     @IBAction func tappedCheckButton(sender: UIButton) {
