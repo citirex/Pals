@@ -151,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgT-8r-kgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1133.5" y="-2474.5"/>
+            <point key="canvasLocation" x="-1855.5" y="-2482.5"/>
         </scene>
         <!--Locations-->
         <scene sceneID="whK-vt-KJO">
@@ -697,7 +697,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fss-Lj-oqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2Ze-G6-jmr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-540.5" y="-2482.5"/>
+            <point key="canvasLocation" x="-1234.5" y="-2482.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vej-NY-WUf">
@@ -1520,6 +1520,158 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbt-6S-Ew1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="207.5" y="-1434.5"/>
+        </scene>
+        <!--Reset Password-->
+        <scene sceneID="7ck-7o-btw">
+            <objects>
+                <viewController storyboardIdentifier="ResetPasswordViewController" title="Reset Password" id="t3e-8x-PWK" customClass="PLResetPasswordViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HpX-Cq-hyd"/>
+                        <viewControllerLayoutGuide type="bottom" id="c2p-si-zu2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QcA-dp-B7m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tv-ri-R5T" userLabel="Text Fields Container">
+                                <rect key="frame" x="71" y="178" width="233" height="144"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="E-mail" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="8JC-mU-cHr" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="233" height="36"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="t3e-8x-PWK" id="88D-wU-du3"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Code" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mMH-zJ-ih0" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="36" width="233" height="36"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="t3e-8x-PWK" id="wHX-1x-gsU"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="New Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="tAi-9m-S2k" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="233" height="36"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="t3e-8x-PWK" id="sed-Ac-43e"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="MKl-Mm-7ro" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="108" width="233" height="36"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="t3e-8x-PWK" id="cjZ-yh-eTh"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8JC-mU-cHr" secondAttribute="trailing" id="5xb-CL-vIg"/>
+                                    <constraint firstItem="tAi-9m-S2k" firstAttribute="top" secondItem="mMH-zJ-ih0" secondAttribute="bottom" id="7LU-3J-HMD"/>
+                                    <constraint firstItem="8JC-mU-cHr" firstAttribute="leading" secondItem="2tv-ri-R5T" secondAttribute="leading" id="84X-0B-Npv"/>
+                                    <constraint firstItem="mMH-zJ-ih0" firstAttribute="leading" secondItem="2tv-ri-R5T" secondAttribute="leading" id="BES-Bg-4r2"/>
+                                    <constraint firstAttribute="trailing" secondItem="tAi-9m-S2k" secondAttribute="trailing" id="Fh9-sD-3xZ"/>
+                                    <constraint firstItem="tAi-9m-S2k" firstAttribute="leading" secondItem="2tv-ri-R5T" secondAttribute="leading" id="MzO-YQ-4Yc"/>
+                                    <constraint firstItem="mMH-zJ-ih0" firstAttribute="top" secondItem="8JC-mU-cHr" secondAttribute="bottom" id="OSI-eR-6nr"/>
+                                    <constraint firstItem="mMH-zJ-ih0" firstAttribute="height" secondItem="8JC-mU-cHr" secondAttribute="height" id="ZD6-GM-oBl"/>
+                                    <constraint firstItem="MKl-Mm-7ro" firstAttribute="top" secondItem="tAi-9m-S2k" secondAttribute="bottom" id="aUb-pT-JdY"/>
+                                    <constraint firstAttribute="trailing" secondItem="MKl-Mm-7ro" secondAttribute="trailing" id="aky-F7-UgX"/>
+                                    <constraint firstAttribute="trailing" secondItem="mMH-zJ-ih0" secondAttribute="trailing" id="bAs-Bd-4tG"/>
+                                    <constraint firstAttribute="bottom" secondItem="MKl-Mm-7ro" secondAttribute="bottom" id="hQl-3i-byv"/>
+                                    <constraint firstItem="MKl-Mm-7ro" firstAttribute="height" secondItem="8JC-mU-cHr" secondAttribute="height" id="khY-qw-MbN"/>
+                                    <constraint firstItem="8JC-mU-cHr" firstAttribute="top" secondItem="2tv-ri-R5T" secondAttribute="top" id="lEk-Qd-IKD"/>
+                                    <constraint firstItem="tAi-9m-S2k" firstAttribute="height" secondItem="8JC-mU-cHr" secondAttribute="height" id="miM-AZ-ygp"/>
+                                    <constraint firstItem="MKl-Mm-7ro" firstAttribute="leading" secondItem="2tv-ri-R5T" secondAttribute="leading" id="skG-AB-vsU"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPg-bL-DrK" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
+                                <rect key="frame" x="102" y="462" width="171" height="35"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="t3e-8x-PWK" eventType="touchUpInside" id="0Qq-dd-BSH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.68000000715255737" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O44-4R-nka">
+                                <rect key="frame" x="0.0" y="620" width="375" height="47"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Already a Pal? Sign In!">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Nq9-Bk-qhG" kind="unwind" unwindAction="unwindToLoginClicked:" id="n9f-AC-I7D"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.43529411759999997" green="0.25098039220000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="O44-4R-nka" secondAttribute="trailing" id="1sU-fj-ISJ"/>
+                            <constraint firstItem="O44-4R-nka" firstAttribute="leading" secondItem="QcA-dp-B7m" secondAttribute="leading" id="36t-B0-h06"/>
+                            <constraint firstItem="CPg-bL-DrK" firstAttribute="top" secondItem="2tv-ri-R5T" secondAttribute="bottom" constant="140" id="DEm-8Q-yd5"/>
+                            <constraint firstItem="2tv-ri-R5T" firstAttribute="centerY" secondItem="QcA-dp-B7m" secondAttribute="centerY" multiplier="0.75" id="Fd5-zh-0UU"/>
+                            <constraint firstItem="O44-4R-nka" firstAttribute="height" secondItem="QcA-dp-B7m" secondAttribute="height" multiplier="0.07" id="GiU-LU-vDn"/>
+                            <constraint firstItem="2tv-ri-R5T" firstAttribute="centerX" secondItem="QcA-dp-B7m" secondAttribute="centerX" id="M2n-xj-8Ob"/>
+                            <constraint firstItem="CPg-bL-DrK" firstAttribute="width" secondItem="QcA-dp-B7m" secondAttribute="width" multiplier="0.454" id="VYc-kk-TTd"/>
+                            <constraint firstItem="CPg-bL-DrK" firstAttribute="centerX" secondItem="2tv-ri-R5T" secondAttribute="centerX" id="bWl-es-VKh"/>
+                            <constraint firstItem="CPg-bL-DrK" firstAttribute="height" secondItem="O44-4R-nka" secondAttribute="height" multiplier="0.73" id="dp3-3i-KIt"/>
+                            <constraint firstItem="2tv-ri-R5T" firstAttribute="width" secondItem="QcA-dp-B7m" secondAttribute="width" multiplier="0.62" id="ePd-Mi-4st"/>
+                            <constraint firstItem="2tv-ri-R5T" firstAttribute="height" secondItem="QcA-dp-B7m" secondAttribute="height" multiplier="0.215" id="hZm-jb-gmN"/>
+                            <constraint firstItem="O44-4R-nka" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CPg-bL-DrK" secondAttribute="bottom" constant="40" id="paK-7B-u2c"/>
+                            <constraint firstItem="c2p-si-zu2" firstAttribute="top" secondItem="O44-4R-nka" secondAttribute="bottom" id="xMU-ip-FPt"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="codeTextField" destination="mMH-zJ-ih0" id="ZLC-q8-CX3"/>
+                        <outlet property="confirmPasswordTextField" destination="MKl-Mm-7ro" id="YOb-8U-zH3"/>
+                        <outlet property="emailTextField" destination="8JC-mU-cHr" id="Mlv-aB-Pqk"/>
+                        <outlet property="passwordTextField" destination="tAi-9m-S2k" id="tLb-dZ-O77"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UKJ-Pa-EiF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Nq9-Bk-qhG" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-590.5" y="-2482.5"/>
         </scene>
     </scenes>
     <resources>

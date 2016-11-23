@@ -52,9 +52,8 @@ class PLLoginViewController: PLViewController {
 	}
 	
 	private func showMainScreen() {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let vc = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
-		present(vc, animated: true)
+		let tabBarController = UIStoryboard.tabBarController()!
+		present(tabBarController, animated: true)
 	}
     
     private func sendPassword(email: String) {
@@ -63,7 +62,12 @@ class PLLoginViewController: PLViewController {
             self.stopActivityIndicator()
             
             guard error == nil else { return PLShowErrorAlert(error: error!) }
-            PLShowAlert("A new generated password has been sent to your email.")
+            
+            PLShowAlert("", message: "A new generated password has been sent to your email.", completion: {
+                let resetPasswordViewController = UIStoryboard.resetPasswordViewController()!
+                resetPasswordViewController.email = email
+                self.present(resetPasswordViewController, animated: true)
+            })
         })
     }
 
