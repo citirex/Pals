@@ -12,6 +12,7 @@
 		049692F91DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */; };
 		049692FC1DDB3F6500A65C60 /* PLNewsNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */; };
 		049692FD1DDB3F6500A65C60 /* PLNewsNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */; };
+		049ABB701DE5C83B00F6F5BE /* PLDrinkCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049ABB6F1DE5C83B00F6F5BE /* PLDrinkCounterView.swift */; };
 		049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F61D83083800C2E32D /* PLFriendCell.swift */; };
 		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
@@ -217,6 +218,7 @@
 		049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewFriendNotificationCell.xib; sourceTree = "<group>"; };
 		049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNewsNotificationCell.swift; sourceTree = "<group>"; };
 		049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewsNotificationCell.xib; sourceTree = "<group>"; };
+		049ABB6F1DE5C83B00F6F5BE /* PLDrinkCounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkCounterView.swift; sourceTree = "<group>"; };
 		049BA9F61D83083800C2E32D /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 				2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */,
 				2480F8A81D813E730095995F /* PLOrderDrinkCell.xib */,
 				D46B0EE61DDB13EA00AD2B69 /* PLCounterView.swift */,
+				049ABB6F1DE5C83B00F6F5BE /* PLDrinkCounterView.swift */,
 				24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */,
 				24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */,
 				2480F8A91D813E730095995F /* PLOrderStillHeader.swift */,
@@ -1440,6 +1443,7 @@
 				049692F41DDB2C9E00A65C60 /* PLNotificationViewController.swift in Sources */,
 				D46D2B871D87583B0058060E /* PLColor.swift in Sources */,
 				D4E53C891DDDF8B90047477A /* PLOrderItemHeaderView.swift in Sources */,
+				049ABB701DE5C83B00F6F5BE /* PLDrinkCounterView.swift in Sources */,
 				2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */,
 				D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */,
 				2480F8E51D813E730095995F /* PLErrors.swift in Sources */,
