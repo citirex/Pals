@@ -6,36 +6,72 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-enum DrinkType: Int {
-    case Undefined = 0
-    case Light
-    case Strong
+enum PLDrinkType: Int {
+    case Beer
+    case Spirit
+    case Cocktail
+    case Wine
+    case NonAlcohol
+    case Unknown
     
-    var cardType: PLCardType {
-        switch self {
-        case .Light:
-            return .Beer
-        case .Strong:
-            return .Liquor
-        case .Undefined:
-            return .Unknown
+    init(number: Int) {
+        var n = number
+        if n >= 5 {
+            n = 5
         }
+        self.init(rawValue: n)!
+    }
+    
+    var image: UIImage {
+        var name = ""
+        switch self {
+        case .Beer:
+            name = "beer_icon"
+        case .Spirit:
+            name = "spirit_icon"
+        case .Cocktail:
+            name = "cocktail_icon"
+        case .Wine:
+            name = "wine_icon"
+        case .NonAlcohol:
+            name = "non_alcohol_icon"
+        case .Unknown:
+            name = "question_icon"
+        }
+        return UIImage(named: name)!
+    }
+    
+    var color: UIColor {
+        var color: UIColor!
+        switch self {
+        case .Beer:
+            color = .beerColor
+        case .Spirit:
+            color = .spiritColor
+        case .Cocktail:
+            color = .cocktailColor
+        case .Wine:
+            color = .wineColor
+        case .NonAlcohol:
+            color = .nonAlcoholColor
+        case .Unknown:
+            color = .unknownColor
+        }
+        return color
     }
 }
 
 class PLDrink : PLPricedItem, PLFilterable {
     
-    var type: DrinkType = .Undefined
+    var type: PLDrinkType = .Unknown
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
-            let drinkType = jsonDic[.type] as? Int
+            let number = jsonDic[.type] as? Int
         else {
             return nil
         }
-        if let type = DrinkType(rawValue: drinkType) {
-            self.type = type
-        }
+        self.type = PLDrinkType(number: number)
         super.init(jsonDic: jsonDic)
     }
     

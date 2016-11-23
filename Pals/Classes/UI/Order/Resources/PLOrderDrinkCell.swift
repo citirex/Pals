@@ -88,14 +88,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
             bgView.backgroundColor = UIColor.whiteColor()
         } else {
             setupTextWith(color: UIColor.whiteColor())
-            switch type {
-            case .Light:
-                bgView.backgroundColor = kPalsOrderCardBeerDrinkColor
-            case .Strong:
-                bgView.backgroundColor = kPalsOrderCardLiqiorDrinkColor
-            case .Undefined:
-                bgView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
-            }
+            bgView.backgroundColor = type.color
         }
     }
     

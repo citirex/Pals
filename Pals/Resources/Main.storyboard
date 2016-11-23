@@ -739,6 +739,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Dm-ok-mIm" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
                                         <rect key="frame" x="142" y="56" width="91" height="91"/>
+                                        <color key="backgroundColor" red="0.23137254900000001" green="0.80000000000000004" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6Dm-ok-mIm" secondAttribute="height" multiplier="1:1" id="bE2-Yl-WH1"/>
                                         </constraints>
@@ -760,15 +761,27 @@
                                             <outlet property="delegate" destination="1ZL-hY-XMT" id="rUS-OD-ygu"/>
                                         </connections>
                                     </textField>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-9o-kKc" customClass="PLCheckmarkButton" customModule="Pals" customModuleProvider="target">
+                                        <rect key="frame" x="316" y="110" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="B3a-mm-2N4"/>
+                                            <constraint firstAttribute="width" constant="44" id="DpI-Ci-p1L"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="tappedCheckButton:" destination="1ZL-hY-XMT" eventType="touchUpInside" id="hFz-ZX-h1t"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.43529411764705883" green="0.25098039215686274" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="STb-ek-YKg" firstAttribute="top" secondItem="m6a-9o-kKc" secondAttribute="bottom" id="1g5-0Z-rTq"/>
                                     <constraint firstItem="STb-ek-YKg" firstAttribute="height" secondItem="dRH-wo-TIR" secondAttribute="height" multiplier="0.21" id="2HC-iy-DQL"/>
                                     <constraint firstAttribute="bottom" secondItem="STb-ek-YKg" secondAttribute="bottom" constant="8" id="HKu-RK-hZR"/>
                                     <constraint firstItem="QQK-yC-e4y" firstAttribute="trailing" secondItem="6Dm-ok-mIm" secondAttribute="trailing" id="HRo-aj-Ovz"/>
                                     <constraint firstItem="6Dm-ok-mIm" firstAttribute="centerX" secondItem="STb-ek-YKg" secondAttribute="centerX" id="Hom-lx-9qI"/>
                                     <constraint firstItem="QQK-yC-e4y" firstAttribute="leading" secondItem="6Dm-ok-mIm" secondAttribute="leading" id="NOy-ZP-t7a"/>
                                     <constraint firstAttribute="trailing" secondItem="STb-ek-YKg" secondAttribute="trailing" constant="8" id="TIW-ZN-9Fc"/>
+                                    <constraint firstAttribute="trailing" secondItem="m6a-9o-kKc" secondAttribute="trailing" constant="15" id="URO-8R-asJ"/>
                                     <constraint firstItem="QQK-yC-e4y" firstAttribute="top" secondItem="6Dm-ok-mIm" secondAttribute="top" id="Vky-jg-CVX"/>
                                     <constraint firstItem="STb-ek-YKg" firstAttribute="top" secondItem="6Dm-ok-mIm" secondAttribute="bottom" constant="7" id="Wpb-Ac-e5I"/>
                                     <constraint firstItem="STb-ek-YKg" firstAttribute="leading" secondItem="dRH-wo-TIR" secondAttribute="leading" constant="8" id="jhF-1z-zhv"/>
@@ -799,7 +812,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Additional email or phone" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6sS-wE-Ux6" customClass="PLBorderedTextField" customModule="Pals" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="320" width="375" height="57"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="1ZL-hY-XMT" id="dse-h2-8JW"/>
                                 </connections>
@@ -846,17 +859,13 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="CMY-m7-oKE">
                         <barButtonItem key="backBarButtonItem" title=" " id="1wI-y9-Fpp"/>
-                        <barButtonItem key="rightBarButtonItem" image="edit" id="SW6-ty-ava" userLabel="Edit Bar Button Item">
-                            <connections>
-                                <action selector="editBarBattonItemTapped:" destination="1ZL-hY-XMT" id="96w-3H-Grd"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addProfileImageButton" destination="QQK-yC-e4y" id="Hkb-Lu-znQ"/>
                         <outlet property="additionalTextField" destination="6sS-wE-Ux6" id="00d-Pj-I3k"/>
+                        <outlet property="checkButton" destination="m6a-9o-kKc" id="yjC-Fj-gis"/>
                         <outlet property="phoneNumberTextField" destination="hiW-NB-07S" id="S1N-p1-Xk4"/>
                         <outlet property="userProfileImageView" destination="6Dm-ok-mIm" id="TXV-sX-ARb"/>
                         <outlet property="usernameTextField" destination="STb-ek-YKg" id="vm8-xa-oNQ"/>
@@ -1515,7 +1524,6 @@
     </scenes>
     <resources>
         <image name="back_arrow" width="20" height="20"/>
-        <image name="edit" width="25" height="25"/>
         <image name="friend_profile_placeholder" width="1402" height="994"/>
         <image name="friends-tab" width="31" height="29"/>
         <image name="icon_facebook_login" width="200" height="42"/>

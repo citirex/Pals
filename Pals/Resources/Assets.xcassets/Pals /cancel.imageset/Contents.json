@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "drink_icon.png",
+      "filename" : "cancel.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "cancel@2x.png",
       "scale" : "2x"
     },
     {

@@ -28,7 +28,20 @@ class PLLocationManager : NSObject {
     typealias LocationStatusCompletion = (status: CLAuthorizationStatus, error: NSError?) -> ()
     var statusCompletion: LocationStatusCompletion?
     
-    func tryUpdate(completion: LocationStatusCompletion) {
+    func fetchNearRegion(completion: PLLocationRegionCompletion) {
+        let defaultSize = CGSizeMake(1000, 1000)
+        fetchNearRegion(defaultSize, completion: completion)
+    }
+    
+    func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
+        if needsUpdateNearRegion || nearRegion == nil {
+            createNearRegion(size, completion: completion)
+        } else {
+            completion(region: nearRegion, error: nil)
+        }
+    }
+    
+    private func tryUpdate(completion: LocationStatusCompletion) {
         manager.delegate = self
         let status = CLLocationManager.authorizationStatus()
         switch status {
@@ -41,7 +54,7 @@ class PLLocationManager : NSObject {
         }
     }
     
-    func updateLocation(completion: PLLocationUpdateCompletion?) {
+    private func updateLocation(completion: PLLocationUpdateCompletion?) {
         self.onLocationUpdated = completion
         tryUpdate { (status, error) in
             #if (arch(i386) || arch(x86_64)) && os(iOS)
@@ -59,20 +72,7 @@ class PLLocationManager : NSObject {
         }
     }
     
-    func fetchNearRegion(completion: PLLocationRegionCompletion) {
-        let defaultSize = CGSizeMake(1000, 1000)
-        fetchNearRegion(defaultSize, completion: completion)
-    }
-    
-    func fetchNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
-        if needsUpdateNearRegion || nearRegion == nil {
-            createNearRegion(size, completion: completion)
-        } else {
-            completion(region: nearRegion, error: nil)
-        }
-    }
-    
-    func createNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
+    private func createNearRegion(size: CGSize, completion: PLLocationRegionCompletion) {
         updateLocation { (location, error) in
             if error == nil {
                 let coordinate = location!.coordinate

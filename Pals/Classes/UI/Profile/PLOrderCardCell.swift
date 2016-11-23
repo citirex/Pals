@@ -14,20 +14,22 @@ enum PLCardType {
     case My
     case Unknown
     var color: UIColor {
+        var color: UIColor!
         switch self {
         case .Beer:
-            return UIColor(r: 0, g: 153, b: 158)
+            color = .beerColor
         case .Liquor:
-            return UIColor(r: 50, g: 44, b: 88)
+            color = .spiritColor
         case .Cover:
-            return UIColor(r: 100, g: 66, b: 147)
+            color = .coverColor
         case .VIP:
-            return UIColor(r: 193, g: 61, b: 61)
+            color = .vipColor
         case .My:
-            return UIColor(r: 130, g: 48, b: 81)
+            color = .myCardColor
         case .Unknown:
-            return UIColor(r: 102, g: 102, b: 255)
+            color = .unknownColor
         }
+        return color
     }
 }
 
@@ -49,7 +51,7 @@ extension PLOrder {
         
         if drinkSets.count > 0 {
             let fistDrinkType = drinkSets.first!.item.type
-            if fistDrinkType == .Strong {
+            if fistDrinkType == .Spirit {
                 return .Liquor
             } else {
                 return .Beer
@@ -159,8 +161,9 @@ class PLOrderCardCell: UICollectionViewCell {
         let mask = CAShapeLayer()
         mask.path = path.CGPath
         underlay.layer.mask = mask
-		
-		listContainerView.tableView.contentInset.bottom = listContainerView.footerView.userMessageLabel.bounds.height
+        if currentContainer === listContainerView {
+            listContainerView.setNeedsLayout()
+        }
     }
     
     func onCardDidSelect(selected: Bool) {

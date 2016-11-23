@@ -181,6 +181,8 @@
 		E85083111DACE7770077A81C /* PLOrderHistorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85083101DACE7760077A81C /* PLOrderHistorySectionHeader.xib */; };
 		E85083131DACEC5B0077A81C /* PLEmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */; };
 		E85083151DAD1AEA0077A81C /* PLAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85083141DAD1AEA0077A81C /* PLAttributedString.swift */; };
+		E8558DD51DE598740067F81F /* PLCancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558DD31DE598740067F81F /* PLCancelButton.swift */; };
+		E8558DD61DE598740067F81F /* PLCheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558DD41DE598740067F81F /* PLCheckmarkButton.swift */; };
 		E85A26251DDA3ECD00710D7F /* PLCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85A26241DDA3ECD00710D7F /* PLCheckbox.swift */; };
 		E86E55891DB2ADDA00CE1698 /* PLCircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */; };
 		E86E558B1DB3741D00CE1698 /* PLRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */; };
@@ -394,6 +396,8 @@
 		E85083101DACE7760077A81C /* PLOrderHistorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistorySectionHeader.xib; path = "Order History/PLOrderHistorySectionHeader.xib"; sourceTree = "<group>"; };
 		E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEmptyBackgroundView.swift; sourceTree = "<group>"; };
 		E85083141DAD1AEA0077A81C /* PLAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAttributedString.swift; sourceTree = "<group>"; };
+		E8558DD31DE598740067F81F /* PLCancelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCancelButton.swift; sourceTree = "<group>"; };
+		E8558DD41DE598740067F81F /* PLCheckmarkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCheckmarkButton.swift; sourceTree = "<group>"; };
 		E85A26241DDA3ECD00710D7F /* PLCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCheckbox.swift; sourceTree = "<group>"; };
 		E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCircularImageView.swift; sourceTree = "<group>"; };
 		E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLRoundedButton.swift; sourceTree = "<group>"; };
@@ -614,6 +618,8 @@
 				E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */,
 				D46E81621D91370100A781C7 /* PLSearchController.swift */,
 				E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */,
+				E8558DD31DE598740067F81F /* PLCancelButton.swift */,
+				E8558DD41DE598740067F81F /* PLCheckmarkButton.swift */,
 				E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */,
 				E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */,
 				E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */,
@@ -1432,6 +1438,7 @@
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
 				E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,
+				E8558DD61DE598740067F81F /* PLCheckmarkButton.swift in Sources */,
 				E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */,
 				24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */,
 				D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */,
@@ -1457,6 +1464,7 @@
 				D414942C1DD9DC5F0081509E /* PLNotifications.swift in Sources */,
 				E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */,
 				E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */,
+				E8558DD51DE598740067F81F /* PLCancelButton.swift in Sources */,
 				E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */,
 				D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */,
 				E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */,
