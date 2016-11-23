@@ -27,6 +27,10 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
         }
     }
     
+    var shouldFetchLocation: Bool {
+        return PLFacade.instance.settingsManager.shouldFetchLocation
+    }
+    
     func appendRegionParams(region: MKCoordinateRegion?) {
         collection.appendParams(region?.params)
     }
@@ -36,23 +40,24 @@ class PLPlacesDatasource: PLDatasource<PLPlace> {
     }
     
     override func loadPage(completion: PLDatasourceIndicesChangeCompletion) {
-        super.loadPage(completion)
-        return
-        
-        // not included in this build
-        PLFacade.fetchNearRegion { (region, error) in
-            if region != nil {
-                self.region = region
-                if self.searching {
-                    self.removeRegionParams(region)
+        if shouldFetchLocation {
+            PLFacade.fetchNearRegion { (region, error) in
+                if region != nil {
+                    self.region = region
+                    if self.searching {
+                        self.removeRegionParams(region)
+                    }
+                    super.loadPage(completion)
+                    if self.searching {
+                        self.appendRegionParams(region)
+                    }
+                } else {
+                    completion(indices: [NSIndexPath](), error: error)
                 }
-                super.loadPage(completion)
-                if self.searching {
-                    self.appendRegionParams(region)
-                }
-            } else {
-                completion(indices: [NSIndexPath](), error: error)
             }
+
+        } else {
+            super.loadPage(completion)
         }
     }
     
