@@ -58,7 +58,7 @@ class PLLoginViewController: PLViewController {
     
     private func sendPassword(email: String) {
         self.startActivityIndicator(.WhiteLarge)
-        PLFacade.sendPassword(email, completion: { [unowned self] error in
+        PLFacade.forgotPassword(email, completion: { [unowned self] error in
             self.stopActivityIndicator()
             
             guard error == nil else { return PLShowErrorAlert(error: error!) }

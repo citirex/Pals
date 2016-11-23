@@ -8,10 +8,10 @@
 
 import UIKit
 
-class PLResetPasswordViewController: UIViewController {
+class PLResetPasswordViewController: PLViewController {
     
     @IBOutlet weak var emailTextField: PLFormTextField!
-    @IBOutlet weak var codeTextField: PLFormTextField!
+    @IBOutlet weak var accessCodeTextField: PLFormTextField!
     @IBOutlet weak var passwordTextField: PLFormTextField!
     @IBOutlet weak var confirmPasswordTextField: PLFormTextField!
 
@@ -24,13 +24,9 @@ class PLResetPasswordViewController: UIViewController {
         hideKeyboardWhenTapped = true
     
         emailTextField.text = email
-        codeTextField.becomeFirstResponder()
+        accessCodeTextField.becomeFirstResponder()
     }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
+
     
     // MARK: - Actions
     
@@ -43,23 +39,26 @@ class PLResetPasswordViewController: UIViewController {
     
     private func checkingUserData() {
         let password = passwordTextField.text!.trim()
-        let code = codeTextField.text!.trim()
+        let accessCode = accessCodeTextField.text!.trim()
         
-        guard code.characters.count == 4 else { return PLShowAlert("Error", message: "Code must contain 4 digits") }
+        guard accessCode.characters.count == 4 else { return PLShowAlert("Error", message: "Code must contain 4 digits") }
         guard !password.isEmpty  else { return PLShowAlert("Error", message: "Password must contain at least 1 character") }
         guard validate(password) else { return PLShowAlert("Error", message: "Password mismatch") }
         
-        let resetPasswordData = PLResetPasswordData(email: email, code: code, password: password)
+        let resetData = PLResetPasswordData(email: email, accessCode: accessCode, password: password)
         
-        resetPassword(resetPasswordData)
+        resetPassword(resetData)
     }
     
-    private func resetPassword(resetPasswordData: PLResetPasswordData) {
-//        startActivityIndicator(.WhiteLarge)
-//        PLFacade.resetPassword(resetPasswordData) { [unowned self] error in
-//            self.stopActivityIndicator()
-//            
-//        }
+    private func resetPassword(resetData: PLResetPasswordData) {
+        startActivityIndicator(.WhiteLarge)
+        PLFacade.resetPassword(resetData) { [unowned self] error in
+            self.stopActivityIndicator()
+            guard error == nil else { return PLShowErrorAlert(error: error!) }
+            
+            let tabBarController = UIStoryboard.tabBarController()!
+            self.present(tabBarController, animated: true)
+        }
     }
     
     private func validate(password: String) -> Bool {

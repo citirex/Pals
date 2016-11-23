@@ -25,7 +25,9 @@ enum PLAPIService : String {
     case LoginFB
     case Logout
     case SignUp
-    case SendPassword = "passnew"
+//    case SendPassword = "passnew"
+    case ForgotPassword = "forgot_password"
+    case ResetPassword = "change_password"
     case Profile
     case UpdateProfile = "update_profile"
     case Unfriend = "removefriend"

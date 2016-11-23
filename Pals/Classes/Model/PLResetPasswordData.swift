@@ -11,6 +11,6 @@ import Foundation
 struct PLResetPasswordData {
     
     var email: String
-    var code: String
+    var accessCode: String
     var password: String
 }

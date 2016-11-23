@@ -22,7 +22,9 @@ protocol PLFacadeNetworkAPI {
     static func updateProfile(data: PLEditUserData, completion: PLErrorCompletion)
     static func unfriend(user: PLUser, completion: PLErrorCompletion)
     static func addFriend(user: PLUser, completion: PLErrorCompletion)
-    static func sendPassword(email: String, completion: PLErrorCompletion)
+//    static func sendPassword(email: String, completion: PLErrorCompletion)
+    static func forgotPassword(email: String, completion: PLErrorCompletion)
+    static func resetPassword(data: PLResetPasswordData, completion: PLErrorCompletion)
     static func resetBadges(type: PLPushType)
     static func fetchBadges(completion: PLFetchesBadgesCompletion)
     static func addPaymentCard(cardParams: STPCardParams, completion: PLErrorCompletion)
@@ -46,8 +48,16 @@ extension PLFacade: PLFacadeNetworkAPI {
         instance._signUp(data, completion: completion)
     }
     
-    class func sendPassword(email: String, completion: PLErrorCompletion) {
-        instance._sendPassword(email, completion: completion)
+//    class func sendPassword(email: String, completion: PLErrorCompletion) {
+//        instance._sendPassword(email, completion: completion)
+//    }
+    
+    class func forgotPassword(email: String, completion: PLErrorCompletion) {
+        instance._forgotPassword(email, completion: completion)
+    }
+    
+    class func resetPassword(data: PLResetPasswordData, completion: PLErrorCompletion) {
+        instance._resetPassword(data, completion: completion)
     }
     
     class func updateProfile(data: PLEditUserData, completion: PLErrorCompletion) {
@@ -138,9 +148,27 @@ extension PLFacade._PLFacade {
         }
     }
     
-    func _sendPassword(email: String, completion: PLErrorCompletion) {
-        let params = [PLKey.email.string : email]
-        PLNetworkManager.postWithAttributes(.SendPassword, attributes: params) { (dic, error) in
+//    func _sendPassword(email: String, completion: PLErrorCompletion) {
+//        let params = [PLKey.email.string : email]
+//        PLNetworkManager.postWithAttributes(.SendPassword, attributes: params) { (dic, error) in
+//            PLNetworkManager.handleFullResponse(dic, error: error, completion: completion)
+//        }
+//    }
+    
+    func _forgotPassword(email: String, completion: PLErrorCompletion) {
+        let attributes = [PLKey.email.string : email]
+        PLNetworkManager.postWithAttributes(.ForgotPassword, attributes: attributes) { (dic, error) in
+            PLNetworkManager.handleFullResponse(dic, error: error, completion: completion)
+        }
+    }
+    
+    func _resetPassword(data: PLResetPasswordData, completion: PLErrorCompletion) {
+        let attributes = [
+            PLKey.email.string       : data.email,
+            PLKey.access_code.string : data.accessCode,
+            PLKey.password.string    : data.password
+        ]
+        PLNetworkManager.postWithAttributes(.ResetPassword, attributes: attributes) { (dic, error) in
             PLNetworkManager.handleFullResponse(dic, error: error, completion: completion)
         }
     }
