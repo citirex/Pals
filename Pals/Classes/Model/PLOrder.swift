@@ -59,6 +59,20 @@ class PLOrder: PLDatedObject, PLFilterable {
         return items
     }
     
+    var drinksSeparatedByType: NSArray {
+        let drinksByTypesDic = NSMutableDictionary()
+        for set in drinkSets {
+            let key = String(set.item.type.rawValue)
+            var typeArray = drinksByTypesDic.valueForKey(key) as? NSMutableArray
+            if typeArray == nil {
+                typeArray = NSMutableArray()
+            }
+            typeArray?.addObject(set)
+            drinksByTypesDic.setValue(typeArray, forKey: key)
+        }
+        return drinksByTypesDic.allValues
+    }
+    
     subscript(idx: Int) -> AnyObject {
         return allItems[idx]
     }

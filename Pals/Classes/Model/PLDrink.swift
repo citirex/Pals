@@ -23,6 +23,10 @@ enum PLDrinkType: Int {
     }
     
     var image: UIImage {
+        return UIImage(named: iconName)!
+    }
+    
+    var iconName: String {
         var name = ""
         switch self {
         case .Beer:
@@ -38,7 +42,7 @@ enum PLDrinkType: Int {
         case .Unknown:
             name = "question_icon"
         }
-        return UIImage(named: name)!
+        return name
     }
     
     var color: UIColor {

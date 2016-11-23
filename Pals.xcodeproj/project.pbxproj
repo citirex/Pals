@@ -118,6 +118,8 @@
 		D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A921D82B32700F48F4E /* PLAlert.swift */; };
 		D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A941D82C71100F48F4E /* PLViewController.swift */; };
 		D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */; };
+		D4A15BF31DE5A76F00DBF65C /* PLDrinkListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BF21DE5A76F00DBF65C /* PLDrinkListHeaderView.swift */; };
+		D4A15BF51DE5A85D00DBF65C /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BF41DE5A85D00DBF65C /* BasicView.swift */; };
 		D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */; };
 		D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */; };
 		D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */; };
@@ -331,6 +333,8 @@
 		D4950A921D82B32700F48F4E /* PLAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAlert.swift; sourceTree = "<group>"; };
 		D4950A941D82C71100F48F4E /* PLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLViewController.swift; sourceTree = "<group>"; };
 		D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDatasource.swift; sourceTree = "<group>"; };
+		D4A15BF21DE5A76F00DBF65C /* PLDrinkListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkListHeaderView.swift; sourceTree = "<group>"; };
+		D4A15BF41DE5A85D00DBF65C /* BasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
 		D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocationManager.swift; sourceTree = "<group>"; };
 		D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatasource.swift; sourceTree = "<group>"; };
@@ -615,6 +619,7 @@
 				E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */,
 				E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */,
 				E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */,
+				D4A15BF41DE5A85D00DBF65C /* BasicView.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -831,6 +836,14 @@
 			name = QRCode;
 			path = "Pals/Classes/Thrird Party/QRCode";
 			sourceTree = SOURCE_ROOT;
+		};
+		D4A15BF11DE5A6F600DBF65C /* Card Header */ = {
+			isa = PBXGroup;
+			children = (
+				D4A15BF21DE5A76F00DBF65C /* PLDrinkListHeaderView.swift */,
+			);
+			name = "Card Header";
+			sourceTree = "<group>";
 		};
 		D4CEC2531D81A3B400D4CD08 /* Datasources */ = {
 			isa = PBXGroup;
@@ -1110,6 +1123,7 @@
 				E8DA8B8E1D88334F008782E5 /* PLProfileViewController.swift */,
 				E8DA8B891D88334F008782E5 /* PLProfileCollectionHelper.swift */,
 				E8DA8B871D88334F008782E5 /* PLCollectionParalaxLayout.swift */,
+				D4A15BF11DE5A6F600DBF65C /* Card Header */,
 				D4E53C641DDC9F330047477A /* PLOrderCardCell.swift */,
 				D4E53C651DDC9F330047477A /* PLOrderCardCell.xib */,
 				D4E53C791DDDAEB80047477A /* OrderList */,
@@ -1369,6 +1383,7 @@
 				24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */,
 				E8C89F7E1DC2085D006D17FE /* PLOrderFriendsViewController.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
+				D4A15BF51DE5A85D00DBF65C /* BasicView.swift in Sources */,
 				D4E53C801DDDAF770047477A /* PLOrderItemCell.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
@@ -1458,6 +1473,7 @@
 				E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */,
 				E85A26251DDA3ECD00710D7F /* PLCheckbox.swift in Sources */,
 				D47DC1E81DBDF55000420958 /* PLPage.swift in Sources */,
+				D4A15BF31DE5A76F00DBF65C /* PLDrinkListHeaderView.swift in Sources */,
 				D48A8AB21DDF76B500C90DE7 /* QRCode.swift in Sources */,
 				E8204A281DA82F4000BDBFCE /* PLFormTextField.swift in Sources */,
 				D4E53C691DDCB7600047477A /* PLOrderCardListView.swift in Sources */,

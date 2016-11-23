@@ -73,7 +73,7 @@ class PLOrderItemCell: UITableViewCell {
         updateNameForItem(set.item, count: set.quantity)
     }
     
-    func updateNameForItem(item: PLPricedItem, count: Int) {
+    func updateNameForItem(item: PLPricedItem, count: UInt) {
         nameLabel.text = "\(item.name) (\(count))"
     }
     

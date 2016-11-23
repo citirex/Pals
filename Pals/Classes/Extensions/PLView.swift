@@ -131,6 +131,12 @@ extension UIView {
         superview?.removeConstraints(list)
         removeConstraints(constraints)
     }
+    
+    func removeAllSubviews() {
+        for view in subviews {
+            view.removeFromSuperview()
+        }
+    }
 }
 
 protocol PLNibNamable {

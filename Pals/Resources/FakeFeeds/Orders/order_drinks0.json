@@ -32,6 +32,15 @@
                             },
                             {
                                 "drink" : {
+                                    "id":25,
+                                    "name":"Vodka Seven Birches",
+                                    "price":40.0,
+                                    "type":1
+                                },
+                                "quantity" : 19
+                            },
+                            {
+                                "drink" : {
                                     "id":14,
                                     "name":"Portwine 777 12%",
                                     "price":18.22,
@@ -47,97 +56,7 @@
                                     "type":4
                                 },
                                 "quantity" : 1
-                            },
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-										"price":29.0,
-								"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							},
-							{
-							"drink" : {
-									"id":13,
-									"name":"Vodka Pshenichna 40%",
-									"price":29.0,
-									"type":1
-								},
-								"quantity" : 3
-							}
+                            }
 						],
 
 				"message":"Hi, check out this amazing tasty coffee!",

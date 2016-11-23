@@ -7,19 +7,19 @@
 //
 
 protocol PLCounterViewDelegate: class {
-    func counterView(view: PLCounterView, didChangeCounter counter: Int)
+    func counterView(view: PLCounterView, didChangeCounter counter: UInt)
 }
 
 class PLCounterView: UIView {
     
     weak var delegate: PLCounterViewDelegate?
     
-    var counter: Int {
+    var counter: UInt {
         set {
             counterLabel.text = String(newValue)
         }
         get {
-            if let number = Int(counterLabel.text!) {
+            if let number = UInt(counterLabel.text!) {
                 return number
             }
             return 0

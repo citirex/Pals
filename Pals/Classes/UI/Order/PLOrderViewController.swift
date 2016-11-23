@@ -371,7 +371,7 @@ extension PLOrderViewController : PLOrderHeaderDelegate {
 extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate{
     
     //MARK: Order drinks count
-    func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: Int) {
+    func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt) {
         order.updateWithDrink(drinksDatasource[collectionView.indexPathForCell(drinkCell)!.row], andCount: count)
         updateCheckoutButtonState()
     }
@@ -587,7 +587,7 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
 }
 
 extension PLOrderViewController : PLCoverCellDelegate {
-    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: Int) {
+    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt) {
         order.updateWithCover(event, andCount: count)
         updateCheckoutButtonState()
     }

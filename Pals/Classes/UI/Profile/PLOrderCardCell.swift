@@ -73,6 +73,7 @@ class PLOrderCardCell: UICollectionViewCell {
     @IBOutlet var placeTitleLabel: UILabel!
     @IBOutlet var musicGenresLabel: UILabel!
     @IBOutlet var cardModeButton: UIButton!
+    @IBOutlet var previewHeader: PLDrinkListHeaderView!
     
     private lazy var listContainerView: PLOrderCardListView = PLOrderCardListView.loadFromNib()!
     private lazy var scanContainerView: PLOrderCardScanView = PLOrderCardScanView()
@@ -124,6 +125,9 @@ class PLOrderCardCell: UICollectionViewCell {
                     scanContainerView.disableCamera()
                     mode = .List
                 }
+                
+                let icons = orderIconData(o)
+                previewHeader.updateWithIcons(icons)
             } else {
                 placeTitleLabel.text = "<Error>"
                 musicGenresLabel.text = "<Error>"
@@ -131,6 +135,40 @@ class PLOrderCardCell: UICollectionViewCell {
             }
             updateCurrentContainerWithOrder(order)
         }
+    }
+    
+    func orderIconData(order: PLOrder) -> [PLIconData] {
+        let splitDrinks = order.drinksSeparatedByType
+        var icons = [PLIconData]()
+        for d in splitDrinks {
+            if d.count == 0 {
+                continue
+            }
+            if let drinks = d as? [PLItemSet<PLDrink>] {
+                var count = UInt(0)
+                var firstDrink: PLDrink!
+                for drinkItem in drinks {
+                    if firstDrink == nil {
+                        firstDrink = drinkItem.item
+                    }
+                    count += drinkItem.quantity
+                }
+                let iconData = PLIconData(name: firstDrink.type.iconName, title: firstDrink.name, count: count, badgeColor: firstDrink.type.color)
+                icons.append(iconData)
+            }
+        }
+        
+        if order.coverSets.count > 0 {
+            var count = UInt(0)
+            var title = ""
+            for cover in order.coverSets {
+                title = cover.item.name
+                count += cover.quantity
+            }
+            let coverIcon = PLIconData(name: PLCoverIcon, title: title, count: count, badgeColor: .coverColor)
+            icons.append(coverIcon)
+        }
+        return icons
     }
     
     func updateCurrentContainerWithOrder(order: PLOrder?) {
