@@ -15,7 +15,10 @@ protocol OrderDrinksCounterDelegate: class {
 class PLOrderDrinkCell: UICollectionViewCell {
     
     static let height: CGFloat = 112
-    
+	var timer = NSTimer()
+	
+	@IBOutlet private var drinkExpiredLabel: UILabel!
+	@IBOutlet private var drinkImageView: UIImageView!
     @IBOutlet private var drinkNameLabel: UILabel!
     @IBOutlet private var drinkPriceLabel: UILabel!
     @IBOutlet private var drinkMinusCounterButton: UIButton!
@@ -30,26 +33,55 @@ class PLOrderDrinkCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         bgView.layer.cornerRadius = 10
-        
+		
+		let plusLongGesture = UILongPressGestureRecognizer(target: self, action: #selector(plusLongTap))
+		let minusLongGesture = UILongPressGestureRecognizer(target: self, action: #selector(minusLongTap))
+		drinkPlusCounterButton.addGestureRecognizer(plusLongGesture)
+		drinkMinusCounterButton.addGestureRecognizer(minusLongGesture)
     }
-    
+	
+	func plusLongTap(sender : UILongPressGestureRecognizer){
+		if sender.state == .Began {
+			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(incrementDrink), userInfo: nil, repeats: true)
+		}
+		if sender.state == .Ended {
+			timer.invalidate()
+		}
+	}
+	
+	func minusLongTap(sender : UILongPressGestureRecognizer){
+		if sender.state == .Began {
+			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(decreaseDrink), userInfo: nil, repeats: true)
+		}
+		if sender.state == .Ended {
+			timer.invalidate()
+		}
+	}
+	func incrementDrink() {
+		drinkCount += 1
+		delegate?.updateOrderWith(self, andCount: drinkCount)
+	}
+	func decreaseDrink() {
+		if drinkCount > 0 {
+			drinkCount -= 1
+			delegate?.updateOrderWith(self, andCount: drinkCount)
+		}
+	}
+	
     func setupWith(drink: PLDrink, isVip vip: Bool) {
         drinkNameLabel.text = drink.name
         drinkPriceLabel.text = (drink.price > 0) ? "$" + String(format: "%.2f", drink.price) : "Specify"
         setupColorsForVipState(vip, withType: drink.type)
+		drinkImageView.image = drink.type.image
     }
     
     //MARK: Actions
     @IBAction func minusButtonPressed(sender: UIButton) {
-        if drinkCount > 0 {
-            drinkCount -= 1
-            delegate?.updateOrderWith(self, andCount: drinkCount)
-        }
+        decreaseDrink()
     }
     
     @IBAction func plusButtonPressed(sender: UIButton) {
-        drinkCount += 1
-        delegate?.updateOrderWith(self, andCount: drinkCount)
+        incrementDrink()
     }
     
     private func setupColorsForVipState(isVip: Bool, withType type: PLDrinkType) {

@@ -12,6 +12,7 @@
 		049692F91DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */; };
 		049692FC1DDB3F6500A65C60 /* PLNewsNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */; };
 		049692FD1DDB3F6500A65C60 /* PLNewsNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */; };
+		049ABB701DE5C83B00F6F5BE /* PLDrinkCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049ABB6F1DE5C83B00F6F5BE /* PLDrinkCounterView.swift */; };
 		049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F61D83083800C2E32D /* PLFriendCell.swift */; };
 		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
@@ -182,6 +183,10 @@
 		E85083111DACE7770077A81C /* PLOrderHistorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85083101DACE7760077A81C /* PLOrderHistorySectionHeader.xib */; };
 		E85083131DACEC5B0077A81C /* PLEmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */; };
 		E85083151DAD1AEA0077A81C /* PLAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85083141DAD1AEA0077A81C /* PLAttributedString.swift */; };
+		E8558DD51DE598740067F81F /* PLCancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558DD31DE598740067F81F /* PLCancelButton.swift */; };
+		E8558DD61DE598740067F81F /* PLCheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558DD41DE598740067F81F /* PLCheckmarkButton.swift */; };
+		E8558DDB1DE5CBDA0067F81F /* PLResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558DDA1DE5CBDA0067F81F /* PLResetPasswordViewController.swift */; };
+		E8558DDD1DE5E34B0067F81F /* PLResetPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558DDC1DE5E34B0067F81F /* PLResetPasswordData.swift */; };
 		E85A26251DDA3ECD00710D7F /* PLCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85A26241DDA3ECD00710D7F /* PLCheckbox.swift */; };
 		E86E55891DB2ADDA00CE1698 /* PLCircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */; };
 		E86E558B1DB3741D00CE1698 /* PLRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */; };
@@ -219,6 +224,7 @@
 		049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewFriendNotificationCell.xib; sourceTree = "<group>"; };
 		049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNewsNotificationCell.swift; sourceTree = "<group>"; };
 		049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewsNotificationCell.xib; sourceTree = "<group>"; };
+		049ABB6F1DE5C83B00F6F5BE /* PLDrinkCounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkCounterView.swift; sourceTree = "<group>"; };
 		049BA9F61D83083800C2E32D /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +402,10 @@
 		E85083101DACE7760077A81C /* PLOrderHistorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLOrderHistorySectionHeader.xib; path = "Order History/PLOrderHistorySectionHeader.xib"; sourceTree = "<group>"; };
 		E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLEmptyBackgroundView.swift; sourceTree = "<group>"; };
 		E85083141DAD1AEA0077A81C /* PLAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAttributedString.swift; sourceTree = "<group>"; };
+		E8558DD31DE598740067F81F /* PLCancelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCancelButton.swift; sourceTree = "<group>"; };
+		E8558DD41DE598740067F81F /* PLCheckmarkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCheckmarkButton.swift; sourceTree = "<group>"; };
+		E8558DDA1DE5CBDA0067F81F /* PLResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLResetPasswordViewController.swift; path = "Reset Password/PLResetPasswordViewController.swift"; sourceTree = "<group>"; };
+		E8558DDC1DE5E34B0067F81F /* PLResetPasswordData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLResetPasswordData.swift; sourceTree = "<group>"; };
 		E85A26241DDA3ECD00710D7F /* PLCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCheckbox.swift; sourceTree = "<group>"; };
 		E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCircularImageView.swift; sourceTree = "<group>"; };
 		E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLRoundedButton.swift; sourceTree = "<group>"; };
@@ -577,6 +587,7 @@
 				D4945B121DD33A9C0005FD8C /* PLCustomer.swift */,
 				D4945B141DD3585F0005FD8C /* PLPaymentSource.swift */,
 				D419F0D01DB62E1F0095C5AA /* PLEditUserData.swift */,
+				E8558DDC1DE5E34B0067F81F /* PLResetPasswordData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -584,6 +595,7 @@
 		2480F8921D813E730095995F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E8558DD71DE5CA2F0067F81F /* Reset Password */,
 				049692F21DDB2C7E00A65C60 /* Notificaton */,
 				2480F8971D813E730095995F /* Basic */,
 				E8042B381D8C54D900755EF3 /* Tabbar */,
@@ -616,6 +628,8 @@
 				E83B4E4E1D87364E002E72F6 /* PLBackBarButtonItem.swift */,
 				D46E81621D91370100A781C7 /* PLSearchController.swift */,
 				E86E55881DB2ADDA00CE1698 /* PLCircularImageView.swift */,
+				E8558DD31DE598740067F81F /* PLCancelButton.swift */,
+				E8558DD41DE598740067F81F /* PLCheckmarkButton.swift */,
 				E86E558A1DB3741D00CE1698 /* PLRoundedButton.swift */,
 				E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */,
 				E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */,
@@ -662,6 +676,7 @@
 				2480F8A71D813E730095995F /* PLOrderDrinkCell.swift */,
 				2480F8A81D813E730095995F /* PLOrderDrinkCell.xib */,
 				D46B0EE61DDB13EA00AD2B69 /* PLCounterView.swift */,
+				049ABB6F1DE5C83B00F6F5BE /* PLDrinkCounterView.swift */,
 				24C20C701D8A9C5D0040F2F5 /* PLOrderCoverCell.swift */,
 				24C20C721D8A9C700040F2F5 /* PLOrderCoverCell.xib */,
 				2480F8A91D813E730095995F /* PLOrderStillHeader.swift */,
@@ -1008,6 +1023,14 @@
 				E883A8411DAA6269006DB9CF /* PLPlaceCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		E8558DD71DE5CA2F0067F81F /* Reset Password */ = {
+			isa = PBXGroup;
+			children = (
+				E8558DDA1DE5CBDA0067F81F /* PLResetPasswordViewController.swift */,
+			);
+			name = "Reset Password";
 			sourceTree = "<group>";
 		};
 		E860916E1D9AA1F2002C602A /* Description Label */ = {
@@ -1375,6 +1398,7 @@
 				2480F8FE1D813E730095995F /* PLOrderViewController.swift in Sources */,
 				2480F8DD1D813E730095995F /* PLProfileManager.swift in Sources */,
 				E86E558B1DB3741D00CE1698 /* PLRoundedButton.swift in Sources */,
+				E8558DDB1DE5CBDA0067F81F /* PLResetPasswordViewController.swift in Sources */,
 				E818032A1DBBA42300A57FB8 /* PLImagePicker.swift in Sources */,
 				E8F1C8AE1DBE4009008D95B2 /* PLTableView.swift in Sources */,
 				049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */,
@@ -1384,6 +1408,7 @@
 				E8C89F7E1DC2085D006D17FE /* PLOrderFriendsViewController.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				D4A15BF51DE5A85D00DBF65C /* BasicView.swift in Sources */,
+				E8558DDD1DE5E34B0067F81F /* PLResetPasswordData.swift in Sources */,
 				D4E53C801DDDAF770047477A /* PLOrderItemCell.swift in Sources */,
 				D47B454F1D8FED1B0042EB9A /* PLCoversDatasource.swift in Sources */,
 				2480F8EA1D813E730095995F /* PLPlace.swift in Sources */,
@@ -1444,6 +1469,7 @@
 				2480F9181D813E730095995F /* PLSignUpViewController.swift in Sources */,
 				E8DA8B961D88334F008782E5 /* PLProfileViewController.swift in Sources */,
 				D4950A951D82C71100F48F4E /* PLViewController.swift in Sources */,
+				E8558DD61DE598740067F81F /* PLCheckmarkButton.swift in Sources */,
 				E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */,
 				24C20C561D8820C00040F2F5 /* PLDrinksDatasource.swift in Sources */,
 				D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */,
@@ -1455,6 +1481,7 @@
 				049692F41DDB2C9E00A65C60 /* PLNotificationViewController.swift in Sources */,
 				D46D2B871D87583B0058060E /* PLColor.swift in Sources */,
 				D4E53C891DDDF8B90047477A /* PLOrderItemHeaderView.swift in Sources */,
+				049ABB701DE5C83B00F6F5BE /* PLDrinkCounterView.swift in Sources */,
 				2480F9251D813E730095995F /* QTCollectionViewParallaxLayout.m in Sources */,
 				D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */,
 				2480F8E51D813E730095995F /* PLErrors.swift in Sources */,
@@ -1468,6 +1495,7 @@
 				D414942C1DD9DC5F0081509E /* PLNotifications.swift in Sources */,
 				E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */,
 				E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */,
+				E8558DD51DE598740067F81F /* PLCancelButton.swift in Sources */,
 				E8DA8B941D88334F008782E5 /* PLProfileHeaderView.swift in Sources */,
 				D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */,
 				E8B53E491D941A4800037A81 /* PLOrderHistoryCell.swift in Sources */,

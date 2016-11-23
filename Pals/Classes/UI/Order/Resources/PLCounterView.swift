@@ -29,16 +29,16 @@ class PLCounterView: UIView {
     static let controlsFont = UIFont(name: "HelveticaNeue-Medium", size: 30)!
     static let controlsColor = UIColor.whiteColor()
     
-    private lazy var plus: UIButton = {
+    lazy var plus: UIButton = {
         let b = self.sampleButton("+")
         return b
     }()
-    private lazy var minus: UIButton = {
+    lazy var minus: UIButton = {
         let b = self.sampleButton("-")
         return b
     }()
     
-    private lazy var counterLabel: UILabel = {
+    lazy var counterLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.textAlignment = .Center
@@ -81,7 +81,7 @@ class PLCounterView: UIView {
         addSubview(plus)
     }
     
-    private func setupLayoutConstraints() {
+	func setupLayoutConstraints() {
         let views = ["plus" : plus, "minus" : minus, "counter" : counterLabel]
         let metrics = ["side" : 50]
         let strings = ["|-0-[minus(side)]-0-[counter(>=0)]-0-[plus(side)]-0-|", "V:|-[plus(side)]-|", "V:|-[minus(side)]-|","V:|-[counter]-|"]
