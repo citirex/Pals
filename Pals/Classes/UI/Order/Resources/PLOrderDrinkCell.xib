@@ -31,7 +31,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drink_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Iwd-Q0-FjV">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beer_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Iwd-Q0-FjV">
                                 <rect key="frame" x="8" y="62" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Iwd-Q0-FjV" secondAttribute="height" multiplier="1:1" id="iSq-4b-9zg"/>
@@ -114,6 +114,7 @@
             <connections>
                 <outlet property="bgView" destination="IAB-rG-Q14" id="HEZ-Ij-LYQ"/>
                 <outlet property="drinkCountLabel" destination="IAj-I3-J9l" id="oev-QX-haf"/>
+                <outlet property="drinkExpiredLabel" destination="Wqq-hV-YHL" id="KcY-4o-1mx"/>
                 <outlet property="drinkImageView" destination="Iwd-Q0-FjV" id="aZa-MT-7dV"/>
                 <outlet property="drinkMinusCounterButton" destination="wLY-FL-qmn" id="gep-f8-g4u"/>
                 <outlet property="drinkNameLabel" destination="6Wh-qi-sWo" id="591-Bs-As8"/>
@@ -124,6 +125,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="drink_icon" width="256" height="256"/>
+        <image name="beer_icon" width="200" height="248"/>
     </resources>
 </document>

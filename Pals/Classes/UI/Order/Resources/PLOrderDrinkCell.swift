@@ -17,6 +17,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
     static let height: CGFloat = 112
 	var timer = NSTimer()
 	
+	@IBOutlet private var drinkExpiredLabel: UILabel!
 	@IBOutlet private var drinkImageView: UIImageView!
     @IBOutlet private var drinkNameLabel: UILabel!
     @IBOutlet private var drinkPriceLabel: UILabel!
@@ -71,6 +72,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
         drinkNameLabel.text = drink.name
         drinkPriceLabel.text = (drink.price > 0) ? "$" + String(format: "%.2f", drink.price) : "Specify"
         setupColorsForVipState(vip, withType: drink.type)
+		drinkImageView.image = drink.type.image
     }
     
     //MARK: Actions
@@ -81,8 +83,8 @@ class PLOrderDrinkCell: UICollectionViewCell {
     @IBAction func plusButtonPressed(sender: UIButton) {
         incrementDrink()
     }
-	
-    private func setupColorsForVipState(isVip: Bool, withType type: DrinkType) {
+    
+    private func setupColorsForVipState(isVip: Bool, withType type: PLDrinkType) {
         if isVip == true {
             setupTextWith(color: UIColor.blackColor())
             bgView.backgroundColor = UIColor.whiteColor()
