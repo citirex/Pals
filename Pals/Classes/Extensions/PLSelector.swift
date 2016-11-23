@@ -18,6 +18,8 @@ extension Selector {
     static let hidePopUpMenu      = #selector(PLFriendProfileViewController.hidePopUpMenu)
     static let textFieldDidChange = #selector(PLEditProfileViewController.textFieldDidChange(_:))
     static let checkoutPressed    = #selector(PLOrderViewController.checkoutButtonPressed(_:))
+    static let tappedEditButton   = #selector(PLEditProfileViewController.tappedEditButton(_:))
+    static let tappedCancelButton = #selector(PLEditProfileViewController.tappedCancelButton(_:))
     static let handleTap          = #selector(PLCheckbox.handleTap)
     
     static let sendButtonPressedNotification = #selector(PLOrderViewController.sendButtonPressedNotification(_:))
