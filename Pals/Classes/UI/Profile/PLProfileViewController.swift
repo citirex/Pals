@@ -359,6 +359,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
         let expoItemSize = CGSizeMake(collectionSize.width, exposedCardHeight)
         self.exposedItemSize = expoItemSize
         self.stackedLayout!.itemSize = self.exposedItemSize;
+        self.stackedLayout?.topReveal = 90
         
         let layoutTopMargin = collectionView!.frame.size.height / 2 + 1
         self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(layoutTopMargin, 0.0, tabBarHeight, 0.0);

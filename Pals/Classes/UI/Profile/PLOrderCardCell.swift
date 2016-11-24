@@ -77,7 +77,7 @@ class PLOrderCardCell: UICollectionViewCell {
     
     private lazy var listContainerView: PLOrderCardListView = PLOrderCardListView.loadFromNib()!
     private lazy var scanContainerView: PLOrderCardScanView = PLOrderCardScanView()
-    private var currentContainer: UIView?
+    private weak var currentContainer: UIView?
 
     var checked = false
     
@@ -107,6 +107,7 @@ class PLOrderCardCell: UICollectionViewCell {
         let strings = ["|-0-[view]-0-|", "V:[header]-0-[view]-0-|"]
         underlay.addConstraints(strings, views: views)
         currentContainer = view
+        view.alpha = 1
         updateCurrentContainerWithOrder(order)
     }
     
@@ -186,7 +187,11 @@ class PLOrderCardCell: UICollectionViewCell {
         contentView.layer.shadowRadius = 7
         scanContainerView.translatesAutoresizingMaskIntoConstraints = false
         listContainerView.translatesAutoresizingMaskIntoConstraints = false
-        showContainer(listContainerView)
+        
+        contentView.layer.rasterizationScale = UIScreen.mainScreen().scale
+        underlay.layer.rasterizationScale = UIScreen.mainScreen().scale
+        contentView.layer.shouldRasterize = true
+        underlay.layer.shouldRasterize = true
     }
     
     override func layoutSubviews() {
@@ -206,6 +211,22 @@ class PLOrderCardCell: UICollectionViewCell {
     
     func onCardDidSelect(selected: Bool) {
         guard let order = order else { return }
+        
+        if selected {
+            showContainer(listContainerView)
+            currentContainer?.alpha = 0
+            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: { 
+                self.currentContainer?.alpha = 1
+            }, completion: nil)
+        } else {
+            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: {
+                self.currentContainer?.alpha = 0
+            }) { succes in
+                self.currentContainer?.removeFromSuperview()
+                self.currentContainer = nil
+            }
+        }
+        
         if !order.used {
             cardModeButton.hidden = !selected
             if mode == .Scan {
