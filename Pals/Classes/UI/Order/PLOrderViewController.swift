@@ -8,7 +8,7 @@
 
 private let kStillHeaderIdentifier = "stillHeader"
 private let kStickyHeaderIdentifier = "stickyHeader"
-private let kDrinkCellIdentifier = "drinkCell"
+//private let kDrinkCellIdentifier = "drinkCell"
 private let kCoverCellIdentifier = "coverCell"
 
 private let kCheckoutButtonHeight: CGFloat = 74
@@ -368,16 +368,7 @@ extension PLOrderViewController : PLOrderHeaderDelegate {
 }
 
 //MARK: - Order items delegate, Tab changed delegate
-extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate{
-    
-    //MARK: Order drinks count
-    func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt) {
-        if let indexPath = collectionView.indexPathForCell(drinkCell) {
-            let drink = drinksDatasource[indexPath.row]
-            order.updateWithDrink(drink, andCount: count)
-            updateCheckoutButtonState()
-        }
-    }
+extension PLOrderViewController: OrderHeaderBehaviourDelegate, CheckoutOrderPopupDelegate{
     
     //MARK: Cnange user
     func userNamePressed(sender: AnyObject) {
@@ -454,7 +445,7 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviou
         
         collectionView.registerNib(UINib(nibName: "PLOrderStillHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrdeStickyHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier)
-        collectionView.registerNib(UINib(nibName: "PLOrderDrinkCell", bundle: nil), forCellWithReuseIdentifier: kDrinkCellIdentifier)
+        collectionView.registerNib(UINib(nibName: PLOrderDrinkCell.nibName, bundle: nil), forCellWithReuseIdentifier: PLOrderDrinkCell.reuseIdentifier)
         collectionView.registerNib(UINib(nibName: "PLOrderCoverCell", bundle: nil), forCellWithReuseIdentifier: kCoverCellIdentifier)
     }
     
@@ -514,19 +505,23 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let identifier = currentSection == .Drinks ? kDrinkCellIdentifier : kCoverCellIdentifier
+        let identifier = currentSection == .Drinks ? PLOrderDrinkCell.reuseIdentifier : kCoverCellIdentifier
         let dequeuedCell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
         
         switch currentSection {
         case .Drinks:
             let cell = dequeuedCell as! PLOrderDrinkCell
             let drink = drinksDatasource[indexPath.row]
+            cell.drink = drink
+            cell.isVIP = order.isVIP
             cell.delegate = self
-            cell.setupWith(drink, isVip: order.isVIP)
-            cell.drinkCount = 0
-            if let item = order.itemById(drink.id, inSection: .Drinks) {
-                cell.drinkCount = item.quantity
-            }
+            updateDrinkCount(drink, inCell: cell)
+            //setupWith(drink, isVip: order.isVIP)
+//            cell.counter = 0
+//            if let item = order.itemById(drink.id, inSection: .Drinks) {
+//                cell.drinkCount = 0
+//                cell.drinkCount = item.quantity
+//            }
             return cell
         case .Covers:
             let cell = dequeuedCell as! PLOrderCoverCell
@@ -537,6 +532,14 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             return cell
         }
     }
+    
+    func updateDrinkCount(drink: PLDrink, inCell cell: PLOrderDrinkCell) {
+        cell.drinkCount = 0
+        if let item = order.itemById(drink.id, inSection: .Drinks) {
+            cell.drinkCount = item.quantity
+        }
+    }
+    
     
     func updateCoverCount(cover: PLEvent, inCell cell: PLOrderCoverCell) {
         cell.coverNumber = 0
@@ -589,6 +592,19 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 }
 
+
+// MARK: - PLOrderDrinkCellDelegate
+
+extension PLOrderViewController: PLOrderDrinkCellDelegate {
+    
+    func drinkCell(cell: PLOrderDrinkCell, didUpdateDrink drink: PLDrink, withCount count: UInt) {
+        order.updateWithDrink(drink, andCount: count)
+        updateCheckoutButtonState()
+    }
+    
+}
+
+
 extension PLOrderViewController : PLCoverCellDelegate {
     func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt) {
         order.updateWithCover(event, andCount: count)
@@ -618,3 +634,5 @@ extension PLOrderViewController: PLOrderFriendsSelectionDelegate {
         updateCheckoutButtonState()
     }
 }
+
+

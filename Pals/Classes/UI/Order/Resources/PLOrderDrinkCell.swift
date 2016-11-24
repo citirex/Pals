@@ -8,114 +8,74 @@
 
 import UIKit
 
-protocol OrderDrinksCounterDelegate: class {
-    func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt)
+protocol PLOrderDrinkCellDelegate: class {
+    func drinkCell(cell: PLOrderDrinkCell, didUpdateDrink drink: PLDrink, withCount count: UInt)
 }
 
 class PLOrderDrinkCell: UICollectionViewCell {
     
     static let height: CGFloat = 112
-	var timer = NSTimer()
-	
-	@IBOutlet private var drinkExpiredLabel: UILabel!
-	@IBOutlet private var drinkImageView: UIImageView!
-    @IBOutlet private var drinkNameLabel: UILabel!
-    @IBOutlet private var drinkPriceLabel: UILabel!
-    @IBOutlet private var drinkMinusCounterButton: UIButton!
-    @IBOutlet private var drinkPlusCounterButton: UIButton!
-    @IBOutlet private var drinkCountLabel: UILabel!
     
-    @IBOutlet private var bgView: UIView!
+    static let nibName    = "PLOrderDrinkCell"
+    static let reuseIdentifier = "DrinkCell"
     
-    weak var delegate: OrderDrinksCounterDelegate?
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var drinkImageView: UIImageView!
+    @IBOutlet weak var expiredDateLabel: UILabel!
     
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var counterView: PLCounterView!
+    
+    weak var delegate: PLOrderDrinkCellDelegate?
+    
+    
+    var isVIP = false
+    var drink: PLDrink! {
+        didSet {
+            nameLabel.text = drink.name
+            priceLabel.text = drink.price > 0 ? String(format: "$%.2f", drink.price) : "Specify"
+//                    expiredDateLabel.text = drink
+        
+            drinkImageView.image = drink.type.image
+            containerView.backgroundColor = isVIP ? .whiteColor() : drink.type.color
+        }
+    }
+    
+    var drinkCount: UInt {
+        get {
+            return counterView.counter
+        }
+        set {
+            counterView.counter = newValue
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        bgView.layer.cornerRadius = 10
-		
-		let plusLongGesture = UILongPressGestureRecognizer(target: self, action: #selector(plusLongTap))
-		let minusLongGesture = UILongPressGestureRecognizer(target: self, action: #selector(minusLongTap))
-		drinkPlusCounterButton.addGestureRecognizer(plusLongGesture)
-		drinkMinusCounterButton.addGestureRecognizer(minusLongGesture)
-    }
-	
-	func plusLongTap(sender : UILongPressGestureRecognizer){
-		if sender.state == .Began {
-			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(incrementDrink), userInfo: nil, repeats: true)
-		}
-		if sender.state == .Ended {
-			timer.invalidate()
-		}
-	}
-	
-	func minusLongTap(sender : UILongPressGestureRecognizer){
-		if sender.state == .Began {
-			timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(decreaseDrink), userInfo: nil, repeats: true)
-		}
-		if sender.state == .Ended {
-			timer.invalidate()
-		}
-	}
-	func incrementDrink() {
-		drinkCount += 1
-		delegate?.updateOrderWith(self, andCount: drinkCount)
-	}
-	func decreaseDrink() {
-		if drinkCount > 0 {
-			drinkCount -= 1
-			delegate?.updateOrderWith(self, andCount: drinkCount)
-		}
-	}
-	
-    func setupWith(drink: PLDrink, isVip vip: Bool) {
-        drinkNameLabel.text = drink.name
-        drinkPriceLabel.text = (drink.price > 0) ? "$" + String(format: "%.2f", drink.price) : "Specify"
-        setupColorsForVipState(vip, withType: drink.type)
-		drinkImageView.image = drink.type.image
-    }
-    
-    //MARK: Actions
-    @IBAction func minusButtonPressed(sender: UIButton) {
-        decreaseDrink()
-    }
-    
-    @IBAction func plusButtonPressed(sender: UIButton) {
-        incrementDrink()
-    }
-    
-    private func setupColorsForVipState(isVip: Bool, withType type: PLDrinkType) {
-        if isVip == true {
-            setupTextWith(color: UIColor.blackColor())
-            bgView.backgroundColor = UIColor.whiteColor()
-        } else {
-            setupTextWith(color: UIColor.whiteColor())
-            bgView.backgroundColor = type.color
-        }
-    }
-    
-    private func setupTextWith(color color: UIColor) {
-        drinkNameLabel.textColor = color
-        drinkPriceLabel.textColor = color
-        drinkMinusCounterButton.setTitleColor(color, forState: .Normal)
-        drinkPlusCounterButton.setTitleColor(color, forState: .Normal)
-        drinkCountLabel.textColor = color
-    }
-    
-    
-    //MARK: Getters
-    var drinkCount: UInt {
-        get{
-            return UInt(drinkCountLabel.text!)!
-        }
-        set{
-            drinkCountLabel.text = "\(newValue)"
-        }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        drinkCount = 0
         
+        counterView.position = .Vertical
+        counterView.delegate = self
     }
+
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        containerView.cornerRadius = 10
+    }
+
 }
+
+
+// MARK: - PLCounterViewDelegate
+
+extension PLOrderDrinkCell: PLCounterViewDelegate {
+
+    func counterView(view: PLCounterView, didChangeCounter counter: UInt) {
+        print("counter: \(counter)")
+        delegate?.drinkCell(self, didUpdateDrink: drink, withCount: counter)
+    }
+    
+}
+    
