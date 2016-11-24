@@ -83,14 +83,14 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
         setupCollectionView()
     }
     
-    
-    // MARK: - Notifications
-    
     func registerNotifications() {
         PLNotifications.addObserver(self, selector: .qrCodeScannedNotification, type: .QRCodeScanned)
         PLNotifications.addObserver(self, selector: #selector(onDidCreateNewOrders(_:)), type: .OrdersDidCreate)
+        PLNotifications.addObserver(self, selector: #selector(onPushDidReceive(_:)), type: .PushDidReceive)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotificationType.ProfileChanged.str, object: nil)
     }
+    
+    //MARK: PLNotification handlers
     
     func qrCodeScannedNotification(notification: NSNotification) {
         guard let order = notification.object as? PLOrder else { return }
@@ -120,7 +120,19 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
         }
     }
     
-    func updatePage() {
+    func onPushDidReceive(notification: NSNotification) {
+        if let push = notification.object as? PLPush {
+            if let type = push.badge?.type {
+                if type == .Order {
+                    self.updatePage()
+                }
+            }
+        }
+    }
+    
+    //MARK: Interface
+    
+    private func updatePage() {
         datasourceSwitcher.clear()
         loadPageIfEmpty()
     }

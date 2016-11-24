@@ -88,8 +88,12 @@ class PLCheckoutOrder {
         if count == 0 {
             dic.removeValueForKey(id)
         } else {
-            let itemSet = PLItemSet<PLPricedItem>(item: item, andCount: count)
-            dic.updateValue(itemSet, forKey: id)
+            if let set = dic[id] {
+                set.quantity = count
+            } else {
+                let set = PLItemSet<PLPricedItem>(item: item, andCount: count)
+                dic[id] = set
+            }
         }
         if section == .Drinks {
             drinks = dic
