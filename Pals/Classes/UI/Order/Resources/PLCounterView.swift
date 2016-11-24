@@ -10,6 +10,11 @@ protocol PLCounterViewDelegate: class {
     func counterView(view: PLCounterView, didChangeCounter counter: UInt)
 }
 
+enum PLPosition {
+    case Vertical
+    case Horizontal
+}
+
 class PLCounterView: UIView {
     
     weak var delegate: PLCounterViewDelegate?
@@ -26,8 +31,18 @@ class PLCounterView: UIView {
         }
     }
     
+    var position: PLPosition = .Horizontal
+    
     static let controlsFont = UIFont(name: "HelveticaNeue-Medium", size: 30)!
     static let controlsColor = UIColor.whiteColor()
+    
+    lazy var plusLongPressGesture: UILongPressGestureRecognizer = {
+        return UILongPressGestureRecognizer(target: self, action: #selector(plusLongPressed(_:)))
+    }()
+    
+    lazy var minusLongPressGesture: UILongPressGestureRecognizer = {
+        return UILongPressGestureRecognizer(target: self, action: #selector(minusLongPressed(_:)))
+    }()
     
     lazy var plus: UIButton = {
         let b = self.sampleButton("+")
@@ -75,6 +90,9 @@ class PLCounterView: UIView {
     }
     
     private func initialize() {
+        plus.addGestureRecognizer(plusLongPressGesture)
+        minus.addGestureRecognizer(minusLongPressGesture)
+        
         backgroundColor = .clearColor()
         addSubview(minus)
         addSubview(counterLabel)
@@ -82,12 +100,31 @@ class PLCounterView: UIView {
     }
     
 	func setupLayoutConstraints() {
-        let views = ["plus" : plus, "minus" : minus, "counter" : counterLabel]
-        let metrics = ["side" : 50]
-        let strings = ["|-0-[minus(side)]-0-[counter(>=0)]-0-[plus(side)]-0-|", "V:|-[plus(side)]-|", "V:|-[minus(side)]-|","V:|-[counter]-|"]
-        addConstraints(strings, views: views, metrics: metrics)
+        switch position {
+        case .Horizontal:
+            let views = ["plus" : plus, "minus" : minus, "counter" : counterLabel]
+            let metrics = ["side" : 50]
+            let strings = ["|-0-[minus(side)]-0-[counter(>=0)]-0-[plus(side)]-0-|", "V:|-[plus(side)]-|", "V:|-[minus(side)]-|","V:|-[counter]-|"]
+            addConstraints(strings, views: views, metrics: metrics)
+        case .Vertical:
+            plus.autoPinEdgeToSuperviewEdge(.Top)
+            plus.autoPinEdgeToSuperviewEdge(.Leading)
+            plus.autoPinEdgeToSuperviewEdge(.Trailing)
+            
+            counterLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: plus)
+            counterLabel.autoPinEdgeToSuperviewEdge(.Leading)
+            counterLabel.autoPinEdgeToSuperviewEdge(.Trailing)
+            
+            minus.autoPinEdge(.Top, toEdge: .Bottom, ofView: counterLabel)
+            minus.autoPinEdgeToSuperviewEdge(.Bottom)
+            minus.autoPinEdgeToSuperviewEdge(.Leading)
+            minus.autoPinEdgeToSuperviewEdge(.Trailing)
+            
+            plus.autoMatchDimension(.Height, toDimension: .Height, ofView: minus)
+        }
+       
     }
-    
+
     func buttonClicked(sender: UIButton) {
         let prev = counter
         if sender == minus {
@@ -101,4 +138,19 @@ class PLCounterView: UIView {
             delegate?.counterView(self, didChangeCounter: counter)
         }
     }
+    
+    func plusLongPressed(gestureRecognizer: UILongPressGestureRecognizer) {
+        counter += 1
+        if gestureRecognizer.state == .Ended {
+            delegate?.counterView(self, didChangeCounter: counter)
+        }
+    }
+    
+    func minusLongPressed(gestureRecognizer: UILongPressGestureRecognizer) {
+        if counter > 0 { counter -= 1 }
+        if gestureRecognizer.state == .Ended {
+            delegate?.counterView(self, didChangeCounter: counter)
+        }
+    }
+
 }
