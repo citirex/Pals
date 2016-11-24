@@ -372,8 +372,11 @@ extension PLOrderViewController: OrderDrinksCounterDelegate, OrderHeaderBehaviou
     
     //MARK: Order drinks count
     func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: UInt) {
-        order.updateWithDrink(drinksDatasource[collectionView.indexPathForCell(drinkCell)!.row], andCount: count)
-        updateCheckoutButtonState()
+        if let indexPath = collectionView.indexPathForCell(drinkCell) {
+            let drink = drinksDatasource[indexPath.row]
+            order.updateWithDrink(drink, andCount: count)
+            updateCheckoutButtonState()
+        }
     }
     
     //MARK: Cnange user
