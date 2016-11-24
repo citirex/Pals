@@ -15,6 +15,7 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
     // by default we assume that a given user is not a friend of a current one
     dynamic var invited: Bool = false
     dynamic var inviting: Bool = false
+    var pending = false
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
@@ -35,6 +36,9 @@ class PLUser: PLDatedObject, PLCellRepresentable, PLFilterable {
         }
         if let customerDic = jsonDic[.customer] as? [String : AnyObject] {
             self.customer = PLCustomer(jsonDic: customerDic)!
+        }
+        if let pending = jsonDic[.pending] as? Bool {
+            self.pending = pending
         }
         super.init(jsonDic: jsonDic)
     }

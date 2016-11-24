@@ -13,6 +13,7 @@ enum PLKey : String {
     case address
     case auth_data
     case address_zip
+    case answer
     
     case badges
     
@@ -83,6 +84,7 @@ enum PLKey : String {
     case password
     case phone
     case per_page
+    case pending
     
     case quantity
     case qr_code

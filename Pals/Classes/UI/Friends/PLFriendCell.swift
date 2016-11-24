@@ -21,7 +21,7 @@ class PLFriendCell: UITableViewCell{
     var cellData: PLFriendCellData?
     
 	lazy var addButton: UIButton = {
-		let button = UIButton(frame: CGRect(x: 0, y: 0, width: 33, height: 33))
+		let button = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
 		button.addTarget(self, action: #selector(addFriendAction(_:)), forControlEvents: .TouchUpInside)
 		button.setImage(UIImage(named: "contact_add"), forState: .Normal)
 		return button
