@@ -79,7 +79,7 @@
                                     <color key="titleColor" red="0.74117647058823533" green="0.69411764705882351" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="forgotButtonClicked:" destination="nzO-MP-N4g" eventType="touchUpInside" id="tPU-mM-VJa"/>
+                                    <action selector="tappedForgotButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="a1L-7f-oOr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-8W-xw3" userLabel="Login Button" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
@@ -90,7 +90,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonClicked:" destination="nzO-MP-N4g" eventType="touchUpInside" id="lvL-px-Aji"/>
+                                    <action selector="tappedLoginButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="qOD-XJ-Peh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RsC-zg-ad1" userLabel="FB Button">
@@ -656,7 +656,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2Ze-G6-jmr" kind="unwind" unwindAction="unwindToLoginClicked:" id="uWv-ns-IFY"/>
+                                    <segue destination="2Ze-G6-jmr" kind="unwind" unwindAction="unwindToLoginScreen:" id="6fo-2H-ZV0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1556,7 +1556,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                 <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
@@ -1638,7 +1638,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Nq9-Bk-qhG" kind="unwind" unwindAction="unwindToLoginClicked:" id="n9f-AC-I7D"/>
+                                    <segue destination="Nq9-Bk-qhG" kind="unwind" unwindAction="unwindToLoginScreen:" id="efQ-e3-Y53"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1662,7 +1662,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="codeTextField" destination="mMH-zJ-ih0" id="ZLC-q8-CX3"/>
+                        <outlet property="accessCodeTextField" destination="mMH-zJ-ih0" id="9cJ-lD-ykY"/>
                         <outlet property="confirmPasswordTextField" destination="MKl-Mm-7ro" id="YOb-8U-zH3"/>
                         <outlet property="emailTextField" destination="8JC-mU-cHr" id="Mlv-aB-Pqk"/>
                         <outlet property="passwordTextField" destination="tAi-9m-S2k" id="tLb-dZ-O77"/>

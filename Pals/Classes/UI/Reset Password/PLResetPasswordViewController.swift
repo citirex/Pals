@@ -38,26 +38,29 @@ class PLResetPasswordViewController: PLViewController {
     // MARK: - Private methods
     
     private func checkingUserData() {
-        let password = passwordTextField.text!.trim()
+        let password   = passwordTextField.text!.trim()
         let accessCode = accessCodeTextField.text!.trim()
         
         guard accessCode.characters.count == 4 else { return PLShowAlert("Error", message: "Code must contain 4 digits") }
         guard !password.isEmpty  else { return PLShowAlert("Error", message: "Password must contain at least 1 character") }
         guard validate(password) else { return PLShowAlert("Error", message: "Password mismatch") }
         
-        let resetData = PLResetPasswordData(email: email, accessCode: accessCode, password: password)
+        let data = PLResetPasswordData(email: email, accessCode: accessCode, password: password)
         
-        resetPassword(resetData)
+        resetPassword(data)
     }
     
-    private func resetPassword(resetData: PLResetPasswordData) {
+    private func resetPassword(data: PLResetPasswordData) {
         startActivityIndicator(.WhiteLarge)
-        PLFacade.resetPassword(resetData) { [unowned self] error in
+        PLFacade.resetPassword(data) { [unowned self] error in
             self.stopActivityIndicator()
-            guard error == nil else { return PLShowErrorAlert(error: error!) }
+            guard error == nil else { return PLShowAlert("Error", message: "Wrong access code!") }
+
             
-            let tabBarController = UIStoryboard.tabBarController()!
-            self.present(tabBarController, animated: true)
+            PLShowAlert("", message: "The new password was successfully saved", completion: {
+                let loginViewController = UIStoryboard.loginViewController()!
+                self.present(loginViewController, animated: true)
+            })
         }
     }
     

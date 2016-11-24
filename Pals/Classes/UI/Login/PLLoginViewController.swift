@@ -56,12 +56,11 @@ class PLLoginViewController: PLViewController {
 		present(tabBarController, animated: true)
 	}
     
-    private func sendPassword(email: String) {
+    private func getAccessCodeBy(email: String) {
         self.startActivityIndicator(.WhiteLarge)
         PLFacade.forgotPassword(email, completion: { [unowned self] error in
             self.stopActivityIndicator()
-            
-            guard error == nil else { return PLShowErrorAlert(error: error!) }
+            guard error == nil else { return PLShowAlert("", message: "This email does not exist!") }
             
             PLShowAlert("", message: "A new generated password has been sent to your email.", completion: {
                 let resetPasswordViewController = UIStoryboard.resetPasswordViewController()!
@@ -100,11 +99,11 @@ extension PLLoginViewController: UITextFieldDelegate {
 
 extension PLLoginViewController {
 
-    @IBAction func loginButtonClicked(sender: AnyObject) {
+    @IBAction func tappedLoginButton(sender: UIButton) {
         loginToMainScreen()
     }
     
-    @IBAction func forgotButtonClicked(sender: AnyObject) {
+    @IBAction func tappedForgotButton(sender: UIButton) {
         dismissKeyboard(sender)
         
         let alert = UIAlertController(title: "We got your back!",
@@ -113,7 +112,7 @@ extension PLLoginViewController {
         
         let forgotAction = UIAlertAction(title: "OK", style: .Default, handler: { [unowned self] action in
             if let emailTextField = alert.textFields!.first where emailTextField.text!.trim().isValidEmail {
-                self.sendPassword(emailTextField.text!)
+                self.getAccessCodeBy(emailTextField.text!)
             } else {
                 PLShowAlert("Please, enter a valid user email.")
             }
@@ -149,7 +148,7 @@ extension PLLoginViewController {
     
     // MARK: - Navigation
     
-    @IBAction func unwindToLoginClicked(sender: UIStoryboardSegue) {
+    @IBAction func unwindToLoginScreen(sender: UIStoryboardSegue) {
     }
 
 }
