@@ -16,7 +16,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
     
     static let height: CGFloat = 112
     
-    static let nibName    = "PLOrderDrinkCell"
+    static let nibName = "PLOrderDrinkCell"
     static let reuseIdentifier = "DrinkCell"
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -34,7 +34,9 @@ class PLOrderDrinkCell: UICollectionViewCell {
             nameLabel.text = drink.name
             drinkImageView.image = drink.type.image
             priceLabel.text = drink.price > 0 ? String(format: "$%.2f", drink.price) : "Specify"
-            expiryDateLabel.text = drink.expiryDate.stringForType(.Date, style: .ShortStyle)
+            containerView.backgroundColor = drink.type.color
+            guard let duration = drink.duration else { return }
+            expiryDateLabel.text = String(format: "ex: %@", expiryDateDuration(duration)) 
         }
     }
     
@@ -47,17 +49,28 @@ class PLOrderDrinkCell: UICollectionViewCell {
         }
     }
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         counterView.position = .Vertical
         counterView.delegate = self
     }
 
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         containerView.cornerRadius = 10
+    }
+    
+    // MARK: - Private methods
+    
+    private func expiryDateDuration(duration: Int) -> String {
+        let dateComponents = NSDateComponents()
+        dateComponents.second = duration
+        
+        let calendar = NSCalendar.currentCalendar()
+        let expiryDate = calendar.dateByAddingComponents(dateComponents, toDate: NSDate(), options: [])!
+        return expiryDate.stringForType(.Date, style: .ShortStyle)
     }
     
 }
