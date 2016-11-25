@@ -58,7 +58,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-		collectionBackgroundView.userPicImageView.setImageWithURL(PLFacade.profile!.cellData.picture)
+		collectionBackgroundView.userPicImageView.setImageWithURL(PLFacade.profile!.picture)
 		collectionBackgroundView.userPicImageView.setAvatarPlaceholder(collectionBackgroundView.userPicImageView, url: profile!.picture)
         
         willAppearCompletion?()

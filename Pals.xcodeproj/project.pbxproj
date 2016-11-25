@@ -13,11 +13,9 @@
 		049692FC1DDB3F6500A65C60 /* PLNewsNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */; };
 		049692FD1DDB3F6500A65C60 /* PLNewsNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */; };
 		049ABB701DE5C83B00F6F5BE /* PLDrinkCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049ABB6F1DE5C83B00F6F5BE /* PLDrinkCounterView.swift */; };
-		049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F61D83083800C2E32D /* PLFriendCell.swift */; };
 		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
 		04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */; };
-		04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CCD0DB1D81411800651508 /* PLFriendCell.xib */; };
 		2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44C1D997249000BA1F5 /* vip_covers0.json */; };
 		2414F4551D997249000BA1F5 /* vip_covers1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44D1D997249000BA1F5 /* vip_covers1.json */; };
 		2414F4561D997249000BA1F5 /* vip_covers2.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44E1D997249000BA1F5 /* vip_covers2.json */; };
@@ -229,11 +227,9 @@
 		049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNewsNotificationCell.swift; sourceTree = "<group>"; };
 		049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewsNotificationCell.xib; sourceTree = "<group>"; };
 		049ABB6F1DE5C83B00F6F5BE /* PLDrinkCounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkCounterView.swift; sourceTree = "<group>"; };
-		049BA9F61D83083800C2E32D /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
 		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
 		04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendBaseViewController.swift; sourceTree = "<group>"; };
-		04CCD0DB1D81411800651508 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
 		2414F44C1D997249000BA1F5 /* vip_covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers0.json; sourceTree = "<group>"; };
 		2414F44D1D997249000BA1F5 /* vip_covers1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers1.json; sourceTree = "<group>"; };
 		2414F44E1D997249000BA1F5 /* vip_covers2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers2.json; sourceTree = "<group>"; };
@@ -1121,8 +1117,6 @@
 				D4A15BFE1DE88CCE00DBF65C /* PLFriendTableCell.swift */,
 				D4A15BFA1DE85EDE00DBF65C /* PLPendingUserTableCell.swift */,
 				D4A15BFC1DE87BEA00DBF65C /* PLInvitableUserCell.swift */,
-				049BA9F61D83083800C2E32D /* PLFriendCell.swift */,
-				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1301,7 +1295,6 @@
 				2480F9191D813E730095995F /* Assets.xcassets in Resources */,
 				E837C1FB1D902CAE0080A074 /* drinks2.json in Resources */,
 				E837C2011D902CAE0080A074 /* login.json in Resources */,
-				04CCD0DC1D81411800651508 /* PLFriendCell.xib in Resources */,
 				E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */,
 				D410F71F1D9A7DA6000E8E06 /* invitefriends2.json in Resources */,
 				E837C1FE1D902CAE0080A074 /* friends1.json in Resources */,
@@ -1506,7 +1499,6 @@
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
 				D46B0EE71DDB13EA00AD2B69 /* PLCounterView.swift in Sources */,
 				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,
-				049BA9F91D83083800C2E32D /* PLFriendCell.swift in Sources */,
 				D414942C1DD9DC5F0081509E /* PLNotifications.swift in Sources */,
 				E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */,
 				E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */,

@@ -75,11 +75,11 @@ class PLEditProfileViewController: PLViewController {
     }
     
     private func updateProfileUI() {
-        if let data = PLFacade.profile?.cellData {
-            usernameTextField.text    = data.name
-            phoneNumberTextField.text = data.email
-            additionalTextField.text  = data.additional
-            userProfileImageView.setImageWithURL(data.picture, placeholderImage: UIImage(named: "user"))
+        if let user = PLFacade.profile {
+            usernameTextField.text    = user.name
+            phoneNumberTextField.text = user.email
+            additionalTextField.text  = user.additional
+            userProfileImageView.setImageSafely(fromURL: user.picture, placeholderImage: UIImage(named: "user"))
         } else {
             usernameTextField.text     = "<Error name>"
             phoneNumberTextField.text  = "<Error phone>"

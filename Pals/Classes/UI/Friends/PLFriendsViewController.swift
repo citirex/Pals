@@ -99,6 +99,14 @@ class PLFriendsViewController: PLFriendBaseViewController {
 
 extension PLFriendsViewController : PLPendingUserTableCellDelegate {
     func pendingUserCell(cell: PLPendingUserTableCell, didClickAnswer answer: Bool) {
-        print(answer)
+        if let indexPath = tableView.indexPathForCell(cell), let user = cell.user {
+            PLFacade.answerFriendRequest(user, answer: answer) {[unowned self] (error) in
+                if error != nil {
+                    PLShowErrorAlert(error: error!)
+                }
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            }
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+        }
     }
 }

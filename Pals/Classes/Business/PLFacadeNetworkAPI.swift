@@ -184,8 +184,14 @@ extension PLFacade._PLFacade {
     
     func _answerFriendRequest(user: PLUser, answer: Bool, completion: PLErrorCompletion) {
         let params = [PLKey.friend_id.string : NSNumber(unsignedLongLong: user.id),
-                      PLKey.answer.string : answer]
+                      PLKey.answer.string : answer ? 1 : 0]
+        user.answering = true
+        user.answer = answer
         PLNetworkManager.postWithAttributes(.AnswerFriendRequest, attributes: params) { (dic, error) in
+            user.answering = false
+            if error == nil {
+                user.answered = true
+            }
             PLNetworkManager.handleFullResponse(dic, error: error, completion: completion)
         }
     }
