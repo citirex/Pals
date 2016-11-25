@@ -29,7 +29,7 @@ class PLImagePicker: NSObject {
         
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
         
-        if didUserSetProfileImage || imageView.image != nil {
+        if didUserSetProfileImage {
             optionMenu.addAction(UIAlertAction(title: "Remove image", style: .Destructive, handler: { [unowned self] alert in
                 self.removeImageFrom(imageView)
                 }))

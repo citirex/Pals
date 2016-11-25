@@ -22,7 +22,62 @@ enum PLOperation {
 
 class PLCounterView: UIView {
     
+    static let controlsFont = UIFont(name: "HelveticaNeue-Medium", size: 30)!
+    static let controlsColor = UIColor.whiteColor()
+    
+    lazy var plusLongPressGesture: UILongPressGestureRecognizer = {
+        return UILongPressGestureRecognizer(target: self, action: #selector(plusPressed(_:)))
+    }()
+    
+    lazy var minusLongPressGesture: UILongPressGestureRecognizer = {
+        return UILongPressGestureRecognizer(target: self, action: #selector(minusPressed(_:)))
+    }()
+    
+    lazy var plusTapGesture: UITapGestureRecognizer = {
+        return UITapGestureRecognizer(target: self, action: #selector(plusPressed(_:)))
+    }()
+    
+    lazy var minusTapGesture: UITapGestureRecognizer = {
+        return UITapGestureRecognizer(target: self, action: #selector(minusPressed(_:)))
+    }()
+
+    
+    lazy var plusLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "+"
+        label.textAlignment = .Center
+        label.userInteractionEnabled = true
+        label.font = PLCounterView.controlsFont
+        label.textColor = PLCounterView.controlsColor
+        return label
+    }()
+    
+    lazy var minusLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "-"
+        label.textAlignment = .Center
+        label.userInteractionEnabled = true
+        label.font = PLCounterView.controlsFont
+        label.textColor = PLCounterView.controlsColor
+        return label
+    }()
+    
+    lazy var counterLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textAlignment = .Center
+        l.font = PLCounterView.controlsFont
+        l.textColor = PLCounterView.controlsColor
+        l.text = "0"
+        return l
+    }()
+    
+    
     weak var delegate: PLCounterViewDelegate?
+    
+    var position: PLPosition = .Horizontal
     
     var counter: UInt {
         set {
@@ -36,49 +91,6 @@ class PLCounterView: UIView {
         }
     }
     
-    var position: PLPosition = .Horizontal
-    
-    static let controlsFont = UIFont(name: "HelveticaNeue-Medium", size: 30)!
-    static let controlsColor = UIColor.whiteColor()
-    
-    lazy var plusLongPressGesture: UILongPressGestureRecognizer = {
-        return UILongPressGestureRecognizer(target: self, action: #selector(plusLongPressed(_:)))
-    }()
-    
-    lazy var minusLongPressGesture: UILongPressGestureRecognizer = {
-        return UILongPressGestureRecognizer(target: self, action: #selector(minusLongPressed(_:)))
-    }()
-
-    
-    lazy var plus: UIButton = {
-        let b = self.sampleButton("+")
-        return b
-    }()
-    lazy var minus: UIButton = {
-        let b = self.sampleButton("-")
-        return b
-    }()
-    
-    lazy var counterLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.textAlignment = .Center
-        l.font = PLCounterView.controlsFont
-        l.textColor = PLCounterView.controlsColor
-        l.text = "0"
-        return l
-    }()
-    
-    func sampleButton(title: String) -> UIButton {
-        let b = UIButton(type: .System)
-        b.translatesAutoresizingMaskIntoConstraints = false
-        let attr = [NSFontAttributeName : PLCounterView.controlsFont, NSForegroundColorAttributeName : PLCounterView.controlsColor]
-        let title = NSAttributedString(string: title, attributes: attr)
-        b.setAttributedTitle(title, forState: .Normal)
-        b.addTarget(self, action: #selector(buttonClicked(_:)), forControlEvents: .TouchUpInside)
-        b.adjustsImageWhenHighlighted = true
-        return b
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -96,65 +108,52 @@ class PLCounterView: UIView {
     }
     
     private func initialize() {
-        plus.addGestureRecognizer(plusLongPressGesture)
-        minus.addGestureRecognizer(minusLongPressGesture)
-        
-        if position == .Vertical {
-            plus.titleEdgeInsets  = UIEdgeInsetsMake(0, bounds.width - 35, 0, 0)
-            minus.titleEdgeInsets = UIEdgeInsetsMake(0, bounds.width - 35, 0, 0)
-            counterLabel.textAlignment = .Right
-        }
+        addGestureRecognizer()
         
         backgroundColor = .clearColor()
-        addSubview(minus)
+        addSubview(minusLabel)
         addSubview(counterLabel)
-        addSubview(plus)
+        addSubview(plusLabel)
+    }
+    
+    func addGestureRecognizer() {
+        plusLabel.addGestureRecognizer(plusTapGesture)
+        minusLabel.addGestureRecognizer(minusTapGesture)
+        plusLabel.addGestureRecognizer(plusLongPressGesture)
+        minusLabel.addGestureRecognizer(minusLongPressGesture)
     }
     
     func setupLayoutConstraints() {
         switch position {
         case .Horizontal:
-            let views = ["plus" : plus, "minus" : minus, "counter" : counterLabel]
+            let views = ["plus" : plusLabel, "minus" : minusLabel, "counter" : counterLabel]
             let metrics = ["side" : 50]
             let strings = ["|-0-[minus(side)]-0-[counter(>=0)]-0-[plus(side)]-0-|", "V:|-[plus(side)]-|", "V:|-[minus(side)]-|","V:|-[counter]-|"]
             addConstraints(strings, views: views, metrics: metrics)
         case .Vertical:
-            let views = ["plus" : plus, "minus" : minus, "counter" : counterLabel]
-            let strings = ["V:|[plus(==minus)][counter][minus]|", "|[plus]|", "|[minus]|", "|-[counter]-|"]
+            let views = ["plus" : plusLabel, "minus" : minusLabel, "counter" : counterLabel]
+            let strings = ["V:|[plus(==minus)][counter][minus]|", "|[plus]|", "|[minus]|", "|[counter(>=0)]|"]
             addConstraints(strings, views: views, metrics: [:])
         }
     }
     
-    func buttonClicked(sender: UIButton) {
-        let prev = counter
-        if sender == minus {
-            if counter > 0 {
-                counter -= 1
-            }
-        } else {
-            counter += 1
-        }
-        if prev != counter {
-            delegate?.counterView(self, didChangeCounter: counter)
-        }
-    }
-    
+        
     // MARK: - Gestures
     
-    func plusLongPressed(gestureRecognizer: UILongPressGestureRecognizer) {
-        updateCounterLabel(gestureRecognizer, operation: .Increment)
+    func plusPressed(gestureRecognizer: UIGestureRecognizer) {
+        updateCounterLabel(.Increment)
     }
     
-    func minusLongPressed(gestureRecognizer: UILongPressGestureRecognizer) {
-        updateCounterLabel(gestureRecognizer, operation: .Decrement)
+    func minusPressed(gestureRecognizer: UIGestureRecognizer) {
+        updateCounterLabel(.Decrement)
     }
     
-    private func updateCounterLabel(gestureRecognizer: UILongPressGestureRecognizer, operation: PLOperation) {
-            switch operation {
-            case .Increment: counter += 1
-            case .Decrement: if counter > 0 { counter -= 1 }
-            }
-            delegate?.counterView(self, didChangeCounter: counter)
+    private func updateCounterLabel(operation: PLOperation) {
+        switch operation {
+        case .Increment: counter += 1
+        case .Decrement: if counter > 0 { counter -= 1 }
+        }
+        delegate?.counterView(self, didChangeCounter: counter)
     }
 
 }
