@@ -36,14 +36,6 @@ class PLCounterView: UIView {
     static let controlsFont = UIFont(name: "HelveticaNeue-Medium", size: 30)!
     static let controlsColor = UIColor.whiteColor()
     
-    lazy var plusLongPressGesture: UILongPressGestureRecognizer = {
-        return UILongPressGestureRecognizer(target: self, action: #selector(plusLongPressed(_:)))
-    }()
-    
-    lazy var minusLongPressGesture: UILongPressGestureRecognizer = {
-        return UILongPressGestureRecognizer(target: self, action: #selector(minusLongPressed(_:)))
-    }()
-    
     lazy var plus: UIButton = {
         let b = self.sampleButton("+")
         return b
@@ -90,16 +82,13 @@ class PLCounterView: UIView {
     }
     
     private func initialize() {
-        plus.addGestureRecognizer(plusLongPressGesture)
-        minus.addGestureRecognizer(minusLongPressGesture)
-        
         backgroundColor = .clearColor()
         addSubview(minus)
         addSubview(counterLabel)
         addSubview(plus)
     }
     
-	func setupLayoutConstraints() {
+    func setupLayoutConstraints() {
         switch position {
         case .Horizontal:
             let views = ["plus" : plus, "minus" : minus, "counter" : counterLabel]
@@ -107,24 +96,12 @@ class PLCounterView: UIView {
             let strings = ["|-0-[minus(side)]-0-[counter(>=0)]-0-[plus(side)]-0-|", "V:|-[plus(side)]-|", "V:|-[minus(side)]-|","V:|-[counter]-|"]
             addConstraints(strings, views: views, metrics: metrics)
         case .Vertical:
-            plus.autoPinEdgeToSuperviewEdge(.Top)
-            plus.autoPinEdgeToSuperviewEdge(.Leading)
-            plus.autoPinEdgeToSuperviewEdge(.Trailing)
-            
-            counterLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: plus)
-            counterLabel.autoPinEdgeToSuperviewEdge(.Leading)
-            counterLabel.autoPinEdgeToSuperviewEdge(.Trailing)
-            
-            minus.autoPinEdge(.Top, toEdge: .Bottom, ofView: counterLabel)
-            minus.autoPinEdgeToSuperviewEdge(.Bottom)
-            minus.autoPinEdgeToSuperviewEdge(.Leading)
-            minus.autoPinEdgeToSuperviewEdge(.Trailing)
-            
-            plus.autoMatchDimension(.Height, toDimension: .Height, ofView: minus)
+            let views = ["plus" : plus, "minus" : minus, "counter" : counterLabel]
+            let strings = ["V:|[plus(==minus)][counter][minus]|", "|[plus]|", "|[minus]|", "|[counter]|"]
+            addConstraints(strings, views: views, metrics: [:])
         }
-       
     }
-
+    
     func buttonClicked(sender: UIButton) {
         let prev = counter
         if sender == minus {
@@ -135,20 +112,6 @@ class PLCounterView: UIView {
             counter += 1
         }
         if prev != counter {
-            delegate?.counterView(self, didChangeCounter: counter)
-        }
-    }
-    
-    func plusLongPressed(gestureRecognizer: UILongPressGestureRecognizer) {
-        counter += 1
-        if gestureRecognizer.state == .Ended {
-            delegate?.counterView(self, didChangeCounter: counter)
-        }
-    }
-    
-    func minusLongPressed(gestureRecognizer: UILongPressGestureRecognizer) {
-        if counter > 0 { counter -= 1 }
-        if gestureRecognizer.state == .Ended {
             delegate?.counterView(self, didChangeCounter: counter)
         }
     }

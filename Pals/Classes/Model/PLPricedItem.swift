@@ -13,6 +13,7 @@ protocol PLItemKeyable {
 class PLPricedItem: PLDatedObject, PLItemKeyable {
     var name: String
     var price = Float(0)
+    var expiryDate: NSDate
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
@@ -24,6 +25,14 @@ class PLPricedItem: PLDatedObject, PLItemKeyable {
         if let price = jsonDic[.price] as? Float {
             self.price = price
         }
+        
+        guard let duration = jsonDic[.duration] as? Int else { return nil }
+        let dateComponents = NSDateComponents()
+        dateComponents.second = duration
+        
+        let calendar = NSCalendar.currentCalendar()
+        self.expiryDate = calendar.dateByAddingComponents(dateComponents, toDate: NSDate(), options: [])!
+
         super.init(jsonDic: jsonDic)
     }
     

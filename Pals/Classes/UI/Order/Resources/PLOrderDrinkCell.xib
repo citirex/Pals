@@ -94,7 +94,7 @@
                 <outlet property="containerView" destination="IAB-rG-Q14" id="q2O-9a-I0f"/>
                 <outlet property="counterView" destination="9LQ-wJ-b9C" id="vI3-yf-Rh0"/>
                 <outlet property="drinkImageView" destination="Iwd-Q0-FjV" id="LwN-y7-oWX"/>
-                <outlet property="expiredDateLabel" destination="Wqq-hV-YHL" id="dB3-J5-w1U"/>
+                <outlet property="expiryDateLabel" destination="Wqq-hV-YHL" id="Qd7-9x-Aub"/>
                 <outlet property="nameLabel" destination="6Wh-qi-sWo" id="mEr-9m-IlQ"/>
                 <outlet property="priceLabel" destination="fZ7-tK-EcZ" id="elY-oD-VXm"/>
             </connections>

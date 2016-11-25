@@ -513,15 +513,8 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
             let cell = dequeuedCell as! PLOrderDrinkCell
             let drink = drinksDatasource[indexPath.row]
             cell.drink = drink
-            cell.isVIP = order.isVIP
             cell.delegate = self
             updateDrinkCount(drink, inCell: cell)
-            //setupWith(drink, isVip: order.isVIP)
-//            cell.counter = 0
-//            if let item = order.itemById(drink.id, inSection: .Drinks) {
-//                cell.drinkCount = 0
-//                cell.drinkCount = item.quantity
-//            }
             return cell
         case .Covers:
             let cell = dequeuedCell as! PLOrderCoverCell
