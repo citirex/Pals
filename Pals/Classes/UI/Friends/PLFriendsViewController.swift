@@ -12,19 +12,30 @@ class PLFriendsViewController: PLFriendBaseViewController {
     lazy var myFriendsDatasource = PLDatasourceHelper.createMyFriendsDatasource()
     
     var currentDatasourceType: PLFriendsDatasourceType { return currentDatasource.type }
+    lazy var segments = UISegmentedControl(items: ["Friends", "Pending"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.registerCell(PLPendingUserTableCell.self)
+        configureResponder(self, withCellType: PLPendingUserTableCell.self)
         currentDatasource = myFriendsDatasource
         title = nil
         addTopSegments()
+    }
+    
+    override func cellType() -> PLUserTableCell.Type {
+        if segments.selectedSegmentIndex <= 0 {
+            return super.cellType()
+        } else {
+            return PLPendingUserTableCell.self
+        }
     }
     
     func addTopSegments() {
         let screenWidth = UIScreen.mainScreen().bounds.width
         let segmentsWidth = screenWidth * 0.7
         let frame = CGRect(x: 0, y: 0, width: segmentsWidth, height: 38)
-        let segments = UISegmentedControl(items: ["Friends", "Pending"])
+        
         segments.frame = frame
         segments.selectedSegmentIndex = 0
         segments.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 20)!], forState: .Normal)

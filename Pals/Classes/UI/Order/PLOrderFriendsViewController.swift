@@ -21,7 +21,7 @@ class PLOrderFriendsViewController: PLFriendsViewController {
         super.loadData()
     }
     
-    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    override func configureCell(cell: PLUserTableCell, atIndexPath indexPath: NSIndexPath) {
         super.configureCell(cell, atIndexPath: indexPath)
         cell.accessoryType = .None
     }

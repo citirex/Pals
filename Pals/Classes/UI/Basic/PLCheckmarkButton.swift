@@ -8,8 +8,20 @@
 
 import UIKit
 
+class PLHighlightedButton : UIButton {
+    override var highlighted: Bool {
+        didSet {
+            if highlighted {
+                alpha = 0.7
+            } else {
+                alpha = 1
+            }
+        }
+    }
+}
+
 @IBDesignable
-class PLCheckmarkButton: UIButton {
+class PLCheckmarkButton: PLHighlightedButton {
     
     let lineWidth: CGFloat = 2.0
     let strokeColor = UIColor.whiteColor().CGColor

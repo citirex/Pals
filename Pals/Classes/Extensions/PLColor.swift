@@ -39,7 +39,7 @@ extension UIColor {
     
     
     // NavigationBar tintColor
-    class var affairColor: UIColor { return UIColor(r: 111, g: 64, b: 151) }
+    class var violetColor: UIColor { return UIColor(r: 111, g: 64, b: 151) }
     
     class var goldColor: UIColor { return UIColor(red:0.85, green:0.73, blue:0.19, alpha:1.0) }
     

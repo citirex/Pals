@@ -40,18 +40,16 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		view.backgroundColor = .whiteColor()
 		updateViewConstraints()
 		resultsController.tableView.separatorInset.left	   = 75
-		
         interfaceColor = UIColor.whiteColor()
         
-        configureResultsController(PLFriendCell.nibName, cellIdentifier: PLFriendCell.identifier, responder: self)
+        let cellType = self.cellType()
+        tableView.registerCell(cellType)
+        configureResponder(self, withCellType: cellType)
         configureSearchController("Find a friend", tableView: tableView, responder: self)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLFriendCell.identifier)
         
 		searchController.isFriends = true
-		
-		searchController.searchBar.tintColor = .affairColor
+		searchController.searchBar.tintColor = .violetColor
 		resultsController.tableView.backgroundColor = interfaceColor
-		
         addBorderToSearchField()
         edgesForExtendedLayout = .Top
     }
@@ -134,6 +132,10 @@ class PLFriendBaseViewController: PLSearchableViewController {
             }
         }
     }
+    
+    func cellType()-> PLUserTableCell.Type {
+        return PLUserTableCell.self
+    }
 }
 
 
@@ -147,15 +149,15 @@ extension PLFriendBaseViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
-        let cell = tableView.dequeueReusableCellWithIdentifier(PLFriendCell.identifier, forIndexPath: indexPath)
+        let cellType = self.cellType()
+        let cell = tableView.dequeueReusableCell(cellType, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        guard let cell = cell as? PLFriendCell else { return }
-        let friendData = currentDatasource[indexPath.row].cellData
-        cell.setup(friendData)
+    func configureCell(cell: PLUserTableCell, atIndexPath indexPath: NSIndexPath) {
+        let user = currentDatasource[indexPath.row]
+        cell.user = user
     }
 }
 

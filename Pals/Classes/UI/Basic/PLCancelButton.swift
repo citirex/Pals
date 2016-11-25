@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class PLCancelButton: UIButton {
+class PLCancelButton: PLHighlightedButton {
     
     let paddingPercent: CGFloat = 0.32
     let lineWidth: CGFloat = 2.0

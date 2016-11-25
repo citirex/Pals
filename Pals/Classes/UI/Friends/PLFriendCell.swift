@@ -53,7 +53,7 @@ class PLFriendCell: UITableViewCell{
         if cellData.me {
             nameLabel.text      = "Me"
             nameLabel.textColor = .whiteColor()
-            backgroundColor     = .affairColor
+            backgroundColor     = .violetColor
         } else {
             nameLabel.text = cellData.name
         }

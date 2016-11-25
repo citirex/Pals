@@ -15,13 +15,12 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
         currentDatasource = inviteDataSource
     }
     
-    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        guard let cell = cell as? PLFriendCell else { return }
-        let friendData = currentDatasource[indexPath.row].cellData
-        cell.accessoryType = .DisclosureIndicator
-        cell.setup(friendData)
-        cell.setupInviteUI()
-        cell.delegate = self
+    override func configureCell(cell: PLUserTableCell, atIndexPath indexPath: NSIndexPath) {
+        super.configureCell(cell, atIndexPath: indexPath)
+        
+//        cell.accessoryType = .DisclosureIndicator
+//        cell.setupInviteUI()
+//        cell.delegate = self
     }
 }
 
