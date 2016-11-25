@@ -22,23 +22,19 @@ class PLOrderDrinkCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var drinkImageView: UIImageView!
-    @IBOutlet weak var expiredDateLabel: UILabel!
+    @IBOutlet weak var expiryDateLabel: UILabel!
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var counterView: PLCounterView!
     
     weak var delegate: PLOrderDrinkCellDelegate?
     
-    
-    var isVIP = false
     var drink: PLDrink! {
         didSet {
             nameLabel.text = drink.name
-            priceLabel.text = drink.price > 0 ? String(format: "$%.2f", drink.price) : "Specify"
-//                    expiredDateLabel.text = drink
-        
             drinkImageView.image = drink.type.image
-            containerView.backgroundColor = isVIP ? .whiteColor() : drink.type.color
+            priceLabel.text = drink.price > 0 ? String(format: "$%.2f", drink.price) : "Specify"
+            expiryDateLabel.text = drink.expiryDate.stringForType(.Date, style: .ShortStyle)
         }
     }
     
@@ -53,7 +49,6 @@ class PLOrderDrinkCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         counterView.position = .Vertical
         counterView.delegate = self
     }
@@ -64,7 +59,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
         
         containerView.cornerRadius = 10
     }
-
+    
 }
 
 
@@ -73,7 +68,6 @@ class PLOrderDrinkCell: UICollectionViewCell {
 extension PLOrderDrinkCell: PLCounterViewDelegate {
 
     func counterView(view: PLCounterView, didChangeCounter counter: UInt) {
-        print("counter: \(counter)")
         delegate?.drinkCell(self, didUpdateDrink: drink, withCount: counter)
     }
     

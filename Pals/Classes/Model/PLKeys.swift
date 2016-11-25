@@ -32,6 +32,7 @@ enum PLKey : String {
     case dlat // delta latitude
     case dlong // delta longitude
     case device_token = "registration_id"
+    case duration
     
     case email
     case email_unique
