@@ -13,7 +13,7 @@ protocol PLItemKeyable {
 class PLPricedItem: PLDatedObject, PLItemKeyable {
     var name: String
     var price = Float(0)
-    var duration: Int?
+    
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
@@ -25,10 +25,6 @@ class PLPricedItem: PLDatedObject, PLItemKeyable {
         if let price = jsonDic[.price] as? Float {
             self.price = price
         }
-        
-        guard let duration = jsonDic[.duration] as? Int else { return nil }
-        self.duration = duration
-
         super.init(jsonDic: jsonDic)
     }
     
