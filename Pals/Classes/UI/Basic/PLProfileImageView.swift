@@ -8,6 +8,8 @@
 
 class PLProfileImageView: PLCircularImageView, Initializable {
     
+    var shouldReloadImageOnSameUserSet = false
+    
     private static let placeholderImage = UIImage(named: "user")
     
     convenience init() {
@@ -25,10 +27,12 @@ class PLProfileImageView: PLCircularImageView, Initializable {
     }
     
     var user: PLUser? {
-        didSet {
+        willSet {
             let placeholderImage = PLProfileImageView.placeholderImage
-            if let u = user {
-                setImageSafely(fromURL: u.picture, placeholderImage: placeholderImage)
+            if let u = newValue {
+//                if shouldReloadImageOnSameUserSet || user == nil || (!shouldReloadImageOnSameUserSet && user != nil && user!.id != u.id) {
+                    setImageSafely(fromURL: u.picture, placeholderImage: placeholderImage)
+//                }
             } else {
                 image = placeholderImage
             }

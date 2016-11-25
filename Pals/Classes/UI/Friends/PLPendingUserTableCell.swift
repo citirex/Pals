@@ -6,23 +6,27 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
+protocol PLPendingUserTableCellDelegate: class {
+    func pendingUserCell(cell: PLPendingUserTableCell, didClickAnswer answer: Bool)
+}
+
 class PLPendingUserTableCell: PLUserTableCell {
+    
+    weak var delegate: PLPendingUserTableCellDelegate?
     
     lazy var acceptButton: PLCheckmarkButton = {
         let ab = PLCheckmarkButton()
         ab.translatesAutoresizingMaskIntoConstraints = false
+        ab.addTarget(self, action: #selector(buttonClicked(_:)), forControlEvents: .TouchUpInside)
         return ab
     }()
     
     lazy var declineButton: PLCancelButton = {
         let cb = PLCancelButton()
         cb.translatesAutoresizingMaskIntoConstraints = false
+        cb.addTarget(self, action: #selector(buttonClicked(_:)), forControlEvents: .TouchUpInside)
         return cb
     }()
-    
-    override func initialize() {
-        super.initialize()
-    }
     
     override func addSubviews() {
         super.addSubviews()
@@ -50,4 +54,11 @@ class PLPendingUserTableCell: PLUserTableCell {
         return "PLPendingUserTableCell"
     }
     
+    func buttonClicked(button: UIButton) {
+        var answer = false
+        if button == acceptButton {
+            answer = true
+        }
+        delegate?.pendingUserCell(self, didClickAnswer: answer)
+    }
 }

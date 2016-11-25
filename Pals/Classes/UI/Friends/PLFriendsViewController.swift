@@ -18,6 +18,8 @@ class PLFriendsViewController: PLFriendBaseViewController {
         super.viewDidLoad()
         tableView.registerCell(PLPendingUserTableCell.self)
         configureResponder(self, withCellType: PLPendingUserTableCell.self)
+        tableView.registerCell(PLFriendTableCell.self)
+        configureResponder(self, withCellType: PLFriendTableCell.self)
         currentDatasource = myFriendsDatasource
         title = nil
         addTopSegments()
@@ -25,7 +27,7 @@ class PLFriendsViewController: PLFriendBaseViewController {
     
     override func cellType() -> PLUserTableCell.Type {
         if segments.selectedSegmentIndex <= 0 {
-            return super.cellType()
+            return PLFriendTableCell.self
         } else {
             return PLPendingUserTableCell.self
         }
@@ -85,5 +87,18 @@ class PLFriendsViewController: PLFriendBaseViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         PLNotifications.removeObserver(self)
+    }
+    
+    override func configureCell(cell: PLUserTableCell, atIndexPath indexPath: NSIndexPath) {
+        super.configureCell(cell, atIndexPath: indexPath)
+        if let pendingCell = cell as? PLPendingUserTableCell {
+            pendingCell.delegate = self
+        }
+    }
+}
+
+extension PLFriendsViewController : PLPendingUserTableCellDelegate {
+    func pendingUserCell(cell: PLPendingUserTableCell, didClickAnswer answer: Bool) {
+        print(answer)
     }
 }

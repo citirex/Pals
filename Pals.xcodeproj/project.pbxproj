@@ -124,6 +124,8 @@
 		D4A15BF71DE8466600DBF65C /* PLUserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BF61DE8466600DBF65C /* PLUserTableCell.swift */; };
 		D4A15BF91DE8474800DBF65C /* PLProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BF81DE8474800DBF65C /* PLProfileImageView.swift */; };
 		D4A15BFB1DE85EDE00DBF65C /* PLPendingUserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BFA1DE85EDE00DBF65C /* PLPendingUserTableCell.swift */; };
+		D4A15BFD1DE87BEA00DBF65C /* PLInvitableUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BFC1DE87BEA00DBF65C /* PLInvitableUserCell.swift */; };
+		D4A15BFF1DE88CCE00DBF65C /* PLFriendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BFE1DE88CCE00DBF65C /* PLFriendTableCell.swift */; };
 		D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */; };
 		D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */; };
 		D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */; };
@@ -346,6 +348,8 @@
 		D4A15BF61DE8466600DBF65C /* PLUserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUserTableCell.swift; sourceTree = "<group>"; };
 		D4A15BF81DE8474800DBF65C /* PLProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileImageView.swift; sourceTree = "<group>"; };
 		D4A15BFA1DE85EDE00DBF65C /* PLPendingUserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPendingUserTableCell.swift; sourceTree = "<group>"; };
+		D4A15BFC1DE87BEA00DBF65C /* PLInvitableUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLInvitableUserCell.swift; sourceTree = "<group>"; };
+		D4A15BFE1DE88CCE00DBF65C /* PLFriendTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendTableCell.swift; sourceTree = "<group>"; };
 		D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocationManager.swift; sourceTree = "<group>"; };
 		D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatasource.swift; sourceTree = "<group>"; };
@@ -1114,7 +1118,9 @@
 			isa = PBXGroup;
 			children = (
 				D4A15BF61DE8466600DBF65C /* PLUserTableCell.swift */,
+				D4A15BFE1DE88CCE00DBF65C /* PLFriendTableCell.swift */,
 				D4A15BFA1DE85EDE00DBF65C /* PLPendingUserTableCell.swift */,
+				D4A15BFC1DE87BEA00DBF65C /* PLInvitableUserCell.swift */,
 				049BA9F61D83083800C2E32D /* PLFriendCell.swift */,
 				04CCD0DB1D81411800651508 /* PLFriendCell.xib */,
 			);
@@ -1438,6 +1444,7 @@
 				D47B45661D903DF80042EB9A /* PLProfileDatasourceContainer.swift in Sources */,
 				E8DA8B8F1D88334F008782E5 /* PLCollectionParalaxLayout.swift in Sources */,
 				D4A15BF91DE8474800DBF65C /* PLProfileImageView.swift in Sources */,
+				D4A15BFF1DE88CCE00DBF65C /* PLFriendTableCell.swift in Sources */,
 				D47DC1DF1DBA166400420958 /* PLDowntimer.swift in Sources */,
 				24F012BD1DBA3B020072556F /* PLLoadingIndicatorView.swift in Sources */,
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
@@ -1530,6 +1537,7 @@
 				D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */,
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,
+				D4A15BFD1DE87BEA00DBF65C /* PLInvitableUserCell.swift in Sources */,
 				24B5DD181D91564D0021050D /* PLOrderCheckoutPopupViewController.swift in Sources */,
 				E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */,
 			);

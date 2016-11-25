@@ -13,49 +13,32 @@ class PLFriendsSearchViewController: PLFriendBaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         currentDatasource = inviteDataSource
+        tableView.registerCell(PLInvitableUserCell)
+        configureResponder(self, withCellType: PLInvitableUserCell.self)
+    }
+    
+    override func cellType() -> PLUserTableCell.Type {
+        return PLInvitableUserCell.self
     }
     
     override func configureCell(cell: PLUserTableCell, atIndexPath indexPath: NSIndexPath) {
         super.configureCell(cell, atIndexPath: indexPath)
-        
-//        cell.accessoryType = .DisclosureIndicator
-//        cell.setupInviteUI()
-//        cell.delegate = self
+        if let invitableCell = cell as? PLInvitableUserCell {
+            invitableCell.delegate = self
+        }
     }
 }
 
-// MARK: - PLFriendCellDelegate
-
-extension PLFriendsSearchViewController: PLFriendCellDelegate {
-
-    func addFriendButtonPressed(cell: PLFriendCell) {
-        if let indexPath = tableView.indexPathForCell(cell) {
-            let newFriend = currentDatasource[indexPath.row]
-            
-            PLFacade.addFriend(newFriend, completion: {[unowned cell, unowned newFriend, unowned self] (error) in
+extension PLFriendsSearchViewController : PLInvitableUserCellDelegate {
+    func invitableCellInviteClicked(cell: PLInvitableUserCell) {
+        if let indexPath = tableView.indexPathForCell(cell), let user = cell.user {
+            PLFacade.addFriend(user) {[unowned self] (error) in
                 if error != nil {
-                    PLShowAlert("Failed to add friend", message: "Please try again later")
-                    PLLog(error?.localizedDescription,type: .Network)
-                    self.setupInviteUI(forCell: cell, withFriend: newFriend, needsToVisibleCheck: true, atIndexPath: indexPath)
-                } else {
-                    self.setupInviteUI(forCell: cell, withFriend: newFriend, needsToVisibleCheck: true, atIndexPath: indexPath)
+                    PLShowErrorAlert(error: error!)
                 }
-            })
-            self.setupInviteUI(forCell: cell, withFriend: newFriend, needsToVisibleCheck: false, atIndexPath: nil)
-        }
-    }
-    
-    func setupInviteUI(forCell cell: PLFriendCell, withFriend friend: PLUser, needsToVisibleCheck check: Bool, atIndexPath indexPath: NSIndexPath?) {
-        switch check {
-        case true:
-            if let path = indexPath {
-                if let visible = self.tableView.indexPathsForVisibleRows?.contains(path) where visible == true {
-                    fallthrough
-                }
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
             }
-        case false:
-            cell.cellData = friend.cellData
-            cell.setupInviteUI()
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
         }
     }
 }

@@ -11,7 +11,7 @@ class PLUserTableCell: UITableViewCell, Initializable, Constrainable {
     lazy var userImageView: PLProfileImageView = {
         let iv = PLProfileImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .ScaleAspectFit
+        iv.contentMode = .ScaleAspectFill
         return iv
     }()
     
