@@ -17,7 +17,7 @@ class PLPlacesViewController: PLSearchableViewController {
     
     private lazy var tableView: UITableView! = {
         let tableView = UITableView()
-        tableView.backgroundColor = .affairColor()
+        tableView.backgroundColor = .violetColor
         tableView.backgroundView  = UIView()
         tableView.tableFooterView = UIView()
         tableView.rowHeight  = 128

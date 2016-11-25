@@ -9,12 +9,15 @@
 enum PLFriendsDatasourceType {
     case Friends
     case Invitable
+    case Pending
     var service: PLAPIService {
         switch self {
         case .Friends:
             return .Friends
         case .Invitable:
             return .InviteFriends
+        case .Pending:
+            return .Pending
         }
     }
     var fakeFeedName: String {
@@ -23,16 +26,15 @@ enum PLFriendsDatasourceType {
             return PLKey.friends.string
         case .Invitable:
             return PLKey.invitefriends.string
+        case .Pending:
+            return PLKey.friends.string
         }
     }
 }
 
 class PLFriendsDatasource: PLDatasource<PLUser> {
     
-    var shouldInsertCurrentUser = false
-    private var currentUserInserted = false
-    
-    private var type: PLFriendsDatasourceType = .Friends
+    var type: PLFriendsDatasourceType = .Friends
     
     override init(url: String, params: PLURLParams?, offsetById: Bool, sectioned: Bool) {
         super.init(url: url, params: params, offsetById: offsetById, sectioned: sectioned)
@@ -55,9 +57,6 @@ class PLFriendsDatasource: PLDatasource<PLUser> {
     }
     
     override func pageCollectionDidLoadPage(page: PLPage) {
-        if shouldInsertCurrentUser {
-            insertCurrentUser(page.objects)
-        }
         for object in page.objects {
             if let user = object as? PLUser {
                 user.invited = type == .Friends
@@ -66,17 +65,9 @@ class PLFriendsDatasource: PLDatasource<PLUser> {
         super.pageCollectionDidLoadPage(page)
     }
     
-    private func insertCurrentUser(users: NSMutableArray) {
-        if currentUserInserted {
-            return
-        }
-        
+    func insertCurrentUser() {
         if let currentUser = PLFacade.profile {
-            if empty || !(self.collection[0] is PLCurrentUser) {
-                users.insertObject(currentUser, atIndex: 0)
-                self.collection.insert(currentUser, atIndex: 0)
-                currentUserInserted = true
-            }
+            self.collection.insert(currentUser, atIndex: 0)
         }
     }
 }

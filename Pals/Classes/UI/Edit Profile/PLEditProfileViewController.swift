@@ -15,20 +15,25 @@ class PLEditProfileViewController: PLViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var additionalTextField: UITextField!
     @IBOutlet weak var addProfileImageButton: UIButton!
-    
+    @IBOutlet weak var checkButton: PLCheckmarkButton!
+
+    private var editData = PLEditUserData(user: PLFacade.profile)
     private var edit = false {
         didSet {
             updateEnabledStatus(edit)
-            guard edit else {
-                if editData != nil {
-                    updateUserProfileIfNeeded(editData!)
-                }
-                return
-            }
             usernameTextField.becomeFirstResponder()
         }
     }
-    private var editData = PLEditUserData(user: PLFacade.profile)
+    
+    private lazy var editBarButtonItem: UIBarButtonItem! = {
+        return UIBarButtonItem(image: UIImage(named: "edit"), style: .Plain, target: self, action: .tappedEditButton)
+    }()
+    
+    private lazy var cancelBarButtonItem: UIBarButtonItem! = {
+        let cancelButton = PLCancelButton(frame: CGRectMake(0, 0, 44, 44))
+        cancelButton.addTarget(self, action: .tappedCancelButton, forControlEvents: .TouchUpInside)
+        return UIBarButtonItem(customView: cancelButton)
+    }()
     
     
     
@@ -36,6 +41,7 @@ class PLEditProfileViewController: PLViewController {
         super.viewDidLoad()
         updateProfileUI()
         hideKeyboardWhenTapped = true
+        navigationItem.rightBarButtonItem = editBarButtonItem
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,24 +57,29 @@ class PLEditProfileViewController: PLViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        addProfileImageButton.rounded = true
+    }
+    
     
     // MARK: - Private Methods
     
     private func updateEnabledStatus(status: Bool) {
+        checkButton.hidden            = !status
         usernameTextField.enabled     = status
         additionalTextField.enabled   = status
         addProfileImageButton.enabled = status
         addProfileImageButton.hidden  = !status
+        navigationItem.rightBarButtonItem = status ? cancelBarButtonItem : editBarButtonItem
     }
     
     private func updateProfileUI() {
-        if let data = PLFacade.profile?.cellData {
-            usernameTextField.text    = data.name
-            phoneNumberTextField.text = data.email
-            additionalTextField.text  = data.additional
-            userProfileImageView.setImageWithURL(data.picture, placeholderImage: UIImage(named: "user"))
-			
-			userProfileImageView.setAvatarPlaceholder(userProfileImageView, url: data.picture)
+        if let user = PLFacade.profile {
+            usernameTextField.text    = user.name
+            phoneNumberTextField.text = user.email
+            additionalTextField.text  = user.additional
+            userProfileImageView.setImageSafely(fromURL: user.picture, placeholderImage: UIImage(named: "user"))
         } else {
             usernameTextField.text     = "<Error name>"
             phoneNumberTextField.text  = "<Error phone>"
@@ -111,6 +122,12 @@ class PLEditProfileViewController: PLViewController {
         }
     }
     
+    private func resetUserProfileFields() {
+        userProfileImageView.setImageWithURL(editData?.picture.old as! NSURL)
+        usernameTextField.text   = editData?.name.old as? String
+        additionalTextField.text = editData?.additional.old as? String
+    }
+    
 }
 
 
@@ -118,8 +135,19 @@ class PLEditProfileViewController: PLViewController {
 
 extension PLEditProfileViewController {
     
-    @IBAction func editBarBattonItemTapped(sender: UIBarButtonItem) {
+    func tappedEditButton(sender: UIBarButtonItem) {
         edit = !edit
+    }
+    
+    func tappedCancelButton(sender: UIButton) {
+        edit = false
+        resetUserProfileFields()
+    }
+    
+    @IBAction func tappedCheckButton(sender: UIButton) {
+        guard editData != nil else { return }
+        edit = false
+        updateUserProfileIfNeeded(editData!)
     }
     
     @IBAction func showSignOutAlert(sender: UIButton) {

@@ -178,7 +178,7 @@ class PLCardInfoViewController: PLViewController {
         containerView.backgroundColor = .whiteColor()
         
         let sendButton = UIButton(type: .System)
-        sendButton.tintColor = .mediumOrchidColor()
+        sendButton.tintColor = .mediumOrchidColor
         sendButton.setTitle("Complete", forState: .Normal)
         sendButton.titleLabel?.font = .systemFontOfSize(15)
         sendButton.translatesAutoresizingMaskIntoConstraints = false

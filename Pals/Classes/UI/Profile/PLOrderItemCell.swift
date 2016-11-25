@@ -26,6 +26,19 @@ class PLOrderItemCell: UITableViewCell {
         setNeedsUpdateConstraints()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateRoundedCornersWithItem(item)
+    }
+    
+    func updateRoundedCornersWithItem(item: AnyObject?) {
+        if item is PLItemSet<PLEvent> {
+            picture.rounded = true
+        } else {
+            picture.rounded = false
+        }
+    }
+    
     override func updateConstraints() {
         separatorHeightConstraint?.constant = 0.5
         super.updateConstraints()
@@ -33,11 +46,10 @@ class PLOrderItemCell: UITableViewCell {
     
     var item: AnyObject? {
         didSet {
-            picture.rounded = false
+            updateRoundedCornersWithItem(item)
             if let drinkSet = item as? PLItemSet<PLDrink> {
                 updateWithDrink(drinkSet)
             } else if let coverSet = item as? PLItemSet<PLEvent>  {
-                picture.rounded = true
                 updateWithCover(coverSet)
             } else {
                 PLLog("Error occured while converting PLOrderItemCell item: \(item)")
@@ -46,18 +58,9 @@ class PLOrderItemCell: UITableViewCell {
     }
     
     func updateWithDrink(set: PLItemSet<PLDrink>) {
-        let type = set.item.type.cardType
-        contentView.backgroundColor = type.color
-        var imageName = ""
-        switch type {
-        case .Beer:
-            imageName = "beer_icon"
-        case .Liquor:
-            imageName = "drink_icon"
-        default:
-            imageName = "question_icon"
-        }
-        picture.image = UIImage(named: imageName)
+        let drinkType = set.item.type
+        contentView.backgroundColor = drinkType.color
+        picture.image = drinkType.image
         updateNameForItem(set.item, count: set.quantity)
         updateExpiration(set.expires, expired: set.expired)
     }
@@ -70,7 +73,7 @@ class PLOrderItemCell: UITableViewCell {
         updateNameForItem(set.item, count: set.quantity)
     }
     
-    func updateNameForItem(item: PLPricedItem, count: Int) {
+    func updateNameForItem(item: PLPricedItem, count: UInt) {
         nameLabel.text = "\(item.name) (\(count))"
     }
     

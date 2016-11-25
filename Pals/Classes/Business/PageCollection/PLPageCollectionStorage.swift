@@ -38,6 +38,13 @@ class PLPageCollectionStorage {
         return sets[state]!
     }
     
+    func cleanAllSets() {
+        for state in PLPageCollectionStorageState.cases() {
+            let set = sets[state]
+            set?.clean()
+        }
+    }
+    
     func cleanCurrentSet() {
         currentSet.clean()
     }

@@ -9,8 +9,10 @@
 private let kDimmed: CGFloat = 0.3
 private let kTransparent: CGFloat = 0
 
+let PLCoverIcon = "cover_icon"
+
 protocol PLCoverCellDelegate : class {
-    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: Int)
+    func coverCell(cell: PLOrderCoverCell, didUpdateCover event: PLEvent, withCount count: UInt)
 }
 
 class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
@@ -32,7 +34,7 @@ class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
         }
     }
     
-    var coverNumber: Int {
+    var coverNumber: UInt {
         set {
             counter.counter = newValue
         }
@@ -75,7 +77,7 @@ class PLOrderCoverCell: UICollectionViewCell, PLCounterViewDelegate {
         }
     }
     
-    func counterView(view: PLCounterView, didChangeCounter counter: Int) {
+    func counterView(view: PLCounterView, didChangeCounter counter: UInt) {
         if event != nil {
             delegate?.coverCell(self, didUpdateCover: event!, withCount: counter)
         }

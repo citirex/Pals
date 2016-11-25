@@ -58,7 +58,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-		collectionBackgroundView.userPicImageView.setImageWithURL(PLFacade.profile!.cellData.picture)
+		collectionBackgroundView.userPicImageView.setImageWithURL(PLFacade.profile!.picture)
 		collectionBackgroundView.userPicImageView.setAvatarPlaceholder(collectionBackgroundView.userPicImageView, url: profile!.picture)
         
         willAppearCompletion?()
@@ -83,14 +83,14 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
         setupCollectionView()
     }
     
-    
-    // MARK: - Notifications
-    
     func registerNotifications() {
         PLNotifications.addObserver(self, selector: .qrCodeScannedNotification, type: .QRCodeScanned)
         PLNotifications.addObserver(self, selector: #selector(onDidCreateNewOrders(_:)), type: .OrdersDidCreate)
+        PLNotifications.addObserver(self, selector: #selector(onPushDidReceive(_:)), type: .PushDidReceive)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(profileInfoChangedNotification), name:PLNotificationType.ProfileChanged.str, object: nil)
     }
+    
+    //MARK: PLNotification handlers
     
     func qrCodeScannedNotification(notification: NSNotification) {
         guard let order = notification.object as? PLOrder else { return }
@@ -120,7 +120,19 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
         }
     }
     
-    func updatePage() {
+    func onPushDidReceive(notification: NSNotification) {
+        if let push = notification.object as? PLPush {
+            if let type = push.badge?.type {
+                if type == .Order {
+                    self.updatePage()
+                }
+            }
+        }
+    }
+    
+    //MARK: Interface
+    
+    private func updatePage() {
         datasourceSwitcher.clear()
         loadPageIfEmpty()
     }
@@ -347,6 +359,7 @@ class PLProfileViewController: TGLStackedViewController, PLAppearanceRespondable
         let expoItemSize = CGSizeMake(collectionSize.width, exposedCardHeight)
         self.exposedItemSize = expoItemSize
         self.stackedLayout!.itemSize = self.exposedItemSize;
+        self.stackedLayout?.topReveal = 90
         
         let layoutTopMargin = collectionView!.frame.size.height / 2 + 1
         self.stackedLayout!.layoutMargin = UIEdgeInsetsMake(layoutTopMargin, 0.0, tabBarHeight, 0.0);

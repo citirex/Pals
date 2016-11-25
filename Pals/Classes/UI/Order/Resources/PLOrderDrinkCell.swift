@@ -8,89 +8,81 @@
 
 import UIKit
 
-protocol OrderDrinksCounterDelegate: class {
-    func updateOrderWith(drinkCell: PLOrderDrinkCell, andCount count: Int)
+protocol PLOrderDrinkCellDelegate: class {
+    func drinkCell(cell: PLOrderDrinkCell, didUpdateDrink drink: PLDrink, withCount count: UInt)
 }
 
 class PLOrderDrinkCell: UICollectionViewCell {
     
     static let height: CGFloat = 112
     
-    @IBOutlet private var drinkNameLabel: UILabel!
-    @IBOutlet private var drinkPriceLabel: UILabel!
-    @IBOutlet private var drinkMinusCounterButton: UIButton!
-    @IBOutlet private var drinkPlusCounterButton: UIButton!
-    @IBOutlet private var drinkCountLabel: UILabel!
+    static let nibName = "PLOrderDrinkCell"
+    static let reuseIdentifier = "DrinkCell"
     
-    @IBOutlet private var bgView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var drinkImageView: UIImageView!
+    @IBOutlet weak var expiryDateLabel: UILabel!
     
-    weak var delegate: OrderDrinksCounterDelegate?
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var counterView: PLCounterView!
+    
+    weak var delegate: PLOrderDrinkCellDelegate?
+    
+    var drink: PLDrink! {
+        didSet {
+            nameLabel.text = drink.name
+            drinkImageView.image = drink.type.image
+            priceLabel.text = drink.price > 0 ? String(format: "$%.2f", drink.price) : "Specify"
+            containerView.backgroundColor = drink.type.color
+            guard let duration = drink.duration else { return }
+            expiryDateLabel.text = expiryDateDuration(duration)
+        }
+    }
+    
+    var drinkCount: UInt {
+        get {
+            return counterView.counter
+        }
+        set {
+            counterView.counter = newValue
+        }
+    }
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        bgView.layer.cornerRadius = 10
+        counterView.position = .Vertical
+        counterView.delegate = self
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
+        containerView.cornerRadius = 10
     }
     
-    func setupWith(drink: PLDrink, isVip vip: Bool) {
-        drinkNameLabel.text = drink.name
-        drinkPriceLabel.text = (drink.price > 0) ? "$" + String(format: "%.2f", drink.price) : "Specify"
-        setupColorsForVipState(vip, withType: drink.type)
-    }
+    // MARK: - Private methods
     
-    //MARK: Actions
-    @IBAction func minusButtonPressed(sender: UIButton) {
-        if drinkCount > 0 {
-            drinkCount -= 1
-            delegate?.updateOrderWith(self, andCount: drinkCount)
-        }
-    }
-    
-    @IBAction func plusButtonPressed(sender: UIButton) {
-        drinkCount += 1
-        delegate?.updateOrderWith(self, andCount: drinkCount)
-    }
-    
-    private func setupColorsForVipState(isVip: Bool, withType type: DrinkType) {
-        if isVip == true {
-            setupTextWith(color: UIColor.blackColor())
-            bgView.backgroundColor = UIColor.whiteColor()
-        } else {
-            setupTextWith(color: UIColor.whiteColor())
-            switch type {
-            case .Light:
-                bgView.backgroundColor = kPalsOrderCardBeerDrinkColor
-            case .Strong:
-                bgView.backgroundColor = kPalsOrderCardLiqiorDrinkColor
-            case .Undefined:
-                bgView.backgroundColor = kPalsOrderCardDrinkUndefinedColor
-            }
-        }
-    }
-    
-    private func setupTextWith(color color: UIColor) {
-        drinkNameLabel.textColor = color
-        drinkPriceLabel.textColor = color
-        drinkMinusCounterButton.setTitleColor(color, forState: .Normal)
-        drinkPlusCounterButton.setTitleColor(color, forState: .Normal)
-        drinkCountLabel.textColor = color
-    }
-    
-    
-    //MARK: Getters
-    var drinkCount: Int {
-        get{
-            return Int(drinkCountLabel.text!)!
-        }
-        set{
-            drinkCountLabel.text = "\(newValue)"
-        }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        drinkCount = 0
+    private func expiryDateDuration(duration: Int) -> String {
+        let dateComponents = NSDateComponents()
+        dateComponents.second = duration
         
+        let calendar = NSCalendar.currentCalendar()
+        let expiryDate = calendar.dateByAddingComponents(dateComponents, toDate: NSDate(), options: [])!
+        return expiryDate.stringForType(.Date, style: .ShortStyle)
     }
+    
 }
+
+
+// MARK: - PLCounterViewDelegate
+
+extension PLOrderDrinkCell: PLCounterViewDelegate {
+
+    func counterView(view: PLCounterView, didChangeCounter counter: UInt) {
+        delegate?.drinkCell(self, didUpdateDrink: drink, withCount: counter)
+    }
+    
+}
+    

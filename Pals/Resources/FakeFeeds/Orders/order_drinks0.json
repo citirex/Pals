@@ -26,16 +26,25 @@
                                     "id":13,
                                     "name":"Vodka Pshenichna 40%",
                                     "price":29.0,
-                                    "type":2
+                                    "type":1
                                  },
                                 "quantity" : 3
+                            },
+                            {
+                                "drink" : {
+                                    "id":25,
+                                    "name":"Vodka Seven Birches",
+                                    "price":40.0,
+                                    "type":1
+                                },
+                                "quantity" : 19
                             },
                             {
                                 "drink" : {
                                     "id":14,
                                     "name":"Portwine 777 12%",
                                     "price":18.22,
-                                    "type":1
+                                    "type":3
                                 },
                                 "quantity" : 4
                             },
@@ -44,18 +53,19 @@
                                     "id":15,
                                     "name":"Mojito NO Alcohol",
                                     "price":40.0,
-                                    "type":0
+                                    "type":4
                                 },
                                 "quantity" : 1
                             }
-                            ],
-                "message":"Hi, check out this amazing tasty coffee!",
+						],
+
+				"message":"Hi, check out this amazing tasty coffee!",
                 "is_vip":0,
                 "date" : 1475337600
                 },
-                
-                
-                
+				
+				
+				
                 {
                 "id":2,
                 "user":{
@@ -82,7 +92,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -119,7 +129,7 @@
                             "id":6,
                             "name":"Rogan Svitle 4.5%",
                             "price":12.9,
-                            "type":1
+                            "type":0
                             },
                             "quantity" : 2
                             },
@@ -128,7 +138,7 @@
                                     "id":14,
                                     "name":"Portwine 777 12%",
                                     "price":18.22,
-                                    "type":1
+                                    "type":3
                                 },
                                 "quantity" : 5
                             }
@@ -165,10 +175,19 @@
                                            "id":6,
                                            "name":"Rogan Svitle 4.5%",
                                            "price":12.9,
-                                           "type":1
+                                           "type":0
                                     },
                                     "quantity" : 1
-                               }
+                               },
+                                {
+                                    "drink" : {
+                                    "id":244,
+                                    "name":"Blue Lagune",
+                                    "price":15.3,
+                                    "type":2
+                                    },
+                                    "quantity" : 2
+                                }
                             ],
                 "message":"Hi, check out this amazing tasty coffee!",
                 "is_vip":0,
@@ -204,12 +223,12 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
                             ],
-                "message":"Hi, check out this amazing tasty coffee!",
+                "message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut dolor ut tortor tincidunt tristique eu nec lectus. Nullam pellentesque iaculis felis a tempor. Ut aliquet tincidunt arcu a pellentesque. Aenean aliquet rutrum facilisis. Sed iaculis tincidunt libero ac dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tempor lacus rutrum dui posuere, eu tempor odio commodo. Aenean auctor tincidunt metus, et egestas libero varius eu. Suspendisse condimentum, ex ut aliquet aliquet, augue urna vestibulum sapien, nec scelerisque nulla mi sed nibh. Aliquam vulputate erat at felis mollis, non faucibus orci rhoncus. Cras rhoncus lacus ac leo pulvinar auctor. Duis eleifend tortor risus. Nullam ut risus sit amet lorem blandit molestie. Integer at tempus ligula, eget auctor diam. Suspendisse potenti. Maecenas suscipit venenatis ornare. Duis a ipsum nec arcu rhoncus convallis eget sit amet enim. Phasellus molestie leo et turpis porta, sit amet maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut dolor ut tortor tincidunt tristique eu nec lectus. Nullam pellentesque iaculis felis a tempor. Ut aliquet tincidunt arcu a pellentesque. Aenean aliquet rutrum facilisis. Sed iaculis tincidunt libero ac dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tempor lacus rutrum dui posuere, eu tempor odio commodo. Aenean auctor tincidunt metus, et egestas libero varius eu. Suspendisse condimentum, ex ut aliquet aliquet, augue urna vestibulum sapien, nec scelerisque nulla mi sed nibh. Aliquam vulputate erat at felis mollis, non faucibus orci rhoncus. Cras rhoncus lacus ac leo pulvinar auctor. Duis eleifend tortor risus. Nullam ut risus sit amet lorem blandit molestie. Integer at tempus ligula, eget auctor diam. Suspendisse potenti. Maecenas suscipit venenatis ornare. Duis a ipsum nec arcu rhoncus convallis eget sit amet enim. Phasellus molestie leo et turpis porta, sit amet maximus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut dolor ut tortor tincidunt tristique eu nec lectus. Nullam pellentesque iaculis felis a tempor. Ut aliquet tincidunt arcu a pellentesque. Aenean aliquet rutrum facilisis. Sed iaculis tincidunt libero ac dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tempor lacus rutrum dui posuere, eu tempor odio commodo. Aenean auctor tincidunt metus, et egestas libero varius eu. Suspendisse condimentum, ex ut aliquet aliquet, augue urna vestibulum sapien, nec scelerisque nulla mi sed nibh. Aliquam vulputate erat at felis mollis, non faucibus orci rhoncus. Cras rhoncus lacus ac leo pulvinar auctor. Duis eleifend tortor risus. Nullam ut risus sit amet lorem blandit molestie. Integer at tempus ligula, eget auctor diam. Suspendisse potenti. Maecenas suscipit venenatis ornare. Duis a ipsum nec arcu rhoncus convallis eget sit amet enim. Phasellus molestie leo et turpis porta, sit amet maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut dolor ut tortor tincidunt tristique eu nec lectus. Nullam pellentesque iaculis felis a tempor. Ut aliquet tincidunt arcu a pellentesque. Aenean aliquet rutrum facilisis. Sed iaculis tincidunt libero ac dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tempor lacus rutrum dui posuere, eu tempor odio commodo. Aenean auctor tincidunt metus, et egestas libero varius eu. Suspendisse condimentum, ex ut aliquet aliquet, augue urna vestibulum sapien, nec scelerisque nulla mi sed nibh. Aliquam vulputate erat at felis mollis, non faucibus orci rhoncus. Cras rhoncus lacus ac leo pulvinar auctor. Duis eleifend tortor risus. Nullam ut risus sit amet lorem blandit molestie. Integer at tempus ligula, eget auctor diam. Suspendisse potenti. Maecenas suscipit venenatis ornare. Duis a ipsum nec arcu rhoncus convallis eget sit amet enim. Phasellus molestie leo et turpis porta, sit amet maximus.",
                 "is_vip":1,
                 "date" : 1475053200
          },
@@ -240,7 +259,7 @@
                             "id":8,
                             "name":"Old Monk Rum 42.8%",
                             "price":31.25,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -275,7 +294,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -310,7 +329,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -345,7 +364,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -380,7 +399,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -415,7 +434,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -450,7 +469,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -485,7 +504,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -520,7 +539,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -555,7 +574,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -590,7 +609,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -625,7 +644,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -660,7 +679,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -695,7 +714,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -730,7 +749,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }
@@ -765,7 +784,7 @@
                             "id":7,
                             "name":"Tyrconnell whiskey",
                             "price":25.3,
-                            "type":2
+                            "type":1
                             },
                             "quantity" : 1
                             }

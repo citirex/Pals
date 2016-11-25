@@ -13,6 +13,7 @@ enum PLKey : String {
     case address
     case auth_data
     case address_zip
+    case answer
     
     case badges
     
@@ -31,6 +32,7 @@ enum PLKey : String {
     case dlat // delta latitude
     case dlong // delta longitude
     case device_token = "registration_id"
+    case duration
     
     case email
     case email_unique
@@ -83,6 +85,7 @@ enum PLKey : String {
     case password
     case phone
     case per_page
+    case pending
     
     case quantity
     case qr_code

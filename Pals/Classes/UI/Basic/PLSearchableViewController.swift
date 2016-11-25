@@ -10,7 +10,7 @@ import DZNEmptyDataSet
 
 class PLSearchableViewController: PLViewController {
     
-    var interfaceColor = UIColor.affairColor()
+    var interfaceColor = UIColor.violetColor
     
     var searchController: PLSearchController!
     
@@ -38,7 +38,17 @@ class PLSearchableViewController: PLViewController {
         
         definesPresentationContext = true
     }
-        
+    
+    func configureResponder<T, N : UITableViewCell where T: UITableViewDataSource, T : UITableViewDelegate, T : DZNEmptyDataSetSource, T : DZNEmptyDataSetDelegate, N : PLReusableCell>
+        (responder: T, withCellType cellType: N.Type)
+    {
+        resultsController.tableView.dataSource           = responder
+        resultsController.tableView.delegate             = responder
+        resultsController.tableView.emptyDataSetSource   = responder
+        resultsController.tableView.emptyDataSetDelegate = responder
+        resultsController.tableView.registerCell(cellType)
+    }
+    
     func configureResultsController
         <T where T : UITableViewDataSource, T: UITableViewDelegate, T: DZNEmptyDataSetSource, T: DZNEmptyDataSetDelegate>
         (cellNib: String, cellIdentifier: String, responder: T) {

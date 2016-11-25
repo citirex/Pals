@@ -72,24 +72,17 @@ class PLPush {
 enum PLPushType: Int {
     case Order = 1
     case Friends
+    case AnswerFriendRequest
 
     
     var description: String {
         switch self {
         case .Order   : return "Order"
         case .Friends : return "Friends"
-        }
-    }
-    
-    var tabBarItem: Int {
-        switch self {
-        case .Order   : return PLTabBarItem.ProfileItem.rawValue
-        case .Friends : return PLTabBarItem.FriendsItem.rawValue
+        case .AnswerFriendRequest : return "Answer"
         }
     }
 }
-
-let kPLPushManagerDidReceivePush = "kPLPushManagerDidReceivePush"
 
 protocol PLPushSimulation {
     func simulatePushes(settings: PLPushSettings)
@@ -141,28 +134,17 @@ class PLPushManager: NSObject {
     
     func processPushInfo(aps: [String:AnyObject], launchedByTap: Bool) {
         PLLog("Received remote notification: \n\(aps)", type: .Pushes)
-//        if UIApplication.sharedApplication().applicationState == .Active {
-//            PLShowAlert("Received remote notification", message: aps.description)
-//        }
         if let pushData = aps[.info] as? [String : AnyObject] {
             let push = PLPush(data: pushData, launchedByTap: launchedByTap)
             if push.badge != nil {
                 notifyPush(push)
-                if push.badge?.type == .Order {
-                    notifyProfile()
-                }
             }
         }
     }
     
     func notifyPush(push: PLPush) {
-        NSNotificationCenter.defaultCenter().postNotificationName(kPLPushManagerDidReceivePush, object: nil)
+        PLNotifications.postNotification(.PushDidReceive, object: push)
     }
-    
-    func notifyProfile() {
-        PLNotifications.postNotification(.OrderDidReceive)
-    }
-    
 }
 
 extension PLPushManager: PLPushSimulation {
@@ -178,5 +160,4 @@ extension PLPushManager: PLPushSimulation {
         PLLog("Generated random push:\n\(push): type: \(push.badge?.type), count: \(push.badge?.count), byTap: \(push.launchedByTap)")
         notifyPush(push)
     }
-    
 }

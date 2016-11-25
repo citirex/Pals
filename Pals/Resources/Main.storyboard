@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -11,7 +11,7 @@
         <!--Login-->
         <scene sceneID="wTL-jJ-0fA">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" title="Login" extendedLayoutIncludesOpaqueBars="YES" id="nzO-MP-N4g" customClass="PLLoginViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Login" extendedLayoutIncludesOpaqueBars="YES" id="nzO-MP-N4g" customClass="PLLoginViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zDd-Rx-EAJ"/>
                         <viewControllerLayoutGuide type="bottom" id="Xdz-1E-nP4"/>
@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-fq-ZBU" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-fq-ZBU" customClass="PLCircularImageView" customModule="Spal" customModuleProvider="target">
                                 <rect key="frame" x="103" y="93" width="169" height="169"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0mE-fq-ZBU" secondAttribute="height" multiplier="1:1" id="fsZ-ic-EDX"/>
@@ -29,7 +29,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xzj-qM-z68" userLabel="textFieldsContainer">
                                 <rect key="frame" x="71" y="308" width="233" height="72"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Login" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ymg-DV-zCV" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Login" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ymg-DV-zCV" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="233" height="36"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,7 +44,7 @@
                                             <outlet property="delegate" destination="nzO-MP-N4g" id="nht-CI-Q8L"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="HEk-oG-qRI" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="HEk-oG-qRI" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="36" width="233" height="36"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,10 +79,10 @@
                                     <color key="titleColor" red="0.74117647058823533" green="0.69411764705882351" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="forgotButtonClicked:" destination="nzO-MP-N4g" eventType="touchUpInside" id="tPU-mM-VJa"/>
+                                    <action selector="tappedForgotButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="a1L-7f-oOr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-8W-xw3" userLabel="Login Button" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-8W-xw3" userLabel="Login Button" customClass="PLRoundedButton" customModule="Spal" customModuleProvider="target">
                                 <rect key="frame" x="102" y="460" width="171" height="35"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
@@ -90,7 +90,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonClicked:" destination="nzO-MP-N4g" eventType="touchUpInside" id="lvL-px-Aji"/>
+                                    <action selector="tappedLoginButton:" destination="nzO-MP-N4g" eventType="touchUpInside" id="qOD-XJ-Peh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RsC-zg-ad1" userLabel="FB Button">
@@ -151,12 +151,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgT-8r-kgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1133.5" y="-2474.5"/>
+            <point key="canvasLocation" x="-1855.5" y="-2482.5"/>
         </scene>
         <!--Locations-->
         <scene sceneID="whK-vt-KJO">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="9tl-gQ-1vF" customClass="PLOrderPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="9tl-gQ-1vF" customClass="PLOrderPlacesViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Art-rv-YbA"/>
                         <viewControllerLayoutGuide type="bottom" id="qL6-cO-B75"/>
@@ -178,7 +178,7 @@
         <!--Friends-->
         <scene sceneID="ERz-7x-rQN">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Z6Q-Mk-C7E" customClass="PLOrderFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Z6Q-Mk-C7E" customClass="PLOrderFriendsViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NfB-Mc-y6F"/>
                         <viewControllerLayoutGuide type="bottom" id="v53-5J-J2O"/>
@@ -200,7 +200,7 @@
         <!--Order-->
         <scene sceneID="BwI-Fv-Me0">
             <objects>
-                <viewController title="Order" automaticallyAdjustsScrollViewInsets="NO" id="Cmd-gA-94i" customClass="PLOrderViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Order" automaticallyAdjustsScrollViewInsets="NO" id="Cmd-gA-94i" customClass="PLOrderViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tdv-ny-gZG"/>
                         <viewControllerLayoutGuide type="bottom" id="5ch-p3-Kg1"/>
@@ -253,7 +253,7 @@
         <!--Friend Profile-->
         <scene sceneID="pBT-w8-B4P">
             <objects>
-                <viewController storyboardIdentifier="FriendProfile" title="Friend Profile" automaticallyAdjustsScrollViewInsets="NO" id="BXZ-AW-ugp" customClass="PLFriendProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendProfile" title="Friend Profile" automaticallyAdjustsScrollViewInsets="NO" id="BXZ-AW-ugp" customClass="PLFriendProfileViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xAn-zJ-Nh1"/>
                         <viewControllerLayoutGuide type="bottom" id="KuD-LH-J5b"/>
@@ -271,7 +271,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1v-eX-EMV" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiR-Kx-BL2" customClass="PLCircularImageView" customModule="Spal" customModuleProvider="target">
                                                 <rect key="frame" x="112" y="88" width="151" height="151"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -412,7 +412,7 @@
         <!--Profile-->
         <scene sceneID="mNa-5k-She">
             <objects>
-                <viewController title="Profile" id="Vp1-10-wGA" customClass="PLProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Profile" id="Vp1-10-wGA" customClass="PLProfileViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HIE-G5-FT6"/>
                         <viewControllerLayoutGuide type="bottom" id="cPl-tf-43y"/>
@@ -423,7 +423,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xqB-wZ-lQh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <collectionViewLayout key="collectionViewLayout" id="cdL-w4-diz" customClass="PLCollectionParalaxLayout" customModule="Pals" customModuleProvider="target"/>
+                                <collectionViewLayout key="collectionViewLayout" id="cdL-w4-diz" customClass="PLCollectionParalaxLayout" customModule="Spal" customModuleProvider="target"/>
                                 <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="Vp1-10-wGA" id="35T-LS-PTp"/>
@@ -458,7 +458,7 @@
         <!--Places-->
         <scene sceneID="lkV-A7-b6g">
             <objects>
-                <viewController title="Places" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="jVG-XQ-2Vf" customClass="PLPlacesViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Places" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="jVG-XQ-2Vf" customClass="PLPlacesViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CJJ-KK-xwN"/>
                         <viewControllerLayoutGuide type="bottom" id="o6Z-QN-4zp"/>
@@ -482,7 +482,7 @@
         <!--Place Profile-->
         <scene sceneID="Ogc-1T-UGd">
             <objects>
-                <viewController title="Place Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="0zz-mk-uMT" customClass="PLPlaceProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Place Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="0zz-mk-uMT" customClass="PLPlaceProfileViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u9v-Jv-pTT"/>
                         <viewControllerLayoutGuide type="bottom" id="isy-AG-3wD"/>
@@ -532,7 +532,7 @@
         <!--Sign Up-->
         <scene sceneID="2FT-fh-LFP">
             <objects>
-                <viewController title="Sign Up" id="xEW-Sh-buD" customClass="PLSignUpViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sign Up" id="xEW-Sh-buD" customClass="PLSignUpViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qoG-VZ-XJL"/>
                         <viewControllerLayoutGuide type="bottom" id="GQe-k7-QJO"/>
@@ -548,7 +548,7 @@
                                     <action selector="showActionSheet:" destination="xEW-Sh-buD" eventType="touchUpInside" id="fYT-yy-a2E"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gd0-AA-yGc" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gd0-AA-yGc" customClass="PLCircularImageView" customModule="Spal" customModuleProvider="target">
                                 <rect key="frame" x="101" y="93" width="173" height="173"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gd0-AA-yGc" secondAttribute="height" multiplier="1:1" id="ANF-fl-ZE6"/>
@@ -557,7 +557,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tz9-Se-d65" userLabel="Text Fields Container">
                                 <rect key="frame" x="71" y="312" width="233" height="144"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Username" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="dkV-6G-Z2j" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Username" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="dkV-6G-Z2j" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="233" height="36"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -572,7 +572,7 @@
                                             <outlet property="delegate" destination="xEW-Sh-buD" id="v0Y-OJ-djc"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="E-mail" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="fkq-JS-Kxw" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="E-mail" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="fkq-JS-Kxw" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="36" width="233" height="36"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -587,7 +587,7 @@
                                             <outlet property="delegate" destination="xEW-Sh-buD" id="kt6-qe-kqE"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="6fF-4f-G29" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="6fF-4f-G29" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="233" height="36"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -602,7 +602,7 @@
                                             <outlet property="delegate" destination="xEW-Sh-buD" id="7po-Ej-KP7"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Swk-ob-MnV" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Swk-ob-MnV" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="108" width="233" height="36"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -637,7 +637,7 @@
                                     <constraint firstAttribute="trailing" secondItem="fkq-JS-Kxw" secondAttribute="trailing" id="zTB-Vi-TWb"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81f-gD-qmB" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81f-gD-qmB" customClass="PLRoundedButton" customModule="Spal" customModuleProvider="target">
                                 <rect key="frame" x="102" y="520" width="171" height="35"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
@@ -656,7 +656,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2Ze-G6-jmr" kind="unwind" unwindAction="unwindToLoginClicked:" id="uWv-ns-IFY"/>
+                                    <segue destination="2Ze-G6-jmr" kind="unwind" unwindAction="unwindToLoginScreen:" id="6fo-2H-ZV0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -697,12 +697,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fss-Lj-oqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2Ze-G6-jmr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-540.5" y="-2482.5"/>
+            <point key="canvasLocation" x="-1234.5" y="-2482.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vej-NY-WUf">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" id="znQ-ch-ruN" customClass="PLTabBarController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="znQ-ch-ruN" customClass="PLTabBarController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="2fU-rA-Kat">
@@ -725,7 +725,7 @@
         <!--Edit Profile-->
         <scene sceneID="0Fu-Ex-077">
             <objects>
-                <viewController title="Edit Profile" id="1ZL-hY-XMT" customClass="PLEditProfileViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Edit Profile" id="1ZL-hY-XMT" customClass="PLEditProfileViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CNc-GW-UX5"/>
                         <viewControllerLayoutGuide type="bottom" id="VKM-mX-0Rk"/>
@@ -737,8 +737,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRH-wo-TIR" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="206"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Dm-ok-mIm" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Dm-ok-mIm" customClass="PLCircularImageView" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="142" y="56" width="91" height="91"/>
+                                        <color key="backgroundColor" red="0.23137254900000001" green="0.80000000000000004" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6Dm-ok-mIm" secondAttribute="height" multiplier="1:1" id="bE2-Yl-WH1"/>
                                         </constraints>
@@ -760,15 +761,27 @@
                                             <outlet property="delegate" destination="1ZL-hY-XMT" id="rUS-OD-ygu"/>
                                         </connections>
                                     </textField>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-9o-kKc" customClass="PLCheckmarkButton" customModule="Spal" customModuleProvider="target">
+                                        <rect key="frame" x="316" y="110" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="B3a-mm-2N4"/>
+                                            <constraint firstAttribute="width" constant="44" id="DpI-Ci-p1L"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="tappedCheckButton:" destination="1ZL-hY-XMT" eventType="touchUpInside" id="hFz-ZX-h1t"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.43529411764705883" green="0.25098039215686274" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="STb-ek-YKg" firstAttribute="top" secondItem="m6a-9o-kKc" secondAttribute="bottom" id="1g5-0Z-rTq"/>
                                     <constraint firstItem="STb-ek-YKg" firstAttribute="height" secondItem="dRH-wo-TIR" secondAttribute="height" multiplier="0.21" id="2HC-iy-DQL"/>
                                     <constraint firstAttribute="bottom" secondItem="STb-ek-YKg" secondAttribute="bottom" constant="8" id="HKu-RK-hZR"/>
                                     <constraint firstItem="QQK-yC-e4y" firstAttribute="trailing" secondItem="6Dm-ok-mIm" secondAttribute="trailing" id="HRo-aj-Ovz"/>
                                     <constraint firstItem="6Dm-ok-mIm" firstAttribute="centerX" secondItem="STb-ek-YKg" secondAttribute="centerX" id="Hom-lx-9qI"/>
                                     <constraint firstItem="QQK-yC-e4y" firstAttribute="leading" secondItem="6Dm-ok-mIm" secondAttribute="leading" id="NOy-ZP-t7a"/>
                                     <constraint firstAttribute="trailing" secondItem="STb-ek-YKg" secondAttribute="trailing" constant="8" id="TIW-ZN-9Fc"/>
+                                    <constraint firstAttribute="trailing" secondItem="m6a-9o-kKc" secondAttribute="trailing" constant="15" id="URO-8R-asJ"/>
                                     <constraint firstItem="QQK-yC-e4y" firstAttribute="top" secondItem="6Dm-ok-mIm" secondAttribute="top" id="Vky-jg-CVX"/>
                                     <constraint firstItem="STb-ek-YKg" firstAttribute="top" secondItem="6Dm-ok-mIm" secondAttribute="bottom" constant="7" id="Wpb-Ac-e5I"/>
                                     <constraint firstItem="STb-ek-YKg" firstAttribute="leading" secondItem="dRH-wo-TIR" secondAttribute="leading" constant="8" id="jhF-1z-zhv"/>
@@ -796,15 +809,15 @@
                                     <outlet property="delegate" destination="1ZL-hY-XMT" id="zXT-JZ-3HU"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Additional email or phone" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6sS-wE-Ux6" customClass="PLBorderedTextField" customModule="Pals" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Additional email or phone" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6sS-wE-Ux6" customClass="PLBorderedTextField" customModule="Spal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="320" width="375" height="57"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="1ZL-hY-XMT" id="dse-h2-8JW"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h45-7a-nGV" customClass="PLRoundedButton" customModule="Pals" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h45-7a-nGV" customClass="PLRoundedButton" customModule="Spal" customModuleProvider="target">
                                 <rect key="frame" x="94" y="522" width="187" height="48"/>
                                 <color key="backgroundColor" red="0.43529411764705883" green="0.25098039215686274" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -846,17 +859,13 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="CMY-m7-oKE">
                         <barButtonItem key="backBarButtonItem" title=" " id="1wI-y9-Fpp"/>
-                        <barButtonItem key="rightBarButtonItem" image="edit" id="SW6-ty-ava" userLabel="Edit Bar Button Item">
-                            <connections>
-                                <action selector="editBarBattonItemTapped:" destination="1ZL-hY-XMT" id="96w-3H-Grd"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addProfileImageButton" destination="QQK-yC-e4y" id="Hkb-Lu-znQ"/>
                         <outlet property="additionalTextField" destination="6sS-wE-Ux6" id="00d-Pj-I3k"/>
+                        <outlet property="checkButton" destination="m6a-9o-kKc" id="yjC-Fj-gis"/>
                         <outlet property="phoneNumberTextField" destination="hiW-NB-07S" id="S1N-p1-Xk4"/>
                         <outlet property="userProfileImageView" destination="6Dm-ok-mIm" id="TXV-sX-ARb"/>
                         <outlet property="usernameTextField" destination="STb-ek-YKg" id="vm8-xa-oNQ"/>
@@ -869,7 +878,7 @@
         <!--Card Info-->
         <scene sceneID="CcP-Cm-oqJ">
             <objects>
-                <viewController storyboardIdentifier="CardInfo" title="Card Info" id="DmR-jl-w2z" customClass="PLCardInfoViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CardInfo" title="Card Info" id="DmR-jl-w2z" customClass="PLCardInfoViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bmV-3L-Jyy"/>
                         <viewControllerLayoutGuide type="bottom" id="e4A-5q-Ul3"/>
@@ -881,7 +890,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8T-pW-sJU" userLabel="Text Fields Container">
                                 <rect key="frame" x="58" y="82" width="259" height="164"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="MM/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nI2-1i-ZTZ" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="MM/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nI2-1i-ZTZ" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="41" width="259" height="41"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -896,7 +905,7 @@
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="CNp-6O-k5L"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="ZIP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="893-bh-utp" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="ZIP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="893-bh-utp" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="82" width="259" height="41"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -911,7 +920,7 @@
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="yKu-nc-ZwY"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="CVC" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gl-CT-gfw" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="CVC" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gl-CT-gfw" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="123" width="259" height="41"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -926,7 +935,7 @@
                                             <outlet property="delegate" destination="DmR-jl-w2z" id="rOm-Db-ZaK"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Credit Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BjM-1l-qio" customClass="PLFormTextField" customModule="Pals" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Credit Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BjM-1l-qio" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="259" height="41"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1002,7 +1011,7 @@
         <!--Notifications-->
         <scene sceneID="Ms5-44-pwz">
             <objects>
-                <viewController id="7U6-k9-nlT" customClass="PLNotificationsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7U6-k9-nlT" customClass="PLNotificationsViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KDa-NA-Lfz"/>
                         <viewControllerLayoutGuide type="bottom" id="KK4-QP-KvD"/>
@@ -1017,11 +1026,11 @@
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" id="UVw-xv-aHl" customClass="PLNotificationCell" customModule="Pals" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="48"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" id="UVw-xv-aHl" customClass="PLNotificationCell" customModule="Spal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49.5" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVw-xv-aHl" id="8Ek-c8-5vN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ref-m5-bFC">
@@ -1078,7 +1087,7 @@
         <!--Order History-->
         <scene sceneID="ESD-Th-IME">
             <objects>
-                <viewController title="Order History" id="nZe-CE-B1W" customClass="PLOrderHistoryViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Order History" id="nZe-CE-B1W" customClass="PLOrderHistoryViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o0i-RS-Nuy"/>
                         <viewControllerLayoutGuide type="bottom" id="TN8-qH-eNb"/>
@@ -1101,7 +1110,7 @@
                                         <rect key="frame" x="0.0" y="48" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6a-rW-oKo" id="FaC-ky-mfi">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-Hp-QFs">
@@ -1122,11 +1131,11 @@
                                             <outlet property="dateLabel" destination="HDm-Hp-QFs" id="NFv-xG-bgJ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceNameCell" id="u4y-8d-8NF" customClass="PLPlaceNameCell" customModule="Pals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceNameCell" id="u4y-8d-8NF" customClass="PLPlaceNameCell" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="96" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u4y-8d-8NF" id="ddY-Zm-w41">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Drinking Loo" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U8V-ij-U5p">
@@ -1148,15 +1157,15 @@
                                             <outlet property="placeNameLabel" destination="U8V-ij-U5p" id="2yV-IJ-0gP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OrderHistoryCell" textLabel="g1B-wP-cxH" detailTextLabel="wXJ-yS-Zcu" style="IBUITableViewCellStyleValue1" id="TK1-sB-fha" customClass="PLOrderHistoryCell" customModule="Pals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OrderHistoryCell" textLabel="g1B-wP-cxH" detailTextLabel="wXJ-yS-Zcu" style="IBUITableViewCellStyleValue1" id="TK1-sB-fha" customClass="PLOrderHistoryCell" customModule="Spal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="144" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TK1-sB-fha" id="dDg-2X-QRr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Corona Light" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g1B-wP-cxH">
-                                                    <rect key="frame" x="15" y="12" width="116" height="24"/>
+                                                    <rect key="frame" x="15" y="12" width="115.5" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -1262,7 +1271,7 @@
         <!--Settings-->
         <scene sceneID="ajY-eh-z6Z">
             <objects>
-                <viewController title="Settings" extendedLayoutIncludesOpaqueBars="YES" id="kGG-tj-ywv" customClass="PLSettingsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Settings" extendedLayoutIncludesOpaqueBars="YES" id="kGG-tj-ywv" customClass="PLSettingsViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="boX-sb-AbH"/>
                         <viewControllerLayoutGuide type="bottom" id="XIp-w9-9kT"/>
@@ -1278,14 +1287,14 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingNameCell" textLabel="a3y-9l-lpj" style="IBUITableViewCellStyleDefault" id="Dmn-ca-IPY">
-                                        <rect key="frame" x="0.0" y="114" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dmn-ca-IPY" id="RRT-mo-pqz">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a3y-9l-lpj">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="47"/>
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="47.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1378,7 +1387,7 @@
         <!--Friends View Controller-->
         <scene sceneID="kTI-9s-VJB">
             <objects>
-                <viewController title="Friends" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="EGX-50-gGa" userLabel="Friends View Controller" customClass="PLFriendsViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Friends" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="EGX-50-gGa" userLabel="Friends View Controller" customClass="PLFriendsViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HvD-Gm-hRE"/>
                         <viewControllerLayoutGuide type="bottom" id="OP0-7G-RkV"/>
@@ -1408,7 +1417,7 @@
         <!--Friends Search View Controller-->
         <scene sceneID="A86-LJ-Tha">
             <objects>
-                <viewController title="Friends Search" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="lup-pr-rOR" userLabel="Friends Search View Controller" customClass="PLFriendsSearchViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Friends Search" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="lup-pr-rOR" userLabel="Friends Search View Controller" customClass="PLFriendsSearchViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3gh-Dt-TFx"/>
                         <viewControllerLayoutGuide type="bottom" id="0cU-r4-3hA"/>
@@ -1433,7 +1442,7 @@
         <!--Notification-->
         <scene sceneID="Axm-uW-bFP">
             <objects>
-                <viewController title="Notification" id="c0k-OT-e4n" customClass="PLNotificationViewController" customModule="Pals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Notification" id="c0k-OT-e4n" customClass="PLNotificationViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hnU-xb-y9V"/>
                         <viewControllerLayoutGuide type="bottom" id="jlL-Kw-qY9"/>
@@ -1512,10 +1521,187 @@
             </objects>
             <point key="canvasLocation" x="207.5" y="-1434.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="kuc-rh-r6d">
+            <objects>
+                <viewController id="ydL-Oj-d3h" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Yv-Rz-37U"/>
+                        <viewControllerLayoutGuide type="bottom" id="vkn-RP-ZBC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p4V-e7-SUf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iD-k4-7wC">
+                                <rect key="frame" x="0.0" y="216" width="320" height="104"/>
+                                <color key="backgroundColor" red="0.60784316059999999" green="0.60784316059999999" blue="0.60784316059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="titleEdgeInsets" minX="250" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="McT-DI-rRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-195" y="-2547"/>
+        </scene>
+        <!--Reset Password-->
+        <scene sceneID="7ck-7o-btw">
+            <objects>
+                <viewController storyboardIdentifier="ResetPasswordViewController" title="Reset Password" id="t3e-8x-PWK" customClass="PLResetPasswordViewController" customModule="Spal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HpX-Cq-hyd"/>
+                        <viewControllerLayoutGuide type="bottom" id="c2p-si-zu2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QcA-dp-B7m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tv-ri-R5T" userLabel="Text Fields Container">
+                                <rect key="frame" x="71" y="178" width="233" height="144"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="E-mail" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="8JC-mU-cHr" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="233" height="36"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="t3e-8x-PWK" id="88D-wU-du3"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Code" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mMH-zJ-ih0" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="36" width="233" height="36"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="t3e-8x-PWK" id="wHX-1x-gsU"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="New Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="tAi-9m-S2k" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="233" height="36"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="t3e-8x-PWK" id="sed-Ac-43e"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="MKl-Mm-7ro" customClass="PLFormTextField" customModule="Spal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="108" width="233" height="36"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.74117647060000003" green="0.69411764710000001" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="t3e-8x-PWK" id="cjZ-yh-eTh"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8JC-mU-cHr" secondAttribute="trailing" id="5xb-CL-vIg"/>
+                                    <constraint firstItem="tAi-9m-S2k" firstAttribute="top" secondItem="mMH-zJ-ih0" secondAttribute="bottom" id="7LU-3J-HMD"/>
+                                    <constraint firstItem="8JC-mU-cHr" firstAttribute="leading" secondItem="2tv-ri-R5T" secondAttribute="leading" id="84X-0B-Npv"/>
+                                    <constraint firstItem="mMH-zJ-ih0" firstAttribute="leading" secondItem="2tv-ri-R5T" secondAttribute="leading" id="BES-Bg-4r2"/>
+                                    <constraint firstAttribute="trailing" secondItem="tAi-9m-S2k" secondAttribute="trailing" id="Fh9-sD-3xZ"/>
+                                    <constraint firstItem="tAi-9m-S2k" firstAttribute="leading" secondItem="2tv-ri-R5T" secondAttribute="leading" id="MzO-YQ-4Yc"/>
+                                    <constraint firstItem="mMH-zJ-ih0" firstAttribute="top" secondItem="8JC-mU-cHr" secondAttribute="bottom" id="OSI-eR-6nr"/>
+                                    <constraint firstItem="mMH-zJ-ih0" firstAttribute="height" secondItem="8JC-mU-cHr" secondAttribute="height" id="ZD6-GM-oBl"/>
+                                    <constraint firstItem="MKl-Mm-7ro" firstAttribute="top" secondItem="tAi-9m-S2k" secondAttribute="bottom" id="aUb-pT-JdY"/>
+                                    <constraint firstAttribute="trailing" secondItem="MKl-Mm-7ro" secondAttribute="trailing" id="aky-F7-UgX"/>
+                                    <constraint firstAttribute="trailing" secondItem="mMH-zJ-ih0" secondAttribute="trailing" id="bAs-Bd-4tG"/>
+                                    <constraint firstAttribute="bottom" secondItem="MKl-Mm-7ro" secondAttribute="bottom" id="hQl-3i-byv"/>
+                                    <constraint firstItem="MKl-Mm-7ro" firstAttribute="height" secondItem="8JC-mU-cHr" secondAttribute="height" id="khY-qw-MbN"/>
+                                    <constraint firstItem="8JC-mU-cHr" firstAttribute="top" secondItem="2tv-ri-R5T" secondAttribute="top" id="lEk-Qd-IKD"/>
+                                    <constraint firstItem="tAi-9m-S2k" firstAttribute="height" secondItem="8JC-mU-cHr" secondAttribute="height" id="miM-AZ-ygp"/>
+                                    <constraint firstItem="MKl-Mm-7ro" firstAttribute="leading" secondItem="2tv-ri-R5T" secondAttribute="leading" id="skG-AB-vsU"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPg-bL-DrK" customClass="PLRoundedButton" customModule="Spal" customModuleProvider="target">
+                                <rect key="frame" x="102" y="462" width="171" height="35"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="t3e-8x-PWK" eventType="touchUpInside" id="0Qq-dd-BSH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.68000000715255737" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O44-4R-nka">
+                                <rect key="frame" x="0.0" y="620" width="375" height="47"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Already a Pal? Sign In!">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Nq9-Bk-qhG" kind="unwind" unwindAction="unwindToLoginScreen:" id="efQ-e3-Y53"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.43529411759999997" green="0.25098039220000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="O44-4R-nka" secondAttribute="trailing" id="1sU-fj-ISJ"/>
+                            <constraint firstItem="O44-4R-nka" firstAttribute="leading" secondItem="QcA-dp-B7m" secondAttribute="leading" id="36t-B0-h06"/>
+                            <constraint firstItem="CPg-bL-DrK" firstAttribute="top" secondItem="2tv-ri-R5T" secondAttribute="bottom" constant="140" id="DEm-8Q-yd5"/>
+                            <constraint firstItem="2tv-ri-R5T" firstAttribute="centerY" secondItem="QcA-dp-B7m" secondAttribute="centerY" multiplier="0.75" id="Fd5-zh-0UU"/>
+                            <constraint firstItem="O44-4R-nka" firstAttribute="height" secondItem="QcA-dp-B7m" secondAttribute="height" multiplier="0.07" id="GiU-LU-vDn"/>
+                            <constraint firstItem="2tv-ri-R5T" firstAttribute="centerX" secondItem="QcA-dp-B7m" secondAttribute="centerX" id="M2n-xj-8Ob"/>
+                            <constraint firstItem="CPg-bL-DrK" firstAttribute="width" secondItem="QcA-dp-B7m" secondAttribute="width" multiplier="0.454" id="VYc-kk-TTd"/>
+                            <constraint firstItem="CPg-bL-DrK" firstAttribute="centerX" secondItem="2tv-ri-R5T" secondAttribute="centerX" id="bWl-es-VKh"/>
+                            <constraint firstItem="CPg-bL-DrK" firstAttribute="height" secondItem="O44-4R-nka" secondAttribute="height" multiplier="0.73" id="dp3-3i-KIt"/>
+                            <constraint firstItem="2tv-ri-R5T" firstAttribute="width" secondItem="QcA-dp-B7m" secondAttribute="width" multiplier="0.62" id="ePd-Mi-4st"/>
+                            <constraint firstItem="2tv-ri-R5T" firstAttribute="height" secondItem="QcA-dp-B7m" secondAttribute="height" multiplier="0.215" id="hZm-jb-gmN"/>
+                            <constraint firstItem="O44-4R-nka" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CPg-bL-DrK" secondAttribute="bottom" constant="40" id="paK-7B-u2c"/>
+                            <constraint firstItem="c2p-si-zu2" firstAttribute="top" secondItem="O44-4R-nka" secondAttribute="bottom" id="xMU-ip-FPt"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="accessCodeTextField" destination="mMH-zJ-ih0" id="9cJ-lD-ykY"/>
+                        <outlet property="confirmPasswordTextField" destination="MKl-Mm-7ro" id="YOb-8U-zH3"/>
+                        <outlet property="emailTextField" destination="8JC-mU-cHr" id="Mlv-aB-Pqk"/>
+                        <outlet property="passwordTextField" destination="tAi-9m-S2k" id="tLb-dZ-O77"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UKJ-Pa-EiF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Nq9-Bk-qhG" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-590.5" y="-2482.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back_arrow" width="20" height="20"/>
-        <image name="edit" width="25" height="25"/>
         <image name="friend_profile_placeholder" width="1402" height="994"/>
         <image name="friends-tab" width="31" height="29"/>
         <image name="icon_facebook_login" width="200" height="42"/>

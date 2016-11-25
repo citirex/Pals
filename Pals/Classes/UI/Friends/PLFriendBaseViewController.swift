@@ -11,7 +11,9 @@ class PLFriendBaseViewController: PLSearchableViewController {
     
     let nib = UINib(nibName: "PLFriendCell", bundle: nil)
 	
-    var datasource = PLDatasourceHelper.createMyFriendsDatasource()
+    var downtimer = PLDowntimer()
+    weak var currentDatasource: PLFriendsDatasource!
+    
 	private var friendsView: PLTableView! { return view as! PLTableView }
     lazy var tableView: UITableView = {
         let tableView = self.friendsView.tableView
@@ -26,9 +28,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
         tableView.emptyDataSetDelegate = self
         return tableView
     }()
-    
-    
-    
 	
 	override func loadView() {
 		view = PLTableView(frame: UIScreen.mainScreen().bounds)
@@ -37,22 +36,20 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+        
 		view.backgroundColor = .whiteColor()
 		updateViewConstraints()
 		resultsController.tableView.separatorInset.left	   = 75
-		
         interfaceColor = UIColor.whiteColor()
         
-        configureResultsController(PLFriendCell.nibName, cellIdentifier: PLFriendCell.identifier, responder: self)
+        let cellType = self.cellType()
+        tableView.registerCell(cellType)
+        configureResponder(self, withCellType: cellType)
         configureSearchController("Find a friend", tableView: tableView, responder: self)
-        tableView.registerNib(nib, forCellReuseIdentifier: PLFriendCell.identifier)
         
 		searchController.isFriends = true
-		
-		searchController.searchBar.tintColor = UIColor.affairColor()
+		searchController.searchBar.tintColor = .violetColor
 		resultsController.tableView.backgroundColor = interfaceColor
-		
         addBorderToSearchField()
         edgesForExtendedLayout = .Top
     }
@@ -69,7 +66,6 @@ class PLFriendBaseViewController: PLSearchableViewController {
 		super.updateViewConstraints()
 	}
 	
-    
     func addBorderToSearchField() {
         for subView in searchController.searchBar.subviews  {
             for subsubView in subView.subviews  {
@@ -85,7 +81,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.navigationBar.style = .FriendsStyle
-        if datasource.empty {
+        if currentDatasource.empty {
             loadData()
         }
 		tableView.hideSearchBar()
@@ -93,7 +89,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        datasource.cancel()
+        currentDatasource.cancel()
     }
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -107,13 +103,12 @@ class PLFriendBaseViewController: PLSearchableViewController {
 			}
 		}
 	}
-	
+    
     func loadData() {
-		
-		self.startActivityIndicator(.WhiteLarge, color: .grayColor(), position: .Center)
-        loadData(datasource) {[unowned self] () -> UITableView in
-			self.stopActivityIndicator()
-            return self.datasource.filtering ? self.resultsController.tableView : self.tableView
+        self.startActivityIndicator(.WhiteLarge, color: .grayColor(), position: .Center)
+        loadData(currentDatasource) { [unowned self] Void -> UITableView in
+            self.stopActivityIndicator()
+            return self.currentDatasource.searching ? self.resultsController.tableView : self.tableView
         }
     }
 
@@ -124,6 +119,23 @@ class PLFriendBaseViewController: PLSearchableViewController {
             }
         }
 	}
+    
+    override func searchDidChange(text: String, active: Bool) {
+        currentDatasource.searchFilter = text
+        if text.isEmpty {
+            currentDatasource.searchFilter = nil
+        } else {
+            downtimer.wait { [unowned self] in
+                PLLog("Searched text: \(text)")
+                self.loadData()
+                self.resultsController.tableView.reloadData()
+            }
+        }
+    }
+    
+    func cellType()-> PLUserTableCell.Type {
+        return PLUserTableCell.self
+    }
 }
 
 
@@ -132,22 +144,21 @@ class PLFriendBaseViewController: PLSearchableViewController {
 extension PLFriendBaseViewController : UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        let count = datasource.count
+        let count = currentDatasource.count
         return count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
-        let cell = tableView.dequeueReusableCellWithIdentifier(PLFriendCell.identifier, forIndexPath: indexPath)
+        let cellType = self.cellType()
+        let cell = tableView.dequeueReusableCell(cellType, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        guard let cell = cell as? PLFriendCell else { return }
-        let friendData = datasource[indexPath.row].cellData
-        cell.setup(friendData)
+    func configureCell(cell: PLUserTableCell, atIndexPath indexPath: NSIndexPath) {
+        let user = currentDatasource[indexPath.row]
+        cell.user = user
     }
-    
 }
 
 
@@ -156,7 +167,7 @@ extension PLFriendBaseViewController : UITableViewDataSource {
 extension PLFriendBaseViewController : UITableViewDelegate {
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if datasource.shouldLoadNextPage(indexPath) {
+        if currentDatasource.shouldLoadNextPage(indexPath) {
             loadData()
         }
     }
@@ -167,8 +178,7 @@ extension PLFriendBaseViewController : UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let friend = datasource[indexPath.row]
-        
+        let friend = currentDatasource[indexPath.row]
         performSegueWithIdentifier(SegueIdentifier.FriendProfileSegue, sender: friend)
     }
     
@@ -194,9 +204,7 @@ extension PLFriendBaseViewController: DZNEmptyDataSetSource {
 		let named = scrollView === tableView ? "friends_placeholder" : "search"
 		return UIImage(named: named)!.imageResize(CGSizeMake(100, 100))
 	}
-	
 }
-
 
 // MARK: - DZNEmptyDataSetDelegate
 
@@ -208,14 +216,13 @@ extension PLFriendBaseViewController: DZNEmptyDataSetDelegate {
 	}
 	
 	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
-		return !datasource.loading
+		return !currentDatasource.loading
 	}
 	
 	func emptyDataSetWillDisappear(scrollView: UIScrollView!) {
 		navigationController?.navigationBar.shadowImage = UIImage()
 	}
 }
-
 
 // MARK: - UISearchBarDelegate
 
@@ -224,5 +231,4 @@ extension PLFriendBaseViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchController.searchBar.endEditing(true)
     }
-    
 }

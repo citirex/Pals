@@ -14,6 +14,7 @@ class PLPricedItem: PLDatedObject, PLItemKeyable {
     var name: String
     var price = Float(0)
     
+    
     required init?(jsonDic: [String : AnyObject]) {
         guard
             let name = jsonDic[.name] as? String

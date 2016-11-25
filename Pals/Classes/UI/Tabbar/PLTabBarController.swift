@@ -6,13 +6,11 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-enum PLTabBarItem: Int {
+enum PLTabType: Int {
     case ProfileItem, PlacesItem, OrderItem, FriendsItem
 }
 
 class PLTabBarController: UITabBarController {
-    
-    private var didReceiveNewOrders = false
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -30,33 +28,32 @@ class PLTabBarController: UITabBarController {
             item.setTitleTextAttributes([NSForegroundColorAttributeName : unselectedColor], forState: .Normal)
         }
         
-        delegate = self
         updateBadgeCount()
-        registerForRemoteNotifications()
+        PLNotifications.addObserver(self, selector: #selector(onReceivePush(_:)), type: .PushDidReceive)
+    }
+    
+    func onReceivePush(notification: NSNotification) {
+        self.updateBadgeCount()
     }
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         guard item.badgeValue != nil else { return }
-        
         var numberOfBadges = UIApplication.sharedApplication().applicationIconBadgeNumber
         numberOfBadges -= Int(item.badgeValue ?? "0") ?? 0
         UIApplication.sharedApplication().applicationIconBadgeNumber = numberOfBadges
         item.badgeValue = nil
-    }
-    
-    
-    // MARK: - Private methods
-    
-    private func registerForRemoteNotifications() {
-        PLNotifications.addObserver(self, selector: .orderDidReceiveNotification, type: .OrderDidReceive)
-        NSNotificationCenter.defaultCenter().addObserverForName(kPLPushManagerDidReceivePush, object: nil,
-            queue: .mainQueue()) { [unowned self] notification in
-            self.updateBadgeCount()
+        
+        if let idx = tabBar.items?.indexOf(item) {
+            if let tabType = PLTabType(rawValue: Int(idx)) {
+                if let pushType = pushTypeFromTabType(tabType) {
+                    resetBadgeCount(pushType)
+                }
+            }
         }
     }
     
     private func updateBadgeCount() {
-        PLFacade.fetchBadges { badges, error in
+        PLFacade.fetchBadges {[unowned self] badges, error in
             let app = UIApplication.sharedApplication()
             guard error == nil else {
                 app.applicationIconBadgeNumber = 0
@@ -67,7 +64,7 @@ class PLTabBarController: UITabBarController {
             var numberOfBadges = 0
             for badge in badges {
                 numberOfBadges += badge.count
-                let item = badge.type.tabBarItem
+                let item = self.tabTypeFromPushType(badge.type).rawValue
                 if badge.count > 0 {
                     self.tabBar.items![item].badgeValue = String(badge.count)
                 }
@@ -76,49 +73,30 @@ class PLTabBarController: UITabBarController {
         }
     }
     
-    func orderDidReceiveNotification() {
-        didReceiveNewOrders = true
-        
-        if let profileViewController = UIApplication.topViewController(selectedViewController)
-            as? PLProfileViewController {
-            profileViewController.updatePage()
-            didReceiveNewOrders = false
+    private func resetBadgeCount(type: PLPushType) {
+        PLFacade.resetBadges(type)
+    }
+    
+    func tabTypeFromPushType(pushType: PLPushType) -> PLTabType {
+        switch pushType {
+        case .Friends, .AnswerFriendRequest:
+            return .FriendsItem
+        case .Order: return .ProfileItem
         }
     }
     
-}
-
-
-// MARK: - UITabBarControllerDelegate
-
-extension PLTabBarController: UITabBarControllerDelegate {
-    
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        let item = PLTabBarItem(rawValue: tabBarController.selectedIndex)!
-        switch item {
-        case .ProfileItem:
-            PLFacade.resetBadges(.Order)
-            
-        if didReceiveNewOrders {
-            if let profileViewController = UIApplication.topViewController(viewControllers!.first)
-                as? PLProfileViewController {
-                profileViewController.updatePage()
-                didReceiveNewOrders = false
-            }
-        }
-        case .FriendsItem:
-            PLFacade.resetBadges(.Friends)
-        default:
-            break
+    func pushTypeFromTabType(tabType: PLTabType) -> PLPushType? {
+        switch tabType {
+        case .ProfileItem: return .Order
+        case .FriendsItem: return .Friends
+        default: return nil
         }
     }
-    
 }
-
 
 extension UITabBarController {
 
-    func switchTabBarItemTo(item: PLTabBarItem, completion: ()->()) {
+    func switchTabBarItemTo(item: PLTabType, completion: ()->()) {
         selectedIndex = item.rawValue
         if let navVC = selectedViewController as? UINavigationController {
             if navVC.viewControllers.count > 0 {
@@ -143,38 +121,3 @@ extension UITabBarController {
         }
     }
 }
-
-extension UIViewController {
-    
-    class func instantiateFromStoryboard(storyboardName: String, storyboardId: String) -> Self {
-        return instantiateFromStoryboardHelper(storyboardName, storyboardId: storyboardId)
-    }
-    
-    private class func instantiateFromStoryboardHelper<T>(storyboardName: String, storyboardId: String) -> T {
-        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier(storyboardId) as! T
-        return controller
-    }
-    
-}
-
-
-extension UIApplication {
-    
-    class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
-        if let navigationController = base as? UINavigationController {
-            return topViewController(navigationController.visibleViewController)
-        }
-        if let tabBarController = base as? UITabBarController {
-            if let selected = tabBarController.selectedViewController {
-                return topViewController(selected)
-            }
-        }
-        if let presented = base?.presentedViewController {
-            return topViewController(presented)
-        }
-        return base
-    }
-    
-}
-

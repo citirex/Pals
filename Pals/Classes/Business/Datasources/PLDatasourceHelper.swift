@@ -8,12 +8,19 @@
 
 class PLDatasourceHelper {
     static func createMyFriendsDatasource() -> PLFriendsDatasource {
-        let myId = PLFacade.profile!.id
-        return PLFriendsDatasource(userId: myId)
+        return createFriendsDatasourceWithType(.Friends)
     }
     
     static func createFriendsInviteDatasource() -> PLFriendsDatasource {
+        return createFriendsDatasourceWithType(.Invitable)
+    }
+    
+    static func createPendingFriendsDatasource() -> PLFriendsDatasource {
+        return createFriendsDatasourceWithType(.Pending)
+    }
+    
+    private static func createFriendsDatasourceWithType(type: PLFriendsDatasourceType) -> PLFriendsDatasource {
         let myId = PLFacade.profile!.id
-        return PLFriendsDatasource(userId: myId, type: .Invitable)
+        return PLFriendsDatasource(userId: myId, type: type)
     }
 }

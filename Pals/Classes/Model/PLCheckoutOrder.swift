@@ -32,7 +32,7 @@ class PLCheckoutOrder {
     }
     
     private func hasAtLeastTwoItemsInDic(dic: [UInt64:PLItemSet<PLPricedItem>]) -> Bool {
-        var itemCount = 0
+        var itemCount = UInt(0)
         for (_, value) in dic {
             itemCount += value.quantity
             if itemCount > 1 {
@@ -74,22 +74,26 @@ class PLCheckoutOrder {
         return dic
     }
     
-    func updateWithDrink(drink: PLDrink, andCount count: Int) {
+    func updateWithDrink(drink: PLDrink, andCount count: UInt) {
         updateItem(drink, withCount: count, section: .Drinks)
     }
     
-    func updateWithCover(event: PLEvent, andCount count: Int) {
+    func updateWithCover(event: PLEvent, andCount count: UInt) {
         updateItem(event, withCount: count, section: .Covers)
     }
     
-    func updateItem(item: PLPricedItem, withCount count: Int, section: PLOrderSection) {
+    func updateItem(item: PLPricedItem, withCount count: UInt, section: PLOrderSection) {
         var dic = (section == .Drinks) ? drinks : covers
         let id = item.id
         if count == 0 {
             dic.removeValueForKey(id)
         } else {
-            let itemSet = PLItemSet<PLPricedItem>(item: item, andCount: count)
-            dic.updateValue(itemSet, forKey: id)
+            if let set = dic[id] {
+                set.quantity = count
+            } else {
+                let set = PLItemSet<PLPricedItem>(item: item, andCount: count)
+                dic[id] = set
+            }
         }
         if section == .Drinks {
             drinks = dic
@@ -105,7 +109,7 @@ class PLCheckoutOrder {
     }
     
     func appendCover(event: PLEvent) {
-        var newCount = 1
+        var newCount = UInt(1)
         if let coverSet = covers[event.id] {
             newCount += coverSet.quantity
         }

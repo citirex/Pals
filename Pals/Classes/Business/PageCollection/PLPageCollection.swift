@@ -393,6 +393,10 @@ class PLPageCollection<T:PLDatedObject where T : PLFilterable> {
         storage.cleanCurrentSet()
     }
     
+    func cleanAll() {
+        storage.cleanAllSets()
+    }
+    
     func setSession(session: AFHTTPSessionManager) {
         self.session = session
     }

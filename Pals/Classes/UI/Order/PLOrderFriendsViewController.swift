@@ -6,8 +6,6 @@
 //  Copyright © 2016 citirex. All rights reserved.
 //
 
-import UIKit
-
 protocol PLOrderFriendsSelectionDelegate: class {
     func didSelectFriend(controller: PLOrderFriendsViewController, friend: PLUser)
 }
@@ -16,32 +14,21 @@ class PLOrderFriendsViewController: PLFriendsViewController {
 
     weak var delegate: PLOrderFriendsSelectionDelegate?
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        datasource.shouldInsertCurrentUser = true
+    override func loadData() {
+        if currentDatasource === myFriendsDatasource {
+            currentDatasource.insertCurrentUser()
+        }
+        super.loadData()
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell 	{
-        let cell = tableView.dequeueReusableCellWithIdentifier(PLFriendCell.identifier, forIndexPath: indexPath)
-        configureCell(cell, atIndexPath: indexPath)
-        return cell
-    }
-    
-    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        guard let cell = cell as? PLFriendCell else { return }
-        let friendData = datasource[indexPath.row].cellData
+    override func configureCell(cell: PLUserTableCell, atIndexPath indexPath: NSIndexPath) {
+        super.configureCell(cell, atIndexPath: indexPath)
         cell.accessoryType = .None
-        cell.setup(friendData)
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let friend = datasource[indexPath.row]
-
+        let friend = currentDatasource[indexPath.row]
         delegate!.didSelectFriend(self, friend: friend)
     }
-    
 }

@@ -14,20 +14,22 @@ enum PLCardType {
     case My
     case Unknown
     var color: UIColor {
+        var color: UIColor!
         switch self {
         case .Beer:
-            return UIColor(r: 0, g: 153, b: 158)
+            color = .beerColor
         case .Liquor:
-            return UIColor(r: 50, g: 44, b: 88)
+            color = .spiritColor
         case .Cover:
-            return UIColor(r: 100, g: 66, b: 147)
+            color = .coverColor
         case .VIP:
-            return UIColor(r: 193, g: 61, b: 61)
+            color = .vipColor
         case .My:
-            return UIColor(r: 130, g: 48, b: 81)
+            color = .myCardColor
         case .Unknown:
-            return UIColor(r: 102, g: 102, b: 255)
+            color = .unknownColor
         }
+        return color
     }
 }
 
@@ -49,7 +51,7 @@ extension PLOrder {
         
         if drinkSets.count > 0 {
             let fistDrinkType = drinkSets.first!.item.type
-            if fistDrinkType == .Strong {
+            if fistDrinkType == .Spirit {
                 return .Liquor
             } else {
                 return .Beer
@@ -71,10 +73,11 @@ class PLOrderCardCell: UICollectionViewCell {
     @IBOutlet var placeTitleLabel: UILabel!
     @IBOutlet var musicGenresLabel: UILabel!
     @IBOutlet var cardModeButton: UIButton!
+    @IBOutlet var previewHeader: PLDrinkListHeaderView!
     
     private lazy var listContainerView: PLOrderCardListView = PLOrderCardListView.loadFromNib()!
     private lazy var scanContainerView: PLOrderCardScanView = PLOrderCardScanView()
-    private var currentContainer: UIView?
+    private weak var currentContainer: UIView?
 
     var checked = false
     
@@ -104,6 +107,7 @@ class PLOrderCardCell: UICollectionViewCell {
         let strings = ["|-0-[view]-0-|", "V:[header]-0-[view]-0-|"]
         underlay.addConstraints(strings, views: views)
         currentContainer = view
+        view.alpha = 1
         updateCurrentContainerWithOrder(order)
     }
     
@@ -122,6 +126,9 @@ class PLOrderCardCell: UICollectionViewCell {
                     scanContainerView.disableCamera()
                     mode = .List
                 }
+                
+                let icons = orderIconData(o)
+                previewHeader.updateWithIcons(icons)
             } else {
                 placeTitleLabel.text = "<Error>"
                 musicGenresLabel.text = "<Error>"
@@ -129,6 +136,40 @@ class PLOrderCardCell: UICollectionViewCell {
             }
             updateCurrentContainerWithOrder(order)
         }
+    }
+    
+    func orderIconData(order: PLOrder) -> [PLIconData] {
+        let splitDrinks = order.drinksSeparatedByType
+        var icons = [PLIconData]()
+        for d in splitDrinks {
+            if d.count == 0 {
+                continue
+            }
+            if let drinks = d as? [PLItemSet<PLDrink>] {
+                var count = UInt(0)
+                var firstDrink: PLDrink!
+                for drinkItem in drinks {
+                    if firstDrink == nil {
+                        firstDrink = drinkItem.item
+                    }
+                    count += drinkItem.quantity
+                }
+                let iconData = PLIconData(name: firstDrink.type.iconName, title: firstDrink.name, count: count, badgeColor: firstDrink.type.color)
+                icons.append(iconData)
+            }
+        }
+        
+        if order.coverSets.count > 0 {
+            var count = UInt(0)
+            var title = ""
+            for cover in order.coverSets {
+                title = cover.item.name
+                count += cover.quantity
+            }
+            let coverIcon = PLIconData(name: PLCoverIcon, title: title, count: count, badgeColor: .coverColor)
+            icons.append(coverIcon)
+        }
+        return icons
     }
     
     func updateCurrentContainerWithOrder(order: PLOrder?) {
@@ -146,7 +187,11 @@ class PLOrderCardCell: UICollectionViewCell {
         contentView.layer.shadowRadius = 7
         scanContainerView.translatesAutoresizingMaskIntoConstraints = false
         listContainerView.translatesAutoresizingMaskIntoConstraints = false
-        showContainer(listContainerView)
+        
+        contentView.layer.rasterizationScale = UIScreen.mainScreen().scale
+        underlay.layer.rasterizationScale = UIScreen.mainScreen().scale
+        contentView.layer.shouldRasterize = true
+        underlay.layer.shouldRasterize = true
     }
     
     override func layoutSubviews() {
@@ -159,10 +204,29 @@ class PLOrderCardCell: UICollectionViewCell {
         let mask = CAShapeLayer()
         mask.path = path.CGPath
         underlay.layer.mask = mask
+        if currentContainer === listContainerView {
+            listContainerView.setNeedsLayout()
+        }
     }
     
     func onCardDidSelect(selected: Bool) {
         guard let order = order else { return }
+        
+        if selected {
+            showContainer(listContainerView)
+            currentContainer?.alpha = 0
+            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: { 
+                self.currentContainer?.alpha = 1
+            }, completion: nil)
+        } else {
+            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: {
+                self.currentContainer?.alpha = 0
+            }) { succes in
+                self.currentContainer?.removeFromSuperview()
+                self.currentContainer = nil
+            }
+        }
+        
         if !order.used {
             cardModeButton.hidden = !selected
             if mode == .Scan {

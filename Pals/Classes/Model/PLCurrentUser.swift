@@ -12,12 +12,6 @@ class PLCurrentUser: PLUser {
         super.init(jsonDic: jsonDic)
     }
     
-    override var cellData: PLFriendCellData {
-        var data = super.cellData
-        data.me = true
-        return data
-    }
-    
     var hasPaymentCard: Bool {
         return customer?.paymentSource != nil
     }

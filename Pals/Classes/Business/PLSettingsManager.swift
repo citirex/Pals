@@ -22,6 +22,9 @@ enum PLSettingKey: String {
     case PushSimulation
     case Interval
     
+    case Location
+    case ShouldFetchLocation
+    
     var str: String {return rawValue}
 }
 
@@ -120,6 +123,15 @@ class PLSettingsManager {
             }
         }
         return PLPushSettings(simulationEnabled: enabled, simulationInterval: interval)
+    }
+    
+    var shouldFetchLocation: Bool {
+        if let locationDic = self[.Location] {
+            if let should = locationDic[PLSettingKey.ShouldFetchLocation.str] as? Bool {
+                return should
+            }
+        }
+        return true
     }
     
     subscript(key: PLSettingKey) -> [String : AnyObject]? {
