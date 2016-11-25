@@ -36,7 +36,7 @@ class PLOrderDrinkCell: UICollectionViewCell {
             priceLabel.text = drink.price > 0 ? String(format: "$%.2f", drink.price) : "Specify"
             containerView.backgroundColor = drink.type.color
             guard let duration = drink.duration else { return }
-            expiryDateLabel.text = String(format: "ex: %@", expiryDateDuration(duration)) 
+            expiryDateLabel.text = expiryDateDuration(duration)
         }
     }
     

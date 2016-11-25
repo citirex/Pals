@@ -68,12 +68,16 @@ enum PLDrinkType: Int {
 class PLDrink : PLPricedItem, PLFilterable {
     
     var type: PLDrinkType = .Unknown
+    var duration: Int?
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
             let number = jsonDic[.type] as? Int
         else {
             return nil
+        }
+        if let duration = jsonDic[.duration] as? Int {
+            self.duration = duration
         }
         self.type = PLDrinkType(number: number)
         super.init(jsonDic: jsonDic)
