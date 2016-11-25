@@ -74,10 +74,13 @@ class PLFriendsViewController: PLFriendBaseViewController {
     func onPushDidReceive(notification: NSNotification) {
         if let push = notification.object as? PLPush {
             if let type = push.badge?.type {
-                if type == .Friends {
-                    if currentDatasource === pendingDatasource {
-                        currentDatasource.clean()
+                let someoneWantsToAddYou = (type == .Friends && currentDatasource === pendingDatasource)
+                let someoneAcceptedYourRequest = (type == .AnswerFriendRequest && currentDatasource === myFriendsDatasource)
+                if someoneWantsToAddYou || someoneAcceptedYourRequest {
+                    if !currentDatasource.searching {
+                        currentDatasource.cleanAll()
                         loadData()
+                        tableView.reloadData()
                     }
                 }
             }

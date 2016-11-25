@@ -79,7 +79,8 @@ class PLTabBarController: UITabBarController {
     
     func tabTypeFromPushType(pushType: PLPushType) -> PLTabType {
         switch pushType {
-        case .Friends: return .FriendsItem
+        case .Friends, .AnswerFriendRequest:
+            return .FriendsItem
         case .Order: return .ProfileItem
         }
     }

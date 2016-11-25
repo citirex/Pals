@@ -72,12 +72,14 @@ class PLPush {
 enum PLPushType: Int {
     case Order = 1
     case Friends
+    case AnswerFriendRequest
 
     
     var description: String {
         switch self {
         case .Order   : return "Order"
         case .Friends : return "Friends"
+        case .AnswerFriendRequest : return "Answer"
         }
     }
 }
