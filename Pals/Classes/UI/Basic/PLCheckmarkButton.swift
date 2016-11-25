@@ -15,7 +15,7 @@ class PLCheckmarkButton: UIButton {
     let strokeColor = UIColor.whiteColor().CGColor
     
     override func drawRect(rect: CGRect) {
-        UIColor.chamrockColor().set()
+        UIColor.chamrockColor.set()
         UIBezierPath(roundedRect: bounds, cornerRadius: bounds.size.width / 2.0).fill()
         
         let path = UIBezierPath()

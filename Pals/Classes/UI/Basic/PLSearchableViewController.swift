@@ -10,7 +10,7 @@ import DZNEmptyDataSet
 
 class PLSearchableViewController: PLViewController {
     
-    var interfaceColor = UIColor.affairColor()
+    var interfaceColor = UIColor.affairColor
     
     var searchController: PLSearchController!
     

@@ -39,51 +39,28 @@ extension UIColor {
     
     
     // NavigationBar tintColor
-    class func affairColor() -> UIColor {
-        return UIColor(r: 111, g: 64, b: 151)
-    }
+    class var affairColor: UIColor { return UIColor(r: 111, g: 64, b: 151) }
+    
+    class var goldColor: UIColor { return UIColor(red:0.85, green:0.73, blue:0.19, alpha:1.0) }
     
     /// Sign Up screen 
-    
+
     // TextField placeholder color
-    class func chatelleColor() -> UIColor {
-        return UIColor(r: 189, g: 177, b: 20)
-    }
+    class var textUnderlineColor: UIColor { return UIColor(white: 180) }
     
     /// Edit Profile
-    
     // Line border for label
-    class func darkGray() -> UIColor {
-        return UIColor(r: 151, g: 151, b: 151)
-    }
-    
-    // navigation bar tint color for imagePicker
-    class func crayonPurple() -> UIColor {
-        return UIColor(r: 111, g: 64, b: 151)
-    }
-    
-    // description label text color
-    class func doveGray() -> UIColor {
-        return UIColor(r: 92, g: 92, b: 92)
-    }
+    class var darkGray: UIColor { return UIColor(r: 151, g: 151, b: 151) }
     
     // invite pals button background
-    class func chamrockColor() -> UIColor {
-        return UIColor(r: 59, g: 204, b: 136)
-    }
+    class var chamrockColor: UIColor { return UIColor(r: 59, g: 204, b: 136) }
     
     // background for error label on scan view
-    class func maroonColor() -> UIColor {
-        return UIColor(r: 120, g: 14, b: 14)
-    }
+    class var maroonColor: UIColor { return UIColor(r: 120, g: 14, b: 14) }
     
     /// Card Info
-    
     // complete button tint color
-    class func mediumOrchidColor() -> UIColor {
-        return UIColor(r: 189, g: 16, b: 224)
-    }
-    
+    class var mediumOrchidColor: UIColor { return UIColor(r: 189, g: 16, b: 224) }
     
     class var beerColor: UIColor { return UIColor(241,197,0) }
     class var spiritColor: UIColor { return UIColor(147,80,0) }

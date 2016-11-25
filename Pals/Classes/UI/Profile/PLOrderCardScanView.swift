@@ -146,7 +146,7 @@ extension PLOrderCardScanView: PLInitializable {
         errorLabel.textAlignment = .Center
         errorLabel.textColor = .whiteColor()
         errorLabel.font = .systemFontOfSize(22)
-        errorLabel.backgroundColor = .maroonColor()
+        errorLabel.backgroundColor = .maroonColor
         errorLabel.hidden = true
         
         addSubviews()

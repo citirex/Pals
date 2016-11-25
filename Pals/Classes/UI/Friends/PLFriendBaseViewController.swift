@@ -49,7 +49,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
         
 		searchController.isFriends = true
 		
-		searchController.searchBar.tintColor = UIColor.affairColor()
+		searchController.searchBar.tintColor = .affairColor
 		resultsController.tableView.backgroundColor = interfaceColor
 		
         addBorderToSearchField()

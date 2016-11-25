@@ -153,7 +153,6 @@
 		E829DDD51D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDD01D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib */; };
 		E829DDD61D8151BE00D8C130 /* PLPlaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */; };
 		E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDD71D818EAC00D8C130 /* PLPlacesViewController.swift */; };
-		E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDDB1D819A6300D8C130 /* PLConstants.swift */; };
 		E837C1F61D902CAE0080A074 /* covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1D91D902CAE0080A074 /* covers0.json */; };
 		E837C1F71D902CAE0080A074 /* covers1.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1DA1D902CAE0080A074 /* covers1.json */; };
 		E837C1F81D902CAE0080A074 /* covers2.json in Resources */ = {isa = PBXBuildFile; fileRef = E837C1DB1D902CAE0080A074 /* covers2.json */; };
@@ -372,7 +371,6 @@
 		E829DDD01D8151BE00D8C130 /* PLPlaceProfileSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileSectionHeader.xib; path = "Place Profile/PLPlaceProfileSectionHeader.xib"; sourceTree = "<group>"; };
 		E829DDD11D8151BE00D8C130 /* PLPlaceProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileViewController.swift; path = "Place Profile/PLPlaceProfileViewController.swift"; sourceTree = "<group>"; };
 		E829DDD71D818EAC00D8C130 /* PLPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPlacesViewController.swift; sourceTree = "<group>"; };
-		E829DDDB1D819A6300D8C130 /* PLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLConstants.swift; sourceTree = "<group>"; };
 		E837C1D91D902CAE0080A074 /* covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers0.json; sourceTree = "<group>"; };
 		E837C1DA1D902CAE0080A074 /* covers1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers1.json; sourceTree = "<group>"; };
 		E837C1DB1D902CAE0080A074 /* covers2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = covers2.json; sourceTree = "<group>"; };
@@ -552,7 +550,6 @@
 				E8DA8B581D881D7C008782E5 /* PLView.swift */,
 				D41494291DD62D350081509E /* PLImageView.swift */,
 				E8007BD61DA0073700372347 /* PLLocation.swift */,
-				E829DDDB1D819A6300D8C130 /* PLConstants.swift */,
 				E8A658691D9D0B6900D8257F /* PLDate.swift */,
 				D46D2B861D87583B0058060E /* PLColor.swift */,
 				D46D2B881D875BB10058060E /* PLImage.swift */,
@@ -1424,7 +1421,6 @@
 				D41194EE1D86B7C600AED4D1 /* PLBlurView.swift in Sources */,
 				2480F9171D813E730095995F /* PLSignUpData.swift in Sources */,
 				2480F8E61D813E730095995F /* PLEvent.swift in Sources */,
-				E829DDDC1D819A6300D8C130 /* PLConstants.swift in Sources */,
 				D4949F631DD2743000FEF0C8 /* PLDatePicker.swift in Sources */,
 				049692FC1DDB3F6500A65C60 /* PLNewsNotificationCell.swift in Sources */,
 				D414942A1DD62D350081509E /* PLImageView.swift in Sources */,

@@ -25,7 +25,7 @@ class PLLoadingIndicatorView: UIView {
    
     
     private func setupIndicator() {
-        activityIndicator.color = .affairColor()
+        activityIndicator.color = .affairColor
         addSubview(activityIndicator)
         activityIndicator.center = center
         activityIndicator.startAnimating()

@@ -57,7 +57,7 @@ extension PLNotificationViewController : UITableViewDataSource {
 		cell.layer.borderWidth = 3
 		PLNewFriendNotificationCell().contentView.layer.cornerRadius = 25
 		if indexPath.row % 2 == 0 {
-			cell.layer.borderColor = UIColor.affairColor().CGColor
+			cell.layer.borderColor = UIColor.affairColor.CGColor
 		} else{
 			cell.layer.borderColor = UIColor.orangeColor().CGColor
 		}
