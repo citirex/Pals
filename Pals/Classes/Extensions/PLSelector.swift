@@ -22,6 +22,8 @@ extension Selector {
     static let tappedCancelButton = #selector(PLEditProfileViewController.tappedCancelButton(_:))
     static let limitLength        = #selector(PLFormTextField.limitLength)
     static let handleTap          = #selector(PLCheckbox.handleTap)
+    static let boost              = #selector(PLCounterView.boost)
+    static let buttonClicked      = #selector(PLCounterView.buttonClicked(_:))
 
     static let sendButtonPressedNotification = #selector(PLOrderViewController.sendButtonPressedNotification(_:))
     static let qrCodeScannedNotification     = #selector(PLProfileViewController.qrCodeScannedNotification(_:))

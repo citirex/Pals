@@ -70,7 +70,10 @@ class PLOrderDrinkCell: UICollectionViewCell {
         
         let calendar = NSCalendar.currentCalendar()
         let expiryDate = calendar.dateByAddingComponents(dateComponents, toDate: NSDate(), options: [])!
-        return expiryDate.stringForType(.Date, style: .ShortStyle)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        return dateFormatter.stringFromDate(expiryDate)
     }
     
 }
