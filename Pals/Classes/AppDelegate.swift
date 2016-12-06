@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PLFacade.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
 
         var initialViewController: UIViewController?
         if PLFacade.hasValidToken() {
