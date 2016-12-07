@@ -15,7 +15,8 @@ class PLEditViewController: UITableViewController {
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     @IBOutlet weak var addImageButton: UIButton!
     
     private var editUserData = PLEditUserData(user: PLFacade.profile)
@@ -132,13 +133,13 @@ class PLEditViewController: UITableViewController {
         if let user = PLFacade.profile {
             usernameTextField.text = user.name
             phoneTextField.text = user.additional
-            emailTextField.text = user.email
+            emailLabel.text = user.email
 //            additionalTextField.text  = user.additional
             userImageView.setImageSafely(fromURL: user.picture, placeholderImage: UIImage(named: "user"))
         } else {
             usernameTextField.text = "<Error name>"
             phoneTextField.text  = "<Error phone>"
-            emailTextField.text = "<Error email>"
+            emailLabel.text = "<Error email>"
 //            additionalTextField.text   = "<Error additional>"
             userImageView.image = UIImage(named: "user")
         }

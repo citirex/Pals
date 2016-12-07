@@ -86,7 +86,7 @@ class PLOrderViewController: PLViewController {
         navigationController?.navigationBar.barStyle     = .Black
         navigationController?.navigationBar.tintColor    = .whiteColor()
         navigationController?.navigationBar.translucent  = false
-        navigationController?.navigationBar.barTintColor = (order.isVIP == true) ? .goldColor : .violetColor
+        navigationController?.navigationBar.barTintColor = order.isVIP ? .goldColor : .violetColor
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -208,11 +208,11 @@ extension PLOrderViewController {
         animableVipView.restoreToDefaultState()
     }
     
-    private func performTransitionToVipState(vip: Bool) {
-        (vip == true) ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
+    private func performTransitionToVipState(isVIP: Bool) {
+        isVIP ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
         UIView.animateWithDuration(0.3) {
-            self.bgImageView.image = (vip == true) ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
-            self.navigationController?.navigationBar.barTintColor = (vip == true) ? .goldColor : .violetColor
+            self.bgImageView.image = isVIP ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
+            self.navigationController?.navigationBar.barTintColor = isVIP ? .goldColor : .violetColor
         }
         drinksDatasource.isVIP = order.isVIP
         coversDatasource.isVIP = order.isVIP
