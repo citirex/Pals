@@ -1616,11 +1616,6 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Friends" id="Krx-FH-YjL">
                         <barButtonItem key="backBarButtonItem" title=" " id="my0-Un-4rl"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="XwT-8l-06Q">
-                            <connections>
-                                <segue destination="lup-pr-rOR" kind="push" id="Rjy-8t-3el"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -1908,7 +1903,6 @@
         <image name="sign_in_plus" width="260" height="260"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sXw-Bi-aat"/>
         <segue reference="ovy-Gk-Wh0"/>
     </inferredMetricsTieBreakers>
 </document>

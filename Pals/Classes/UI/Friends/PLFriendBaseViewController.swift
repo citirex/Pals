@@ -84,7 +84,7 @@ class PLFriendBaseViewController: PLSearchableViewController {
         if currentDatasource.empty {
             loadData()
         }
-		tableView.hideSearchBar()
+//		tableView.hideSearchBar()
 	}
     
     override func viewWillDisappear(animated: Bool) {

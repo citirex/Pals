@@ -10,9 +10,10 @@ class PLFriendsViewController: PLFriendBaseViewController {
     
     lazy var pendingDatasource = PLDatasourceHelper.createPendingFriendsDatasource()
     lazy var myFriendsDatasource = PLDatasourceHelper.createMyFriendsDatasource()
+    lazy var inviteDataSource = PLDatasourceHelper.createFriendsInviteDatasource()
     
     var currentDatasourceType: PLFriendsDatasourceType { return currentDatasource.type }
-    lazy var segments = UISegmentedControl(items: ["Friends", "Pending"])
+    lazy var segments = UISegmentedControl(items: ["Friends", "Pending", "Add"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +21,27 @@ class PLFriendsViewController: PLFriendBaseViewController {
         configureResponder(self, withCellType: PLPendingUserTableCell.self)
         tableView.registerCell(PLFriendTableCell.self)
         configureResponder(self, withCellType: PLFriendTableCell.self)
+        tableView.registerCell(PLInvitableUserCell)
+        configureResponder(self, withCellType: PLInvitableUserCell.self)
         currentDatasource = myFriendsDatasource
         title = nil
         addTopSegments()
     }
     
     override func cellType() -> PLUserTableCell.Type {
-        if segments.selectedSegmentIndex <= 0 {
-            return PLFriendTableCell.self
-        } else {
-            return PLPendingUserTableCell.self
+        switch segments.selectedSegmentIndex {
+        case 0: return PLFriendTableCell.self
+        case 1: return PLPendingUserTableCell.self
+        case 2: return PLInvitableUserCell.self
+        default:
+            return PLUserTableCell.self
         }
+        
+//        if segments.selectedSegmentIndex <= 0 {
+//            return PLFriendTableCell.self
+//        } else {
+//            return PLPendingUserTableCell.self
+//        }
     }
     
     func addTopSegments() {
@@ -61,6 +72,8 @@ class PLFriendsViewController: PLFriendBaseViewController {
             return myFriendsDatasource
         case 1:
             return pendingDatasource
+        case 2:
+            return inviteDataSource
         default:
             return nil
         }
@@ -97,6 +110,9 @@ class PLFriendsViewController: PLFriendBaseViewController {
         if let pendingCell = cell as? PLPendingUserTableCell {
             pendingCell.delegate = self
         }
+        if let invitableCell = cell as? PLInvitableUserCell {
+            invitableCell.delegate = self
+        }
     }
 }
 
@@ -104,6 +120,20 @@ extension PLFriendsViewController : PLPendingUserTableCellDelegate {
     func pendingUserCell(cell: PLPendingUserTableCell, didClickAnswer answer: Bool) {
         if let indexPath = tableView.indexPathForCell(cell), let user = cell.user {
             PLFacade.answerFriendRequest(user, answer: answer) {[unowned self] (error) in
+                if error != nil {
+                    PLShowErrorAlert(error: error!)
+                }
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            }
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+        }
+    }
+}
+
+extension PLFriendsViewController : PLInvitableUserCellDelegate {
+    func invitableCellInviteClicked(cell: PLInvitableUserCell) {
+        if let indexPath = tableView.indexPathForCell(cell), let user = cell.user {
+            PLFacade.addFriend(user) {[unowned self] (error) in
                 if error != nil {
                     PLShowErrorAlert(error: error!)
                 }
