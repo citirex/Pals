@@ -36,7 +36,7 @@ class PLPlacesViewController: PLSearchableViewController {
         view.addSubview(tableView)
         
         configureResultsController(PLPlaceCell.nibName, cellIdentifier: PLPlaceCell.identifier, responder: self)
-        configureSearchController("Find a Place", tableView: tableView, responder: self)
+        configureSearchController("Search", tableView: tableView, responder: self)
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.identifier)
         
 		searchController.isFriends = false

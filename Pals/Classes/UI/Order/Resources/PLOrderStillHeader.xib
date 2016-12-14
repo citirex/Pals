@@ -14,18 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9p-3N-2AJ">
-                        <rect key="frame" x="30" y="12" width="25" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSn-Lu-Knt">
-                        <rect key="frame" x="30" y="53" width="74" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2V-jG-yNn">
                         <rect key="frame" x="0.0" y="43" width="320" height="1"/>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="0.19911099137931035" colorSpace="calibratedRGB"/>
@@ -41,13 +29,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Myself" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zik-3U-02v">
-                        <rect key="frame" x="67" y="12" width="54" height="22"/>
+                        <rect key="frame" x="20" y="12" width="54" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bs5-J7-j2G">
-                        <rect key="frame" x="116" y="53" width="32" height="22"/>
+                        <rect key="frame" x="20" y="53" width="32" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -75,30 +63,23 @@
             </view>
             <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="0.19727909482758621" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="Bs5-J7-j2G" firstAttribute="top" secondItem="yuX-34-Djh" secondAttribute="bottom" constant="9" id="1qV-Vx-SkS"/>
                 <constraint firstAttribute="trailing" secondItem="yuX-34-Djh" secondAttribute="trailing" id="6Cw-Zh-RFx"/>
-                <constraint firstItem="XSn-Lu-Knt" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" constant="30" id="766-iD-ucW"/>
                 <constraint firstItem="g2V-jG-yNn" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" id="7g0-pb-nnb"/>
                 <constraint firstItem="lRk-yj-bCb" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" id="8nl-FY-Vfq"/>
                 <constraint firstAttribute="bottom" secondItem="bXY-xV-jT3" secondAttribute="bottom" id="8tO-hy-RcA"/>
-                <constraint firstItem="h9p-3N-2AJ" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" constant="30" id="9Lc-mY-Bhe"/>
-                <constraint firstItem="lRk-yj-bCb" firstAttribute="top" secondItem="XSn-Lu-Knt" secondAttribute="bottom" constant="12" id="CAV-Gv-Qvl"/>
                 <constraint firstAttribute="trailing" secondItem="lRk-yj-bCb" secondAttribute="trailing" id="FeX-by-Qlv"/>
                 <constraint firstAttribute="bottom" secondItem="lRk-yj-bCb" secondAttribute="bottom" id="GPw-Fc-u9O"/>
                 <constraint firstAttribute="trailing" secondItem="bXY-xV-jT3" secondAttribute="trailing" id="Ikw-bZ-5Yu"/>
                 <constraint firstItem="yuX-34-Djh" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" id="Ipq-aN-Ef1"/>
-                <constraint firstItem="Zik-3U-02v" firstAttribute="leading" secondItem="h9p-3N-2AJ" secondAttribute="trailing" constant="12" id="JhH-Tp-guN"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bs5-J7-j2G" secondAttribute="trailing" constant="8" id="L1Y-Vi-mq6"/>
-                <constraint firstItem="Bs5-J7-j2G" firstAttribute="leading" secondItem="XSn-Lu-Knt" secondAttribute="trailing" constant="12" id="NJc-iC-hy3"/>
+                <constraint firstItem="g2V-jG-yNn" firstAttribute="bottom" secondItem="yuX-34-Djh" secondAttribute="bottom" id="Ji7-ve-RqW"/>
                 <constraint firstAttribute="trailing" secondItem="g2V-jG-yNn" secondAttribute="trailing" id="QA7-cI-G4S"/>
-                <constraint firstItem="Zik-3U-02v" firstAttribute="top" secondItem="9s0-dE-hzl" secondAttribute="top" constant="12" id="Qib-xM-fhM"/>
                 <constraint firstItem="bXY-xV-jT3" firstAttribute="top" secondItem="yuX-34-Djh" secondAttribute="bottom" id="TPk-Le-gqO"/>
                 <constraint firstItem="yuX-34-Djh" firstAttribute="top" secondItem="9s0-dE-hzl" secondAttribute="top" id="UDu-Vu-qOC"/>
-                <constraint firstItem="g2V-jG-yNn" firstAttribute="top" secondItem="h9p-3N-2AJ" secondAttribute="bottom" constant="9" id="UQc-pH-B5x"/>
                 <constraint firstItem="bXY-xV-jT3" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" id="UoS-bf-XtA"/>
-                <constraint firstItem="h9p-3N-2AJ" firstAttribute="top" secondItem="9s0-dE-hzl" secondAttribute="top" constant="12" id="Zf9-vW-aeD"/>
-                <constraint firstItem="Bs5-J7-j2G" firstAttribute="top" secondItem="g2V-jG-yNn" secondAttribute="bottom" constant="9" id="m8W-h2-kBa"/>
-                <constraint firstItem="XSn-Lu-Knt" firstAttribute="top" secondItem="g2V-jG-yNn" secondAttribute="bottom" constant="9" id="nk2-19-gYg"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zik-3U-02v" secondAttribute="trailing" constant="8" id="yjd-ln-vII"/>
+                <constraint firstItem="Zik-3U-02v" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" constant="20" id="nnS-7a-YVX"/>
+                <constraint firstItem="g2V-jG-yNn" firstAttribute="top" secondItem="Zik-3U-02v" secondAttribute="bottom" constant="9" id="qVz-wt-V2o"/>
+                <constraint firstItem="Zik-3U-02v" firstAttribute="leading" secondItem="Bs5-J7-j2G" secondAttribute="leading" id="vcb-id-AWL"/>
             </constraints>
             <connections>
                 <outlet property="placeNameLabel" destination="Bs5-J7-j2G" id="rC7-3w-3C2"/>

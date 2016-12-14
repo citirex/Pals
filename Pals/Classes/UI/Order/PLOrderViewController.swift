@@ -49,8 +49,8 @@ class PLOrderViewController: PLViewController {
     private var checkoutButton = UIButton(frame: CGRectZero)
     private var checkoutButtonOnScreen = false
     
-    private let placeholderUserName = "Chose user"
-    private let placeholderPlaceName = "Chose place"
+    private let placeholderUserName = "user"
+    private let placeholderPlaceName = "venue"
     
     private var sendPopup: PLOrderCheckoutPopupViewController?
     
