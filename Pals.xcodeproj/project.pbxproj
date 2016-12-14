@@ -12,9 +12,7 @@
 		049692F91DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */; };
 		049692FC1DDB3F6500A65C60 /* PLNewsNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */; };
 		049692FD1DDB3F6500A65C60 /* PLNewsNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */; };
-		049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */; };
 		049BA9FB1D83083800C2E32D /* PLFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */; };
-		04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */; };
 		2414F4541D997249000BA1F5 /* vip_covers0.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44C1D997249000BA1F5 /* vip_covers0.json */; };
 		2414F4551D997249000BA1F5 /* vip_covers1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44D1D997249000BA1F5 /* vip_covers1.json */; };
 		2414F4561D997249000BA1F5 /* vip_covers2.json in Resources */ = {isa = PBXBuildFile; fileRef = 2414F44E1D997249000BA1F5 /* vip_covers2.json */; };
@@ -75,7 +73,6 @@
 		24E286ED1D9E6C8700B8D80C /* updateprofile.json in Resources */ = {isa = PBXBuildFile; fileRef = 24E286EC1D9E6C8700B8D80C /* updateprofile.json */; };
 		24F012B91DBA16510072556F /* add_friend.json in Resources */ = {isa = PBXBuildFile; fileRef = 24F012B71DBA16510072556F /* add_friend.json */; };
 		24F012BA1DBA16510072556F /* unfriend.json in Resources */ = {isa = PBXBuildFile; fileRef = 24F012B81DBA16510072556F /* unfriend.json */; };
-		24F012BD1DBA3B020072556F /* PLLoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F012BC1DBA3B020072556F /* PLLoadingIndicatorView.swift */; };
 		D410F71D1D9A7DA6000E8E06 /* invitefriends0.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71A1D9A7DA6000E8E06 /* invitefriends0.json */; };
 		D410F71E1D9A7DA6000E8E06 /* invitefriends1.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71B1D9A7DA6000E8E06 /* invitefriends1.json */; };
 		D410F71F1D9A7DA6000E8E06 /* invitefriends2.json in Resources */ = {isa = PBXBuildFile; fileRef = D410F71C1D9A7DA6000E8E06 /* invitefriends2.json */; };
@@ -118,11 +115,7 @@
 		D4950AA01D82E84A00F48F4E /* PLOrderDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */; };
 		D4A15BF31DE5A76F00DBF65C /* PLDrinkListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BF21DE5A76F00DBF65C /* PLDrinkListHeaderView.swift */; };
 		D4A15BF51DE5A85D00DBF65C /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BF41DE5A85D00DBF65C /* BasicView.swift */; };
-		D4A15BF71DE8466600DBF65C /* PLUserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BF61DE8466600DBF65C /* PLUserTableCell.swift */; };
 		D4A15BF91DE8474800DBF65C /* PLProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BF81DE8474800DBF65C /* PLProfileImageView.swift */; };
-		D4A15BFB1DE85EDE00DBF65C /* PLPendingUserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BFA1DE85EDE00DBF65C /* PLPendingUserTableCell.swift */; };
-		D4A15BFD1DE87BEA00DBF65C /* PLInvitableUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BFC1DE87BEA00DBF65C /* PLInvitableUserCell.swift */; };
-		D4A15BFF1DE88CCE00DBF65C /* PLFriendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A15BFE1DE88CCE00DBF65C /* PLFriendTableCell.swift */; };
 		D4CEC2521D81941800D4CD08 /* PLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */; };
 		D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */; };
 		D4CEC2571D81A3CB00D4CD08 /* PLDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */; };
@@ -148,7 +141,6 @@
 		E80E34871DF6A7A000CCE341 /* PLEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E34861DF6A7A000CCE341 /* PLEditViewController.swift */; };
 		E818032A1DBBA42300A57FB8 /* PLImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81803291DBBA42300A57FB8 /* PLImagePicker.swift */; };
 		E81E32171DA16A7A00E46ABB /* PLNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */; };
-		E8204A261DA82EB600BDBFCE /* PLDescriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8204A251DA82EB500BDBFCE /* PLDescriptionLabel.swift */; };
 		E8204A281DA82F4000BDBFCE /* PLFormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */; };
 		E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */; };
 		E829DDCC1D8146B200D8C130 /* PLPlaceProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */; };
@@ -196,6 +188,13 @@
 		E883A8431DAA6269006DB9CF /* PLPlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E883A8411DAA6269006DB9CF /* PLPlaceCell.xib */; };
 		E886AFAC1D8AA23B0014DF4D /* PLCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */; };
 		E8A02E2F1E01430C009401F5 /* PLSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A02E2E1E01430C009401F5 /* PLSearchBar.swift */; };
+		E8A02E381E0159C0009401F5 /* PLAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A02E371E0159C0009401F5 /* PLAddButton.swift */; };
+		E8A02E3B1E01ABC4009401F5 /* PLFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A02E391E01ABC4009401F5 /* PLFriendCell.swift */; };
+		E8A02E3C1E01ABC4009401F5 /* PLFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A02E3A1E01ABC4009401F5 /* PLFriendCell.xib */; };
+		E8A02E3F1E01AC23009401F5 /* PLPendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A02E3D1E01AC23009401F5 /* PLPendingCell.swift */; };
+		E8A02E401E01AC23009401F5 /* PLPendingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A02E3E1E01AC23009401F5 /* PLPendingCell.xib */; };
+		E8A02E431E01AC70009401F5 /* PLInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A02E411E01AC70009401F5 /* PLInviteCell.swift */; };
+		E8A02E441E01AC70009401F5 /* PLInviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A02E421E01AC70009401F5 /* PLInviteCell.xib */; };
 		E8A658681D9CED4E00D8257F /* PLSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A658671D9CED4E00D8257F /* PLSelector.swift */; };
 		E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A658691D9D0B6900D8257F /* PLDate.swift */; };
 		E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */; };
@@ -204,7 +203,6 @@
 		E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */; };
 		E8BE86811D91399E0079855C /* PLNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */; };
 		E8BE86841D913A7B0079855C /* PLNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE86821D913A7B0079855C /* PLNotificationCell.swift */; };
-		E8C89F7E1DC2085D006D17FE /* PLOrderFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C89F7D1DC2085D006D17FE /* PLOrderFriendsViewController.swift */; };
 		E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B581D881D7C008782E5 /* PLView.swift */; };
 		E8DA8B821D8832E8008782E5 /* TGLBackgroundProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */; };
 		E8DA8B831D8832E8008782E5 /* TGLExposedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA8B7D1D8832E8008782E5 /* TGLExposedLayout.m */; };
@@ -226,9 +224,7 @@
 		049692F71DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewFriendNotificationCell.xib; sourceTree = "<group>"; };
 		049692FA1DDB3F6500A65C60 /* PLNewsNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNewsNotificationCell.swift; sourceTree = "<group>"; };
 		049692FB1DDB3F6500A65C60 /* PLNewsNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLNewsNotificationCell.xib; sourceTree = "<group>"; };
-		049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsSearchViewController.swift; sourceTree = "<group>"; };
 		049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsViewController.swift; sourceTree = "<group>"; };
-		04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendBaseViewController.swift; sourceTree = "<group>"; };
 		2414F44C1D997249000BA1F5 /* vip_covers0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers0.json; sourceTree = "<group>"; };
 		2414F44D1D997249000BA1F5 /* vip_covers1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers1.json; sourceTree = "<group>"; };
 		2414F44E1D997249000BA1F5 /* vip_covers2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vip_covers2.json; sourceTree = "<group>"; };
@@ -292,7 +288,6 @@
 		24E286EC1D9E6C8700B8D80C /* updateprofile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = updateprofile.json; sourceTree = "<group>"; };
 		24F012B71DBA16510072556F /* add_friend.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = add_friend.json; sourceTree = "<group>"; };
 		24F012B81DBA16510072556F /* unfriend.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unfriend.json; sourceTree = "<group>"; };
-		24F012BC1DBA3B020072556F /* PLLoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLoadingIndicatorView.swift; sourceTree = "<group>"; };
 		3E1097158C5C13F1394D646D /* Pods_Pals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590973F66E3E7966FD0200FE /* Pods-Pals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pals/Pods-Pals.release.xcconfig"; sourceTree = "<group>"; };
 		D410F71A1D9A7DA6000E8E06 /* invitefriends0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invitefriends0.json; sourceTree = "<group>"; };
@@ -340,11 +335,7 @@
 		D4950A9F1D82E84A00F48F4E /* PLOrderDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderDatasource.swift; sourceTree = "<group>"; };
 		D4A15BF21DE5A76F00DBF65C /* PLDrinkListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDrinkListHeaderView.swift; sourceTree = "<group>"; };
 		D4A15BF41DE5A85D00DBF65C /* BasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
-		D4A15BF61DE8466600DBF65C /* PLUserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLUserTableCell.swift; sourceTree = "<group>"; };
 		D4A15BF81DE8474800DBF65C /* PLProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLProfileImageView.swift; sourceTree = "<group>"; };
-		D4A15BFA1DE85EDE00DBF65C /* PLPendingUserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPendingUserTableCell.swift; sourceTree = "<group>"; };
-		D4A15BFC1DE87BEA00DBF65C /* PLInvitableUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLInvitableUserCell.swift; sourceTree = "<group>"; };
-		D4A15BFE1DE88CCE00DBF65C /* PLFriendTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendTableCell.swift; sourceTree = "<group>"; };
 		D4CEC2511D81941800D4CD08 /* PLLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLLocationManager.swift; sourceTree = "<group>"; };
 		D4CEC2541D81A3B400D4CD08 /* PLFriendsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendsDatasource.swift; sourceTree = "<group>"; };
 		D4CEC2561D81A3CB00D4CD08 /* PLDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDatasource.swift; sourceTree = "<group>"; };
@@ -369,7 +360,6 @@
 		E80E34861DF6A7A000CCE341 /* PLEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLEditViewController.swift; path = "Edit Profile/PLEditViewController.swift"; sourceTree = "<group>"; };
 		E81803291DBBA42300A57FB8 /* PLImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLImagePicker.swift; sourceTree = "<group>"; };
 		E81E32161DA16A7A00E46ABB /* PLNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLNavigationBar.swift; sourceTree = "<group>"; };
-		E8204A251DA82EB500BDBFCE /* PLDescriptionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLDescriptionLabel.swift; path = "Edit Profile/PLDescriptionLabel.swift"; sourceTree = "<group>"; };
 		E8204A271DA82F4000BDBFCE /* PLFormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFormTextField.swift; sourceTree = "<group>"; };
 		E829DDC91D8146B200D8C130 /* PLPlaceProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLPlaceProfileHeader.swift; path = "Place Profile/PLPlaceProfileHeader.swift"; sourceTree = "<group>"; };
 		E829DDCA1D8146B200D8C130 /* PLPlaceProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PLPlaceProfileHeader.xib; path = "Place Profile/PLPlaceProfileHeader.xib"; sourceTree = "<group>"; };
@@ -417,6 +407,13 @@
 		E883A8411DAA6269006DB9CF /* PLPlaceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaceCell.xib; sourceTree = "<group>"; };
 		E886AFAB1D8AA23B0014DF4D /* PLCardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLCardInfoViewController.swift; path = "Card Info/PLCardInfoViewController.swift"; sourceTree = "<group>"; };
 		E8A02E2E1E01430C009401F5 /* PLSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSearchBar.swift; sourceTree = "<group>"; };
+		E8A02E371E0159C0009401F5 /* PLAddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAddButton.swift; sourceTree = "<group>"; };
+		E8A02E391E01ABC4009401F5 /* PLFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLFriendCell.swift; sourceTree = "<group>"; };
+		E8A02E3A1E01ABC4009401F5 /* PLFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLFriendCell.xib; sourceTree = "<group>"; };
+		E8A02E3D1E01AC23009401F5 /* PLPendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLPendingCell.swift; sourceTree = "<group>"; };
+		E8A02E3E1E01AC23009401F5 /* PLPendingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPendingCell.xib; sourceTree = "<group>"; };
+		E8A02E411E01AC70009401F5 /* PLInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLInviteCell.swift; sourceTree = "<group>"; };
+		E8A02E421E01AC70009401F5 /* PLInviteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLInviteCell.xib; sourceTree = "<group>"; };
 		E8A658671D9CED4E00D8257F /* PLSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSelector.swift; sourceTree = "<group>"; };
 		E8A658691D9D0B6900D8257F /* PLDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLDate.swift; sourceTree = "<group>"; };
 		E8B53E431D9419DF00037A81 /* PLOrderHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLOrderHistoryViewController.swift; path = "Order History/PLOrderHistoryViewController.swift"; sourceTree = "<group>"; };
@@ -425,7 +422,6 @@
 		E8BB9A751D89329A00DD6987 /* PLSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLSettingsViewController.swift; sourceTree = "<group>"; };
 		E8BE86801D91399E0079855C /* PLNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationsViewController.swift; path = Notifications/PLNotificationsViewController.swift; sourceTree = "<group>"; };
 		E8BE86821D913A7B0079855C /* PLNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLNotificationCell.swift; path = Notifications/PLNotificationCell.swift; sourceTree = "<group>"; };
-		E8C89F7D1DC2085D006D17FE /* PLOrderFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLOrderFriendsViewController.swift; sourceTree = "<group>"; };
 		E8DA8B581D881D7C008782E5 /* PLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLView.swift; sourceTree = "<group>"; };
 		E8DA8B7A1D8832E8008782E5 /* TGLBackgroundProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLBackgroundProxyView.h; sourceTree = "<group>"; };
 		E8DA8B7B1D8832E8008782E5 /* TGLBackgroundProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLBackgroundProxyView.m; sourceTree = "<group>"; };
@@ -639,6 +635,7 @@
 				E85083121DACEC5B0077A81C /* PLEmptyBackgroundView.swift */,
 				D4A15BF41DE5A85D00DBF65C /* BasicView.swift */,
 				D4A15BF81DE8474800DBF65C /* PLProfileImageView.swift */,
+				E8A02E371E0159C0009401F5 /* PLAddButton.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -646,11 +643,8 @@
 		2480F89B1D813E730095995F /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				049BA9F71D83083800C2E32D /* PLFriendsSearchViewController.swift */,
 				049BA9F81D83083800C2E32D /* PLFriendsViewController.swift */,
-				04B724BC1D9AA2D7004805CF /* PLFriendBaseViewController.swift */,
-				E8C89F811DC237B7006D17FE /* Cell */,
-				24F012BB1DBA3AC60072556F /* resources */,
+				E8A02E451E01AFCD009401F5 /* Cells */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -667,7 +661,6 @@
 			isa = PBXGroup;
 			children = (
 				2480F8A51D813E730095995F /* PLOrderViewController.swift */,
-				E8C89F7D1DC2085D006D17FE /* PLOrderFriendsViewController.swift */,
 				2480F8A61D813E730095995F /* Resources */,
 			);
 			path = Order;
@@ -760,14 +753,6 @@
 				24DDA9301D9A658800FCDBCA /* events3.json */,
 			);
 			path = Events;
-			sourceTree = "<group>";
-		};
-		24F012BB1DBA3AC60072556F /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				24F012BC1DBA3B020072556F /* PLLoadingIndicatorView.swift */,
-			);
-			path = resources;
 			sourceTree = "<group>";
 		};
 		3031C286B9CA11146B8E1FA5 /* Pods */ = {
@@ -1036,14 +1021,6 @@
 			name = "Reset Password";
 			sourceTree = "<group>";
 		};
-		E860916E1D9AA1F2002C602A /* Description Label */ = {
-			isa = PBXGroup;
-			children = (
-				E8204A251DA82EB500BDBFCE /* PLDescriptionLabel.swift */,
-			);
-			name = "Description Label";
-			sourceTree = "<group>";
-		};
 		E886AFAA1D8A98790014DF4D /* Card Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -1051,6 +1028,19 @@
 				D4949F621DD2743000FEF0C8 /* PLDatePicker.swift */,
 			);
 			name = "Card Info";
+			sourceTree = "<group>";
+		};
+		E8A02E451E01AFCD009401F5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E8A02E391E01ABC4009401F5 /* PLFriendCell.swift */,
+				E8A02E3A1E01ABC4009401F5 /* PLFriendCell.xib */,
+				E8A02E3D1E01AC23009401F5 /* PLPendingCell.swift */,
+				E8A02E3E1E01AC23009401F5 /* PLPendingCell.xib */,
+				E8A02E411E01AC70009401F5 /* PLInviteCell.swift */,
+				E8A02E421E01AC70009401F5 /* PLInviteCell.xib */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		E8B53E421D9419A400037A81 /* Order History */ = {
@@ -1085,7 +1075,6 @@
 			isa = PBXGroup;
 			children = (
 				E8E4A1311D89EC0A00EA0DFE /* PLEditProfileViewController.swift */,
-				E860916E1D9AA1F2002C602A /* Description Label */,
 				E80E34861DF6A7A000CCE341 /* PLEditViewController.swift */,
 			);
 			name = "Edit Profile";
@@ -1108,17 +1097,6 @@
 				E8BE86861D913A8A0079855C /* Cell */,
 			);
 			name = Notifications;
-			sourceTree = "<group>";
-		};
-		E8C89F811DC237B7006D17FE /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				D4A15BF61DE8466600DBF65C /* PLUserTableCell.swift */,
-				D4A15BFE1DE88CCE00DBF65C /* PLFriendTableCell.swift */,
-				D4A15BFA1DE85EDE00DBF65C /* PLPendingUserTableCell.swift */,
-				D4A15BFC1DE87BEA00DBF65C /* PLInvitableUserCell.swift */,
-			);
-			name = Cell;
 			sourceTree = "<group>";
 		};
 		E8DA8B5C1D882896008782E5 /* AppDelegate */ = {
@@ -1283,6 +1261,7 @@
 				049692F91DDB3F2500A65C60 /* PLNewFriendNotificationCell.xib in Resources */,
 				E837C20E1D902CAE0080A074 /* signup.json in Resources */,
 				2480F9241D813E730095995F /* Main.storyboard in Resources */,
+				E8A02E441E01AC70009401F5 /* PLInviteCell.xib in Resources */,
 				2480F91A1D813E730095995F /* config.plist in Resources */,
 				E837C1FA1D902CAE0080A074 /* drinks1.json in Resources */,
 				2480F9021D813E730095995F /* PLOrderStillHeader.xib in Resources */,
@@ -1307,9 +1286,11 @@
 				D41494261DD5B5800081509E /* PLEventCell.xib in Resources */,
 				24E286E91D9E4A2E00B8D80C /* orders.json in Resources */,
 				2414F4591D997249000BA1F5 /* vip_drinks2.json in Resources */,
+				E8A02E3C1E01ABC4009401F5 /* PLFriendCell.xib in Resources */,
 				E837C2021D902CAE0080A074 /* order_covers0.json in Resources */,
 				2480F9231D813E730095995F /* LaunchScreen.storyboard in Resources */,
 				24DDA9341D9A658800FCDBCA /* events3.json in Resources */,
+				E8A02E401E01AC23009401F5 /* PLPendingCell.xib in Resources */,
 				E837C1F91D902CAE0080A074 /* drinks0.json in Resources */,
 				24DDA9321D9A658800FCDBCA /* events1.json in Resources */,
 				24F012BA1DBA16510072556F /* unfriend.json in Resources */,
@@ -1410,7 +1391,6 @@
 				E86E55891DB2ADDA00CE1698 /* PLCircularImageView.swift in Sources */,
 				E8BB9A761D89329A00DD6987 /* PLSettingsViewController.swift in Sources */,
 				24C20C6F1D894AD80040F2F5 /* PLDrinkset.swift in Sources */,
-				E8C89F7E1DC2085D006D17FE /* PLOrderFriendsViewController.swift in Sources */,
 				2480F8E41D813E730095995F /* PLDrink.swift in Sources */,
 				D4A15BF51DE5A85D00DBF65C /* BasicView.swift in Sources */,
 				E8558DDD1DE5E34B0067F81F /* PLResetPasswordData.swift in Sources */,
@@ -1437,18 +1417,14 @@
 				D47B45661D903DF80042EB9A /* PLProfileDatasourceContainer.swift in Sources */,
 				E8DA8B8F1D88334F008782E5 /* PLCollectionParalaxLayout.swift in Sources */,
 				D4A15BF91DE8474800DBF65C /* PLProfileImageView.swift in Sources */,
-				D4A15BFF1DE88CCE00DBF65C /* PLFriendTableCell.swift in Sources */,
 				D47DC1DF1DBA166400420958 /* PLDowntimer.swift in Sources */,
-				24F012BD1DBA3B020072556F /* PLLoadingIndicatorView.swift in Sources */,
 				2480F8EB1D813E730095995F /* PLUniqueObject.swift in Sources */,
 				D4E53C6B1DDCB7860047477A /* PLOrderCardScanView.swift in Sources */,
-				D4A15BF71DE8466600DBF65C /* PLUserTableCell.swift in Sources */,
 				E85083131DACEC5B0077A81C /* PLEmptyBackgroundView.swift in Sources */,
 				24DDA9361D9A663500FCDBCA /* PLEventsDatasource.swift in Sources */,
 				2480F8E91D813E730095995F /* PLOrder.swift in Sources */,
 				D4945B151DD3585F0005FD8C /* PLPaymentSource.swift in Sources */,
 				D4949F5F1DCD085700FEF0C8 /* PLPaymentManager.swift in Sources */,
-				04B724BD1D9AA2D7004805CF /* PLFriendBaseViewController.swift in Sources */,
 				E80692911DA0422200500684 /* PLFriendProfileViewController.swift in Sources */,
 				D47DC1EB1DBDF56000420958 /* PLPageCollectionPreset.swift in Sources */,
 				2480F8E21D813E730095995F /* PLStoryboard.swift in Sources */,
@@ -1459,7 +1435,6 @@
 				E829DDCB1D8146B200D8C130 /* PLPlaceProfileHeader.swift in Sources */,
 				E829DDD61D8151BE00D8C130 /* PLPlaceProfileViewController.swift in Sources */,
 				E80E34871DF6A7A000CCE341 /* PLEditViewController.swift in Sources */,
-				D4A15BFB1DE85EDE00DBF65C /* PLPendingUserTableCell.swift in Sources */,
 				D4FECA251D9D5EB800B3CA82 /* PLLog.swift in Sources */,
 				24DA61171D8BF642007F4973 /* PLPricedItem.swift in Sources */,
 				E8DA8B911D88334F008782E5 /* PLProfileCollectionHelper.swift in Sources */,
@@ -1484,6 +1459,8 @@
 				D4950A931D82B32700F48F4E /* PLAlert.swift in Sources */,
 				E8B53E441D9419DF00037A81 /* PLOrderHistoryViewController.swift in Sources */,
 				E8007BD71DA0073700372347 /* PLLocation.swift in Sources */,
+				E8A02E381E0159C0009401F5 /* PLAddButton.swift in Sources */,
+				E8A02E3F1E01AC23009401F5 /* PLPendingCell.swift in Sources */,
 				24DEF1581D818D2800E40869 /* PLOrderAnimableVipView.swift in Sources */,
 				2480F8DF1D813E730095995F /* PLDevice.swift in Sources */,
 				D419F0D11DB62E1F0095C5AA /* PLEditUserData.swift in Sources */,
@@ -1499,8 +1476,8 @@
 				E883A8421DAA6269006DB9CF /* PLPlaceCell.swift in Sources */,
 				D4CEC2551D81A3B400D4CD08 /* PLFriendsDatasource.swift in Sources */,
 				D46B0EE71DDB13EA00AD2B69 /* PLCounterView.swift in Sources */,
-				049BA9FA1D83083800C2E32D /* PLFriendsSearchViewController.swift in Sources */,
 				D414942C1DD9DC5F0081509E /* PLNotifications.swift in Sources */,
+				E8A02E3B1E01ABC4009401F5 /* PLFriendCell.swift in Sources */,
 				E8FC02551DA92B18006C94E7 /* PLPlaceNameCell.swift in Sources */,
 				E8A6586A1D9D0B6900D8257F /* PLDate.swift in Sources */,
 				E8558DD51DE598740067F81F /* PLCancelButton.swift in Sources */,
@@ -1517,7 +1494,6 @@
 				E8DA8B591D881D7C008782E5 /* PLView.swift in Sources */,
 				D4950A911D82A0DD00F48F4E /* PLPlaceCellData.swift in Sources */,
 				2480F8DB1D813E730095995F /* PLNetworkManager.swift in Sources */,
-				E8204A261DA82EB600BDBFCE /* PLDescriptionLabel.swift in Sources */,
 				D47DC1EF1DBDF67C00420958 /* PLPageCollectionStorage.swift in Sources */,
 				D47DC1E91DBDF55000420958 /* PLPageCollection.swift in Sources */,
 				2480F8D91D813E730095995F /* PLFacade.swift in Sources */,
@@ -1529,8 +1505,8 @@
 				D4CEC2591D81A45900D4CD08 /* PLPlacesDatasource.swift in Sources */,
 				2480F9011D813E730095995F /* PLOrderStillHeader.swift in Sources */,
 				2480F9031D813E730095995F /* PLOrdeStickyHeader.swift in Sources */,
-				D4A15BFD1DE87BEA00DBF65C /* PLInvitableUserCell.swift in Sources */,
 				24B5DD181D91564D0021050D /* PLOrderCheckoutPopupViewController.swift in Sources */,
+				E8A02E431E01AC70009401F5 /* PLInviteCell.swift in Sources */,
 				E829DDD81D818EAC00D8C130 /* PLPlacesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

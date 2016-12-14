@@ -44,7 +44,9 @@ extension UIColor {
         return UIColor(red: 111 / 255, green: 64 / 255, blue: 151 / 255, alpha: 1.0)
     }
     
-    
+    class func chamrockColor() -> UIColor {
+        return UIColor(red: 59 / 255, green: 204 / 255, blue: 236 / 255, alpha: 1.0)
+    }
     
     class var violetColor: UIColor { return UIColor(r: 111, g: 64, b: 151) }
     
@@ -60,7 +62,7 @@ extension UIColor {
     class var darkGray: UIColor { return UIColor(r: 151, g: 151, b: 151) }
     
     // invite pals button background
-    class var chamrockColor: UIColor { return UIColor(r: 59, g: 204, b: 136) }
+//    class var chamrockColor: UIColor { return UIColor(r: 59, g: 204, b: 136) }
     
     // background for error label on scan view
     class var maroonColor: UIColor { return UIColor(r: 120, g: 14, b: 14) }

@@ -174,7 +174,7 @@ class PLCardInfoViewController: PLViewController {
     private lazy var inputContainerView: UIView = {
         let containerView = UIView()
         containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
-        containerView.addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
+        containerView.addBorder([.Bottom], color: .lightGrayColor(), width: 0.5)
         containerView.backgroundColor = .whiteColor()
         
         let sendButton = UIButton(type: .System)

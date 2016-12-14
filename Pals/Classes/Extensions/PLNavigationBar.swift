@@ -52,12 +52,12 @@ extension UINavigationBar {
                 barStyle    = .Black
                 shadowImage = UIImage()
                 tintColor   = .whiteColor()
-                barColor    = .violetColor
+                barColor    = .affairColor()
             case .SettingsStyle:
                 transparent = false
                 barStyle    = .Black
                 tintColor   = .whiteColor()
-                barColor    = .violetColor
+                barColor    = .affairColor()
             case .NotificationsStyle:
                 break
             default:

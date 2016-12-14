@@ -46,7 +46,7 @@ class PLPlaceProfileSectionHeader: UICollectionReusableView {
         super.layoutSubviews()
         
         round([.TopLeft, .TopRight], radius: 15)
-        addBorder(.Bottom, color: .lightGrayColor(), width: 0.5)
+        addBorder([.Bottom], color: .lightGrayColor(), width: 0.5)
     }
    
 }

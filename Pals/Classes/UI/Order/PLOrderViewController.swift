@@ -372,7 +372,9 @@ extension PLOrderViewController: OrderHeaderBehaviourDelegate, CheckoutOrderPopu
     
     //MARK: Cnange user
     func userNamePressed(sender: AnyObject) {
-        performSegueWithIdentifier(SegueIdentifier.OrderFriendsSegue, sender: sender)
+        guard let friendsViewController = UIStoryboard.friendsViewController() else { return }
+        friendsViewController.delegate = self
+        navigationController?.pushViewController(friendsViewController, animated: true)
     }
 
     //MARK: Cnange place
@@ -463,25 +465,8 @@ extension PLOrderViewController: OrderHeaderBehaviourDelegate, CheckoutOrderPopu
         checkoutButton.addTarget(self, action: .checkoutPressed, forControlEvents: .TouchUpInside)
     }
     
-    
-    // MARK: - Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
-        switch identifier {
-        case .OrderPlacesSegue:
-            if let placesViewController = segue.destinationViewController as? PLPlacesViewController {
-                placesViewController.delegate = self
-            }
-        case .OrderFriendsSegue:
-            if let orderFriendsViewController = segue.destinationViewController as? PLOrderFriendsViewController {
-                orderFriendsViewController.delegate = self
-            }
-        default:
-            break
-        }
-    }
 }
+
 
 //MARK: - CollectionView dataSource
 extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -608,7 +593,7 @@ extension PLOrderViewController : PLCoverCellDelegate {
 }
 
 
-// MARK: - PLPlacesSelectionDelegate
+// MARK: - PLPlacesViewControllerDelegate
 
 extension PLOrderViewController: PLPlacesViewControllerDelegate {
     
@@ -619,16 +604,18 @@ extension PLOrderViewController: PLPlacesViewControllerDelegate {
     
 }
 
-// MARK: - PLFriendsSelectionDelegate
 
-extension PLOrderViewController: PLOrderFriendsSelectionDelegate {
+// MARK: - PLFriendsViewControllerDelegate
+
+extension PLOrderViewController: PLFriendsViewControllerDelegate {
     
-    func didSelectFriend(controller: PLOrderFriendsViewController, friend: PLUser) {
+    func didSelectFriend(controller: PLFriendsViewController, friend: PLUser) {
         order.user = friend
         collectionView.reloadSections(NSIndexSet(index: 0))
         controller.navigationController?.popViewControllerAnimated(true)
         updateCheckoutButtonState()
     }
+    
 }
 
 

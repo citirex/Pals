@@ -38,6 +38,6 @@ class PLFormTextField: UITextField {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        addBorder(.Bottom, color: .textUnderlineColor, width: 1.0)
+        addBorder([.Bottom], color: .textUnderlineColor, width: 1.0)
     }
 }

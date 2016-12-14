@@ -8,7 +8,8 @@
 
 import UIKit
 
-class PLHighlightedButton : UIButton {
+class PLHighlightedButton : PLRoundedButton {
+    
     override var highlighted: Bool {
         didSet {
             if highlighted {
@@ -18,31 +19,35 @@ class PLHighlightedButton : UIButton {
             }
         }
     }
+    
 }
+
 
 @IBDesignable
 class PLCheckmarkButton: PLHighlightedButton {
     
-    let lineWidth: CGFloat = 2.0
-    let strokeColor = UIColor.whiteColor().CGColor
-    var fillColor = UIColor.chamrockColor
+    @IBInspectable var fillColor: UIColor = .chamrockColor()
+    @IBInspectable var strokeColor: UIColor = .whiteColor()
+    @IBInspectable var lineWidth: CGFloat = 2.0
+    
     
     override func drawRect(rect: CGRect) {
         fillColor.set()
-        UIBezierPath(roundedRect: bounds, cornerRadius: bounds.size.width / 2.0).fill()
-        
-        let path = UIBezierPath()
-        path.moveToPoint(CGPointMake(CGRectGetWidth(bounds) * 0.27, CGRectGetHeight(bounds) * 0.54))
-        path.addLineToPoint(CGPointMake(CGRectGetWidth(bounds) * 0.42, CGRectGetHeight(bounds) * 0.69))
-        path.addLineToPoint(CGPointMake(CGRectGetWidth(bounds) * 0.75, CGRectGetHeight(bounds) * 0.35))
-        path.lineCapStyle = .Square
+        let circlePath = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.size.width / 2.0)
+        circlePath.fill()
+
+        let checkmarkPath = UIBezierPath()
+        checkmarkPath.moveToPoint(CGPointMake(CGRectGetWidth(bounds) * 0.27, CGRectGetHeight(bounds) * 0.54))
+        checkmarkPath.addLineToPoint(CGPointMake(CGRectGetWidth(bounds) * 0.42, CGRectGetHeight(bounds) * 0.69))
+        checkmarkPath.addLineToPoint(CGPointMake(CGRectGetWidth(bounds) * 0.75, CGRectGetHeight(bounds) * 0.35))
+        checkmarkPath.lineCapStyle = .Square
         
         let checkmarkLayer = CAShapeLayer()
         checkmarkLayer.fillColor = nil
-        checkmarkLayer.path = path.CGPath
-        checkmarkLayer.strokeColor = strokeColor
+        checkmarkLayer.path = checkmarkPath.CGPath
+        checkmarkLayer.strokeColor = strokeColor.CGColor
         checkmarkLayer.lineWidth   = lineWidth
         layer.addSublayer(checkmarkLayer)
     }
-
+    
 }

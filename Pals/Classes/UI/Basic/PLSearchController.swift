@@ -8,9 +8,6 @@
 
 class PLSearchController: UISearchController {
    
-	
-	var isFriends: Bool = true
-	
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PendingCell" id="hRi-MI-wHV" customClass="PLPendingCell" customModule="Pals" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hRi-MI-wHV" id="yB4-Eu-FyX">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bl5-Tj-csL" customClass="PLCircularImageView" customModule="Pals" customModuleProvider="target">
+                        <rect key="frame" x="20" y="13" width="60" height="60"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="bl5-Tj-csL" secondAttribute="height" multiplier="1:1" id="wCv-dy-wtb"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcG-NU-kxy">
+                        <rect key="frame" x="88" y="33" width="43" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="answer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRV-If-R0k">
+                        <rect key="frame" x="293" y="64" width="41" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7zO-pp-PCC">
+                        <rect key="frame" x="177" y="33" width="20" height="20"/>
+                    </activityIndicatorView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hz6-aF-Z5a" customClass="PLCheckmarkButton" customModule="Pals" customModuleProvider="target">
+                        <rect key="frame" x="315" y="23" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="hz6-aF-Z5a" secondAttribute="height" multiplier="1:1" id="mZh-EX-VzT"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="buttonClicked:" destination="hRi-MI-wHV" eventType="touchUpInside" id="vcg-wl-TfG"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmZ-pb-FeP" customClass="PLCancelButton" customModule="Pals" customModuleProvider="target">
+                        <rect key="frame" x="265" y="23" width="40" height="40"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="buttonClicked:" destination="hRi-MI-wHV" eventType="touchUpInside" id="BJE-cx-pvE"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wmZ-pb-FeP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NcG-NU-kxy" secondAttribute="trailing" constant="10" id="APn-Hx-7Mq"/>
+                    <constraint firstItem="NcG-NU-kxy" firstAttribute="centerY" secondItem="bl5-Tj-csL" secondAttribute="centerY" id="CZ2-cS-KMN"/>
+                    <constraint firstItem="7zO-pp-PCC" firstAttribute="centerY" secondItem="yB4-Eu-FyX" secondAttribute="centerY" id="HnA-ch-FGx"/>
+                    <constraint firstItem="hz6-aF-Z5a" firstAttribute="centerY" secondItem="bl5-Tj-csL" secondAttribute="centerY" id="OjT-Pk-bgU"/>
+                    <constraint firstItem="7zO-pp-PCC" firstAttribute="centerX" secondItem="yB4-Eu-FyX" secondAttribute="centerX" id="UMD-1c-46O"/>
+                    <constraint firstItem="wmZ-pb-FeP" firstAttribute="width" secondItem="hz6-aF-Z5a" secondAttribute="width" id="aOp-wy-ZDQ"/>
+                    <constraint firstItem="hz6-aF-Z5a" firstAttribute="height" secondItem="yB4-Eu-FyX" secondAttribute="height" multiplier="0.45" id="cHx-nA-y4Z"/>
+                    <constraint firstItem="wmZ-pb-FeP" firstAttribute="height" secondItem="hz6-aF-Z5a" secondAttribute="height" id="e8n-sO-VmT"/>
+                    <constraint firstItem="hz6-aF-Z5a" firstAttribute="leading" secondItem="wmZ-pb-FeP" secondAttribute="trailing" constant="10" id="iH4-V5-gWi"/>
+                    <constraint firstAttribute="trailing" secondItem="hz6-aF-Z5a" secondAttribute="trailing" constant="20" id="ibv-af-MdB"/>
+                    <constraint firstItem="bl5-Tj-csL" firstAttribute="centerY" secondItem="yB4-Eu-FyX" secondAttribute="centerY" id="meH-Yi-9hl"/>
+                    <constraint firstItem="wmZ-pb-FeP" firstAttribute="centerY" secondItem="hz6-aF-Z5a" secondAttribute="centerY" id="nOs-cZ-jat"/>
+                    <constraint firstItem="bl5-Tj-csL" firstAttribute="leading" secondItem="yB4-Eu-FyX" secondAttribute="leading" constant="20" id="oxO-fH-zJq"/>
+                    <constraint firstItem="NcG-NU-kxy" firstAttribute="leading" secondItem="bl5-Tj-csL" secondAttribute="trailing" constant="8" id="rgA-3z-yEF"/>
+                    <constraint firstItem="bl5-Tj-csL" firstAttribute="height" secondItem="yB4-Eu-FyX" secondAttribute="height" multiplier="0.7" id="sN2-el-Icg"/>
+                    <constraint firstItem="dRV-If-R0k" firstAttribute="bottom" secondItem="yB4-Eu-FyX" secondAttribute="bottomMargin" id="sqd-QX-jDE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dRV-If-R0k" secondAttribute="trailing" constant="41" id="bNe-Xf-euU"/>
+            </constraints>
+            <connections>
+                <outlet property="acceptButton" destination="hz6-aF-Z5a" id="TY2-9I-oyO"/>
+                <outlet property="answerLabel" destination="dRV-If-R0k" id="E1U-Jb-7hN"/>
+                <outlet property="declineButton" destination="wmZ-pb-FeP" id="T9e-ow-GgZ"/>
+                <outlet property="spinner" destination="7zO-pp-PCC" id="YIP-Q5-hU5"/>
+                <outlet property="userImageView" destination="bl5-Tj-csL" id="jCP-H0-nZ4"/>
+                <outlet property="usernameLabel" destination="NcG-NU-kxy" id="eJq-3r-QLu"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

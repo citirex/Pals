@@ -22,7 +22,7 @@ class PLPlacesViewController: PLViewController {
     lazy var places: PLPlacesDatasource = { return PLPlacesDatasource() }()
     private lazy var downtimer = PLDowntimer()
 
-    private var searchController: PLSearchController!
+    private var searchController: UISearchController!
     private var resultsController: UITableViewController!
     
     weak var delegate: PLPlacesViewControllerDelegate?
@@ -37,6 +37,7 @@ class PLPlacesViewController: PLViewController {
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
+        
         tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.reuseIdentifier)
         
         loadData()
@@ -82,7 +83,7 @@ class PLPlacesViewController: PLViewController {
     }
     
     private func configureResultsController() {
-        resultsController = UITableViewController(style: .Plain)
+        resultsController = UITableViewController(style: .Grouped)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.reuseIdentifier)
         resultsController.tableView.rowHeight = tableView.rowHeight
         resultsController.tableView.backgroundColor = .affairColor()
@@ -95,10 +96,10 @@ class PLPlacesViewController: PLViewController {
     }
     
     private func configureSearchController() {
-        searchController = PLSearchController(searchResultsController: resultsController)
+        searchController = UISearchController(searchResultsController: resultsController)
         searchController.searchBar.textField?.tintColor = .affairColor()
-        searchController.searchBar.barTintColor = .affairColor()
-        searchController.searchBar.tintColor = .whiteColor()
+        searchController.searchBar.barTintColor = .whiteColor()
+        searchController.searchBar.tintColor = .affairColor()
         searchController.searchResultsUpdater = self
         
         searchBarContainer.addSubview(searchController.searchBar)
@@ -127,9 +128,7 @@ extension PLPlacesViewController: UITableViewDataSource {
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         guard let cell = cell as? PLPlaceCell else { return }
-        let place = places[indexPath.row]
-        let cellData = place.cellData
-        cell.placeCellData = cellData
+        cell.placeCellData = places[indexPath.row].cellData
         cell.chevron.hidden = delegate != nil
     }
     
@@ -149,6 +148,7 @@ extension PLPlacesViewController: UITableViewDelegate {
         let place = places[indexPath.row]
     
         guard delegate == nil else { return delegate!.didSelectPlace(self, place: place) }
+        
         performSegueWithIdentifier(SegueIdentifier.PlaceProfileSegue, sender: place)
     }
     

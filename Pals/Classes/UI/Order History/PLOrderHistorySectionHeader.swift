@@ -17,16 +17,19 @@ class PLOrderHistorySectionHeader: UITableViewHeaderFooterView {
     var order: PLOrder? {
         didSet {
             dateLabel.text = ""
-            if let o = order {
-                if let date = o.date {
+            if let order = order {
+                if let date = order.date {
                     dateLabel.text = date.since
                 }
             }
         }
     }
     
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        addBorder(.Top, color: .lightGrayColor(), width: 0.5)
+        
+        addBorder([.Top], color: .lightGrayColor(), width: 0.5)
     }
+    
 }

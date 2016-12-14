@@ -71,23 +71,24 @@ extension UIView {
         case Top, Bottom, Left, Right
     }
 
-    func addBorder(side: UIBorderSide, color: UIColor, width: CGFloat) {
+    func addBorder(sides: [UIBorderSide], color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.CGColor
         
-        switch side {
-        case .Top:
-            border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: width)
-        case .Bottom:
-            border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
-        case .Left:
-            border.frame = CGRect(x: 0, y: 0, width: width, height: frame.size.height)
-        case .Right:
-            border.frame = CGRect(x: frame.size.width - width, y: 0, width: width, height: frame.size.height)
+        for side in sides {
+            switch side {
+            case .Top:
+                border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: width)
+            case .Bottom:
+                border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
+            case .Left:
+                border.frame = CGRect(x: 0, y: 0, width: width, height: frame.size.height)
+            case .Right:
+                border.frame = CGRect(x: frame.size.width - width, y: 0, width: width, height: frame.size.height)
+            }
+            layer.addSublayer(border)
         }
-        layer.addSublayer(border)
     }
-
     
     var top: CGFloat {
         get {

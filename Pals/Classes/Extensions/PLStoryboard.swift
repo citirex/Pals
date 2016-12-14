@@ -54,5 +54,9 @@ extension UIStoryboard {
     class func placesViewController() -> PLPlacesViewController? {
         return viewControllerWithType(.PlacesViewController) as? PLPlacesViewController
     }
+    
+    class func friendsViewController() -> PLFriendsViewController? {
+        return viewControllerWithType(.FriendsViewController) as? PLFriendsViewController
+    }
  
 }
