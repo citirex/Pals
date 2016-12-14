@@ -377,7 +377,9 @@ extension PLOrderViewController: OrderHeaderBehaviourDelegate, CheckoutOrderPopu
 
     //MARK: Cnange place
     func placeNamePressed(sender: AnyObject) {
-        performSegueWithIdentifier(SegueIdentifier.OrderPlacesSegue, sender: sender)
+        guard let placesViewController = UIStoryboard.placesViewController() else { return }
+        placesViewController.delegate = self
+        navigationController?.pushViewController(placesViewController, animated: true)
     }
 
     func updateDataForSelectedPlace() {
@@ -468,8 +470,8 @@ extension PLOrderViewController: OrderHeaderBehaviourDelegate, CheckoutOrderPopu
         guard let identifier = SegueIdentifier(rawValue: segue.identifier!) else { return }
         switch identifier {
         case .OrderPlacesSegue:
-            if let orderPlacesViewController = segue.destinationViewController as? PLOrderPlacesViewController {
-                orderPlacesViewController.delegate = self
+            if let placesViewController = segue.destinationViewController as? PLPlacesViewController {
+                placesViewController.delegate = self
             }
         case .OrderFriendsSegue:
             if let orderFriendsViewController = segue.destinationViewController as? PLOrderFriendsViewController {
@@ -608,12 +610,13 @@ extension PLOrderViewController : PLCoverCellDelegate {
 
 // MARK: - PLPlacesSelectionDelegate
 
-extension PLOrderViewController: PLOrderPlacesSelectionDelegate {
+extension PLOrderViewController: PLPlacesViewControllerDelegate {
     
-    func didSelectPlace(controller: PLOrderPlacesViewController, place: PLPlace) {
+    func didSelectPlace(controller: PLPlacesViewController, place: PLPlace) {
         setNewPlace(place)
         controller.navigationController?.popViewControllerAnimated(true)
     }
+    
 }
 
 // MARK: - PLFriendsSelectionDelegate

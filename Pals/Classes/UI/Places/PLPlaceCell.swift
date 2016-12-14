@@ -12,7 +12,7 @@ import GPUImage
 class PLPlaceCell: UITableViewCell {
     
     static let nibName    = "PLPlaceCell"
-    static let identifier = "PlaceCell"
+    static let reuseIdentifier = "PlaceCell"
     
     @IBOutlet weak var backgroundImageView: PLBlurImageView!
     @IBOutlet weak var placeNameLabel:    UILabel!

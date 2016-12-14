@@ -24,6 +24,7 @@ enum PLStoryboardType: String {
     case LoginViewController
     case TabBarController
     case FriendsViewController
+    case PlacesViewController
     case OrderFriendsViewController
     case ResetPasswordViewController
     case CardInfo
@@ -48,6 +49,10 @@ extension UIStoryboard {
     
     class func resetPasswordViewController() -> PLResetPasswordViewController? {
         return viewControllerWithType(.ResetPasswordViewController) as? PLResetPasswordViewController
+    }
+    
+    class func placesViewController() -> PLPlacesViewController? {
+        return viewControllerWithType(.PlacesViewController) as? PLPlacesViewController
     }
  
 }
