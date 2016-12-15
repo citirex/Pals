@@ -26,7 +26,7 @@ class PLEditProfileViewController: PLViewController {
     }
     
     private lazy var editBarButtonItem: UIBarButtonItem! = {
-        return UIBarButtonItem(image: UIImage(named: "edit"), style: .Plain, target: self, action: .tappedEditButton)
+        return UIBarButtonItem(image: UIImage(named: "pencil"), style: .Plain, target: self, action: .tappedEditButton)
     }()
     
     private lazy var cancelBarButtonItem: UIBarButtonItem! = {

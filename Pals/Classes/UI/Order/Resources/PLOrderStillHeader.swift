@@ -21,7 +21,22 @@ class PLOrderStillHeader: UICollectionViewCell {
     @IBOutlet private var userNameLabel: UILabel!
     @IBOutlet private var placeNameLabel: UILabel!
     
+    @IBOutlet weak var userButton: UIButton!
+    @IBOutlet weak var placeButton: UIButton!
+    
     weak var delegate: OrderHeaderBehaviourDelegate?
+    
+    
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let searchImage = UIImage.imageFromSystemBarButton(.Search)
+        
+        userButton.setImage(searchImage, forState: .Normal)
+        placeButton.setImage(searchImage, forState: .Normal)
+    }
     
     
     //MARK: actions

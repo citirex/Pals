@@ -46,7 +46,7 @@ extension UINavigationBar {
                 transparent = false
                 barStyle    = .Default
                 barColor    = .whiteColor()
-                tintColor   = .violetColor
+                tintColor   = .affairColor()
             case .PlacesStyle:
                 transparent = false
                 barStyle    = .Black
@@ -80,7 +80,7 @@ extension UINavigationBar {
         var titleColor = UIColor()
         switch style {
         case .FriendsStyle:
-            titleColor = .violetColor
+            titleColor = .affairColor()
         default:
             titleColor = .whiteColor()
         }

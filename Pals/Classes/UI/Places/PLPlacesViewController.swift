@@ -75,7 +75,7 @@ class PLPlacesViewController: PLViewController {
     // MARK: - Private Methods
     
     private func loadData() {
-		startActivityIndicator(.WhiteLarge, color: .whiteColor())
+		startActivityIndicator(.WhiteLarge, color: .grayColor())
         loadData(places) { [unowned self] Void -> UITableView in
 			self.stopActivityIndicator()
             return self.places.searching ? self.resultsController.tableView : self.tableView
@@ -83,7 +83,7 @@ class PLPlacesViewController: PLViewController {
     }
     
     private func configureResultsController() {
-        resultsController = UITableViewController(style: .Grouped)
+        resultsController = UITableViewController(style: .Plain)
         resultsController.tableView.registerNib(nib, forCellReuseIdentifier: PLPlaceCell.reuseIdentifier)
         resultsController.tableView.rowHeight = tableView.rowHeight
         resultsController.tableView.backgroundColor = .affairColor()

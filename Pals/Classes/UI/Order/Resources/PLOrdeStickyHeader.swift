@@ -16,6 +16,8 @@ class PLOrdeStickyHeader: UICollectionViewCell {
     
     static let height: CGFloat = 70
     
+    @IBOutlet weak var line: UIView!
+    
     @IBOutlet private var coverButton: UIButton!
     @IBOutlet private var drinkButton: UIButton!
     

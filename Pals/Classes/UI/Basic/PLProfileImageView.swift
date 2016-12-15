@@ -23,7 +23,7 @@ class PLProfileImageView: PLCircularImageView, Initializable {
     }
     
     func initialize() {
-        backgroundColor = .violetColor
+        backgroundColor = .affairColor()
     }
     
     var user: PLUser? {

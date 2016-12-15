@@ -21,7 +21,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="cxa-5d-wUz"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <state key="normal" title="Drinks">
                             <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -38,7 +38,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="9GN-Wz-Ieq"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <state key="normal" title="Cover">
                             <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -77,6 +77,7 @@
                 <outlet property="coverConstraint" destination="2hM-8v-0gv" id="vRG-T0-EgQ"/>
                 <outlet property="drinkButton" destination="sul-FE-gyk" id="MuQ-qs-DXj"/>
                 <outlet property="drinkConstraint" destination="WSt-lR-Okw" id="nLr-bN-UYz"/>
+                <outlet property="line" destination="Kn6-3q-Dqr" id="8r2-Ml-6Vb"/>
             </connections>
             <point key="canvasLocation" x="427" y="253"/>
         </collectionViewCell>

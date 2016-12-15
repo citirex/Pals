@@ -30,9 +30,9 @@ extension UIColor {
     }
     
     static func rand() -> UIColor {
-        let r = UInt(arc4random()%255)
-        let g = UInt(arc4random()%255)
-        let b = UInt(arc4random()%255)
+        let r = UInt(arc4random() % 255)
+        let g = UInt(arc4random() % 255)
+        let b = UInt(arc4random() % 255)
         let color = UIColor(r: r, g: g, b: b)
         return color
     }
@@ -48,9 +48,15 @@ extension UIColor {
         return UIColor(red: 59 / 255, green: 204 / 255, blue: 236 / 255, alpha: 1.0)
     }
     
-    class var violetColor: UIColor { return UIColor(r: 111, g: 64, b: 151) }
+    class func goldColor() -> UIColor {
+        return UIColor(red: 0.85, green: 0.73, blue: 0.19, alpha: 1.0)
+    }
     
-    class var goldColor: UIColor { return UIColor(red:0.85, green:0.73, blue:0.19, alpha:1.0) }
+    
+    
+//    class var violetColor: UIColor { return UIColor(r: 111, g: 64, b: 151) }
+    
+//    class var goldColor: UIColor { return UIColor(red:0.85, green:0.73, blue:0.19, alpha:1.0) }
     
     /// Sign Up screen 
 

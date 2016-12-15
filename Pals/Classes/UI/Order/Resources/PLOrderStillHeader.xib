@@ -28,64 +28,87 @@
                             <constraint firstAttribute="height" constant="1" id="6kg-1L-7Q4"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Myself" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zik-3U-02v">
-                        <rect key="frame" x="20" y="12" width="54" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zik-3U-02v">
+                        <rect key="frame" x="30" y="12" width="37" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bs5-J7-j2G">
-                        <rect key="frame" x="20" y="53" width="32" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bs5-J7-j2G">
+                        <rect key="frame" x="30" y="56" width="48" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuX-34-Djh">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuX-34-Djh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="2BU-FP-0VE"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <connections>
                             <action selector="userNameButtonPressed:" destination="9s0-dE-hzl" eventType="touchUpInside" id="yCf-GJ-Wgb"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-xV-jT3">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-xV-jT3">
                         <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="Tm0-Ns-G7m"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <connections>
                             <action selector="placeNameButtonPressed:" destination="9s0-dE-hzl" eventType="touchUpInside" id="fYf-7Z-2t7"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="aFT-nL-CJc">
+                        <rect key="frame" x="294" y="17" width="6" height="10"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="JOg-vw-P0N">
+                        <rect key="frame" x="294" y="61" width="6" height="10"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="0.19727909482758621" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="Bs5-J7-j2G" firstAttribute="top" secondItem="yuX-34-Djh" secondAttribute="bottom" constant="9" id="1qV-Vx-SkS"/>
+                <constraint firstItem="Zik-3U-02v" firstAttribute="centerY" secondItem="yuX-34-Djh" secondAttribute="centerY" id="2CW-K3-BOC"/>
                 <constraint firstAttribute="trailing" secondItem="yuX-34-Djh" secondAttribute="trailing" id="6Cw-Zh-RFx"/>
                 <constraint firstItem="g2V-jG-yNn" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" id="7g0-pb-nnb"/>
                 <constraint firstItem="lRk-yj-bCb" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" id="8nl-FY-Vfq"/>
                 <constraint firstAttribute="bottom" secondItem="bXY-xV-jT3" secondAttribute="bottom" id="8tO-hy-RcA"/>
+                <constraint firstItem="aFT-nL-CJc" firstAttribute="centerY" secondItem="yuX-34-Djh" secondAttribute="centerY" id="EiM-8K-Diz"/>
                 <constraint firstAttribute="trailing" secondItem="lRk-yj-bCb" secondAttribute="trailing" id="FeX-by-Qlv"/>
                 <constraint firstAttribute="bottom" secondItem="lRk-yj-bCb" secondAttribute="bottom" id="GPw-Fc-u9O"/>
                 <constraint firstAttribute="trailing" secondItem="bXY-xV-jT3" secondAttribute="trailing" id="Ikw-bZ-5Yu"/>
                 <constraint firstItem="yuX-34-Djh" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" id="Ipq-aN-Ef1"/>
                 <constraint firstItem="g2V-jG-yNn" firstAttribute="bottom" secondItem="yuX-34-Djh" secondAttribute="bottom" id="Ji7-ve-RqW"/>
+                <constraint firstItem="Bs5-J7-j2G" firstAttribute="centerY" secondItem="bXY-xV-jT3" secondAttribute="centerY" id="KnV-4h-9U7"/>
                 <constraint firstAttribute="trailing" secondItem="g2V-jG-yNn" secondAttribute="trailing" id="QA7-cI-G4S"/>
+                <constraint firstItem="JOg-vw-P0N" firstAttribute="centerY" secondItem="bXY-xV-jT3" secondAttribute="centerY" id="RkT-jW-gut"/>
+                <constraint firstAttribute="trailing" secondItem="aFT-nL-CJc" secondAttribute="trailing" constant="20" id="SY4-Jk-Cve"/>
                 <constraint firstItem="bXY-xV-jT3" firstAttribute="top" secondItem="yuX-34-Djh" secondAttribute="bottom" id="TPk-Le-gqO"/>
                 <constraint firstItem="yuX-34-Djh" firstAttribute="top" secondItem="9s0-dE-hzl" secondAttribute="top" id="UDu-Vu-qOC"/>
                 <constraint firstItem="bXY-xV-jT3" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" id="UoS-bf-XtA"/>
-                <constraint firstItem="Zik-3U-02v" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" constant="20" id="nnS-7a-YVX"/>
-                <constraint firstItem="g2V-jG-yNn" firstAttribute="top" secondItem="Zik-3U-02v" secondAttribute="bottom" constant="9" id="qVz-wt-V2o"/>
+                <constraint firstAttribute="trailing" secondItem="JOg-vw-P0N" secondAttribute="trailing" constant="20" id="kCU-c9-Of6"/>
+                <constraint firstItem="Zik-3U-02v" firstAttribute="leading" secondItem="9s0-dE-hzl" secondAttribute="leading" constant="30" id="nnS-7a-YVX"/>
                 <constraint firstItem="Zik-3U-02v" firstAttribute="leading" secondItem="Bs5-J7-j2G" secondAttribute="leading" id="vcb-id-AWL"/>
             </constraints>
             <connections>
+                <outlet property="placeButton" destination="bXY-xV-jT3" id="QmD-iG-gOd"/>
                 <outlet property="placeNameLabel" destination="Bs5-J7-j2G" id="rC7-3w-3C2"/>
+                <outlet property="userButton" destination="yuX-34-Djh" id="OXo-zB-eSk"/>
                 <outlet property="userNameLabel" destination="Zik-3U-02v" id="9nC-ON-Rvw"/>
             </connections>
             <point key="canvasLocation" x="550" y="435"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="chevron" width="6" height="10"/>
+    </resources>
 </document>

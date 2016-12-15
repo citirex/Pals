@@ -8,7 +8,6 @@
 
 private let kStillHeaderIdentifier = "stillHeader"
 private let kStickyHeaderIdentifier = "stickyHeader"
-//private let kDrinkCellIdentifier = "drinkCell"
 private let kCoverCellIdentifier = "coverCell"
 
 private let kCheckoutButtonHeight: CGFloat = 74
@@ -33,6 +32,9 @@ class PLOrderViewController: PLViewController {
     
     private var currentSection: PLOrderSection = .Drinks
     
+    private var stillHeader: PLOrderStillHeader!
+    private var stickyHeader: PLOrdeStickyHeader!
+    
     private let animableVipView = UINib(nibName: "PLOrderAnimableVipView",
         bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PLOrderAnimableVipView
  
@@ -49,8 +51,8 @@ class PLOrderViewController: PLViewController {
     private var checkoutButton = UIButton(frame: CGRectZero)
     private var checkoutButtonOnScreen = false
     
-    private let placeholderUserName = "user"
-    private let placeholderPlaceName = "venue"
+    private let placeholderUserName = "User"
+    private let placeholderPlaceName = "Venue"
     
     private var sendPopup: PLOrderCheckoutPopupViewController?
     
@@ -83,10 +85,11 @@ class PLOrderViewController: PLViewController {
         if navigationItem.titleView != animableVipView {
             navigationItem.titleView = animableVipView
         }
+        
         navigationController?.navigationBar.barStyle     = .Black
         navigationController?.navigationBar.tintColor    = .whiteColor()
         navigationController?.navigationBar.translucent  = false
-        navigationController?.navigationBar.barTintColor = order.isVIP ? .goldColor : .violetColor
+        navigationController?.navigationBar.barTintColor = order.isVIP ? .goldColor() : .affairColor()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -119,6 +122,7 @@ class PLOrderViewController: PLViewController {
     func onDidSelectNewPlace(notification: NSNotification) {
         if let notifObj = notification.object as? PLPlaceEventNotification {
             let selectedPlace = notifObj.place
+            
             // set a new place if only no place or selected another place
             if order.place == nil || order.place!.id != selectedPlace.id {
                 setNewPlace(notifObj.place)
@@ -197,23 +201,29 @@ extension PLOrderViewController {
     
     //MARK: - Actions
     @objc private func vipButtonPressed(sender: UIBarButtonItem) {
+        sender.image = order.isVIP ? UIImage(named: "sharp_crown") : UIImage(named: "Edit")
+        
+        stickyHeader.line.backgroundColor = order.isVIP ? .affairColor() : .goldColor()
+        
+//        stillHeader.backgroundColor = order.isVIP ? .affairColor() : .goldColor()
+        
         order.isVIP = !order.isVIP
         performTransitionToVipState(order.isVIP)
     }
     
     private func restore() {
         order.isVIP = false
-        self.bgImageView.image = UIImage(named: "order_bg")
+        bgImageView.image = UIImage(named: "order_bg")
         navigationItem.rightBarButtonItem = vipButton
         animableVipView.restoreToDefaultState()
     }
     
     private func performTransitionToVipState(isVIP: Bool) {
         isVIP ? animableVipView.animateVip() : animableVipView.restoreToDefaultState()
-        UIView.animateWithDuration(0.3) {
-            self.bgImageView.image = isVIP ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
-            self.navigationController?.navigationBar.barTintColor = isVIP ? .goldColor : .violetColor
-        }
+        
+        bgImageView.image = isVIP ? UIImage(named: "order_bg_vip") : UIImage(named: "order_bg")
+        navigationController?.navigationBar.barTintColor = isVIP ? .goldColor() : .affairColor()
+        
         drinksDatasource.isVIP = order.isVIP
         coversDatasource.isVIP = order.isVIP
         if order.place != nil {
@@ -440,11 +450,9 @@ extension PLOrderViewController: OrderHeaderBehaviourDelegate, CheckoutOrderPopu
     //MARK: - Setup
     func setupCollectionView() {
         animableVipView.frame = PLOrderAnimableVipView.suggestedFrame
-        vipButton = UIBarButtonItem(title: "VIP", style: .Plain, target: self, action: #selector(vipButtonPressed(_:)))
-        vipButton?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 20.0)!,
-            NSForegroundColorAttributeName: UIColor.orangeColor()],
-                                          forState: .Normal)
+        
+        vipButton = UIBarButtonItem(image: UIImage(named: "sharp_crown"), style: .Plain, target: self, action: #selector(vipButtonPressed(_:)))
+        
         navigationItem.rightBarButtonItem = vipButton
         
         collectionView.registerNib(UINib(nibName: "PLOrderStillHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier)
@@ -464,6 +472,7 @@ extension PLOrderViewController: OrderHeaderBehaviourDelegate, CheckoutOrderPopu
         view.addSubview(checkoutButton)
         checkoutButton.addTarget(self, action: .checkoutPressed, forControlEvents: .TouchUpInside)
     }
+    
     
 }
 
@@ -531,18 +540,18 @@ extension PLOrderViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if indexPath.section == 0 {
             
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLOrderStillHeader
-            header.delegate = self
-            header.userName = order.user?.name ?? placeholderUserName
-            header.placeName = order.place?.name ?? placeholderPlaceName
-            return header
+            stillHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStillHeaderIdentifier, forIndexPath: indexPath) as! PLOrderStillHeader
+            stillHeader.delegate = self
+            stillHeader.userName = order.user?.name ?? placeholderUserName
+            stillHeader.placeName = order.place?.name ?? placeholderPlaceName
+            return stillHeader
         } else {
             
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLOrdeStickyHeader
-            header.delegate = self
-            header.currentSection = currentSection
-            
-            return header
+            stickyHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: kStickyHeaderIdentifier, forIndexPath: indexPath) as! PLOrdeStickyHeader
+            stickyHeader.delegate = self
+            stickyHeader.currentSection = currentSection
+            stickyHeader.line.backgroundColor = order.isVIP ? .goldColor() : .affairColor()
+            return stickyHeader
         }
     }
     
