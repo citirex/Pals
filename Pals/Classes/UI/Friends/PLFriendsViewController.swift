@@ -191,9 +191,13 @@ extension PLFriendsViewController: UITableViewDataSource {
             friendCell.user = user
                 
             guard delegate != nil else { return }
-            if currentDatasource === friendsDatasource && indexPath.row == 0 {
+            
+            if indexPath.row == 0 {
                 friendCell.backgroundColor = .goldColor()
                 friendCell.usernameLabel.textColor = .whiteColor()
+            } else {
+                friendCell.backgroundColor = .whiteColor()
+                friendCell.usernameLabel.textColor = .blackColor()
             }
             friendCell.accessoryType = .None
         case .Pending:

@@ -155,3 +155,19 @@ extension UIView {
         return nil
     }
 }
+
+
+extension UIView {
+    
+    func rotate(toValue: CGFloat, duration: CFTimeInterval = 0.2) {
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        
+        animation.toValue = toValue
+        animation.duration = duration
+        animation.removedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        
+        layer.addAnimation(animation, forKey: nil)
+    }
+    
+}

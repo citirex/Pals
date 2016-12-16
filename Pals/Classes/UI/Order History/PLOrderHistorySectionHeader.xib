@@ -17,14 +17,19 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nim-oC-hK1">
                             <rect key="frame" x="141" y="12" width="92" height="24"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up" translatesAutoresizingMaskIntoConstraints="NO" id="io0-k8-yjl">
+                            <rect key="frame" x="341" y="20" width="14" height="9"/>
+                        </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.23137254900000001" green="0.80000000000000004" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="Nim-oC-hK1" firstAttribute="centerX" secondItem="WcL-8n-gNG" secondAttribute="centerX" id="2Qx-vH-ZyJ"/>
+                        <constraint firstItem="io0-k8-yjl" firstAttribute="centerY" secondItem="WcL-8n-gNG" secondAttribute="centerY" id="6Hc-3K-eD4"/>
                         <constraint firstItem="Nim-oC-hK1" firstAttribute="centerY" secondItem="WcL-8n-gNG" secondAttribute="centerY" id="MnT-hf-RDA"/>
+                        <constraint firstAttribute="trailing" secondItem="io0-k8-yjl" secondAttribute="trailing" constant="20" id="Uyf-It-Nhe"/>
                     </constraints>
                 </view>
             </subviews>
@@ -38,9 +43,13 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="arrow" destination="io0-k8-yjl" id="fCW-dr-GP2"/>
                 <outlet property="dateLabel" destination="Nim-oC-hK1" id="dEh-pc-hB7"/>
             </connections>
             <point key="canvasLocation" x="-331.5" y="153"/>
         </view>
     </objects>
+    <resources>
+        <image name="up" width="14" height="9"/>
+    </resources>
 </document>

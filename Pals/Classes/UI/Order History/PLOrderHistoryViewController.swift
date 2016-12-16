@@ -21,7 +21,22 @@ class PLOrderHistoryViewController: PLViewController {
         return orders
     }()
     
-
+    struct Section {
+        var section: Int!
+        var rows: [Int]!
+        var collapsed: Bool!
+        
+        init(section: Int, rows: [Int], collapsed: Bool = true) {
+            self.section = section
+            self.rows = rows
+            self.collapsed = collapsed
+        }
+    }
+    
+    var sections = [Section]()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +49,8 @@ class PLOrderHistoryViewController: PLViewController {
         
         loadOrders()
     }
+
+    
     
     // MARK: - Private methods
     
@@ -54,13 +71,46 @@ class PLOrderHistoryViewController: PLViewController {
             let objects = page.objects
             let lastIdxPath = self.findLastIdxPath()
             let indexPaths = self.orders.indexPathsFromObjects(objects as [AnyObject], lastIdxPath: lastIdxPath, mergedSection: page.mergedWithPreviousSection)
-            self.logInsertingCellPaths(indexPaths)
+//            self.logInsertingCellPaths(indexPaths)
+            
+            var rows = [Int]()
+            var section = 0
+            var row = 0
+            
+            var index = 0
+            for indexPath in indexPaths {
+                if section == indexPath.section {
+                    if row == indexPath.row {
+                        rows.append(row)
+                        row += 1
+                        
+                        if indexPath == indexPaths.last {
+                            self.sections.append(Section(section: section, rows: rows))
+                        } else if row != indexPaths[index + 1].row {
+                            self.sections.append(Section(section: section, rows: rows))
+                            rows.removeAll()
+                            section += 1
+                            row = 0
+                        }
+                    }
+                }
+                index += 1
+            }
 
             self.tableView?.beginUpdates()
             let newSectionIdxSet = self.makeIndexSetForInsertingSections(page, datasource: self.orders)
             self.tableView.insertSections(newSectionIdxSet, withRowAnimation: .Bottom)
             self.tableView?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
             self.tableView?.endUpdates()
+        }
+    }
+    
+    private var sectionCounts = [Int : Int]()
+    func totalRowIndex(forIndexPath indexPath: NSIndexPath) -> Int {
+        if indexPath.section == 0 {
+            return indexPath.row
+        } else {
+            return (sectionCounts[indexPath.section-1] ?? 0) + indexPath.row
         }
     }
     
@@ -78,6 +128,24 @@ class PLOrderHistoryViewController: PLViewController {
         PLLog("==========", type: .Initialization)
     }
 
+}
+
+
+
+extension PLOrderHistoryViewController {
+    
+    private func findLastIdxPath() -> NSIndexPath? {
+        let sections = tableView.numberOfSections
+        if sections == 0 {
+            return nil
+        }
+        let rows = tableView.numberOfRowsInSection(sections-1)
+        if rows == 0 {
+            return nil
+        }
+        return NSIndexPath(forRow: rows-1, inSection: sections-1)
+    }
+    
 }
 
 
@@ -106,31 +174,15 @@ extension PLOrderHistoryViewController: UITableViewDataSource {
             if let cell = cell as? PLPlaceNameCell {
                 let place = historyObject as! PLPlace
                 cell.place = place
+                cell.order = orders.objectsInSection(indexPath.section).first
             }
         case .Drink:
             if let cell = cell as? PLOrderHistoryCell {
-                let drink = (historyObject as! PLItemSet<PLDrink>).item
-                cell.drink = drink
+                cell.itemSet = (historyObject as! PLItemSet<PLDrink>)
+                cell.order = orders.objectsInSection(indexPath.section).first
             }
         }
         return cell
-    }
-    
-}
-
-
-extension PLOrderHistoryViewController {
-
-    private func findLastIdxPath() -> NSIndexPath? {
-        let sections = tableView.numberOfSections
-        if sections == 0 {
-            return nil
-        }
-        let rows = tableView.numberOfRowsInSection(sections-1)
-        if rows == 0 {
-            return nil
-        }
-        return NSIndexPath(forRow: rows-1, inSection: sections-1)
     }
     
 }
@@ -140,21 +192,33 @@ extension PLOrderHistoryViewController {
 
 extension PLOrderHistoryViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if let last = findLastIdxPath() {
-            if indexPath.compare(last) == .OrderedSame {
-                loadOrders()
-            }
-        }
-    }
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if let last = findLastIdxPath() {
+//            if indexPath.compare(last) == .OrderedSame {
+//                loadOrders()
+//            }
+//        }
+//    }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier(PLOrderHistorySectionHeader.reuseIdentifier) as! PLOrderHistorySectionHeader
         
         if let firstOrder = orders.objectsInSection(section).first {
+            sectionHeader.setCollapsed(sections[section].collapsed)
+            sectionHeader.section = section
             sectionHeader.order = firstOrder
+            sectionHeader.delegate = self
         }
         return sectionHeader
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if sections[indexPath.section].collapsed! { return 0 }
+        else {
+            let historyObject = orders.historyObjectForIndPath(indexPath)
+            let cellType = orders.orderCellTypeFromHistoryObject(historyObject)
+            return cellType == .Place ? 44 : 88
+        }
     }
     
 }
@@ -193,3 +257,25 @@ extension PLOrderHistoryViewController: DZNEmptyDataSetDelegate {
     
 }
 
+
+// MARK: - PLOrderHistorySectionHeaderDelegate
+
+extension PLOrderHistoryViewController: PLOrderHistorySectionHeaderDelegate {
+    
+    func toggleSection(header: PLOrderHistorySectionHeader, section: Int) {
+        let collapsed = !sections[section].collapsed
+        
+        // Toggle collapse
+        sections[section].collapsed = collapsed
+        header.setCollapsed(collapsed)
+        
+        // Adjust the height of the rows inside the section
+        tableView.beginUpdates()
+        for row in 0..<sections[section].rows.count {
+            let indexPath = NSIndexPath(forRow: row, inSection: section)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+        tableView.endUpdates()
+    }
+    
+}

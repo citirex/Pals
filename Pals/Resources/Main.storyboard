@@ -1153,7 +1153,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="UbD-Gp-IQ2">
-                                    <rect key="frame" x="0.0" y="256" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="296" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
@@ -1165,10 +1165,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-Hp-QFs">
-                                                    <rect key="frame" x="141" y="12" width="92" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="December, 2016" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-Hp-QFs">
+                                                    <rect key="frame" x="111" y="12" width="152" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1177,6 +1177,7 @@
                                                 <constraint firstItem="HDm-Hp-QFs" firstAttribute="centerX" secondItem="FaC-ky-mfi" secondAttribute="centerX" id="nsn-W6-FSW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.23137254900000001" green="0.80000000000000004" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
@@ -1191,49 +1192,95 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Drinking Loo" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U8V-ij-U5p">
-                                                    <rect key="frame" x="111" y="12" width="153" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <rect key="frame" x="110" y="12" width="156" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTg-Lb-15U">
+                                                    <rect key="frame" x="8" y="21" width="31" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="U8V-ij-U5p" firstAttribute="centerY" secondItem="ddY-Zm-w41" secondAttribute="centerY" id="0Bs-2E-xEU"/>
+                                                <constraint firstItem="U8V-ij-U5p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tTg-Lb-15U" secondAttribute="trailing" constant="10" id="1wJ-ga-MYY"/>
+                                                <constraint firstItem="tTg-Lb-15U" firstAttribute="leading" secondItem="ddY-Zm-w41" secondAttribute="leadingMargin" id="llm-uM-FG1"/>
+                                                <constraint firstItem="tTg-Lb-15U" firstAttribute="bottom" secondItem="U8V-ij-U5p" secondAttribute="bottom" id="tlx-XB-MCt"/>
                                                 <constraint firstItem="U8V-ij-U5p" firstAttribute="centerX" secondItem="ddY-Zm-w41" secondAttribute="centerX" id="vDr-DD-cLf"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.43529412150382996" green="0.25098040699958801" blue="0.59215688705444336" alpha="1" colorSpace="calibratedRGB"/>
                                         <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="dateLabel" destination="tTg-Lb-15U" id="JtN-e2-OXL"/>
                                             <outlet property="placeNameLabel" destination="U8V-ij-U5p" id="2yV-IJ-0gP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OrderHistoryCell" textLabel="g1B-wP-cxH" detailTextLabel="wXJ-yS-Zcu" style="IBUITableViewCellStyleValue1" id="TK1-sB-fha" customClass="PLOrderHistoryCell" customModule="Pals" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="208" width="375" height="48"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OrderHistoryCell" rowHeight="88" id="TK1-sB-fha" customClass="PLOrderHistoryCell" customModule="Pals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="208" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TK1-sB-fha" id="dDg-2X-QRr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Corona Light" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g1B-wP-cxH">
-                                                    <rect key="frame" x="15" y="12" width="116" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQW-ZM-x77" customClass="PLVerticalLabel" customModule="Pals" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="87"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="1FP-T8-OjU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="$3.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wXJ-yS-Zcu">
-                                                    <rect key="frame" x="305" y="12" width="55" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoK-8h-aXP">
+                                                    <rect key="frame" x="28" y="33" width="43" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQb-qC-0L2">
+                                                    <rect key="frame" x="313" y="33" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ves-YD-IdL">
+                                                    <rect key="frame" x="28" y="64" width="31" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bottles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MF8-jJ-6XR">
+                                                    <rect key="frame" x="63" y="64" width="40" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="UoK-8h-aXP" firstAttribute="centerY" secondItem="dDg-2X-QRr" secondAttribute="centerY" id="60A-La-AdX"/>
+                                                <constraint firstItem="BQb-qC-0L2" firstAttribute="centerY" secondItem="dDg-2X-QRr" secondAttribute="centerY" id="EAa-CH-Eqr"/>
+                                                <constraint firstItem="Ves-YD-IdL" firstAttribute="leading" secondItem="UoK-8h-aXP" secondAttribute="leading" id="L7z-8b-D1S"/>
+                                                <constraint firstItem="UoK-8h-aXP" firstAttribute="leading" secondItem="rQW-ZM-x77" secondAttribute="trailing" constant="8" id="MZj-On-0Yd"/>
+                                                <constraint firstAttribute="trailing" secondItem="BQb-qC-0L2" secondAttribute="trailing" constant="20" id="N38-Ah-0dl"/>
+                                                <constraint firstItem="rQW-ZM-x77" firstAttribute="leading" secondItem="dDg-2X-QRr" secondAttribute="leading" id="VW0-w7-WH5"/>
+                                                <constraint firstItem="rQW-ZM-x77" firstAttribute="top" secondItem="dDg-2X-QRr" secondAttribute="top" id="dkd-xY-YkV"/>
+                                                <constraint firstAttribute="bottom" secondItem="rQW-ZM-x77" secondAttribute="bottom" id="sUF-6T-kyQ"/>
+                                                <constraint firstItem="MF8-jJ-6XR" firstAttribute="bottom" secondItem="dDg-2X-QRr" secondAttribute="bottomMargin" id="t1h-rs-xBN"/>
+                                                <constraint firstItem="MF8-jJ-6XR" firstAttribute="leading" secondItem="Ves-YD-IdL" secondAttribute="trailing" constant="4" id="u3G-h3-3bd"/>
+                                                <constraint firstItem="Ves-YD-IdL" firstAttribute="bottom" secondItem="dDg-2X-QRr" secondAttribute="bottomMargin" id="z9j-xA-ljY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="Ves-YD-IdL" id="zDW-hV-zd8"/>
+                                            <outlet property="conditionLabel" destination="rQW-ZM-x77" id="HqR-Uw-t3F"/>
+                                            <outlet property="drinkNameLabel" destination="UoK-8h-aXP" id="3fQ-iJ-XKz"/>
+                                            <outlet property="priceLabel" destination="BQb-qC-0L2" id="FOT-h5-nuR"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
