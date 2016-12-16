@@ -45,7 +45,7 @@ class PLOrderHistorySectionHeader: UITableViewHeaderFooterView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        addBorder([.Top, .Bottom], color: .lightGrayColor(), width: 0.5)
+        addBorder([.Top, .Bottom], color: .whiteColor(), width: 0.5)
     }
     
     func tapHeader(gestureRecognizer: UITapGestureRecognizer) {

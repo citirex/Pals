@@ -73,6 +73,8 @@ class PLFriendsViewController: PLViewController {
         }
         
         PLNotifications.addObserver(self, selector: #selector(onPushDidReceive(_:)), type: .PushDidReceive)
+        
+        tableView.reloadData()
     }
     
     func onPushDidReceive(notification: NSNotification) {

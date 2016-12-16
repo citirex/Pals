@@ -118,7 +118,7 @@ class PLPushManager: NSObject {
     func didReceiveRemoteNotification(userInfo: [NSObject : AnyObject], fetchCompletionHandler
         completionHandler: (UIBackgroundFetchResult) -> Void) {
         
-        if let userInfo = userInfo as? [String:AnyObject] {
+        if let userInfo = userInfo as? [String : AnyObject] {
             processPushInfo(userInfo, launchedByTap: false)
         }
         completionHandler(.NewData)
@@ -126,13 +126,13 @@ class PLPushManager: NSObject {
     
     func processLaunchOptions(options: [NSObject : AnyObject]?) {
         if options != nil {
-            if let aps = options![UIApplicationLaunchOptionsRemoteNotificationKey] as? [String:AnyObject] {
+            if let aps = options![UIApplicationLaunchOptionsRemoteNotificationKey] as? [String : AnyObject] {
                 processPushInfo(aps, launchedByTap: true)
             }
         }
     }
     
-    func processPushInfo(aps: [String:AnyObject], launchedByTap: Bool) {
+    func processPushInfo(aps: [String : AnyObject], launchedByTap: Bool) {
         PLLog("Received remote notification: \n\(aps)", type: .Pushes)
         if let pushData = aps[.info] as? [String : AnyObject] {
             let push = PLPush(data: pushData, launchedByTap: launchedByTap)

@@ -73,30 +73,8 @@ class PLOrderHistoryViewController: PLViewController {
             let indexPaths = self.orders.indexPathsFromObjects(objects as [AnyObject], lastIdxPath: lastIdxPath, mergedSection: page.mergedWithPreviousSection)
 //            self.logInsertingCellPaths(indexPaths)
             
-            var rows = [Int]()
-            var section = 0
-            var row = 0
+            self.setSectionsFromIndexPaths(indexPaths)
             
-            var index = 0
-            for indexPath in indexPaths {
-                if section == indexPath.section {
-                    if row == indexPath.row {
-                        rows.append(row)
-                        row += 1
-                        
-                        if indexPath == indexPaths.last {
-                            self.sections.append(Section(section: section, rows: rows))
-                        } else if row != indexPaths[index + 1].row {
-                            self.sections.append(Section(section: section, rows: rows))
-                            rows.removeAll()
-                            section += 1
-                            row = 0
-                        }
-                    }
-                }
-                index += 1
-            }
-
             self.tableView?.beginUpdates()
             let newSectionIdxSet = self.makeIndexSetForInsertingSections(page, datasource: self.orders)
             self.tableView.insertSections(newSectionIdxSet, withRowAnimation: .Bottom)
@@ -105,12 +83,32 @@ class PLOrderHistoryViewController: PLViewController {
         }
     }
     
-    private var sectionCounts = [Int : Int]()
-    func totalRowIndex(forIndexPath indexPath: NSIndexPath) -> Int {
-        if indexPath.section == 0 {
-            return indexPath.row
-        } else {
-            return (sectionCounts[indexPath.section-1] ?? 0) + indexPath.row
+  
+    func setSectionsFromIndexPaths(indexPaths: [NSIndexPath]) {
+        guard indexPaths.count > 0 else { return }
+        
+        var rows = [Int]()
+        var section = 0
+        var row = 0
+        
+        var index = 0
+        for indexPath in indexPaths {
+            if section == indexPath.section {
+                if row == indexPath.row {
+                    rows.append(row)
+                    row += 1
+                    
+                    if indexPath == indexPaths.last {
+                        self.sections.append(Section(section: section, rows: rows))
+                    } else if row != indexPaths[index + 1].row {
+                        self.sections.append(Section(section: section, rows: rows))
+                        rows.removeAll()
+                        section += 1
+                        row = 0
+                    }
+                }
+            }
+            index += 1
         }
     }
     

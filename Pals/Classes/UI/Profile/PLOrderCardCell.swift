@@ -113,21 +113,21 @@ class PLOrderCardCell: UICollectionViewCell {
     
     var order: PLOrder? {
         didSet {
-            if let o = order {
-                placeTitleLabel.text = o.place.name
-                musicGenresLabel.text = o.place.musicGengres
-                headerView.backgroundColor = o.cardType.color
-                let named = o.used ? "green_check" : "qr_icon"
+            if let order = order {
+                placeTitleLabel.text = order.place.name
+                musicGenresLabel.text = ""//order.place.musicGengres
+                headerView.backgroundColor = order.cardType.color
+                let named = order.used ? "green_check" : "qr_icon"
                 let image = UIImage(named: named)
-                cardModeButton.hidden = !o.used
-                cardModeButton.enabled = !o.used
+                cardModeButton.hidden = !order.used
+                cardModeButton.enabled = !order.used
                 cardModeButton.setBackgroundImage(image, forState: .Normal)
-                if o.used && mode == .Scan {
+                if order.used && mode == .Scan {
                     scanContainerView.disableCamera()
                     mode = .List
                 }
                 
-                let icons = orderIconData(o)
+                let icons = orderIconData(order)
                 previewHeader.updateWithIcons(icons)
             } else {
                 placeTitleLabel.text = "<Error>"
